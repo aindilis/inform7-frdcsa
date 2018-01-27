@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.7. New rulebooks</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "New rulebooks" -->
+<!-- SEARCH SECTION "18.7" -->
+<!-- SEARCH SORT "018-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc326.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc328.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.7. New rulebooks</b></td></tr></table><p>
+<p>
+<p>Creating a new rulebook is also straightforward, as we see in the following modest example game:
+<p>
+<blockquote><font color="#000080">&quot;Appraisal&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Passage is east of the Tomb. The green-eyed idol is in the Tomb. A Speak-Your-Progress machine is in the Passage.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Appraisal rules is a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An appraisal rule: say &quot;Click... whirr... the score is [the score in words] points.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An appraisal rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if we have taken the idol, say &quot;Most importantly of all, the idol has been found.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of switching on the machine, follow the appraisal rules.
+</font></blockquote><p>
+<p>
+<p>The creation of the rulebook is all very well, but without the final sentence it would never be used. The crucial new phrase here is:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>follow </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_follow -->
+
+<p>This phrase causes the rule to be obeyed immediately (rather than simply at predetermined times such as when a particular action is being tried, or at the end of every turn, and such). Example:
+<p>
+<blockquote><font color="#000080">follow the advance time rule;
+<br>follow the appraisal rulebook;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Like &quot;number&quot; or &quot;text&quot;, &quot;rule&quot; and &quot;rulebook&quot; are kinds of value built into Inform: &quot;the blossom rule&quot; is a value whose kind is &quot;rule&quot;, whereas &quot;the every turn rules&quot; is a value whose kind is &quot;rulebook&quot;. In fact, Inform considers a rulebook to be a special case of a rule, so that whenever a rule is required it is legal to name a rulebook instead, but not vice versa. The &quot;follow&quot; phrase here...
+<p>
+<blockquote><font color="#000080">Instead of switching on the machine, follow the appraisal rules.
+</font></blockquote><p>
+<p>
+<p>...expects to be applied to a value of kind &quot;rule&quot;; &quot;the appraisal rules&quot; is in fact a rulebook, but since that counts as a rule the phrase makes sense to Inform. To follow a rulebook means to run through all its rules in turn, stopping when one rule reaches an outcome; to follow a single rule means just that one, of course.
+<p>
+<p>When created, a rulebook starts out with no rules in it - in this example, of course, we quickly defined a couple of rules to go into it. But it's often the case in Inform that a rulebook exists without ever being stocked up, especially if the rulebook is for some obscure purpose never needed. The built-in adjectives &quot;empty&quot; and &quot;non-empty&quot;, applied to a rulebook, test whether any rule is present or not.
+<p>
+<p><hr><p>
+<a name="e47"><a href=ex47.html#e47 STYLE="text-decoration: none">***<b>Example 384:  In Fire or in Flood</b></a><br>A BURN command; flammable objects which light other items in their vicinity and can burn for different periods of time; the possibility of having parts or contents of a flaming item which survive being burnt.<p>
+<p><hr><p><a href=doc326.html STYLE="text-decoration: none">Previous</a> / <a href=doc328.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

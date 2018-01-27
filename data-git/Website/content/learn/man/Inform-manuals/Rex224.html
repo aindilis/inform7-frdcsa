@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.10. Magic (Breaking the Laws of Physics)</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Access All Areas" -->
+<!-- SEARCH SECTION "Ex 390" -->
+<!-- SEARCH SORT "Ex 010-010-390" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc88.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc90.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.10. Magic (Breaking the Laws of Physics)</b></td></tr></table><p>
+<p>
+<p>Every previous section of this chapter have been about adding further realism constraints to Inform, to give it a more advanced understanding of physics (and chemistry). But Inform has plenty of physical laws built into it already, even if they are more mundane: inanimate objects do not spontaneously move or change, one solid object cannot pass through another, there are opaque barriers through which light cannot pass, and so on. These rules stop many attempted actions. (GO EAST - &quot;The oak door is closed.&quot; GET EMERALD - &quot;You can't, since the glass display case is in the way.&quot;)
+<p>
+<p>In the real world, physics is not negotiable. (&quot;Gravity: it's not just a good idea, it's the law.&quot;) But in stories, magic can sometimes happen, and in these examples procedural rules are used to waive selected rules built into Inform which in effect cancel certain physical laws in certain cases. Very many other magical tricks could be achieved: if you want to make a given command work despite realism constraints, try typing ACTIONS - a testing command which reveals what is happening behind the scenes - and then typing the command you want. This should reveal which named rule is stopping it: you can then try suspending that rule, and seeing if the effect now works.
+<p>
+<a href=Rdoc41.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Magic Words</b></font></a><i> for ways to create new single-word spell commands</i><p><p>
+<p><hr><p>
+<a name="e384"><a href=Rex384.html#e384 STYLE="text-decoration: none">*<b>Example 227:  Transmutations</b></a><br>A machine that turns objects into other, similar objects.<p>
+<a name="e206"><a href=Rex206.html#e206 STYLE="text-decoration: none">*<b>Example 215:  Magneto's Revenge</b></a><br>Kitty Pryde of the X-Men is able to reach through solid objects, so we might implement her with special powers that the player does not have...<p>
+<!-- EXAMPLE START -->
+<a name="e224"><a href=Rdoc89.html#e224 STYLE="text-decoration: none">*<b><b>Example</b> 390:  Access All Areas</b></a><br>The Pointy Hat of Liminal Transgression allows its wearer to walk clean through closed doors.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>This is a typical usage of procedural rules to suspend the laws of nature. Notice that we only need a procedural rule if we are going to conditionally replace or ignore the behavior of a rule at runtime.
+<p>
+<p>If we want to remove or replace one of the standard rules universally throughout the game, it is better to use the &quot;X is listed instead of Y...&quot; or &quot;X is not listed...&quot; syntax, since these will not require any runtime calculation. Procedural rules are called very frequently at runtime, so having a large number may slow down performance on slower machines.
+<p>
+<blockquote><font color="#000080">&quot;Access All Areas&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The extremely difficult door is north of the Standing Room and south of the Room of Walking Upside Down.  It is a locked door.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player is carrying the Pointy Hat of Liminal Transgression. The hat is wearable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A procedural rule: if the Hat is worn, ignore the can't go through closed doors rule.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;n / wear hat / n&quot;.
+</font></blockquote><p>
+<p>
+<p>(The Pointy Hat may be useful in debugging a game, even if it never makes it into the final published work.)
+<p>
+<p>The &quot;can't go through closed doors rule&quot; is one of those belonging to the &quot;check going&quot; rulebook. These names are fairly explanatory when written out, but hard to remember: fortunately we don't need to remember them, as the Index panel contains a full inventory of the check, carry out and report rules for every action, showing all of their names and the order in which they are checked.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e197"><a href=Rex197.html#e197 STYLE="text-decoration: none">*<b>Example 224:  Interrogation</b></a><br>A wand which, when waved, reveals the concealed items carried by people the player can see.<p>
+<p><hr><p><a href=Rdoc88.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc90.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.18. Changing the meaning of pronouns</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Pot of Petunias" -->
+<!-- SEARCH SECTION "Ex 314" -->
+<!-- SEARCH SORT "Ex 016-018-314" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc276.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc278.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.18. Changing the meaning of pronouns</b></td></tr></table><p>
+<p>
+<p>The pronouns IT, HIM, HER and THEM are constantly adjusted during play, to save the player time when typing commands. If the player types EXAMINE NECKLACE on one turn, it's sufficient to type TAKE IT on the next, and IT will be understood as meaning whatever NECKLACE meant last turn.
+<p>
+<p>All of that happens automatically, but once in a while the result can be unfortunate. Suppose that when the player examines the necklace, a security system automatically drugs her unconscious, and she wakes up in a cell, hours later, and is told that the cell is bare except for a key on the floor. If she types TAKE IT, she clearly doesn't mean IT to mean the necklace any more; she means the key. Inform's parser can't make guesses like this, so the following phrase can be used to help it.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>set pronouns from </b>(object)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_setpronouns -->
+
+<p>This phrase adjusts the meaning of pronouns like IT, HIM, HER and THEM in the command parser as if the object mentioned has become the subject of conversation. Example: the combination of
+<p>
+<blockquote><font color="#000080">set pronouns from the key;
+<br>set pronouns from Bunny;
+</font></blockquote><p>
+<p>
+<p>might change IT to mean the silver key and HIM to mean Harry &quot;Bunny&quot; Manders, while leaving HER and THEM unaltered.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>Previous builds of Inform also allowed:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>set pronouns from possessions of the player</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_setpronouns_dep -->
+
+<p>This phrase is now deprecated. It has the same effect as:
+<p>
+<blockquote><font color="#000080">repeat with item running through things held by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;set pronouns from the item.
+</font></blockquote><p>
+<p>
+<p>and is being withdrawn as unnecessary and very rarely needed.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e296"><a href=doc277.html#e296 STYLE="text-decoration: none">*<b><b>Example</b> 314:  Pot of Petunias</b></a><br>Responding sensibly to a pot of petunias falling from the sky.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have an object that makes a dramatic entrance on the scene, like so:
+<p>
+<blockquote><font color="#000080">&quot;Pot of Petunias&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Wide Open Field is a room. &quot;A big field under a big sky. The clouds are puffy, the trees are handsome.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some clouds and some trees are scenery in Wide Open Field. The description of the clouds is &quot;That one looks like Yoda's head.&quot; The description of the trees is &quot;You've never been much good at botany, so it's anyone's guess what kind they are.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A rock is in Wide Open Field. The description of the rock is &quot;It looks like it's been here from the dawn of time.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The broken flower pot is a thing. The description of the broken flower pot is &quot;It contains the remains of some abused petunias.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 9:01 am:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the broken flower pot to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Quite unexpectedly, a flower pot falls from the sky and breaks open on the ground. Good thing you weren't standing six inches to the left.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;set pronouns from the broken flower pot.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x it / x it / x it&quot;.
+</font></blockquote><p>
+<p>
+<p>If we leave out the &quot;set pronouns...&quot; line here, we'll wind up with the following very unsatisfactory end to our test transcript:
+<p>
+<blockquote><font color="#000080">Quite unexpectedly, a flower pot falls from the sky and breaks open on the ground. Good thing you weren't standing six inches to the left.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">>[3] x it
+<br>It looks like it's been here from the dawn of time.
+</font></blockquote><p>
+<p>
+<p>There are very occasionally cases in which &quot;set pronouns...&quot; may not be quite enough. For example, the case of a pair of socks which we want to have respond to both &quot;it&quot; (as &quot;the pair of socks&quot;) and &quot;them&quot; (as &quot;the socks&quot; alone). The built-in extension Plurality by Emily Short adds the concept of &quot;ambiguously plural&quot; objects that will be recognized accordingly.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc276.html STYLE="text-decoration: none">Previous</a> / <a href=doc278.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

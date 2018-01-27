@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.15. Temporary relations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Temporary relations" -->
+<!-- SEARCH SECTION "13.15" -->
+<!-- SEARCH SORT "013-015-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc221.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc223.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.15. Temporary relations</b></td></tr></table><p>
+<p>
+<p>So far in this chapter, we've only seen relations which exist permanently during play. The relationships might change - sometimes Red Riding Hood would be in the Woodcutter's Cottage, sometimes not - but the relations themselves were eternal.
+<p>
+<p>In fact, though, we can also create relations to be dynamic data structures, like lists or indexed texts:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>let </b>(a name not so far used)<b> be </b>(description of relations of values to values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_letrelation -->
+
+<p>This phrase creates a new temporary variable, and sets its value to the identity of a newly created and equally temporary relation. These last only for the present block of phrases, which certainly means that they exist only in the current rule. Example:
+<p>
+<blockquote><font color="#000080">let the password dictionary be a relation of texts;
+</font></blockquote><p>
+<p>
+<p>This makes a purely temporary various-to-various relation between texts, which lasts as long as the temporary value &quot;password dictionary&quot; lasts. By default, relations are various-to-various, but we could instead write, say:
+<p>
+<blockquote><font color="#000080">let the nicknames catalogue be a various-to-one relation of texts;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Such a relation exists only in the current phrase, and is destroyed when the phrase finishes, like any other &quot;let&quot;. Of course there's no verb whose meaning is this relation, but that's no obstacle, because we can manipulate it using &quot;relates&quot;:
+<p>
+<blockquote><font color="#000080">now the nicknames catalogue relates &quot;Trudy&quot; to &quot;Snake-eyes&quot;;
+</font></blockquote><p>
+<p>
+<p>(At present such a relation cannot be used outside its own phrase.)
+<p>
+<p><hr><p><a href=doc221.html STYLE="text-decoration: none">Previous</a> / <a href=doc223.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

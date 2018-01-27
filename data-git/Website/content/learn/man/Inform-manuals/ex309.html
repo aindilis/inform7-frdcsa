@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.20. Understanding mistakes</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Query" -->
+<!-- SEARCH SECTION "Ex 316" -->
+<!-- SEARCH SORT "Ex 016-020-316" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc278.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc280.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.20. Understanding mistakes</b></td></tr></table><p>
+<p>
+<p>When inspiration strikes the player, he can usually be relied upon to make a good-faith effort to communicate the new idea: he will guess the right command. If he guesses wrongly, the mistake is probably the author's, because a good author will try to anticipate all possible wordings and make all of them work.
+<p>
+<p>Nevertheless it is sometimes good practice to nudge the player towards the right wording - particularly if the player has the right idea but is not explicit enough: for instance, typing TALK TO JUDGE when we really want to know what is to be said (JUDGE, GUILTY); or if the player tries something like PLAY CHESS rather than MOVE PAWN TO KING 4. Similarly, if we make a casual reference such as &quot;In your childhood days, you loved sliding in stocking feet across this hallway&quot;, a player might type SLIDE IN STOCKING FEET: a nice idea, and which deserves a nice response, even though it asks to do something beyond the scope of the game.
+<p>
+<p>Inform provides a simple mechanism for recognising a command but at the same time recognising that <i>it does not properly specify an action</i>. Such commands are called &quot;mistakes&quot;, for the sake of a memorable term, but the player has not really behaved badly, and should be helped rather than reproved. For instance:
+<p>
+<blockquote><font color="#000080">Understand &quot;act&quot; as a mistake.
+</font></blockquote><p>
+<p>
+<p>While that works - the command to &quot;act&quot; is indeed rejected - it is not very good, because no very helpful message is brought up. The following is much better:
+<p>
+<blockquote><font color="#000080">Understand &quot;act&quot; as a mistake (&quot;To join the actors, you have to adopt a role in the play! Try PLAY HAMLET or similar.&quot;).
+</font></blockquote><p>
+<p>
+<p>Or we could once again insist on a given context:
+<p>
+<blockquote><font color="#000080">Understand &quot;act&quot; as a mistake (&quot;To join the actors, you have to adopt a role in the play! Try PLAY HAMLET or similar.&quot;) when the location is the Garden Theatre.
+</font></blockquote><p>
+<p>
+<p>That still has the drawback that the command &quot;act hamlet&quot; will not be recognised: so the final version we want is probably
+<p>
+<blockquote><font color="#000080">Understand &quot;act [text]&quot; as a mistake (&quot;To join the actors, you have to adopt a role in the play! Try PLAY HAMLET or similar.&quot;) when the location is the Garden Theatre.
+</font></blockquote><p>
+<p>
+<p>since the &quot;[text]&quot; part will soak up any words the player types (or none), meaning that any command at all whose first word is &quot;act&quot; will be matched.
+<p>
+<p>We need to be careful to avoid circular things like this:
+<p>
+<blockquote><font color="#000080">Understand &quot;[text]&quot; as a mistake (&quot;'[the topic understood]' is something I really wish you wouldn't say.&quot;) when the topic understood is a topic listed in table 1.
+</font></blockquote><p>
+<p>
+<p>This doesn't work because the topic understood isn't set until the line has been understood, but Inform checks the &quot;when...&quot; condition before it tries to understand the line. Indeed, even this:
+<p>
+<blockquote><font color="#000080">Understand &quot;[text]&quot; as a mistake (&quot;'[the topic understood]' is something I really wish you wouldn't say.&quot;).
+</font></blockquote><p>
+<p>
+<p>is unsafe (quite apart from being unwise!) - again, &quot;topic understood&quot; doesn't exist for a mistake, because in a mistake, nothing is understood.
+<p>
+<p>The following is often useful during beta-testing of a new work, though we would not want it in the final published edition. Many authors like to ask their testers not to try anything in particular, simply to play naturally: but to record the transcript of the session, and email it back to the author. The following command is a device to allow the tester to type a comment in to the transcript:
+<p>
+<blockquote><font color="#000080">Understand &quot;* [text]&quot; as a mistake (&quot;Noted.&quot;).
+</font></blockquote><p>
+<p>
+<p>For instance, the tester might type &quot;* DIDN'T WE SAY DARCY WAS TALL?&quot;, to which the game would reply &quot;Noted.&quot; - and the author can search for such comments when receiving the transcript.
+<p>
+<p>If we are careful, we can make the reply depend on what was typed in the mistaken command:
+<p>
+<blockquote><font color="#000080">Understand &quot;steal [something]&quot; as a mistake (&quot;Just TAKE [the noun] and leave without paying: that's stealing in my book.&quot;).
+</font></blockquote><p>
+<p>
+<p>The care comes in because Inform applies much less checking to mistakes than to other actions, and odd errors will result if we try to refer to (say) &quot;the second noun&quot; in a command which did not have a second noun.
+<p>
+<p>It's probably wise to take particular care if using &quot;as a mistake&quot; with any command which might include the mistake among what the player calls ALL: for example, if &quot;take [sydney harbour bridge]&quot; is understood as a mistake, then TAKE ALL will may result in this, even though the player doesn't intend any such thing.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e309"><a href=doc279.html#e309 STYLE="text-decoration: none">*<b><b>Example</b> 316:  Query</b></a><br>Catching all questions that begin with WHO, WHAT, WHERE, and similar question words, and responding with the instruction to use commands, instead.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>First, we create a single &quot;[query]&quot; token so that we can capture all instances of such sentences in a single line:
+<p>
+<blockquote><font color="#000080">&quot;Query&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Blank Room is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;who&quot; or &quot;what&quot; or &quot;when&quot; or &quot;where&quot; or &quot;why&quot; or &quot;how&quot; or &quot;who's&quot; or &quot;what's&quot; or &quot;when's&quot; or &quot;where's&quot; or &quot;why's&quot; or &quot;how's&quot; as &quot;[query]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;[query] [text]&quot; as a mistake (&quot;[story title] understands commands, such as '[command prompt]examine [a random thing that can be seen by the player]', but not questions. For more instructions, type HELP.&quot;).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;who am I? / who are you? / where is this place?&quot;.
+</font></blockquote><p>
+<p>
+<p>Now the game will respond to all questions novice players might type with this reminder to look for help information.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e368"><a href=ex368.html#e368 STYLE="text-decoration: none">*<b>Example 317:  The Gorge at George</b></a><br>If the player tries to TALK TO a character, suggest alternative modes of conversation.<p>
+<a name="e105"><a href=ex105.html#e105 STYLE="text-decoration: none">***<b>Example 318:  Hot Glass Looks Like Cold Glass</b></a><br>Responding to references to a property that the player isn't yet allowed to mention (or when not to use "understand as a mistake").<p>
+<p><hr><p><a href=doc278.html STYLE="text-decoration: none">Previous</a> / <a href=doc280.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+#!/usr/bin/perl -w
+
+use PerlLib::SwissArmyKnife;
+use System::Inform7::GLULXE;
+
+my $ulx = System::Inform7::GLULXE->new();
+
+my $init = $ulx->Start
+  (
+   ULXFile =>
+   '/var/lib/myfrdcsas/versions/myfrdcsa-1.0/codebases/minor/normal-form/inform7/Normal-Form/Normal Form.inform/Build/output.ulx',
+  );
+print Dumper($init);
+
+sub Execute {
+  my ($cmd) = @_;
+  my $res = $ulx->IssueCommand(Command => $cmd);
+  print Dumper
+    ({
+      Command => $cmd,
+      Result => $res->{Result},
+     });
+  return $res;
+}
+
+# Execute("showme");
+# Execute("x computer desk");
+
+my $userscommandresponseprocessed;
+
+my $loop = 1;
+
+while($loop) {
+
+  $userscommandresponseprocessed = DoUsersCommand
+    ();
+
+  $halscommandresponseprocessed = DoHalsCommand
+    (UsersCommandResponseProcessed => $userscommandresponseprocessed);
+
+}
+
+# FIXME: This is all wrong we need a select here, or maybe a unilang
+# agent.  Also is the computer necessarily hal, or is that the
+# personality we interact with.
+
+
+
+sub DoUsersCommand {
+  my (%args) = @_;
+
+  my $usercommand = <STDIN>;
+  chomp $usercommand;
+
+  my $usercommandresponse = Execute
+    ($usercommand);
+
+  return ProcessUsersCommandResponse
+    (UsersCommandResponse => $userscommandresponse);
+}
+
+sub ProcessHalsCommand {
+  my (%args) = @_;
+
+  my $halscommand = GenerateHalsCommandFromUsersCommandResponseProcessed
+    (UsersCommandResponseProcessed => $args{UsersCommandResponseProcessed});
+  if ($halscommand->{Success}) {
+
+    # issue the hal's command
+    my $inform7vmhalscommandsoutputprocessed = Execute
+      ($halscommand->{Command});
+
+    my $
+
+  }
+}

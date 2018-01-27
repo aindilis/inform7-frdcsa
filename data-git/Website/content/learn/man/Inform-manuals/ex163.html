@@ -1,0 +1,242 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.15. Phrases concerning rules</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Lethal Concentration 2" -->
+<!-- SEARCH SECTION "Ex 395" -->
+<!-- SEARCH SORT "Ex 018-015-395" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc334.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc336.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.15. Phrases concerning rules</b></td></tr></table><p>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>This section and the previous one are about a feature which is being withdrawn from Inform in future. Experience shows there are equally good ways to achieve the same ends without needing procedural rules. As elegant as they were, they often confused users, and they were expensive at run-time (that is, they made everything work more slowly). Withdrawing them from Inform will make it possible to make more efficient story files, and will simplify the language.
+<p>
+<p>The &quot;ignore&quot; phrase is only one of a suite, <b>which should only be used in procedural rules</b>. The full list is:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>ignore </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_ignore_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. It causes the named rule to be ignored (skipped over without producing a result) within the scope of the current &quot;follow&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>reinstate </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_reinstate_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Its only effect is to reverse the effect of any &quot;ignore&quot; phrase affecting the rule named.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>reject the result of </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_reject_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. It causes the named rule to used, but to have its result ignored, within the scope of the current &quot;follow&quot;. In other words, if the rule succeeds or fails then this is suppressed and its rulebook continues.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>accept the result of </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_accept_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Its only effect is to reverse the effect of any &quot;reject the result of&quot; phrase affecting the rule named.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>substitute </b>(rule)<b> for </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_substitute_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Whenever the second rule is to be invoked - from any rulebook, or as a result of any &quot;follow&quot; instruction - invoke the first one instead.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>restore the original </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_restore_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Its only effect is to reverse the effect of any &quot;substitute ... for ...&quot; phrase affecting the rule named.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>move </b>(rule)<b> to before </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_movebefore_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. This causes the first rule to be ignored whenever it turns up in the ordinary way, but to be invoked either immediately before the second rule whenever that second rule is invoked. In effect, it cuts out the first rule from wherever it was, and glues it onto the second. Note that there is no obligation for the first rule to begin in the same rulebook(s) as the second, so this can be used to slot in a wholly new rule, perhaps only if certain circumstances hold.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>move </b>(rule)<b> to after </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_moveafter_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. This causes the first rule to be ignored whenever it turns up in the ordinary way, but to be invoked either immediately after the second rule whenever that second rule is invoked. In effect, it cuts out the first rule from wherever it was, and glues it onto the second. Note that there is no obligation for the first rule to begin in the same rulebook(s) as the second, so this can be used to slot in a wholly new rule, perhaps only if certain circumstances hold.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>These rule-changing instructions allow apparently casual sentences to wreak havoc with the model world. This, for instance, is quite the recipe for mayhem and perplexity:
+<p>
+<blockquote><font color="#000080">A procedural rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;reject the result of the before rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the after rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the after rules to before the before rules.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e226"><a href=ex226.html#e226 STYLE="text-decoration: none">*<b>Example 391:  Uptempo</b></a><br>Adjust time advancement so the game clock moves fifteen minutes each turn.<p>
+<a name="e164"><a href=ex164.html#e164 STYLE="text-decoration: none">**<b>Example 392: Lethal Concentration 1</b></a><br>A poisonous gas that spreads from room to room, incapacitating or killing the player when it reaches sufficient levels.<p>
+<a name="e22"><a href=ex22.html#e22 STYLE="text-decoration: none">**<b>Example 393:  Swigmore U.</b></a><br>Adding a new kind of supporter called a perch, where everything dropped lands on the floor.<p>
+<a name="e259"><a href=ex259.html#e259 STYLE="text-decoration: none">**<b>Example 394:  Solitude</b></a><br>Novice mode that prefaces every prompt with a list of possible commands the player could try, and highlights every important word used, to alert players to interactive items in the scenery.<p>
+<!-- EXAMPLE START -->
+<a name="e163"><a href=doc335.html#e163 STYLE="text-decoration: none">***<b><b>Example</b> 395: Lethal Concentration 2</b></a><br>Poisonous gas again, only this time it sinks.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>This is a slight variation on the previous gas diffusion example: the main difference is that gas preferentially moves towards lower rooms, and will gradually settle in the bottom floor. We do this by calculating the probability of movement separately for each pair of rooms.
+<p>
+<blockquote><font color="#000080">&quot;Lethal Concentration&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A concentration is a kind of value. 200.9ppm specifies concentration. 200.9 ppm specifies concentration.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A room has a concentration called current concentration. A room has a concentration called former concentration.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide what number is the probability inverse between (space - a room) and (second space - a room):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let guess be 20;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let way be the best route from space to second space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if way is up, let guess be 50;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if way is down, let guess be 10;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the guess is less than 10, decide on 10;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on guess.
+</font></blockquote><p>
+<p>
+<p>If we wanted, we could introduce other concerns into the calculation here: open and closed doors, windows between rooms, rooms that are outdoors vs. those that are indoors, and so on. The possibilities are numerous, so we will stick with the simple principle that our poison gas sinks.
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the diffusion rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The diffusion rules are a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A diffusion rule (this is the gas movement rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with space running through rooms:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let sum be 0.0 ppm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with way running through directions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let second space be the room way from the space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if second space is a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let incoming be the former concentration of the second space divided by the probability inverse between second space and space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let outgoing be the former concentration of the space divided by the probability inverse between space and second space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let difference be incoming minus outgoing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increase sum by the difference;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now current concentration of the space is the former concentration of the space plus the sum.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A diffusion rule (this is the resetting concentration rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with space running through rooms:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the former concentration of the space is the current concentration of the space.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The last diffusion rule (this is the lethal dosage rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current concentration of the location is greater than LC50:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The concentration in the air overpowers you...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the current concentration of the location is greater than TLV-STEL:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You feel extremely uncomfortable in this environment.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something when the current concentration of the location is greater than TLV-STEL:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if going, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't work in this environment: your eyes and nose sting and it hurts to breathe.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Room 1A is west of Room 1B. Room 1B is west of Room 1C. Room 1C is west of Room 1D. Room 1D is west of Room 1E.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Room 2A is west of Room 2B and below room 1A. Room 2B is west of Room 2C and below Room 1B. Room 2C is west of Room 2D and below Room 1C. Room 2D is west of Room 2E and below Room 1D. Room 2E is south of Room 1E and below Room 1E.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The former concentration of Room 1C is 800.0 ppm.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The status grid is a device carried by the player. The status grid is switched on.
+</font></blockquote><p>
+<p>
+<p>And just for fun, this time we'll make the grid prettier, too:
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try examining the grid.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&nbsp;&nbsp;&nbsp;&nbsp;Instead of examining the status grid:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[unicode box drawings light down and right][top bar][unicode box drawings light down and left][line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[unicode box drawings light vertical]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[state of room 1A][state of room 1B][state of room 1C][state of room 1D][state of room 1E]   upstairs[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[unicode box drawings light vertical and right][middle bar][unicode box drawings light vertical and left][line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[unicode box drawings light vertical]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[state of room 2A][state of room 2B][state of room 2C][state of room 2D][state of room 2E]   downstairs[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[unicode box drawings light up and right][bottom bar][unicode box drawings light up and left][variable letter spacing][line break]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Unicode Character Names by Graham Nelson.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say top bar:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with N running from 1 to 9:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the remainder after dividing N by 2 is 0, say &quot;[unicode box drawings light down and horizontal]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;[unicode box drawings light horizontal]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say middle bar:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with N running from 1 to 9:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the remainder after dividing N by 2 is 0, say &quot;[unicode box drawings light vertical and horizontal]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;[unicode box drawings light triple dash horizontal]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say bottom bar:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with N running from 1 to 9:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the remainder after dividing N by 2 is 0, say &quot;[unicode box drawings light up and horizontal]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;[unicode box drawings light horizontal]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">TLV is a concentration that varies. TLV is 30.0ppm. [Long-term exposure maximum, safe for 8 hours a day.]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">TLV-STEL is a concentration that varies. TLV-STEL is 50.0ppm. [Short-term exposure maximum, safe for fifteen minutes max.]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">TLV-C is a concentration that varies. TLV-C is 150.0ppm. [Absolute exposure ceiling.]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">LC50 is a concentration that varies. LC50 is 300.0ppm. [Concentration at which 50 percent of test subjects die of exposure, usually expressed in terms of time and body weight; in our LC50 these are factored in for the player's weight for one minute.]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Basic Screen Effects by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say state of (space - a room):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current concentration of space is less than TLV, say blue letters;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current concentration of space is TLV, say blue letters;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current concentration of space is greater than TLV, say green letters;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current concentration of space is greater than TLV-STEL, say yellow letters;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current concentration of space is greater than TLV-C, say red letters;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[unicode square with diagonal crosshatch fill]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say default letters;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[unicode box drawings light vertical]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / z / z / z / z / z / z&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc334.html STYLE="text-decoration: none">Previous</a> / <a href=doc336.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

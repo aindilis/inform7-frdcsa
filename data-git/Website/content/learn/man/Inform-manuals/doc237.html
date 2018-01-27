@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.13. Equations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Equations" -->
+<!-- SEARCH SECTION "14.13" -->
+<!-- SEARCH SORT "014-013-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc236.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc238.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.13. Equations</b></td></tr></table><p>
+<p>
+<p>Forming totals is all very interesting in its way, but it's book-keeping rather than physics. As a glance at any school science textbook shows, the way to apply physics is to work out an unknown quantity - say, the time taken for a dropped ball to hit the ground - by combining known quantities into an equation - the height it is dropped from, and the strength of gravity.
+<p>
+<p>It's a convention centuries old now that textbooks and research papers never describe these equations in running text. Even for simple formulae, we like to write &quot;F=ma&quot;, not &quot;let the force be the mass times the acceleration&quot;. And the standard way to print this is to break off and display an equation, not to squeeze it into the text as if it were ordinary verbiage. Just as Inform's Tables imitate those in printed books (see the next chapter), so its Equations do.
+<p>
+<p>In this section, we'll use a combination of three equations to work out how soon and how hard an object pushed off a table will hit the floor. First, we'll include Metric Units, to define all of the kinds of value and notations we need.
+<p>
+<blockquote><font color="#000080">Include Metric Units by Graham Nelson.
+</font></blockquote><p>
+<p>
+<p>Now we'll give everything a mass (Metric Units likes to talk about mass instead of weight, but on Earth it's the same thing) and also set up a typical strength for gravity - it's a little less at the poles, a little more at the equator, but this is the conventional approximate value to use.
+<p>
+<blockquote><font color="#000080">The acceleration due to gravity is an acceleration that varies. The acceleration due to gravity is usually 9.807 m/ss. A thing has a mass. The mass of a thing is usually 10g.
+</font></blockquote><p>
+<p>
+<p>To a Renaissance scientist, typically living in a walled European town, a cannon ball was a familiar thing, and it often featured in imaginary experiments:
+<p>
+<blockquote><font color="#000080">Laboratory is a room. The cannon ball is in the Laboratory. &quot;A cannon ball perches delicately on a lab bench.&quot; The mass of the cannon ball is 2kg.
+</font></blockquote><p>
+<p>
+<p>And now we're ready for the three equations. These will all have names, but we could just as easily have numbered them, calling them (say) ``Equation 1'', ``Equation 2'' and ``Equation 3''.
+<p>
+<blockquote><font color="#000080">Equation - Newton's Second Law
+<br>&nbsp;&nbsp;&nbsp;&nbsp;F=ma
+<br>where F is a force, m is a mass, a is an acceleration.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Equation - Principle of Conservation of Energy
+<br>&nbsp;&nbsp;&nbsp;&nbsp;mgh = mv^2/2
+<br>where m is a mass, h is a length, v is a velocity, and g is the acceleration due to gravity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Equation - Galilean Equation for a Falling Body
+<br>&nbsp;&nbsp;&nbsp;&nbsp;v = gt
+<br>where g is the acceleration due to gravity, v is a velocity, and t is an elapsed time.
+</font></blockquote><p>
+<p>
+<p>An equation has to take the form of one formula equals another, where each formula is made up from symbols defined afterwards. The symbols can be defined as definite values (as &quot;g&quot; is defined in the Galilean Equation), or just by telling Inform their kinds of value (as &quot;v&quot; and &quot;t&quot; are defined).
+<p>
+<p>Equations are read using standard mathematical conventions. So &quot;x + yz&quot; means that we multiply y and z, then add that to x; &quot;ab/cd&quot; divides the product of a and b by the product of c and d. Multiplication signs can be omitted, just as science books normally do (though we can always write them if we want to, using the asterisk *, as usual in computing). The need for brackets is minimised, with any luck, but we can use them if we need to: &quot;x(y+ab)&quot; is legal, for instance.
+<p>
+<p>Here is the calculation:
+<p>
+<blockquote><font color="#000080">Instead of pushing the cannon ball:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the falling body be the cannon ball;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let m be the mass of the falling body;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let h be 1.2m;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let F be given by Newton's Second Law where a is the acceleration due to gravity;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let v be given by the Principle of Conservation of Energy;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let t be given by the Galilean Equation for a Falling Body;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You push [the falling body] off the bench, at a height of [h], and, subject to a downward force of [F], it falls. [t to the nearest 0.01s] later, this mass of [m] hits the floor at [v].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the falling body is in the location.
+</font></blockquote><p>
+<p>
+<p>And the result is:
+<p>
+<blockquote><font color="#000080">You push the cannon ball off the bench, at a height of 1.2m, and, subject to a downward force of 19.614N, it falls. 0.49s later, this mass of 2kg hits the floor at 4.85 m/s.
+</font></blockquote><p>
+<p>
+<p>Not all that fast-moving - it's only about 10 mph, ten times slower than one fired by a Renaissance cannon - but half a second wouldn't give you long to get your foot out of the way.
+<p>
+<p>How was that done? The crucial lines are the ones in the form &quot;let X be given by E...&quot;, which is a new form of &quot;let&quot;.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>let </b>(a name not so far used)<b> be given by </b>(equation name)<b></b><br><i>or:</i> <b>let </b>(a temporary named value)<b> be given by </b>(equation name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_letequation -->
+
+<p>This phrase creates a new temporary variable, starting it with the value found by solving the given equation. The variable lasts only for the present block of phrases, which certainly means that it lasts only for the current rule. Example:
+<p>
+<blockquote><font color="#000080">let F be given by Newton's Second Law where a is the acceleration due to gravity;
+</font></blockquote><p>
+<p>
+<p>There is also a more compact syntax, giving the equation explicitly:
+<p>
+<blockquote><font color="#000080">let KE be given by KE = mv^2/2 where KE is an energy;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>When we solve with &quot;let&quot;, then, all of the other symbols should either already have values (because they exist as &quot;let&quot; values already made) or else be specified in the line. For instance,
+<p>
+<blockquote><font color="#000080">let F be given by Newton's Second Law where a is the acceleration due to gravity;
+</font></blockquote><p>
+<p>
+<p>is allowed because &quot;F&quot; is one of the symbols in &quot;F = ma&quot;; of the other two symbols, we have a &quot;let&quot; variable called &quot;m&quot; already - it's the mass of the cannon ball - and we declare exactly what &quot;a&quot; is.
+<p>
+<p>The next calculation is more interesting:
+<p>
+<blockquote><font color="#000080">let v be given by the Principle of Conservation of Energy;
+</font></blockquote><p>
+<p>
+<p>Since the equation here is &quot;mgh = mv^2/2&quot;, Inform has to do some algebra to work out &quot;v&quot; in terms of the other unknowns - it's the square root of 2gh, but we don't need to work that out. Inform can't always solve implicit equations - for instance, it can't deduce &quot;m&quot; from this equation - but it's correct on all the easy cases which occur in basic physics, and that enables us to write equations in their most natural form, which is easier to read and understand.
+<p>
+<p>The advantage of setting out an equation formally is that it can be used in many places - we could use Newton's Second Law again for something quite different, for example. But it's a little cumbersome for something simple which we only need once, so this is neater:
+<p>
+<blockquote><font color="#000080">let KE be given by KE = mv^2/2 where KE is an energy;
+</font></blockquote><p>
+<p>
+<p>Here the equation is written out explicitly instead of being named, but otherwise everything works in the same way.
+<p>
+<p><hr><p>
+<a name="e428"><a href=ex428.html#e428 STYLE="text-decoration: none">*<b>Example 252:  Widget Enterprises</b></a><br>Allowing the player to set a price for a widget on sale, then determining the resulting sales based on consumer demand, and the resulting profit and loss.<p>
+<p><hr><p><a href=doc236.html STYLE="text-decoration: none">Previous</a> / <a href=doc238.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

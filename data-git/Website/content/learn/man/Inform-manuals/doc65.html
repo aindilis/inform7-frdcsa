@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.11. Default values of kinds</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Default values of kinds" -->
+<!-- SEARCH SECTION "4.11" -->
+<!-- SEARCH SORT "004-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc64.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc66.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.11. Default values of kinds</b></td></tr></table><p>
+<p>
+<p>Just about every kind has a &quot;default value&quot;. Inform needs this when it knows that something has to be a value of a given kind, but it hasn't been told what the value is. For example, in the previous chapter we saw that every thing has a &quot;description&quot; text, but we also created plenty of things without describing them. So if Inform reads
+<p>
+<blockquote><font color="#000080">The conference pear is in the bowl.
+</font></blockquote><p>
+<p>
+<p>and it isn't told anything else about the pear, what should it set the description of the pear to?
+<p>
+<p>The answer is that Inform knows the description has to be a value of the kind &quot;text&quot;, so it uses the default value of &quot;text&quot;. Not very interestingly, this is just the blank text &quot;&quot;.
+<p>
+<p>Being uninteresting is exactly the idea, of course. The default number is 0, for instance. (Default values are tabulated in the Kinds index.)
+<p>
+<p>It's sometimes useful to be able to refer to the default value of a kind without having to spell out what this is (especially if the kind is something obscure, or we're trying to write a rule for an extension which has to work in situations we don't fully know about).
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>default value of </b>(name of kind)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_defaultvalue -->
+
+<p>Produces the default value of the kind named. Examples:
+<p>
+<blockquote><font color="#000080">The silver repeater is here. &quot;You catch sight of a silver repeater watch, hands immobile at [default value of time].&quot;
+</font></blockquote><p>
+<p>
+<p>produces the output:
+<p>
+<blockquote><font color="#000080">You catch sight of a silver repeater watch, hands immobile at 9:00 am.
+</font></blockquote><p>
+<p>
+<p>because nine in the morning is the default time in Inform. If we have:
+<p>
+<blockquote><font color="#000080">Brightness is a kind of value. The brightnesses are guttering, weak, radiant and blazing.
+</font></blockquote><p>
+<p>
+<p>then &quot;default value of brightness&quot; is guttering, the first brightness created.  When it comes to kinds of object, we sometimes have to be a little careful. For example,
+<p>
+<blockquote><font color="#000080">default value of room
+</font></blockquote><p>
+<p>
+<p>is always going to be fine (it's always the first room created in the source text). But
+<p>
+<blockquote><font color="#000080">default value of vehicle
+</font></blockquote><p>
+<p>
+<p>would produce a Problem message if there were no vehicles in the world.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc64.html STYLE="text-decoration: none">Previous</a> / <a href=doc66.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

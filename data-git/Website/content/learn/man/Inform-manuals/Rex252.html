@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.1. Food</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "MRE" -->
+<!-- SEARCH SECTION "Ex 143" -->
+<!-- SEARCH SORT "Ex 009-001-143" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc67.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc69.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.1. Food</b></td></tr></table><p>
+<p>
+<p>Inform provides an either/or property called &quot;edible&quot; and action, &quot;eating&quot;, for consuming edible things:
+<p>
+<blockquote><font color="#000080">The lardy cake is edible. After eating the lardy cake, say &quot;Sticky but delicious.&quot;
+</font></blockquote><p>
+<p>
+<p>One of Inform's rules is that a person can only eat what he or she is holding - normally realistic, but it does prevent, say, eating a cherry off the tree. A procedural rule can override this: see <b>Lollipop Guild</b>. <b>Delicious, Delicious Rocks</b>, on the other hand, adds a sanity check which prevents the player from automatically taking inedible things only to be told they can't be eaten.
+<p>
+<p>Inform does not normally simulate taste or digestion, but to provide foods with a range of flavours, see <b>Would you...?</b>; to make eating different foods affect the player differently, see <b>Stone</b>, or for the extreme case of poisoning foods, <b>Candy</b>. In <b>MRE</b>, hunger causes the player problems unless he regularly finds and eats food.
+<p>
+<a href=Rdoc81.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liquids</b></font></a><i> for things to drink</i><p><p>
+<a href=Rdoc82.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Dispensers and Supplies of Small Objects</b></font></a><i> for a pizza buffet table from which the player may take all the slices he wants</i><p><p>
+<p><hr><p>
+<a name="e225"><a href=Rex225.html#e225 STYLE="text-decoration: none">***<b>Example 365:  Lollipop Guild</b></a><br>Overriding the rules to allow the player to eat something without first taking it.<p>
+<a name="e103"><a href=Rex103.html#e103 STYLE="text-decoration: none">***<b>Example 196:  Delicious, Delicious Rocks</b></a><br>Adding a "sanity-check" stage to decide whether an action makes any sense, which occurs before any before rules, implicit taking, or check rules.<p>
+<a name="e176"><a href=Rex176.html#e176 STYLE="text-decoration: none">*<b>Example 46:  Would you...?</b></a><br>Adding new properties to objects, and checking for their presence.<p>
+<a name="e358"><a href=Rex358.html#e358 STYLE="text-decoration: none">*<b>Example 376:  Stone</b></a><br>A soup to which the player can add ingredients, which will have different effects when the player eats.<p>
+<a name="e62"><a href=Rex62.html#e62 STYLE="text-decoration: none">*<b>Example 133:  Candy</b></a><br>One of several identical candies chosen at the start of play to be poisonous.<p>
+<!-- EXAMPLE START -->
+<a name="e252"><a href=Rdoc68.html#e252 STYLE="text-decoration: none">*<b><b>Example</b> 143:  MRE</b></a><br>Hunger that eventually kills the player, and foodstuffs that can delay the inevitable by different amounts of time.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Many older interactive fiction games required the player to find food and eat on a regular basis in order to avoid death. This effect was often unrealistic (since most people can survive much longer than a few hours without eating) and is often seen as an annoyance. However, for the sake of argument, suppose that we do want to construct a hunger-and-death system.
+<p>
+<p>To make things a little more interesting, we will postulate that different foods are differently filling, so that if the player manages to find something really caloric, he is off the hook on his hunger search for a while.
+<p>
+<p>We will also implement the system so that the player gets messages when he is hungry, then dies a short time later. (The times involved are ludicrously short, but this allows us to see the effects within a simple example. In a real game we would want to allow a considerably longer timer for the hunger to play out.)
+<p>
+<p>First, a little scene-setting:
+<p>
+<blockquote><font color="#000080">&quot;MRE&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[time of day]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The procedure was painless at first: increased strength was the first sign, followed by a sensation of delayed time, as though everyone around you moved more slowly. Your ability to dodge and perform feats of agility doubled, then trebled. You were heralded as a triumph of medicine. They told you there would be no side effects worth speaking of.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">They were wrong.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Base Camp Larder is a room. &quot;This room has been reinforced after each incident -- and there have been dozens in the last two months -- so that it now rivals Fort Knox. Only your new skill and speed enabled you to dodge the motion sensors, knock out the computerized security system, fool the retinal scanner, and punch a hole in the steel containment grating. But you're inside now.&quot;
+</font></blockquote><p>
+<p>
+<p>Now we define our food, and add some special instructions for what happens to our hunger counters when the food is eaten:
+<p>
+<blockquote><font color="#000080">Food is a kind of thing. Food is usually edible. Food has a time called the satisfaction period. The satisfaction period of a food is usually 5 minutes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be hungry or replete. The player is hungry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Larder contains an apple, a candy bar, and a large plate of pasta. The apple, the candy bar, and the pasta are food. The satisfaction period of the apple is 2 minutes. The satisfaction period of the pasta is 125 minutes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check eating something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not food, say &quot;[The noun] might be edible, but it's not what you'd consider really food.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out eating something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is replete;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;hunger resumes in the satisfaction period of the noun from now.
+</font></blockquote><p>
+<p>
+<p>The first of those two phrases, &quot;now the player is replete&quot;, causes the player to cease to be hungry; the second one sets up a future event in which the hunger sets in again. The length of time until that event depends on how satisfying the specific food is. Now we define that event:
+<p>
+<blockquote><font color="#000080">At the time when hunger resumes:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;starvation occurs in three minutes from now;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is hungry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when starvation occurs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is hungry, end the story saying &quot;You have starved&quot;.
+</font></blockquote><p>
+<p>
+<p>Note &quot;if the player is hungry&quot;: it is possible that the starvation event will be set up but the player will eat before it occurs; in that case, we want it not to take effect.
+<p>
+<p>And now, since we really ought to give the player some warning of what is happening to him:
+<p>
+<blockquote><font color="#000080">Every turn when the player is hungry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a random row in the Table of Hunger Complaints;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[hunger entry][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Hunger Complaints
+<br>hunger
+<br>&quot;Gosh, you're starving.&quot;
+<br>&quot;It feels as though you haven't eaten in days. Weeks, almost.&quot;
+<br>&quot;The world seems to slow down and everything becomes sharper and brighter. You are a hunter, a hunter of foodstuffs.&quot;
+<br>&quot;You find yourself staring at [the random visible thing that is not the player] and wondering how it would taste.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;eat apple / z / z / z / eat candy bar / z / z / z / z / z / z / z / z / z&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc67.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc69.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.3. Units</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "rBGH" -->
+<!-- SEARCH SECTION "Ex 245" -->
+<!-- SEARCH SORT "Ex 014-003-245" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc226.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc228.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.3. Units</b></td></tr></table><p>
+<p>
+<p>Suppose we want to talk about how tall people are. We could just create a &quot;number&quot; property, like this:
+<p>
+<blockquote><font color="#000080">A person has a number called height.
+</font></blockquote><p>
+<p>
+<p>But then we would have to write lines like &quot;Isabella has height 68&quot;, which nobody would naturally say. What we want is to be able to write &quot;Isabella is 5 foot 8.&quot; Perhaps the computer will need to store that measurement as the number 68 in some register or other, but we don't want to know about that.
+<p>
+<p>&quot;5 foot 8&quot; is a complicated notation in a way - it involves both feet and inches - so let's start with a simpler example:
+<p>
+<blockquote><font color="#000080">A weight is a kind of value. 10kg specifies a weight.
+</font></blockquote><p>
+<p>
+<p>This is a little different to the kinds of value seen so far, which were all created like so:
+<p>
+<blockquote><font color="#000080">A colour is a kind of value. The colours are red, green and blue.
+</font></blockquote><p>
+<p>
+<p>We can't mix the two styles: a new kind of value will either be numerical at heart (&quot;10kg&quot;) or verbal at heart (&quot;blue&quot;).
+<p>
+<p>The effect of &quot;10kg specifies a weight&quot; is to tell Inform that this is the notation for writing a constant &quot;weight&quot;. So, for instance,
+<p>
+<blockquote><font color="#000080">The maximum load is a weight that varies. The maximum load is 8000kg.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">if the maximum load is greater than 8000kg, ...
+</font></blockquote><p>
+<p>
+<p>Inform is then careful not to allow weights to be mixed up with other numerical values. For instance, it won't allow &quot;if the maximum load is 400&quot;, because 400 is a number, not a weight.
+<p>
+<p>More or less anything we can do with numbers, we can now do with weights. For instance, we can write:
+<p>
+<blockquote><font color="#000080">The Weighbridge is a room. &quot;A sign declares that the maximum load is [maximum load].&quot;
+</font></blockquote><p>
+<p>
+<p>...which will produce the text &quot;A sign declares that the maximum load is 8000kg.&quot;
+<p>
+<p>Numerical kinds of value are sometimes called &quot;units&quot;, because one of their main uses is to allow us to write quantities using scientific units such as kilograms. But they have other uses too. We have a great deal of freedom in creating notations like &quot;10kg&quot;, or &quot;4 foot 10&quot; - the main thing is that new notations must not already mean a value. So &quot;10 specifies a weight&quot; will not be allowed, because 10 specifies a number already.
+<p>
+<p>Sometimes it is unnatural to write negative values, and so Inform will issue a Problem message if this is tried - for instance, Inform would not allow us to write a weight of -4 kg. (This doesn't mean that arithmetic on units is forbidden to get a negative result: we may want to work out the difference between two weights. Inform's Problem message is simply to try to prevent the accidental writing of incorrect values.) If we do want the ability to write negative values in the source text, we signal that in the notation itself:
+<p>
+<blockquote><font color="#000080">-10 kg specifies a weight.
+</font></blockquote><p>
+<p>
+<p>That alerts Inform that both positive and negative values for this unit make sense.
+<p>
+<p>If we set up a spread of multiple notations (see the next section) then this is automatically enabled, because then we're clearly dealing with proper physics, where negative values are common.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e373"><a href=doc227.html#e373 STYLE="text-decoration: none">*<b><b>Example</b> 245:  rBGH</b></a><br>The player character's height is selected randomly at the start of play.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>As with ordinary numbers, we can choose random units when this is useful:
+<p>
+<blockquote><font color="#000080">&quot;rBGH&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pharmaceutical Testing Facility is a room. &quot;A [if the player is short]large [end if][if the player is tall]cramped [end if]white space with sterile counters and a[if the player is tall]n uncomfortable little[end if] stool. There is also a mirror, behind which someone must be watching you. But you can't see through to that.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A counter, a one-way mirror, and a stool are scenery in the Facility. The stool is an enterable supporter. The counter supports a plate.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Height is a kind of value. 5 feet 11 inches specifies a height. 5'11 specifies a height. A person has a height.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a person is tall if its height is 6 feet 0 inches or more.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a person is short if its height is 5 feet 4 inches or less.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the height of the player is a random height between 5 feet 2 inches and 6 feet 4 inches;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[height of player]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You, Test Subject, are [height of the player] tall.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The growth pill is a kind of thing. A growth pill is always edible. The description is usually &quot;It is leaf-green and has a reassuring logo of a curling vine on the side. Nothing to worry about, nothing at all.&quot; Two growth pills are on the plate.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After eating the growth pill:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the height of the player by 0 feet 6 inches;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your spine does something frightening and painful, and you find yourself looking down on the room from a wholly new angle.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try looking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine me / eat pill / examine me / eat pill / examine me&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e312"><a href=ex312.html#e312 STYLE="text-decoration: none">**<b>Example 246:  Wonderland</b></a><br>Hiking Mount Rainier, with attention to which locations are higher and which lower than the present location.<p>
+<p><hr><p><a href=doc226.html STYLE="text-decoration: none">Previous</a> / <a href=doc228.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

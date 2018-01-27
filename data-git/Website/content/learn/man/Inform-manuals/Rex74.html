@@ -1,0 +1,181 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 1.3. Disenchantment Bay</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Disenchantment Bay 12" -->
+<!-- SEARCH SECTION "Ex 35" -->
+<!-- SEARCH SORT "Ex 001-003-035" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc2.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc4.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>1.3. Disenchantment Bay</b></td></tr></table><p>
+<p>
+<p>&quot;Disenchantment Bay&quot; is a simple work of IF used as a running example in Chapter 3 of <i>Writing with Inform</i> - not so much a tutorial as a convenient hook on which to hang some demonstrations of the basics. Because the resulting examples only use basic features and in the most straightforward way, they make for uninteresting &quot;recipes&quot; - so they are not included in the <i>Recipe Book</i> proper. But some readers might like to have all twelve stages of the example gathered on a single page: this is that page.
+<p>
+<p><hr><p>
+<a name="e48"><a href=Rex48.html#e48 STYLE="text-decoration: none">*<b>Example 13: Disenchantment Bay 1</b></a><br>A running example in this chapter, Disenchantment Bay, involves chartering a boat. This is the first step: creating the cabin.<p>
+<a name="e51"><a href=Rex51.html#e51 STYLE="text-decoration: none">*<b>Example 15: Disenchantment Bay 2</b></a><br>Disenchantment Bay: creating some of the objects in the cabin's description.<p>
+<a name="e52"><a href=Rex52.html#e52 STYLE="text-decoration: none">*<b>Example 16: Disenchantment Bay 3</b></a><br>Disenchantment Bay: adding a view of the glacier.<p>
+<a name="e53"><a href=Rex53.html#e53 STYLE="text-decoration: none">*<b>Example 17: Disenchantment Bay 4</b></a><br>Disenchantment Bay: fleshing out the descriptions of things on the boat.<p>
+<a name="e54"><a href=Rex54.html#e54 STYLE="text-decoration: none">*<b>Example 19: Disenchantment Bay 5</b></a><br>Disenchantment Bay: adding the door and the deck to our charter boat.<p>
+<a name="e55"><a href=Rex55.html#e55 STYLE="text-decoration: none">*<b>Example 22: Disenchantment Bay 6</b></a><br>Disenchantment Bay: locking up the charter boat's fishing rods.<p>
+<a name="e56"><a href=Rex56.html#e56 STYLE="text-decoration: none">*<b>Example 24: Disenchantment Bay 7</b></a><br>Disenchantment Bay: making the radar and instruments switch on and off.<p>
+<a name="e57"><a href=Rex57.html#e57 STYLE="text-decoration: none">**<b>Example 27: Disenchantment Bay 8</b></a><br>Disenchantment Bay: a pushable chest of ice for the boat.<p>
+<a name="e58"><a href=Rex58.html#e58 STYLE="text-decoration: none">*<b>Example 29: Disenchantment Bay 9</b></a><br>Disenchantment Bay: enter the charter boat's Captain.<p>
+<a name="e49"><a href=Rex49.html#e49 STYLE="text-decoration: none">*<b>Example 32: Disenchantment Bay 10</b></a><br>Disenchantment Bay: things for the player and the characters to wear and carry.<p>
+<a name="e50"><a href=Rex50.html#e50 STYLE="text-decoration: none">*<b>Example 33: Disenchantment Bay 11</b></a><br>Disenchantment Bay: making a holdall of the backpack.<p>
+<!-- EXAMPLE START -->
+<a name="e74"><a href=Rdoc3.html#e74 STYLE="text-decoration: none">****<b><b>Example</b> 35: Disenchantment Bay 12</b></a><br>A final trip to Disenchantment Bay: the scenario turned into a somewhat fuller scene, with various features that have not yet been explained.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Disenchantment Bay&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Locksmith by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cabin is a room.  &quot;The front of the small cabin is entirely occupied with navigational instruments, a radar display, and radios for calling back to shore. Along each side runs a bench with faded blue vinyl cushions[if the compartment is closed], which can be lifted to reveal the storage space underneath[otherwise], one of which is currently lifted to allow access to the storage compartment within[end if]. A glass case against the wall contains several fishing rods.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Scratched windows offer a view of the surrounding bay, and there is a door south to the deck. A sign taped to one wall announces the menu of tours offered by the Yakutat Charter Boat Company.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cabin contains a glass case. In the glass case is a collection of fishing rods. Understand &quot;rod&quot; as the collection. The case is closed, transparent, openable, lockable, and locked. The case is scenery. The small silver key unlocks the case.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The bench is in the cabin. On the bench are some blue vinyl cushions. The bench is enterable and scenery. The cushions are scenery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A storage compartment is an openable closed container. It is part of the bench. Instead of opening the bench, try opening the storage compartment. Instead of closing the bench, try closing the storage compartment. Instead of pushing or pulling or turning the cushions, try opening the storage compartment. Understand &quot;space&quot; as the storage compartment.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some nets and a Coke are in the compartment. Understand &quot;net&quot; as the nets. The description of the nets is &quot;They must have something to do with fish as well. Really, you're just here for the sights.&quot; The nets are a container.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some navigational instruments, some scratched windows, a radar display, and some radios are scenery in the cabin. The radar, the instruments, and the radios are devices. The radar and the instruments are switched on.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A screen is part of the radar. The description of the screen is &quot;[if the radar is switched on]Phantom lights move across the screen.[otherwise]The screen is dark.[end if]&quot;. Instead of doing something other than examining to the screen, say &quot;It's not good for much but looking at.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Captain is a man in the Cabin. &quot;The captain sits at the wheel, steering the boat and occasionally checking the radar readout.&quot; The captain wears a baseball cap. The description of the cap is &quot;It says, THE WORST DAY FISHING IS BETTER THAN THE BEST DAY WORKING.&quot; The captain carries the silver key. The description of the captain is &quot;[The captain] is wearing [a list of things worn by the captain][if the captain carries something] and carrying [a list of things carried by the captain][end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the instruments is &quot;Knowing what they do is the Captain's job.&quot; Instead of doing something other than examining to the instruments in the presence of the Captain: say &quot;The Captain glares at you. Clearly you are not welcome to do that.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the windows is &quot;They're a bit the worse for wear, but you can still get an impressive view of the glacier through them. There were whales earlier, but they're gone now.&quot; Understand &quot;window&quot; as the windows.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the radar is &quot;Apparently necessary to avoid the larger icebergs.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the radios is &quot;With any luck you will not need to radio for help, but it is reassuring that these things are here.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A sign is scenery in the Cabin. The description is &quot;You can get half-day and full-day sight-seeing tours, and half-day and full-day fishing trips.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The view of the Malaspina glacier is a backdrop. It is everywhere. The description is &quot;The Malaspina glacier covers much of the nearby slope, and -- beyond it -- an area as large as Rhode Island.&quot; Understand &quot;view of the surrounding bay&quot; or &quot;surrounding bay&quot; as the view.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cabin door is south of the Cabin and north of the Deck. It is a door and scenery. The description of the Deck is &quot;The whole back half of the boat is open, allowing you to view the surroundings without intervening windows -- if you can stand the cold.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The ice chest is a closed openable container in the Deck. &quot;A very heavy ice chest sits on the ground.&quot; It is fixed in place and pushable between rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A quantity of ice is in the Deck. &quot;All around the boat bob chunks of glacier ice.&quot; Understand &quot;glacier ice&quot; as the quantity. The description is &quot;Curiously cooled into funny-shaped chunks.&quot; The printed name of the quantity is &quot;glacier ice&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the quantity of ice when the player is not carrying the nets:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the quantity of ice is handled, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are having a hard time fishing out the ice with your bare hands.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the quantity of ice when the player is carrying the nets:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the quantity of ice is handled or the quantity of ice is in the nets, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the quantity of ice is in the nets;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You scoop up the ice with the net.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the chest: say &quot;It's too heavy to lift, but you might be able to push it, and just inch it over the frame of the door.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player is carrying a backpack. The player is wearing a pair of sunglasses. The description of the sunglasses is &quot;The light off the water and the ice does get pretty bright sometimes.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The backpack is a player's holdall. The carrying capacity of the player is 3. The backpack is wearable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking the Captain for the key:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Sure, you can -- well, get me a drink first, would you?'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking the Captain for the key when the Captain is carrying a cold Coke and the Captain is carrying the key:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the key to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Here, knock yourself out.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking the Captain for the key when the Captain is not carrying the key: say &quot;'I already gave it to you. You didn't lose it, did you?'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Heat is a kind of value. The heats are cold, cool, room temperature, and warm.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A beverage is a kind of thing. A beverage can be openable or unopenable. A beverage is always edible and openable. A beverage has a heat. A beverage is usually warm. The Coke is a beverage. The beer is a beverage. The beer is in the backpack.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of giving or showing a beer to the Captain:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'I don't drink on the job, thanks,' he says. 'You can help yourself if you want it, though.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of giving or showing a Coke to the Captain:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'It needs chilling,' the Captain remarks, disgruntled.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of giving or showing a cold Coke to the Captain:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the Coke to the Captain;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by 2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Ah, thank you,' he says. How he can drink an iced soda on a day like today is an open question, but Alaskans are special.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when the quantity of ice is in the ice chest:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through beverages in the ice chest:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the current heat be the heat of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the current heat is not cold, now the heat of the item is the heat before the current heat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a beverage (called the drink):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[heat of the drink] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the heat property as describing a beverage.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The maximum score is 5.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After taking the fishing rods:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story finally;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by 3;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Success is yours! (Now if only you knew anything about fishing.)&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;test first / test second / test third&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test first with &quot;x captain / open case / i / ask captain for the key / give beer to captain / open bench / x nets / get nets / get coke / give coke to captain&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test second with &quot;s / open chest / drop nets / get glacier ice / get nets / get glacier ice / g / put glacier ice in chest / get coke / put coke in chest&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test third with &quot;x coke / g / g / g / get coke / n / give coke to captain / ask captain for key / open case / get rods&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc2.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc4.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.14. Relations as values in their own right</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Relations as values in their own right" -->
+<!-- SEARCH SECTION "13.14" -->
+<!-- SEARCH SORT "013-014-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc220.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc222.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.14. Relations as values in their own right</b></td></tr></table><p>
+<p>
+<p>As we've seen, most relations have names - &quot;containment relation&quot;, for instance. These are themselves values in Inform, though there are a few restrictions on how they are used. (Relations can contain a colossal amount of data, so we don't want to have to copy them casually.)
+<p>
+<p>Consider these two examples:
+<p>
+<blockquote><font color="#000080">Parity relates a number (called N) to a number (called M) when N minus M is even.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Joint magnitude relates a number (called N) to a number (called M) when N plus M is greater than 7.
+</font></blockquote><p>
+<p>
+<p>Here &quot;parity relation&quot; and &quot;joint magnitude relation&quot; are both values of the same kind: &quot;relation of numbers to numbers&quot;. In general, every relation is a value of kind &quot;relation of K to L&quot;, for the appropriate kinds K and L. So the parity relation doesn't have the same kind as the containment relation, for example. Because it often happens that K and L are the same, we can just say &quot;relation of K&quot; in this case, so we could equally say that the kind of the parity relation is &quot;relation of numbers&quot;.
+<p>
+<p>This is useful to know when writing phrases like so:
+<p>
+<blockquote><font color="#000080">To chart (R - a relation of numbers):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with N running from 1 to 5:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with M running from 1 to 5:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if R relates N to M, say &quot;[N] &lt;=&gt; [M]   &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]&quot;;
+</font></blockquote><p>
+<p>
+<p>and now &quot;chart parity relation&quot; will work nicely, but &quot;chart visibility relation&quot; will be rejected (as it should be, because it relates things, not numbers). In general, if R is any relation, we can write
+<p>
+<blockquote><font color="#000080">if R relates X to Y, ...
+<br>now R relates X to Y;
+<br>now R does not relate X to Y;
+</font></blockquote><p>
+<p>
+<p>to test, set and unset a relation R between two values. (Inform checks that the values X and Y have the right kind and produces a problem message if not.)
+<p>
+<p>Several useful adjectives can be applied to relations:
+<p>
+<blockquote><font color="#000080">&quot;empty&quot; - nothing relates to anything else
+<br>&quot;symmetric&quot; - by definition X relates to Y if and only if Y relates to X
+<br>&quot;equivalence&quot; - this is a relation &quot;in groups&quot;, or an &quot;equivalence relation&quot;
+<br>&quot;one-to-one&quot; - it relates one K to one L
+<br>&quot;one-to-various&quot; - similarly
+<br>&quot;various-to-one&quot; - similarly
+<br>&quot;various-to-various&quot; - similarly
+</font></blockquote><p>
+<p>
+<p>So for example it's possible to ask
+<p>
+<blockquote><font color="#000080">if R is a symmetric one-to-one relation of texts, ...
+</font></blockquote><p>
+<p>
+<p>With some relations, it's possible to clear them out by writing:
+<p>
+<blockquote><font color="#000080">now R is empty;
+</font></blockquote><p>
+<p>
+<p>and with temporary relations (see the next section), it's even possible to change their valencies (one-to-one vs. one-to-various, etc.) using &quot;now&quot;, but only when they are empty. The exceptions where &quot;empty&quot; can't be used are those which can't be changed at all, like the parity relation above, and a few built-in cases such as the support, containment and incorporation relations, where emptying would dissolve the model world in a disastrous way.
+<p>
+<p><hr><p>
+<a name="e268"><a href=ex268.html#e268 STYLE="text-decoration: none">*<b>Example 240:  Number Study</b></a><br>The parity and joint magnitude relations explored.<p>
+<p><hr><p><a href=doc220.html STYLE="text-decoration: none">Previous</a> / <a href=doc222.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

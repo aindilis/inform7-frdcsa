@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.1. Change of values that vary</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Change of values that vary" -->
+<!-- SEARCH SECTION "8.1" -->
+<!-- SEARCH SORT "008-001-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc121.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc123.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.1. Change of values that vary</b></td></tr></table><p>
+<p>
+<p>So far, what we have done in response to the player's commands amounts to little more than a few ripostes. The simulated world does change during play, as the player moves from room to room or picks up things, but all of this is happening automatically, not at our direct instruction. How then can we make the world change?
+<p>
+<p>Recall that the world consists of rooms, in which are things, and that all of these have properties appropriate to their kinds. Some properties are either/or (&quot;open&quot; or &quot;closed&quot; but not both and not neither), while others have values (the &quot;matching key&quot; of a lockable door, for instance). Finally, we may also have created some free-standing values or &quot;variables&quot;.
+<p>
+<p>We take the last example first, as it is the simplest. Suppose we have:
+<p>
+<blockquote><font color="#000080">&quot;Winds of Change&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The prevailing wind is a direction that varies. The prevailing wind is northwest.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Blasted Heath is a room. &quot;Merely an arena for the play of witches and kings, my dear, where the [prevailing wind] wind blows.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waiting when the prevailing wind is northwest:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A fresh gust of wind bowls you over.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the prevailing wind is east.
+</font></blockquote><p>
+<p>
+<p>The new phrase here is &quot;now&quot;. This automatically checks that the new value is one which makes sense in the given context, so for instance it would not allow either of these:
+<p>
+<blockquote><font color="#000080">now the prevailing wind is 25;
+<br>now the prevailing wind is the Heath;
+</font></blockquote><p>
+<p>
+<p>the former being a number, and the latter a room, so that neither is a direction. Similarly, &quot;now&quot; will not allow constant values to be changed. So
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are blue, red and mauve.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After pulling the psychedelic lever:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now blue is mauve.
+</font></blockquote><p>
+<p>
+<p>...will result in a problem message; it's like writing &quot;now 1 is 2&quot;. The difference between &quot;the prevailing wind&quot; and &quot;blue&quot; is that the wind was declared to be a &quot;direction that varies&quot;, whereas blue wasn't.
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>At present Inform allows:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change </b>(a stored value)<b> to </b>(value)<b></b><br><i>or:</i> <b>change </b>(object)<b> to </b>(property)<b></b><br><i>or:</i> <b>change </b>(object)<b> to </b>(enumerated value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_change_dep -->
+
+<p>This phrase changes the given stored value (a variable, table entry, property, or list entry) to the value supplied. Example:
+<p>
+<blockquote><font color="#000080">change the prevailing wind to south;
+</font></blockquote><p>
+<p>
+<p>This goes back to the very early days of Inform, before &quot;now&quot; was as flexible as it is today, and it is now deprecated. Future builds of Inform will withdraw it completely. &quot;Now&quot; can do anything &quot;change&quot; can do:
+<p>
+<blockquote><font color="#000080">now the prevailing wind is south;
+</font></blockquote><p>
+<p>
+<p>&quot;change ... to ...&quot; has a complicated definition (hence the three alternative forms) because it also allowed, for instance:
+<p>
+<blockquote><font color="#000080">change the location to visited;
+</font></blockquote><p>
+<p>
+<p>which didn't change the value of &quot;location&quot; at all, but instead gave that value the property of being &quot;visited&quot;. This leads to awkward ambiguities, which are another reason for &quot;change&quot; being withdrawn. Again, &quot;now&quot; does this better:
+<p>
+<blockquote><font color="#000080">now the location is visited;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc121.html STYLE="text-decoration: none">Previous</a> / <a href=doc123.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

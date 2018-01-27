@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 23.13. Advanced website templates</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Advanced website templates" -->
+<!-- SEARCH SECTION "23.13" -->
+<!-- SEARCH SORT "023-013-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc395.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc397.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>23.13. Advanced website templates</b></td></tr></table><p>
+<p>
+<p>The following describes how Inform uses the extras file and the two HTML pages in a template, and will only be needed if a new template has to make changes so radical that altering the CSS alone won't be enough.
+<p>
+<p>The optional &quot;(extras).txt&quot; file - note brackets - is a text file which contains a list of named extras to throw in. For instance:
+<p>
+<blockquote><font color="#000080">easter.html
+<br>egg.png
+</font></blockquote><p>
+<p>
+<p>These named files need to be present in the template folder. Files with the extension &quot;.html&quot; go through the placeholder expansion process just like the index and source pages; all other files are copied verbatim.
+<p>
+<p>HTML templates like &quot;index.html&quot; and &quot;source.html&quot; are fully valid HTML pages in their own right, though they have placeholder text where Inform will substitute the project's bibliographic data (see below). The &quot;&lt;head&gt;&quot; element should include a reference to &quot;style.css&quot;, which of course will mean the CSS file given in the template (or the one from &quot;Standard&quot; if no CSS file is given) - for instance,
+<p>
+<blockquote><font color="#000080">&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; type=&quot;text/css&quot; media=&quot;all&quot; /&gt;
+</font></blockquote><p>
+<p>
+<p>When it turns the template into the final web page, what Inform does is to replace certain capitalised words in square brackets with the appropriate text:
+<p>
+<blockquote><font color="#000080">[TITLE] becomes the story title
+<br>[AUTHOR] becomes the author's name
+<br>[YEAR] becomes the story creation year
+<br>[BLURB] becomes the story description
+<br>[RELEASE] becomes the release number
+<br>[COVER] becomes an image of the cover art (the small 120x120 cover image)
+<br>[DOWNLOAD] becomes the download link
+<br>[AUXILIARY] becomes the list of feelie-like files, if any
+<br>[IFID] becomes the IFID
+<br>[STORYFILE] becomes the &quot;leafname&quot; of the story file, e.g., &quot;Bronze.gblorb&quot;
+<br>[TEMPLATE] becomes the name of the template used to make the page
+<br>[SMALLCOVER] becomes the filename of the small cover image
+<br>[BIGCOVER] becomes the filename of the large cover image
+<br>[TIMESTAMP] and [DATESTAMP] become the time and date of releasing
+</font></blockquote><p>
+<p>
+<p>Everything else is left alone. In source pages, five further placeholders are available:
+<p>
+<blockquote><font color="#000080">[SOURCE] becomes the portion of the source text on this page
+<br>[SOURCELINKS] becomes the navigational links
+<br>[SOURCENOTES] becomes the footnote matter at the bottom of the source
+<br>[PAGENUMBER] and [PAGEEXTENT] are such that the text &quot;page [PAGENUMBER] of [PAGEEXTENT]&quot; produces, e.g., &quot;page 2 of 7&quot;
+</font></blockquote><p>
+<p>
+<p>Both [SOURCE] and [SOURCENOTES] must exist on the page, and [SOURCENOTES] must appear after [SOURCE] does in the file. (Of course the CSS in &quot;style.css&quot; might move the copy around on screen, but that's another matter.)
+<p>
+<p><hr><p><a href=doc395.html STYLE="text-decoration: none">Previous</a> / <a href=doc397.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

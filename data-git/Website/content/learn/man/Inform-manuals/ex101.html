@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.13. Locks and keys</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Neighborhood Watch" -->
+<!-- SEARCH SECTION "Ex 23" -->
+<!-- SEARCH SORT "Ex 003-013-023" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc39.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc41.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.13. Locks and keys</b></td></tr></table><p>
+<p>
+<p>It seems unwise for a door in Notting Hill to be unlocked, so:
+<p>
+<blockquote><font color="#000080">The blue door is lockable and locked. The matching key of the blue door is the brass Yale key.
+</font></blockquote><p>
+<p>
+<p>Since the second sentence here is a little clumsy, we can equivalently say
+<p>
+<blockquote><font color="#000080">The brass Yale key unlocks the blue door.
+</font></blockquote><p>
+<p>
+<p>Yet a third way to say this is:
+<p>
+<blockquote><font color="#000080">The blue door has matching key the brass Yale key.
+</font></blockquote><p>
+<p>
+<p>This introduces three new properties: a door can be locked or unlocked; lockable or not lockable; and it can have a matching key, which must be another thing. The same thing can be the matching key of many different locks: and note that a door can be locked and even lockable without having a matching key at all, in which case the player trying to open it will be permanently out of luck. Doors are ordinarily unlocked, not lockable, and without a matching key.
+<p>
+<p>Containers can also have locks, in exactly the same way, and are allowed to have the same properties. On the other hand supporters never have locks: it makes no sense to be able to lock a tabletop, for instance, and Inform will not allow any discussion of the matching key of a supporter, or of a supporter being locked or unlocked.
+<p>
+<p><hr><p>
+<a name="e55"><a href=ex55.html#e55 STYLE="text-decoration: none">*<b>Example 22: Disenchantment Bay 6</b></a><br>Disenchantment Bay: locking up the charter boat's fishing rods.<p>
+<!-- EXAMPLE START -->
+<a name="e101"><a href=doc40.html#e101 STYLE="text-decoration: none">**<b><b>Example</b> 23:  Neighborhood Watch</b></a><br>A locked door that can be locked or unlocked without a key from one side, but not from the other.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want a locked door that can be opened with a key, but is also openable by hand without a key from one side only. We start by defining an ordinary lockable door and the key that controls it:
+<p>
+<blockquote><font color="#000080">&quot;Neighborhood Watch&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The shabby door is a door. It is outside from the Studio Apartment and inside from the Rickety Stairwell. The shabby door is locked.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The brass key is carried by the player. It unlocks the shabby door.
+</font></blockquote><p>
+<p>
+<p>The next part is going to require that we modify the normal operation of the &quot;lock&quot; command. &quot;Lock&quot; ordinarily requires that the player supply two objects: a thing he wants to unlock, and the key he wants to use on it. The full command is LOCK DOOR WITH THE KEY, and Inform will not accept simply LOCK DOOR as locking.
+<p>
+<p>Therefore, we're going to need to create our own new variant on the lock verb (and the unlock verb, while we're at it). The full procedure for this is laid out in the chapters on Action and Understanding, but here is an example:
+<p>
+<blockquote><font color="#000080">Understand &quot;lock [something]&quot; as locking keylessly. Locking keylessly is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<p>Here we've created a new action -- locking something without a key -- and we've told Inform to understand LOCK DOOR as this action, rather than an incomplete command to LOCK DOOR WITH SOMETHING.
+<p>
+<p>Now we add some instructions so that the game will not let us use this keyless unlocking command unless we're in the right place or are properly equipped:
+<p>
+<blockquote><font color="#000080">Check locking keylessly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a door, say &quot;[The noun] is not something you can lock.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is locked, say &quot;[The noun] is already locked.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries the brass key and the player is in the Stairwell, try locking the noun with the brass key instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the Stairwell, say &quot;You can't lock the door from this side without the key.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>This check rule is performed before the keyless locking action succeeds. The first thing we do is try to use the key if the player is outside and has the key: this way, LOCK DOOR will turn automatically into LOCK DOOR WITH THE KEY, under circumstances where that is both possible and necessary.
+<p>
+<p>The second thing is to check whether the player is outside but keyless, and, if so stop the action from being performed successfully. Here we print a failure message followed by the word &quot;instead&quot;, which tells Inform that we've substituted some other outcome for the usual performance of the action.
+<p>
+<p>Now we're reasonably sure that the player is only locking keylessly in the case that he is inside the Studio. (We might have to do a more thorough check for this if there were more than two rooms, but as it is, the player can only be in the Stairwell or in the Studio, so if we have ruled out the Stairwell, we are safe.) So now we want to add what happens when locking-without-a-key command succeeds:
+<p>
+<blockquote><font color="#000080">Carry out locking keylessly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is locked.
+</font></blockquote><p>
+<p>
+<p>That's it. We've just told Inform to make the door be locked. &quot;Now...&quot; syntax will be explained more thoroughly in the chapter on change. But we still haven't described to the player what just happened, so let's provide a description of that, too:
+<p>
+<blockquote><font color="#000080">Report locking keylessly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You flip over the deadbolt to lock [the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>And now we have to do a similar set of things for unlocking:
+<p>
+<blockquote><font color="#000080">Understand &quot;unlock [something]&quot; as unlocking keylessly. Unlocking keylessly is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check unlocking keylessly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a door, say &quot;[The noun] is not something you can lock.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is unlocked, say &quot;[The noun] is already unlocked.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries the brass key and the player is in the Stairwell, try unlocking the noun with the brass key instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the Stairwell, say &quot;You can't unlock the door from this side without the key.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out unlocking keylessly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is unlocked.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report unlocking keylessly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You flip over the deadbolt to unlock [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;unlock door / drop key / open door / out / close door / lock door / open door / in / get key / out / close door / lock door / unlock door&quot;.
+</font></blockquote><p>
+<p>
+<p>Some (but not all) of this work is done for you if you like by the Locksmith extension. If you prefer, you can include that extension, then follow the documentation in order to implement the remainder of the scenario. Locksmith takes care of implementing the additional locking and unlocking actions, and provides some other conveniences.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc39.html STYLE="text-decoration: none">Previous</a> / <a href=doc41.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

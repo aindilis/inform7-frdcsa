@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 22.8. Declaring and playing back sounds</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Declaring and playing back sounds" -->
+<!-- SEARCH SECTION "22.8" -->
+<!-- SEARCH SORT "022-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc376.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc378.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>22.8. Declaring and playing back sounds</b></td></tr></table><p>
+<p>
+<p>Sound effects are accommodated on the same basis as illustrations. The relevant media files need to be placed in a subfolder of the project's Materials folder, but this time called Sounds rather than Figures, so for instance:
+<p>
+<blockquote><font color="#000080">Example.inform
+<br>Example Materials
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Figures
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Woodlands.png
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Blackberry.jpg
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Red Admiral Butterfly.png
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Sounds
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rustling leaves.ogg
+</font></blockquote><p>
+<p>
+<p>Again, these must be declared in the source text:
+<p>
+<blockquote><font color="#000080">Sound of rustling leaves is the file &quot;Rustling leaves.ogg&quot;.
+</font></blockquote><p>
+<p>
+<p>And they can be played using a special phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>play </b>(sound name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_playsf -->
+
+<p>This phrase causes the sound effect to be played. If the option &quot;one time only&quot; is used, it will have no effect if the sound effect has been played before. Example:
+<p>
+<blockquote><font color="#000080">play the sound of rustling leaves;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc376.html STYLE="text-decoration: none">Previous</a> / <a href=doc378.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

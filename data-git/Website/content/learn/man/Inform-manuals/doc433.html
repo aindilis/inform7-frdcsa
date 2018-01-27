@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.16. Handling phrase options</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Handling phrase options" -->
+<!-- SEARCH SECTION "25.16" -->
+<!-- SEARCH SORT "025-016-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc432.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc434.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.16. Handling phrase options</b></td></tr></table><p>
+<p>
+<p>The Standard Rules use the Inform list-writer with the following definition, which shows how a much more complicated I6 routine can be given a natural-language expression.
+<p>
+<blockquote><font color="#000080">To list the contents of (O - an object),
+<br>&nbsp;&nbsp;&nbsp;&nbsp;with newlines,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;indented,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;giving inventory information,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;as a sentence,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;including contents,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;including all contents,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;tersely,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;giving brief inventory information,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;using the definite article,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;listing marked items only,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;prefacing with is/are,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;not listing concealed items,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;suppressing all articles
+<br>&nbsp;&nbsp;&nbsp;&nbsp;and/or with extra indentation:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(- I7WriteListFrom(child({O}), {phrase options}); -).
+</font></blockquote><p>
+<p>
+<p>This can be used by, say:
+<p>
+<blockquote><font color="#000080">list the contents of O, as a sentence, using the definite article
+</font></blockquote><p>
+<p>
+<p>&quot;{phrase options}&quot; is a special substitution: it is a bitmap which assigns the given options one bit each, starting with the least significant bit for the first-mentioned option (&quot;with newlines&quot; above) and going up to the most significant bit for the last (&quot;not listing concealed items&quot;).
+<p>
+<p><hr><p><a href=doc432.html STYLE="text-decoration: none">Previous</a> / <a href=doc434.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

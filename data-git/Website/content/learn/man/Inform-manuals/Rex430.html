@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.6. Windows</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Dinner is Served" -->
+<!-- SEARCH SECTION "Ex 217" -->
+<!-- SEARCH SORT "Ex 003-006-217" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc12.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc14.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.6. Windows</b></td></tr></table><p>
+<p>
+<p>Calvin Coolidge once described windows as &quot;rectangles of glass.&quot; For us, they have two purposes: first, they offer a view of landscape beyond. In the simplest case the view is of an area which will not be interacted with in play, and therefore does not need to adapt to whatever may have changed there:
+<p>
+<blockquote><font color="#000080">The window is scenery in the Turret. &quot;Through the window you see miles and miles of unbroken forest, turning from green to flame in the hard early autumn.&quot;
+</font></blockquote><p>
+<p>
+<p>More interesting is to adapt the view a little to provide a changing picture: a forest may not change much, but a street scene will. <b>Port Royal 4</b> allows us to glimpse random passers-by.
+<p>
+<p>The trickiest kind of window allows the player to see another room which can also be encountered in play, and to interact with what is there. <b>Dinner is Served</b> presents a shop window, allowing people to see inside from the street, and even to reach through.
+<p>
+<p><b>Vitrine</b> handles the complication of a window misting up to become opaque, and thus temporarily hiding its view.
+<p>
+<p>Second, windows provide openings in walls and can act as conduits. <b>Escape</b> shows how a &quot;door&quot; in the Inform sense can become a window. <b>A Haughty Spirit</b> provides a general kind of window for jumping down out of: ideal for escapers from Colditz-like castles.
+<p>
+<a href=Rdoc12.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Doors, Staircases, and Bridges</b></font></a><i> for a door which can be partially seen through</i><p><p>
+<p><hr><p>
+<a name="e24"><a href=Rex24.html#e24 STYLE="text-decoration: none">**<b>Example 20:  Escape</b></a><br>Window that can be climbed through or looked through.<p>
+<a name="e117"><a href=Rex117.html#e117 STYLE="text-decoration: none">*<b>Example 116:  Vitrine</b></a><br>An electrochromic window that becomes transparent or opaque depending on whether it is currently turned on.<p>
+<a name="e258"><a href=Rex258.html#e258 STYLE="text-decoration: none">**<b>Example 261: Port Royal 4</b></a><br>A cell window through which the player can see people who were in Port Royal in the current year of game-time.<p>
+<!-- EXAMPLE START -->
+<a name="e430"><a href=Rdoc13.html#e430 STYLE="text-decoration: none">**<b><b>Example</b> 217:  Dinner is Served</b></a><br>A window between two locations. When the window is open, the player can reach through into the other location; when it isn't, access is barred.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Dinner is Served&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Street in Kolonaki is a room. &quot;There is a single round table out on the street here, and a window more or less at knee level looks down into the Olive Tree Gyro Shop, which is partly basement.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Street contains a round table. The table is scenery. On the round table is a plate. On the plate are a gyro and a mound of fresh potates. The plate is portable. The potates and the gyro are edible. The description of potates is &quot;They'd be called french fries, at home, but these are steak-cut and fried in olive oil.&quot; The description of the gyro is &quot;Dripping garlic-yogurt sauce.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Olive Tree Gyro Shop is inside from Street in Kolonaki. Kostis is a man in the Gyro Shop. In the Shop is a stand. On the stand is a rotating column of cooking lamb flesh. In the shop is a closed, openable container called a drinks refrigerator. The refrigerator contains a can of Mythos beer and a can of Coke Light.
+</font></blockquote><p>
+<p>
+<p>Here's the part that allows reaching through the window.
+<p>
+<p>We replace the usual rule that says the player can never reach into a room with one that more specifically checks whether we are trying to reach through the window. If we aren't, we return the usual refusal. If we are, we return a custom refusal if the window is closed (&quot;You can't reach through the closed window&quot;), but allow access if the window is open.
+<p>
+<blockquote><font color="#000080">The can't reach through closed window rule is listed instead of the can't reach inside rooms rule in the reaching inside rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the can't reach through closed window rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let reaching through the window be false;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the container in question is a room and the container in question is not the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the container in question is the Street and the location is the Olive Tree Gyro Shop:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now reaching through the window is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the container in question is the Gyro Shop and the location is the Street:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now reaching through the window is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if reaching through the window is true:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the window is closed:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't reach through the closed window.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deny access;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow access;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't reach into [the container in question] from here.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;deny access.
+</font></blockquote><p>
+<p>
+<p>And the rest is window-dressing.
+<p>
+<blockquote><font color="#000080">After looking when a room (called the next room) is adjacent:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try examining the next room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a supporter, say &quot;On [the noun] [is-are a list of things on the noun].&quot; Instead of examining an open container, say &quot;In [the noun] [is-are a list of things in the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The window is a backdrop. It is in the Street and the Shop. The window can be openable. The window can be open. The window is openable and closed. Instead of searching the window in the Street: try examining the shop. Instead of searching the window in the Shop: try examining the street.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;examine [any adjacent room]&quot; as examining.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Over in [the noun], you can see [a list of visible things in the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After deciding the scope of the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the Street, place the Shop in scope;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the Shop, place the Street in scope.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine shop / open refrigerator / open window / examine shop / open refrigerator / get beer / in / examine street / out / get gyro / close window / put gyro in refrigerator / open window / put gyro in refrigerator&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e382"><a href=Rex382.html#e382 STYLE="text-decoration: none">***<b>Example 181:  A Haughty Spirit</b></a><br>Windows overlooking lower spaces which will prevent the player from climbing through if the lower space is too far below.<p>
+<p><hr><p><a href=Rdoc12.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc14.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

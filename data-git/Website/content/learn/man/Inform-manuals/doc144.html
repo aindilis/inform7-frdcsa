@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.3. Introducing tables: rankings</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Introducing tables: rankings" -->
+<!-- SEARCH SECTION "9.3" -->
+<!-- SEARCH SORT "009-003-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc143.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc145.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.3. Introducing tables: rankings</b></td></tr></table><p>
+<p>
+<p>Another tradition of interactive fiction is that the player has a current 'rank' according to how far his or her score has got. We can (but need not) choose to provide such rankings, and should do so by specifying a table like this:
+<p>
+<blockquote><font color="#000080">Table 1 - Rankings
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Score</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Rank</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Beginner&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">25</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Amateur Adventurer&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">50</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Novice Adventurer&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">100</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Junior Adventurer&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">200</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Adventurer&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">300</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Master&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">330</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Wizard&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">350</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Master Adventurer&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>Typographically, tables in Inform look as much as possible like those found in non-fiction books: they can have many columns, so this is only a simple example (drawn from the actual rankings used by Infocom's <i>Zork I</i>, 1979). Each line in the source represents one row in the table, and the entries on a line must be separated by at least one tab character. (An entry might of course have several words with spaces in between, so a space is not enough to separate entries: this is the only context when Inform distinguishes between spaces and tabs.) The table must occupy a single whole paragraph, with no skipped lines or missing entries. We are free to use extra tabs to indent it if we like.
+<p>
+<p>Ordinarily we must explicitly ask to use the information presented in a table, but the table of rankings is a special case: Inform uses it automatically, if it is provided at all. To be recognised it must have the name &quot;Rankings&quot; and must have two columns named and arranged as shown. The scores should be given in ascending order. Customarily, the score in the final row should be the maximum possible achieved in the game - so that only a player with maximum possible score can be awarded the final ranking - and the value of &quot;maximum score&quot; is automatically set to this bottom-row value if it has not been explicitly set anywhere else in the source text.
+<p>
+<p><hr><p><a href=doc143.html STYLE="text-decoration: none">Previous</a> / <a href=doc145.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.1. Room Descriptions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Ant-Sensitive Sunglasses" -->
+<!-- SEARCH SECTION "Ex 321" -->
+<!-- SEARCH SORT "Ex 003-001-321" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc7.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc9.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.1. Room Descriptions</b></td></tr></table><p>
+<p>
+<p>The printing of a room description is a more delicate business than it might initially seem to be: Inform has to consider all the objects that the player might have brought into the room or dropped there, and all the objects on visible supporters, and decide how to group and list them.
+<p>
+<p>All of this behavior is handled by the looking command, so we find the relevant rules in the carry out looking rulebook. To go through the elements step by step:
+<p>
+<p>Looking begins by printing the name and description of the room we're in. We can introduce variations into room names and descriptions by changing their printed name and description properties, as in
+<p>
+<blockquote><font color="#000080">change the printed name of the Church to &quot;Lightning-Struck Ruin&quot;;
+<br>change the description of the Church to &quot;The beams overhead have been burnt away and the pews are charred. Only the stone walls remain.&quot;;
+</font></blockquote><p>
+<p>
+<p>If we need more drastic effects, we can turn off or change either of these features by altering the rules in the carry out looking rulebook. For instance, to remove the name of the location entirely from room descriptions, we would write
+<p>
+<blockquote><font color="#000080">The room description heading rule is not listed in the carry out looking rules.
+</font></blockquote><p>
+<p>
+<p>(A word of warning: there is one other context in which the game prints a room name — when restoring a save or undoing a move. To omit the room title here too, add
+<p>
+<blockquote><font color="#000080">Rule for printing the name of a room: do nothing.)
+</font></blockquote><p>
+<p>
+<p><b>Ant-Sensitive Sunglasses</b> demonstrates how to use activities to make more flexible room description text.
+<p>
+<p>Next, the game determines what items are visible to the player and need to be described. These never include the player himself, or scenery, but other things in the environment will be made &quot;marked for listing&quot;. This is also the stage at which Inform chooses the order in which items will be listed.
+<p>
+<p>We are allowed to meddle by changing the priorities of objects, in case we want some things to be described to the player first or last in the room description; <b>Priority Lab</b> goes into detail about how. We can also force things to be left out entirely: <b>Low Light</b> handles the case of an object that can only be seen when an extra lamp is switched on, even though the room is not otherwise considered dark. <b>Copper River</b> implements the idea of &quot;interesting&quot; and &quot;dull&quot; objects: the game determines which items are currently important to the puzzles or narrative and mentions those in the room description, while suppressing everything else.
+<p>
+<p>Then Inform carries out the writing a paragraph about... activity with anything that provides one; anything it prints the name of, it tags &quot;mentioned&quot;. Thus
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about Mr Wickham:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mr Wickham looks speculatively at [list of women in the location].&quot;
+</font></blockquote><p>
+<p>
+<p>will count Wickham and everyone he looks at as all having been mentioned, and will not refer to them again through the rest of the room description. More complicated uses of writing a paragraph abound. A developed system for handling supporters that don't list contents appears in <b>The Eye of the Idol</b>.
+<p>
+<p>Inform then prints the initial appearances of objects that are marked for listing but not already mentioned; and then it performs the listing nondescript items activity, collating the remaining objects into a paragraph like
+<p>
+<blockquote><font color="#000080">You can see a dog, a hen, ...
+</font></blockquote><p>
+<p>
+<p>We can pre-empt items from appearing in this paragraph or change their listing by intervening with a Before listing nondescript items... rule, as in
+<p>
+<blockquote><font color="#000080">Before listing nondescript items when the player needs the watch:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the watch is marked for listing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The watch catches your eye.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;change the watch to not marked for listing.
+</font></blockquote><p>
+<p>
+<p>If we wanted the watch always to be listed this way, it would be better to give it an initial appearance, but for conditional cases, the listing nondescript items activity is a good place to intervene. For instance, <b>Rip</b> uses this activity to incorporate changeable or portable items into the main description text for a room when (and only when) that is appropriate.
+<p>
+<p>The listing nondescript items activity also allows us to replace the &quot;You can see...&quot; tag with something else more fitting, if for instance we are in a dimly lit room.
+<p>
+<p>When the game compiles the list of nondescript items, it adds tags such as &quot;(open)&quot; or &quot;(empty)&quot; or &quot;(on which is a fish tank)&quot; to the names of containers and supporters. We can suppress or change the &quot;(empty)&quot; tag with the printing room description details of activity, as in
+<p>
+<blockquote><font color="#000080">Rule for printing room description details: stop.
+</font></blockquote><p>
+<p>
+<p>And we can suppress the &quot;(open)&quot; and &quot;(on which is...)&quot; sorts of tags with the &quot;omit the contents in listing&quot; phrase, as in
+<p>
+<blockquote><font color="#000080">Rule for printing the name of the bottle while not inserting or removing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the bottle contains sand, say &quot;bottle of sand&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;empty bottle&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;omit contents in listing.
+</font></blockquote><p>
+<p>
+<p>Finally, the looking command lists visible non-scenery items that sit on scenery supporters, as in
+<p>
+<blockquote><font color="#000080">On the table is a folded newspaper.
+</font></blockquote><p>
+<p>
+<p>These paragraphs can be manipulated with the printing the locale paragraphs description activity.
+<p>
+<p>Another common thing we may want to do is change the description of a room depending on whether we've been there before (as in <b>Slightly Wrong</b>) or on how often we've visited (as in <b>Infiltration</b>). <b>Night Sky</b>, meanwhile, changes the description of a room when we've examined another object, so that the player's awareness of his environment is affected by other things the character knows.
+<p>
+<a href=Rdoc32.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Looking</b></font></a><i> for ways to change the default length of room descriptions</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e12"><a href=Rdoc8.html#e12 STYLE="text-decoration: none">*<b><b>Example</b> 321:  Ant-Sensitive Sunglasses</b></a><br>What are activities good for? Controlling output when we want the same action to be able to produce very flexible text depending on the state of the world -- in this case, making highly variable room description and object description text.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to create an object -- or maybe even a series of objects -- that warp the player's perception of every room description and object around him.
+<p>
+<p>We've already seen some ways to create variations in text. For instance, we could make a room description with if substitutions in it, like so:
+<p>
+<blockquote><font color="#000080">The Kitchen is a room. &quot;[if the player is wearing the sunglasses]Are ants coming out of the sink? No, probably no.[otherwise]A small kitchen tucked into a corner of the vacation house. There is storage space for five or six cups, a sink, a two-ring stove; nothing else to speak of.[end if]&quot;
+</font></blockquote><p>
+<p>
+<p>That works fine if we have one or two variations we want to add; it's not so good if we're going to have several items that work like the sunglasses, or if we want the sunglasses to override the description of every room in the house.
+<p>
+<p>A slightly more flexible method is to use a substitution that calls out to a say phrase, like this:
+<p>
+<blockquote><font color="#000080">The Kitchen is a room. &quot;[kitchen-description]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say kitchen-description:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is wearing the sunglasses:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Are ants coming out of the sink? No, probably no.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A small kitchen tucked into a corner of the vacation house. There is storage space for five or six cups, a sink, a two-ring stove; nothing else to speak of.&quot;
+</font></blockquote><p>
+<p>
+<p>But again this doesn't handle the case of overriding multiple rooms at once very well.
+<p>
+<p>When we reach a point where we need a given piece of text to be very flexible depending on the world model, it's time to use an activity.
+<p>
+<p>Activities offer several advantages. One, we can create an activity like this:
+<p>
+<blockquote><font color="#000080">Printing the room-description of something is an activity.
+</font></blockquote><p>
+<p>
+<p>and then write a rule that applies to multiple rooms at once, like:
+<p>
+<blockquote><font color="#000080">Rule for printing the room-description of a room when the player wears the sunglasses:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The walls look like they're covered with ants. Just a coincidence, I'm sure.&quot;
+</font></blockquote><p>
+<p>
+<p>Inform's usual rule-ranking also means that more-specific rules will override less-specific ones, so we could add
+<p>
+<blockquote><font color="#000080">&nbsp;&nbsp;&nbsp;&nbsp;Rule for printing the room-description of the Kitchen when the player wears the sunglasses:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Are ants coming out of the sink? No, probably not.&quot;
+</font></blockquote><p>
+<p>
+<p>and have that rule override the behavior of the activity just in the kitchen. Meanwhile, our base room descriptions remain straightforward and uncluttered by if-statements.
+<p>
+<p>Several other examples will show how to hook activities into existing actions: Crusoe goes into detail about how how to make the descriptions of things more variable, and Aftershock demonstrates activities for describing the behavior of switchable devices.
+<p>
+<p>Here, we preview all of those methods, just to get a sense of how they work and why they might be useful in controlling a game. Subsequent chapters go into more detail about the syntax of creating activities and the list of activities that are already defined by Inform.
+<p>
+<blockquote><font color="#000080"> &quot;Ant-Sensitive Sunglasses&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Part 1 - Procedure
+</font></blockquote><p>
+<p>
+<p>To add a new activity to an existing Inform rule, we need to do three things:
+<p>
+<p>1) Define our new activity.
+<p>2) Give a basic rule that says what is supposed to happen when that activity occurs, as in &quot;Rule for...&quot;
+<p>3) Replace the existing rule in Inform's rulebooks with a new one that calls on our activity.
+<p>
+<p>Here we do this with examining:
+<p>
+<blockquote><font color="#000080">Section 1 - Item Description
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Printing the description of something is an activity.
+</font></blockquote><p>
+<p>
+<p>Now, by default, we want to print the description property; we just want the option to write some extra rules overriding that property. So we tell Inform that our most basic rule for printing the description of something is just to give that description text:
+<p>
+<blockquote><font color="#000080">Rule for printing the description of something (called item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the description of the item is not &quot;&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[description of item][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You see nothing special about [the item].&quot;.
+</font></blockquote><p>
+<p>
+<p>Next, we need the standard examining rule to look at our printing-the-description activity:
+<p>
+<blockquote><font color="#000080">The activity-based examining rule is listed instead of the standard examining rule in the carry out examining rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the activity-based examining rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;carry out the printing the description activity with the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<p>Now we do the same thing to room descriptions.
+<p>
+<blockquote><font color="#000080">Section 2 - Room Description
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Printing the room-description of something is an activity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the room-description of a room (called item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the description of the item is not &quot;&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[description of item][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do nothing instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The activity-based room description body text rule is listed instead of the room description body text rule in the carry out looking rules.
+</font></blockquote><p>
+<p>
+<p>Our replacement rule this time around is a little bit trickier just because the rule that we're replacing is a complicated one: describing a room already checks to see whether there's light to see by, whether the player has turned off room descriptions when he enters a room for the second time, and whether the player character is (say) inside a closed box he can't see out of.
+<p>
+<p>But all of those details are re-copied from the standard rules, and the important thing is that, at the end, we again carry out our activity.
+<p>
+<blockquote><font color="#000080">This is the activity-based room description body text rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the visibility level count is 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if set to abbreviated room descriptions, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if set to sometimes abbreviated room descriptions and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abbreviated form allowed is true and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;darkness witnessed is true,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin the printing the description of a dark room activity;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if handling the printing the description of a dark room activity,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;issue miscellaneous library message number 17;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the printing the description of a dark room activity;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the visibility ceiling is the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if set to abbreviated room descriptions, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if set to sometimes abbreviated room descriptions and abbreviated form
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allowed is true and the location is visited, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carry out the printing the room-description activity with the location.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 3 - Device Description
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Showing action of something is an activity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for showing action of something (called item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the item is switched on, say &quot;[The item] is switched on.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;[The item] is switched off.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The activity-based described devices rule is listed instead of the examine devices rule in the carry out examining rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the activity-based described devices rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is a device:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carry out the showing action activity with the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now examine text printed is true.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report switching on something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You flip a switch. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;carry out the showing action activity with the noun instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Part 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Plurality by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Kitchen is a room. &quot;A small kitchen tucked into a corner of the vacation house. There is storage space for five or six cups, a sink, a two-ring stove; nothing else to speak of.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The microwave is a device in the Kitchen.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">South of the Kitchen is the Living Area. The description of the Living area is &quot;A whitewashed living/dining/reclining area in what used to be a shepherd's stone hut, but now costs vacationers 600 euros a week. It offers no mod cons, only a straight view of the Mediterranean and a wobbly writing table.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the room-description of a room when the player wears the sunglasses:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The walls look like they're covered with ants. Just a coincidence, I'm sure[antsy].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the room-description of the Kitchen when the player wears the sunglasses:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Are ants coming out of the sink? No, probably not[antsy].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the description of something (called the item) when the player wears the sunglasses:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] [one of]ant-colored[or]ant-legged[or]covered in ants[at random][antsy].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for showing action of the microwave:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The microwave hums meaningfully to itself.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for showing action of the microwave when the player wears the sunglasses:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The microwave hums as though inhabited by a billion ants[antsy].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries sunglasses of freakiness and an apple. The apple is edible. The sunglasses are wearable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">ant-paranoia is a number that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say antsy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase ant-paranoia by 1;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the ant-paranoia is greater than 3:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Augh! AUUUGH! GET THEM OFF--&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;You have lost your mind.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / turn on microwave / turn off microwave / x apple / x sunglasses / s / wear sunglasses / look / x apple / n / turn on microwave&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e299"><a href=Rex299.html#e299 STYLE="text-decoration: none">*<b>Example 344:  Priority Lab</b></a><br>A debugging rule useful for checking the priorities of objects about to be listed.<p>
+<a name="e229"><a href=Rex229.html#e229 STYLE="text-decoration: none">*<b>Example 345:  Low Light</b></a><br>An object that is only visible and manipulable when a bright light fixture is on.<p>
+<a name="e374"><a href=Rex374.html#e374 STYLE="text-decoration: none">**<b>Example 343:  The Eye of the Idol</b></a><br>A systematic way to allow objects in certain places to be described in the room description body text rather than in paragraphs following the room description, and to control whether supporters list their contents or not.<p>
+<a name="e321"><a href=Rex321.html#e321 STYLE="text-decoration: none">*<b>Example 341:  Rip Van Winkle</b></a><br>A simple way to allow objects in certain places to be described in the room description body text rather than in paragraphs following the room description.<p>
+<a name="e93"><a href=Rex93.html#e93 STYLE="text-decoration: none">***<b>Example 348:  Copper River</b></a><br>Manipulating room descriptions so that only interesting items are mentioned, while objects that are present but not currently useful to the player are ignored.<p>
+<a name="e232"><a href=Rex232.html#e232 STYLE="text-decoration: none">**<b>Example 3:  Slightly Wrong</b></a><br>A room whose description changes slightly after our first visit there.<p>
+<a name="e196"><a href=Rex196.html#e196 STYLE="text-decoration: none">*<b>Example 152:  Infiltration</b></a><br>A room whose description changes depending on the number of times the player has visited.<p>
+<a name="e261"><a href=Rex261.html#e261 STYLE="text-decoration: none">*<b>Example 147:  Night Sky</b></a><br>A room which changes its description depending on whether an object has been examined.<p>
+<p><hr><p><a href=Rdoc7.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc9.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

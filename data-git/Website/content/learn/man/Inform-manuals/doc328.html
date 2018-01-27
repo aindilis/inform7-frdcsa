@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.8. Basis of a rulebook</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Basis of a rulebook" -->
+<!-- SEARCH SECTION "18.8" -->
+<!-- SEARCH SORT "018-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc327.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc329.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.8. Basis of a rulebook</b></td></tr></table><p>
+<p>
+<p>Every rulebook works on a value supplied to it, though it doesn't always look that way. The kind of the value is called its &quot;basis&quot;; for example, if a rulebook works on a number, it's called a &quot;number based rulebook&quot;. Most of the rulebooks seen up to now have been action based rulebooks:
+<p>
+<blockquote><font color="#000080">Instead of eating the cake: ...
+</font></blockquote><p>
+<p>
+<p>&quot;Instead&quot; is an action based rulebook, and the action it works on is the one currently being processed. Besides before, after and instead, other action based rulebooks include the check, carry out, and report rules; general rulebooks such as every turn rules, the procedural rules, the visibility rules, the turn sequence rules; and rules specially for dealing with the actions of other characters, such as the persuasion and unsuccessful attempt rules. But we have also seen object based rulebooks:
+<p>
+<blockquote><font color="#000080">Rule for reaching inside the flask: ...
+</font></blockquote><p>
+<p>
+<p>&quot;Reaching inside&quot; is an object based rulebook, and here we're giving it a rule which applies if the object is the flask. Inform would reject something like:
+<p>
+<blockquote><font color="#000080">Rule for reaching inside 100: ...
+</font></blockquote><p>
+<p>
+<p>because 100 has the wrong kind to fit - it's a number, not an object. There are many object based rulebooks, because most activities built-in to Inform act on objects. For example, the &quot;printing the name of&quot; activity has three rulebooks attached to it: before printing the name of, for printing the name of, after printing the name of. All of these are object based rulebooks.
+<p>
+<p>Finally, we've also seen scene based rulebooks (which is how rules like &quot;when a recurring scene ends&quot; worked, in the Scenes chapter).
+<p>
+<p>If a rulebook is declared like so:
+<p>
+<blockquote><font color="#000080">Marvellous reasoning is a rulebook.
+</font></blockquote><p>
+<p>
+<p>then it is an action based rulebook. If we want something different, we must write something like this:
+<p>
+<blockquote><font color="#000080">Grading is a number based rulebook.
+<br>Grading 5: say &quot;It's five. What can I say?&quot; instead.
+<br>Grading an odd number (called N): say &quot;There's something odd about [N].&quot; instead.
+<br>Grading a number (called N): say &quot;Just [N].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>repeat with N running from 1 to 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Grading [N]: &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the grading rulebook for N.
+</font></blockquote><p>
+<p>
+<p>which produces:
+<p>
+<blockquote><font color="#000080">Grading 1: There's something odd about 1.
+<br>Grading 2: Just 2.
+<br>Grading 3: There's something odd about 3.
+<br>Grading 4: Just 4.
+<br>Grading 5: It's five. What can I say?
+<br>Grading 6: Just 6.
+<br>Grading 7: There's something odd about 7.
+<br>Grading 8: Just 8.
+<br>Grading 9: There's something odd about 9.
+<br>Grading 10: Just 10.
+</font></blockquote><p>
+<p>
+<p>Here we needed a variation on &quot;follow&quot; which supplies the value to apply to:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>follow </b>(values based rule producing values)<b> for </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_followfor -->
+
+<p>This phrase causes the rule to be obeyed immediately (rather than simply at predetermined times such as when a particular action is being tried, or at the end of every turn, and such), and applies it to the value given, which must be of a matching kind. Example:
+<p>
+<blockquote><font color="#000080">follow the reaching inside rulebook for the electrified cage;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>And here is an example based on objects:
+<p>
+<blockquote><font color="#000080">The flotation rules are an object based rulebook.
+<br>A flotation rule for the cork: rule succeeds.
+<br>A flotation rule for an inflated thing: rule succeeds.
+<br>A flotation rule: rule fails.
+</font></blockquote><p>
+<p>
+<p>And we might use the flotation rules in a circumstance like this:
+<p>
+<blockquote><font color="#000080">After inserting something into the well:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the flotation rules for the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the rule succeeded:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] bobs on the surface.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] sinks out of sight.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e148"><a href=ex148.html#e148 STYLE="text-decoration: none">*<b>Example 385:  Flotation</b></a><br>Objects that can sink or float in a well, depending on their own properties and the state of the surrounding environment.<p>
+<p><hr><p><a href=doc327.html STYLE="text-decoration: none">Previous</a> / <a href=doc329.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

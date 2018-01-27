@@ -1,0 +1,132 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 21.5. Map, filter and reduce</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Map, filter and reduce" -->
+<!-- SEARCH SECTION "21.5" -->
+<!-- SEARCH SORT "021-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc363.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc365.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>21.5. Map, filter and reduce</b></td></tr></table><p>
+<p>
+<p>When a mass of computations has to be done, the traditional approach is to work through them in a &quot;repeat&quot; loop. One modern alternative, growing in popularity, is to form a list of inputs; then apply the same computation to each input in turn to form a list of results (this is called &quot;mapping&quot;); throw out any bad or unwanted results (&quot;filtering&quot;); and then combine the surviving results into a single composite answer (&quot;reducing&quot;, though some programming languages call this &quot;folding&quot; or &quot;accumulation&quot;; it's a much-reinvented idea).
+<p>
+<p>Inform provides all three of these fundamental list-processing operations. There is no special term for a &quot;map&quot;, because Inform treats it as another case of &quot;applied to&quot;.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(phrase value -> value)<b> applied to </b>(list of values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_appliedlist -->
+
+<p>This phrase takes the list, applies the phrase to each entry in the list, and forms a new list of the result. Example:
+<p>
+<blockquote><font color="#000080">To decide what number is double (N - a number) (this is doubling):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on N plus N.
+</font></blockquote><p>
+<p>
+<p>Then &quot;doubling applied to 2&quot; produces 4, by the simpler definition of &quot;applied to&quot;, but also:
+<p>
+<blockquote><font color="#000080">doubling applied to {2, 3, 4}
+</font></blockquote><p>
+<p>
+<p>produces the list {4, 6, 8}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>More divertingly, suppose we define:
+<p>
+<blockquote><font color="#000080">To decide what indexed text is the longhand form of (N - a number)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(this is spelling out):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on &quot;[N in words]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide what indexed text is the consonant form of (T - indexed text)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(this is txtng):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;replace the regular expression &quot;&lt;aeiou&gt;&quot; in T with &quot;&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on T.
+</font></blockquote><p>
+<p>
+<p>Then we can write a chain of three maps in succession:
+<p>
+<blockquote><font color="#000080">txtng applied to spelling out applied to doubling applied to {3, 8, 4, 19, 7}
+</font></blockquote><p>
+<p>
+<p>to produce the value {&quot;sx&quot;, &quot;sxtn&quot;, &quot;ght&quot;, &quot;thrty-ght&quot;, &quot;frtn&quot;}.
+<p>
+<p>Next, filtering. Here we make use of descriptions, in order to say what values will be allowed through the filter. So:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>filter to </b>(description of values)<b> of </b>(list of values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_filter -->
+
+<p>This phrase produces a new list which is a thinner version of the one given, so that it contains only those values which match the description given. Example:
+<p>
+<blockquote><font color="#000080">filter to even numbers of {3, 8, 4, 19, 7}
+</font></blockquote><p>
+<p>
+<p>produces {8, 4}, with the values 3, 19, and 7 failing to make it through. A sufficiently fine filter may well thin out a list to a single entry, or even no entries at all, but the result is always a list.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>To get the full effect of filtering, we probably need to define an adjective or two. For example:
+<p>
+<blockquote><font color="#000080">Definition: an indexed text (called T) is lengthy if the number of characters in it is greater than 6.
+</font></blockquote><p>
+<p>
+<p>We can then write:
+<p>
+<blockquote><font color="#000080">filter to lengthy indexed texts of spelling out applied to {15, 2, 20, 29, -4}
+</font></blockquote><p>
+<p>
+<p>which produces {&quot;fifteen&quot;, &quot;twenty-nine&quot;, &quot;minus four&quot;}.
+<p>
+<p>Lastly, reduction. In order to combine a whole list of values, we need a phrase to combine any two. Here are some samples:
+<p>
+<blockquote><font color="#000080">To decide what number is the larger of (N - number) and (M - number)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(this is maximizing):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if N > M, decide on N;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on M.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide what indexed text is the concatenation of (X - indexed text) and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(Y - indexed text) (this is concatenation):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on &quot;[X][Y]&quot;.
+</font></blockquote><p>
+<p>
+<p>And here are some sample reductions:
+<p>
+<blockquote><font color="#000080">let X be the maximization reduction of {3, 8, 4, 19, 7};
+<br>let Y be the concatenation reduction of txtng applied to spelling out
+<br>&nbsp;&nbsp;&nbsp;&nbsp;applied to doubling applied to {3, 8, 4, 19, 7};
+</font></blockquote><p>
+<p>
+<p>sets X to 19, the highest of the values, and Z to the indexed text &quot;sxsxtnghtthrty-ghtfrtn&quot;. In each case a list has been reduced to a single value which somehow combines the contents.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(phrase (value, value) -> value)<b> reduction of </b>(list of values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_reduction -->
+
+<p>This phrase works through the list and accumulates the values in it, using the phrase supplied. Example: if we have
+<p>
+<blockquote><font color="#000080">To decide what number is the sum of (N - number) and (M - number)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(this is summing):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on N + M.
+</font></blockquote><p>
+<p>
+<p>then the summing reduction of {3, 8, 4, 19, 7} is the number 41, obtained by
+<p>
+<blockquote><font color="#000080">(((3 + 8) + 4) + 19) + 7
+</font></blockquote><p>
+<p>
+<p>so that the summing phrase has been used four times.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Is map/filter/reduce always a good idea? Devotees point out that almost any computation can be thought of in this way, and in systems where the work has to be distributed around multiple processors it can be a very powerful tool. (There are programming languages without loops where it's essentially the only tool.) At its best, it reads very elegantly: one assembles all of the tools needed - definitions of doubling, lengthy, spelling out, concatenation and so on - and then each actual task is expressed in a single line at the end.
+<p>
+<p>On the other hand, there are also times when this is a needlessly complicated disguise for what could more easily be done with a &quot;repeat&quot; loop, and also more efficiently since assembling and dismantling lists in memory does take some overhead time. So these list operations are not a panacea, but it's good to have them available.
+<p>
+<p><hr><p><a href=doc363.html STYLE="text-decoration: none">Previous</a> / <a href=doc365.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.15. Names made in assembly</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Names made in assembly" -->
+<!-- SEARCH SECTION "4.15" -->
+<!-- SEARCH SORT "004-015-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc68.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc70.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.15. Names made in assembly</b></td></tr></table><p>
+<p>
+<p>Something skated over in the previous section is the question of how Inform gives names to objects (or other values) it creates in an assembly. The standard thing naming combines the names of what's being assembled. For example:
+<p>
+<blockquote><font color="#000080">A nose is a kind of thing. A nose is part of every person. Antony and Cleopatra are people.
+</font></blockquote><p>
+<p>
+<p>might result in the creation of &quot;Antony's nose&quot;, part of Antony, and &quot;Cleopatra's nose&quot;, part of Cleopatra. In this way, Inform names the noses after their owners. It will always do this unless there are multiple indistinguishable things being created, as in the &quot;five silver coins are in every banking room&quot; example: those will all just be called &quot;silver coin&quot;.
+<p>
+<p>A small pitfall of this is that if we write:
+<p>
+<blockquote><font color="#000080">Marcus Tullius Cicero is a person.
+</font></blockquote><p>
+<p>
+<p>then although &quot;Marcus Tullius Cicero's nose&quot; and &quot;Cicero's nose&quot; are both valid names for the consular nose, &quot;Marcus's nose&quot; is not.
+<p>
+<p>The standard naming scheme is often about right, but as usual Inform offers a way to improve it in particular cases. For example, if we write:
+<p>
+<blockquote><font color="#000080">Every room contains a vehicle (called its buggy).
+</font></blockquote><p>
+<p>
+<p>then we will find the world full of, say, the Garden buggy, the Patio buggy and so on - instead of the Garden vehicle, the Patio vehicle and so on, which is what we would have had without the &quot;called...&quot; part. Similarly, we could write:
+<p>
+<blockquote><font color="#000080">A person (called its fan) likes every colour.
+<br>Every person likes a colour (called his favourite colour).
+</font></blockquote><p>
+<p>
+<p>The former would produce new people with names like &quot;Green's fan&quot;, whereas the latter would produce new colours with names like &quot;Daphne's favourite colour&quot;.
+<p>
+<p>So much for an informal description. Here is exactly what Inform does:
+<p>
+<blockquote><font color="#000080">(1a) If there is a &quot;called...&quot; text, Inform uses it, expanding out &quot;its&quot; (or &quot;his&quot; or &quot;her&quot; or &quot;their&quot;) expands out to a possessive form of the name of the owner, so to speak, and &quot;it&quot; (or &quot;he&quot; or &quot;she&quot; or &quot;they&quot; or &quot;him&quot; or &quot;them&quot;) to the name itself.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(1b) If there's no &quot;called...&quot; text, Inform behaves as if we had written &quot;(called its K)&quot;, where K is the name of the kind.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(2) If this results in value which isn't an object being given a name which already exists, Inform tacks on a number to force the new name to be different from existing ones: e.g., &quot;Daphne's colour 2&quot;, &quot;Daphne's colour 3&quot;, ...
+</font></blockquote><p>
+<p>
+<p>(The reason that (2) doesn't affect objects is that objects are allowed to have names clashing with other objects, or no name at all, whereas other values have to have names belonging to themselves alone.)
+<p>
+<p><hr><p><a href=doc68.html STYLE="text-decoration: none">Previous</a> / <a href=doc70.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

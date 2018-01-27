@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.11. Future events</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "MRE" -->
+<!-- SEARCH SECTION "Ex 143" -->
+<!-- SEARCH SORT "Ex 009-011-143" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc151.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc153.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.11. Future events</b></td></tr></table><p>
+<p>
+<p>We often want to arrange for something to happen at some point in the future. Here is yet another timepiece:
+<p>
+<blockquote><font color="#000080">An egg-timer is in the Chamber. &quot;A plastic egg timer in the shape of a chicken can be pressed to set it going.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of pushing the egg-timer:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It begins to mark time.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;the egg-timer clucks in four turns from now.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when the egg-timer clucks:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Cluck! Cluck! Cluck! says the egg-timer.&quot;
+</font></blockquote><p>
+<p>
+<p>The event here is called &quot;the egg-timer clucks&quot;. It only happens if we instruct so, using one of the following phrases:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(rule)<b> in </b>(time)<b> from now</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_timefromnow -->
+
+<p>This phrase causes the given rule to be run at a given time offset from the current time of day. Example:
+<p>
+<blockquote><font color="#000080">the egg-timer clucks in 18 minutes from now;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(rule)<b> in </b>(number)<b> turn</b>/turns<b> from now</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_turnsfromnow -->
+
+<p>This phrase causes the given rule to be run at a given number of turns after the current one. Example:
+<p>
+<blockquote><font color="#000080">the egg-timer clucks in four turns from now;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(rule)<b> at </b>(time)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_attime -->
+
+<p>This phrase causes the given rule to be run at a given time of day. Example:
+<p>
+<blockquote><font color="#000080">the egg-timer clucks at 11:35 AM;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>If we know in advance what time we want something to happen, we can more simply write:
+<p>
+<blockquote><font color="#000080">At 4 PM: say &quot;The great bells of the clock tower chime four.&quot;
+</font></blockquote><p>
+<p>
+<p>(Note that in either case such rules begin with the word &quot;at&quot;: they are the only rules allowed to begin with the word &quot;at&quot;.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e252"><a href=doc152.html#e252 STYLE="text-decoration: none">*<b><b>Example</b> 143:  MRE</b></a><br>Hunger that eventually kills the player, and foodstuffs that can delay the inevitable by different amounts of time.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Many older interactive fiction games required the player to find food and eat on a regular basis in order to avoid death. This effect was often unrealistic (since most people can survive much longer than a few hours without eating) and is often seen as an annoyance. However, for the sake of argument, suppose that we do want to construct a hunger-and-death system.
+<p>
+<p>To make things a little more interesting, we will postulate that different foods are differently filling, so that if the player manages to find something really caloric, he is off the hook on his hunger search for a while.
+<p>
+<p>We will also implement the system so that the player gets messages when he is hungry, then dies a short time later. (The times involved are ludicrously short, but this allows us to see the effects within a simple example. In a real game we would want to allow a considerably longer timer for the hunger to play out.)
+<p>
+<p>First, a little scene-setting:
+<p>
+<blockquote><font color="#000080">&quot;MRE&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[time of day]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The procedure was painless at first: increased strength was the first sign, followed by a sensation of delayed time, as though everyone around you moved more slowly. Your ability to dodge and perform feats of agility doubled, then trebled. You were heralded as a triumph of medicine. They told you there would be no side effects worth speaking of.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">They were wrong.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Base Camp Larder is a room. &quot;This room has been reinforced after each incident -- and there have been dozens in the last two months -- so that it now rivals Fort Knox. Only your new skill and speed enabled you to dodge the motion sensors, knock out the computerized security system, fool the retinal scanner, and punch a hole in the steel containment grating. But you're inside now.&quot;
+</font></blockquote><p>
+<p>
+<p>Now we define our food, and add some special instructions for what happens to our hunger counters when the food is eaten:
+<p>
+<blockquote><font color="#000080">Food is a kind of thing. Food is usually edible. Food has a time called the satisfaction period. The satisfaction period of a food is usually 5 minutes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be hungry or replete. The player is hungry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Larder contains an apple, a candy bar, and a large plate of pasta. The apple, the candy bar, and the pasta are food. The satisfaction period of the apple is 2 minutes. The satisfaction period of the pasta is 125 minutes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check eating something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not food, say &quot;[The noun] might be edible, but it's not what you'd consider really food.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out eating something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is replete;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;hunger resumes in the satisfaction period of the noun from now.
+</font></blockquote><p>
+<p>
+<p>The first of those two phrases, &quot;now the player is replete&quot;, causes the player to cease to be hungry; the second one sets up a future event in which the hunger sets in again. The length of time until that event depends on how satisfying the specific food is. Now we define that event:
+<p>
+<blockquote><font color="#000080">At the time when hunger resumes:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;starvation occurs in three minutes from now;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is hungry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when starvation occurs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is hungry, end the story saying &quot;You have starved&quot;.
+</font></blockquote><p>
+<p>
+<p>Note &quot;if the player is hungry&quot;: it is possible that the starvation event will be set up but the player will eat before it occurs; in that case, we want it not to take effect.
+<p>
+<p>And now, since we really ought to give the player some warning of what is happening to him:
+<p>
+<blockquote><font color="#000080">Every turn when the player is hungry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a random row in the Table of Hunger Complaints;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[hunger entry][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Hunger Complaints
+<br>hunger
+<br>&quot;Gosh, you're starving.&quot;
+<br>&quot;It feels as though you haven't eaten in days. Weeks, almost.&quot;
+<br>&quot;The world seems to slow down and everything becomes sharper and brighter. You are a hunter, a hunter of foodstuffs.&quot;
+<br>&quot;You find yourself staring at [the random visible thing that is not the player] and wondering how it would taste.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;eat apple / z / z / z / eat candy bar / z / z / z / z / z / z / z / z / z&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e113"><a href=ex113.html#e113 STYLE="text-decoration: none">**<b>Example 144:  Totality</b></a><br>To schedule an eclipse of the sun, which involves a number of related events.<p>
+<a name="e383"><a href=ex383.html#e383 STYLE="text-decoration: none">**<b>Example 145:  Empire</b></a><br>A train which follows a schedule, stopping at a number of different locations.<p>
+<a name="e188"><a href=ex188.html#e188 STYLE="text-decoration: none">***<b>Example 146:  Hour of the Wren</b></a><br>Allowing the player to make an appointment, which is then kept.<p>
+<p><hr><p><a href=doc151.html STYLE="text-decoration: none">Previous</a> / <a href=doc153.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

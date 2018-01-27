@@ -1,0 +1,126 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.14. Assemblies and body parts</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Night Before" -->
+<!-- SEARCH SECTION "Ex 56" -->
+<!-- SEARCH SORT "Ex 004-014-056" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc67.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc69.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.14. Assemblies and body parts</b></td></tr></table><p>
+<p>
+<p>In the previous chapter, we saw that it was possible to make sub-parts of things. For instance,
+<p>
+<blockquote><font color="#000080">The white door is in the Drawing Room. The handle is part of the white door.
+</font></blockquote><p>
+<p>
+<p>creates a door with an attached handle. But what if we want to say that not just this door, but every door, should have a handle? To do this we first need to create a kind called &quot;handle&quot;, since there will clearly need to be many handles. The solution is:
+<p>
+<blockquote><font color="#000080">A handle is a kind of thing. A handle is part of every door.
+</font></blockquote><p>
+<p>
+<p>&quot;Every&quot; is a loaded word and best used sparingly. A sentence like &quot;A handle is part of every handle&quot; would, if taken literally, mean that a handle takes forever to make and is never finished. Inform will reject this, but the moral is clear: we should think about what we are doing with &quot;every&quot;.
+<p>
+<p>We will usually want to work with smaller collections - not literally every room, but with a whole set of them all the same. We can do that like so:
+<p>
+<blockquote><font color="#000080">A silver coin is a kind of thing. A banking room is a kind of room. Five silver coins are in every banking room.
+</font></blockquote><p>
+<p>
+<p>The effect of sentences like these is to make what we might call &quot;assemblies&quot; instead of single things. When a banking room is created, so are five more silver coins; when a door is created, so is another handle. Such sentences act not only on items created later on in the source text, but also on all those created so far.
+<p>
+<p>This is especially useful for body parts. If we would like to explore Voltaire's suggestion that history would have been very different if only Cleopatra's nose had been shorter, we will need noses:
+<p>
+<blockquote><font color="#000080">A nose is a kind of thing. A nose is part of every person.
+</font></blockquote><p>
+<p>
+<p>Of course, if we make an assembly like this then we had better remember that the player is also a person and also gets a nose. In fact slightly odd things can happen if we combine this with changing the identity of the player. This works:
+<p>
+<blockquote><font color="#000080">Cleopatra is a woman in Alexandria. The player is Cleopatra.
+<br>A nose is a kind of thing. A nose is part of every person.
+</font></blockquote><p>
+<p>
+<p>but if those lines are in reverse order then Cleopatra's nose is assembled before she becomes the player, with the result that it ends up called &quot;Cleopatra's nose&quot; rather than &quot;your nose&quot; in play - which is very regal but probably not what we want. To avoid this, settle the player's identity early on in the source text.
+<p>
+<p>All of the assemblies above make objects. Most make these new objects &quot;part of&quot; existing ones, but as we saw, they can also be &quot;in&quot; or &quot;on&quot; them. In fact, though, assemblies work in much more general ways: they can assemble values of almost any kind, placed in almost any relationship. To make use of that, we need to create a new verb, a topic which won't be covered properly until a later chapter, but here goes:
+<p>
+<blockquote><font color="#000080">A colour is a kind of value. The colours are red, green and blue.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Liking relates various people to various colours. The verb to like (he likes, they like, it is liked) implies the liking relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every person likes a colour.
+</font></blockquote><p>
+<p>
+<p>Now every time a person is created, so is a colour which that person will like. If there are two people in the world, the player and Daphne, then we now have five colours: red, green, blue, Daphne's colour and the player's colour. Alternatively, we can assemble the other way around:
+<p>
+<blockquote><font color="#000080">A person likes every colour.
+</font></blockquote><p>
+<p>
+<p>Now we're telling Inform that every time a colour is made, a new person is also made - someone who will like that colour. So this sentence effectively makes three new people, one who likes red, one who likes green, and one who likes blue.
+<p>
+<p><hr><p>
+<a name="e298"><a href=ex298.html#e298 STYLE="text-decoration: none">*<b>Example 54:  Being Prepared</b></a><br>A kind for jackets, which always includes a container called a pocket.<p>
+<a name="e90"><a href=ex90.html#e90 STYLE="text-decoration: none">**<b>Example 55:  Model Shop</b></a><br>An "on/off button" which controls whatever device it is part of.<p>
+<!-- EXAMPLE START -->
+<a name="e334"><a href=doc68.html#e334 STYLE="text-decoration: none">***<b><b>Example</b> 56:  The Night Before</b></a><br>Instructing Inform to prefer different interpretations of EXAMINE NOSE, depending on whether the player is alone, in company, or with Rudolph the Red-nosed Reindeer.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose that we're going to give every person in the game a nose, but we want references to a nose always to mean the nose of someone *else*, if the player is with one other person. Moreover, on some occasions we're going to be in sight of Rudolph, so actions directed at an unspecified nose should always prefer his.
+<p>
+<p>This relies on a somewhat advanced technique from the Understanding chapter, but since it may become useful with assemblies and body parts, it is worth mentioning here.
+<p>
+<blockquote><font color="#000080">&quot;The Night Before&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The North Pole is a room. &quot;Here it is: the famous Pole. From here you can go south (or south-south, or south-south-by-south); or, alternatively, take refuge inside a red-and-white-striped cabin.&quot; The cabin is scenery in the North Pole. Instead of entering the cabin, try going inside.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Santa is a man in the North Pole. &quot;Santa is pacing around in the snow and trying to psych himself up for the big night.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Inside from North Pole is the Candy Cane Cabin. The description of the Cabin is &quot;Striped red and white, but nothing can make this place seem warm and inviting since Mrs. Santa ran off with the Tooth Fairy.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Ice Shelf is south of North Pole. &quot;The ice here has been smoothed into a kind of runway for easy take-off, and ends in a cliff and cold arctic sea.&quot; Donner, Vixen, Blixen, and Rudolph are animals in the Ice Shelf.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A nose is a kind of thing. A nose is part of every person. The description of Santa's nose is &quot;It's a bit ruddy. You don't like to mention it, but Santa's been dipping heavily into the Grey Goose since Mrs. Santa left town.&quot; The description of a nose is usually &quot;Not terribly exciting.&quot;  The description of Rudolph's nose is &quot;See how it glows!&quot;
+</font></blockquote><p>
+<p>
+<p>Next, we'll teach Inform some vocabulary to distinguish between the player and everyone else:
+<p>
+<blockquote><font color="#000080">Definition: a person is other if it is not the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is selfish if it is part of the player and the player can see an other person.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a selfish nose:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You cross your eyes, but can't get a good look.&quot;
+</font></blockquote><p>
+<p>
+<p>Here is the part that actually determines the preferences. &quot;Does the player mean...&quot; can result in five outcomes: &quot;it is very unlikely&quot;, &quot;it is unlikely&quot;, &quot;it is possible&quot; (the neutral default), &quot;it is likely&quot;, and &quot;it is very likely&quot;. This is discussed in greater detail in the Understanding chapter. Here, we want to discourage references to the player's own nose and encourage references to the nose of Rudolph, so:
+<p>
+<blockquote><font color="#000080">Does the player mean doing something when the noun is a selfish nose or the second noun is a selfish nose: it is very unlikely.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Does the player mean doing something to Rudolph's nose: it is very likely.
+</font></blockquote><p>
+<p>
+<p>And this part is just for decoration:
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about Rudolph:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The reindeer are already harnessed and waiting impatiently. The brilliance of [Rudolph]'s nose casts an eerie red glow over [the list of unmentioned animals in the location].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x nose / x my nose / x santa's nose / in / x nose / out / s / x my nose / x nose / x rudolph's nose / x donner's nose&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e76"><a href=ex76.html#e76 STYLE="text-decoration: none">***<b>Example 57:  U-Stor-It</b></a><br>A "chest" kind which consists of a container which has a lid as a supporter.<p>
+<p><hr><p><a href=doc67.html STYLE="text-decoration: none">Previous</a> / <a href=doc69.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

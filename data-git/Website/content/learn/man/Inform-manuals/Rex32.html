@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.6. Reading Matter</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bibliophilia" -->
+<!-- SEARCH SECTION "Ex 313" -->
+<!-- SEARCH SORT "Ex 009-006-313" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc72.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc74.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.6. Reading Matter</b></td></tr></table><p>
+<p>
+<p>Many things can be read, from warning notices to encyclopaedias, and a range of techniques is needed to provide them because the quantity of text, and how it presents itself, can vary so much. With a small amount of very large type, the player should not need any command at all to read the text:
+<p>
+<blockquote><font color="#000080">The road sign is in the Junction. The road sign is fixed in place. &quot;A road sign points north: 'Weston on the Green - 6'.&quot;
+</font></blockquote><p>
+<p>
+<p>If the print is smaller, or the object portable, the player will expect to use the EXAMINE command:
+<p>
+<blockquote><font color="#000080">The business card is in the Junction. The description is &quot;'Peter de S√®vres: consultant mnemonicist.'&quot;
+</font></blockquote><p>
+<p>
+<p>But if the object is a leaflet, say, EXAMINE should only describe the cover: READ would be the command a player would expect to use to get at the text itself. Inform normally defines READ to be the same command as EXAMINE, which is good for things like the business card, but counter-productive here. <b>The Trouble with Printing</b> shows how to separate these two commands, allowing any thing to have a property called its &quot;printing&quot; for text produced by READ, which will be different from its &quot;description&quot;, the text produced by EXAMINE.
+<p>
+<p>If the object is a lengthy diary, say, nobody would read it from cover to cover in a single IF turn. We might then want to allow the player to turn the pages one by one, with commands like READ PAGE 4 IN DIARY or READ THE NEXT PAGE: see <b>Pages</b>.
+<p>
+<p>If the object is an encyclopaedic reference work, the player would consult named entries: see <b>Costa Rican Ornithology</b>, which allows commands like LOOK UP QUETZAL IN GUIDE.
+<p>
+<p>Still larger sources of text often occur in IF: libraries or bookshelves, where many books are found together, and it is clumsy to write them as many individual items. One approach is to simulate an entire bookshelf with a single thing: see <b>Bibliophilia</b>. (This is much like looking up topics in a single book, except that each topic is a book in itself.) Another is to provide each book as an individual item, but have them automatically join together into a single portable collection: see <b>AARP-Gnosis</b>.
+<p>
+<p>Signs, leaflets and encyclopaedias, being printed, have a wording which will never change during play. But sometimes the player reads something which acts of its own accord. Text substitutions are usually all that is needed to achieve this:
+<p>
+<blockquote><font color="#000080">The computer display is on the desk. The description is &quot;Giant green digits read: [the time of day].&quot;
+</font></blockquote><p>
+<p>
+<p>This is easy because we know all the variations we want. But what if we want the player to write his own text, for instance, adding to a diary? This is trickier, because it means storing text as the player typed it, and replaying it later. (And suppose the player types reams and reams of text, not just a few words as we might have hoped?) <b>The Fourth Body</b> and <b>The Fifth Body</b> show how to use an external file - a multimedia trick requiring features only available if the project is set to the Glulx story file format - to handle even the most difficult cases.
+<p>
+<p><hr><p>
+<a name="e94"><a href=Rex94.html#e94 STYLE="text-decoration: none">***<b>Example 94:  Costa Rican Ornithology</b></a><br>A fully-implemented book, answering questions from a table of data, and responding to failed consultation with a custom message such as "You flip through the Guide to Central American Birds, but find no reference to penguins."<p>
+<a name="e267"><a href=Rex267.html#e267 STYLE="text-decoration: none">*<b>Example 292:  Pages</b></a><br>A book with pages that can be read by number (as in "read page 3 in...") and which accepts relative page references as well (such as "read the last page of...", "read the next page", and so on).<p>
+<!-- EXAMPLE START -->
+<a name="e32"><a href=Rdoc73.html#e32 STYLE="text-decoration: none">**<b><b>Example</b> 313:  Bibliophilia</b></a><br>A bookshelf with a number of books, where the player's command to examine something will be interpreted as an attempt to look up titles if the bookshelf is present, but otherwise given the usual response.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want a bookshelf with a very large number of books on it. They aren't to be taken or carried around in the game, but they should be mentioned, and the player should be allowed to look them up by name. Furthermore, the player's attempts to examine something unrecognized should be understood as an attempt to look up a title -- but only when the player is in the presence of the books. The rest of the time such requests should be rejected in the usual way.
+<p>
+<blockquote><font color="#000080">&quot;Bibliophilia&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Graduate Lounge is a room. &quot;Shabby sofas; plastic cups remaining from the afternoon's pre-lecture espresso; a collection of Xena and Hercules figurines posed for ironic effect. It's somewhat depressing at this hour, when everyone has gone home.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Classics Reading Room is south of the Lounge. &quot;Not as large a collection as the one in the Library, but it contains copies of everything really essential for reference.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;examine [text]&quot; as examining as a book when the player is in the Reading Room. Understand &quot;look up [text]&quot; as examining as a book when the player is in the Reading Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Examining as a book is an action applying to one topic.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out examining as a book:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't find any such text.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining as a book a topic listed in the Table of Book Titles:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[description entry][paragraph break]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Book Titles
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">topic</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">title</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">description</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Reading Greek Death&quot; or &quot;reading/greek/death&quot; or &quot;greek death&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Reading Greek Death&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;A dense orange paperback treatise on the development of Greek eschatology.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;TAPA/Transactions/134-2&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;TAPA 134-2&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Transactions of the American Philological Association from 2004.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Oxford Classical Dictionary&quot; or &quot;OCD/dictionary/classical/oxford&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Oxford Classical Dictionary&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;A hefty reference with short articles on everything from Greek meter to ancient cosmetics.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Collected Dialogues of Plato&quot; or &quot;Plato/dialogues/hamilton/cairns&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Collected Dialogues of Plato&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;All the Platonic dialogues -- some, admittedly, in rather tired translations -- but still a useful single volume, ed. Edith Hamilton and Huntington Cairns.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Adobe Illustrator CS User Guide&quot; or &quot;user guide&quot; or &quot;adobe illustrator&quot; or &quot;adobe/illustrator/cs/user/guide&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Adobe Illustrator CS User Guide&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Hello, how did this get here? A suspiciously familiar name is scribbled inside the front cover...&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some books are scenery in the Reading Room. Understand &quot;copies&quot; or &quot;book&quot; or &quot;shelf&quot; or &quot;shelves&quot; as the books. Instead of examining the books:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a random row in the Table of Book Titles;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You scan the shelves and notice, among others, a volume entitled [italic type][title entry][roman type].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;south / examine ocd / examine books / examine books / examine plato / n / x hercules / s / x hercules&quot;.
+</font></blockquote><p>
+<p>
+<p>Now if we type >X HERCULES in the Lounge, we will get
+<p>
+<blockquote><font color="#000080">>x hercules
+<br>You can't see any such thing.
+</font></blockquote><p>
+<p>
+<p>thanks to our somewhat slovenly implementation of the Lounge scenery; but in the Reading Room,
+<p>
+<blockquote><font color="#000080">>x hercules
+<br>You can't find any such text.
+</font></blockquote><p>
+<p>
+<p>In practice we might also want to extend our coverage somewhat to handle a case where the player tried to take books from the bookshelf: currently that would not be understood.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e121"><a href=Rex121.html#e121 STYLE="text-decoration: none">**<b>Example 322:  AARP-Gnosis</b></a><br>An Encyclopedia set which treats volumes in the same place as a single object, but can also be split up.<p>
+<a name="e314"><a href=Rex314.html#e314 STYLE="text-decoration: none">*<b>Example 281:  The Trouble with Printing</b></a><br>Making a READ command, distinct from EXAMINE, for legible objects.<p>
+<a name="e157"><a href=Rex157.html#e157 STYLE="text-decoration: none">*<b>Example 432:  The Fourth Body</b></a><br>Notebooks in which the player can record assorted notes throughout play.<p>
+<a name="e142"><a href=Rex142.html#e142 STYLE="text-decoration: none">**<b>Example 433:  The Fifth Body</b></a><br>An expansion on the notebook, allowing the player somewhat more room in which to type his recorded remark.<p>
+<p><hr><p><a href=Rdoc72.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc74.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

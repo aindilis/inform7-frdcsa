@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.30. Supplying a missing noun/second noun</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Supplying a missing noun/second noun" -->
+<!-- SEARCH SECTION "17.30" -->
+<!-- SEARCH SORT "017-030-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc310.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc312.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.30. Supplying a missing noun/second noun</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> (Two different activities here, but identical except for applying to different nouns.) Suppose that, because of an instruction to Understand something even though it would be lacking a noun - say, 'Understand &quot;take&quot; as taking.' - an incomplete action is generated, one which is required to have a noun, but doesn't. &quot;Supplying a missing noun&quot; takes place to remedy the problem. It can either:
+<p>
+<p>(i) Set a noun, printing text like &quot;(presumably the black bag)&quot; if it wants, in which case the action goes forward, though it is still subject to the full rules on accessibility exactly as any other action would be; or
+<p>
+<p>(ii) Make no choice, in which case no action takes place and the player's command is rejected. If the activity printed nothing, Inform will produce a generic reply to the player that &quot;You must supply a noun.&quot;.
+<p>
+<p><b>2. The default behaviour.</b> In the default grammar for Inform, only three such half-finished actions are ever Understood. One is &quot;going&quot; with no direction, for which this activity simply prints a refusal. The other two are the two undirected senses, &quot;smelling&quot; and &quot;listening&quot;. In each case, the &quot;supplying a missing noun&quot; activity sets the noun to the current location: so, for instance, typing the bare command &quot;listen&quot; might generate the action &quot;listening to the Shoreline&quot;.
+<p>
+<p><b>3. Examples.</b> (a) This is the definition Inform uses to make &quot;listen&quot; work as outlined above:
+<p>
+<blockquote><font color="#000080">Rule for supplying a missing noun while listening (this is the ambient sound rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is the location.
+</font></blockquote><p>
+<p>
+<p>(b) It can be elegant to allow second nouns to be dropped with habitual actions, or where the choice is obvious:
+<p>
+<blockquote><font color="#000080">Understand &quot;unlock [something]&quot; as unlocking it with.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for supplying a missing second noun while unlocking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the skeleton key is carried, now the second noun is the skeleton key;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You will have to specify what to unlock [the noun] with.&quot;
+</font></blockquote><p>
+<p>
+<p>Note that, in order for our activity to succeed, we do need to supply a grammar line allowing the player to try &quot;unlocking it with&quot; using only one noun. Otherwise, the command &quot;unlock something&quot; will still produce the question &quot;What do you want to unlock the door with?&quot;
+<p>
+<p><hr><p>
+<a name="e215"><a href=ex215.html#e215 STYLE="text-decoration: none">*<b>Example 357:  Latin Lessons</b></a><br>Supplying missing nouns and second nouns for other characters besides the player.<p>
+<a name="e399"><a href=ex399.html#e399 STYLE="text-decoration: none">*<b>Example 358:  Minimal Movement</b></a><br>Supplying a default direction for "go", so that "leave", "go", etc., are always interpreted as "out".<p>
+<p><hr><p><a href=doc310.html STYLE="text-decoration: none">Previous</a> / <a href=doc312.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

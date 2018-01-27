@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.14. Another scoring example</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Another scoring example" -->
+<!-- SEARCH SECTION "15.14" -->
+<!-- SEARCH SORT "015-014-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc253.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc255.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.14. Another scoring example</b></td></tr></table><p>
+<p>
+<blockquote><font color="#000080">To record (T - text) as achieved:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row with a citation of T in the Table of Tasks Achieved;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if there is no time entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now time entry is the time of day;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increase the score by the points entry.
+</font></blockquote><p>
+<p>
+<p>The phrase above expects to see a table like this one:
+<p>
+<blockquote><font color="#000080">Table of Tasks Achieved
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Points</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Citation</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Time</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;pride&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a time</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;anger&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;avarice&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;envy&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;lust&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;gluttony&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;sloth&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>The middle column records the tasks to be achieved, the first column records the points on offer for each: the final column, initially blank, will store the times at which the tasks are first achieved.
+<p>
+<blockquote><font color="#000080">Before eating, record &quot;gluttony&quot; as achieved.
+</font></blockquote><p>
+<p>
+<p>The first time we record &quot;gluttony&quot; as achieved, 2 points will be awarded and the time will be logged in the Table, but on all subsequent occasions nothing will happen. So the combination of the phrase and the Table will look after a scoring system based on achieving specific goals (probably not the seven deadly sins, of course). We can, if we choose, use the same system to display a log of recent accomplishments:
+<p>
+<blockquote><font color="#000080">repeat through the Table of Tasks Achieved in reverse time order:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[time entry]: [citation entry] ([points entry]).&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e92"><a href=ex92.html#e92 STYLE="text-decoration: none">***<b>Example 269:  Goat-Cheese and Sage Chicken</b></a><br>Implementing a FULL SCORE command which lists more information than the regular SCORE command, adding times and rankings, as an extension of the example given in this chapter.<p>
+<p><hr><p><a href=doc253.html STYLE="text-decoration: none">Previous</a> / <a href=doc255.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

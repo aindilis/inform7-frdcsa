@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.6. Viewpoint</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Crane's Leg 2" -->
+<!-- SEARCH SECTION "Ex 377" -->
+<!-- SEARCH SORT "Ex 005-006-377" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc27.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc29.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.6. Viewpoint</b></td></tr></table><p>
+<p>
+<p>Inform automatically creates a character for the player - a bland, personality-free entity at the outset, as we've seen. But there is no reason why the player need stick to this same identity throughout the game. Conventional fiction often jumps from one viewpoint character to another, and so can IF.
+<p>
+<p>To do this at the most elementary level, we simply at some point
+<p>
+<blockquote><font color="#000080">change player to Janine;
+</font></blockquote><p>
+<p>
+<p>where Janine is a person we've already defined in the code. Now the player is in whatever location Janine inhabits, carries whatever Janine carries, and wears whatever Janine is wearing. <b>Terror of the Sierra Madre</b> shows off this effect, and also demonstrates how to make the command prompt remind the player which character he currently controls. Some games instead give this information in the status line or after the name of the location when looking, producing output like
+<p>
+<blockquote><font color="#000080">The Bottomless Acherousia (as Charon)
+</font></blockquote><p>
+<p>
+<p>We could do the same by adding a line such as
+<p>
+<blockquote><font color="#000080">After printing the name of a room while constructing the status line or looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[roman type] (as [the player])&quot;
+</font></blockquote><p>
+<p>
+<p>Of course, we'll need a good deal of other work to make Janine a distinct person from whichever character the player was before. The distinction may come from changed capabilities of the new character, which we can express through new rules about actions; e.g.,
+<p>
+<blockquote><font color="#000080">Instead of listening when the player is Janine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your childhood accident left you unable to hear any but the loudest noises. Currently there is only silence.&quot;
+</font></blockquote><p>
+<p>
+<p>Janine may also have new, different perspective on her surroundings, expressed through the descriptions of the things she looks at; <b>Uncommon Ground</b> makes a &quot;by viewpoint&quot; token for text alternatives, allowing us to tag our descriptions to indicate which variations should be shown to which viewpoint characters. <b>The Crane's Leg 1</b> and <b>2</b> offer more elaborate and specialized ways of customizing the player character's observations to depend on how he relates (physically and in attitude) to the things around him.
+<p>
+<p>If we want to change the tense and person of narration from the conventional present second person, we may do this as well, though at the present stage of Inform the effect relies on external extensions.
+<p>
+<p><hr><p>
+<a name="e400"><a href=Rex400.html#e400 STYLE="text-decoration: none">***<b>Example 121:  Terror of the Sierra Madre</b></a><br>Multiple player characters who take turns controlling the action.<p>
+<a name="e392"><a href=Rex392.html#e392 STYLE="text-decoration: none">**<b>Example 445:  Uncommon Ground</b></a><br>Making a "by viewpoint" token, allowing us to design our own text variations such as "[show to yourself]quaint[to Lolita]thrilling[to everyone else]squalid[end show]" depending on the identity of the player at the moment.<p>
+<a name="e96"><a href=Rex96.html#e96 STYLE="text-decoration: none">***<b>Example 51: The Crane's Leg 1</b></a><br>A description text that automatically highlights the ways in which the object differs from a standard member of its kind.<p>
+<!-- EXAMPLE START -->
+<a name="e97"><a href=Rdoc28.html#e97 STYLE="text-decoration: none">*<b><b>Example</b> 377: The Crane's Leg 2</b></a><br>A description text generated based on the propensities of the player-character, following different rulebooks for different characters.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Names of rules can be listed in tables. This is convenient if, for instance, we decide that we'd like to swap the rules we use for a specific purpose, as in this continuation of our earlier example of automated description:
+<p>
+<blockquote><font color="#000080">&quot;The Crane's Leg, Grown Longer&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Material is a kind of value. The materials are wood, glass, stone, cloth, paper, clay, and metal. A thing has a material.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Color is a kind of value. The colors are red, orange, yellow, green, blue, indigo, violet, black, brown, and white. A thing has a color. A thing is usually white.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A height is a kind of value. 3 feet 11 inches specifies a height. A thing has a height. Definition: a thing is tall if its height is 6 feet 0 inches or more. Definition: a thing is short if its height is 2 feet 0 inches or less.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Imitation relates various things to one thing (called the ideal). The verb to imitate (it imitates, they imitate, it is imitating) implies the imitation relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A table is a kind of supporter. A table is usually wood. The height of a table is usually 3 feet 8 inches. The ordinary table is a table. Every table imitates the ordinary table.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A rock is a kind of thing. A rock is usually stone. The ordinary rock is a rock. The height of a rock is usually 0 feet 3 inches. Every rock imitates the ordinary rock.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of a thing is usually &quot;[comparison with ideal][run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say comparison with ideal:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You observe [the noun]:[paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row with character of the player in Table of Descriptive Reporting;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow instructions entry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the comparative observation rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the sample be the ideal of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the sample is not a thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Nothing special, really.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the material of the noun is not the material of the sample:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the height of the noun is not the height of the sample:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the noun is shorter than the sample, say &quot;Unusually short at [height of the noun], and made of [material of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Unusually tall at [height of the noun], and made of [material of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Distinct mostly in being made of [material of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the height of the noun is not the height of the sample:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the noun is shorter than the sample, say &quot;Unusually short at [height of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Unusually tall at [height of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;In every respect [a sample].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pleasure Garden is a room. &quot;At the riverbank, a pleasing garden, having many curving paths and one straight.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The low table is a table in the Pleasure Garden. The height of the low table is 2 feet 3 inches. On the low table is a yellow metal rock called a gold nugget. A willow is in the Pleasure Garden. The height of the willow is 20 feet 2 inches.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;possess [any person]&quot; or &quot;be [any person]&quot; as possessing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Possessing is an action applying to one thing. Carry out possessing: now the player is the noun; say &quot;You swap bodies!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The crane is a person in the Garden. The height of the crane is 4 feet 0 inches.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Descriptive Reporting
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">character</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">instructions</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">yourself</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">comparative observation rule</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">crane</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">bird observation rule</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the bird observation rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is shorter than the player, say &quot;Small, like a duck[if the color of the noun is not white]; and [color of the noun][end if].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Supremely tall[if the color of the noun is not white] and [color of the noun][end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine table / examine nugget / examine willow / possess crane / examine table / examine nugget / examine willow&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc27.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc29.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

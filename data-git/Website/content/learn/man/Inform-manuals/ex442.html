@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.9. All actions and exceptional actions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Zodiac" -->
+<!-- SEARCH SECTION "Ex 96" -->
+<!-- SEARCH SORT "Ex 007-009-096" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc110.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc112.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.9. All actions and exceptional actions</b></td></tr></table><p>
+<p>
+<p>The special description &quot;doing something&quot; (or &quot;doing anything&quot;) matches any action, and &quot;doing something to ...&quot; also allows the noun to be specified.
+<p>
+<p>For instance, the following puts its object out of bounds:
+<p>
+<blockquote><font color="#000080">Instead of doing something to the cucumber sandwich, say &quot;Lady Bracknell stares disapprovingly down her pince-nez at you, in a way which no amount of hunger or curiosity could overcome.&quot;
+</font></blockquote><p>
+<p>
+<p>We sometimes need to be a little careful here: &quot;waiting&quot; qualifies as &quot;doing something&quot;, but not as &quot;doing something to something&quot;, because there is no object. &quot;Putting the handbag on the cucumber sandwich&quot; would also not qualify as &quot;doing something to the cucumber sandwich&quot; - only to the handbag.
+<p>
+<p>More often, we would like to restrict the range of allowable actions to a select few. For instance:
+<p>
+<blockquote><font color="#000080">Instead of doing something other than looking, examining or waiting: say &quot;You must learn patience.&quot;
+</font></blockquote><p>
+<p>
+<p>(Or we can write &quot;except&quot; instead of &quot;other than&quot;.) Or we might have an object, too:
+<p>
+<blockquote><font color="#000080">Instead of doing something other than examining, taking or dropping with the dagger: say &quot;Don't fool around with that dagger. It's exceedingly sharp.&quot;
+</font></blockquote><p>
+<p>
+<p>Note the &quot;with&quot;, which was optional, but makes it clearer that the rule applies only to actions on the dagger.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e442"><a href=doc111.html#e442 STYLE="text-decoration: none">*<b><b>Example</b> 96:  Zodiac</b></a><br>Several variations on "doing something other than...", demonstrating different degrees of restriction.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Notice that the following two scenarios do not have the same effect:
+<p>
+<blockquote><font color="#000080">&quot;Zodiac&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Secluded Alley is a room. The Capricorn Killer is a man in the Secluded Alley.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a can of mace and a roll of duct tape.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something other than examining with the Capricorn Killer:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You wouldn't dare!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x me / x killer / touch killer / smell mace / sing&quot;.
+</font></blockquote><p>
+<p>
+<p>...will prevent the player from doing anything else to the killer, but allow him free range of action with other objects. By contrast, the following will prevent him doing anything other than examining to any item:
+<p>
+<blockquote><font color="#000080">&quot;Zodiac&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Secluded Alley is a room. The Capricorn Killer is a man in the Secluded Alley.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a can of mace and a roll of duct tape.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something other than examining something in the presence of the Capricorn Killer:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You dare not attempt it!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x me / x killer / touch killer / smell mace / sing&quot;.
+</font></blockquote><p>
+<p>
+<p>But notice that because we specified &quot;examining something&quot;, actions that take no object (like sing) are still not affected.
+<p>
+<p>The most strict statement would be
+<p>
+<blockquote><font color="#000080">&quot;Zodiac&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Secluded Alley is a room. The Capricorn Killer is a man in the Secluded Alley.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a can of mace and a roll of duct tape.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something other than looking or examining in the presence of the Capricorn Killer:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You dare not attempt it!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x me / x killer / touch killer / smell mace / sing&quot;.
+</font></blockquote><p>
+<p>
+<p>Because we left &quot;something&quot; out, now the pattern does not have to match an activity with an object; it will match any activity at all. Singing too will be deemed too risky in the presence of our sinister foe. But we do need to make an exception for &quot;look&quot;, or else we won't get even the room description.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc110.html STYLE="text-decoration: none">Previous</a> / <a href=doc112.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

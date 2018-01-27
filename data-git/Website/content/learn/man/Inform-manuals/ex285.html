@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.11. Named outcomes</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Being Peter" -->
+<!-- SEARCH SECTION "Ex 388" -->
+<!-- SEARCH SORT "Ex 018-011-388" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc330.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc332.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.11. Named outcomes</b></td></tr></table><p>
+<p>
+<p>We have seen that the terms &quot;success&quot; and &quot;failure&quot; can be misleading - after all, it might be a good thing for a particular rulebook to &quot;fail&quot;. At any rate, these are vague terms, and we don't want to have to remember the conventions used by every rulebook. This is why certain rulebooks have explicitly named outcomes instead. For instance, the &quot;visibility&quot; rules are allowed to have the outcomes:
+<p>
+<blockquote><font color="#000080">there is sufficient light;
+<br>there is insufficient light;
+</font></blockquote><p>
+<p>
+<p>These look like phrases, but are in fact named outcomes which can only be used in visibility rules. (They would make no sense elsewhere, and Inform will not allow their use if they are clearly out of context.) Such named outcomes are listed in the Rules index.
+<p>
+<p>There can be any number of named outcomes. For instance, the Standard Rules define:
+<p>
+<blockquote><font color="#000080">The does the player mean rules are a rulebook. The does the player mean rules have outcomes it is very likely, it is likely, it is possible, it is unlikely and it is very unlikely.
+</font></blockquote><p>
+<p>
+<p>which makes five possible outcomes. Five outcomes seems to contradict the principle that there are only three possible outcomes for a rule: in fact, though, the five are counted as five different forms of &quot;success&quot;, and any of them will cause a &quot;does the player mean&quot; rule to succeed. If we do not want this, we can instead specify explicitly how the named outcomes correspond to success, failure or &quot;no outcome&quot;:
+<p>
+<blockquote><font color="#000080">Visibility rules have outcomes there is sufficient light (failure) and there is insufficient light (success).
+</font></blockquote><p>
+<p>
+<p>Again, see the Rules index for examples.
+<p>
+<p>The same named outcome can be used for more than one rulebook, and can have different meanings in the context of different rulebooks - &quot;good news&quot; could be defined as success in one rulebook and failure in another, for instance. (This means that rulebook creators need not worry about name clashes and is an important difference in behaviour between rulebook outcomes and kinds of value.) We can even name a specific named outcome as the default outcome for rules in this rulebook:
+<p>
+<blockquote><font color="#000080">Audibility rules have outcomes high background noise (failure), low background noise (success - the default) and absolute silence (success).
+</font></blockquote><p>
+<p>
+<p>After a rulebook using named outcomes has run, we can test which outcome occurred by using the phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>outcome of the rulebook</b> ... <i>rulebook outcome</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rulebookoutcome -->
+
+<p>This phrase produces the (named) outcome of the phrase most recently followed. Example:
+<p>
+<blockquote><font color="#000080">follow the audibility rules;
+<br>if the outcome of the rulebook is the absolute silence outcome:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You could hear a pin drop in here.&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Each named outcome is a value if followed by the word &quot;outcome&quot;, which is how &quot;absolute silence&quot; has become &quot;the absolute silence outcome&quot;. Named outcomes can be said, so we could use the text substitution &quot;[outcome of the rulebook]&quot;, for instance. A final caveat: it is perfectly legal to create a named outcome which means &quot;no outcome&quot;, but if so then this will never be &quot;the outcome of the rulebook&quot; because &quot;no outcome&quot; is not an outcome.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e285"><a href=doc331.html#e285 STYLE="text-decoration: none">*<b><b>Example</b> 388:  Being Peter</b></a><br>A set of rules determining the attitude a character will take when asked about certain topics.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Let's say that we're implementing a particularly irrational and volatile character. Some of the time she remains composed; some of the time she reacts with unexpected vehemence for reasons only partly related to what was said.
+<p>
+<p>Moreover, her responses are divided between successful and failing outcomes, where success indicates that she's not too upset and failure means that she is distraught; we use this to determine how the rest of the room reacts.
+<p>
+<blockquote><font color="#000080">&quot;Being Peter&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Drawing Room is a room. &quot;The company is assembled here for champagne. Most of it, anyway: Mary is on the phone to her babysitter, Roger is keeping her anxious company, and Carol doesn't drink. But everyone else.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maggie is a woman in the Drawing Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears a top hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Quizzing it about is an action applying to one thing and one visible thing. Understand &quot;ask [someone] about [any thing]&quot; as quizzing it about.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of quizzing Maggie about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;consider the attitude rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Everyone waits to see what the reaction will be: [outcome of the rulebook].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if rule succeeded, say &quot;There is general relief.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Everyone is pointedly silent.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The attitude rules are a rulebook. The attitude rules have outcomes she stays calm (no outcome - default), she gets angry (failure), she has a stroke (failure), she is only mildly annoyed (success), and she is elated (success).
+</font></blockquote><p>
+<p>
+<p>Here we want Inform to consult every appropriate attitude rule until it gets to some answer; if an attitude rule does not provide a result, the default 'no outcome' will mean that we go on to the next rule, and so on.
+<p>
+<blockquote><font color="#000080">A subject is a kind of thing. income, love life, and children are subjects.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An attitude rule for quizzing Maggie about love life:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;she gets angry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An attitude rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player wears the top hat, she gets angry.
+</font></blockquote><p>
+<p>
+<p>Now, as we saw, the 'no outcome' result will never be returned and printed as Maggie's reaction, precisely because it is &quot;no outcome&quot;. Therefore, we provide a final attitude rule which will give her a default response to all statements:
+<p>
+<blockquote><font color="#000080">The last attitude rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;she is only mildly annoyed.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;ask maggie about love / ask maggie about income / take off hat / ask maggie about income&quot;.
+</font></blockquote><p>
+<p>
+<p>There are plenty of contexts where we might want named outcomes for clarity but not want to print the results literally afterward.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc330.html STYLE="text-decoration: none">Previous</a> / <a href=doc332.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.14. Going by, going through, going with</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Provenance Unknown" -->
+<!-- SEARCH SECTION "Ex 107" -->
+<!-- SEARCH SORT "Ex 007-014-107" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc115.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc117.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.14. Going by, going through, going with</b></td></tr></table><p>
+<p>
+<p>Adding to the previous example game, we apply rules which depend on travelling by a particular vehicle:
+<p>
+<blockquote><font color="#000080">The book trolley is in the Musicology Section. &quot;The book trolley, a sort of motorised tractor for trundling around through the stacks, is parked here.&quot; The trolley is a vehicle. Instead of going nowhere by the trolley, say &quot;Don't go crashing the trolley into walls.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going to the Front Stacks by the trolley, say &quot;The Front Stacks are far too confined for the trolley to manoeuvre into them.&quot;
+</font></blockquote><p>
+<p>
+<p>And, lastly, rules which apply to movements through particular doors:
+<p>
+<blockquote><font color="#000080">The green baize door is east of the Catalogue Room and west of the Clerk's Office. The green baize door is an open door.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before going through the green baize door, say &quot;Through you go...&quot; After going through the green baize door: try looking; say &quot;...and here you are.&quot;
+</font></blockquote><p>
+<p>
+<p>(Note that these apply whether the action is &quot;going east&quot; or &quot;entering the green baize door&quot;, each having the same effect.) The last rule is worth a second look: the normal way that a &quot;going&quot; action is reported is to produce the room description of the new location. So if an &quot;after&quot; rule stops the action before we get to reporting, we have to produce any room description by hand (hence the &quot;try looking&quot; to cause the looking action). Alternatively, we could simply say something and let the normal course of events take place:
+<p>
+<blockquote><font color="#000080">After going through the green baize door: say &quot;...and here you are:&quot;; continue the action.
+</font></blockquote><p>
+<p>
+<p>Finally, going is an action which can also happen while the player is pushing something from one room to another, and we can describe this like so:
+<p>
+<blockquote><font color="#000080">Instead of going from the Office with the trolley, say &quot;But it looks perfectly placed here. Why push any further?&quot;
+</font></blockquote><p>
+<p>
+<p>&quot;Going&quot; is not the only action which moves the player. Another is &quot;exiting&quot;, an action which moves the player out of whatever he/she is currently in or on. This action is often caused by the player typing just OUT or GET DOWN, and there's no noun as such. But Inform allows the syntax &quot;exiting from&quot; to make it easier to write rules about the exiting of particular containers or supporters:
+<p>
+<blockquote><font color="#000080">After exiting from the Mini Cooper:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You painstakingly unpack your limbs from the tiny car.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e241"><a href=ex241.html#e241 STYLE="text-decoration: none">*<b>Example 104:  Mattress King</b></a><br>Adding extra phrasing to the action to PUSH something in a direction.<p>
+<a name="e64"><a href=ex64.html#e64 STYLE="text-decoration: none">*<b>Example 105:  No Relation</b></a><br>A car which must be turned on before it can be driven, and can only go to roads.<p>
+<a name="e292"><a href=ex292.html#e292 STYLE="text-decoration: none">**<b>Example 106:  One Short Plank</b></a><br>A plank bridge which breaks if the player is carrying something when he goes across it. Pushing anything over the bridge is forbidden outright.<p>
+<!-- EXAMPLE START -->
+<a name="e302"><a href=doc116.html#e302 STYLE="text-decoration: none">***<b><b>Example</b> 107:  Provenance Unknown</b></a><br>Allowing something like PUSH TELEVISION EAST to push the cart on which the television rests.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a series of items that might be stacked on top of one another -- say a heavy television on a rolling cart, and we want the player to be able to move the cart with PUSH TELEVISION EAST just as well as with PUSH CART EAST.
+<p>
+<p>This takes a little redirection, using a setting action variables rule. This is not a kind of rule we've encountered yet, and in fact we won't meet it until the Advanced Actions chapter; it is included here for the convenience of authors who want to modify the effect of pushing without reading that far ahead:
+<p>
+<blockquote><font color="#000080">&quot;Provenance Unknown&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Setting action variables for pushing something to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is enclosed by a pushable between rooms thing (called the pushed item) which is in the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the noun is the pushed item instead.
+</font></blockquote><p>
+<p>
+<p>This rule says that any time we push an object that is on top of a stack of pushable objects, we should transfer the action to the item at the bottom of the stack.
+<p>
+<p>The rest is merely a test case.
+<p>
+<blockquote><font color="#000080">The heavy golden idol is on a roller board. The roller board is on a hovercraft.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The hovercraft, the tea trolley, and the skateboard are pushable between rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The hovercraft is in Zeta Proximan Dig Field.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Zeta Proximan Dig Field is a room. &quot;During the day, the field is massed with sweating native workers, overseers, and officials from central command. Now the spades, trowels, brushes, metal detectors, ground probes, plumb lines, and sighting tripods have been laid aside.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">All that remains are the trenches and the fine grey dust that blows slowly across them; the moonlight; and the just-emerging outlines of an ancient and alien wall.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Hover-Road is west of the Dig Field. &quot;A long road hastily laid down, stretching east to west, from the dig site toward the safety of the city.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You have, at last, loaded your illicit cargo without setting off any of the many and sensitive alarms set here; now it remains only to sneak out of the area, under the light of Zeta Proxima's lone green moon.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;push idol west / look / push roller board east / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e443"><a href=ex443.html#e443 STYLE="text-decoration: none">***<b>Example 108:  Zorb</b></a><br>Replacing the message the player receives when attempting to push something that isn't pushable, and also to remove the restriction that objects cannot be pushed up or down.<p>
+<p><hr><p><a href=doc115.html STYLE="text-decoration: none">Previous</a> / <a href=doc117.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.10. Commands consisting only of nouns</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Safari Guide" -->
+<!-- SEARCH SECTION "Ex 296" -->
+<!-- SEARCH SORT "Ex 016-010-296" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc268.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc270.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.10. Commands consisting only of nouns</b></td></tr></table><p>
+<p>
+<p>In every example so far, and in almost all practical cases, the first word in a command which results in an action will be something fixed: a verb, in fact. When we write
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [something]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<p>we are saying that the first word of such a command will always be &quot;photograph&quot;. Occasionally, though, we would like to understand a noun as a command, perhaps in a situation where the command is obvious. If we say:
+<p>
+<blockquote><font color="#000080">Understand &quot;[something]&quot; as examining.
+</font></blockquote><p>
+<p>
+<p>then the command &quot;examine&quot; will be implicit when the player types a bare noun:
+<p>
+<blockquote><font color="#000080">A red box and a blue ball are here.
+<br>> BALL
+<br>The blue ball is plaited from many small leather patches.
+</font></blockquote><p>
+<p>
+<p>so that the command &quot;ball&quot; has resulted in the action &quot;examining the blue ball&quot;.
+<p>
+<p>This is a feature which should be used sparingly, since it could easily lead to confusion if not carefully explained to the player. By default, it is not used at all.
+<p>
+<p>It also has what may be a serious limitation: verbless commands like this work only when typed by the player as actions to follow - they do not work as instructions for other people. So for instance SVEN, BALL would not ask Sven to try examining the ball - instead it would generate the action &quot;answering ball to Sven&quot;. (This is because the Inform parser decides whether PERSON, SOME TEXT is a request or just conversation by looking at the first word after the comma to see if it's a command.)
+<p>
+<p><hr><p>
+<a name="e89"><a href=ex89.html#e89 STYLE="text-decoration: none">*<b>Example 295:  Misadventure</b></a><br>A going by name command which does respect movement rules, and accepts names of rooms as commands.<p>
+<!-- EXAMPLE START -->
+<a name="e227"><a href=doc269.html#e227 STYLE="text-decoration: none">**<b><b>Example</b> 296:  Safari Guide</b></a><br>The same functionality, but making the player continue to move until he reaches his destination or a barrier, handling all openable doors on the way.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The foregoing example moves the player one location towards his destination, and requires that rooms have been visited before. But suppose we wanted to be a bit more lenient about movement, and let the player make as many steps as necessary per turn. We will also show consideration about doors, using the &quot;Locksmith&quot; extension supplied with Inform. (Now every time the code attempts opening a door, unlocking rules will also be invoked.)
+<p>
+<blockquote><font color="#000080">&quot;Safari Guide&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Locksmith by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Monkey House is a room. The African Grasslands Exhibit is north of the Monkey House. The bird door is north of the African Grasslands Exhibit and south of the Aviary. The Ostrich Enclosure is west of the Aviary. The bird door is a door. It is closed, lockable, and locked. The silver key is a passkey. It unlocks the bird door. The player carries the silver key.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;go to [any room]&quot; as going by name. Understand &quot;[any room]&quot; as going by name. Understand &quot;[door]&quot; as entering.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Going by name is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check going by name:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is the location, say &quot;You're already in [the location].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out going by name:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;while the player is not in the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let heading be the best route from the location to the noun, using even locked doors;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if heading is not a direction, say &quot;You can't think how to get there from here.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let destination be the room heading from the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(heading [heading])[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try going heading;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player is not in the destination, rule fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;go to aviary / go to ostrich enclosure / african grasslands&quot;.
+</font></blockquote><p>
+<p>
+<p>Notice that we continue the movement until one of two things happens: either the player reaches the room that is his destination, or the going attempt doesn't work. In the latter case we stop the action in order to avoid hanging the game up in a loop. This event might occur when the player runs into a locked door, for instance.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc268.html STYLE="text-decoration: none">Previous</a> / <a href=doc270.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

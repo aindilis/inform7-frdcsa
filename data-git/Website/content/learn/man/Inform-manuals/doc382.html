@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 22.13. Writing, reading and appending text to files</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Writing, reading and appending text to files" -->
+<!-- SEARCH SECTION "22.13" -->
+<!-- SEARCH SORT "022-013-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc381.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc383.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>22.13. Writing, reading and appending text to files</b></td></tr></table><p>
+<p>
+<p>Text can also be saved to a file, and again all file-handling is automatic:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>write </b>(text)<b> to </b>(external file)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_writetext -->
+
+<p>This phrase makes the given text become the entire contents of the named file. Note that files must have been declared, and must be referred to by their Inform names, not by textual filenames. Example:
+<p>
+<blockquote><font color="#000080">write &quot;Jackdaws love my big sphinx of quartz.&quot; to the file of Abecedary Wisdom;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>append </b>(text)<b> to </b>(external file)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_appendtext -->
+
+<p>This phrase adds the given text to the end of the current contents of the named file (creating it if it does not exist on disc). Note that files must have been declared, and must be referred to by their Inform names, not by textual filenames. Example:
+<p>
+<blockquote><font color="#000080">append &quot;Jinxed wizards pluck ivy from the big quilt.&quot; to the file of Abecedary Wisdom;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The quoted text can, of course, contain substitutions, so can be long and complex if need be.
+<p>
+<p>Text from a file is printed back with the text substitution:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>text of external file</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_saytext -->
+
+<p>This text expands to the contents of the named file. Note that files must have been declared, and must be referred to by their Inform names, not by textual filenames. Example:
+<p>
+<blockquote><font color="#000080">&quot;[text of the File of Abecedary Wisdom]&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>To copy one file to another, for instance,
+<p>
+<blockquote><font color="#000080">write &quot;[text of the file of Abecedary Wisdom]&quot; to the file of Secondary Wisdom;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e157"><a href=ex157.html#e157 STYLE="text-decoration: none">*<b>Example 432:  The Fourth Body</b></a><br>Notebooks in which the player can record assorted notes throughout play.<p>
+<a name="e142"><a href=ex142.html#e142 STYLE="text-decoration: none">**<b>Example 433:  The Fifth Body</b></a><br>An expansion on the notebook, allowing the player somewhat more room in which to type his recorded remark.<p>
+<p><hr><p><a href=doc381.html STYLE="text-decoration: none">Previous</a> / <a href=doc383.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

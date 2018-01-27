@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.4. Scene Changes</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Meteoric I and II" -->
+<!-- SEARCH SECTION "Ex 119" -->
+<!-- SEARCH SORT "Ex 004-004-119" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc19.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc21.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.4. Scene Changes</b></td></tr></table><p>
+<p>
+<p>In a plot that takes place over multiple locations or has several distinct scenes, we may want to move the player or change the scenery around him. <b>Age of Steam</b> brings a train on and off-stage as the plot requires. <b>Meteoric</b> similarly brings a meteor into view at a certain time of day, showing off several implementations depending on whether or not the player is supposed to be able to refer to the meteor after it has gone.
+<p>
+<p><b>Entrevaux</b> constructs an organized system such that all scenes have their own lists of props and associated locations, and props are moved on and off automatically. Scene changes are also announced with a pause and a new title, such as &quot;Chapter 2: Abduction&quot;.
+<p>
+<p><b>Space Patrol - Stranded on Jupiter</b> inserts an interlude in which the player's possessions and clothes are switched for new ones and the player moved to a new location - and then put back where he started from.
+<p>
+<a href=Rdoc21.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Flashbacks</b></font></a><i> for more ways to move the player from one level of reality to another</i><p><p>
+<p><hr><p>
+<a name="e357"><a href=Rex357.html#e357 STYLE="text-decoration: none">*<b>Example 156:  Age of Steam</b></a><br>The railway-station examples so far put together into a short game called "Age of Steam".<p>
+<!-- EXAMPLE START -->
+<a name="e246"><a href=Rdoc20.html#e246 STYLE="text-decoration: none">**<b><b>Example</b> 119:  Meteoric I and II</b></a><br>A meteor in the night sky which is visible from many rooms, so needs to be a backdrop, but which does not appear until 11:31 PM.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>The timing of the meteor's arrival uses features of Inform which the next chapter will go into at greater detail: suffice to say that the game below begins at half past eleven, and that one turn later is meteor time.
+<p>
+<blockquote><font color="#000080">&quot;Meteoric I&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The time of day is 11:30 PM.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 11:31 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move meteor to the great outdoors;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A meteor streaks across the sky.&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The great outdoors is a region. The Spanish Balcony is east of the Inner Court. The Court and Balcony are in the great outdoors. Inside from the Court is the Swimming Pool.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The meteor is a backdrop. Instead of doing something to the meteor, say &quot;The meteor is no longer visible, now nothing more than a memory.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;wait / wait / examine meteor / west / examine meteor / in / examine meteor&quot;.
+</font></blockquote><p>
+<p>
+<p>Or for something a little slower-moving and with no after-image:
+<p>
+<blockquote><font color="#000080">&quot;Meteoric II&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The time of day is 4:30 PM.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 4:31 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move Phobos to the great outdoors;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Phobos rises from the western horizon.&quot;
+<br>At 10:06 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove Phobos from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Phobos sets over the eastern horizon.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The great outdoors is a region. The Martian Balcony is east of the Inner Court. The Court and Balcony are in the great outdoors. Inside from the Court is the Heavy Water Swimming Pool.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Phobos is a backdrop. Instead of doing something to Phobos, say &quot;Phobos orbits a mere 6000km above you, which is practically touching range for astronomy. On the other hand, astronomy isn't all that practical.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;wait / wait / examine phobos / west / examine phobos / in / examine phobos&quot;.
+</font></blockquote><p>
+<p>
+<p>Though we should not really use Earthly time-keeping, since the Martian day is about half an hour longer than ours.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e123"><a href=Rex123.html#e123 STYLE="text-decoration: none">***<b>Example 163:  Entrevaux</b></a><br>Organizing the game by scenes, where each scene has a location and prop lists so that it can be set up automatically.<p>
+<a name="e349"><a href=Rex349.html#e349 STYLE="text-decoration: none">**<b>Example 158:  Space Patrol - Stranded on Jupiter!</b></a><br>We'll be back in just a moment, with more exciting adventures of the... Space Patrol!<p>
+<p><hr><p><a href=Rdoc19.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc21.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

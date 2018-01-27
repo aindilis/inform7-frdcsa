@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.3. Animals</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Today Tomorrow" -->
+<!-- SEARCH SECTION "Ex 99" -->
+<!-- SEARCH SORT "Ex 008-003-099" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc64.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc66.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.3. Animals</b></td></tr></table><p>
+<p>
+<p>Animals exhibit a wide range of behaviour: much of the chapter on Other Characters applies just as well to animals as to human beings, with the exception of the material on conversation. But two examples here, both fairly simple, show how a fairly convincing domestic pet can be achieved simply by reacting to certain events going on nearby: <b>Feline Behavior</b> (a cat) and <b>Today Tomorrow</b> (a dog).
+<p>
+<p><b>Fido</b> provides a dog which the player can re-name at will.
+<p>
+<p>For animals that we can sit on and ride - a camel or a horse, say - we may want to use the Rideable Vehicles extension by Graham Nelson, which also provides a rideable animal kind.
+<p>
+<a href=Rdoc48.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liveliness</b></font></a><i> for pets that change what they're doing every time the player looks</i><p><p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for a cat that eats food put in its container</i><p><p>
+<p><hr><p>
+<a name="e138"><a href=Rex138.html#e138 STYLE="text-decoration: none">*<b>Example 386:  Feline Behavior</b></a><br>A cat which reacts to whatever items it has handy, returning the result of a rulebook for further processing.<p>
+<!-- EXAMPLE START -->
+<a name="e77"><a href=Rdoc65.html#e77 STYLE="text-decoration: none">**<b><b>Example</b> 99:  Today Tomorrow</b></a><br>A few notes on "In the presence of" and how it interacts with concealed objects.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Rules about concealment will affect &quot;in the presence of&quot;, too. For instance, suppose we have a man with a pocket pet:
+<p>
+<blockquote><font color="#000080">&quot;Today Tomorrow&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Temporary Employment Office is a room. &quot;'Tomorrow's Temporary Workers - Today!' proclaims the logo over the door. The office is divided into two areas, the inner sanctum where you take calls and fiddle with the computer, and the outer area where workers take skill exams and watch inspirational videos ('Earn your way to partial benefits!', 'Vacation days and you!', 'Temping the Tomorrow Way', etc.).&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maya is a woman in the Office. &quot;Your coworker Maya sits at her own computer, diligently modifying all the [one of]pay rates in the database down from $9.00 an hour to $8.96[or]billing rates in the database up from $25.00 an hour to $25.04[purely at random].&quot; She wears a trenchcoat. She carries a chihuahua. The description of Maya is &quot;[if Maya is wearing the trenchcoat]She's wearing a trenchcoat, in a bizarre bid to keep your boss unaware of the chihuahua in her pocket. 'Because petsitters are really expensive!' she explained to you in an urgent hiss this morning over the coffeemaker. [otherwise]She looks cold. [end if]To all appearances, she is carrying [a list of unconcealed things carried by Maya].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maya's computer is scenery in the Employment Office. The description is &quot;You can't see the screen from here, but she was perfectly happy to tell you what she was doing.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of someone (called carrier):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the particular possession is the chihuahua and the carrier wears the trenchcoat, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of eating something in the presence of the chihuahua:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The chihuahua] yips at you! Maya looks despairingly at [the noun], which is obviously inciting it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The desk is scenery in the Office. On the desk are a multi-line telephone and a printer. The description of the printer is &quot;Every morning, this instrument of torture spits out a list of the assignments you have to fill - professional, attractive receptionist with level three Excel certification, at $7.05 an hour; that sort of thing. You spend the ensuing three hours trying to meet its tyrannical demands.&quot; The description of the multi-line telephone is &quot;Line three blinks urgently at you. You'll pick it up again as soon as you can remember who it was you put on hold.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a double bacon cheeseburger and a chocolate shake. Understand &quot;milkshake&quot; or &quot;beverage&quot; as the shake. The description of the cheeseburger is &quot;A minor self-indulgence to make up for the fact that you have to work through lunch.&quot; The cheeseburger is edible. The shake is edible. The description of the shake is &quot;It has the consistency of spackle and is no longer cold, but there is some chocolatey goodness in it still.&quot; Understand &quot;burger&quot; or &quot;hamburger&quot; as the cheeseburger. Instead of drinking the chocolate shake: try eating the shake instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x maya / x cheeseburger / drink shake / eat cheeseburger&quot;.
+</font></blockquote><p>
+<p>
+<p>Unless we somehow get the trenchcoat away from Maya, the chihuahua will not be in view, and will not intervene in our lunch. All very well for the player character, but not so interesting to the story... To this end, we might add an unfortunate event, courtesy of later chapters:
+<p>
+<blockquote><font color="#000080">The time of day is 11:45 AM.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 11:47 AM: say &quot;Your boss pokes his head in, temporarily free of the round of conference calls that occupy all his days. 'Maya,' he says. 'Your coat?' He shakes his head, clucking sadly. 'It doesn't say professional!' But mercifully Maya manages to take it off so slowly that he doesn't glimpse her pet before her phone rings again.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Maya carries the trenchcoat.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e141"><a href=Rex141.html#e141 STYLE="text-decoration: none">*<b>Example 408:  Fido</b></a><br>A dog the player can name and un-name at will.<p>
+<p><hr><p><a href=Rdoc64.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc66.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

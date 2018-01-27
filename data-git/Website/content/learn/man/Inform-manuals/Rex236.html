@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.6. Looking Under and Hiding</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Flashlight" -->
+<!-- SEARCH SECTION "Ex 218" -->
+<!-- SEARCH SORT "Ex 006-006-218" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc33.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc35.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.6. Looking Under and Hiding</b></td></tr></table><p>
+<p>
+<p>Finding hidden objects is a classic puzzle in IF. <b>Beachfront</b> provides the most basic example, an object that becomes visible only when we have searched the papers on a cluttered desk. <b>Beneath the Surface</b> takes this further, giving all large furnishings the ability to conceal items, and allowing the player to put things underneath other things, as well as find them. <b>Flashlight</b> adds an extra twist to the puzzle by requiring that the player have a flashlight to shine under a bulky object in order to find what lies underneath.
+<p>
+<p>Looking inside an object is generally handled by the searching action, and we could extend that to allow the player to search multiple or complex objects. <b>Matreshka</b> turns the puzzle on its head by allowing the player to search a whole room systematically with only a single command.
+<p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for the related case of needing to look in a mirror</i><p><p>
+<p><hr><p>
+<a name="e26"><a href=Rex26.html#e26 STYLE="text-decoration: none">*<b>Example 98:  Beachfront</b></a><br>An item that the player can't interact with until he has found it by searching the scenery.<p>
+<a name="e394"><a href=Rex394.html#e394 STYLE="text-decoration: none">*<b>Example 233:  Beneath the Surface</b></a><br>An "underlying" relation which adds to the world model the idea of objects hidden under other objects.<p>
+<!-- EXAMPLE START -->
+<a name="e236"><a href=Rdoc34.html#e236 STYLE="text-decoration: none">*<b><b>Example</b> 218:  Flashlight</b></a><br>Visibility set so that looking under objects produces no result unless the player has a light source to shine there (regardless of the light level of the room).<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Flashlight&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Schoolhouse is a room. &quot;Though normally comfortable, the room is dark and menacing during the storm; rain sheets on the windows, and you can barely see the flash of the lighthouse only a few miles away.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cabinet is a fixed in place openable container in the Schoolhouse. The hurricane lantern is a thing in the Schoolhouse. &quot;A hurricane lantern hangs from a peg.&quot; The lantern is lit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Visibility rule when looking under something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is carrying a lit thing (called lamp):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You shine [the lamp] under [the noun]...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;there is sufficient light;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;there is insufficient light.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">There is a marble. The marble can be found or lost. The marble is lost.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of looking under the cabinet when the marble is lost:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the marble to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the marble is found;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Billy's lost marble! So that's where it got to!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look under cabinet / get lantern / look under cabinet&quot;.
+</font></blockquote><p>
+<p>
+<p>Because visibility is checked before instead rules, this discovery will (correctly) occur only when the player does have enough light.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e240"><a href=Rex240.html#e240 STYLE="text-decoration: none">*<b>Example 172:  Matreshka</b></a><br>A SEARCH [room] action that will open every container the player can see, stopping only when there don't remain any that are closed, unlocked, and openable.<p>
+<p><hr><p><a href=Rdoc33.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc35.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

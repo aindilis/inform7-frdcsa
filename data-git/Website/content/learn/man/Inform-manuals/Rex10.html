@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.2. Liveliness</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Annoyotron Jr" -->
+<!-- SEARCH SECTION "Ex 153" -->
+<!-- SEARCH SORT "Ex 007-002-153" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc47.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc49.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.2. Liveliness</b></td></tr></table><p>
+<p>
+<p>A character who sits still in a chair and does nothing is much less convincingly alive than one who seems to be pursuing some sort of personal agenda. There are all sorts of ways to achieve this, but the least challenging is by introducing some random change to descriptions, and by giving a character some very simple routine behavior to carry out.
+<p>
+<p>For instance, we'll often want the characters in a room to be described doing different things every time we look at them. <b>Camp Bethel</b> shows how this may be done.
+<p>
+<p>Every turn rules lend some sprightliness to otherwise-silent characters, as well:
+<p>
+<blockquote><font color="#000080">Every turn when the player can see Mrs MacGillicuddy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mrs. MacGillicuddy vacuums around [a random fixed in place thing which is in the location].&quot;
+</font></blockquote><p>
+<p>
+<p>We might expand on this by providing a whole table of things for Mrs MacG. to cycle through, or a text variation effect that gives her different activities every turn, as in
+<p>
+<blockquote><font color="#000080">Every turn when the player can see Mrs MacGillicuddy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mrs. MacGillicuddy [one of]vacuums around the furniture[or]tries to remove gum from the underside of the desks[or]causes a racket by testing the smoke alarm[or]makes a pointed comment or two about them as sit by idly while someone works her fingers to the bone[as decreasingly likely outcomes].&quot;
+</font></blockquote><p>
+<p>
+<p>This is no great innovation in characterization by itself, but it does at least remind the player that the character is alive and moving about, even when he isn't paying attention to her.
+<p>
+<p><b>Annoyotron Jr</b> demonstrates a character who actively tries to get our attention, and whose routine of behavior changes just slightly if we show signs of having reacted to him.
+<p>
+<p><b>Lean and Hungry</b> implements a classic thief, a character who doesn't interact with the player much except to pick up valuable objects he finds left around the map. Later we will see rather more advanced ways to make characters act on their own goals and plans, but this kind of simple behavior is easily rigged as part of an every turn rule.
+<p>
+<p>Finally, <b>Text Foosball</b> extends the every-turn-rule idea to create an opponent who joins us in a randomized game of table soccer.
+<p>
+<p>With animal characters, this kind of repetitive, semi-random behavior is often adequate: we don't expect animals to talk, or pursue steady goals, or to take an interest in what we do in their presence (unless it involves a food they like to eat).
+<p>
+<p>For people, we are likely to need an assortment of additional techniques.
+<p>
+<a href=Rdoc65.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Animals</b></font></a><i> for a domestic cat and dog</i><p><p>
+<p><hr><p>
+<a name="e60"><a href=Rex60.html#e60 STYLE="text-decoration: none">**<b>Example 67:  Camp Bethel</b></a><br>Creating characters who change their behavior from turn to turn, and a survey of other common uses for alternative texts.<p>
+<!-- EXAMPLE START -->
+<a name="e10"><a href=Rdoc48.html#e10 STYLE="text-decoration: none">*<b><b>Example</b> 153:  Annoyotron Jr</b></a><br>A child who after a certain period in the car starts asking annoying questions.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Annoyotron Jr&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Minivan is a room. The Open Road is outside from the Minivan. Pete is a man in the Minivan. &quot;Pete [if the player has been in the Minivan for 3 turns]is starting to look bored[otherwise]is playing with his travel activity book[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player has been in the Minivan for 5 turns, say &quot;'Are we there [if saying no]now?'[otherwise]yet?' asks Pete.[end if]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying no:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Oh,' says Pete. There is a blessed, momentary silence.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going to the Open Road:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You leap to your death.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / look / g / g / g / no / z / z / z / no / z / out&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e167"><a href=Rex167.html#e167 STYLE="text-decoration: none">***<b>Example 76:  Lean and Hungry</b></a><br>A thief who will identify and take any valuable thing lying around that he is able to touch.<p>
+<a name="e151"><a href=Rex151.html#e151 STYLE="text-decoration: none">****<b>Example 140:  Text Foosball</b></a><br>A game of foosball which relies heavily on every-turn rules.<p>
+<p><hr><p><a href=Rdoc47.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc49.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

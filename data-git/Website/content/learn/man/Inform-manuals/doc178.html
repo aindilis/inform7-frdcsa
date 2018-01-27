@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.11. Repeat running through</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Repeat running through" -->
+<!-- SEARCH SECTION "11.11" -->
+<!-- SEARCH SORT "011-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc177.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc179.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.11. Repeat running through</b></td></tr></table><p>
+<p>
+<p>Inform is not used very much for numerical work, so the kind of repeat loop described in the previous section is not much used. Inform's natural domain is really the world of things and rooms, so the following kind of repeat is much more useful.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>repeat with </b>(a name not so far used)<b> running through </b>(description of values)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_runthrough -->
+
+<p>This phrase causes the block of phrases following it to be repeated once for each value matching the description, storing that value in the named variable. (The variable exists only temporarily, within the repetition.) Example:
+<p>
+<blockquote><font color="#000080">repeat with item running through open containers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>If there are no containers, or they are all closed, the phrases will not be followed at all. Inform will issue a Problem message if the range of the loop may be infinite: for example, it won't allow:
+<p>
+<blockquote><font color="#000080">repeat with X running through odd numbers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>On the other hand it will allow:
+<p>
+<blockquote><font color="#000080">repeat with T running through times:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>which repeats 1440 times, starting with T at midnight and finishing at 11:59 PM. See the Kinds index for which kinds of value can be repeated through.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>As with counting the &quot;number of ...&quot; objects satisfying some property, we can run through a wide variety of possibilities - any description whose range is possible for Inform to search. For example:
+<p>
+<blockquote><font color="#000080">repeat with dinner guest running through the people in the Dining Room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">repeat with possession running through things carried:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">repeat with event running through non-recurring scenes which are happening:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>The following lists the whereabouts of all men in lighted rooms:
+<p>
+<blockquote><font color="#000080">repeat with suspect running through the men who are in a lighted room (called the scene):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The suspect] is in [the scene].&quot;;
+</font></blockquote><p>
+<p>
+<p>Note the way we are allowed to give a name to the vaguely described place &quot;lighted room&quot;, so that we can refer to it inside the loop.
+<p>
+<p><hr><p>
+<a name="e19"><a href=ex19.html#e19 STYLE="text-decoration: none">**<b>Example 176:  Strictly Ballroom</b></a><br>People who select partners for dance lessons each turn.<p>
+<p><hr><p><a href=doc177.html STYLE="text-decoration: none">Previous</a> / <a href=doc179.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.8. Line breaks and paragraph breaks</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Beekeeper's Apprentice" -->
+<!-- SEARCH SECTION "Ex 68" -->
+<!-- SEARCH SORT "Ex 005-008-068" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc78.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc80.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.8. Line breaks and paragraph breaks</b></td></tr></table><p>
+<p>
+<p>Inform controls the flow of text being said so that it will read, to the player, in a natural way. There are two principles:
+<p>
+<p>(a) pieces of text ending with full stop, exclamation or question marks will be followed by line breaks (or &quot;new lines&quot;, as some computer programming languages would call them); and
+<p>
+<p>(b) pieces of text produced by different rules in Inform will be separated by paragraph breaks.
+<p>
+<p>The effect is that authors can forget about paragraph spacing most of the time, but the mechanism is not impossible to fool, so text substitutions are provided to override the usual principles. First, to manipulate line breaks:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>line break</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_linebreak -->
+
+<p>This text substitution produces a line break. Example:
+<p>
+<blockquote><font color="#000080">&quot;There is an endless sense of[line break]falling and[line break]falling.&quot;
+</font></blockquote><p>
+<p>
+<p>Line breaks are not paragraph breaks, so the result is:
+<p>
+<blockquote><font color="#000080">There is an endless sense of
+<br>falling and
+<br>falling.
+</font></blockquote><p>
+<p>
+<p>with no extra vertical spacing between these lines.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>no line break</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_nolinebreak -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: it prevents a line break where Inform might otherwise assume one. Example:
+<p>
+<blockquote><font color="#000080">&quot;The chorus sing [one of]Jerusalem[or]Rule, Britannia![no line break][at random].&quot;
+</font></blockquote><p>
+<p>
+<p>Here the &quot;[no line break]&quot; stops Inform from thinking that the exclamation mark means a sentence ending - it's part of the name of the song &quot;Rule, Britannia!&quot;. So we get
+<p>
+<blockquote><font color="#000080">The chorus sing Rule, Britannia!.
+</font></blockquote><p>
+<p>
+<p>with no line break between the &quot;!&quot; and &quot;.&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>And similarly for paragraph breaks. Because Inform can be pretty trigger-happy with these, the first need is for a way to stop them:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>run paragraph on</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_runparaon -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: it prevents a paragraph break occurring after the present text is printed, in case Inform might be tempted to place one there. Example:
+<p>
+<blockquote><font color="#000080">Before taking something, say &quot;Very well. [run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<p>This allows the reply to, say, TAKE ENVELOPE to be
+<p>
+<blockquote><font color="#000080">Very well. Taken.
+</font></blockquote><p>
+<p>
+<p>rather than
+<p>
+<blockquote><font color="#000080">Very well.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Taken.
+</font></blockquote><p>
+<p>
+<p>which is how texts produced by different rules would normally be shown. (It's a traditional printer's term. See Oldfield's Manual of Typography, 1892, under &quot;When two paragraphs are required to be made into one, or, in technical language, 'to run on'.&quot;)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>But sometimes we actually want paragraph breaks in unexpected places. One way is to force them outright:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>paragraph break</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_parabreak -->
+
+<p>This text substitution produces a paragraph break. Example:
+<p>
+<blockquote><font color="#000080">&quot;This is not right.[paragraph break]No, something is terribly wrong.&quot;
+</font></blockquote><p>
+<p>
+<p>Paragraph breaks have a little vertical spacing in them, unlike mere line breaks, so the result is:
+<p>
+<blockquote><font color="#000080">This is not right.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">No, something is terribly wrong.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>More subtly, we can give Inform the option:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>conditional paragraph break</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_condparabreak -->
+
+<p>This text substitution either produces a paragraph break, or no text at all. It marks a place where Inform can put a paragraph break if necessary; in effect it simulates what Inform does every time a &quot;before&quot; or similar rule finishes. If there is text already printed, and text then follows on, a paragraph break is made. But if not, nothing is done. This is sometimes useful when producing a large amount of text which changes with the circumstances so that it is hard to predict in advance whether a paragraph break is needed or not.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Really finicky authors might possibly want to know this:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>a paragraph break is pending</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_breakpending -->
+
+<p>This condition is true if text has recently been said in such a way that Inform expects to add a paragraph break at the next opportunity (for instance when the present rule ends and another one says something, or when a &quot;[conditional paragraph break]&quot; is made).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Finally, there are two special sorts of paragraph break for special circumstances. They are mainly used by the Standard Rules, and imitate the textual layout styles of traditional IF.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>command clarification break</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_clarifbreak -->
+
+<p>This text substitution produces a line break, and then also a paragraph break if the text immediately following is a room description brought about by having gone to to a different room and looking around, in which case a line break should be added. In traditional IF, this is used when clarifying what Inform thinks the player intended by a given command. Example:
+<p>
+<blockquote><font color="#000080">say &quot;(first opening [the noun])[command clarification break]&quot;;
+</font></blockquote><p>
+<p>
+<p>might result in
+<p>
+<blockquote><font color="#000080">(first opening the valise)
+<br>You rummage through the valise for tickets, but find nothing.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>run paragraph on with special look spacing</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_runparaonsls -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: it indicates that the current printing position does not follow a skipped line, and that further material is expected which will run on from the previous paragraph, but that if no further material turns up then a skipped line would be needed before the next command prompt. (It's very likely that only the Standard Rules will ever need this.)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e337"><a href=doc79.html#e337 STYLE="text-decoration: none">**<b><b>Example</b> 68:  Beekeeper's Apprentice</b></a><br>Making the SEARCH command examine all the scenery in the current location.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>We have to create a suitable action and say what it does, and to repeat what we do through all the scenery items. That needs material from subsequent chapters, but is quite ordinary Inform all the same:
+<p>
+<blockquote><font color="#000080">&quot;Beekeeper's Apprentice&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Studying the vicinity is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report studying the vicinity:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the location does not contain something which is scenery:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There's little of interest in the [location].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with point of interest running through scenery in the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[point of interest]: [run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try examining the point of interest.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;search&quot; as studying the vicinity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Yard is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The hive and the honey are scenery things in the Yard. The description of the hive is &quot;The honeycombed hive is all around you, thrumming with life.&quot; The description of the honey is &quot;Wax-sealed honey has been cached in many of the hexagonal nurseries.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;search&quot;.
+</font></blockquote><p>
+<p>
+<p>The reason for this example is to show the use of saying &quot;[run paragraph on]&quot;. It means we have output such as:
+<p>
+<blockquote><font color="#000080">>search
+<br>hive: The honeycombed hive is all around you, thrumming with life.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">honey: Wax-sealed honey has been cached in many of the hexagonal nurseries.
+</font></blockquote><p>
+<p>
+<p>Without the running on, the prompts &quot;hive:&quot; and &quot;honey:&quot; would be separated from the descriptions following them, which would look a little odd.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc78.html STYLE="text-decoration: none">Previous</a> / <a href=doc80.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

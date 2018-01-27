@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.8. Simple Machines</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "What Makes You Tick" -->
+<!-- SEARCH SECTION "Ex 416" -->
+<!-- SEARCH SORT "Ex 009-008-416" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc74.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc76.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.8. Simple Machines</b></td></tr></table><p>
+<p>
+<p>The &quot;device&quot; kind provides for the simplest form of machine: one which is, at any given moment, switched on or switched off. Inform looks after this state, but leaves it to us to make the machine actually do something:
+<p>
+<blockquote><font color="#000080">The air-conditioning unit is a device in the Florist's Shop. The air-conditioning is fixed in place and switched on.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when in the Florist's Shop:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the air-conditioning is switched off, say &quot;You worry about the cut flowers in this jungle-hot air.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;There is an low susurration from the air-conditioning unit.&quot;
+</font></blockquote><p>
+<p>
+<p>One primary dictionary definition for a machine is &quot;an apparatus using or applying mechanical power and having several parts&quot;, and we often use the &quot;part of&quot; relationship to build machinery. <b>Control Center</b> provides a neat way to display the component parts of a machine to the player who examines it.
+<p>
+<p>One component almost always part of an electrical machine is the (literal) switch, lever or button to control whether they are switched on or off. In <b>Model Shop</b> just such an on/off button is automatically made part of every device.
+<p>
+<p>While an electrical device has only two states, a mechanical machine might have many, and for these the best approach is to define a kind of value naming the possibilities: see <b>Signs and Portents</b>, where the states are the possible destinations pointed towards.
+<p>
+<p>Perhaps stretching the definition of &quot;machine&quot;, <b>What Makes You Tick</b> demonstrates a fishing pole which the player can put together from several pieces.
+<p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for a safe that can be dialed to different combinations</i><p><p>
+<p><hr><p>
+<a name="e339"><a href=Rex339.html#e339 STYLE="text-decoration: none">*<b>Example 61:  Control Center</b></a><br>Objects which automatically include a description of their component parts whenever they are examined.<p>
+<a name="e90"><a href=Rex90.html#e90 STYLE="text-decoration: none">**<b>Example 55:  Model Shop</b></a><br>An "on/off button" which controls whatever device it is part of.<p>
+<a name="e424"><a href=Rex424.html#e424 STYLE="text-decoration: none">***<b>Example 50:  Signs and Portents</b></a><br>Signpost that points to various destinations, depending on how the player has turned it.<p>
+<!-- EXAMPLE START -->
+<a name="e425"><a href=Rdoc75.html#e425 STYLE="text-decoration: none">*<b><b>Example</b> 416:  What Makes You Tick</b></a><br>Building a fishing pole from several component parts that the player might put together in any order.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to let the player build a fishing pole out of three parts: a hook, a string, and a stick.
+<p>
+<p>There are several things we must account for here. One is that our combination verb should be insensitive to ordering: it shouldn't matter whether the player types COMBINE STICK WITH STRING or COMBINE STRING WITH STICK.
+<p>
+<p>Second, we need to make sure that our implementation handles intervening stages of assembly gracefully. The player should be able to combine string and hook first, or string and stick first, and be able to complete the assembly in either case.
+<p>
+<p>Our implementation here uses a table of lists to determine which combinations of inputs should produce which result object. Because we sort our lists before comparing them, we guarantee that the player's ordering doesn't matter: COMBINE STICK WITH STRING will have the same effect as COMBINE STRING WITH STICK.
+<p>
+<p>What's more, our implementation could be expanded to account for many other assemblages, if we wanted object-building to be a running theme of puzzles in our game.
+<p>
+<blockquote><font color="#000080"> &quot;What Makes You Tick&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;combine [something] with [something]&quot; as combining it with. Combining it with is an action applying to two carried things. Understand the command &quot;connect&quot; as &quot;combine&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the command &quot;attach&quot; as something new. Understand &quot;attach [something] to [something]&quot; as combining it with.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The combining it with action has an object called the item built.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Setting action variables for combining something with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let X be a list of objects;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;add the noun to X;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;add the second noun to X;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sort X;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Outcome Objects:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let Y be the component list entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sort Y;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if X is Y:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item built is the result entry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check combining it with:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the item built is nothing or the item built is not in limbo,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't combine [the noun] and [the second noun] into anything useful.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out combining it with:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the item built to the holder of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the second noun from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report combining it with:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You now have [an item built].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Limbo is a container. Limbo contains a hookless fishing pole, a hooked line, and a complete fishing pole.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Streamside is a room. The player carries a stick, a wire hook, and a string.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Outcome Objects
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">component list</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">result</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">{stick, string}</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">hookless fishing pole</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">{wire hook, string}</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">hooked line</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">{hooked line, stick}</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">complete fishing pole</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">{hookless fishing pole, wire hook}</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">complete fishing pole</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;combine stick with string / i / combine pole with hook / i&quot;.
+</font></blockquote><p>
+<p>
+<p>This kind of implementation makes sense if we don't intend the player to take the fishing pole apart again, or to refer to any of its component parts once it is built. For an alternate approach that does allow assembled objects to be taken apart again, see &quot;Some Assembly Required&quot;.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc74.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc76.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

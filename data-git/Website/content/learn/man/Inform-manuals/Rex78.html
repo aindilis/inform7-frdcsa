@@ -1,0 +1,293 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.11. Character Knowledge and Reasoning</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Chronic Hinting Syndrome" -->
+<!-- SEARCH SECTION "Ex 328" -->
+<!-- SEARCH SORT "Ex 007-011-328" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc56.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc58.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.11. Character Knowledge and Reasoning</b></td></tr></table><p>
+<p>
+<p>A character may be endowed with knowledge and even reasoning skills. Relations form quite a good way of keeping track of such problems: for instance, we can allow characters to be acquainted with one another with a relation such as
+<p>
+<blockquote><font color="#000080">Lucy knows Lady Cardew.
+</font></blockquote><p>
+<p>
+<p>Or we might keep track of more complicated attitudes between characters, as in <b>Murder on the Orient Express</b>, in which some characters suspect others of the crime.
+<p>
+<p>Alternatively, we might have a list of salient facts that are important in our game. We might declare these as values, and then characters could know, learn, and forget entries as appropriate:
+<p>
+<blockquote><font color="#000080">A fact is a kind of value. Some facts are defined by the Table of All Known Facts.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Knowledge relates various people to various facts. The verb to know (he knows, they know, he knew, it is known) implies the knowledge relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of All Known Facts
+<br>fact   	summary
+<br>shoe-size   	&quot;Lucy wears a size 9 shoe.&quot;
+<br>sunset-time   	&quot;Sunset is at 8:22 PM this evening.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Lucy knows shoe-size.
+<br>Bob knows sunset-time and shoe-size.
+</font></blockquote><p>
+<p>
+<p>Or again we might keep a whole database of information in a table: the characters in <b>Questionable Revolutions</b> know dates, countries, and a short description for each of several rebellions and popular uprisings, while in <b>Queen of Sheba</b>, Solomon is able to answer who, what, where, when, and why questions about a range of topics. This kind of approach is most useful when the characters need to display a deep knowledge of a particular field. The facts stored in the Table of All Known Facts, above, are comparatively sparse, because there we are designing a game in which not all data about the world is equally valuable: Lucy doesn't know the shoe size of every person in the game, because for some reason it is only her own shoe size that matters. On the other hand, the Table of All Known Facts can store different kinds of information, whereas the revolutions table has no way of storing shoe sizes or sunset times. And <b>Murder on the Orient Express</b> works differently again, because it is storing knowledge that concerns people and things that already exist in the world model, rather than abstract ideas. Our way of modeling character knowledge, in other words, will depend quite a lot on what kind of knowledge it is.
+<p>
+<p>The possibilities of character reasoning are similarly broad, but <b>The Problem of Edith</b> introduces one kind: the character has a concept of how different conversation topics relate to one another, so that when she is asked about a new keyword, she picks a response that makes the question most relevant to the conversation already in progress.
+<p>
+<p>We end with a longer scenario, in which we track what the character knows about the player and the conversational state: in <b>Chronic Hinting Syndrome</b>, the main character guides conversation in the direction he intends it to go, with the player's sometimes-reluctant participation.
+<p>
+<a href=Rdoc60.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Obedient Characters</b></font></a><i> for a character who needs to be taught how to perform actions before doing them</i><p><p>
+<a href=Rdoc58.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Characters Following a Script</b></font></a><i> for a programmable robot who can be given whole sequences of actions to perform</i><p><p>
+<p><hr><p>
+<a name="e256"><a href=Rex256.html#e256 STYLE="text-decoration: none">**<b>Example 241:  Murder on the Orient Express</b></a><br>A number of sleuths (the player among them) find themselves aboard the Orient Express, where a murder has taken place, and one of them is apparently the culprit. Naturally they do not agree on whom, but there is physical evidence which may change their minds...<p>
+<a name="e182"><a href=Rex182.html#e182 STYLE="text-decoration: none">***<b>Example 267:  Questionable Revolutions</b></a><br>An expansion on the previous idea, only this time we store information and let characters answer depending on their expertise in a given area.<p>
+<a name="e308"><a href=Rex308.html#e308 STYLE="text-decoration: none">***<b>Example 268:  The Queen of Sheba</b></a><br>Allowing the player to use question words, and using that information to modify the response given by the other character.<p>
+<a name="e45"><a href=Rex45.html#e45 STYLE="text-decoration: none">***<b>Example 235:  The Problem of Edith</b></a><br>A conversation in which the main character tries to build logical connections between what the player is saying now and what went immediately before.<p>
+<!-- EXAMPLE START -->
+<a name="e78"><a href=Rdoc57.html#e78 STYLE="text-decoration: none">****<b><b>Example</b> 328:  Chronic Hinting Syndrome</b></a><br>Using name-printing rules to keep track of whether the player knows about objects, and also to highlight things he might want to follow up.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a conversation system in which it is important to keep track of which subjects the player has heard mentioned. If we're careful to mark subjects in brackets, we can use the &quot;printing the name of&quot; activity to record which things have been mentioned so far:
+<p>
+<blockquote><font color="#000080">&quot;Chronic Hinting Syndrome&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A subject is a kind of thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Knowledge relates various people to various subjects. The verb to know (it knows, they know, it is known) implies the knowledge relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Awareness relates various people to various subjects. The verb to be aware of implies the awareness relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a subject is pending if the player is aware of it and it is not known by the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of thinking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of pending subjects is 0, say &quot;You have no fresh leads at the moment.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You recall that thus far you have not followed up with questions about [the list of pending subjects].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a subject (called idea):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is aware of the idea.
+</font></blockquote><p>
+<p>
+<p>Now suppose that as an added convenience for the player, we let him turn on a mode in which useful conversation topics are always automatically highlighted in the text, so he doesn't waste his time trying to follow up dead leads:
+<p>
+<blockquote><font color="#000080">Setting is a kind of value. The settings are bright and dull. Understand &quot;on&quot; as bright. Understand &quot;off&quot; as dull.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Highlighting is a setting that varies. Highlighting is dull.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;highlighting [setting]&quot; as setting highlighting. Setting highlighting is an action out of world, applying to one setting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out setting highlighting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now highlighting is the setting understood.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report setting highlighting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Highlighting is now [if highlighting is dull]off[otherwise]on[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a subject (called idea) when highlighting is bright:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the player knows the idea:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[bold type]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a subject when highlighting is bright:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[roman type]&quot;.
+</font></blockquote><p>
+<p>
+<p>...And the rest is peripheral.
+<p>
+<blockquote><font color="#000080">The Sickbay is a room. &quot;A place arranged for Nathan's comfort, since his sickness has been prolonged and because he becomes so irritating when not comfortable.&quot; The Hallway is outside from the Sickbay.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A supporter can be untried or rejected. A supporter is usually untried.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Sickbay contains a wobbly pedestal, a table, and a sickbed. Understand &quot;bed&quot; as the sickbed. The pedestal, the table, and the sickbed are supporters. Nathan is a man on the sickbed. The sickbed is scenery. The initial appearance of the wobbly pedestal is &quot;A wobbly pedestal near the door has sometimes been known to support vases of flowers, but is currently bare.&quot; The initial appearance of the table is &quot;There is also a table of a more ordinary sort.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Nathan can be active or passive.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of Nathan: now Nathan is passive.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of putting the sculpture on the table:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the table is rejected;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'[Not there],' [Nathan] snaps. 'The table is way too far from the sickbed.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of putting the sculpture on the sickbed:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the sickbed is rejected;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'[Not there],' [Nathan] rebukes you. 'You don't want me knocking it over if I roll around. In pain.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of putting the sculpture on the pedestal:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the pedestal is rejected;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The pedestal starts to wobble so ominously that you don't dare let go.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">'[Not there],' says [Nathan]. 'That thing is falling apart.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before putting something on the down: try dropping the noun instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say not there:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if all the supporters are rejected:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Look, the floor would be fine&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the number of rejected supporters is 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Yeah, anywhere but there, I'm afraid&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Come on, use your head -- I can't be watching you all the time, I'm sick&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going outside when the player is carrying the sculpture:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You've still got this sculpture to get rid of.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going outside when the breakage is pending:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't very well smash in front of [Nathan] his prize sculpture and then just scamper off without saying something. Appealing though the thought is at the moment.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going outside when a subject which is not the breakage is pending:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Yeah, go ahead,' says [Nathan], with a martyr-like air. 'It's probably best that you don't hear about [the random pending subject]. It's not something I'd go into normally.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The breakage is a subject. The description is &quot;It's not a big deal. I'll just buy a new [mental wave generator].' A slight awkward pause. 'I mean, this one was a [gift], but don't worry about it&quot;. Understand &quot;accident&quot; or &quot;smashing&quot; or &quot;breaking&quot; or &quot;shard&quot; or &quot;mishap&quot; or &quot;shards&quot; or &quot;mistake&quot; as the breakage. Understand &quot;sculpture&quot; as the breakage when the player is not carrying the sculpture.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying sorry in the presence of Nathan when the player is aware of the breakage:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try asking Nathan about the matter of breakage.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Nathan to try saying sorry when the player is aware of the breakage:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try asking Nathan about the matter of breakage.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The mental wave generator is a subject. The description is &quot;They're kind of expensive but I can save up. I really need one, though, because of my [dreams]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The dreams is a subject. The description is &quot;They're not the kind of dream you want to have.' He closes his eyes and contemplates these undesirable dreams. 'Have you ever woken up convinced you were dead? No, probably not. Well... At any rate, I need the [generator]. Oh, don't worry, they're expensive but not so expensive that I won't be able to save up for another, in a few months&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The gift is a subject. The description is &quot;[The mental wave generator] was a present from a girl named [Shari]. Actually I'm not sure she'd take to being called a girl&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Shari is a subject. The description is &quot;Look, let's just not go into it, okay? I don't really want to relive all that right now. I still have a six-inch [scar] shaped like a banana in the middle of my back&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The scar is a subject.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Nathan about the matter of the scar:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Nathan clears his throat, lowers his voice, and begins to tell you the story...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;End of Demo -- Register to Continue!!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;ask [someone] about [any subject]&quot; as asking it about the matter of.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Asking it about the matter of is an action applying to one thing and one visible thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check asking it about the matter of:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is not aware of the second noun, say &quot;What [second noun]?&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun does not know the second noun, say &quot;'I've no idea,' replies [the noun].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player knows the second noun, say &quot;You've already covered that. The response was '[description of the second noun].'&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out asking it about the matter of:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player knows the second noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report asking it about the matter of:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'[description of the second noun],' says [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of telling Nathan about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;He pinches the bridge of his nose. 'I can't really follow this right now,' he says. 'I'm sorry.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Nathan about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;He shrugs weakly.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Just put that down anywhere,' says [Nathan], as you come into the room. He's sitting in the sickbed with his legs straight out in front of him. 'I don't care where.' His voice is weak, but it sharpens up for the last remark: 'And don't make a lot of noise about it.'
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Considering that he woke you from a sound slumber to beg you to bring this thing over, his attitude is a bit much. You stare dubiously at the awkward crystal sculpture in your hands.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Nathan knows every subject.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Nathan about something while the player carries the sculpture, say &quot;[Nathan] moans dramatically and refuses to be drawn into conversation.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player is carrying an awkward crystal sculpture. Understand &quot;objet&quot; or &quot;objet de hideous&quot; as the sculpture. The description of the sculpture is &quot;It might possibly be natural, or it might be man-made. It might appeal to someone, but it is certainly not to your tastes.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of showing the sculpture to Nathan:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Please put it anywhere,' he says.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of giving the sculpture to Nathan:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'No, it doesn't work if I touch it. That's why I couldn't-- well, just put it down.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After dropping the sculpture:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is aware of the breakage;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the sculpture from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are incredibly careful, but somehow the sculpture slips -- you might almost say slithers -- from your fingers and crashes into a thousand shards at the feet of [Nathan].
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">There is a tense silence.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before reading a command: now Nathan is active.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn while not asking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if Nathan is passive, rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is carrying the sculpture:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if showing or giving, rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[Nathan] opens one eye and stares at you meaningfully. He is waiting for you to deposit his objet de hideous somewhere.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the breakage is pending:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if dropping, rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You're not quite sure where to begin, but you can't very well leave without making at least some remark on the smashing of the sculpture.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a subject is pending:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose a random row in the Table of Offhand Reminiscences;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line entry][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Offhand Reminiscences
+<br>line
+<br>&quot;'It actually is kind of a funny story about [the random pending subject],' [Nathan] remarks casually.&quot;
+<br>&quot;[Nathan] chuckles under his breath. 'Man, I hadn't thought about [the random pending subject] in ages.'&quot;
+<br>&quot;He glances sideways at you. 'It's nothing personal, you know, but I don't feel comfortable discussing [the random pending subject] with just anyone.'&quot;
+<br>&quot;'I don't know why I brought up [the random pending subject] just now,' [Nathan] comments. 'Don't mention it to anyone, if you don't mind.'&quot;
+<br>&quot;'Okay, see, the thing about [the random pending subject] is...'  [paragraph break]'Yes?' you ask, on cue.[paragraph break]'...never mind.'&quot;
+<br>&quot;[Nathan] makes an explosive exasperated sound. 'Don't you want to ask me about [the random pending subject]?' he demands.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;highlighting bright / put sculpture on pedestal / put it on table / put it on sickbed / drop it / think / ask nathan about breakage / think / ask him about generator / ask him about dreams / ask him about gift / ask him about shari / ask him about scar&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc56.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc58.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

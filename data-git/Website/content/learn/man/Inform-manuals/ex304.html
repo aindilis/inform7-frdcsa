@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.16. Understanding things by their relations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Puncak Jaya" -->
+<!-- SEARCH SECTION "Ex 308" -->
+<!-- SEARCH SORT "Ex 016-016-308" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc274.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc276.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.16. Understanding things by their relations</b></td></tr></table><p>
+<p>
+<p>Sometimes it makes sense for the name of something to involve the names of other things to which it is related. For instance, if we say TAKE THE BOTTLE OF WINE, we mean that the bottle currently contains wine - if it were the very same bottle containing water, we would call it something else.
+<p>
+<p>For names which must involve related names, a special form of token is provided. For instance, we could say:
+<p>
+<blockquote><font color="#000080">A box is a kind of container. Understand &quot;box of [something related by containment]&quot; as a box.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Toyshop is a room. The red box is a box in the Toyshop. Some crayons are in the red box.
+</font></blockquote><p>
+<p>
+<p>and now TAKE BOX OF CRAYONS will work, because CRAYONS matches against &quot;[something related by containment]&quot; for the red box - or it does for as long as the crayons are there. We can have similar matches against relations of all kinds, but have to name the relation explicitly, using its one-word name. (See the examples at the end of this section for plenty of cases.)
+<p>
+<p>We can also reverse the sense. If we write:
+<p>
+<blockquote><font color="#000080">A box is a kind of container. Understand &quot;box in [something related by reversed containment]&quot; as a box.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Toyshop is a room. The crate and the hammock are in the Toyshop. In the crate is a box. In the hammock is a box.
+</font></blockquote><p>
+<p>
+<p>then TAKE THE BOX IN THE HAMMOCK will work: here, the relation goes the other way, because the box is being contained by the other-named item, rather than doing the containing.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e304"><a href=doc275.html#e304 STYLE="text-decoration: none">*<b><b>Example</b> 308:  Puncak Jaya</b></a><br>When a character is not visible, responding to such commands as EXAMINE PETER and PETER, HELLO with a short note that the person in question is no longer visible.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>By default, when something is not present, Inform does not allow a player to refer to it. But there are times when we might like to acknowledge that the thing mentioned in a command does exist somewhere in the game; it just happens not to be on hand right now.
+<p>
+<p>One way to do this is to make an object that appears everywhere and responds to the name of its owner only when the owner itself is not in view.
+<p>
+<blockquote><font color="#000080">&quot;Puncak Jaya&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A ghost is a kind of person. A man-ghost is a kind of ghost. A man-ghost is always male. A woman-ghost is a kind of ghost. A woman-ghost is always female.
+</font></blockquote><p>
+<p>
+<p>We make the ghost a person rather than some other kind of thing so that it will be able to respond to commands such as KISS BOB or (even trickier) BOB, JUMP: if Inform did not recognize the ghost as an animate creature, it would not accept such input.
+<p>
+<blockquote><font color="#000080">Representation relates one ghost to one person. The verb to represent (he represents, they represent, he represented, it is represented) implies the representation relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">One man-ghost represents every man. One woman-ghost represents every woman.
+</font></blockquote><p>
+<p>
+<p>This is, technically, an assembly -- except instead of saying that every device has a button part, or that there are three daffodils in every garden room, the assembly is based on a non-physical relation that we just designed.
+<p>
+<p>Based on the &quot;representation&quot; relation, we now devise a conditional relation that applies only when the represented thing is not itself in view:
+<p>
+<blockquote><font color="#000080">Indication relates a ghost (called X) to a person (called Y) when X represents Y and Y is not visible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;[something related by indication]&quot; as a ghost.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every ghost is in the concept-repository.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something to a ghost:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You seem to have left [a random person which is represented by the noun] behind.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something when the second noun is a ghost:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You seem to have left [a random person which is represented by the second noun] behind.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The concept-repository is an open unopenable transparent container. It is part of the air. The air is a backdrop. It is everywhere.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Base of Puncak Jaya is a room. Temple, Kippax, and Huizenga are men in Base. Peak of Puncak Jaya is above Base of Puncak Jaya.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x kippax / up / x kippax / kiss kippax / kippax, hello&quot;.
+</font></blockquote><p>
+<p>
+<p>Further complications of this example might require that the player meet a character before being able to refer to him or her.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e427"><a href=ex427.html#e427 STYLE="text-decoration: none">*<b>Example 309:  Whither?</b></a><br>A door whose description says where it leads; and which automatically understands references such as "the west door" and "the east door" depending on which direction it leads from the location.<p>
+<a name="e79"><a href=ex79.html#e79 STYLE="text-decoration: none">*<b>Example 310:  Cinco</b></a><br>A taco shell that can be referred to (when it contains things) in terms of its contents.<p>
+<a name="e82"><a href=ex82.html#e82 STYLE="text-decoration: none">**<b>Example 311:  Claims Adjustment</b></a><br>An instant camera that spits out photographs of anything the player chooses to take a picture of.<p>
+<p><hr><p><a href=doc274.html STYLE="text-decoration: none">Previous</a> / <a href=doc276.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 19.1. Ordinary text and indexed text</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Ordinary text and indexed text" -->
+<!-- SEARCH SECTION "19.1" -->
+<!-- SEARCH SORT "019-001-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc339.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc341.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>19.1. Ordinary text and indexed text</b></td></tr></table><p>
+<p>
+<p>So far, we have dealt with text as something which comes in little packets: we have printed it out, read it in from the keyboard, and compared it with other text. But we have never tried to open the packets and get at the contents, letter by letter, or to make any alterations, or look for certain combinations of letters. These tricks are surprisingly seldom needed - a surprise, that is, given that everything Inform does is textual - but they are in fact open to us.
+<p>
+<p>Inform has two kinds of value for text: the one called simply &quot;text&quot;, and another not mentioned until now called &quot;indexed text&quot;. Indexed text is so called because it can be accessed by index - that is, we can if we wish get at or modify character number 1, character number 2, and so on. (1, 2, ... is the index number: this is not anything to do with a project's Index.) Text and indexed text are stored in fundamentally different ways, but Inform manages the difference automatically, and very often we can forget it. For instance:
+<p>
+<blockquote><font color="#000080">if character number 2 in WHATEVER is &quot;a&quot;, ...
+</font></blockquote><p>
+<p>
+<p>clearly needs WHATEVER to be indexed - otherwise there would be no way to get at its second letter. But Inform notices this and automatically converts WHATEVER in order to make the test. So, for instance, faced with
+<p>
+<blockquote><font color="#000080">if character number 1 in &quot;[score]&quot; is &quot;7&quot;, ...
+</font></blockquote><p>
+<p>
+<p>Inform notices that &quot;[score]&quot;, which is a text, is being used in a situation where indexed text is needed, and ensures that it is converted before use.
+<p>
+<p><hr><p><a href=doc339.html STYLE="text-decoration: none">Previous</a> / <a href=doc341.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

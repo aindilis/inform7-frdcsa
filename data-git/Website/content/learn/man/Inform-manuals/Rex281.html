@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.4. Scoring</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Panache" -->
+<!-- SEARCH SECTION "Ex 166" -->
+<!-- SEARCH SORT "Ex 011-004-166" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc93.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc95.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.4. Scoring</b></td></tr></table><p>
+<p>
+<p>Not every work of IF allots a numerical score to the player: for some authors, this emphasises the idea of a game rather than a narrative. The simple sentence
+<p>
+<blockquote><font color="#000080">Use no scoring.
+</font></blockquote><p>
+<p>
+<p>abolishes the concept. Otherwise, Inform will provide built-in support for a single number measuring progress (&quot;score&quot;), and will expect to measure this against a maximum possible (&quot;maximum score&quot;, which can either be set by hand or worked out automatically from a table of ranks).
+<p>
+<p>In a game in which scoring exists, the player may choose to turn score notifications (such as &quot;[Your score has just gone up by one point.]&quot;) on or off. The commands to do this are NOTIFY ON and NOTIFY OFF; the actions are called switching score notification on and switching score notification off. In the event that we need to amend the behavior of notification, we could do so by adding, removing, or modifying the elements of the check and carry out rulebooks for these commands; as in
+<p>
+<blockquote><font color="#000080">Check switching score notification off:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the turn count is less than 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are still a novice, grasshopper. Allow your teacher to give you advice until such time as you are ready to go on alone.&quot;
+</font></blockquote><p>
+<p>
+<p>If we wish to change the wording of the default message (&quot;[Your score has...&quot;), we may want to resort to extensions available from the Inform website which allow access to all the default messages in a game.
+<p>
+<p>An especially insidious style of bug allows the player to type the same sequence of commands over and over, earning score endlessly for the same insight, and to avoid this it is usually safest to write source like:
+<p>
+<blockquote><font color="#000080">After taking the Picasso miniature when the Picasso miniature is not handled:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;award 10 points; say &quot;As they say in Montmartre: dude!&quot;
+</font></blockquote><p>
+<p>
+<p>We might also write our condition with &quot;for the first time&quot;, like so:
+<p>
+<blockquote><font color="#000080">After jumping for the first time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;award 5 points;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Boing! That was certainly entertaining.&quot;
+</font></blockquote><p>
+<p>
+<p>But we should be careful not to use &quot;for the first time&quot; in scoring situations where it's possible for the player to try the action but fail. Inform counts even unsuccessful attempts towards the number of times an action is understood to have occurred, so if the player tries to jump and fails, his &quot;for the first time&quot; will be used up and he will never receive the score points.
+<p>
+<p>If there are many &quot;treasure&quot; items like the Picasso miniature, it is best to be systematic, as in <b>No Place Like Home</b>. <b>Bosch</b> takes another approach to the same idea, by creating a table of point-earning actions that the player will be rewarded for doing; the FULL SCORE command will then play these back.
+<p>
+<p><b>Mutt's Adventure</b> demonstrates how we might add a scored room feature, such that the player earns a point when he first arrives at a special room.
+<p>
+<p>A single number does not really sum up a life, or even an afternoon, and <b>Goat-Cheese and Sage Chicken</b> and <b>Panache</b> offer more detailed citations. Works that are more story than game may prefer to offer a plot summary of the player's experience to date in lieu of more conventional scoring.
+<p>
+<p>Finally, <b>Rubies</b> provides a scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next.
+<p>
+<p><hr><p>
+<a name="e278"><a href=Rex278.html#e278 STYLE="text-decoration: none">***<b>Example 137:  No Place Like Home</b></a><br>Recording a whole table of scores for specific treasures.<p>
+<a name="e43"><a href=Rex43.html#e43 STYLE="text-decoration: none">*<b>Example 219:  Bosch</b></a><br>Creating a list of actions that will earn the player points, and using this both to change the score and to give FULL SCORE reports.<p>
+<a name="e257"><a href=Rex257.html#e257 STYLE="text-decoration: none">**<b>Example 136:  Mutt's Adventure</b></a><br>Awarding points for visiting a room for the first time.<p>
+<a name="e92"><a href=Rex92.html#e92 STYLE="text-decoration: none">***<b>Example 269:  Goat-Cheese and Sage Chicken</b></a><br>Implementing a FULL SCORE command which lists more information than the regular SCORE command, adding times and rankings, as an extension of the example given in this chapter.<p>
+<!-- EXAMPLE START -->
+<a name="e281"><a href=Rdoc94.html#e281 STYLE="text-decoration: none">***<b><b>Example</b> 166:  Panache</b></a><br>Replacing the score with a plot summary that records the events of the plot, scene by scene.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>If we have a plot that branches and has multiple kinds of outcome, we might well want to assemble these into a plot summary in place of the more traditional score. One way to approach this is to build the scene information into a table, adding information when each scene ends.
+<p>
+<p>We begin with a bit of setup:
+<p>
+<blockquote><font color="#000080">&quot;Panache&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player is in a room called Beneath Roxane's Balcony. Christian is a man in the Balcony. &quot;Christian stands in a spot of moonlight and tries to avoid too obviously glancing at the shadows that conceal you.&quot; The description of Christian is &quot;Like you, Christian loves Roxane. Unlike you, he is handsome enough to receive her favor in return. He is the beauty to your brain.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Roxane is a woman in the Balcony. &quot;Above you in the night is Roxane.&quot; Roxane can be wooed, skeptical, confused, or annoyed. Roxane is skeptical. The description of Roxane is &quot;The brightest, the most radiant of women -- and in love with an utter fool.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Empty Street is a room. &quot;No one is about at this hour, all alone under a pale moon.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Telling someone about something is speech. Asking someone about something is speech. Answering someone that something is speech.
+</font></blockquote><p>
+<p>
+<p>This next portion borrows from the Advanced Actions chapter to allow us to command Christian to do things:
+<p>
+<blockquote><font color="#000080">A persuasion rule for asking Christian to try speech: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Christian answering someone that something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Roxane is wooed;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'[noun], [the topic understood].'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Christian answering the player that something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Christian parrots your words back to you.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Christian telling a skeptical Roxane about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Roxane is confused;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Christian turns to [the noun]. 'I must tell you about [the topic understood],' he says, and comes to a halt, looking at you for further direction.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&nbsp;&nbsp;&nbsp;&nbsp;Perhaps you'd better give him exact lines to say. Surely he can't mess up an instruction like 'say hello to Roxane.'&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Christian asking a skeptical Roxane about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Roxane is confused;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'So,' says Christian nervously to [the noun]. 'Did you know about [the topic understood]?' But Roxane merely seems puzzled.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Christian telling a confused Roxane about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Roxane is annoyed;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Christian begins rambling on witlessly about [the topic understood].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Christian asking a confused Roxane about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Roxane is annoyed;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Christian puts another confused question about [the topic understood].&quot; instead.
+</font></blockquote><p>
+<p>
+<p>And now we have enough material to begin writing the scenes:
+<p>
+<blockquote><font color="#000080">Courting Roxane is a scene. Courting Roxane begins when play begins. Courting Roxane ends in success when Roxane is wooed. Courting Roxane ends in failure when Roxane is annoyed.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When Courting Roxane ends in success:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;Seduction by Proxy&quot; in the Table of Events;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Roxane, deeply moved by this sentiment, invites Christian up to her balcony. He scrambles up the ivy and disappears into her bedroom; the last thing you hear is a girlish giggle from above.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove Roxane from play; remove Christian from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to Empty Street.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When Courting Roxane ends in failure:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;Ruining Christian's Chances&quot; in the Table of Events;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Roxane sighs heavily and goes back into her room, slamming the door behind her.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">'Thanks very much,' says Christian to you, striding off down the street.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove Roxane from play; remove Christian from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to Empty Street.
+</font></blockquote><p>
+<p>
+<p>
+<blockquote><font color="#000080">Sulky Ramble is a scene. Sulky Ramble begins when Courting Roxane ends in success. Sulky Ramble ends when the time since Sulky Ramble began is 2 minutes. When Sulky Ramble ends: record &quot;Wandering the Streets, Sulking&quot; in the Table of Events.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn during Sulky Ramble:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You find yourself kicking fenceposts quite without thinking about it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Smug Ramble is a scene. Smug Ramble begins when Courting Roxane ends in failure. Smug Ramble ends when the time since Smug Ramble began is 2 minutes. When Smug Ramble ends: record &quot;Wandering the Streets, Exultant&quot; in the Table of Events; say &quot;Of course, you will regret this soon enough.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn during Smug Ramble:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You find yourself smiling fiercely at the moon.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To record (occurrence - text) in (target table - a table name):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a blank row in the target table;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the event entry is the occurrence.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Events
+<br>event
+<br>&quot;A Duel of Insults&quot;
+<br>with 30 blank rows.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The plot summary rule is listed instead of the announce the score rule in the carry out requesting the score rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the plot summary rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The Plot So Far: [paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let act number be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the table of Events:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increment act number;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;  Act [act number]: [event entry][line break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;christian, ask roxane about love / christian, say your breath smells like ripe taleggio to roxane / score / z / z / score&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e331"><a href=Rex331.html#e331 STYLE="text-decoration: none">***<b>Example 431:  Rubies</b></a><br>A scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next, adding the player's name if he has done well enough.<p>
+<p><hr><p><a href=Rdoc93.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc95.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

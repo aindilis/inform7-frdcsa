@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.11. Character Knowledge and Reasoning</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Character Knowledge and Reasoning" -->
+<!-- SEARCH SECTION "7.11" -->
+<!-- SEARCH SORT "007-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc56.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc58.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.11. Character Knowledge and Reasoning</b></td></tr></table><p>
+<p>
+<p>A character may be endowed with knowledge and even reasoning skills. Relations form quite a good way of keeping track of such problems: for instance, we can allow characters to be acquainted with one another with a relation such as
+<p>
+<blockquote><font color="#000080">Lucy knows Lady Cardew.
+</font></blockquote><p>
+<p>
+<p>Or we might keep track of more complicated attitudes between characters, as in <b>Murder on the Orient Express</b>, in which some characters suspect others of the crime.
+<p>
+<p>Alternatively, we might have a list of salient facts that are important in our game. We might declare these as values, and then characters could know, learn, and forget entries as appropriate:
+<p>
+<blockquote><font color="#000080">A fact is a kind of value. Some facts are defined by the Table of All Known Facts.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Knowledge relates various people to various facts. The verb to know (he knows, they know, he knew, it is known) implies the knowledge relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of All Known Facts
+<br>fact   	summary
+<br>shoe-size   	&quot;Lucy wears a size 9 shoe.&quot;
+<br>sunset-time   	&quot;Sunset is at 8:22 PM this evening.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Lucy knows shoe-size.
+<br>Bob knows sunset-time and shoe-size.
+</font></blockquote><p>
+<p>
+<p>Or again we might keep a whole database of information in a table: the characters in <b>Questionable Revolutions</b> know dates, countries, and a short description for each of several rebellions and popular uprisings, while in <b>Queen of Sheba</b>, Solomon is able to answer who, what, where, when, and why questions about a range of topics. This kind of approach is most useful when the characters need to display a deep knowledge of a particular field. The facts stored in the Table of All Known Facts, above, are comparatively sparse, because there we are designing a game in which not all data about the world is equally valuable: Lucy doesn't know the shoe size of every person in the game, because for some reason it is only her own shoe size that matters. On the other hand, the Table of All Known Facts can store different kinds of information, whereas the revolutions table has no way of storing shoe sizes or sunset times. And <b>Murder on the Orient Express</b> works differently again, because it is storing knowledge that concerns people and things that already exist in the world model, rather than abstract ideas. Our way of modeling character knowledge, in other words, will depend quite a lot on what kind of knowledge it is.
+<p>
+<p>The possibilities of character reasoning are similarly broad, but <b>The Problem of Edith</b> introduces one kind: the character has a concept of how different conversation topics relate to one another, so that when she is asked about a new keyword, she picks a response that makes the question most relevant to the conversation already in progress.
+<p>
+<p>We end with a longer scenario, in which we track what the character knows about the player and the conversational state: in <b>Chronic Hinting Syndrome</b>, the main character guides conversation in the direction he intends it to go, with the player's sometimes-reluctant participation.
+<p>
+<a href=Rdoc60.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Obedient Characters</b></font></a><i> for a character who needs to be taught how to perform actions before doing them</i><p><p>
+<a href=Rdoc58.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Characters Following a Script</b></font></a><i> for a programmable robot who can be given whole sequences of actions to perform</i><p><p>
+<p><hr><p>
+<a name="e256"><a href=Rex256.html#e256 STYLE="text-decoration: none">**<b>Example 241:  Murder on the Orient Express</b></a><br>A number of sleuths (the player among them) find themselves aboard the Orient Express, where a murder has taken place, and one of them is apparently the culprit. Naturally they do not agree on whom, but there is physical evidence which may change their minds...<p>
+<a name="e182"><a href=Rex182.html#e182 STYLE="text-decoration: none">***<b>Example 267:  Questionable Revolutions</b></a><br>An expansion on the previous idea, only this time we store information and let characters answer depending on their expertise in a given area.<p>
+<a name="e308"><a href=Rex308.html#e308 STYLE="text-decoration: none">***<b>Example 268:  The Queen of Sheba</b></a><br>Allowing the player to use question words, and using that information to modify the response given by the other character.<p>
+<a name="e45"><a href=Rex45.html#e45 STYLE="text-decoration: none">***<b>Example 235:  The Problem of Edith</b></a><br>A conversation in which the main character tries to build logical connections between what the player is saying now and what went immediately before.<p>
+<a name="e78"><a href=Rex78.html#e78 STYLE="text-decoration: none">****<b>Example 328:  Chronic Hinting Syndrome</b></a><br>Using name-printing rules to keep track of whether the player knows about objects, and also to highlight things he might want to follow up.<p>
+<p><hr><p><a href=Rdoc56.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc58.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

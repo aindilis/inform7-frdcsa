@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.1. Start-Up Features</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bikini Atoll" -->
+<!-- SEARCH SECTION "Ex 368" -->
+<!-- SEARCH SORT "Ex 011-001-368" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc90.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc92.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.1. Start-Up Features</b></td></tr></table><p>
+<p>
+<p>When the story file starts up, it normally prints a short introductory passage of text (the &quot;overture&quot;) and then a heading describing itself, together with some version numbering (the &quot;banner&quot;). It is traditional that the banner must appear eventually (and one of the few requirements of the Inform licence is that the author acknowledge Inform somewhere, for which the banner is sufficient) but some designs call for a multi-turn prologue before the banner finally appears, and marks the start of play in earnest. <b>Bikini Atoll</b> demonstrates this.
+<p>
+<p>If a story file represents the latest in a sequence of story files representing chapters in some larger narrative, it will need some way to pick up where its predecessor left off. This can be done with the aid of external files (in the Glulx format, at least). <b>Alien Invasion Part 23</b> shows how.
+<p>
+<p>Another task we might want to perform a the beginning of play is to arrange any randomized features that are supposed to change from one playing to the next. We can add such instructions with &quot;When play begins&quot; rule, as in:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the priceless treasure is in a random room.
+</font></blockquote><p>
+<p>
+<p>Since we may want to do something a bit more complicated than this, <b>Hatless</b> demonstrates effective and ineffective methods of distributing multiple objects (in this case, one randomly-selected hat per person).
+<p>
+<a href=Rdoc9.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Map</b></font></a><i> for a way to generate a randomized maze at the start of play</i><p><p>
+<a href=Rdoc68.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Food</b></font></a><i> for a way to choose a random piece of candy to be poisonous</i><p><p>
+<a href=Rdoc47.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Getting Acquainted</b></font></a><i> for a way to choose a murderer from among the characters at the start of each game</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e35"><a href=Rdoc91.html#e35 STYLE="text-decoration: none">*<b><b>Example</b> 368:  Bikini Atoll</b></a><br>Delaying the banner for later.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Bikini Atoll&quot; by Edward Teller
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Hut and the Tropical Beach are rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The conch shell is in the Hut. After taking the shell for the first time: say &quot;As you gather the oddly-warm conch shell into your arms, you experience a sudden flash of deja-vu...[banner text]&quot;; move the player to the Tropical Beach.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the banner text when the player is not carrying the shell: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / examine shell / get shell / look&quot;.
+</font></blockquote><p>
+<p>
+<p>(By tradition, and as a courtesy to all the people who have worked on Inform, authors ensure that the banner is printed some time near the beginning of each game played. So please only defer it, rather than suppress it altogether.)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e5"><a href=Rex5.html#e5 STYLE="text-decoration: none">*<b>Example 429:  Alien Invasion Part 23</b></a><br>Keeping a preference file that could be loaded by any game in a series.<p>
+<a name="e181"><a href=Rex181.html#e181 STYLE="text-decoration: none">**<b>Example 126:  Hatless</b></a><br>It's tempting to use "now..." to distribute items randomly at the start of play, but we need to be a little cautious about how we do that.<p>
+<p><hr><p><a href=Rdoc90.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc92.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

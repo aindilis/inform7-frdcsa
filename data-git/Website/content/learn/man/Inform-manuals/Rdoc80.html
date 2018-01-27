@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.1. Gases</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Gases" -->
+<!-- SEARCH SECTION "10.1" -->
+<!-- SEARCH SORT "010-001-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc79.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc81.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.1. Gases</b></td></tr></table><p>
+<p>
+<p>Inform normally assumes that everything is solid. It has no built-in support for gases or liquids, because they have so many different behaviours. For instance, is the important thing about gas that it diffuses, or that we breathe it, or that it mixes with other gases to react, or that it sometimes obscures vision? The answer depends on what we are trying to write, and for this reason Inform leaves it up to us.
+<p>
+<p>Gases are easier to deal with than liquids, because they tend to be everywhere in their location at once (unlike a liquid which might form a pool on the floor) and because they diffuse and mix by themselves (rather than being carried around or brought into contact with each other by the player). On the other hand, unlike liquids, gases are compressible: they can be present at low or high pressures, that is, in low or high concentrations.
+<p>
+<p>The simplest approach is the one in <b>Only You...</b>, where rooms are either filled with smoke or else smoke-free. Smoke gradually fills through the map, obscuring vision: no attempt is made to conserve the total quantity of smoke, as we assume that some fire is churning it out continuously to replace what diffuses away.
+<p>
+<p><b>Lethal Concentration 1</b> and <b>2</b> simulate a gas diffusing through a three-dimensional maze of rooms, and becoming dangerous above certain concentrations. There is just one possible gas, and it is modelled by giving each room a number which represents the concentration (in parts per million). This enables us to conserve the total amount of gas, or to have it released or captured by sources and sinks of given capacity.
+<p>
+<p>This could be extended by giving each room similar concentration levels for other gases, and providing for the diffusion rule to notice when different gases come into contact; or by giving a concentration (and also, for realism, a volume) to each closed container, applying rules for capturing and releasing gases as containers are opened and closed.
+<p>
+<p><hr><p>
+<a name="e348"><a href=Rex348.html#e348 STYLE="text-decoration: none">***<b>Example 74:  Only You...</b></a><br>Smoke which spreads through the rooms of the map, but only every other turn.<p>
+<a name="e164"><a href=Rex164.html#e164 STYLE="text-decoration: none">**<b>Example 392: Lethal Concentration 1</b></a><br>A poisonous gas that spreads from room to room, incapacitating or killing the player when it reaches sufficient levels.<p>
+<a name="e163"><a href=Rex163.html#e163 STYLE="text-decoration: none">***<b>Example 395: Lethal Concentration 2</b></a><br>Poisonous gas again, only this time it sinks.<p>
+<p><hr><p><a href=Rdoc79.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc81.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

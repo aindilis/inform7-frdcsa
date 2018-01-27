@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.19. Table amendments</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Table amendments" -->
+<!-- SEARCH SECTION "15.19" -->
+<!-- SEARCH SORT "015-019-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc258.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc260.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.19. Table amendments</b></td></tr></table><p>
+<p>
+<p>Tables can have amendments as well as continuations. The arrangement is much the same: a supplementary table supplies new rows for the original table. But instead of adding the new rows at the end of the original, as a continuation would, an amendment replaces matching rows in the original. (So the original stays the same size.)
+<p>
+<p>The amendment table must have exactly the columns of the original and in the same order. Moreover, each row in the amended table must match exactly one row in the original. For instance:
+<p>
+<blockquote><font color="#000080">Table of Plans
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">moment</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">outcome</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">10 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;takeover of Mars&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">11:30 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;canals reflooded&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">11:45 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;chocolate bar production doubled&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Plans (amended)
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">moment</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">outcome</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">11:45 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;volcanic cave production doubled&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>creates a three-row Table of Plans, with reference to the chocolate bars struck out.
+<p>
+<p>Amendment rows may be given in any order. The process of matching a row begins at the left-most column: Inform tries to see if any single row in the original table has a matching entry. If none does, a Problem is issued. If more than one do, Inform then looks at the second column, and so on. For instance:
+<p>
+<blockquote><font color="#000080">Enthusiasm is a kind of value. The enthusiasms are pumped, wired and languid.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Mental States
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">feeling</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">extent</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">consequence</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">pumped</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run for your life&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">pumped</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run for President&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">wired</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">languid</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Mental States (amended)
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">feeling</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">extent</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">consequence</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">pumped</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run for the Nebraska State Legislature&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>Here the amendment is made to the second row of the original table. The value in the leftmost column, &quot;pumped&quot;, matches two rows in the original, so Inform moves on to the next column, reads &quot;2&quot;, and finds that only one row in the original still qualifies - so that is the one replaced.
+<p>
+<p>For the present, at least, the columns used for matching may only contain: numbers, times, objects, action names, activities, figure names, sound names, truth states and any new kinds of value or units which have been declared.
+<p>
+<p><hr><p>
+<a name="e387"><a href=ex387.html#e387 STYLE="text-decoration: none">**<b>Example 274:  Trieste</b></a><br>Table amendment to adjust HELP commands provided for the player.<p>
+<p><hr><p><a href=doc258.html STYLE="text-decoration: none">Previous</a> / <a href=doc260.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

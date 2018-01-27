@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.3. Reactive Characters</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Pine 1" -->
+<!-- SEARCH SECTION "Ex 154" -->
+<!-- SEARCH SORT "Ex 007-003-154" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc48.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc50.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.3. Reactive Characters</b></td></tr></table><p>
+<p>
+<p>As we observe characters, so they observe us. Those who seem to have no awareness of what the player is doing often come across more like waxworks than like people. <b>Zodiac</b> demonstrates a scenario where the watchful presence of a dangerous criminal keeps the player from doing what he otherwise might, while <b>Police State</b> expands on this idea with a policeman who reacts to entire types of behavior in his presence, regardless of whether the culprit is the player or a third party. <b>Noisemaking</b> has a crow who will fly away in response to any loud noises the player makes.
+<p>
+<p>And, of course, we definitely want to have characters react to being looked at or otherwise interfered with. <b>Search and Seizure</b> implements a smuggler who reacts when we try to confiscate his possessions. <b>Pine 1</b> gives us a sleeping princess who can be woken by a variety of methods.
+<p>
+<p>We wrap up this section with two complete puzzle scenarios that demonstrate what can be achieved by giving characters reactions to the player's behavior. <b>A Day For Fresh Sushi</b> has a fish who watches the player's actions and comments on them, while the live furnishings in <b>Revenge of the Fussy Table</b> instead comment every turn on the current state of the world, until the player has successfully sorted out all their complaints.
+<p>
+<p><hr><p>
+<a name="e442"><a href=Rex442.html#e442 STYLE="text-decoration: none">*<b>Example 96:  Zodiac</b></a><br>Several variations on "doing something other than...", demonstrating different degrees of restriction.<p>
+<a name="e294"><a href=Rex294.html#e294 STYLE="text-decoration: none">*<b>Example 187:  Police State</b></a><br>Several friends who obey you; a policeman who doesn't (but who takes a dim view of certain kinds of antics).<p>
+<a name="e263"><a href=Rex263.html#e263 STYLE="text-decoration: none">***<b>Example 197:  Noisemaking</b></a><br>Creating a stage after the report stage of an action, during which other characters may observe and react.<p>
+<a name="e180"><a href=Rex180.html#e180 STYLE="text-decoration: none">***<b>Example 36:  Search and Seizure</b></a><br>A smuggler who has items, some of which are hidden.<p>
+<!-- EXAMPLE START -->
+<a name="e287"><a href=Rdoc49.html#e287 STYLE="text-decoration: none">*<b><b>Example</b> 154: Pine 1</b></a><br>Pine: Using a scene to watch for the solution of a puzzle, however arrived-at by the player.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Because scene rules are checked every turn, they can be useful for designing puzzles which have multiple solutions. Instead of deciding the puzzle is &quot;solved&quot; when the player does a certain action, we set up a scene that checks to see whether the player has achieved a certain outcome -- however he accomplished it.
+<p>
+<p>For instance, in this scenario, we're waiting for Sleeping Beauty to wake up, and it doesn't much matter how...
+<p>
+<blockquote><font color="#000080">&quot;Pine&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be asleep or awake. A person can be active or passive.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Spinning Tower is a room. &quot;A remote corner of the old castle, reserved for spinning and weaving tasks.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Sleeping Beauty is an asleep woman in the Spinning Tower. &quot;[if asleep]Sleeping Beauty lies here, oblivious to your presence[otherwise]Sleeping Beauty stands beside you, looking a little confused[end if].&quot; The description is &quot;She is even more magnificent than the rumors suggested.&quot; Understand &quot;woman&quot; or &quot;girl&quot; or &quot;princess&quot; or &quot;lady&quot; as Sleeping Beauty.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Discovery is a scene. Discovery begins when play begins. Discovery ends when Sleeping Beauty is awake. Marriage Proposal is a scene. Marriage Proposal begins when Discovery ends.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When Discovery ends: say &quot;Throughout the palace you can hear the other sounds of stirring and movement as the spell of centuries is broken.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waking an awake person: say &quot;Redundant.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waking an asleep person: say &quot;Yes, but how?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking an asleep person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is awake;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] sits bolt upright. 'Hey! Ow!' So much for that true love's kiss nonsense.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of kissing an asleep person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is awake;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] slowly stirs to wakefulness!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of throwing water at an asleep person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the second noun is awake;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You pour out [the noun] on [the second noun].
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">[The second noun] wakes, shuddering. 'Agh! I had a terrible dream about drowning and then-- Hey!'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a jug of water. Understand &quot;pour [something] on [something]&quot; or &quot;splash [something] at/on [something]&quot; as throwing it at.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x beauty / wake beauty / pour water on beauty&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e364"><a href=Rex364.html#e364 STYLE="text-decoration: none">****<b>Example 112:  A Day For Fresh Sushi</b></a><br>A complete story by Emily Short, called "A Day for Fresh Sushi", rewritten using Inform 7. Noteworthy is the snarky commenter who remarks on everything the player does, but only the first time each action is performed.<p>
+<a name="e160"><a href=Rex160.html#e160 STYLE="text-decoration: none">****<b>Example 82:  Revenge of the Fussy Table</b></a><br>A small game about resentful furniture and inconvenient objects.<p>
+<p><hr><p><a href=Rdoc48.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc50.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

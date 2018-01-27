@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.1. Testing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Alpha" -->
+<!-- SEARCH SECTION "Ex 404" -->
+<!-- SEARCH SORT "Ex 013-001-404" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc101.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc103.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.1. Testing</b></td></tr></table><p>
+<p>
+<p>There are no recipes for testing, alas, although most experienced IF authors have their preferred ways of going about it. Briefly: the best advice is to build and maintain a Skein which holds complete play-throughs of the piece, so that it is easy to check with a single click that all is still well; to have beta-testers who play through (substantial) drafts and send back their transcripts of play, along with suggestions; and to listen to these suggestions, and treat the beta-testers as editors rather than galley slaves.
+<p>
+<p><b>Alpha</b> shows a way to gracefully accept beta-testers' annotations without advancing time in the game.
+<p>
+<p>Most large works of IF have historically provided secret commands for testing and debugging - commands removed (or sometimes accidentally not) in the final released product. Inform does this automatically: the commands SHOWME, ACTIONS and SCENES are always present except in a released story file. It also allows us to write passages of source text which apply only for the testing phase, so that we can define new testing commands, or other checks that all is well: <b>Bic</b> demonstrates this, and is also useful in its own right.
+<p>
+<p><hr><p>
+<a name="e33"><a href=Rex33.html#e33 STYLE="text-decoration: none">*<b>Example 58:  Bic</b></a><br>Testing to make sure that all objects have been given descriptions.<p>
+<!-- EXAMPLE START -->
+<a name="e8"><a href=Rdoc102.html#e8 STYLE="text-decoration: none">*<b><b>Example</b> 404:  Alpha</b></a><br>Creating a beta-testing command that matches any line starting with punctuation.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Sometimes we want to let testers of a game insert their own comments during a transcript, without those comments wasting turns of the game or producing lengthy or inappropriate parser errors. Many testers have a habit of prefacing comments with a punctuation mark, so let's say that we'd like to catch any command that starts with any punctuation at all:
+<p>
+<blockquote><font color="#000080"> &quot;Alpha&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Hi, Larry! Thanks for testing my game!!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Unimplemented Room is a room. &quot;Room description goes here...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The scary troll is a man in Unimplemented Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After reading a command (this is the ignore beta-comments rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command matches the regular expression &quot;^\p&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(Noted.)&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x me / x troll / !this game is a bit dull so far / kiss troll / ? does this troll do anything? / :yawn&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc101.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc103.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

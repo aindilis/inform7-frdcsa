@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.12. Implications</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Implications" -->
+<!-- SEARCH SECTION "25.12" -->
+<!-- SEARCH SORT "025-012-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc428.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc430.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.12. Implications</b></td></tr></table><p>
+<p>
+<p>Extensions often need to define new kinds or properties, which we want to make as helpful as possible for the user. In particular, we want them not to require additional work for the author just to obtain the effect which seems only natural.
+<p>
+<p>For example, consider Inform's built-in &quot;locked&quot; property. If a door is locked, then it cannot be opened, which seems fair enough. But if the player tries to unlock the door, he might then find the following response:
+<p>
+<blockquote><font color="#000080">That doesn't seem to be something you can unlock.
+</font></blockquote><p>
+<p>
+<p>Which does not seem right. In real life, almost all locked items have outwardly exposed locks which it is perfectly sensible to try to unlock, given a key. The problem is that our door has the &quot;locked&quot; property, but not the &quot;lockable&quot; one.
+<p>
+<p>The Standard Rules solve this problem by including the following line:
+<p>
+<blockquote><font color="#000080">Something locked is usually lockable.
+</font></blockquote><p>
+<p>
+<p>This ensures that any door said by the author only to be &quot;locked&quot; will be &quot;lockable&quot; as well, and adds a small but worthwhile touch of realism.
+<p>
+<p>Such a sentence is called an &quot;implication&quot;, as it is in the form &quot;Condition A implies Condition B&quot;. Note that the two conditions must consist of either/or properties with or without kinds attached. Thus:
+<p>
+<blockquote><font color="#000080">A room in the Open Desert is usually lighted.
+</font></blockquote><p>
+<p>
+<p>will not work because &quot;a room in the Open Desert&quot; is a more complicated grammatical construction than, say, &quot;lighted&quot; or &quot;a lighted room&quot;: it contains a relative clause. Inform can only deal with simple implications.
+<p>
+<p>Inform never overrides certainties with mere implications, and is cautious about allowing them to build overly long chains of argument. This is to prevent the following kind of difficulty:
+<p>
+<blockquote><font color="#000080">An open door is usually closed. A closed door is usually open.
+</font></blockquote><p>
+<p>
+<p>Implications work just the same for values which aren't objects, so:
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, green and blue.
+<br>A colour can be zesty or flat. A colour can be bright or dull.
+<br>Red and blue are bright. Blue is flat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A bright colour is usually zesty.
+</font></blockquote><p>
+<p>
+<p>results in red being zesty, but blue and green being flat; blue because the source text explicitly says so (which trumps the &quot;usually&quot;), and green because this isn't a bright colour, so the implication doesn't arise.
+<p>
+<p>Implications have not been mentioned up to now since they are only really needed by extensions, but also because they can be tricky, with unforeseen consequences. We should handle them with care.
+<p>
+<p><hr><p><a href=doc428.html STYLE="text-decoration: none">Previous</a> / <a href=doc430.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

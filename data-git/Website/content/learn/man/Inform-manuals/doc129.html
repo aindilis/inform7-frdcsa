@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.8. Moving backdrops</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Moving backdrops" -->
+<!-- SEARCH SECTION "8.8" -->
+<!-- SEARCH SORT "008-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc128.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc130.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.8. Moving backdrops</b></td></tr></table><p>
+<p>
+<p>A backdrop can be in several rooms at once. When created, its position can be given as any specific collection of rooms, or as a region, or even as &quot;everywhere&quot;. For instance:
+<p>
+<blockquote><font color="#000080">The Upper Cave is above the Rock Pool. The Ledge is east of the Pool.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The stream is a backdrop. It is in the Upper Cave and the Ledge.
+</font></blockquote><p>
+<p>
+<p>Moving backdrops is not like moving other things, because there's no single destination. There are several possibilities:
+<p>
+<p>(a) A backdrop can be moved to a region. If we define:
+<p>
+<blockquote><font color="#000080">Lower Level is a region. The Rock Pool and the Ledge are in the Lower Level.
+</font></blockquote><p>
+<p>
+<p>then we can write either of
+<p>
+<blockquote><font color="#000080">move the stream to the Lower Level;
+<br>now the stream is in the Lower Level;
+</font></blockquote><p>
+<p>
+<p>and either way, the stream is now found in the Rock Pool and the Ledge but nowhere else.
+<p>
+<p>(b) A backdrop can be moved to a category of rooms:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>move </b>(object)<b> backdrop to all </b>(description of objects)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_movebackdrop -->
+
+<p>This phrase moves the backdrop so that it is now present in every room matching the given description. Example: If we define
+<p>
+<blockquote><font color="#000080">A room can be wet or dry. A room is usually dry. The Rock Pool is wet.
+</font></blockquote><p>
+<p>
+<p>then we can write
+<p>
+<blockquote><font color="#000080">move the stream backdrop to all wet rooms;
+</font></blockquote><p>
+<p>
+<p>This phrasing, &quot;move the ... backdrop to all ...&quot; is deliberately meant to look unlike the simpler &quot;move ... to ...&quot;, to emphasise that this kind of movement is possible only for backdrops.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>What then happens is that the stream is present in whichever rooms are currently wet. But the stream's position is ordinarily checked only after movements, for efficiency's sake. So if the player is in a room which suddenly changes from being dry to being wet, the stream will not magically appear (though it will be there if the player goes out and comes in again). If this is not good enough, the phrase &quot;update backdrop positions&quot; can be used to ensure the accuracy of all backdrop locations after a dramatic change:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>update backdrop positions</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_updatebackdrop -->
+
+<p>This phrase runs through all backdrops in the model world and makes sure they are correctly in, or not in, the current location, so that everything appears right from the player's point of view. Example:
+<p>
+<blockquote><font color="#000080">The Upper Cave is above the Rock Pool. The Ledge is east of the Pool. The stream is a backdrop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the stream backdrop to all wet rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A lever is in the Cave. The lever is fixed in place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of pulling the lever when the Cave is dry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the Cave is wet;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the lever is in the Rock Pool;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the lever is portable;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;update backdrop positions;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The old rusty lever pulls away, and the thin cave wall goes with it, so that a stream bursts into the cave, falling to the pool below.&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>(c) A backdrop can be removed from play, just as anything else can be: see the later section in this chapter.
+<p>
+<p><hr><p>
+<a name="e274"><a href=ex274.html#e274 STYLE="text-decoration: none">***<b>Example 120:  Orange Cones</b></a><br>Creating a traffic backdrop that appears in all road rooms except the one in which the player has laid down orange cones.<p>
+<p><hr><p><a href=doc128.html STYLE="text-decoration: none">Previous</a> / <a href=doc130.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

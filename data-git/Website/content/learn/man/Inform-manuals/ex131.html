@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.21. Constructing the status line</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Ways Out" -->
+<!-- SEARCH SECTION "Ex 336" -->
+<!-- SEARCH SORT "Ex 017-021-336" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc301.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc303.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.21. Constructing the status line</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> Just before input is accepted from the keyboard, Inform constructs a &quot;status line&quot; at the top of the window which is normally displayed in reverse colours (white on black instead of black on white, say).
+<p>
+<p><b>2. The default behaviour.</b> Makes the status line up out of two pieces, the &quot;left hand status line&quot; and the &quot;right hand status line&quot;. Since these can freely be changed, note that the status line is already very customisable without using rules applied to this activity.
+<p>
+<p><b>3. Examples.</b> (a) The most useful thing about this activity is that it allows us to vary descriptions in the status line. This is especially helpful to abbreviate unduly long room names, which might not otherwise fit:
+<p>
+<blockquote><font color="#000080">The Temple Of A Thousand Mightily Peeved Deities is a room. Rule for printing the name of the Temple while constructing the status line: say &quot;Temple&quot;.
+</font></blockquote><p>
+<p>
+<p>(b) Again, it's usually not necessary to apply activity rules to this, but occasionally amusing effects are possible if we do:
+<p>
+<blockquote><font color="#000080">The blindfold is wearable and carried. Rule for constructing the status line while the blindfold is worn: do nothing.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e131"><a href=doc302.html#e131 STYLE="text-decoration: none">*<b><b>Example</b> 336:  Ways Out</b></a><br>A status line that lists the available exits from the current location.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>A not-uncommon device in games with large maps is a list of available exits printed in the status bar. We might do this so:
+<p>
+<blockquote><font color="#000080">&quot;Ways Out&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now left hand status line is &quot;Exits: [exit list]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now right hand status line is &quot;[location]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say exit list:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let place be location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with way running through directions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let place be the room way from the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if place is a room, say &quot; [way]&quot;.
+</font></blockquote><p>
+<p>
+<p>
+<p>We may find that printing out full directions makes the status line unpleasantly crowded. Fortunately, it isn't hard to provide a set of abbreviations to use in this context:
+<p>
+<blockquote><font color="#000080">Rule for printing the name of a direction (called the way) while constructing the status line:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row with a heading of the way in the Table of Abbreviation;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[shortcut entry]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Abbreviation
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">heading</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">shortcut</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">north</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;N&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">northeast</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;NE&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">northwest</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;NW&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">east</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;E&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">southeast</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;SE&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">south</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;S&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">southwest</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;SW&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">west</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;W&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">up</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">down</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;D&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">inside</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;IN&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">outside</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;OUT&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Dome is a room. North of Dome is North Chapel. South of the Dome is South Chapel. West of the Dome is Western End. Quiet Corner is northwest of the Dome, north of Western End, and west of North Chapel. Loud Corner is east of North Chapel, northeast of Dome, and north of Eastern End. Eastern End is north of Dim Corner and east of Dome. Dim Corner is southeast of Dome and east of South Chapel. Ruined Corner is southwest of Dome, west of South Chapel, and south of Western End.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The church door is east of Eastern End and west of the Courtyard. The church door is a door.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;w / n / e / e / s / e&quot;.
+</font></blockquote><p>
+<p>
+<p>Everywhere else, the names of directions will still be printed out in full in the usual way.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e130"><a href=ex130.html#e130 STYLE="text-decoration: none">**<b>Example 337:  Guided Tour</b></a><br>A status line that lists the available exits from the current location, changing the names of these exits depending on whether the room has been visited or not.<p>
+<p><hr><p><a href=doc301.html STYLE="text-decoration: none">Previous</a> / <a href=doc303.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.5. Text with lists</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Control Center" -->
+<!-- SEARCH SECTION "Ex 61" -->
+<!-- SEARCH SORT "Ex 005-005-061" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc75.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc77.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.5. Text with lists</b></td></tr></table><p>
+<p>
+<p>We often want running text to include lists of items.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_listof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. Example:
+<p>
+<blockquote><font color="#000080">&quot;Mr Darcy glares proudly at you. He is wearing [list of things worn by Darcy] and carrying [list of things carried by Darcy].&quot;
+</font></blockquote><p>
+<p>
+<p>And, if this were from a dramatisation of the novel by Miss Fielding rather than Miss Austen, we might find:
+<p>
+<blockquote><font color="#000080">Mr Darcy glares proudly at you. He is wearing a pair of Newcastle United boxer shorts and carrying a self-help book.
+</font></blockquote><p>
+<p>
+<p>If the description matches nothing - for instance, if Darcy has empty hands - then &quot;nothing&quot; is printed.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>As with all lists in Inform, the serial comma is only used if the &quot;Use serial comma.&quot; option is in force. So by default we would get &quot;a fishing pole, a hook and a sinker&quot;, rather than &quot;a fishing pole, a hook, and a sinker&quot;.
+<p>
+<p>We then need variations to add indefinite or definite articles, and to capitalise the first item. For example,
+<p>
+<blockquote><font color="#000080">&quot;Mr Darcy impatiently bundles [the list of things carried by Darcy] into your hands and stomps out of the room.&quot;
+</font></blockquote><p>
+<p>
+<p>might result in
+<p>
+<blockquote><font color="#000080">Mr Darcy impatiently bundles the self-help book and the Christmas card into your hands and stomps out of the room.
+</font></blockquote><p>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>a list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_alistof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. Each item is prefaced by its indefinite article. Example:
+<p>
+<blockquote><font color="#000080">a maritime bill of lading, some hemp rope and Falconer's Naval Dictionary
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>A list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_Alistof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. Each item is prefaced by its indefinite article, and the first is capitalised, so that it can be used at the beginning of a sentence. Example:
+<p>
+<blockquote><font color="#000080">A maritime bill of lading, some hemp rope and Falconer's Naval Dictionary
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>the list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_thelistof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. Each item is prefaced by its definite article. Example:
+<p>
+<blockquote><font color="#000080">the maritime bill of lading, the hemp rope and Falconer's Naval Dictionary
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>The list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_Thelistof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. Each item is prefaced by its definite article, and the first is capitalised, so that it can be used at the beginning of a sentence. Example:
+<p>
+<blockquote><font color="#000080">The maritime bill of lading, the hemp rope and Falconer's Naval Dictionary
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>So much for articles. A more insidious problem comes with something like this:
+<p>
+<blockquote><font color="#000080">&quot;The places you can go are [list of rooms].&quot;
+</font></blockquote><p>
+<p>
+<p>The trouble is that the list may end up either singular or plural. We might be expecting something like:
+<p>
+<blockquote><font color="#000080">The places you can go are Old Bailey, Bridget's Flat and TV Centre.
+</font></blockquote><p>
+<p>
+<p>But if there is only one room, then the result might be:
+<p>
+<blockquote><font color="#000080">The places you can go are Bridget's Flat.
+</font></blockquote><p>
+<p>
+<p>which is wrong. We can get around this with careful wording and a slightly different substitution:
+<p>
+<blockquote><font color="#000080">&quot;Nearby [is-are list of rooms].&quot;
+</font></blockquote><p>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>is-are list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_islistof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. The whole list starts with &quot;is&quot; (if there's one item or none) or &quot;are&quot; (more than one). Examples:
+<p>
+<blockquote><font color="#000080">is marlin-spike
+<br>are maritime bill of lading, hemp rope and Falconer's Naval Dictionary
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>is-are a list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_isalistof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. Each item is prefaced by its indefinite article, and the whole list starts with &quot;is&quot; (if there's one item or none) or &quot;are&quot; (more than one). Examples:
+<p>
+<blockquote><font color="#000080">is a marlin-spike
+<br>are a maritime bill of lading, some hemp rope and Falconer's Naval Dictionary
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>is-are the list of description of objects</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_isthelistof -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description. Each item is prefaced by its definite article, and the whole list starts with &quot;is&quot; (if there's one item or none) or &quot;are&quot; (more than one). Examples:
+<p>
+<blockquote><font color="#000080">is the marlin-spike
+<br>are the maritime bill of lading, the hemp rope and Falconer's Naval Dictionary
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>a list of description of objects including contents</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_alistofconts -->
+
+<p>This text substitution produces a list, in sentence form, of everything matching the description, noting any contents in brackets. This is really intended only to be used by the Standard Rules.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>Previous builds allowed this:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>contents of object</b>]&quot;<br><i>or:</i> say &quot;[<b>the contents of object</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_contents_dep -->
+
+<p>This text substitution produces a list in sentence form of what is inside the object according to the object tree. Example:
+<p>
+<blockquote><font color="#000080">&quot;Mr Darcy impatiently bundles [the contents of Darcy] into your hands and stomps out of the room.&quot;
+</font></blockquote><p>
+<p>
+<p>This is now deprecated - it's much better to use &quot;[list of things carried by Darcy]&quot;, which is explicit about the relationship (carrying).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e339"><a href=doc76.html#e339 STYLE="text-decoration: none">*<b><b>Example</b> 61:  Control Center</b></a><br>Objects which automatically include a description of their component parts whenever they are examined.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>It is straightforward to make a rule that anything with parts must mention all those parts during an EXAMINE command:
+<p>
+<blockquote><font color="#000080">&quot;Control Center&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After examining a thing when something is part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] includes [a list of things which are part of the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Control Center is a room. &quot;Here you are at the Control Center of the universe.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Universe Management Computer is a fixed in place thing in the Control Center. &quot;The Universe Management Computer sits directly before you, unguarded.&quot; The description of the Universe Management Computer is &quot;The computer is so large that you would be unable to operate it all from one position. Alas, it does not come with a manual.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A chartreuse indicator light, an ennui meter, a golden knob settable to 15,000 positions, a toothpick dispenser, and a button labeled RESTART are part of the Universe Management Computer.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The command chair is an enterable supporter in the Control Center. It is pushable between rooms. &quot;Because the computer is too large for you to reach all of the front panel from a standing position, there is a command chair on casters which allows you to push back and forth.&quot; The description of the command chair is &quot;Quite ordinary, really, but for the heady rush of power that comes of sitting in it.&quot;. Some casters are part of the command chair.
+</font></blockquote><p>
+<p>
+<p>Now whenever we look at any object with components, we will first see the description, then a list of parts which belong to it. The following refinement brings in elements of later chapters, but it may be worth noting: because we've written our rule as an &quot;After examining...&quot;, anything that pre-empts the operation of the examine command will also prevent that rule from occurring. So for instance:
+<p>
+<blockquote><font color="#000080">A hair-thick needle is part of the ennui meter.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the ennui meter: say &quot;You can't be bothered.&quot;
+</font></blockquote><p>
+<p>
+<p>...would not result in the needle being mentioned.
+<p>
+<blockquote><font color="#000080">Test me with &quot;x chair / x computer / x ennui meter&quot;
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e217"><a href=ex217.html#e217 STYLE="text-decoration: none">**<b>Example 62:  Tiny Garden</b></a><br>A lawn made up of several rooms, with part of the description written automatically.<p>
+<p><hr><p><a href=doc75.html STYLE="text-decoration: none">Previous</a> / <a href=doc77.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

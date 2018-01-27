@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.9. Extensions in the Index</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Extensions in the Index" -->
+<!-- SEARCH SECTION "25.9" -->
+<!-- SEARCH SORT "025-009-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc425.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc427.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.9. Extensions in the Index</b></td></tr></table><p>
+<p>
+<p>As soon as a project has successfully been translated, its Index is brought up to date: pages of the index record all the kinds and what they are for, all the phrases which can be used, and so on. Any kind or phrase created in an extension is automatically included. The extension's presence in the project is itself recorded - the Contents index for any project contains a brief list of all extensions used in that project, along with their authors and version numbers. For instance:
+<p>
+<blockquote><font color="#000080">Standard Rules version 1/040731
+<br>Locksmith by Emily Short
+<br>Tupperware by Emily Short
+</font></blockquote><p>
+<p>
+<p>The Kinds index aims to give the reader a brief note of what each kind is intended for. We can provide for this by writing a sentence like so:
+<p>
+<blockquote><font color="#000080">The specification of player's holdall is &quot;Represents a container which the player can carry around as a sort of rucksack, into which spare items are automatically stowed away.&quot;
+</font></blockquote><p>
+<p>
+<p>There is no need to specify the properties which apply: that is all done automatically. &quot;Specification&quot; is a sort of pseudo-property used just for this: we can also give specifications to kinds of value and to actions, and these are similarly used in the Index pages.
+<p>
+<p>Every extension has the right to its own set of headings and subheadings, independently of those used by the main source for the work or by any other extension which may be included. (So if the extension is divided into four sections and finishes on Section D, say, that doesn't mean that Section D will continue outside the extension as the main source of the game runs on.)
+<p>
+<p>Extensions should, of course, be written so that they never produce Problem messages, so at first sight it appears that these headings will never be outwardly visible. In fact, though, Problems do occasionally turn up in extensions, usually when the user has made a mistake, or when two inconsistent extensions are used in the same project. But more importantly, the headings in an extension are used when indexing phrases (and also actions) to group similar phrases together. For instance, the Standard Rules contain the heading:
+<p>
+<blockquote><font color="#000080">Section SR4/7 - Searching and sorting tables
+</font></blockquote><p>
+<p>
+<p>The half-dozen phrases defined in this section of the Standard Rules are then indexed under the subheading &quot;Searching and sorting tables&quot;: Inform looks for a hyphen in the heading and then uses any text which follows the hyphen. (If there is no hyphen, the entire heading text is used.)
+<p>
+<p>If an extension contains no headings, its phrases (or actions) are indexed simply as &quot;Miscellaneous&quot;.
+<p>
+<p>Finally, any phrase or variable defined immediately under a heading whose name ends in the word &quot;unindexed&quot; will be omitted from the Phrasebook or Contents index respectively. (That won't apply to definitions under subheadings of the heading.) This is intended so that technical apparatus used only inside the extensions can be concealed from the outside user's immediate view. Inform as it is presently constituted does not allow extensions to make fully private definitions, but this feature at least allows them to make unadvertised ones.
+<p>
+<p><hr><p><a href=doc425.html STYLE="text-decoration: none">Previous</a> / <a href=doc427.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

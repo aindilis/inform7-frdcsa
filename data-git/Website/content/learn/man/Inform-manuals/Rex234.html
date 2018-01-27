@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.2. Publishing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Port Royal 5" -->
+<!-- SEARCH SECTION "Ex 436" -->
+<!-- SEARCH SORT "Ex 013-002-436" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc102.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><img border=0 src=images/ForwardDisabled.png></td><td valign="top"><b>13.2. Publishing</b></td></tr></table><p>
+<p>
+<p>These three examples simply show what can be done using Inform's EPS-format map output, if one is willing to tweak the design in some vector-art program. Unfortunately, at present, there are few alternatives to Adobe Illustrator - a superb but very expensive program - in the field of EPS editing, and indeed, of vector art generally: this is especially the case for Windows users. But for the IF author who does happen to have Illustrator for some other reason, Inform plays nicely with it.
+<p><hr><p>
+<a name="e147"><a href=Rex147.html#e147 STYLE="text-decoration: none">*<b>Example 435:  Baedeker</b></a><br>Creating a floorplan of the cathedral using the locations from previous examples.<p>
+<a name="e235"><a href=Rex235.html#e235 STYLE="text-decoration: none">*<b>Example 437:  Bay Leaves and Honey Wine</b></a><br>Creating a map of Greece using the locations from previous examples.<p>
+<!-- EXAMPLE START -->
+<a name="e234"><a href=Rdoc103.html#e234 STYLE="text-decoration: none">*<b><b>Example</b> 436: Port Royal 5</b></a><br>Port Royal scenario given instructions for an EPS map.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;1691&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Fort James is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Thames Street End is south of Fort James.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Lime Street is south of Thames Street End. West of Thames Street End is north of Fisher's Row. The description of Fisher's Row is &quot;A waterfront street that runs south towards Chocolata Hole, where the small craft are harboured. It also continues north around the tip of the peninsula from here, turning into the east-west Thames Street.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Water Lane is east of Thames Street End.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">East of Water Lane is a room called Thames Street at the Wherry Bridge.  Thames Street at the Wherry Bridge has the description &quot;To the southwest is the fishmarket; directly across the street is the entrance to a private alley through a brick archway.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Fishmarket is southwest of Thames Street at the Wherry Bridge.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Private Alley is south of Thames Street at the Wherry Bridge.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Thames Street by the King's House is east of Thames Street at the Wherry Bridge.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Thames Street before Fort Carlisle is east of Thames Street by the King's House.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">South of Thames Street before Fort Carlisle is a room called Fort Carlisle. The description of Fort Carlisle is &quot;Handsomely arrayed with cannons which you could fire at any moment -- though of course there are ships at dock which might be in the way.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Queen Street End is south of Lime Street.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Queen Street Middle is east of Queen Street End.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Queen Street East is east of Queen Street Middle and south of Private Alley.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Queen Street at the Prison is east of Queen Street East.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Index map with an EPS file and
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Fisher's Row mapped southwest of Thames Street End,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-size set to 50 and room-name-size set to 10,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-name-length set to 15,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;route-thickness set to 2,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-outline set to off,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;map-outline set to off,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;route-colour set to &quot;Chocolate&quot;,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-colour set to &quot;Burly Wood&quot;,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;title set to &quot;Port Royal, 1691&quot;,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;font set to &quot;Baskerville&quot;,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-offset of Thames Street by the King's House set to 160&-40,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-offset of Thames Street before Fort Carlisle set to 210&10,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-offset of Fort Carlisle set to 210&0,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-offset of Fort James set to -90&-20,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-offset of Water Lane set to 0&20,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;room-offset of Queen Street End set to 5&0.
+</font></blockquote><p>
+<p>
+<p>This sentence has become a long catalogue of specifications. To break it down: we disambiguate the placement of Thames Street End, which otherwise is hard to locate because the directions to and from the room are not symmetrical. Then we apply some general rules about size, font, and color. Finally, we add instructions about offsetting the room locations of a few specific rooms.
+<p>
+<p>This last part is a bit finicky and will not be necessary in many cases, but our goal this time is to create a map diagram that can be superimposed on the real coastal outline of Port Royal at the time. With a bit of editing, the result looks like this:
+<p>
+<p><img border=0 src=images/portroyal.png>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc102.html STYLE="text-decoration: none">Previous</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

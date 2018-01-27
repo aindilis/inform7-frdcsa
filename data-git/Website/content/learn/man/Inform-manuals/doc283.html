@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.2. How activities work</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "How activities work" -->
+<!-- SEARCH SECTION "17.2" -->
+<!-- SEARCH SORT "017-002-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc282.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc284.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.2. How activities work</b></td></tr></table><p>
+<p>
+<p>All activities start, continue for a while and then finish: however, no activity ever runs on for more than a single turn. Several activities can be going on at the same time. For instance, suppose the following is printed as part of the description of a grocery:
+<p>
+<blockquote><font color="#000080">You can see a banana, an apple and a star-fruit here.
+</font></blockquote><p>
+<p>
+<p>At the moment when Inform prints &quot;apple&quot;, two activities are under way: &quot;listing contents of the Grocery&quot;, and &quot;printing the name of the apple&quot;. The sequence of events was in fact:
+<p>
+<blockquote><font color="#000080">say &quot;You can see &quot;
+<br><i>start listing contents of the Grocery</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;a &quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>start printing the name of the banana</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;banana&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>finish printing the name of the banana</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;, an &quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>start printing the name of the apple</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;apple&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>finish printing the name of the apple</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; and a &quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>start printing the name of the star-fruit</i>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;star-fruit&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;<i>finish printing the name of the star-fruit</i>
+<br><i>finish listing contents of the Grocery</i>
+<br>say &quot; here.&quot;
+</font></blockquote><p>
+<p>
+<p>The golden rule is: if activity B starts during activity A, it must also finish during activity A.
+<p>
+<p>If we ever need to find out, we can always test:
+<p>
+<blockquote><font color="#000080">if the printing the name activity is going on, ...
+<br>if the printing the name activity is not going on, ...
+</font></blockquote><p>
+<p>
+<p>but as we shall see, it's usually simpler to attach &quot;while printing the name&quot; provisos to rules.
+<p>
+<p><hr><p><a href=doc282.html STYLE="text-decoration: none">Previous</a> / <a href=doc284.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.2. Looking up entries</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Looking up entries" -->
+<!-- SEARCH SECTION "15.2" -->
+<!-- SEARCH SORT "015-002-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc241.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc243.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.2. Looking up entries</b></td></tr></table><p>
+<p>
+<p>The simplest way to access the information inside tables is to ask explicitly for it, specifying the row number, the column name and what table is to be consulted. So, given our example table
+<p>
+<blockquote><font color="#000080">Table 2.1 - Selected Elements
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Hydrogen&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;H&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Iron&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Fe&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">26</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">56</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Zinc&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Zn&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">30</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">65</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Uranium&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">92</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">238</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>we can write the following description:
+<p>
+<blockquote><font color="#000080">symbol in row 3 of the Table of Selected Elements
+</font></blockquote><p>
+<p>
+<p>to produce the value &quot;Zn&quot;. Or the following will run off some chemical data:
+<p>
+<blockquote><font color="#000080">repeat with N running from 1 to the number of rows in the Table of Selected Elements:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The atomic weight of [element in row N of the Table of Selected Elements] is [atomic weight in row N of the Table of Selected Elements].&quot;
+</font></blockquote><p>
+<p>
+<p>The result of which will be:
+<p>
+<blockquote><font color="#000080">The atomic weight of Hydrogen is 1.
+<br>The atomic weight of Iron is 56.
+<br>The atomic weight of Zinc is 65.
+<br>The atomic weight of Uranium is 238.
+</font></blockquote><p>
+<p>
+<p>Note that the first row in a table is row number 1, and that the last can be found with the phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of rows in</b>/from<b> </b>(table name)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numrows -->
+
+<p>This phrase produces the number of rows (including any blank rows) in the given table. Example:
+<p>
+<blockquote><font color="#000080">number of rows in the Table of Selected Elements
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc241.html STYLE="text-decoration: none">Previous</a> / <a href=doc243.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

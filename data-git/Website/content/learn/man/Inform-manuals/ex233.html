@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.15. Printing room description details of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Rules of Attraction" -->
+<!-- SEARCH SECTION "Ex 332" -->
+<!-- SEARCH SORT "Ex 017-015-332" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc295.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc297.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.15. Printing room description details of something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> When an item is listed in the miscellaneous collection of items present in a room (the ones which do not deserve their own paragraphs): this is normally the last paragraph of a room description.
+<p>
+<p><b>2. The default behaviour.</b> A bracketed piece of extra information is added for certain items such as containers:
+<p>
+<blockquote><font color="#000080">You can also see Po and a cage (empty) here.
+</font></blockquote><p>
+<p>
+<p>The &quot; (empty)&quot; (note initial space) was added by this activity. (Note that this activity is not responsible for describing further items visible because of the item in question: that is, it does not print the text such as &quot;(in which is a notepad)&quot; which would appear if there were contents. If we want to remove such text, we should use &quot;omit contents in listing&quot;: see the activity &quot;for printing the name of something&quot;.)
+<p>
+<p><b>3. Examples.</b> (a) To get rid of such addenda entirely, try:
+<p>
+<blockquote><font color="#000080">Rule for printing room description details: stop.
+</font></blockquote><p>
+<p>
+<p>(b) To add a new form of addendum:
+<p>
+<blockquote><font color="#000080">Rule for printing room description details of a person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; (at last, someone to talk to)&quot; instead.
+</font></blockquote><p>
+<p>
+<p>If both examples (a) and (b) are in place at once, we might now read:
+<p>
+<blockquote><font color="#000080">You can also see Po (at last, someone to talk to) and a cage here.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e233"><a href=doc296.html#e233 STYLE="text-decoration: none">*<b><b>Example</b> 332:  Rules of Attraction</b></a><br>A magnet which picks up nearby metal objects, and describes itself appropriately in room descriptions and inventory listings, but otherwise goes by its ordinary name.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Often we have some salient features of an object that we want to make sure the player notices whenever looking at the item in a room or in inventory. At other times, we may prefer to allow the name of the item to be printed bare. So for instance:
+<p>
+<blockquote><font color="#000080">&quot;Rules of Attraction&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A metal form is a kind of thing. A magnet is a kind of metal form.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through nonmagnetic metal forms which are not part of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if item is in a container which contains a magnet (called attractor):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] sticks to [the attractor].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is part of the attractor.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The horseshoe magnet is a magnet carried by the player. The nail is a metal form carried by the player. The Barn is a room. In the Barn is a bucket. In the bucket is a metal form called the iron hook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is nonmagnetic if it is not a magnet.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing room description details of a magnet (called attractor): if something is part of the attractor, say &quot; (stuck to which [is-are the list of things which are part of the attractor])&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a magnet (called attractor) while taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something is part of the attractor, say &quot; (stuck to which [is-are the list of things which are part of the attractor])&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before taking a touchable thing which is part of a magnet (called attractor):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the holder of the attractor.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / put horseshoe in bucket / look / get horseshoe / i / drop horseshoe / i / look / get all / put all in bucket / i / x magnet / get nail / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc295.html STYLE="text-decoration: none">Previous</a> / <a href=doc297.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.5. Change of properties with values</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Change of properties with values" -->
+<!-- SEARCH SECTION "8.5" -->
+<!-- SEARCH SORT "008-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc125.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc127.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.5. Change of properties with values</b></td></tr></table><p>
+<p>
+<p>Changing properties with values is very similar:
+<p>
+<blockquote><font color="#000080">now the printed name of the Closet is &quot;Suddenly Spooky Closet&quot;
+</font></blockquote><p>
+<p>
+<p>Inform checks three different things to ensure that this change is safe to perform. Firstly, the value must be the right kind for the property in question, so this for instance would be rejected:
+<p>
+<blockquote><font color="#000080">now the printed name of the Closet is 7
+</font></blockquote><p>
+<p>
+<p>Secondly, the object in question has to be allowed to have the given property. This, for instance, would be disallowed:
+<p>
+<blockquote><font color="#000080">now the initial appearance of the Closet is &quot;Dusty&quot;
+</font></blockquote><p>
+<p>
+<p>(since &quot;initial appearance&quot; is a property which only things can have, not rooms). Finally, the object has to actually have the property, not just have the right to have that property. Thus:
+<p>
+<blockquote><font color="#000080">now the printed name of the Closet is &quot;Suddenly Spooky Closet&quot;
+</font></blockquote><p>
+<p>
+<p>...is only permitted if the Closet is designed with a &quot;printed name&quot;. In fact this is certain to be true: all rooms and things automatically have a printed name, which is the short boldface description in the case of rooms, and the usual text briefly describing something in the case of things.
+<p>
+<p>&quot;Now&quot; is a simple way to change many things in Inform, but it's cumbersome to change the map of the model world using &quot;now&quot;, because the map is such a complicated arrangement. (It's not a property: it's a sort of mesh of relations.) So a special phrase exists to change map connections:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change </b>(direction)<b> exit of </b>(room)<b> to </b>(room)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_changeexit -->
+
+<p>This phrase alters the map so that the given map connection is made. Note that connections can be made to rooms, but not doors: the positions of doors are fixed. Example:
+<p>
+<blockquote><font color="#000080">change the east exit of the Closet to the Tsar's Imperial Dining Salon
+</font></blockquote><p>
+<p>
+<p>Since &quot;nothing&quot; is not a room, this doesn't allow us to change the exit to nothing, so there is a separate definition of:
+<p>
+<blockquote><font color="#000080">change the west exit of the Closet to nothing
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change </b>(direction)<b> exit of </b>(room)<b> to nothing</b>/nowhere<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_changenoexit -->
+
+<p>This phrase alters the map so that the given map connection is unmade. Example:
+<p>
+<blockquote><font color="#000080">change the west exit of the Closet to nowhere
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Altering the map itself is not a very subtle way to adjust when and where the player can move - writing suitable rules is usually a cleaner solution - so this phrase is best avoided unless really needed.
+<p>
+<p><hr><p>
+<a name="e418"><a href=ex418.html#e418 STYLE="text-decoration: none">*<b>Example 117:  Thirst</b></a><br>A waterskin that is depleted as the player drinks from it.<p>
+<a name="e419"><a href=ex419.html#e419 STYLE="text-decoration: none">*<b>Example 118:  Thirst 2</b></a><br>A campfire added to the camp site, which can be lit using tinder.<p>
+<p><hr><p><a href=doc125.html STYLE="text-decoration: none">Previous</a> / <a href=doc127.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

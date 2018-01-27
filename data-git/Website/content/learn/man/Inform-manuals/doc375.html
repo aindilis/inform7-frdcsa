@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 22.6. Displaying the figures</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Displaying the figures" -->
+<!-- SEARCH SECTION "22.6" -->
+<!-- SEARCH SORT "022-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc374.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc376.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>22.6. Displaying the figures</b></td></tr></table><p>
+<p>
+<p>Inform's basic picture support simply allows figures to be shown at particular times. Once seen, they scroll away, just as text does once it has been printed. These pictures are really part of the stream of narrative. (If we would like icons or other images to be permanently present on screen, and divide the screen up in pictorial ways to achieve interesting layouts, we need to use special extensions to access Glulx's more exotic features.)
+<p>
+<p>Displaying a picture is therefore like printing some text. Rather than
+<p>
+<blockquote><font color="#000080">say &quot;The woodlands stretch from here to the horizon.&quot;;
+</font></blockquote><p>
+<p>
+<p>we would use:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>display </b>(figure name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_displayfigure -->
+
+<p>This phrase causes the figure to be displayed in the centre of the screen visible to the player. If the option &quot;one time only&quot; is used, it will have no effect if the figure has been displayed before. Example:
+<p>
+<blockquote><font color="#000080">display the Figure of Woodlands;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Once again, note that the &quot;display&quot; phrase does nothing unless the Settings for the project are set to the Glulx story file format. When a Glulx work is released as a blorb (the default setting for the way releases occur: see the chapter on Publishing), all the images used are automatically included.
+<p>
+<p><hr><p><a href=doc374.html STYLE="text-decoration: none">Previous</a> / <a href=doc376.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

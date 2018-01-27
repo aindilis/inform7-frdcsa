@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.3. Giving instructions to other people</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Giving instructions to other people" -->
+<!-- SEARCH SECTION "12.3" -->
+<!-- SEARCH SORT "012-003-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc188.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc190.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.3. Giving instructions to other people</b></td></tr></table><p>
+<p>
+<p>So far, all actions have been carried out by the player: which is fine for exploring the passive world of an empty warehouse, but less good for a drama in which other characters have to be contended with. In fact, an action can be carried out by anybody - by any instance of the &quot;person&quot; kind, that is, which includes all the men, women and animals in the game, and not only the player.
+<p>
+<p>In interactive fiction, players conventionally ask other characters to do something with commands like so:
+<p>
+<blockquote><font color="#000080">> will, go west
+</font></blockquote><p>
+<p>
+<p>Clearly &quot;will, go west&quot; should not produce the same action as &quot;go west&quot;, because a different person will be trying it: this person is called the &quot;actor&quot;, and while the actor is ordinarily the player, here it is the character called Will. Inform distinguishes these two actions like so:
+<p>
+<blockquote><font color="#000080">going west
+<br>asking Will to try going west
+</font></blockquote><p>
+<p>
+<p>As a result, we can write rules like so:
+<p>
+<blockquote><font color="#000080">Instead of asking Will to try going west, say &quot;Will scratches his head, baffled by this talk of westward. Is not the ocean without bound?&quot;
+</font></blockquote><p>
+<p>
+<p>To write rules like this, we sometimes want to generalise about who is supposed to do the deed. To do this we can refer to &quot;person asked&quot;, just as the &quot;noun&quot; stands for whatever noun was typed:
+<p>
+<blockquote><font color="#000080">Instead of asking somebody to try taking something, say &quot;I don't think we ought to tempt [the person asked] into theft, surely?&quot;
+</font></blockquote><p>
+<p>
+<p>So if the player types &quot;Algy, take sandwich&quot;, the &quot;person asked&quot; would be Algy; the &quot;noun&quot; would be the sandwich; and there would be no &quot;second noun&quot;.
+<p>
+<p><hr><p>
+<a name="e407"><a href=ex407.html#e407 STYLE="text-decoration: none">*<b>Example 184:  Virtue</b></a><br>Defining certain kinds of behavior as inappropriate, so that other characters will refuse indignantly to do any such thing.<p>
+<a name="e185"><a href=ex185.html#e185 STYLE="text-decoration: none">***<b>Example 185:  Latris Theon</b></a><br>A person who can accept instructions to go to new destinations and move towards them according to the most reasonable path.<p>
+<p><hr><p><a href=doc188.html STYLE="text-decoration: none">Previous</a> / <a href=doc190.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

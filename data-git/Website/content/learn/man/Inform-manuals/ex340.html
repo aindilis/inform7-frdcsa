@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.22. Writing a paragraph about</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Reflections" -->
+<!-- SEARCH SECTION "Ex 338" -->
+<!-- SEARCH SORT "Ex 017-022-338" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc302.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc304.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.22. Writing a paragraph about</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> Just <i>before</i> writing a paragraph about some item in a room description.
+<p>
+<p><b>2. The default behaviour.</b> Is to do nothing. However, if a rule is supplied which prints something up, then this replaces the paragraph which would otherwise have been printed. Moreover, any items whose names are said in the course of this rule - for instance, by being listed - are then excluded from the remainder of the room description, because they are considered as having been described sufficiently already.
+<p>
+<p>Warning: because we often want a &quot;for&quot; rule for this activity to make some calculation and then possibly choose to do nothing (see the example &quot;Otranto&quot;), Inform suppresses the usual paragraph not when a &quot;for&quot; rule took effect but when it detected a paragraph having been printed. This can get confused if a text substitution affecting paragraph breaks, say &quot;[line break]&quot;, is within the final &quot;say&quot; of a &quot;for writing a paragraph about&quot; rule.
+<p>
+<p><b>3. Examples.</b> (a) This is a neat way to wrap several things together into the same paragraph:
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about Mr Wickham:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mr Wickham looks speculatively at [list of women in the location].&quot;
+</font></blockquote><p>
+<p>
+<p>because now &quot;Mr Wickham looks speculatively at Velma and Daphne&quot; will now prevent the appearance of the subsequent text &quot;You can also see Velma and Daphne.&quot;
+<p>
+<p>Inform keeps track of which objects have already been named with an either/or property called &quot;mentioned&quot;, which it assigns whenever the name of an object has been automatically printed. So in this case, Velma and Daphne are now mentioned. Note &quot;automatically printed&quot;, though: if the text printed had just been &quot;Mr Wickham looks speculatively at Velma and Daphne&quot;, rather than the text-substitution list used above, then Inform would not know that Velma and Daphne have been described.
+<p>
+<p>If we ever need to override this - say, we want to list all the women but make sure that Velma gets another paragraph anyway - we could change Velma to unmentioned again after the listing.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e340"><a href=doc303.html#e340 STYLE="text-decoration: none">*<b><b>Example</b> 338:  Reflections</b></a><br>Emphasizing the reflective quality of shiny objects whenever they are described in the presence of the torch.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Reflections&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Behind the Waterfall is a room. &quot;Though one wall of the cave is open to the waterfall, the quantity of water is so great that barely any light comes through from the outside.&quot; Behind the Waterfall is dark.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Surface is a kind of value. The surfaces are shiny and dull. A thing has a surface. A thing is usually dull.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a reflecting ball, a canopic jar, an abacus, a plumbline, a piece of chalk, and a torch. The reflecting ball is shiny.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Aladdin's lamp is a shiny thing in Behind the Waterfall.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Brightness is a kind of value. The brightnesses are guttering, weak, radiant and blazing. The torch has a brightness. The torch is blazing. The torch is lit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;blow out [something]&quot; or &quot;blow [something]&quot; or &quot;extinguish [something]&quot; as blowing out. Blowing out is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out blowing out: say &quot;Futile.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of blowing out the torch:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now brightness of torch is the brightness before the brightness of the torch;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The light of the torch dies to [brightness of torch].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of blowing out the guttering torch:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Fool! Do you want to put it out entirely?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a shiny thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The [brightness of the torch] light of [the torch] reflects in the surface[if the number of shiny things in the room > 1]s[end if] of [the list of shiny things in the room].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of the torch while writing a paragraph about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the torch is in the location, say &quot;fallen &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;drop ball / look / blow torch / look / drop torch / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e120"><a href=ex120.html#e120 STYLE="text-decoration: none">**<b>Example 339:  Emma</b></a><br>Social dynamics in which groups of people form and circulate during a party.<p>
+<a name="e385"><a href=ex385.html#e385 STYLE="text-decoration: none">****<b>Example 340:  Air Conditioning is Standard</b></a><br>Uses "writing a paragraph about" to make person and object descriptions that vary considerably depending on what else is going on in the room, including some randomized NPC interactions with objects or with each other.<p>
+<p><hr><p><a href=doc302.html STYLE="text-decoration: none">Previous</a> / <a href=doc304.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

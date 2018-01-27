@@ -1,0 +1,26 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.26. Translating the language of play</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Translating the language of play" -->
+<!-- SEARCH SECTION "25.26" -->
+<!-- SEARCH SORT "025-026-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc442.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc444.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.26. Translating the language of play</b></td></tr></table><p>
+<p>
+<p>The &quot;language of play&quot; is the natural language used to communicate with the player at run-time: this is normally English.
+<p>
+<p>That means that it is difficult to write, say, Spanish-language IF using Inform 7, though heroic work by the Spanish IF community has overcome this. Inform 6 provided for translation by isolating its linguistic code in a part of the I6 library called the &quot;language definition file&quot;, which was normally &quot;English.h&quot;. Translations were gradually made to most major European languages, resulting in alternative language definition files called &quot;French.h&quot;, &quot;Italian.h&quot; and so on. Full details on how to write a language definition file were given in the Translations chapter of the DM4, that is, the fourth edition of the Inform 6 Designer's Manual.
+<p>
+<p>In I7 the system is different. We use the template, not a library. Instead of providing a language definition file such as &quot;French.h&quot;, a translator should create an extension called something like &quot;French by Jacques Mensonge&quot;. (The language should be named in English, so &quot;French by ...&quot;, not &quot;Français by ...&quot;) This extension should then contain the same material as an I6 language definition file, but put in place using template hacking (see the previous section). As an example, the extension &quot;English by David Fisher&quot; is supplied with I7: using it has no effect because the language of play is already English, of course, so it is provided only as a model to copy.
+<p>
+<p>Translators will find that there are now more numbered messages than in I6, because the template includes messages which did not exist in the I6 library.
+<p>
+<p>(All of this is very much a work in progress. The authors of Inform hope to make translations easier in future builds: the features introduced in April 2008 are only a start.)
+<p>
+<p><hr><p><a href=doc442.html STYLE="text-decoration: none">Previous</a> / <a href=doc444.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

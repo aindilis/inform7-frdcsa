@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.6. Viewpoint</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Terror of the Sierra Madre" -->
+<!-- SEARCH SECTION "Ex 121" -->
+<!-- SEARCH SORT "Ex 005-006-121" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc27.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc29.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.6. Viewpoint</b></td></tr></table><p>
+<p>
+<p>Inform automatically creates a character for the player - a bland, personality-free entity at the outset, as we've seen. But there is no reason why the player need stick to this same identity throughout the game. Conventional fiction often jumps from one viewpoint character to another, and so can IF.
+<p>
+<p>To do this at the most elementary level, we simply at some point
+<p>
+<blockquote><font color="#000080">change player to Janine;
+</font></blockquote><p>
+<p>
+<p>where Janine is a person we've already defined in the code. Now the player is in whatever location Janine inhabits, carries whatever Janine carries, and wears whatever Janine is wearing. <b>Terror of the Sierra Madre</b> shows off this effect, and also demonstrates how to make the command prompt remind the player which character he currently controls. Some games instead give this information in the status line or after the name of the location when looking, producing output like
+<p>
+<blockquote><font color="#000080">The Bottomless Acherousia (as Charon)
+</font></blockquote><p>
+<p>
+<p>We could do the same by adding a line such as
+<p>
+<blockquote><font color="#000080">After printing the name of a room while constructing the status line or looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[roman type] (as [the player])&quot;
+</font></blockquote><p>
+<p>
+<p>Of course, we'll need a good deal of other work to make Janine a distinct person from whichever character the player was before. The distinction may come from changed capabilities of the new character, which we can express through new rules about actions; e.g.,
+<p>
+<blockquote><font color="#000080">Instead of listening when the player is Janine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your childhood accident left you unable to hear any but the loudest noises. Currently there is only silence.&quot;
+</font></blockquote><p>
+<p>
+<p>Janine may also have new, different perspective on her surroundings, expressed through the descriptions of the things she looks at; <b>Uncommon Ground</b> makes a &quot;by viewpoint&quot; token for text alternatives, allowing us to tag our descriptions to indicate which variations should be shown to which viewpoint characters. <b>The Crane's Leg 1</b> and <b>2</b> offer more elaborate and specialized ways of customizing the player character's observations to depend on how he relates (physically and in attitude) to the things around him.
+<p>
+<p>If we want to change the tense and person of narration from the conventional present second person, we may do this as well, though at the present stage of Inform the effect relies on external extensions.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e400"><a href=Rdoc28.html#e400 STYLE="text-decoration: none">***<b><b>Example</b> 121:  Terror of the Sierra Madre</b></a><br>Multiple player characters who take turns controlling the action.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a game where we want the player to control two different characters, swapping bodies from one turn to the next. First, the setting, and the two people who will alternately play:
+<p>
+<blockquote><font color="#000080">&quot;Terror of the Sierra Madre&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Hay-Strewn Corridor is a room. &quot;[if the player is Maleska]The horse stalls are empty: you have already drained the animals, and carried off their corpses. The house will not long sustain you now.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The window throws on the floor a bright square of malevolent sunlight[otherwise]The stalls for horses run down one side of the room, but the house has long stood empty. A square window without shutters looks out over the ranch, away toward the Sierras[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Teresa is a woman in the Hay-Strewn Corridor. &quot;Teresa stands opposite you[if Teresa carries something], her fingers wrapped tightly around [a list of things carried by Teresa][end if].&quot; Teresa carries a bulb of garlic and a cross.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maleska is a man in the Hay-Strewn Corridor. &quot;Maleska watches you from eyes entirely black.&quot; Maleska carries a skull.
+</font></blockquote><p>
+<p>
+<p>If we tried the text above in Inform, we would find ourselves in the Hay-Strewn Corridor and confronted by both Teresa and Maleska. If &quot;player&quot; is not set to any named person, Inform creates a bland person called &quot;yourself&quot; to represent the player. To avoid this, we set &quot;player&quot; to the person we want to begin as:
+<p>
+<blockquote><font color="#000080">The player is Maleska.
+</font></blockquote><p>
+<p>
+<p>Now the Corridor contains just two people, and we arrive on the scene as Maleska, with only Teresa facing us.
+<p>
+<p>At the end of every turn we will use the 'change the player to...' phrase. (This looks as if it simply changes the value of &quot;player&quot;: which it does, but it also carries out a complicated operation behind the scenes to effect the switch.)
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is Maleska, now the player is Teresa;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise now the player is Maleska.
+</font></blockquote><p>
+<p>
+<p>Our two characters already see the Corridor differently, but let's differentiate them further:
+<p>
+<blockquote><font color="#000080">Every person has a number called strength. The strength of Teresa is 3. The strength of Maleska is 5.
+</font></blockquote><p>
+<p>
+<p>In this small example, strength is not used for anything, except that we will display it on the status line:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;[bold type][player][roman type] > &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the left hand status line is &quot;[player]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;STR: [strength of the player]&quot;.
+</font></blockquote><p>
+<p>
+<p>That last rule doesn't quite do what we might have expected. When we print &quot;[player]&quot;, we find that Inform usually prints &quot;yourself&quot;. This is because Inform says &quot;you&quot; to mean Teresa when talking to the player-being-Teresa, and likewise for Maleska. We want to override that in this particular story, because the rapid switches of personality are otherwise hard to follow. So:
+<p>
+<blockquote><font color="#000080">Rule for printing the name of Teresa: say &quot;Teresa&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the name of Maleska: say &quot;Maleska&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e392"><a href=Rex392.html#e392 STYLE="text-decoration: none">**<b>Example 445:  Uncommon Ground</b></a><br>Making a "by viewpoint" token, allowing us to design our own text variations such as "[show to yourself]quaint[to Lolita]thrilling[to everyone else]squalid[end show]" depending on the identity of the player at the moment.<p>
+<a name="e96"><a href=Rex96.html#e96 STYLE="text-decoration: none">***<b>Example 51: The Crane's Leg 1</b></a><br>A description text that automatically highlights the ways in which the object differs from a standard member of its kind.<p>
+<a name="e97"><a href=Rex97.html#e97 STYLE="text-decoration: none">*<b>Example 377: The Crane's Leg 2</b></a><br>A description text generated based on the propensities of the player-character, following different rulebooks for different characters.<p>
+<p><hr><p><a href=Rdoc27.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc29.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

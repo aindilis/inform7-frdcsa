@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.14. Actions for any actor</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Actions for any actor" -->
+<!-- SEARCH SECTION "12.14" -->
+<!-- SEARCH SORT "012-014-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc199.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc201.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.14. Actions for any actor</b></td></tr></table><p>
+<p>
+<p>In the previous sections, we created a new action by providing one set of rules for the player and another for anybody else who might try to perform it. These rules began with action descriptions in one of the following forms:
+<p>
+<blockquote><font color="#000080">Instead of taking a container, ...
+<br>Instead of P taking a container, ...
+</font></blockquote><p>
+<p>
+<p>The first form implies that the player must be performing the action: the second allows for any person matching P to be the action, except that this person must not be the player. That means that all rules seen so far either affect only the player, or only other people.
+<p>
+<p>This is often convenient, but sometimes we need to set up a complicated action which really does work in the same way for every actor - for instance, the built-in Inform actions provided by the Standard Rules aim to do this. We can write such rules thus:
+<p>
+<blockquote><font color="#000080">Instead of an actor taking a container, ...
+</font></blockquote><p>
+<p>
+<p>Here the rule applies to anyone who tries taking a container, player or not. Inside such a rule, the special value 'the actor' is the person performing the action. For instance, the Standard Rules include this one:
+<p>
+<blockquote><font color="#000080">Carry out an actor wearing (this is the standard wearing rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the actor wears the noun.
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc199.html STYLE="text-decoration: none">Previous</a> / <a href=doc201.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

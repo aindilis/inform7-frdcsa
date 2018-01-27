@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.5. Version numbering</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Version numbering" -->
+<!-- SEARCH SECTION "25.5" -->
+<!-- SEARCH SORT "025-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc421.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc423.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.5. Version numbering</b></td></tr></table><p>
+<p>
+<p>As we have seen, extensions are referred to by name and author, but they can also (optionally) be referred to by version. For instance:
+<p>
+<blockquote><font color="#000080">Include version 2 of the Ducking Action by Graham Nelson.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Version 1/040426 of the Ducking Action by Graham Nelson begins here.
+</font></blockquote><p>
+<p>
+<p>A version number must be a whole number 1, 2, ..., 999 (version 0 is not allowed, and nor are decimal points), optionally followed by a slash '/' and then a six-figure date, in the form YYMMDD: so 040426 means 26 April 2004.
+<p>
+<p>A request to include version 2 of something implicitly means &quot;version 2 or later&quot;, and similarly &quot;version 2/040426&quot; means version 2 with a date of 26 April 2004 or later, or else any version higher than 2. If Inform loads the extension but finds that its version is not good enough, an error is issued.
+<p>
+<p>Where no version number is quoted, the rule is that an unspecified version predates any numbered version. This means that the line
+<p>
+<blockquote><font color="#000080">Include the Ducking Action by Graham Nelson.
+</font></blockquote><p>
+<p>
+<p>will be happy with any version of the extension at all, whether numbered or not; but
+<p>
+<blockquote><font color="#000080">Include version 2 of the Ducking Action by Graham Nelson.
+</font></blockquote><p>
+<p>
+<p>will only accept the extension if it has a version number attached (and with that number being 2 or higher).
+<p>
+<p>During play of any game compiled by Inform 7, typing VERSION lists various serial numbers of the pieces of software used to make it. The list concludes with names, authors and version numbers of any extensions used. So every author whose work contributes to a game automatically gets a modest credit within it. The same list can be printed, at the discretion of the designer, using the textual substitution:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>the</b>/--<b> list of extension credits</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_extcredits -->
+
+<p>This text substitution expands to one or more lines of text crediting each of the extensions used by the current source text, along with their version numbers and authors. Extensions whose authors have chosen the &quot;use authorial modesty&quot; option are missed out. Example:
+<p>
+<blockquote><font color="#000080">Standard Rules version 2/090402 by Graham Nelson
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>If we want our extension to go uncredited - perhaps if it is a low-level enabling sort of thing, for instance - we can place the following sentence inside the definition of the extension:
+<p>
+<blockquote><font color="#000080">Use authorial modesty.
+</font></blockquote><p>
+<p>
+<p>The same sentence placed in the body of a source text causes all extensions by the same author as the main source text to go uncredited. In other words, if Isaac Miggins writes a source text and includes, say, Unlikely Events by Isaac Miggins, then this extension will go uncredited in the VERSION command.
+<p>
+<p>A complete list, undiluted by modesty, can always be obtained using:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>the</b>/--<b> complete list of extension credits</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_compextcredits -->
+
+<p>This text substitution expands to one or more lines of text crediting each of the extensions used by the current source text, along with their version numbers and authors. Every extension is included, even those whose authors have opted for &quot;use authorial modesty&quot;. Example:
+<p>
+<blockquote><font color="#000080">Standard Rules version 2/090402 by Graham Nelson
+<br>Locksmith version 9 by Emily Short
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc421.html STYLE="text-decoration: none">Previous</a> / <a href=doc423.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

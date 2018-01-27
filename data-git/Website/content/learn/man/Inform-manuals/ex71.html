@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.27. Segmented substitutions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Chanel Version 1" -->
+<!-- SEARCH SECTION "Ex 443" -->
+<!-- SEARCH SORT "Ex 025-027-443" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc443.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc445.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.27. Segmented substitutions</b></td></tr></table><p>
+<p>
+<p>A &quot;segmented&quot; substitution is a syntax where text is placed between two or more different text substitutions. Examples include:
+<p>
+<blockquote><font color="#000080">&quot;This hotel is [if the player is female]just awful[otherwise]basic[end if].&quot;
+<br>&quot;Annie [one of]dances[or]sulks[or]hangs out at Remo's[at random].&quot;
+</font></blockquote><p>
+<p>
+<p>To create such syntaxes, it is not enough just to define how each expands into I6 code: for one thing we may need to know about the later terms in order to expand the earlier ones, which is normally impossible, and for another thing, the individual text substitutions mean nothing in isolation. For instance, Inform produces a problem if the following is tried:
+<p>
+<blockquote><font color="#000080">&quot;The hotel [at random] is on fire.&quot;
+</font></blockquote><p>
+<p>
+<p>because &quot;[at random]&quot; is only legal when closing a &quot;[one of] ...&quot; construction. But if &quot;[at random]&quot; had been defined as just another text substitution, Inform would not have been able to detect such problems.
+<p>
+<p>Inform therefore allows us to mark text substitutions as being any of three special kinds: beginning, in the middle of, or ending a segmented substitution. There can be any number of alternative forms for each of these three variants. The syntax policed is that
+<p>
+<blockquote><font color="#000080">(a) Any usage must lie entirely within a single say or piece of text.
+<br>(b) It must begin with exactly one of the substitutions marked as &quot;beginning&quot;.
+<br>(c) It can contain any number, including none, of the substitutions marked as &quot;middle&quot; (if there are any).
+<br>(d) It must end with exactly one of the substitutions marked as &quot;ending&quot;.
+</font></blockquote><p>
+<p>
+<p>A simple example:
+<p>
+<blockquote><font color="#000080">To say emphasis on -- beginning say_emphasis_on: (- style underline; -).
+<br>To say emphasis off -- ending say_emphasis_on: (- style roman; -).
+</font></blockquote><p>
+<p>
+<p>This creates &quot;[emphasis on]&quot; and &quot;[emphasis off]&quot; such that they can only be used as a pair. The keyword &quot;say_emphasis_on&quot;, which must be a valid I6 identifier (and hence a single word), is never seen by the user: it is simply an ID token so that Inform can identify the construction to which these belong. (We recommend that anybody creating such constructions should choose an ID token which consists of the construction's name but with underscores in place of spaces: this means that the namespace for ID tokens will only clash if the primary definitions would have clashed in any case.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e71"><a href=doc444.html#e71 STYLE="text-decoration: none">*<b><b>Example</b> 443:  Chanel Version 1</b></a><br>Making paired italic and boldface tags like those used by HTML for web pages.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>HTML uses angled brackets to achieve effects, and places italicised text between &lt;i&gt; and &lt;/i&gt; tags; and similarly boldface between &lt;b&gt; and &lt;/b&gt;. We can mimic this very easily by setting each up as a segmented substitution:
+<p>
+<blockquote><font color="#000080">&quot;Chanel Version 1&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say i  -- beginning say_i -- running on: (- style underline; -).
+<br>To say /i  -- ending say_i -- running on: (- style roman; -).
+<br>To say b -- beginning say_b -- running on: (- style bold; -).
+<br>To say /b -- ending say_b -- running on: (- style roman; -).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Place Vendôme is a room. &quot;[i]Fashion fades, only style remains the same[/i] ([b]Coco Chanel[/b]). And this elegant drawing-room, once a milliner's shop, is a case in point.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going nowhere, say &quot;[i]Don't spend time beating on a wall, hoping to transform it into a door.[/i] ([b]Coco Chanel[/b]) This one is a wall.&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / e&quot;.
+</font></blockquote><p>
+<p>
+<p>We have had to use square instead of angle brackets, but then, &quot;in order to be irreplaceable one must always be different&quot; (Coco Chanel).
+<p>
+<p>(Marking these as substitutions which run on prevents unexpected paragraph breaks if they should appear immediately after the end of a sentence.)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc443.html STYLE="text-decoration: none">Previous</a> / <a href=doc445.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

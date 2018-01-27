@@ -1,0 +1,94 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.18. Alternatives To Standard Parsing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Fragment of a Greek Tragedy" -->
+<!-- SEARCH SECTION "Ex 359" -->
+<!-- SEARCH SORT "Ex 006-018-359" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc45.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc47.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.18. Alternatives To Standard Parsing</b></td></tr></table><p>
+<p>
+<p>Very occasionally, for out-of-the-ordinary games, we want to make major changes to the way that Inform ordinarily understands commands.
+<p>
+<p><b>Cloves</b> shows how we might read adverbs in the player's command: adverbs are challenging because they can legitimately appear anywhere in a command structure, so must be found and accounted for before the rest of the command is understood.
+<p>
+<p><b>Fragment of a Greek Tragedy</b> goes further, substituting a keyword-recognition parser for the usual structure of commands and objects.
+<p>
+<p>Less drastically, menus of numbered options can temporarily replace or augment standard commands. <b>Down in Oodville</b> demonstrates how to add a list of transporter destinations from which the player may choose by numeral.
+<p>
+<a href=Rdoc24.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Traits Determined By the Player</b></font></a><i> for ways to ask the player a question at the beginning of play</i><p><p>
+<a href=Rdoc53.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Saying Simple Things</b></font></a><i> for a way to ask the player a yes-no question any time during play</i><p><p>
+<p><hr><p>
+<a name="e86"><a href=Rex86.html#e86 STYLE="text-decoration: none">**<b>Example 361:  Cloves</b></a><br>Accepting adverbs anywhere in a command, registering what the player typed but then cutting them out before interpreting the command.<p>
+<!-- EXAMPLE START -->
+<a name="e189"><a href=Rdoc46.html#e189 STYLE="text-decoration: none">**<b><b>Example</b> 359:  Fragment of a Greek Tragedy</b></a><br>Responding to the player's input based on keywords only, and overriding the original parser entirely.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Apologies to the shade of A. E. Housman.
+<p>
+<blockquote><font color="#000080">&quot;Fragment of a Greek Tragedy&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;restart/restore/save/quit&quot; as &quot;[meta-command]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command matches &quot;[meta-command]&quot;, make no decision;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say line break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through Table of Current Topics:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes topic entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;CHORUS: [reply entry][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;follow the advance time rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[italic type]   Pause.[roman type][line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the advance time rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Current Topics
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">topic</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">reply</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;journey/trip/travel/came/arrived&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Sailing on horseback, or with feet for oars?&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;horseback/legs/feet/oars&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Beneath a shining or a rainy Zeus?&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;shining/rainy/weather/zeus&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Mud's sister, not herself, adorns thy boots.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>This would be a bit bare if we didn't provide the player with some sort of context at the outset, so let's put some remarks before the first command prompt:
+<p>
+<blockquote><font color="#000080">Before reading a command while the turn count is 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;CHORUS: O suitably-attired-in-leather-boots
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Head of a traveller, wherefore seeking whom
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Whence by what way how purposed art thou come
+<br>&nbsp;&nbsp;&nbsp;&nbsp;To this well-nightingaled vicinity?
+<br>&nbsp;&nbsp;&nbsp;&nbsp;My object in inquiring is to know.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;But if you happen to be deaf and dumb
+<br>&nbsp;&nbsp;&nbsp;&nbsp;And do not understand a word I say,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Then wave your hand, to signify as much.&quot;
+</font></blockquote><p>
+<p>
+<p>This &quot;turn count&quot; condition is why it was useful to follow the advance time rule in &quot;after reading a command&quot;: the game (or drama, if you like) will continue to count moves elapsed even though the rest of Inform's command parsing and world model is being ignored. In a longer and more ambitious implementation of this idea, we might want to allow scenes to govern the behavior and responses of the Chorus.
+<p>
+<p>And then to give the whole exchange a play's format:
+<p>
+<blockquote><font color="#000080">The Stage is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The room description heading rule is not listed in the carry out looking rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;YOU: &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now left hand status line is &quot;Fragment of a Greek Tragedy&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now right hand status line is &quot;A. E. Housman&quot;.
+</font></blockquote><p>
+<p>
+<p>(Because this example manipulates commands outside of the normal parser, the mechanism for TEST will not work here. Try typing commands such as: TELL CHORUS ABOUT JOURNEY / TELL CHORUS ABOUT FEET / TELL CHORUS ABOUT SHROPSHIRE / TELL CHORUS ABOUT ZEUS)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e111"><a href=Rex111.html#e111 STYLE="text-decoration: none">**<b>Example 293:  Down in Oodville</b></a><br>Offering the player a choice of numbered options at certain times, without otherwise interfering with his ability to give regular commands.<p>
+<p><hr><p><a href=Rdoc45.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc47.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

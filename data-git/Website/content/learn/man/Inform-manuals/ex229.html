@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.25. Choosing notable locale objects for something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Low Light" -->
+<!-- SEARCH SECTION "Ex 345" -->
+<!-- SEARCH SORT "Ex 017-025-345" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc305.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc307.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.25. Choosing notable locale objects for something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> See &quot;printing the locale description&quot;. This activity is expected to decide which items ought to be mentioned in a locale description for a given room, enterable container or enterable supporter, and to give each item a priority, which is a number ranging upwards from 1 (which is the top priority). The lower the priority number, the earlier the mention, or at least, the earlier the opportunity to be mentioned: it's up to other activities whether to give it a paragraph of its own or not. This activity only makes something a candidate, and decides what order the candidates will be tried in.
+<p>
+<p><b>2. The default behaviour.</b> By default, this activity contains only the &quot;standard notable locale objects rule&quot;. This chooses exactly those items directly contained by the locale, assigning all of them priority 5. Note that this includes scenery, and other probably unwanted items - those will be excluded later.
+<p>
+<p><b>3. Examples.</b> (a) In the Misty Moorlands, only large items on the ground are visible through the mist:
+<p>
+<blockquote><font color="#000080">A thing can be large or small. A thing is usually small. The stepladder is a large thing in the Misty Moorlands.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for choosing notable locale objects for the Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through large things in the Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the locale priority of the item to 5.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking a small thing in the Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You grope blindly in the mist and pick up [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<p>Note the special phrase
+<p>
+<blockquote><font color="#000080">set the locale priority of the item to 5;
+</font></blockquote><p>
+<p>
+<p>which should be used only in rules for locale activities. It makes the given item a candidate and sets its priority. (Setting the priority to 0 forces an item not to be a candidate, and can thus undo the effect of previous rules.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e229"><a href=doc306.html#e229 STYLE="text-decoration: none">*<b><b>Example</b> 345:  Low Light</b></a><br>An object that is only visible and manipulable when a bright light fixture is on.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want a different treatment of lighting than the usual: the room isn't totally dark, but there's something we can't see unless we turn on a bright light.
+<p>
+<blockquote><font color="#000080">&quot;Low Light&quot;
+</font></blockquote><p>
+<p>
+<p>First we make our environment and its light:
+<p>
+<blockquote><font color="#000080">The Workroom is a room. The desk is in the Workroom. The brilliant lamp is a device on the desk.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether the light level is high:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the brilliant lamp is switched off, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player cannot see the brilliant lamp, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether the light level is low:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the light level is high, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;yes.
+</font></blockquote><p>
+<p>
+<p>Now we make a shadow so that the player can only refer to it if the shadow is in inventory or the light is on:
+<p>
+<blockquote><font color="#000080">The shadow is a privately-named thing on the desk.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;barely-visible&quot; or &quot;barely visible&quot; or &quot;shadow&quot; as the shadow when the light level is high. Understand &quot;invisible&quot; or &quot;shadow&quot; as the shadow when the player encloses the shadow.
+</font></blockquote><p>
+<p>
+<p>And finally a couple of extra touches to make it clear why we're able to interact with the shadow when it's in inventory, even if the light is low:
+<p>
+<blockquote><font color="#000080">Before printing the name of the shadow:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the light level is high:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;barely-visible &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the player encloses the shadow:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;invisible (but tangible) &quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After dropping the shadow when the light level is low:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You let it go and it fades into the ambient gloom.&quot;
+</font></blockquote><p>
+<p>
+<p>To handle the appearance of the object, we want to set its locale priority to 0: that will prevent it being named in room descriptions.
+<p>
+<blockquote><font color="#000080">After choosing notable locale objects:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the light level is high:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set locale priority of the shadow to 0.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / get shadow / turn on lamp / look / get shadow / i / turn off lamp / i / drop shadow / look / get shadow / turn on lamp / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e68"><a href=ex68.html#e68 STYLE="text-decoration: none">***<b>Example 346:  Casino Banale</b></a><br>Creating room descriptions and object descriptions that change as the player learns new facts and pieces things together.<p>
+<p><hr><p><a href=doc305.html STYLE="text-decoration: none">Previous</a> / <a href=doc307.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

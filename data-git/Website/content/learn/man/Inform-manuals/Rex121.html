@@ -1,0 +1,131 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.6. Reading Matter</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "AARP-Gnosis" -->
+<!-- SEARCH SECTION "Ex 322" -->
+<!-- SEARCH SORT "Ex 009-006-322" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc72.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc74.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.6. Reading Matter</b></td></tr></table><p>
+<p>
+<p>Many things can be read, from warning notices to encyclopaedias, and a range of techniques is needed to provide them because the quantity of text, and how it presents itself, can vary so much. With a small amount of very large type, the player should not need any command at all to read the text:
+<p>
+<blockquote><font color="#000080">The road sign is in the Junction. The road sign is fixed in place. &quot;A road sign points north: 'Weston on the Green - 6'.&quot;
+</font></blockquote><p>
+<p>
+<p>If the print is smaller, or the object portable, the player will expect to use the EXAMINE command:
+<p>
+<blockquote><font color="#000080">The business card is in the Junction. The description is &quot;'Peter de S√®vres: consultant mnemonicist.'&quot;
+</font></blockquote><p>
+<p>
+<p>But if the object is a leaflet, say, EXAMINE should only describe the cover: READ would be the command a player would expect to use to get at the text itself. Inform normally defines READ to be the same command as EXAMINE, which is good for things like the business card, but counter-productive here. <b>The Trouble with Printing</b> shows how to separate these two commands, allowing any thing to have a property called its &quot;printing&quot; for text produced by READ, which will be different from its &quot;description&quot;, the text produced by EXAMINE.
+<p>
+<p>If the object is a lengthy diary, say, nobody would read it from cover to cover in a single IF turn. We might then want to allow the player to turn the pages one by one, with commands like READ PAGE 4 IN DIARY or READ THE NEXT PAGE: see <b>Pages</b>.
+<p>
+<p>If the object is an encyclopaedic reference work, the player would consult named entries: see <b>Costa Rican Ornithology</b>, which allows commands like LOOK UP QUETZAL IN GUIDE.
+<p>
+<p>Still larger sources of text often occur in IF: libraries or bookshelves, where many books are found together, and it is clumsy to write them as many individual items. One approach is to simulate an entire bookshelf with a single thing: see <b>Bibliophilia</b>. (This is much like looking up topics in a single book, except that each topic is a book in itself.) Another is to provide each book as an individual item, but have them automatically join together into a single portable collection: see <b>AARP-Gnosis</b>.
+<p>
+<p>Signs, leaflets and encyclopaedias, being printed, have a wording which will never change during play. But sometimes the player reads something which acts of its own accord. Text substitutions are usually all that is needed to achieve this:
+<p>
+<blockquote><font color="#000080">The computer display is on the desk. The description is &quot;Giant green digits read: [the time of day].&quot;
+</font></blockquote><p>
+<p>
+<p>This is easy because we know all the variations we want. But what if we want the player to write his own text, for instance, adding to a diary? This is trickier, because it means storing text as the player typed it, and replaying it later. (And suppose the player types reams and reams of text, not just a few words as we might have hoped?) <b>The Fourth Body</b> and <b>The Fifth Body</b> show how to use an external file - a multimedia trick requiring features only available if the project is set to the Glulx story file format - to handle even the most difficult cases.
+<p>
+<p><hr><p>
+<a name="e94"><a href=Rex94.html#e94 STYLE="text-decoration: none">***<b>Example 94:  Costa Rican Ornithology</b></a><br>A fully-implemented book, answering questions from a table of data, and responding to failed consultation with a custom message such as "You flip through the Guide to Central American Birds, but find no reference to penguins."<p>
+<a name="e267"><a href=Rex267.html#e267 STYLE="text-decoration: none">*<b>Example 292:  Pages</b></a><br>A book with pages that can be read by number (as in "read page 3 in...") and which accepts relative page references as well (such as "read the last page of...", "read the next page", and so on).<p>
+<a name="e32"><a href=Rex32.html#e32 STYLE="text-decoration: none">**<b>Example 313:  Bibliophilia</b></a><br>A bookshelf with a number of books, where the player's command to examine something will be interpreted as an attempt to look up titles if the bookshelf is present, but otherwise given the usual response.<p>
+<!-- EXAMPLE START -->
+<a name="e121"><a href=Rdoc73.html#e121 STYLE="text-decoration: none">**<b><b>Example</b> 322:  AARP-Gnosis</b></a><br>An Encyclopedia set which treats volumes in the same place as a single object, but can also be split up.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a complete Encyclopedia in our game. The player is allowed to pick up the whole set (there must not be too many volumes), but also to do things with individual volumes, and indeed to scatter these volumes all over the place. Putting a volume back in the same place as the rest of the Encyclopedia should, however, restore it to the collective. We will start out by defining general rules for collectives like this:
+<p>
+<blockquote><font color="#000080">&quot;AARP-Gnosis&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Fitting relates various things to one thing (called the home). The verb to fit (it fits, they fit, it is fitted) implies the fitting relation. Definition: a thing is missing if it is not part of the home of it.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A collective is a kind of thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before doing something to something which is part of a collective:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let space be the holder of the home of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the space.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a collective:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] consists of [the list of things which are part of the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>Now the real work begins. One reason to make this an activity is that we might easily want to override it for specific objects; for instance, the generic collecting activity here would not deal properly with collectives of clothing where some items might be worn and others not. In that case, we would want to write another, more specific &quot;collecting&quot; activity to handle the complexities of fashion.
+<p>
+<blockquote><font color="#000080">Collecting something is an activity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through collectives:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carry out the collecting activity with the item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To remove (item - a thing) when empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let space be the holder of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things which are part of the item is 0, remove the item from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things which are part of the item is 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the last thing be a random thing which is part of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the last thing to the space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the item from play.
+</font></blockquote><p>
+<p>
+<p>
+<blockquote><font color="#000080">Before collecting a thing (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove item when empty;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let space be the holder of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if space is not a thing and space is not a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if something (called the other space) contains at least two things which fit the item, move item to the other space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if a room (called the other space) contains at least two things which fit the item, move item to the other space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if someone (called the owner) carries at least two things which fit the item, move item to the owner.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for collecting a thing (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let space be the holder of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if space is a thing or space is a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with component running through things held by the space:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the component fits the item, now the component is part of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove item when empty.
+</font></blockquote><p>
+<p>
+<p>And now for a cheerful scenario:
+<p>
+<blockquote><font color="#000080">The Boise Memorial Library is a room. &quot;A concrete box of a room, roughly eight feet by fourteen, which contains all the fallout shelter has to offer by way of entertainment. Someone with a grim sense of humor has tacked a READ! literacy poster to the door, as though there were anything else to do while you await the calming of the Geiger counters.&quot; The shelf is a supporter in the Library. &quot;A battered utility shelf stands against the south wall.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The New Idahoan Encyclopedia Set is a collective. Volume A-Aalto fits the Encyclopedia. It is part of the Set. Volume AAM-Aardvark fits the Encyclopedia. It is part of the Set. Volume Aarhus-Aaron fits the Encyclopedia. It is part of the Set. Volume AARP-Gnosis fits the Encyclopedia. It is part of the Set. Volume Gnu-Zygote fits the Encyclopedia. It is part of the Set. The Set is on the shelf.
+</font></blockquote><p>
+<p>
+<p>Let's have the Encyclopedia describe itself differently depending on whether it's all in one place:
+<p>
+<blockquote><font color="#000080">After printing the name of the Set when something missing fits the Set:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; (missing [a list of missing things which fit the Set])&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of the Set when the number of missing things which fit the set is 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;complete &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get aarhus-aaron / look / inventory / get aam-aardvark / look / get gnu-zygote / look / get aarp-gnosis / look / inventory / drop set / look / get set / get a-aalto / inventory&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e314"><a href=Rex314.html#e314 STYLE="text-decoration: none">*<b>Example 281:  The Trouble with Printing</b></a><br>Making a READ command, distinct from EXAMINE, for legible objects.<p>
+<a name="e157"><a href=Rex157.html#e157 STYLE="text-decoration: none">*<b>Example 432:  The Fourth Body</b></a><br>Notebooks in which the player can record assorted notes throughout play.<p>
+<a name="e142"><a href=Rex142.html#e142 STYLE="text-decoration: none">**<b>Example 433:  The Fifth Body</b></a><br>An expansion on the notebook, allowing the player somewhat more room in which to type his recorded remark.<p>
+<p><hr><p><a href=Rdoc72.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc74.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.7. New either/or properties</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "New either/or properties" -->
+<!-- SEARCH SECTION "4.7" -->
+<!-- SEARCH SORT "004-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc60.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc62.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.7. New either/or properties</b></td></tr></table><p>
+<p>
+<p>Properties can't be handed out completely freely. In the previous chapter, we saw that we were allowed to make a chair &quot;portable&quot; and to make a room &quot;dark&quot;. But if we try this the other way round, Inform produces a Problem message. This is because every property must be created in a way which lays out what values are allowed to have it. The Standard Rules built into Inform say that
+<p>
+<blockquote><font color="#000080">A thing can be fixed in place or portable.
+</font></blockquote><p>
+<p>
+<p>and as a result it won't allow &quot;The Savannah is portable&quot; because the Savannah is a room, not a thing.
+<p>
+<p>We must do the same. To go back to our example &quot;dead end&quot; kind:
+<p>
+<blockquote><font color="#000080">A dead end is either secret or ordinary.
+</font></blockquote><p>
+<p>
+<p>This creates just one new property, not two. The names are taken as the two states of a single either/or property: secret means not ordinary, ordinary means not secret. Alternatively, we could just say:
+<p>
+<blockquote><font color="#000080">A dead end can be secret.
+</font></blockquote><p>
+<p>
+<p>in which case the opposite of &quot;secret&quot; would be &quot;not secret&quot;.
+<p>
+<p>Now we have a property which can be given to any value of the kind &quot;dead end&quot;. We're also free to add to the definitions of kinds which already exist, including those built into Inform: for instance,
+<p>
+<blockquote><font color="#000080">A room is either indoors or outdoors.
+</font></blockquote><p>
+<p>
+<p>If we make the above definitions then all dead ends will be &quot;ordinary&quot; and all rooms &quot;outdoors&quot; unless the source text says otherwise. That is, in the absence of other information it's assumed that an either/or property is not true. We could reverse by writing:
+<p>
+<blockquote><font color="#000080">A dead end is usually secret. A room is usually indoors.
+</font></blockquote><p>
+<p>
+<p>A property can be used by several kinds at once. For example, the built-in either/or property &quot;open&quot; is used by both doors and containers, even though door isn't a kind of container and container isn't a kind of door. In fact, although it's more usual to declare properties for whole kinds, they can actually be given to single values one at a time, if we like:
+<p>
+<blockquote><font color="#000080">The umbrella is carried by the player. The umbrella can be open.
+</font></blockquote><p>
+<p>
+<p>And now the umbrella, which is a thing and not a door or container, can also have the property.
+<p>
+<p><hr><p>
+<a name="e114"><a href=ex114.html#e114 STYLE="text-decoration: none">**<b>Example 45:  Change of Basis</b></a><br>Implementing sleeping and wakeful states.<p>
+<p><hr><p><a href=doc60.html STYLE="text-decoration: none">Previous</a> / <a href=doc62.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

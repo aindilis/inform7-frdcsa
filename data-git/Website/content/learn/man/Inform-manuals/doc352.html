@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 20.4. Testing and iterating over lists</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Testing and iterating over lists" -->
+<!-- SEARCH SECTION "20.4" -->
+<!-- SEARCH SORT "020-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc351.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc353.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>20.4. Testing and iterating over lists</b></td></tr></table><p>
+<p>
+<p>If L is a list, we can interrogate it to see whether it does or does not contain (at least one instance of) any compatible value V:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(value)<b> is listed in </b>(list of values)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_islistedin -->
+
+<p>This condition is true if the given value, which must be of a compatible kind, is one of those in the list. For instance, if L is our list of the numbers 2, 3, 5, 7 and 11 then 5 is listed in it but 6 is not.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(value)<b> is not listed in </b>(list of values)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_isnotlistedin -->
+
+<p>This condition is true if the given value, which must be of a compatible kind, is not one of those in the list.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We can also repeat running through a list (just as we can with table rows). Thus:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>repeat with </b>(a name not so far used)<b> running through </b>(list of values)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_repeatlist -->
+
+<p>This phrase causes the block of phrases following it to be repeated once for each item in the given list, storing that value in the named variable. (The variable exists only temporarily, within the repetition.) Example:
+<p>
+<blockquote><font color="#000080">let L be {2, 3, 5, 7, 11, 13, 17, 19};
+<br>repeat with prime running through L:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>If the list is empty, nothing happens: the &quot;...&quot; phrase(s) are never tried.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>In the next sections, we shall see that it is possible to change, reorder and resize lists. But it's important never to change a list that's being repeated through. The following:
+<p>
+<blockquote><font color="#000080">let L1 be {1, 2, 3, 4};
+<br>repeat with n running through L1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove n from L1;
+</font></blockquote><p>
+<p>
+<p>leaves L1 containing {2, 4}, since the removals from the list cause it to shuffle back even while we repeat through it - a bad, bad idea.
+<p>
+<p><hr><p><a href=doc351.html STYLE="text-decoration: none">Previous</a> / <a href=doc353.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

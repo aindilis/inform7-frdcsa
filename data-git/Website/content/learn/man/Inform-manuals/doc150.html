@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.9. Comparing and shifting times</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Comparing and shifting times" -->
+<!-- SEARCH SECTION "9.9" -->
+<!-- SEARCH SORT "009-009-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc149.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc151.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.9. Comparing and shifting times</b></td></tr></table><p>
+<p>
+<p>Carrying out easy calculations with times is straightforward:
+<p>
+<blockquote><font color="#000080">The chronometer is in the Clock Chamber. &quot;On one wall is a terribly self-important chronometer showing the time in major world cities. London: [time of day]. Paris: [one hour after the time of day]. Tokyo: [9 hours after the time of day]. Cupertino, California: [7 hours before the time of day].&quot;
+</font></blockquote><p>
+<p>
+<p>Here we are using two phrases:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(time)<b> before </b>(time)<b></b> ... <i>time</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_shiftbefore -->
+
+<p>This phrase produces a time earlier by the amount given, keeping within the 24 hour clock. Example:
+<p>
+<blockquote><font color="#000080">7 hours before 5:30 AM
+</font></blockquote><p>
+<p>
+<p>produces 10:30 PM.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(time)<b> after </b>(time)<b></b> ... <i>time</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_shiftafter -->
+
+<p>This phrase produces a time later by the amount given, keeping within the 24 hour clock. Example:
+<p>
+<blockquote><font color="#000080">9 hours after 11 AM
+</font></blockquote><p>
+<p>
+<p>produces 8 PM.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Similarly, we have conditions:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(time)<b> is before </b>(time)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_timebefore -->
+
+<p>This condition is true if the first time occurs earlier in the day than the second. In recognition of the fact that very few stories begin before 4 AM, whereas many run on past midnight, the start of the day is taken to be 4 AM: thus 3:59 AM is after 11:10 PM, but 4:04 AM is before it.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(time)<b> is after </b>(time)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_timeafter -->
+
+<p>This condition is true if the first time occurs later in the day than the second. In recognition of the fact that very few stories begin before 4 AM, whereas many run on past midnight, the start of the day is taken to be 4 AM: thus 3:59 AM is after 11:10 PM, but 4:04 AM is before it.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>Previous builds of Inform allowed the following abbreviated forms, but they're being withdrawn in the interests of clarity:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>it is before </b>(time)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_itisbefore_dep -->
+
+<p>This condition is equivalent to:
+<p>
+<blockquote><font color="#000080">if the time of day is before (time)
+</font></blockquote><p>
+<p>
+<p>and is now deprecated: use the &quot;time of day&quot; wording instead.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>it is after </b>(time)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_itisafter_dep -->
+
+<p>This condition is equivalent to:
+<p>
+<blockquote><font color="#000080">if the time of day is after (time)
+</font></blockquote><p>
+<p>
+<p>and is now deprecated: use the &quot;time of day&quot; wording instead.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc149.html STYLE="text-decoration: none">Previous</a> / <a href=doc151.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

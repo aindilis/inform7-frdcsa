@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.10. Calculating times</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Calculating times" -->
+<!-- SEARCH SECTION "9.10" -->
+<!-- SEARCH SORT "009-010-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc150.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc152.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.10. Calculating times</b></td></tr></table><p>
+<p>
+<p>We will occasionally need to perform more complex calculations with time, and in order to do that, we have a way to convert the time of day to numbers. Thus the phrase &quot;the minutes part of ...&quot; takes a time and produces a number from 0 to 59; similarly &quot;the hours part of ...&quot; extracts a number from 0 to 23, using the twenty-four hour clock.
+<p>
+<p>To go the other way, we can convert any number to a duration by writing &quot;minutes&quot; or &quot;hours&quot; after it. For instance:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>minutes part of </b>(time)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_minspart -->
+
+<p>This phrase converts a time to a number, then takes the result mod 60, which in effect produces the number of minutes after the hours are thrown away. Example:
+<p>
+<blockquote><font color="#000080">minutes part of 12:41 PM
+</font></blockquote><p>
+<p>
+<p>produces 41.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>hours part of </b>(time)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_hourspart -->
+
+<p>This phrase converts a time to a number, then divides the result by 60, which in effect produces the number of hours after minutes are thrown away. Example:
+<p>
+<blockquote><font color="#000080">hours part of 8:21 AM
+</font></blockquote><p>
+<p>
+<p>produces 8.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>For example:
+<p>
+<blockquote><font color="#000080">The clock error is a number that varies. To thump the mechanism: now the clock error is a random number from -10 to 10.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The broken grandfather clock is in the Chamber. &quot;An erratic grandfather clock seems to say it is [clock error minutes after the time of day].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins, thump the mechanism. Instead of attacking the broken clock: thump the mechanism; say &quot;You thump the clock, which now reads [clock error minutes after the time of day].&quot;.
+</font></blockquote><p>
+<p>
+<p>Note that &quot;clock error&quot; is a number, but &quot;clock error minutes&quot; is a time.
+<p>
+<p><hr><p><a href=doc150.html STYLE="text-decoration: none">Previous</a> / <a href=doc152.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

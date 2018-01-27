@@ -1,0 +1,99 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.4. Background</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "One of Those Mornings" -->
+<!-- SEARCH SECTION "Ex 290" -->
+<!-- SEARCH SORT "Ex 005-004-290" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc25.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc27.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.4. Background</b></td></tr></table><p>
+<p>
+<p>In IF, as in all interactive storytelling, an essential problem is that the player does not begin the game knowing everything that the player character should, and so may implausibly bumble through situations that the player character should be quite comfortable in. If the player character has friends, an unusual job, a home or environment we're not familiar with, a secret past, these will all be a blank to the player.
+<p>
+<p>Some games get around this by making the player character an amnesiac, or positioning him as a newcomer to a strange world in which his disorientation is explicable; but there are stories that cannot be told this way, and so we need other methods of getting the player to know what the player character already does.
+<p>
+<p>Our first opportunity to inform the player about the player character is in the opening text of a game:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The funeral is exactly a month ago now, but Elise's shoes are still on the shoe tree.&quot;
+</font></blockquote><p>
+<p>
+<p>We may also want to write descriptions of objects to give extra background information the first time the player encounters them:
+<p>
+<blockquote><font color="#000080">A thing can be examined or unexamined. A thing is usually unexamined. After examining something: now the noun is examined; continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the newspaper is &quot;A rolled-up newspaper[if unexamined], and thus a symbol of your newly-single state: Elise always had it open and the Local Metro section next to your plate by the time you got out of the shower[end if].&quot;
+</font></blockquote><p>
+<p>
+<p>To expand on this, we could give the player a THINK ABOUT or REMEMBER command, with which he can call up information about people he meets or references he encounters in descriptions, so that he could (for instance) next type REMEMBER ELISE. <b>Merlin</b> demonstrates one way to implement a character with memory; <b>One of Those Mornings</b> puts a twist on this by letting the player FIND things which he knows his character possessed at some time before the game started.
+<p>
+<p><hr><p>
+<a name="e319"><a href=Rex319.html#e319 STYLE="text-decoration: none">*<b>Example 266:  Merlin</b></a><br>A REMEMBER command which accepts any text and looks up a response in a table of recollections.<p>
+<!-- EXAMPLE START -->
+<a name="e250"><a href=Rdoc26.html#e250 STYLE="text-decoration: none">*<b><b>Example</b> 290:  One of Those Mornings</b></a><br>A FIND command that allows the player to find a lost object anywhere<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose that, contrary to the usual rules of interactive fiction, we want to allow the player to discover the locations of things he hasn't actually seen yet:
+<p>
+<blockquote><font color="#000080">&quot;One of Those Mornings&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;find [any thing]&quot; as finding.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Finding is an action applying to one visible thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out finding:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is carrying the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You're holding [the noun]!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You left [the noun] [if the noun is on a supporter]on[otherwise]in[end if] [the holder of the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>The holder of the noun can be a room, a supporter, or a container: the phrase is not picky. We would want to be a little more careful if it were ever possible for an item to have been &quot;removed from play&quot; in our game, since then the holder could be nothing, and that would have odd results. In this particular example, though, that will not arise.
+<p>
+<p>And that's it, as far as the find command goes. The rest is local color.
+<p>
+<blockquote><font color="#000080">The Exhibition Room is a room. It contains a closed locked lockable transparent openable container called the display case. The display case contains a priceless pearl. The display case is scenery. The description of the Exhibition Room is &quot;By far the finest thing in the room is a priceless pearl in a glass display case. It should of course be yours[if key is not visible], if only you can remember where you hid the key[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The silver key unlocks the display case.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A jade vase, a teak chest, a bronze teakettle, and a child's burial casket are openable closed containers in the Exhibition Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After taking the pearl:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The pearl rolls into your hand, gleaming in the oblique light; your fortune is made.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story finally.
+</font></blockquote><p>
+<p>
+<p>If we want to have the key found in different places when the game is replayed:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the space be a random container which is not the display case;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the silver key to the space.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your watch ticks with maddening loudness.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The time of day is 1:02 AM.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 1:08 AM: say &quot;The security guard arrives to find you fumbling about with keys. Curses.&quot;; end the story.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;find pearl / find teakettle / get teakettle / find teakettle / find key&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc25.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc27.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.16. What are relations for?</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Mathematical view of relations" -->
+<!-- SEARCH SECTION "Ex 243" -->
+<!-- SEARCH SORT "Ex 013-016-243" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc222.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc224.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.16. What are relations for?</b></td></tr></table><p>
+<p>
+<p>It is easy to say what verbs are for: they are to express relations. But what are relations for?
+<p>
+<p>Inform 7's focus on relations between objects is unusual as an approach to interactive fiction; the concept does not exist in most design systems, or rather, it does but is submerged. Traditional design systems do, after all, have the spatial relations of being inside, on top of, and so on. It could well be said that these are the only relationships that inanimate objects ever have. A stone can be on top of a table, and if so then that expresses their entire association.
+<p>
+<p>This is because the stone, and the table, have no opinions, emotions, knowledge or memory. If the stone is taken away and then put back, nothing has changed. People, on the other hand, tend to remember having met each other before; they like being in some places, but not others; their behaviour depends on who, or what, is nearby. Being conscious, they have internal states, unlike the stone. Relations are a simple but powerful way to express and talk about such connections, and although they have numerous uses in physical contexts too, they are at their most powerful when helping to make the characters of interactive fiction come alive.
+<p>
+<p><hr><p>
+<a name="e256"><a href=ex256.html#e256 STYLE="text-decoration: none">**<b>Example 241:  Murder on the Orient Express</b></a><br>A number of sleuths (the player among them) find themselves aboard the Orient Express, where a murder has taken place, and one of them is apparently the culprit. Naturally they do not agree on whom, but there is physical evidence which may change their minds...<p>
+<a name="e426"><a href=ex426.html#e426 STYLE="text-decoration: none">**<b>Example 242:  What Not To Wear</b></a><br>A general-purpose clothing system that handles a variety of different clothing items layered in different combinations over different areas of the body.<p>
+<!-- EXAMPLE START -->
+<a name="e238"><a href=doc223.html#e238 STYLE="text-decoration: none">***<b><b>Example</b> 243: Mathematical view of relations</b></a><br>Some notes on relations from a mathematical point of view, provided only to clarify some technicalities for those who are interested.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Inform uses the term &quot;relation&quot; in a broader sense than mathematics. Properly speaking, the term &quot;relation&quot; in its mathematical sense only applies to the case where the domain for the left and right objects are the same: for simplicity's sake, let us talk only about the case where they are.
+<p>
+<p>In mathematics, the properties most often looked for in a relation are that it should be:
+<p>
+<p>(a) Reflexive: A &lt;=&gt; A for every A. This is not especially useful for Inform, and seldom appears in practical examples.
+<p>
+<p>(b) Symmetric: A &lt;=&gt; B if and only if B &lt;=&gt; A. Generally, Inform relations are not symmetric, but there are two important cases which are:
+<p>
+<blockquote><font color="#000080">Meeting relates people to each other.
+<br>Marriage relates one person to another.
+</font></blockquote><p>
+<p>
+<p>These are automatically symmetric, so that to assert one way round is to assert the other as well.
+<p>
+<p>(c) Transitive: A &lt;=&gt; B and B &lt;=&gt; C means that A &lt;=&gt; C as well. Again, Inform relations are not generally transitive. In many relations, there can be long chains of things, each perhaps related to the one in front and the one behind, so that there is some indirect sense in which the two ends of the chain are connected to each other: but they are not related as such. For instance, a journey across the map might pass through ten rooms, each adjacent to the last and next, but the two ends would not themselves be adjacent. The concept we need is the &quot;transitive closure&quot; of the original relation, defined as the smallest transitive relation including the original. If R is a relation between &quot;things&quot;, then the following:
+<p>
+<blockquote><font color="#000080">TC relates a thing (called A) to a thing (called B) when the number of steps via R from A to B is greater than 0.
+</font></blockquote><p>
+<p>
+<p>is the transitive closure of R. In particular,
+<p>
+<blockquote><font color="#000080">Accessibility relates a room (called A) to a room (called B) when the number of moves from B to A is greater than 0. The verb to be accessible from implies the accessibility relation.
+</font></blockquote><p>
+<p>
+<p>calculates the transitive closure of adjacency. Here, though, the way we normally understand &quot;accessible from&quot; suggests that it would be better to write:
+<p>
+<blockquote><font color="#000080">Accessibility relates a room (called A) to a room (called B) when the number of moves from B to A is at least 0.
+</font></blockquote><p>
+<p>
+<p>which is reflexive as well as transitive. The usefulness of Inform's &quot;next step via R from A to B&quot; construction, in a wide variety of settings, reflects the importance of transitivity as an idea.
+<p>
+<p>A relation which has all three properties of being reflexive, symmetric and transitive is called an &quot;equivalence relation&quot;. (If all the map connections are two-way, then the accessibility relation above is symmetric and therefore a full equivalence relation: but if not, it may not be.) Inform has a special construction for making equivalence relations:
+<p>
+<blockquote><font color="#000080">Nationality relates people to each other in groups.
+</font></blockquote><p>
+<p>
+<p>This language - &quot;in groups&quot; - relies on the standard theorem that every equivalence relation on a set naturally defines a partition of that set, and vice versa. The &quot;groups&quot; referred to are what are normally called &quot;equivalence classes&quot;. (Inform does little with these equivalence classes: it might be interesting to do so, in effect forming quotient kinds.)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e239"><a href=ex239.html#e239 STYLE="text-decoration: none">***<b>Example 244: Graph-theory view of relations</b></a><br>Some notes on relations from the point of view of graph theory.<p>
+<p><hr><p><a href=doc222.html STYLE="text-decoration: none">Previous</a> / <a href=doc224.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

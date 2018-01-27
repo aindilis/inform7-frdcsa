@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.26. Printing a locale paragraph about</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Kiwi" -->
+<!-- SEARCH SECTION "Ex 347" -->
+<!-- SEARCH SORT "Ex 017-026-347" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc306.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc308.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.26. Printing a locale paragraph about</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> See &quot;printing the locale description&quot;. By this point, the locale description process has identified a number of items as candidates to be described, and worked out a priority order. This activity is then called for each candidate in turn, starting with the highest priority items and working downwards. It can either print some text or not, and can either mark the item as &quot;mentioned&quot; or not: if it does, then the item won't appear subsequently in the locale description. If the activity does nothing, the item becomes &quot;nondescript&quot; and falls through into the final &quot;You can also see...&quot; paragraph, unless another rule mentions it in the mean time.
+<p>
+<p><b>2. The default behaviour.</b> Is provided by a sequence of seven rules:
+<p>
+<blockquote><font color="#000080">(1) The &quot;don't mention player's supporter in room descriptions rule&quot; excludes anything the player is directly or indirectly standing on or, less frequently, in. The header of the room description has probably already said something like &quot;Boudoir (on the four-poster bed)&quot;, so the player can't be unaware of this item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(2) The &quot;don't mention scenery in room descriptions rule&quot; excludes scenery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(3) The &quot;don't mention undescribed items in room descriptions rule&quot; excludes the player object. (It's redundant to say &quot;You can also see yourself here.&quot;) At present nothing else in I7 is &quot;undescribed&quot; in this sense.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(4) The &quot;set pronouns from items in room descriptions rule&quot; adjusts the meaning of pronouns like IT and HER to pick up items mentioned. Thus if a room description ends &quot;Mme Tourmalet glares at you.&quot;, then HER would be adjusted to mean Mme Tourmalet.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(5) The &quot;offer items to writing a paragraph about rule&quot; gives the &quot;writing a paragraph about&quot; activity a chance to intervene. We detect whether it does intervene or not by looking to see if it has printed any text.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(6) The &quot;use initial appearance in room descriptions rule&quot; prints the &quot;initial appearance&quot; property of an item which has never been handled as a paragraph, if it has one.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">(7) The &quot;describe what's on scenery supporters in room descriptions rule&quot; is somewhat controversial. It prints text such as &quot;On the mantelpiece is a piece of chalk.&quot; for items which, like the mantelpiece, are scenery mentioned - we assume - in the main room description. (It is assumed that scenery supporters make their contents more prominently visible than scenery containers, which we do not announce the contents of.)
+</font></blockquote><p>
+<p>
+<p><b>3. Examples.</b> If all that's required is to supply an interesting paragraph of room description about something then it's always better to use the &quot;printing a paragraph about&quot; activity, not this one. This activity should only be used when the mechanism itself needs to be adjusted.
+<p>
+<p>(a) The following excludes doors from room descriptions:
+<p>
+<blockquote><font color="#000080">For printing a locale paragraph about a door (called the item)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(this is the don't mention doors in room descriptions rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;set the locale priority of the item to 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the activity.
+</font></blockquote><p>
+<p>
+<p>(It's usually a good idea to &quot;continue the activity&quot; at the end of rules for this activity, since usually they all need to take effect for a happy outcome to the process. Here it doesn't really matter, since we were trying to stop anything from happening about the door, but it doesn't do any harm either.)
+<p>
+<p>(b) Here's how to abolish what may be the most contentious rule in the whole Standard Rules:
+<p>
+<blockquote><font color="#000080">The describe what's on scenery supporters in room descriptions rule is not listed in any rulebook.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e207"><a href=doc307.html#e207 STYLE="text-decoration: none">*<b><b>Example</b> 347:  Kiwi</b></a><br>Creating a raised supporter kind whose contents the player can't see or take from the ground.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want there to be some high shelves in our game, which the player can't get at unless he's standing on a prop of some kind. (This is a pretty hoary and over-used puzzle, but there may still be occasions when it becomes useful again.)
+<p>
+<p>In order to resolve this, we want to set up a raised supporter kind. When something is on a raised supporter, it should be mentioned to the player only if the player is in the right position (i.e., standing on something) and otherwise omitted from the description entirely.
+<p>
+<blockquote><font color="#000080">&quot;Kiwi&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A raised supporter is a kind of supporter.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">For printing a locale paragraph about a raised supporter (called the high place):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on a supporter (called the riser):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Up on [the high place] (and only visible because you're on [the riser]) [is-are a list of things on the high place].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The [high place] is above you.&quot;
+</font></blockquote><p>
+<p>
+<p>Note that here we don't continue the activity because we want to completely replace the normal behavior of describing what is on supporters.
+<p>
+<blockquote><font color="#000080">Definition: a thing (called target item) is out of reach:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on a supporter, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the target item is on a raised supporter, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<p>Now we also need to prevent the player from interacting with things that are out of reach:
+<p>
+<blockquote><font color="#000080">Before doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is out of reach or the second noun is out of reach:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't reach from down here.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>...or restoring things to the shelves while the player is in the wrong position...
+<p>
+<blockquote><font color="#000080">Instead of putting something on a raised supporter when the player is not on a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't reach from down here.&quot;
+</font></blockquote><p>
+<p>
+<p>And raised supporters shouldn't be searchable from the ground either:
+<p>
+<blockquote><font color="#000080">Instead of searching or examining a raised supporter when the player is not on a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't see from down here.&quot;
+</font></blockquote><p>
+<p>
+<p>Finally, we need to tackle the case where the player types GET ALL FROM SHELF, because we don't want to list the objects up there if the player can't even see them. We use a rule for deciding whether all includes in order to tell Inform not to consider items that can't be reached, and then we adjust the parser error so that it's a little more instructive than &quot;There are none at all available!&quot;, which is what the response would otherwise be:
+<p>
+<blockquote><font color="#000080">Disallowed-all is a truth state that varies. Disallowed-all is false.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for deciding whether all includes an out of reach thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now disallowed-all is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;it does not.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing a parser error when the latest parser error is the nothing to do error and the player is not on a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if disallowed-all is true:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Whatever might be up there, you can't see or reach from down here.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make no decision.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A first action-processing rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now disallowed-all is false.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Bottom of the Nursery is a room. &quot;Ever since you ate that mysterious cake, you've been even shorter than usual.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The high shelf is a raised supporter in the Nursery. It is scenery. On the high shelf are a kiwi-green ball and a stuffed dodo.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The step-ladder is an enterable supporter in the Nursery. Understand &quot;ladder&quot; as the step-ladder.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x shelf / search shelf / get dodo / get all from shelf / stand on ladder / get all from shelf / search shelf / get off / put all on shelf / get all from shelf / stand on ladder / put all on shelf&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e93"><a href=ex93.html#e93 STYLE="text-decoration: none">***<b>Example 348:  Copper River</b></a><br>Manipulating room descriptions so that only interesting items are mentioned, while objects that are present but not currently useful to the player are ignored.<p>
+<p><hr><p><a href=doc306.html STYLE="text-decoration: none">Previous</a> / <a href=doc308.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

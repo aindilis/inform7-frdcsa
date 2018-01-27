@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.2. Numbers</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Numbers" -->
+<!-- SEARCH SECTION "14.2" -->
+<!-- SEARCH SORT "014-002-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc225.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc227.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.2. Numbers</b></td></tr></table><p>
+<p>
+<p>What Inform calls a &quot;number&quot; is a whole number, positive, negative or zero. The range of numbers we can hold is not unlimited - if the format Setting for a project is one of the Z-machine choices, then we have:
+<p>
+<blockquote><font color="#000080">-32768, -32767, ..., -3, -2, -1, 0, 1, 2, 3, ..., 32767
+</font></blockquote><p>
+<p>
+<p>and if it is set to Glulx, then we have:
+<p>
+<blockquote><font color="#000080">-2147483648, -2147483647, ..., -3, -2, -1, 0, 1, 2, 3, ..., 2147483647
+</font></blockquote><p>
+<p>
+<p>Numbers from zero to twelve may be written out, but larger ones must be written as numerals. So &quot;twelve&quot; or &quot;12&quot;, but &quot;13&quot; only.
+<p>
+<p>We are allowed to perform about the same operations on numbers as are provided by a simple office calculator, starting with addition, subtraction, multiplication and division. We can use the traditional typewriter symbols for these, +, -, * and /, or can spell them out in words as &quot;plus&quot;, &quot;minus&quot;, &quot;times&quot; (or &quot;multiplied by&quot;), and &quot;divided by&quot;. Definitively:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(arithmetic value)<b> + </b>(arithmetic value)<b></b> ... <i>value</i><br><i>or:</i> <b></b>(arithmetic value)<b> plus </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_plus -->
+
+<p>This phrase performs signed addition on the given values, whose kinds must agree, and produces the result. Examples:
+<p>
+<blockquote><font color="#000080">200 + 1 = 201
+<br>10:04 AM + two minutes = 10:06 AM
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(arithmetic value)<b> - </b>(arithmetic value)<b></b> ... <i>value</i><br><i>or:</i> <b></b>(arithmetic value)<b> minus </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_minus -->
+
+<p>This phrase performs signed subtraction on the given values, whose kinds must agree, and produces the result. Examples:
+<p>
+<blockquote><font color="#000080">200 - 1 = 199
+<br>10:04 AM - two minutes = 10:02 AM
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(arithmetic value)<b> * </b>(arithmetic value)<b></b> ... <i>value</i><br><i>or:</i> <b></b>(arithmetic value)<b> times </b>(arithmetic value)<b></b> ... <i>value</i><br><i>or:</i> <b></b>(arithmetic value)<b> multiplied by </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_times -->
+
+<p>This phrase performs signed multiplication on the given values, whose kinds must be dimensionally compatible, and produces the result. Examples:
+<p>
+<blockquote><font color="#000080">201 times 3 = 603
+<br>two minutes times 4 = eight minutes
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(arithmetic value)<b> / </b>(arithmetic value)<b></b> ... <i>value</i><br><i>or:</i> <b></b>(arithmetic value)<b> divided by </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_divide -->
+
+<p>This phrase performs signed division on the given values, whose kinds must be dimensionally compatible, and produces the result. Examples:
+<p>
+<blockquote><font color="#000080">201 divided by 3 = 67
+<br>twenty minutes divided by 4 = five minutes
+<br>twenty minutes divided by five minutes = 4
+</font></blockquote><p>
+<p>
+<p>Division rounds down to the nearest whole number. It is mathematically impossible to divide by 0, so any attempt to do so will cause a run-time problem message.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>remainder after dividing </b>(arithmetic value)<b> by </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_remainder -->
+
+<p>This phrase performs signed division on the given values, whose kinds must be dimensionally compatible, and then produces the remainder. Examples:
+<p>
+<blockquote><font color="#000080">remainder after dividing 201 by 5 = 1
+<br>remainder after dividing twenty minutes by 7 = six minutes
+</font></blockquote><p>
+<p>
+<p>It is mathematically impossible to divide by 0, so any attempt to find the remainder after dividing by 0 will cause a run-time problem message.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The verbal and symbolic forms of these phrases are equivalent:
+<p>
+<blockquote><font color="#000080">the score + 10
+<br>the score plus 10
+</font></blockquote><p>
+<p>
+<p>It's probably better style to spell them out in full when writing text, and keep the symbols for writing equations, as we'll see later on in the chapter. (If we do use the symbols, then spaces around them are obligatory: to Inform, they are words which just happen to be spelt with symbols instead of letters.)
+<p>
+<p>Arithmetic often produces fussily exact answers which seem inappropriate in a conversation. Nobody says &quot;Steeple Barton is 7.655 miles down the road&quot;, but &quot;Steeple Barton is eight miles down the road&quot; sounds perfectly normal. In order to make that sort of report easier to make, Inform provides another arithmetic operation, one that's not found in most computer programming languages:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(arithmetic value)<b> to the nearest </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_nearest -->
+
+<p>This phrase rounds the given value off, rounding upward in boundary cases. Examples:
+<p>
+<blockquote><font color="#000080">201 to the nearest 5 = 200
+<br>205 to the nearest 10 = 210
+<br>10:27 AM to the nearest five minutes = 10:25 AM
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Inform has very few mathematical functions built in as phrases, because these aren't very often needed in story-telling. But it does provide these:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>square root of </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_squareroot -->
+
+<p>This phrase produces an approximate square root, to the nearest integer, of the given value, which must be of a kind which has square roots. Example:
+<p>
+<blockquote><font color="#000080">square root of 16 = 4
+</font></blockquote><p>
+<p>
+<p>Trying to take the square root of a negative number will cause a run-time problem, because then we can't even nearly solve it.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>cube root of </b>(arithmetic value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_cuberoot -->
+
+<p>This phrase produces an approximate cube root, to the nearest integer, of the given value, which must be of a kind which has cube roots. Example:
+<p>
+<blockquote><font color="#000080">cube root of 27 = 3
+<br>cube root of -27 = -3
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We can compare numbers using either the traditional computer-programming symbols, or using words:
+<p>
+<blockquote><font color="#000080">if the score is less than 10
+<br>if the score < 10
+</font></blockquote><p>
+<p>
+<p>and similarly for &quot;greater than&quot;, &quot;at least&quot; and &quot;at most&quot;, with the symbols &quot;>&quot;, &quot;>=&quot; and &quot;<=&quot;. But we are not allowed the equals sign: for that we need only use &quot;is&quot; -
+<p>
+<blockquote><font color="#000080">if the score is 10
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc225.html STYLE="text-decoration: none">Previous</a> / <a href=doc227.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

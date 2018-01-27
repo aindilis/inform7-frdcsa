@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.4. To carry, to wear, to have</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Interrogation" -->
+<!-- SEARCH SECTION "Ex 224" -->
+<!-- SEARCH SORT "Ex 013-004-224" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc210.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc212.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.4. To carry, to wear, to have</b></td></tr></table><p>
+<p>
+<p>Inform has altogether five mutually exclusive ways in which one thing can be physically joined to another one:
+<p>
+<blockquote><font color="#000080">containment relation - The coin is in the purse.
+<br>support relation - The coin is on the table.
+<br>incorporation relation - The coin is part of the sculpture.
+<br>carrying relation - The coin is carried by Peter.
+<br>wearing relation - The jacket is worn by Peter.
+</font></blockquote><p>
+<p>
+<p>This is why we cannot have
+<p>
+<blockquote><font color="#000080">The coin is on the table.
+<br>The coin is part of the table.
+</font></blockquote><p>
+<p>
+<p>simultaneously, and it is a rare exception to the general rule that having one relation does not affect having another.
+<p>
+<p>But there is also a sixth relation used in Inform for these meanings: the possession relation, which is the meaning of the verb &quot;to have&quot;. At first sight this looks the same as the carrying relation, but in fact it is a convenient shorthand for &quot;carrying or wearing&quot;, provided for conditions rather than assertions:
+<p>
+<blockquote><font color="#000080">if Mr Darcy has a wet shirt ...
+</font></blockquote><p>
+<p>
+<p>will be true during play if he is either carrying or wearing the shirt.
+<p>
+<p>Still another relation exists which can be tested, but not declared to be true or false: the concealment relation, which is the meaning of the verb &quot;to conceal&quot;. So we can ask:
+<p>
+<blockquote><font color="#000080">if Mr Darcy conceals a fob watch ...
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e197"><a href=doc211.html#e197 STYLE="text-decoration: none">*<b><b>Example</b> 224:  Interrogation</b></a><br>A wand which, when waved, reveals the concealed items carried by people the player can see.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Interrogation&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The X-Ray Vision Wand is carried by the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waving the X-Ray Vision Wand:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Disappointingly, nothing happens.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waving the X-Ray Vision Wand when the player can see someone who is concealing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The wand glows green. Immediately you see on the monitor [a list of things which are concealed by people who can be seen by the player].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a thing (called target) which is carried by someone while waving the wand:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; (carried by [a random person who carries the target])&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Interrogation Chamber is a room. &quot;Despite its gothic name, this room is a rather civilized place for your work, with large plate-glass windows and a fitted carpet.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be secret or obvious. A thing is usually obvious.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Brian is in the Interrogation Chamber.&quot;Brian lounges against the wall.&quot; Brian carries a quantity of plastic explosive. The explosive is secret.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Janine is in the Interrogation Chamber. &quot;Janine toys nervously with a laptop bag.&quot; Janine carries a chocolate biscuit, a laptop bag, and a microfilm. The microfilm is secret. The laptop bag is wearable. In the bag is a laptop computer.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of something: if the particular possession is secret, yes; otherwise no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining someone: say &quot;[The noun] is openly carrying [a list of unconcealed things carried by the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;wave wand / examine janine / examine brian&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e70"><a href=ex70.html#e70 STYLE="text-decoration: none">*<b>Example 225:  Celadon</b></a><br>Using the enclosure relation to let the player drop things which he only indirectly carries.<p>
+<p><hr><p><a href=doc210.html STYLE="text-decoration: none">Previous</a> / <a href=doc212.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

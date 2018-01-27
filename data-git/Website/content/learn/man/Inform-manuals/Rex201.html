@@ -1,0 +1,124 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.14. Obedient Characters</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Generation X" -->
+<!-- SEARCH SECTION "Ex 188" -->
+<!-- SEARCH SORT "Ex 007-014-188" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc59.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc61.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.14. Obedient Characters</b></td></tr></table><p>
+<p>
+<p>Other characters can perform all the same activities that the player can; this does not always mean that they're willing to obey the player's instructions. By default, characters will refuse to obey commands of the form JULIA, WEST or ANTONY, TAKE THE PINCUSHION. Their objections can be overridden, however, and <b>The Hypnotist of Blois</b> implements a hypnotist who can make characters obedient at will.
+<p>
+<p>In <b>For Demonstration Purposes</b>, the character is only capable of a few actions at the outset, but can be taught new ones if the player performs them first.
+<p>
+<p>Often we want characters' obedience to be more selective. Just as the viewpoint character may be characterized in terms of what he will and will not do, so may others: <b>Generation X</b> demonstrates a character who will do what she's told, but who will comment unfavorably when the player asks for a nonsensical or repeated action, and who may eventually get fed up and leave.
+<p>
+<p>Characters can be given moral objections to certain commands, as well: <b>Virtue</b> defines a few kinds of actions as bad, so that the character commanded will refuse to perform them.
+<p>
+<p><b>Under Contract</b>, more subtly, has the character object if the player's commands implicitly require any behavior he considers inappropriate: for instance, if the player commands him to put his pants in a container, he will work out that this requires the removal of the pants as a preliminary. If we want to implement a similar character, we may want to simply copy his unsuccessful attempt rule and the table of his retorts, then replace his banter with lines of our choosing.
+<p>
+<p>The little example <b>Latin Lessons</b> allows us to make characters clever about vague commands: we can, for instance, write rules so that CLARK, EAT will have Clark sensibly pick something edible, rather than having the parser ask what we want Clark to eat.
+<p>
+<p>Finally, <b>Northstar</b> demonstrates how we might make Inform understand commands of the form ASK JOSH TO TAKE INVENTORY or ORDER JOAN TO WEAR THE ARMOR.
+<p>
+<a href=Rdoc58.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Characters Following a Script</b></font></a><i> for a programmable robot who can be given whole sequences of actions to perform</i><p><p>
+<p><hr><p>
+<a name="e193"><a href=Rex193.html#e193 STYLE="text-decoration: none">*<b>Example 186:  The Hypnotist of Blois</b></a><br>A hypnotist who can make people obedient and then set them free again.<p>
+<a name="e153"><a href=Rex153.html#e153 STYLE="text-decoration: none">***<b>Example 239:  For Demonstration Purposes</b></a><br>A character who learns new actions by watching the player performing them.<p>
+<!-- EXAMPLE START -->
+<a name="e201"><a href=Rdoc60.html#e201 STYLE="text-decoration: none">**<b><b>Example</b> 188:  Generation X</b></a><br>A person who goes along with the player's instructions, but reluctantly, and will get annoyed after too many repetitions of the same kind of unsuccessful command.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Generation X&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Volunteer Center is a room. &quot;A fairly spartan office, though there are a few attractive posters from advertising campaigns of the past, and an ominous map charting the deforestation of Brazil.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The desk is scenery in the Volunteer Center. &quot;Your standard metal desk, with a drawer for postal supplies and the like.&quot; On the desk is a pile of leaflets and a pile of business cards. The power stapler is a device on the desk. A drawer is part of the desk. It is openable and closed. In the drawer are a sponge and a roll of bulk-mail stamps.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if examining, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if searching, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if looking, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if asking Jenna to try doing something, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The whole point of this exercise is to train Jenna. Once you have her on the envelope-stuffing, you can go make some calls.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of answering Jenna that something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You're going to have to break the instructions down to the simplest ones possible, given that she's in the mood to misunderstand on purpose.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cardboard box is in the Center. In the cardboard box is a pile of empty envelopes. The box is openable and closed. The description is &quot;A recycling symbol is prominent on the side, which makes you feel a little bit better about using a mailing campaign for this cause.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Jenna is a woman in the Volunteer Center. &quot;Your daughter Jenna is here, barely visible through the cloud of resentment.&quot; The description is &quot;Jenna [if jenna carries something]has [the list of things carried by Jenna][otherwise]returns your stare, with added hostility[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A persuasion rule for asking Jenna to try doing something: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Unsuccessful attempt by Jenna doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through Table of Retorts:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the reason the action failed is the cause entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[response entry][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'I don't see how I'm supposed to do that, Mom,' Jenna says.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Retorts
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">cause</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">response</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take yourself rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'Is that like 'get a grip on yourself' or something?' Jenna asks, momentarily diverted.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take what's fixed in place rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[physical impossibility]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take scenery rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[physical impossibility]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take what's already taken rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't drop what's already dropped rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't wear what's already worn rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take off what's not worn rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't close what's already closed rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't open what's already open rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't switch off what's already off rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't switch on what's already on rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't unlock what's already unlocked rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't lock what's already locked rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;[already done]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say physical impossibility:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Maybe you should've brought someone a little stronger,' Jenna says. 'Like the Incredible Hulk.' &quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say already done:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through Table of Bored Remarks:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[response entry]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blank out the whole row;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Okay, I'm going to be, like, in the car,' says Jenna. 'Outside.' &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Jenna has gotten fed up&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Bored Remarks
+<br>response
+<br>&quot;'Did that,' says Jenna.&quot;
+<br>&quot;'Check,' says Jenna.&quot;
+<br>&quot;'Yeah, Mom, I already did that, okay?'&quot;
+<br>&quot;'Look, if I have to be here doing dumb stuff, could you at least tell me to do stuff that isn't already done?' Jenna asks wearily.&quot;
+<br>&quot;Jenna gives a great upward sigh, riffling her bangs. 'Once again... there is totally no point.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;e / x jenna / jenna, get stapler / jenna, get stapler / x jenna / jenna, drop stapler / jenna, drop stapler / jenna, open box / jenna, open box / jenna, switch stapler on / jenna, switch stapler on / jenna, take desk / jenna, open box / jenna, open box&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e407"><a href=Rex407.html#e407 STYLE="text-decoration: none">*<b>Example 184:  Virtue</b></a><br>Defining certain kinds of behavior as inappropriate, so that other characters will refuse indignantly to do any such thing.<p>
+<a name="e393"><a href=Rex393.html#e393 STYLE="text-decoration: none">****<b>Example 205:  Under Contract</b></a><br>Creating a person who accepts most instructions and reacts correctly when a request leads implicitly to inappropriate behavior.<p>
+<a name="e215"><a href=Rex215.html#e215 STYLE="text-decoration: none">*<b>Example 357:  Latin Lessons</b></a><br>Supplying missing nouns and second nouns for other characters besides the player.<p>
+<a name="e265"><a href=Rex265.html#e265 STYLE="text-decoration: none">**<b>Example 412:  Northstar</b></a><br>Making Inform understand ASK JOSH TO TAKE INVENTORY as JOSH, TAKE INVENTORY. This requires us to use a regular expression on the player's command, replacing some of the content.<p>
+<p><hr><p><a href=Rdoc59.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc61.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

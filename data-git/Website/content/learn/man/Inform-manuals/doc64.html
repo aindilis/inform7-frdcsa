@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.10. Conditions of things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Conditions of things" -->
+<!-- SEARCH SECTION "4.10" -->
+<!-- SEARCH SORT "004-010-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc63.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc65.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.10. Conditions of things</b></td></tr></table><p>
+<p>
+<p>Now for an even more abbreviated way to create a new kind of value, and at the same time create a property to hold it. Suppose we have something, say a wine cask, which we know is always in one of three different states. We can write:
+<p>
+<blockquote><font color="#000080">The cask is either customs sealed, liable to tax or stolen goods.
+</font></blockquote><p>
+<p>
+<p>This is just like our example of the lantern having possible brightnesses, but it's quicker to do, because we don't need to create or name the kind of value. (The trade-off is that we can't use it for anything else as well.)
+<p>
+<p>Initially the cask will be &quot;customs sealed&quot;, the first value we gave. We could now write, for instance,
+<p>
+<blockquote><font color="#000080">The description of the cask is &quot;A well-caulked Spanish wine cask.
+<br>[if liable to tax] It really is a shame to have to pay duty on it!&quot;
+</font></blockquote><p>
+<p>
+<p>Or, as a second example, here we're going to allow a whole kind to have the property, not just a single object:
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, green and white.
+<br>A colour can be bright, neutral or flat. Green is neutral.
+</font></blockquote><p>
+<p>
+<p>Now in fact these properties are not anonymous: Inform has worked out names for them, even though we didn't give any. The usual arrangement is that the name is the name of the object with the word &quot;condition&quot; tacked on: for instance, &quot;cask condition&quot;. So we could write:
+<p>
+<blockquote><font color="#000080">The printed name of the cask is &quot;wine cask ([cask condition])&quot;.
+</font></blockquote><p>
+<p>
+<p>so that sometimes this would be &quot;wine cask (liable to tax)&quot;, sometimes &quot;wine cask (stolen goods)&quot; and so on.
+<p>
+<p>But only usually, because we might need to define several different conditions of the same thing, and then the names would collide. For instance, suppose we write:
+<p>
+<blockquote><font color="#000080">A fruit is a kind of thing. A fruit can be citrus, berry, melon, or pome.
+</font></blockquote><p>
+<p>
+<p>This makes a property and a kind of value each called &quot;fruit condition&quot;. But now suppose we add that:
+<p>
+<blockquote><font color="#000080">A fruit can be unripened, ripe, overripe, or mushy.
+</font></blockquote><p>
+<p>
+<p>This is a quite unrelated property - a fruit could have any combination of these two properties, in fact. Left to itself, Inform will call the second one &quot;fruit condition 2&quot;, which isn't really ideal if we ever do need to refer to it in other source text. So we are also allowed to give these conditions names of our own choosing:
+<p>
+<blockquote><font color="#000080">A fruit can be unripened, ripe, overripe, or mushy (this is its squishiness property).
+</font></blockquote><p>
+<p>
+<p>And now the resulting property and kind of value would be called &quot;squishiness&quot;.
+<p>
+<p><hr><p><a href=doc63.html STYLE="text-decoration: none">Previous</a> / <a href=doc65.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 23.16. Releasing the source text</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Releasing the source text" -->
+<!-- SEARCH SECTION "23.16" -->
+<!-- SEARCH SORT "023-016-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc398.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc400.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>23.16. Releasing the source text</b></td></tr></table><p>
+<p>
+<p>Most authors will not want to publish the source text alongside the work itself, because this gives away all of its secrets. Inform provides the option mainly for the sake of the examples published on its own website, where making the source available is the whole point. But anyone is welcome to use the option, of course:
+<p>
+<blockquote><font color="#000080">Release along with the source text.
+</font></blockquote><p>
+<p>
+<p>If Inform is not also generating a website, this produces a plain text file called &quot;source.txt&quot; in the &quot;Release&quot; folder, and there is nothing more to be said.
+<p>
+<p>However, if a website is also being released, the source is also converted to a suite of web pages which are linked to and from the home page. (Each heading with substantive content is placed on its own web page, with the opening page containing a contents list.)
+<p>
+<p>Comments in the source are rendered in grey. As a special feature, any comment which begins with an asterisk is considered a footnote and is printed below the source text, with a link. Thus comments thus:
+<p>
+<blockquote><font color="#000080">Hercules is a demigod.[* We're using Greek spellings so he ought to be Heracles, but players are so much more familiar with Hercules.]
+</font></blockquote><p>
+<p>
+<p>will be printed more like so:
+<p>
+<blockquote><font color="#000080">Hercules is a demigod.[1]
+<br>...
+<br>Note
+<br>[1]. We're using Greek spellings so he ought to be Heracles, but players are so much more familiar with Hercules.
+</font></blockquote><p>
+<p>
+<p>Footnotes are automatically numbered from 1 on each source page.
+<p>
+<p>By default, the source text is linked from our generated webpage, if we are releasing with a webpage. If we wish to change this, we may write instead
+<p>
+<blockquote><font color="#000080">Release along with the private source text.
+</font></blockquote><p>
+<p>
+<p>This will create a text file containing the source for our story, and place this file in our release folder, but not create a link so that the player can find it.
+<p>
+<p>Finally, we can:
+<p>
+<blockquote><font color="#000080">Release along with the library card.
+</font></blockquote><p>
+<p>
+<p>which releases a stand-alone XML file in 'iFiction' format for the bibliographic data on the story file; this is the same data embedded in the blorb file itself, but having an external copy makes it easier to see what Inform has done, and some external programs can read iFiction data like this.
+<p>
+<p><hr><p><a href=doc398.html STYLE="text-decoration: none">Previous</a> / <a href=doc400.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

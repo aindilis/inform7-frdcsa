@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.7. Properties depend on kind</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Properties depend on kind" -->
+<!-- SEARCH SECTION "3.7" -->
+<!-- SEARCH SORT "003-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc33.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc35.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.7. Properties depend on kind</b></td></tr></table><p>
+<p>
+<p>Properties depend very much on kind. It makes no sense to ask whether a room is transparent or opaque, for instance, so Inform will not allow this either to be specified or queried.
+<p>
+<p>Another way that kind influences properties can be seen from an earlier example:
+<p>
+<blockquote><font color="#000080">The Gazebo is a room. A billiards table is in the Gazebo. On it is a trophy cup. A starting pistol is in the cup.
+</font></blockquote><p>
+<p>
+<p>The cup, the pistol and the table are all allowed to have the &quot;fixed in place&quot; property, but in fact only the table actually has it: the cup and the pistol are created as &quot;portable&quot; instead. This is because Inform knows that most things are portable, but that supporters - such as the table - are usually fixed in place. If this assumption is wrong, we need only add the line:
+<p>
+<blockquote><font color="#000080">The table is portable.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e48"><a href=ex48.html#e48 STYLE="text-decoration: none">*<b>Example 13: Disenchantment Bay 1</b></a><br>A running example in this chapter, Disenchantment Bay, involves chartering a boat. This is the first step: creating the cabin.<p>
+<p><hr><p><a href=doc33.html STYLE="text-decoration: none">Previous</a> / <a href=doc35.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

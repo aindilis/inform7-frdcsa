@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.7. Saying Simple Things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Proposal" -->
+<!-- SEARCH SECTION "Ex 171" -->
+<!-- SEARCH SORT "Ex 007-007-171" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc52.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc54.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.7. Saying Simple Things</b></td></tr></table><p>
+<p>
+<p>There are times when even the commands ASK and TELL are overkill: sometimes the player doesn't have much information to offer, so TELL is never useful, for instance. If we don't want to make any distinction between modes of conversation, we can conflate the actions so that ASK LUCIUS ABOUT OLLIVANDER, TELL LUCIUS ABOUT OLLIVANDER and LUCIUS, OLLIVANDER all do the same thing: see <b>Sybil 1</b>.
+<p>
+<p>If we are frequently permitting the player to say things like LUCIUS, OLLIVANDER as shorthand for &quot;talk to Lucius about Ollivander&quot;, then we may also want to allow LUCIUS, OLLIVANDER? This makes the player character seem a bit slow (or at least Laconic), but it is an effective interface in some cases. The trick is that the question mark at the end of the command may prevent Inform from recognizing the keyword; should that problem arise, we may want to use Punctuation Removal to erase question marks from the player's command before attempting to interpret it.
+<p>
+<p>Along the same lines, there are situations in conversation where similar commands do not correspond to the same actions within Inform; if we're careless about this, we may force the player to guess which vocabulary we want him to use, which is always vexing. Some cases to look out for:
+<p>
+<p>Inform has actions for &quot;saying yes&quot; and &quot;saying no&quot;. Sometimes this is useful, but sometimes we want YES and SAY YES TO FRED to do the same thing. <b>Sybil 2</b> shows how to roll these responses into one; <b>Proposal</b> expands on the idea to show more ways in which a player could reasonably answer a question put by another character.
+<p>
+<p>Again, if we want ASK SYBIL ABOUT CAKE to do the same thing as SHOW CAKE TO SYBIL, we might use the technique in <b>Nameless</b> to make objects into valid topics of conversation, and to make ASK and SHOW behave the same way.
+<p>
+<a href=Rdoc42.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Remembering, Converting and Combining Actions</b></font></a><i> for ways to redirect one conversation command to another conversation topic</i><p><p>
+<a href=Rdoc6.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Varying What Is Read</b></font></a><i> for a way of asking the player trivia questions that he can answer only on the next turn</i><p><p>
+<p><hr><p>
+<a name="e198"><a href=Rex198.html#e198 STYLE="text-decoration: none">*<b>Example 91: Sybil 1</b></a><br>Direct all ASK, TELL, and ANSWER commands to ASK, and accept multiple words for certain cases.<p>
+<a name="e320"><a href=Rex320.html#e320 STYLE="text-decoration: none">**<b>Example 93: Sybil 2</b></a><br>Making the character understand YES, SAY YES TO CHARACTER, TELL CHARACTER YES, ANSWER YES, and CHARACTER, YES.<p>
+<!-- EXAMPLE START -->
+<a name="e301"><a href=Rdoc53.html#e301 STYLE="text-decoration: none">**<b><b>Example</b> 171:  Proposal</b></a><br>Asking the player a yes/no question which he must answer, and another which he may answer or not as he chooses.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to ask the player a question where he might say yes or no in response. There are two possible forms of this: the modal question where the player must pick one to proceed, and the non-modal question where he might also type other verbs.
+<p>
+<blockquote><font color="#000080">&quot;Proposal&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The story genre is &quot;A Worked Example about Yes/No Questions&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Asking a Modal Yes/No Question
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Do you like Mr Spruce? &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if player consents, now Spruce is handsome;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise now Spruce is ugly;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say paragraph break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Mr Spruce's Non-Modal Question
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Use full-length room descriptions.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Conservatory is a room. &quot;You are in a room full of plants.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Mr Spruce is a man in the Conservatory. Mr Spruce can be apprehensive or calm. Mr Spruce is calm. Mr Spruce can be handsome or ugly.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 9:02 AM: say &quot;Mr Spruce flings himself to his knees and implores you to become his lawfully wedded wife.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is apprehensive;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Spruce gives up in two minutes from now.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when Mr Spruce gives up:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mr Spruce sighs heavily, seeing that you don't intend to reply. 'Never mind, my dear, I'll ask later. Perhaps I should have spoken to your Papa first... yes, a gently-bred female... no wonder...'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Spruce departs in one minute from now.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when Mr Spruce departs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player can see Mr Spruce, say &quot;Mr Spruce takes his leave of you.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Mr Spruce pokes his head in to say that he is leaving.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Well, that is over...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying yes in the presence of an ugly apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Remembering what your mother said to you about the stock exchange and Dear Papa, you close your eyes and accept Mr Spruce.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Alas for your maiden hopes.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying yes in the presence of a handsome apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are silent with delight for a moment before you say yes, yes!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;How Genevieve Stubbs will cry!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying no in the presence of an ugly apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Gently you inform Mr Spruce that it is impossible. He seems less deflated than you had expected.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Odd, that...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying no in the presence of a handsome apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You lower your eyes and refuse petulantly, hoping to stir him to a more ardent repetition of these same requests. But then -- alack! -- he says 'I see how it is!' in a strangled voice, and strides from the room!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;A fatal error!&quot;
+</font></blockquote><p>
+<p>
+<p>And since the player might SAY YES TO SPRUCE, we had better reroute the relevant options:
+<p>
+<blockquote><font color="#000080">Instead of answering Mr Spruce that &quot;no&quot;, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of answering Mr Spruce that &quot;yes&quot;, try saying yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Mr Spruce to try saying yes, try saying yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Mr Spruce to try saying no, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying sorry, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Mr Spruce to try saying sorry, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of answering Mr Spruce that &quot;sorry&quot;, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / z / yes&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test more with &quot;z / z / z / no&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e80"><a href=Rex80.html#e80 STYLE="text-decoration: none">**<b>Example 286:  Nameless</b></a><br>ASKing someone about an object rather than about a topic.<p>
+<p><hr><p><a href=Rdoc52.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc54.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.21. Precedence</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Precedence" -->
+<!-- SEARCH SECTION "16.21" -->
+<!-- SEARCH SORT "016-021-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc279.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc281.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.21. Precedence</b></td></tr></table><p>
+<p>
+<p>When several different lines of grammar are supplied to meet the same circumstances, it makes a big difference what order they are tried in. For instance, suppose we have:
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [a door]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [an open door]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<p>The second line is more specific than the first, so Inform takes these grammar lines the other way around: it checks for &quot;open door&quot; before it checks for &quot;door&quot;. That didn't matter here, since both lines came out with the same result (the action of photographing), but it matters very much in the next example:
+<p>
+<blockquote><font color="#000080">Understand &quot;employ [a door]&quot; as opening.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;employ [an open door]&quot; as entering.
+</font></blockquote><p>
+<p>
+<p>More subtle is a line already seen:
+<p>
+<blockquote><font color="#000080">Understand &quot;on/in/inside&quot; or &quot;on top of&quot; as &quot;[within]&quot;.
+</font></blockquote><p>
+<p>
+<p>Here Inform puts &quot;on top of&quot; before &quot;on/in/inside&quot;, since otherwise only the &quot;on&quot; of &quot;on top of&quot; will be recognised.
+<p>
+<p>Mistakes always take precedence over non-mistakes: this is intended to make sure that
+<p>
+<blockquote><font color="#000080">Understand &quot;take umbrage&quot; as a mistake (&quot;Nobody takes umbrage in this game, mister.&quot;).
+</font></blockquote><p>
+<p>
+<p>will take precedence over
+<p>
+<blockquote><font color="#000080">Understand &quot;take [something]&quot; as taking.
+</font></blockquote><p>
+<p>
+<p>even if there is, in fact, a character called Mr Nimbus Umbrage so that the command could conceivably make sense.
+<p>
+<p><hr><p>
+<a name="e341"><a href=ex341.html#e341 STYLE="text-decoration: none">*<b>Example 319:  Some Assembly Required</b></a><br>Building different styles of shirt from component sleeves and collars.<p>
+<a name="e209"><a href=ex209.html#e209 STYLE="text-decoration: none">***<b>Example 320:  Lakeside Living</b></a><br>Similar to "Lemonade", but with bodies of liquid that can never be depleted, and some adjustments to the "fill" command so that it will automatically attempt to fill from a large liquid source if possible.<p>
+<p><hr><p><a href=doc279.html STYLE="text-decoration: none">Previous</a> / <a href=doc281.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

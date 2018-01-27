@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 19.8. Replacements</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Cave-troll" -->
+<!-- SEARCH SECTION "Ex 413" -->
+<!-- SEARCH SORT "Ex 019-008-413" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc346.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc348.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>19.8. Replacements</b></td></tr></table><p>
+<p>
+<p>Suppose V is an indexed text which varies - perhaps a property of something, or a variable defined everywhere, or a temporary &quot;let&quot;-named value. How do we change its contents? The easiest way is simply to assign text to it. Thus:
+<p>
+<blockquote><font color="#000080">let V be &quot;It is now [the time of the day in words].&quot;
+</font></blockquote><p>
+<p>
+<p>And, for instance,
+<p>
+<blockquote><font color="#000080">let V be &quot;[V]!&quot;
+</font></blockquote><p>
+<p>
+<p>adds an exclamation mark at the end of V.
+<p>
+<p>Otherwise, it is more useful (also a little faster) to modify V by changing its characters, words and so on. Thus:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace character number </b>(number)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replacechar -->
+
+<p>This phrase acts on the named text by placing the given text in place of the Nth character, counting from 1. Example:
+<p>
+<blockquote><font color="#000080">let V be an indexed text;
+<br>let V be &quot;mope&quot;;
+<br>replace character number 3 in V with &quot;lecul&quot;;
+<br>say V;
+</font></blockquote><p>
+<p>
+<p>says &quot;molecule&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace word number </b>(number)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replaceword -->
+
+<p>This phrase acts on the named text by placing the given text in place of the Nth word, counting from 1, and dividing words at spacing or punctuation. Example:
+<p>
+<blockquote><font color="#000080">let V be an indexed text;
+<br>let V be &quot;Does the well run dry?&quot;;
+<br>replace word number 3 in V with &quot;jogger&quot;;
+<br>say V;
+</font></blockquote><p>
+<p>
+<p>says &quot;Does the jogger run dry?&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace punctuated word number </b>(number)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replacepword -->
+
+<p>This phrase acts on the named text by placing the given text in place of the Nth word, counting from 1, and dividing words at spacing, counting punctuation runs as words in their own right. Example:
+<p>
+<blockquote><font color="#000080">let V be an indexed text;
+<br>let V be &quot;Frankly, yes, I agree.&quot;;
+<br>replace punctuated word number 2 in V with &quot;:&quot;;
+<br>say V;
+</font></blockquote><p>
+<p>
+<p>says &quot;Frankly: yes, I agree.&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace unpunctuated word number </b>(number)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replaceupword -->
+
+<p>This phrase acts on the named text by placing the given text in place of the Nth word, counting from 1, and dividing words at spacing, counting punctuation as part of a word just as if it were lettering. Example:
+<p>
+<blockquote><font color="#000080">let V be an indexed text;
+<br>let V be &quot;Frankly, yes, I agree.&quot;;
+<br>replace unpunctuated word number 2 in V with &quot;of course&quot;;
+<br>say V;
+</font></blockquote><p>
+<p>
+<p>says &quot;Frankly, of course I agree.&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace line number </b>(number)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replaceline -->
+
+<p>This phrase acts on the named text by placing the given text in place of the Nth line, counting from 1. Lines are divided by paragraph or line breaks.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace paragraph number </b>(number)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replacepara -->
+
+<p>This phrase acts on the named text by placing the given text in place of the Nth paragraph, counting from 1.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Last, but not least, we can replace text wherever it occurs:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace the text </b>(indexed text)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replace -->
+
+<p>This phrase acts on the named text by searching and replacing, as many non-overlapping times as possible. Example:
+<p>
+<blockquote><font color="#000080">replace the text &quot;a&quot; in V with &quot;z&quot;
+</font></blockquote><p>
+<p>
+<p>changes every lower-case &quot;a&quot; to &quot;z&quot;: the same thing done with the &quot;case insensitively&quot; option would change each &quot;a&quot; or &quot;A&quot; to &quot;z&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>All very well for letters, but it can be unfortunate to try
+<p>
+<blockquote><font color="#000080">replace the text &quot;Bob&quot; in V with &quot;Robert&quot;
+</font></blockquote><p>
+<p>
+<p>if V happens to contain, say &quot;The Olympic Bobsleigh Team&quot;: it would become &quot;The Olympic Robertsleigh Team&quot;. What we want, of course, is for Bob to become Robert only when it's a whole word. We can get that with:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace the word </b>(indexed text)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replacewordin -->
+
+<p>This phrase acts on the named text by searching and replacing, as many non-overlapping times as possible, where the search text must occur as a whole word. Example:
+<p>
+<blockquote><font color="#000080">replace the word &quot;Bob&quot; in V with &quot;Robert&quot;
+</font></blockquote><p>
+<p>
+<p>changes &quot;Bob got on the Bobsleigh&quot; to &quot;Robert got on the Bobsleigh&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace the punctuated word </b>(indexed text)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replacepwordin -->
+
+<p>This phrase acts on the named text by searching and replacing, as many non-overlapping times as possible, where the search text must occur as a whole word or run of punctuation.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>But these are all just special cases of the grand-daddy of all replacement phrases:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace the regular expression </b>(indexed text)<b> in </b>(indexed text)<b> with </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replacere -->
+
+<p>This phrase acts on the named text by matching the regular expression and replacing anything which fits it, as many non-overlapping times as possible. Example:
+<p>
+<blockquote><font color="#000080">replace the regular expression &quot;\d+&quot; in V with &quot;...&quot;
+</font></blockquote><p>
+<p>
+<p>changes &quot;The Battle of Waterloo, 1815, rivalled Trafalgar, 1805&quot; to &quot;The Battle of Waterloo, ..., rivalled Trafalgar, ...&quot;. The &quot;case insensitively&quot; causes lower and upper case letters to be treated as if the same letter.
+<p>
+<p>When replacing a regular expression, the replacement text also has a few special meanings (though, thankfully, many fewer than for the expression itself). Once again &quot;\n&quot; and &quot;\t&quot; can be used for line break and tab characters, and &quot;\\&quot; must be used for an actual backslash. But, very usefully, &quot;\1&quot; to &quot;\9&quot; expand as the contents of groups numbered 1 to 9, and &quot;\0&quot; to the exact text matched. So:
+<p>
+<blockquote><font color="#000080">replace the regular expression &quot;\d+&quot; in V with &quot;roughly \0&quot;
+</font></blockquote><p>
+<p>
+<p>adds the word &quot;roughly&quot; in front of any run of digits in V, because \0 becomes in turn whichever run of digits matched. And
+<p>
+<blockquote><font color="#000080">replace the regular expression &quot;(\w+) (.*)&quot; in V with &quot;\2, \1&quot;
+</font></blockquote><p>
+<p>
+<p>performs the transformation &quot;Frank Booth&quot; to &quot;Booth, Frank&quot;.
+<p>
+<p>Finally, prefixing the number by &quot;l&quot; or &quot;u&quot; forces the text it represents into lower or upper case, respectively. For instance:
+<p>
+<blockquote><font color="#000080">replace the regular expression &quot;\b(\w)(\w*)&quot; in X with &quot;\u1\l2&quot;;
+</font></blockquote><p>
+<p>
+<p>changes the casing of X to &quot;title casing&quot;, where each individual word is capitalised. (This is a little slow on large texts, since so many matches and replacements are made: it's more efficient to use the official phrases for changing case.)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e141"><a href=ex141.html#e141 STYLE="text-decoration: none">*<b>Example 408:  Fido</b></a><br>A dog the player can name and un-name at will.<p>
+<a name="e195"><a href=ex195.html#e195 STYLE="text-decoration: none">*<b>Example 409:  Igpay Atinlay</b></a><br>A pig Latin filter for the player's commands.<p>
+<a name="e37"><a href=ex37.html#e37 STYLE="text-decoration: none">*<b>Example 410:  Blackout</b></a><br>Filtering the names of rooms printed while in darkness.<p>
+<a name="e251"><a href=ex251.html#e251 STYLE="text-decoration: none">**<b>Example 411:  Mr. Burns' Repast</b></a><br>Letting the player guess types for an unidentifiable fish.<p>
+<a name="e265"><a href=ex265.html#e265 STYLE="text-decoration: none">**<b>Example 412:  Northstar</b></a><br>Making Inform understand ASK JOSH TO TAKE INVENTORY as JOSH, TAKE INVENTORY. This requires us to use a regular expression on the player's command, replacing some of the content.<p>
+<!-- EXAMPLE START -->
+<a name="e69"><a href=doc347.html#e69 STYLE="text-decoration: none">***<b><b>Example</b> 413:  Cave-troll</b></a><br>Determining that the command the player typed is invalid, editing it, and re-examining it to see whether it now reads correctly.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Novice players of interactive fiction, unfamiliar with its conventions, will often try to add extra phrases to a command that the game cannot properly parse: HIT DOOR WITH FIST, for instance, instead of HIT DOOR.
+<p>
+<p>While we can deal with some of these instances by expanding our range of actions, at some point it becomes impossible to account for all the possible prepositional phrases that the player might want to tack on. So what do we do if we want to handle those appended bits of text sensibly?
+<p>
+<p>We could go through and remove any piece of text containing &quot;with ...&quot; from the end of a player's command; the problem with that is that it overzealously lops off the ends of valid commands like UNLOCK DOOR WITH KEY, as well. So clearly we don't want to do this as part of the &quot;After reading a command...&quot; stage.
+<p>
+<p>A better time to cut off the offending text is right before issuing a parser error. At that point, Inform has already determined that it definitely cannot parse the instruction as given, so we know that there's something wrong with it.
+<p>
+<p>The next problem, though, is that after we've edited the player's text we want to feed the corrected version back to Inform and try once more to interpret it.
+<p>
+<p>This is where we have a valid reason to write a new &quot;rule for reading a command&quot;. We will tell Inform that when we have just corrected the player's input to something new, it should not ask for a new command (by printing a prompt and waiting for another line of input); it should instead paste our stored corrected command back into &quot;the player's command&quot; and proceed as though that new text had just been typed.
+<p>
+<p>Thanks to John Clemens for the specifics of the implementation.
+<p>
+<blockquote><font color="#000080">&quot;Cave-troll&quot; by JDC
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - The Mechanism
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The last command is an indexed text that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The parser error flag is a truth state that varies. The parser error flag is false.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing a parser error when the latest parser error is the only understood as far as error and the player's command matches the text &quot;with&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the last command is the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the parser error flag is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let n be indexed text;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let n be the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;replace the regular expression &quot;.* with (.*)&quot; in n with &quot;with \1&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(ignoring the unnecessary words '[n]')[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;replace the regular expression &quot;with .*&quot; in the last command with &quot;&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for reading a command when the parser error flag is true:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the parser error flag is false;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;change the text of the player's command to the last command.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - The Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cave is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The troll is a man in the cave.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a sword.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The chest is a locked lockable container in the cave.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;attack troll with sword / unlock chest with sword / attack troll as a test&quot;.
+</font></blockquote><p>
+<p>
+<p>A caveat about using this method in a larger game: &quot;parser error flag&quot; will not automatically control the behavior of any rules we might have written for Before reading a command... or After reading a command..., so they may now fire at inappropriate times. It is a good idea to check for parser error flag in those rules as well.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc346.html STYLE="text-decoration: none">Previous</a> / <a href=doc348.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

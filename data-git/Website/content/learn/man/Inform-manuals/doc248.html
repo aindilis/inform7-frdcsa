@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.8. Blank columns</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Blank columns" -->
+<!-- SEARCH SECTION "15.8" -->
+<!-- SEARCH SORT "015-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc247.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc249.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.8. Blank columns</b></td></tr></table><p>
+<p>
+<p>An entire column of blank entries &quot;--&quot; is problematic:
+<p>
+<blockquote><font color="#000080">Table 2 - Selected Elements
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Hydrogen&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;H&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Iron&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Fe&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">26</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Zinc&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Zn&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">30</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Uranium&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">92</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>Inform is unable to work out what kind of value should go into the &quot;atomic weight&quot; column here, since it has no examples to guess from. We can get around this by writing in the name of a kind of value:
+<p>
+<blockquote><font color="#000080">Table 2 - Selected Elements
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Hydrogen&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;H&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Iron&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Fe&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">26</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Zinc&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Zn&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">30</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Uranium&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">92</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>That top entry in the &quot;atomic weight&quot; column is also blank, but now Inform knows that anything put into the column in future will be a number.
+<p>
+<p>If there are many rows, and perhaps several blank columns, it would become very tedious to have to keep typing out &quot;--&quot;. So this is optional <i>at the end of a row</i>: it remains compulsory for a blank value appearing in between two values which aren't blank. This is the general idea:
+<p>
+<blockquote><font color="#000080">Table 2 - Selected Elements
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Density</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Specific gravity</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Hydrogen&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;H&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Iron&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Fe&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">26</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Zinc&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Zn&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">30</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Uranium&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">92</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc247.html STYLE="text-decoration: none">Previous</a> / <a href=doc249.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

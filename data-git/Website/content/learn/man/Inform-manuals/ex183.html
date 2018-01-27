@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.9. Deciding the concealed possessions of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Hays Code" -->
+<!-- SEARCH SECTION "Ex 325" -->
+<!-- SEARCH SORT "Ex 017-009-325" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc289.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc291.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.9. Deciding the concealed possessions of something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> Frequently - whenever Inform needs to check whether something is visible or not. Nothing should be printed, and the activity needs to run quickly, so it should not (for instance) calculate best routes through complicated maps before getting an answer.
+<p>
+<p><b>2. The default behaviour.</b> There is no concealment. The ordinary rules still apply, though: the contents of a closed opaque container are invisible because there is a barrier in the way which cannot be seen through, even though nobody is &quot;concealing&quot; anything.
+<p>
+<p><b>3. Examples.</b> To repeat a number of brief examples given at the end of Chapter 3, where this activity made an early appearance:
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of the Cloaked Villain: if the particular possession is the sable cloak, no; otherwise yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The coin is in the Roman Villa. The face and inscription are parts of the coin. Rule for deciding the concealed possessions of the coin: if the coin is carried, no; otherwise yes.
+</font></blockquote><p>
+<p>
+<p>The value &quot;particular possession&quot; is the one whose concealment is in question, of course. We can ignore this if someone is invariably secretive:
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of the furtive ghost: yes.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e183"><a href=doc290.html#e183 STYLE="text-decoration: none">*<b><b>Example</b> 325:  Hays Code</b></a><br>Clark Gable in a pin-striped suit and a pink thong.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The following burlesque was considered too much for the tender readers of Chapter 3, since it involved explicit use of listing and persuasion:
+<p>
+<blockquote><font color="#000080">&quot;Hays Code&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Movie Set is a room. Clark Gable is a man in the Movie Set. &quot;Clark leans on a polystyrene pillar, wearing [a list of unconcealed things worn by Clark] with his usual aplomb.&quot; Persuasion rule for asking Clark to try doing something: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Clark is wearing a pin-striped suit and a pink thong. Rule for deciding the concealed possessions of Clark: if the particular possession is the thong and Clark is wearing the suit, yes; otherwise no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;clark, remove suit / look / clark, remove thong / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc289.html STYLE="text-decoration: none">Previous</a> / <a href=doc291.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

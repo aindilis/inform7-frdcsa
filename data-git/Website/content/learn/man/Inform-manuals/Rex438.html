@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.13. Magic Words</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "XYZZY" -->
+<!-- SEARCH SECTION "Ex 275" -->
+<!-- SEARCH SORT "Ex 006-013-275" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc40.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc42.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.13. Magic Words</b></td></tr></table><p>
+<p>
+<p>Many fantasy games incorporate the idea of magic words that can be spoken. In implementing these, we want to be a bit flexible and accept a range of input regardless of whether the player explicitly speaks the command aloud: XYZZY, SAY XYZZY, or perhaps even CAST XYZZY. The inventively named <b>Xyzzy</b> demonstrates how we might define such a command.
+<p>
+<p>If we want to go even further and to allow the player also to use quotation marks, as in SAY &quot;XYZZY&quot;, we may want to include Punctuation Removal by Emily Short, which allows for quotation marks to be stripped out of the player's input before it is understood.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e438"><a href=Rdoc41.html#e438 STYLE="text-decoration: none">*<b><b>Example</b> 275:  XYZZY</b></a><br>Basics of adding a new command reviewed, for the case of the simple magic word XYZZY.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We have seen before how to define a new action from scratch, but we may want to review here, using a simple command that requires no objects.
+<p>
+<blockquote><font color="#000080">&quot;XYZZY&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;xyzzy&quot; or &quot;say xyzzy&quot; or &quot;cast xyzzy&quot; as casting xyzzy.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Casting xyzzy is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check casting xyzzy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player does not wear the amulet of elocution, say &quot;You are unable to articulate the second 'z' separately from the first, and the spell fails in a disdainful puff. Must be Parisian magic.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player has the plate, say &quot;The plate of cheeses twitches uncomfortably, aware that it should be doing something, but not sure what.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out casting xyzzy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the plate to the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report casting xyzzy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Under the influence of the Amulet of Elocution, you pronounce this as Xhi-zee. And lo, from nowhere, a [plate] appears!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The amulet of elocution is a wearable thing. It is carried by the player. The description is &quot;A heavy gold ring on a chain. If heated in an ordinary house fire, it glows with the words, 'Moses Supposes His Toeses Are Roses.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The plate is a portable supporter. On the plate is a very ripe ooze. Instead of smelling the ooze, say &quot;It smells like socks. This is going to be wonderful.&quot; The ooze is edible. The printed name of the plate is &quot;plate[if the plate supports the ooze] of cheese[end if]&quot;. The description of the ooze is &quot;Definitely genuinely cheese.&quot; Understand &quot;cheese&quot; as the ooze.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of eating the ooze: remove the ooze from play; say &quot;You are transported...&quot;; move the player to Paradise.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cheez Factory is a room. &quot;All around you are squares of pressed orange polymer, or possibly cheez. Your only hope is the magic word your uncle taught you: XYZZY.&quot; The squares of pressed orange polymer are scenery in the Factory. The description is &quot;You see nothing special about the squares of pressed orange polymer. Nothing special at all.&quot; Understand &quot;square&quot; or &quot;cheez&quot; as the squares.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Paradise is a room. The description is &quot;Well, it might just be one of the posh upper rings of purgatory, if you're entirely honest with yourself.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x squares / x amulet / x cheese / xyzzy / wear amulet / xyzzy / x ooze / smell ooze /  eat ooze&quot;.
+</font></blockquote><p>
+<p>
+<p>XYZZY is a magic word from the original Adventure, and many other games respond to it with some sort of amusing message.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc40.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc42.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

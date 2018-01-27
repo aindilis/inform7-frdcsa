@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.2. Named rules and rulebooks</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Named rules and rulebooks" -->
+<!-- SEARCH SECTION "18.2" -->
+<!-- SEARCH SORT "018-002-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc321.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc323.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.2. Named rules and rulebooks</b></td></tr></table><p>
+<p>
+<p>Most of the rules built into Inform have names. For instance, a rule called &quot;the advance time rule&quot; is the one which increments the number of turns - usually visible on the &quot;status line&quot; displayed above the window of a game in progress - and advances the clock, which is usually not visible, but ticking away behind the scenes.
+<p>
+<p>A rulebook is a list of rules to be followed in sequence until one of them makes a decision. For instance, when actions get to the &quot;instead&quot; stage, each &quot;instead&quot; rule is tried until one of them chooses to do something. If the source text contains the rules
+<p>
+<blockquote><font color="#000080">Instead of taking something: say &quot;You have no particular need just now.&quot;
+<br>Instead of taking a fish: say &quot;It's all slimy.&quot;
+</font></blockquote><p>
+<p>
+<p>and a command to TAKE something is tried, then only one of these rules will have any effect. The &quot;instead&quot; rulebook contains:
+<p>
+<blockquote><font color="#000080">Rule (1) to be applied if the action matches &quot;taking a fish&quot;
+<br>Rule (2) to be applied if the action matches &quot;taking something&quot;
+</font></blockquote><p>
+<p>
+<p>Inside their rulebook, the rules are not listed in the order of definition in the source text. Rule (1) comes before rule (2) because it applies in more specific circumstances. This is the main idea: a rulebook gathers together rules about making some decision, or taking some action, and sorts them in order to give the more specific rules first choice about whether they want to intervene.
+<p>
+<p>Whereas only some rules are named (the two &quot;instead&quot; rules above have no name, for instance), every rulebook has a name. For convenience, the following forms of rule and rulebook name are synonymous:
+<p>
+<blockquote><font color="#000080">advance time = the advance time rule
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">the instead rules = instead rulebook = instead
+</font></blockquote><p>
+<p>
+<p>The names of built-in rules have been chosen as descriptively as possible: the &quot;can't go through closed doors rule&quot;, for instance. Names for rules tend to be verbose, but this is a situation where clarity is very much better than brevity.
+<p>
+<p><hr><p>
+<a name="e411"><a href=ex411.html#e411 STYLE="text-decoration: none">*<b>Example 374:  Nine AM Appointment</b></a><br>A WAIT [number] MINUTES command which advances through an arbitrary number of turns.<p>
+<a name="e412"><a href=ex412.html#e412 STYLE="text-decoration: none">**<b>Example 375:  Delayed Gratification</b></a><br>A WAIT UNTIL [time] command which advances until the game clock reaches the correct hour.<p>
+<p><hr><p><a href=doc321.html STYLE="text-decoration: none">Previous</a> / <a href=doc323.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

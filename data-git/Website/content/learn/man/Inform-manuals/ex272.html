@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.6. Spontaneous actions by other people</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "IQ Test" -->
+<!-- SEARCH SECTION "Ex 189" -->
+<!-- SEARCH SORT "Ex 012-006-189" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc191.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc193.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.6. Spontaneous actions by other people</b></td></tr></table><p>
+<p>
+<p>The player's actions happen not only when he types a command, but can also happen spontaneously as a result of a &quot;try&quot; phrase.
+<p>
+<blockquote><font color="#000080">try going west
+<br>try asking Will to try going west
+</font></blockquote><p>
+<p>
+<p>The latter might, of course, result in Will trying going west: or it might not - that depends on the persuasion rules. But as the author, we have the ultimate powers of persuasion, and can make Will act in any way we like, without asking:
+<p>
+<blockquote><font color="#000080">try Will going west
+</font></blockquote><p>
+<p>
+<p>Nobody in the simulated world requested this: it is an impulse felt by Will alone, so that - from the player's point of view - Will is acting spontaneously. The player need not be anywhere nearby, and may never know what happened. Recall that when actions work their way down through the flow-chart, they are stopped before reaching the &quot;report&quot; stage - when the player is told about them - if they are running &quot;silently&quot;. This is also where Inform stops an action which is not witnessed by the player.
+<p>
+<p>To repeat a point in the previous section: &quot;unsuccessful attempt&quot; rules do not apply to actions which the author has caused to happen, using &quot;try&quot;. When such actions fail, they invoke no special set of rules.
+<p>
+<p>Note that the text &quot;try Will going west&quot; involves the actor's name immediately placed next to the action he is to try, which in a very few cases might cause ambiguities. If the actor's name contains a participle like &quot;going&quot; - say, if Will's full name turned out to be Mr Will Going - then we would have to write out the action name in full, using &quot;trying&quot; to clarify matters:
+<p>
+<blockquote><font color="#000080">try Will Going trying going west
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e272"><a href=doc192.html#e272 STYLE="text-decoration: none">*<b><b>Example</b> 189:  IQ Test</b></a><br>Introducing Ogg, a person who will unlock and open a container when the player tells him to get something inside.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>We have already seen how Before... rules can generate implicit actions for the player, so that the player will, for instance, open doors before trying to walk through them. The same can be done for characters other than the player; so for instance:
+<p>
+<blockquote><font color="#000080"> &quot;IQ Test&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Donut Shop is a room. &quot;Vibrantly decorated in donut colors: pink, brown, and cream.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Ogg is a man in the Donut Shop. &quot;Ogg is slumped in the corner[if Ogg carries something] with [a list of things carried by Ogg][end if]. He wears a nametag which says 'HELLO MY NAME IS OG.'&quot; Understand &quot;og&quot; as Ogg. Ogg wears a nametag. The description of the nametag is &quot;Sadly misspelled.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Donut Shop contains a transparent closed openable locked lockable container called a case. The case contains some cake donuts. The donuts are edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The matching key of the case is a silver key. The silver key is carried by Ogg.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A persuasion rule for asking someone to try doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone opening a locked thing (called the sealed chest):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person asked is carrying the matching key of the sealed chest, try the person asked unlocking the sealed chest with the matching key of the sealed chest;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the sealed chest is locked, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone taking something which is in a closed container (called the shut chest):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the person asked opening the shut chest;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the shut chest is closed, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in the check giving it to rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;open case / get donuts / og, get donuts / og, give me the donuts / eat donuts&quot;.
+</font></blockquote><p>
+<p>
+<p>(A more detailed set of before rules for people using doors and locks is provided in Emily Short's Locksmith extension.)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e106"><a href=ex106.html#e106 STYLE="text-decoration: none">****<b>Example 190:  Boston Cream</b></a><br>A fuller implementation of Ogg, giving him a motivation of his own and allowing him to react to the situation created by the player.<p>
+<p><hr><p><a href=doc191.html STYLE="text-decoration: none">Previous</a> / <a href=doc193.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.9. Text with type styles</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Text with type styles" -->
+<!-- SEARCH SECTION "5.9" -->
+<!-- SEARCH SORT "005-009-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc79.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc81.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.9. Text with type styles</b></td></tr></table><p>
+<p>
+<p>Inform does not go in for the use of fonts: a work of IF will be rendered with different fonts on different machines anyway, from tiny personal organisers up to huge workstations. However, it does allow for a modest amount of styling.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>bold type</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_bold -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: to make the text following it appear in bold face. &quot;[roman type]&quot; should be used to switch back to normal. Example:
+<p>
+<blockquote><font color="#000080">&quot;Jane looked down. [bold type]Danger[roman type], the sign read.&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>italic type</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_italic -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: to make the text following it appear in italics. &quot;[roman type]&quot; should be used to switch back to normal. Example:
+<p>
+<blockquote><font color="#000080">&quot;This is [italic type]very suspicious[roman type], said Peter.&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>roman type</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_roman -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: to return to ordinary Roman type after a previous use of &quot;[bold type]&quot; or &quot;[italic type]&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>but there is one other effect we can employ:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>fixed letter spacing</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_fixedspacing -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: to make the text following it appear with fixed letter spacing. In variable letter spacing, a lower case &quot;m&quot; is much wider than an &quot;l&quot;, which is natural to the eye since it has been printing practice since the Renaissance. Fixed letter spacing is more like typewriting, and it is best used to reproduce typewritten text or printed notices; it can also be convenient for making simple diagrams. Example:
+<p>
+<blockquote><font color="#000080">&quot;On the door is written: [fixed letter spacing]J45--O-O-O[variable letter spacing].&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>variable letter spacing</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_varspacing -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: to return to ordinary letter spacing after a previous use of &quot;[fixed letter spacing]&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Whichever effect we use (and they can be combined), we should be careful to ensure that we return to normal -- roman type and variable letter spacing -- after any specially-treated text has been printed.
+<p>
+<p><hr><p>
+<a name="e162"><a href=ex162.html#e162 STYLE="text-decoration: none">*<b>Example 69: Garibaldi 2</b></a><br>Adding coloured text to the example of door-status readouts.<p>
+<p><hr><p><a href=doc79.html STYLE="text-decoration: none">Previous</a> / <a href=doc81.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

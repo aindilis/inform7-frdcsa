@@ -1,0 +1,134 @@
+#!/usr/bin/perl -w
+
+use BOSS::Config;
+use PerlLib::SwissArmyKnife;
+use System::Inform7;
+use UniLang::Util::TempAgent;
+
+$specification = q(
+	-p <package>		Use the following Inform7 package
+	-m <machinetype>	Machine Type
+
+	-r <bool>		Recompile
+
+	--restart		Restart HAL
+);
+
+my $config =
+  BOSS::Config->new
+  (Spec => $specification);
+my $conf = $config->CLIConfig;
+
+my $tempagent;
+my $prompt = "9000> ";
+Execute();
+
+sub Execute {
+  my $package;
+  if (exists $conf->{'-p'}) {
+    if (! -d $conf->{'-p'}) {
+      die "package not found\n";
+    } else {
+      if (exists $conf->{'-r'} and $conf->{'-r'}) {
+	# need to recompile and reload
+	die "Need so specify machine type\n" unless exists $conf->{'-m'};
+	print "Recompiling\n";
+	my $machinetype = sprintf("%s",$conf->{'-m'});
+	my $package = $conf->{'-p'};
+	my $i7 = System::Inform7->new
+	  (
+	   Package => $package,
+	   Machine => $machinetype,
+	  );
+	$res = $i7->Compile();
+	if (! $res->{Success}) {
+	  die print Dumper($res);
+	}
+      }
+      $package = $conf->{'-p'};
+    }
+  } else {
+    $package = '/var/lib/myfrdcsa/codebases/minor/normal-form/inform7/Normal-Form/Normal Form.inform';
+  }
+  if ($package) {
+    print "Package: $package\n";
+    Run(Package => $package);
+  }
+}
+
+sub Run {
+  my (%args) = @_;
+  my $delay = 1;
+  $tempagent = UniLang::Util::TempAgent->new;
+  if ((exists $conf->{'-r'} and $conf->{'-r'}) or
+      (exists $conf->{'--restart'} and $conf->{'--restart'})) {
+    $tempagent->MyAgent->SendContents
+      (
+       Receiver => 'HAL-9000',
+       Contents => 'exit',
+       Data => {
+    		# _DoNotLog => 1,
+    	       },
+      );
+    # now start up hal with the proper package
+    sleep 2 if $delay;
+    # $tempagent->MyAgent->SendContents
+    #   (
+    #    Receiver => 'HAL-9000',
+    #    Contents => 'init',
+    #    Data => {
+    # 		# _DoNotLog => 1,
+    # 		_ExtraOptions => '-p '.shell_quote($args{Package}),
+    # 	       },
+    #   );
+    my $res = $tempagent->MyAgent->SendContents
+      (
+       Receiver => 'HAL-9000',
+       Contents => 'init',
+       Data => {
+		# _DoNotLog => 1,
+		_ExtraOptions => '-p '.shell_quote($args{Package}),
+	       },
+      );
+    sleep 2 if $delay;
+    print "Initialized\n";
+  }
+
+  print $prompt;
+  while ($command = <STDIN>) {
+    chomp $command;
+    # print "<$command>\n";
+    QueryHAL
+      (
+       From => 'user',
+       Command => $command,
+      );
+  }
+}
+
+sub Initialize {
+  QueryHAL
+    (
+     From => 'Hal',
+     Command => 'l',
+    );
+}
+
+sub QueryHAL {
+  my (%args) = @_;
+  my $message = $tempagent->MyAgent->QueryAgent
+    (
+     Receiver => 'HAL-9000',
+     Contents => 'Hal, '.$args{Command},
+     Data => {
+	      # _DoNotLog => 1,
+	     },
+    );
+  if (exists $message->{Data}) {
+    if (exists $message->{Data}{Results}) {
+      if (exists $message->{Data}{Results}{Result}) {
+	print $message->{Data}{Results}{Result}.$prompt;
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.2. Liquids</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Thirst" -->
+<!-- SEARCH SECTION "Ex 117" -->
+<!-- SEARCH SORT "Ex 010-002-117" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc80.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc82.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.2. Liquids</b></td></tr></table><p>
+<p>
+<p>Liquids are notoriously difficult to simulate well. A fully thorough approach consumes endless storage and can be very finicky to write and keep realistic. It is essential to decide what aspect of a liquid's behaviour is actually needed in a given story, and to simulate only that. For instance, if we only need a little chemistry, where a player can add (say) water to salt and make a solution, we do not want to fool around with calculating quantities or concentrations: what's important is that &quot;some water&quot; (amount unspecified) combines with &quot;some salt&quot; to produce &quot;some salty water&quot;. We should no more calculate precisely here than we would work out where all the furniture is to the nearest inch. Good advice for handling liquids is to simulate the least amount of realism possible, but no less.
+<p>
+<p>Sometimes all we want is a down-in-one drink: we needn't simulate the actual liquid, just the bottle it comes in, and all we need is to handle the &quot;drinking&quot; action. See <b>Beverage Service</b>, and also <b>3 AM</b>, where carbonated drinks can be shaken - again simulating the vessel, not the liquid.
+<p>
+<p>Some elementary biochemistry in <b>Xylan</b> is done simply by... well, the point is that two different liquids are represented by single things each, and a chemical reaction simply switches one for the other.
+<p>
+<p>In <b>Frizz</b>, we allow any container to be filled (only) with water (only) and we simulate what happens to any solid objects also inside: some waterproof, some not. <b>Flotation</b> provides a well (always full of water), with rules to determine whether things dropped into it should sink or float.
+<p>
+<p>Next we move up to quantitative approaches, where we remember not just whether a liquid is present, but how much of it. In its simplest form, we could have a drinking vessel from which we draw in sips, so that it can be full, half-empty or empty: see <b>Thirst</b>.
+<p>
+<p>The example with the best compromise between simulation quality and complexity is <b>Lemonade</b>. Here we provide a kind of container called a &quot;fluid container&quot;, not just a single cup, and each such vessel has a given &quot;fluid capacity&quot;. Each holds only a single liquid at a time (so no mixtures) and can be empty or full to any level (rounded off to the nearest 0.1 fl oz). We can fill one vessel from another (unless it would make a mixture). But liquids leaving these vessels must be consumed - drunk or poured away without trace: we cannot make pools on the floor, or carry liquids in our cupped hands. There is no object representing &quot;lemonade&quot;: there are only fluid containers, but which can be called LEMONADE if that is what they now contain.
+<p>
+<p><b>Savannah</b> is a light elaboration of Lemonade, showing how liquids might be poured on other objects, as for instance to extinguish a fire.
+<p>
+<p><b>Noisy Cricket</b> extends <b>Lemonade</b> to allow for mixing, though then the number of different possible mixtures is so large that complexity increases greatly. <b>Lakeside Living</b> extends <b>Lemonade</b> differently to add a &quot;liquid source&quot; kind, a form of fluid container which has infinite fluid capacity and is scenery - ideal for a lake, river or spring.
+<p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for stoppered bottles which could also be used for carrying liquids around in</i><p><p>
+<a href=Rdoc88.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Heat</b></font></a><i> for keeping liquids warm in insulated containers</i><p><p>
+<p><hr><p>
+<a name="e31"><a href=Rex31.html#e31 STYLE="text-decoration: none">*<b>Example 122:  Beverage Service</b></a><br>A potion that the player can drink.<p>
+<a name="e420"><a href=Rex420.html#e420 STYLE="text-decoration: none">***<b>Example 193:  3 AM</b></a><br>A shake command which agitates soda and makes items thump around in boxes.<p>
+<a name="e171"><a href=Rex171.html#e171 STYLE="text-decoration: none">***<b>Example 192:  Frizz</b></a><br>Liquid flows within containers and soaks objects that are not waterproof; any contact with a wet object can dampen our gloves.<p>
+<a name="e148"><a href=Rex148.html#e148 STYLE="text-decoration: none">*<b>Example 385:  Flotation</b></a><br>Objects that can sink or float in a well, depending on their own properties and the state of the surrounding environment.<p>
+<a name="e437"><a href=Rex437.html#e437 STYLE="text-decoration: none">**<b>Example 277:  Xylan</b></a><br>Creating a new command that does require an object to be named; and some comments about the choice of vocabulary, in general.<p>
+<!-- EXAMPLE START -->
+<a name="e418"><a href=Rdoc81.html#e418 STYLE="text-decoration: none">*<b><b>Example</b> 117:  Thirst</b></a><br>A waterskin that is depleted as the player drinks from it.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Thirst&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a waterskin. The waterskin can be full, partly drained, or empty. The waterskin is full. Understand &quot;water&quot; as the waterskin.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of drinking the waterskin when the waterskin is empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no water left.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of drinking the waterskin: if the waterskin is partly drained, now the waterskin is empty; if the waterskin is full, now the waterskin is partly drained; say &quot;You drink a long draught.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of the waterskin: say &quot; ([waterskin condition])&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Campsite is a room. &quot;It is solid night now, and the stars have come out. Unfamiliar stars. On the other side of the valley -- a valley round-bottomed but shallow, like a soup bowl -- burn other campfires, most likely bandits. Their voices do not carry, but the smoke rises and obscures the starlight over that way.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A sleepsack is an enterable container in the Campsite. &quot;Your sleepsack is laid out in a pocket of sandy soil and coarse grass.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sandy soil, the stars, the distant campfires, and the coarse grass are scenery in the Campsite. Understand &quot;smoke&quot; as the campfires. Instead of listening in the presence of your campfire: say &quot;All you hear are the reassuring snaps and cracks of the sticks in your fire.&quot; Understand &quot;campfires&quot; or &quot;fires&quot; as the distant campfires.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Your campfire is scenery. Instead of pushing, pulling, turning, tasting, or touching your campfire, say &quot;You would burn yourself.&quot; Understand &quot;fire&quot; as your campfire. The description of your campfire is &quot;A reassuring protection against wild animals and cold.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the stars is &quot;You invent constellations for them. The slingshot. The scroll. The heart (upside down).&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going nowhere when the player is in Campsite:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Now is not the time for wandering, alone in the dark. Better to keep here[if your campfire is visible], by the fire[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of singing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You sing, deep and low, a song from home. It is a good night for singing and the song raises your spirits.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / drink water / i / drink water / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e220"><a href=Rex220.html#e220 STYLE="text-decoration: none">***<b>Example 255:  Lemonade</b></a><br>Containers for liquid which keep track of how much liquid they are holding and of what kind, and allow quantities to be moved from one container to another.<p>
+<a name="e335"><a href=Rex335.html#e335 STYLE="text-decoration: none">***<b>Example 256:  Savannah</b></a><br>Using the liquid implementation demonstrated in Lemonade for putting out fires.<p>
+<a name="e434"><a href=Rex434.html#e434 STYLE="text-decoration: none">***<b>Example 265:  Noisy Cricket</b></a><br>Implementing liquids that can be mixed, and the components automatically recognized as matching one recipe or another.<p>
+<a name="e209"><a href=Rex209.html#e209 STYLE="text-decoration: none">***<b>Example 320:  Lakeside Living</b></a><br>Similar to "Lemonade", but with bodies of liquid that can never be depleted, and some adjustments to the "fill" command so that it will automatically attempt to fill from a large liquid source if possible.<p>
+<p><hr><p><a href=Rdoc80.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc82.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

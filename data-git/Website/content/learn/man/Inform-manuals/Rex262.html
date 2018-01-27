@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.8. Sounds</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Art of Noise" -->
+<!-- SEARCH SECTION "Ex 95" -->
+<!-- SEARCH SORT "Ex 003-008-095" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc14.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc16.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.8. Sounds</b></td></tr></table><p>
+<p>
+<p>It is too easily assumed that room descriptions are what the player sees, but as <b>The Undertomb</b> demonstrates, they might just as easily include ambient sounds.
+<p>
+<p>So Inform's &quot;listening to&quot; action is the audio equivalent of &quot;examining&quot;, rather than &quot;looking&quot;. Despite this the player can type LISTEN, which Inform understands as listening to the everything in the location at once. A simple but effective way to handle this is shown in <b>The Art of Noise</b>.
+<p>
+<p><b>Four Stars 2</b> adjusts the idea of &quot;visibility&quot; to make it behave differently for listening purposes: this introduces a formal idea of &quot;audibility&quot;.
+<p>
+<a href=Rdoc14.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Lighting</b></font></a><i> for heightened hearing in darkness, and the rest of &quot;Four Stars&quot;</i><p><p>
+<p><hr><p>
+<a name="e395"><a href=Rex395.html#e395 STYLE="text-decoration: none">*<b>Example 48:  The Undertomb 1</b></a><br>A small map of dead ends, in which the sound of an underground river has different strengths in different caves.<p>
+<!-- EXAMPLE START -->
+<a name="e262"><a href=Rdoc15.html#e262 STYLE="text-decoration: none">***<b><b>Example</b> 95:  The Art of Noise</b></a><br>Things are all assigned their own noise (or silence). Listening to the room in general reports on all the things that are currently audible.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>This example involves redesigning the LISTEN command, removing its built-in function and replacing that with something more ambitious. We will learn more about how to do this later on.
+<p>
+<blockquote><font color="#000080">&quot;The Art of Noise&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing has some text called sound. The sound of a thing is usually &quot;silence&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The block listening rule is not listed in the check listening to rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out listening to something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;From [the noun] you hear [the sound of the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of listening to a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if an audible thing can be touched by the player, say &quot;You hear [the list of audible things which can be touched by the player].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Nothing of note.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is audible if the sound of it is not &quot;silence&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of something audible while listening to a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[sound] from the &quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Sharper Image is a room. The pet rock is a thing in the Sharper Image. The toy car is a thing in the Sharper Image. The sound of the car is &quot;whirring and zooming&quot;. The plastic widget is a thing in the Sharper Image. The sound of the plastic widget is &quot;bleeps and bloops&quot;. The pointless gadget is a thing in Sharper Image. The sound of the pointless gadget is &quot;buzzbuzzbuzz&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The soundproof case is a transparent openable container in the Sharper Image. It is closed and fixed in place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;listen / listen to rock / listen to car / get all / open case / put all in case / listen / close case / listen / listen to car&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e417"><a href=Rex417.html#e417 STYLE="text-decoration: none">*<b>Example 350: Scope for listening different from scope for seeing</b></a><br>Using "deciding the scope" to change the content of lists such as "the list of audible things which can be touched by the player".<p>
+<p><hr><p><a href=Rdoc14.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc16.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

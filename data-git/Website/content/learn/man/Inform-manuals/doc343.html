@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 19.4. Upper and lower case letters</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Upper and lower case letters" -->
+<!-- SEARCH SECTION "19.4" -->
+<!-- SEARCH SORT "019-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc342.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc344.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>19.4. Upper and lower case letters</b></td></tr></table><p>
+<p>
+<p>In most European languages the same letters can appear in two forms: as capitals, like &quot;X&quot;, mainly used to mark a name or the start of a sentence; or in their ordinary less prominent form, like &quot;x&quot;. These forms are called upper and lower case because, historically, typesetters kept lead castings of letters in two wooden cases, one above the other on the workbench. Lower case letters were in the lower box closer to hand, being more often needed.
+<p>
+<p>Human languages are complicated. Not every lower case letter has an upper case partner: ordinal markers in Hispanic languages don't, for instance, and the German &quot;ß&quot; is never used in upper case. Sometimes two different lower case letters have the same upper case form: &quot;ς&quot; and &quot;σ&quot;, two versions of the Greek sigma, both capitalise to &quot;Σ&quot;. Inform follows the international Unicode standard in coping with all this.
+<p>
+<p>We can test whether text is in either case like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(indexed text)<b> is in lower case</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_inlower -->
+
+<p>This condition is true if every character in the text is a lower case letter. Examples: this is true for &quot;wax&quot;, but false for &quot;wax seal&quot; or &quot;eZ mOnEy&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(indexed text)<b> is in upper case</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_inupper -->
+
+<p>This condition is true if every character in the text is in upper case. Examples: this is true for &quot;BEESWAX&quot;, but false for &quot;ROOM 101&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We can change the casing of text using:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(indexed text)<b> in lower case</b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_lowercase -->
+
+<p>This phrase produces a new version of the given text, but with all upper case letters reduced to lower case. Example: &quot;a ticket to Tromsø via Østfold&quot; becomes
+<p>
+<blockquote><font color="#000080">&quot;a ticket to tromsø via østfold&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(indexed text)<b> in upper case</b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_uppercase -->
+
+<p>This phrase produces a new version of the given text, but with all upper case letters reduced to lower case. Example: &quot;a ticket to Tromsø via Østfold&quot; becomes
+<p>
+<blockquote><font color="#000080">&quot;A TICKET TO TROMSØ VIA ØSTFOLD&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(indexed text)<b> in title case</b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_titlecase -->
+
+<p>This phrase produces a new version of the given text, but with casing of words changed to title casing: this capitalises the first letter of each word, and lowers the rest. Example: &quot;a ticket to Tromsø via Østfold&quot; becomes
+<p>
+<blockquote><font color="#000080">&quot;A Ticket To Tromsø Via Østfold&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(indexed text)<b> in sentence case</b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_sentencecase -->
+
+<p>This phrase produces a new version of the given text, but with casing of words changed to sentence casing: this capitalises the first letter of each sentence and reduces the rest to lower case. Example: &quot;a ticket to Tromsø via Østfold&quot; becomes
+<p>
+<blockquote><font color="#000080">&quot;A ticket to tromsø via østfold&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Accents are preserved in case changes. So (if we are using Glulx and have Unicode available) title case can turn Aristophanes' discomfortingly lower-case lines
+<p>
+<blockquote><font color="#000080">ἐξ οὗ γὰρ ἡμᾶς προὔδοσαν μιλήσιοι,
+<br>οὐκ εἶδον οὐδ᾽ ὄλισβον ὀκτωδάκτυλον,
+<br>ὃς ἦν ἂν ἡμῖν σκυτίνη &quot;πικουρία
+</font></blockquote><p>
+<p>
+<p>by raising them proudly up like so:
+<p>
+<blockquote><font color="#000080">Ἐξ Οὗ Γὰρ Ἡμᾶς Προὔδοσαν Μιλήσιοι,
+<br>Οὐκ Εἶδον Οὐδ᾽ Ὄλισβον Ὀκτωδάκτυλον,
+<br>Ὃς Ἦν Ἂν Ἡμῖν Σκυτίνη &quot;Πικουρία.
+</font></blockquote><p>
+<p>
+<p>Title and sentence casing can only be approximate if done by computer. Inform looks at the letters, but is blind to the words and sentences they make up. (Note the way sentence casing did not realise &quot;Tromsø&quot; and &quot;Østfold&quot; were proper nouns.) If asked to put the name &quot;MCKAY&quot; into title casing, Inform will opt for &quot;Mckay&quot;, not recognising this as the Scottish patronymic surname &quot;McKay&quot;. Given &quot;baym dnieper&quot;, the title of David Bergelson's great Yiddish novel of 1932, it will opt for &quot;BAYM DNIEPER&quot;: but properly speaking Yiddish does not have upper case lettering at all, though nowadays it is sometimes printed as if it did. And conventions are very variable about which words should be capitalised in titles: English publishers mostly agree that connectives, articles and prepositions should be in lower case, but in France almost anything goes, with Académie Française rules giving way to avant-garde book design. In short, we cannot rely on Inform's title casing to produce a result which a human reader will always think perfect.
+<p>
+<p>This discussion has all been about how Inform prints, not about how it reads commands from the keyboard, because the latter is done case-insensitively. The virtual machines for which Inform creates programs normally flatten all command input to lower case, and in any case Understand comparison ignores casing. Thus
+<p>
+<blockquote><font color="#000080">Understand &quot;mckay&quot; as the Highland Piper.
+</font></blockquote><p>
+<p>
+<p>means that &quot;examine McKay&quot;, &quot;examine MCKAY&quot;, &quot;examine mckay&quot;, and so forth are all equivalent. The text of the player's command probably doesn't preserve the original casing typed in any event.
+<p>
+<p>One more caution, though it will affect hardly anyone. For projects using the Z-machine, only a restricted character set is available in indexed texts: for more, we must use Glulx. A mad anomaly of ZSCII, the Z-machine character set, is that it contains the lower case letter &quot;ÿ&quot; but not its upper case form &quot;Ÿ&quot;, so that
+<p>
+<blockquote><font color="#000080">&quot;ÿ&quot; in upper case
+</font></blockquote><p>
+<p>
+<p>produces &quot;Ÿ&quot; in Glulx but &quot;ÿ&quot; in the Z-machine. This will come as a blow to Queensrÿche fans, but in all other respects any result on the Z-machine should agree with its counterpart on Glulx.
+<p>
+<p><hr><p>
+<a name="e324"><a href=ex324.html#e324 STYLE="text-decoration: none">*<b>Example 401:  Rocket Man</b></a><br>Using case changes on any text produced by a "to say..." phrase.<p>
+<a name="e63"><a href=ex63.html#e63 STYLE="text-decoration: none">*<b>Example 402:  Capital City</b></a><br>To arrange that the location information normally given on the left-hand side of the status line appears in block capitals.<p>
+<p><hr><p><a href=doc342.html STYLE="text-decoration: none">Previous</a> / <a href=doc344.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

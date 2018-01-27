@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.10. Magic (Breaking the Laws of Physics)</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Interrogation" -->
+<!-- SEARCH SECTION "Ex 224" -->
+<!-- SEARCH SORT "Ex 010-010-224" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc88.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc90.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.10. Magic (Breaking the Laws of Physics)</b></td></tr></table><p>
+<p>
+<p>Every previous section of this chapter have been about adding further realism constraints to Inform, to give it a more advanced understanding of physics (and chemistry). But Inform has plenty of physical laws built into it already, even if they are more mundane: inanimate objects do not spontaneously move or change, one solid object cannot pass through another, there are opaque barriers through which light cannot pass, and so on. These rules stop many attempted actions. (GO EAST - &quot;The oak door is closed.&quot; GET EMERALD - &quot;You can't, since the glass display case is in the way.&quot;)
+<p>
+<p>In the real world, physics is not negotiable. (&quot;Gravity: it's not just a good idea, it's the law.&quot;) But in stories, magic can sometimes happen, and in these examples procedural rules are used to waive selected rules built into Inform which in effect cancel certain physical laws in certain cases. Very many other magical tricks could be achieved: if you want to make a given command work despite realism constraints, try typing ACTIONS - a testing command which reveals what is happening behind the scenes - and then typing the command you want. This should reveal which named rule is stopping it: you can then try suspending that rule, and seeing if the effect now works.
+<p>
+<a href=Rdoc41.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Magic Words</b></font></a><i> for ways to create new single-word spell commands</i><p><p>
+<p><hr><p>
+<a name="e384"><a href=Rex384.html#e384 STYLE="text-decoration: none">*<b>Example 227:  Transmutations</b></a><br>A machine that turns objects into other, similar objects.<p>
+<a name="e206"><a href=Rex206.html#e206 STYLE="text-decoration: none">*<b>Example 215:  Magneto's Revenge</b></a><br>Kitty Pryde of the X-Men is able to reach through solid objects, so we might implement her with special powers that the player does not have...<p>
+<a name="e224"><a href=Rex224.html#e224 STYLE="text-decoration: none">*<b>Example 390:  Access All Areas</b></a><br>The Pointy Hat of Liminal Transgression allows its wearer to walk clean through closed doors.<p>
+<!-- EXAMPLE START -->
+<a name="e197"><a href=Rdoc89.html#e197 STYLE="text-decoration: none">*<b><b>Example</b> 224:  Interrogation</b></a><br>A wand which, when waved, reveals the concealed items carried by people the player can see.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Interrogation&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The X-Ray Vision Wand is carried by the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waving the X-Ray Vision Wand:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Disappointingly, nothing happens.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waving the X-Ray Vision Wand when the player can see someone who is concealing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The wand glows green. Immediately you see on the monitor [a list of things which are concealed by people who can be seen by the player].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a thing (called target) which is carried by someone while waving the wand:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; (carried by [a random person who carries the target])&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Interrogation Chamber is a room. &quot;Despite its gothic name, this room is a rather civilized place for your work, with large plate-glass windows and a fitted carpet.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be secret or obvious. A thing is usually obvious.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Brian is in the Interrogation Chamber.&quot;Brian lounges against the wall.&quot; Brian carries a quantity of plastic explosive. The explosive is secret.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Janine is in the Interrogation Chamber. &quot;Janine toys nervously with a laptop bag.&quot; Janine carries a chocolate biscuit, a laptop bag, and a microfilm. The microfilm is secret. The laptop bag is wearable. In the bag is a laptop computer.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of something: if the particular possession is secret, yes; otherwise no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining someone: say &quot;[The noun] is openly carrying [a list of unconcealed things carried by the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;wave wand / examine janine / examine brian&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc88.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc90.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

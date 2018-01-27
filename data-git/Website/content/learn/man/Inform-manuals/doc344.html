@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 19.5. Matching and exactly matching</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Matching and exactly matching" -->
+<!-- SEARCH SECTION "19.5" -->
+<!-- SEARCH SORT "019-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc343.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc345.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>19.5. Matching and exactly matching</b></td></tr></table><p>
+<p>
+<p>Up to now, we have only been able to judge two texts by seeing if they are equal, but we can now ask more subtle questions.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(indexed text)<b> matches the text </b>(indexed text)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_matches -->
+
+<p>This condition is true if the second text occurs anywhere inside the first. Examples:
+<p>
+<blockquote><font color="#000080">if &quot;[score]&quot; matches the text &quot;3&quot;, ...
+</font></blockquote><p>
+<p>
+<p>tests whether the digit 3 occurs anywhere in the score, as printed out; and
+<p>
+<blockquote><font color="#000080">if the printed name of the location matches the text &quot;the&quot;, ...
+</font></blockquote><p>
+<p>
+<p>tests to see whether &quot;the&quot; can be found anywhere in the current room's name. Note that the location &quot;Smotheringly Hot Jungle&quot; would pass this test - it's there if you look. On the other hand, &quot;The Orangery&quot; would not, because &quot;The&quot; does not match against &quot;the&quot;. We can get around this in a variety of ways, one of which is to tell Inform to be insensitive to the case (upper or lower) of letters:
+<p>
+<blockquote><font color="#000080">if the printed name of the location matches the text &quot;the&quot;, case insensitively: ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(indexed text)<b> exactly matches the text </b>(indexed text)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_exactlymatches -->
+
+<p>This condition is true if the second text matches the first, starting at the beginning and finishing at the end. This appears to be the same as testing if one is equal to the other, but that's not quite true: for example,
+<p>
+<blockquote><font color="#000080">if &quot;[score]&quot; exactly matches &quot;[best score]&quot;, ...
+</font></blockquote><p>
+<p>
+<p>is true if the score and best score currently print out as the same text, which will be true if they are currently equal as numbers; but
+<p>
+<blockquote><font color="#000080">if &quot;[score]&quot; is &quot;[best score]&quot;, ...
+</font></blockquote><p>
+<p>
+<p>is never true - these are different texts, even if they sometimes look the same.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>In the next section we shall see that &quot;matches&quot; and &quot;exactly matches&quot; can do much more than the simple text matching demonstrated above.
+<p>
+<p>We can also see how many times something matches:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of times </b>(indexed text)<b> matches the text </b>(indexed text)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_nummatches -->
+
+<p>This produces the number of times the second text occurs within the first. The matches are not allowed to overlap. Example:
+<p>
+<blockquote><font color="#000080">number of times &quot;pell-mell sally&quot; matches the text &quot;ll&quot; = 3
+<br>number of times &quot;xyzzy&quot; matches the text &quot;Z&quot; = 0
+<br>number of times &quot;xyzzy&quot; matches the text &quot;Z&quot;, case insensitively = 2
+<br>number of times &quot;aaaaaaaa&quot; matches the text &quot;aaaa&quot; = 2
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>There's no &quot;number of times WHATEVER exactly matches the text FIND&quot; phrase since this is by definition going to have to be 0 or 1.
+<p>
+<p><hr><p><a href=doc343.html STYLE="text-decoration: none">Previous</a> / <a href=doc345.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

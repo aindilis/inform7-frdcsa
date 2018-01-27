@@ -1,0 +1,207 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.6. Spontaneous actions by other people</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Boston Cream" -->
+<!-- SEARCH SECTION "Ex 190" -->
+<!-- SEARCH SORT "Ex 012-006-190" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc191.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc193.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.6. Spontaneous actions by other people</b></td></tr></table><p>
+<p>
+<p>The player's actions happen not only when he types a command, but can also happen spontaneously as a result of a &quot;try&quot; phrase.
+<p>
+<blockquote><font color="#000080">try going west
+<br>try asking Will to try going west
+</font></blockquote><p>
+<p>
+<p>The latter might, of course, result in Will trying going west: or it might not - that depends on the persuasion rules. But as the author, we have the ultimate powers of persuasion, and can make Will act in any way we like, without asking:
+<p>
+<blockquote><font color="#000080">try Will going west
+</font></blockquote><p>
+<p>
+<p>Nobody in the simulated world requested this: it is an impulse felt by Will alone, so that - from the player's point of view - Will is acting spontaneously. The player need not be anywhere nearby, and may never know what happened. Recall that when actions work their way down through the flow-chart, they are stopped before reaching the &quot;report&quot; stage - when the player is told about them - if they are running &quot;silently&quot;. This is also where Inform stops an action which is not witnessed by the player.
+<p>
+<p>To repeat a point in the previous section: &quot;unsuccessful attempt&quot; rules do not apply to actions which the author has caused to happen, using &quot;try&quot;. When such actions fail, they invoke no special set of rules.
+<p>
+<p>Note that the text &quot;try Will going west&quot; involves the actor's name immediately placed next to the action he is to try, which in a very few cases might cause ambiguities. If the actor's name contains a participle like &quot;going&quot; - say, if Will's full name turned out to be Mr Will Going - then we would have to write out the action name in full, using &quot;trying&quot; to clarify matters:
+<p>
+<blockquote><font color="#000080">try Will Going trying going west
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e272"><a href=ex272.html#e272 STYLE="text-decoration: none">*<b>Example 189:  IQ Test</b></a><br>Introducing Ogg, a person who will unlock and open a container when the player tells him to get something inside.<p>
+<!-- EXAMPLE START -->
+<a name="e106"><a href=doc192.html#e106 STYLE="text-decoration: none">****<b><b>Example</b> 190:  Boston Cream</b></a><br>A fuller implementation of Ogg, giving him a motivation of his own and allowing him to react to the situation created by the player.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Boston Cream&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Donut Shop is a room. &quot;Vibrantly decorated in donut colors: pink, brown, and cream.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Ogg is a man in the Donut Shop. &quot;Ogg is slumped in the corner[if Ogg carries something] with [a list of things carried by Ogg][end if]. He wears a nametag which says 'HELLO MY NAME IS OG.'&quot; Understand &quot;og&quot; as Ogg. Ogg wears a nametag. The description of the nametag is &quot;Very neatly written.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Donut Shop contains a transparent closed openable locked lockable enterable container called a case. The case is fixed in place. The case contains some cake donuts, some jelly donuts, and some apple fritters. &quot;The [if unopenable]damaged[otherwise]gleaming[end if] donut case [if something is in the case]contains [a list of things in the case][otherwise]has been stripped of its contents[end if].&quot; The cake donuts, the jelly donuts, and the apple fritters are edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The matching key of the case is a silver key. The silver key is in a mesh basket. The mesh basket is closed, transparent, and openable. It is in the Donut Shop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone taking something which is carried by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person asked cannot touch the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg looks with a fixed frown at [the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The person asked] comes up and shakes your arm until you drop [the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say line break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try dropping the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone unlocking a locked thing with something which is not carried by the person asked:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the person asked taking the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone opening a locked thing (called the sealed chest):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person asked can see the matching key of the sealed chest:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the matching key of the sealed chest is enclosed by the sealed chest:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Seeing the paradoxical location of [the matching key of the sealed chest], [the person asked] gives a howl of rage.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increment the score;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story finally saying &quot;You have thwarted Ogg&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try the person asked unlocking the sealed chest with the matching key of the sealed chest;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone taking something which is in a closed container (called the shut chest):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the person asked opening the shut chest;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Ogg has a number called hunger. The hunger of Ogg is 0.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increment the hunger of Ogg;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the hunger of Ogg is 2 and Ogg is visible, say &quot;Ogg's stomach growls.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the hunger of Ogg is 3 and Ogg is visible:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if Ogg can see an edible thing (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg eyes [the target] with obvious intent.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg glances at you in a disturbingly shifty way.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the hunger of Ogg is greater than 3:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if Ogg carries an edible thing (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try Ogg eating the target;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let new target be a random edible thing which can be seen by Ogg;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the new target is a thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try Ogg taking the new target;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if Ogg can touch the player, end the story saying &quot;Ogg is gnawing your ankle&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise try Ogg taking the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The crumbs are a thing. &quot;Crumbs of [the list of edible things which cannot be seen by the player] lie scattered over the whole floor.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Ogg to try doing something when Ogg cannot touch the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg tilts his head and shrugs, unable to hear your instruction clearly.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Ogg to try eating something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It's not as though Ogg really needs any encouragement in that department, is it?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: Ogg is hungry if the hunger of Ogg is greater than 2.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking Ogg to try doing something: if Ogg is hungry, persuasion fails; persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking Ogg to try giving something edible to the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;persuasion fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Unsuccessful attempt by Ogg doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the reason the action failed is a failing listed in the Table of Ogg Retorts:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[reply entry][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg looks adorably confused.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Ogg Retorts
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">failing</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">reply</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take people's possessions rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'Ogg too polite.'&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take other people rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'Ogg not that greedy.'&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take scenery rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'[The noun] very very heavy.'&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't take what's fixed in place rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'[The noun] very heavy.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">can't drop what's not held rule</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'Hunh?'&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Ogg eating an edible thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the crumbs to the holder of Ogg;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the hunger of Ogg is 0.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Ogg unlocking something with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg struggles a bit with [the second noun] in the lock of [the noun], but does eventually succeed. 'Hunh!' says Ogg.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out Ogg opening the case when the case has been open:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the case is unopenable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of closing the unopenable case:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The glass panels are no longer properly seated in their tracks, and the case cannot be closed ever again.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Ogg opening the unopenable case:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg forces [the case] so hard that it does break.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Ogg opening the case:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg yanks [the noun] open with such force that you fear for its structural integrity.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Ogg taking something edible:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg acquires [the noun] with a look of tender affection.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Ogg eating something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg chows down on [the noun], scattering crumbs in all directions.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Ogg eating something when the number of visible edible things is 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ogg eats [the noun] in his trademark style. You can no longer bear to watch.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After entering the case:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You climb inside the case, folding yourself up uncomfortably.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After locking the case with something when the player is in the case:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You turn the key firmly in the lock -- amazing it locks from within, but it does -- and settle yourself for a long wait, hoping this thing is not air-tight.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The maximum score is 1.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;open mesh / get key / unlock case / open case / enter case / close case / lock case / wait / wait&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc191.html STYLE="text-decoration: none">Previous</a> / <a href=doc193.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

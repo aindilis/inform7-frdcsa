@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.13. Report rules for actions by other people</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Reporting rules for other characters' behavior" -->
+<!-- SEARCH SECTION "Ex 208" -->
+<!-- SEARCH SORT "Ex 012-013-208" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc198.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc200.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.13. Report rules for actions by other people</b></td></tr></table><p>
+<p>
+<p>Report rules for the player's actions are easy to write, and for many actions, they are not much harder for other people either:
+<p>
+<blockquote><font color="#000080">Report photographing: say &quot;Click!&quot;
+<br>Report someone photographing: say &quot;Click! [The person asked] takes a snapshot of [the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>But once other people are involved, we have to go to some trouble to get all of the possibilities right. Here is a case which did not immediately occur to the author of the &quot;going&quot; action, for instance:
+<p>
+<blockquote><font color="#000080">>get in cage
+<br>You get into the cage.
+<br>>clark, get in automobile
+<br>Clark Gable gets into the automobile.
+<br>>clark, push cage west
+<br>Clark Gable goes west in the automobile, pushing the cage in front, and you along too.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080"><b>The Lot</b> (in the cage)
+<br>In the Lot you can see an automobile (in which is Clark Gable).
+</font></blockquote><p>
+<p>
+<p>We said before that report rules are skipped if the action is running &quot;silently&quot;, or if the action is one that the player does not witness. But that is also a tricky concept. Inform's doctrine is that you witness an action if you can see any of the actor, the noun or the second noun at either the beginning or the end of the action; except that being able to see a backdrop does not count. Thus if Clark Gable, in Beverly Hills, photographs the Hollywood sign then we do not witness this from Sunset Boulevard merely because we, too, can see the Hollywood sign.
+<p>
+<p>While the report rules for actions by the player must actually report something, report rules for other people's actions are under no such obligation. For instance, if Clark unlocks a door from the other side to the player, then this counts as an action that the player witnesses - and after all, it could be argued that the player should hear the key turning in the lock - but in fact the standard rules for reporting locking choose to say nothing.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e83"><a href=doc199.html#e83 STYLE="text-decoration: none">*<b><b>Example</b> 208: Reporting rules for other characters' behavior</b></a><br>Elaborating the report rules to be more interesting than "Clark goes west."<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Report rules can be a good point at which to add local color: while Inform provides default descriptions of character behavior, these are rather generic and can stand to be customized.
+<p>
+<p>For instance, if we wanted to liven up our previous Clark Kent example:
+<p>
+<blockquote><font color="#000080">Report Clark Kent going a direction (called the way):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]With a particularly weak excuse[or]Muttering[at random] about [random excuse subject], Clark heads [way].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say random excuse subject:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a random row in the Table of Lame Excuses; say &quot;[reply entry]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Lame Excuses
+<br>reply
+<br>&quot;needing a paper-clip&quot;
+<br>&quot;wanting an English-Tuvalu dictionary&quot;
+<br>&quot;walking a neighbor's dog&quot;
+<br>&quot;hearing air-raid sirens&quot;
+<br>&quot;having drunk too much coffee&quot;
+<br>&quot;thinking he smells smoke&quot;
+<br>&quot;wondering where Lois got to&quot;
+<br>&quot;needing to speak to Jimmy&quot;
+<br>&quot;noticing the Good Year blimp&quot;
+</font></blockquote><p>
+<p>
+<p>It's good to be careful, as the library report rules have been designed and tested to describe every contingency (going through doors, going in vehicles, etc.): so when replacing a report rule, we should try to consider all the possible variations of the action that we might want to describe.
+<p>
+<p>However, in this case, our scenario is so simple that there are no doors, vehicles, or pushable objects, so we're safe in giving Clark a very simple reporting scheme.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e242"><a href=ex242.html#e242 STYLE="text-decoration: none">***<b>Example 209:  Fate Steps In</b></a><br>Fate entity which attempts to make things happen, by hook or by crook, including taking preliminary actions to set the player up a bit.<p>
+<p><hr><p><a href=doc198.html STYLE="text-decoration: none">Previous</a> / <a href=doc200.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

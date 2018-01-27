@@ -1,0 +1,164 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 20.6. Lists of objects</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Formicidae" -->
+<!-- SEARCH SECTION "Ex 417" -->
+<!-- SEARCH SORT "Ex 020-006-417" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc353.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc355.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>20.6. Lists of objects</b></td></tr></table><p>
+<p>
+<p>Lists can be made of values of any kind (including other lists), but lists of objects are especially useful. We could always make these &quot;by hand&quot;:
+<p>
+<blockquote><font color="#000080">let L be {the pot plant, the foxglove};
+</font></blockquote><p>
+<p>
+<p>But it is usually easier and clearer to use descriptions.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>list of </b>(description of values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_listofdesc -->
+
+<p>This phrase produces the list of all values matching the given description. Inform will issue a problem message if the result would be an infinite list, or one which is impractical to test: for instance &quot;list of even numbers&quot; is not feasible.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>While that works nicely for many kinds of value (&quot;list of recurring scenes&quot;, say), it's particularly useful for objects:
+<p>
+<blockquote><font color="#000080">let L be the list of open containers;
+<br>add the list of open doors to L;
+</font></blockquote><p>
+<p>
+<p>means that L now contains the open containers (if any) followed by the open doors (if any). Or, for example:
+<p>
+<blockquote><font color="#000080">let L be the list of things;
+<br>remove the list of backdrops from L;
+</font></blockquote><p>
+<p>
+<p>makes a list of all non-backdrops.
+<p>
+<p>As mentioned above, lists of objects can be said in two additional ways:
+<p>
+<blockquote><font color="#000080">&quot;[L with definite articles]&quot;
+<br>&quot;[L with indefinite articles]&quot;
+</font></blockquote><p>
+<p>
+<p>And as mentioned below, they can be sorted in property value order:
+<p>
+<blockquote><font color="#000080">sort L in P order;
+<br>sort L in reverse P order;
+</font></blockquote><p>
+<p>
+<p>where P is any value property. In all other respects, lists of objects are no different to other lists.
+<p>
+<p>One special list of objects inside the command parser is worth mentioning. This is the &quot;multiple object list&quot;, and is used in commands like this:
+<p>
+<blockquote><font color="#000080">&gt;GET ALL
+<br>foxglove: Taken.
+<br>snake's head fritillary: Taken.
+</font></blockquote><p>
+<p>
+<p>After the command parser has decided what constitutes &quot;ALL&quot; (a process which can be influenced using the &quot;deciding whether all includes&quot; activity), it forms up a list and then runs through it, starting an action for each in turn. Here the list has two entries and Inform generates the actions &quot;taking the foxglove&quot; and then &quot;taking the snake's head fritillary&quot;.
+<p>
+<p>For two technical reasons this isn't stored as a &quot;list of objects that varies&quot; - first because it needs to exist even in low-memory situations where we can't afford full list-processing, and second because there are times when changing it might be hazardous. Instead, two phrases are provided to read the list and to write it back:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>multiple object list</b> ... <i>list of objects</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_multipleobjectlist -->
+
+<p>This phrase produces the current multiple object list as a value. The list will be the collection of objects found to match a plural noun like ALL in the most recent command typed by the player. If there is no multiple object, say if the command was TAKE PEAR, the list will be empty: it won't be a list of size 1.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>alter the multiple object list to </b>(list of objects)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_altermultipleobjectlist -->
+
+<p>This phrase sets the multiple object list to the given value. The list is ordinarily the collection of objects found to match a plural noun like ALL in the most recent command typed by the player, but using this phrase at the right moment (before the &quot;generate action rule&quot; in the turn sequence rules takes effect).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e425"><a href=ex425.html#e425 STYLE="text-decoration: none">*<b>Example 416:  What Makes You Tick</b></a><br>Building a fishing pole from several component parts that the player might put together in any order.<p>
+<!-- EXAMPLE START -->
+<a name="e156"><a href=doc354.html#e156 STYLE="text-decoration: none">**<b><b>Example</b> 417:  Formicidae</b></a><br>Manipulating the order in which items are handled after TAKE ALL.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have an item that produces an interesting result the first time the player lifts it -- a rock with dangerous ants revealed underneath. The effect of the surprise is a little weakened, though, if the player sees that response as the result of a TAKE ALL, when it might be printed like this:
+<p>
+<blockquote><font color="#000080">>[3] get all
+<br>tent peg: Taken.
+<br>water flask: Taken.
+<br>trading permit: Taken.
+<br>innocent-looking rock: You reach for the rock and turn it over to reveal a thriving colony of flesh-eating ants. Needless to say, you drop the rock and jump back with a decidedly effeminate scream. They can probably hear you all the way back in the base camp.
+<br>rusty nail: Taken.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">[Your score has just gone down by two points.]
+</font></blockquote><p>
+<p>
+<p>The calm response to &quot;rusty nail&quot; looks odd now, and the score change is disconnected from the event that caused it.
+<p>
+<p>To manage this, we might institute a system so that interesting objects are handled last in their list, like so:
+<p>
+<blockquote><font color="#000080">&quot;Formicidae&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The magic rule is listed before the generate action rule in the turn sequence rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing has a number called dramatic potential.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the magic rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let L be the multiple object list;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of entries in L is greater than 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sort L in dramatic potential order;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alter the multiple object list to L.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Foothills is a room. &quot;The land has become hilly; though the soil is still mostly coarse yellow sand, clumps of grass are able to grow in the shadier places. Deep wagon ruts running from the southwest towards the mountains in the northeast show where generations of caravans have already passed.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The water flask, the tent peg, and the trading permit are things in Foothills.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The rock is a thing in Foothills. Before printing the name of the rock when the rock is not handled: say &quot;innocent-looking &quot;. The dramatic potential of the rock is 10.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The rusty nail is a thing in Foothills.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The ant colony is a fixed in place thing. &quot;A busy group of ants are crawling to and fro in the unaccustomed sun.&quot; Rule for deciding whether all includes the ant colony while taking: it does not.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the rock when the rock is handled:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It might still have a stray ant or two on it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After taking the rock:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the rock is handled;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move ant colony to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the rock to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You reach for the rock and turn it over to reveal a thriving colony of flesh-eating ants. Needless to say, you drop the rock and jump back with a decidedly effeminate scream. They can probably hear you all the way back in the base camp.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decrease score by 2.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get peg / drop peg / get all / get rock&quot;.
+</font></blockquote><p>
+<p>
+<p>Note that while one could also manipulate the object list to add or remove items at this stage, there's a simpler way to control what Inform considers &quot;ALL&quot; to mean in commands: see the activity &quot;Deciding whether all includes&quot; in the activities chapter.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc353.html STYLE="text-decoration: none">Previous</a> / <a href=doc355.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

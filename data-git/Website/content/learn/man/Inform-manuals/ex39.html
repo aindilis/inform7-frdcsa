@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.38. Starting the virtual machine</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Blankness" -->
+<!-- SEARCH SECTION "Ex 373" -->
+<!-- SEARCH SORT "Ex 017-038-373" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc318.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc320.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.38. Starting the virtual machine</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> This activity is provided solely as a &quot;hook&quot; for any low-level tasks which need to be performed when the virtual computer which runs Inform story files is starting up. This happens much earlier than &quot;when play begins&quot; rules, and should be used only as a last resort.
+<p>
+<p>It should be remembered that Inform can produce story files for several different virtual computers. On some of these, it will not be safe to print any text during this activity, as the windows which would display such text do not yet exist.
+<p>
+<p><b>2. The default behaviour.</b> None.
+<p>
+<p><b>3. Examples.</b> No detailed examples will be given here, but the activity might be used (for instance) to set styles for the Glulx windows shortly to be brought into existence.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e39"><a href=doc319.html#e39 STYLE="text-decoration: none">*<b><b>Example</b> 373:  Blankness</b></a><br>Emptying the status line during the first screen of the game.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Occasionally we want to print something as our first screen and then pause the game. By default, Inform will print a rather odd status line, with &quot;You&quot; on the left side and &quot;0&quot; on the right. This is because the left hand status line is set to display the location, but (because we're not done with the when-play-begins rules) the player has not yet even been moved to a room.
+<p>
+<p>We can tidy this up in the &quot;starting the virtual machine&quot; activity, by temporarily changing the status line content. We will not provide game-pausing code here, because that is easily done by extension; so:
+<p>
+<blockquote><font color="#000080">&quot;Blankness&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Basic Screen Effects by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;take me home&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;wait for any key;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; yeah&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;wait for any key;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; yeah&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;pause the game;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the left hand status line is &quot;[location]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[turn count]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before starting the virtual machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the left hand status line is &quot;&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Paradise City is a room. The description of Paradise City is &quot;The grass is green and the girls are pretty.&quot;
+</font></blockquote><p>
+<p>
+<p>Quite a modest effect, but occasionally useful.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc318.html STYLE="text-decoration: none">Previous</a> / <a href=doc320.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

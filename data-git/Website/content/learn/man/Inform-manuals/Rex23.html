@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.4. Barter and Exchange</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Barter Barter" -->
+<!-- SEARCH SECTION "Ex 207" -->
+<!-- SEARCH SORT "Ex 007-004-207" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc49.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc51.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.4. Barter and Exchange</b></td></tr></table><p>
+<p>
+<p>By default, Inform characters are a bit grudging about giving and sharing objects: they react with disinterest when they're shown things and refuse everything they're offered.
+<p>
+<p>If we'd like to change this, we can simply remove the default &quot;block giving&quot; rule, as in
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in the check giving it to rules.
+</font></blockquote><p>
+<p>
+<p>If we do this, giving items to characters will have the result of moving our possessions to the other person's inventory. Of course, without more customization, the player may not ever be able to persuade the other character to return his possessions. <b>Bribery</b> demonstrates a scenario in which a character will accept gifts if they are interesting to him, and respond with a changed attitude to the player.
+<p>
+<p><b>Barter Barter</b> expands further on this by allowing other characters to trade things with one another.
+<p>
+<a href=Rdoc31.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Modifying Existing Commands</b></font></a><i> for ways to allow the player to give or show things that he isn't currently holding</i><p><p>
+<a href=Rdoc43.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Actions on Multiple Objects</b></font></a><i> for an implementation of giving that allows the player to offer multiple objects at once, where their combined value determines whether they are accepted</i><p><p>
+<a href=Rdoc71.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Money</b></font></a><i> for ways to keep track of cash flow, physical money objects, and price negotiations</i><p><p>
+<p><hr><p>
+<a name="e170"><a href=Rex170.html#e170 STYLE="text-decoration: none">**<b>Example 378:  Bribery</b></a><br>A GIVE command that gets rid of Inform's default refusal message in favor of something a bit more sophisticated.<p>
+<!-- EXAMPLE START -->
+<a name="e23"><a href=Rdoc50.html#e23 STYLE="text-decoration: none">***<b><b>Example</b> 207:  Barter Barter</b></a><br>Allowing characters other than the player to give objects to one another, accounting for the possibility that some items may not be desired by the intended recipients.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>By default, if we make no modifications, telling one player to give something to another will fail, even if persuasion succeeds. This is because the default behavior of the GIVE command is interrupted by the &quot;block giving rule&quot; -- since in many cases we do not want people to exchange objects freely.
+<p>
+<p>However, suppose that we do want characters to be able to exchange articles freely: we allow persuasion to succeed and turn off the &quot;block giving rule&quot;.
+<p>
+<blockquote><font color="#000080">&quot;Barter Barter&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in the check giving it to rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A persuasion rule for asking people to try giving: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Trading Post is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Meriwether Lewis is a man in the Trading Post. He carries a fluffy handmade quilt and a bag of beans. The beans are edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">William Clark is a man in the Trading Post. He carries leather slippers, a journal, and a loaf of bread. The bread is edible. The slippers are wearable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] is carrying [the list of things carried by the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>And now we might want to implement a way to keep track of whether the recipient character wants what's being offered:
+<p>
+<blockquote><font color="#000080">Check someone trying giving something to someone (this is the sneering refusal rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun dislikes the noun, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Unsuccessful attempt by someone trying doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the reason the action failed is the sneering refusal rule, say &quot;'Would you care for [the noun]?' [the person asked] asks solicitously of [the second noun].
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">But [the second noun] refuses [the noun] disdainfully.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;[The person asked] just appears bewildered by this improbable instruction.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Distaste relates one person to various things. The verb to dislike (he dislikes, they dislike, he disliked, it is disliked, he is disliking) implies the distaste relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Clark dislikes the beans. Lewis dislikes the bread.
+</font></blockquote><p>
+<p>
+<p>Since we've defined this as a relation, we could change what the characters like and dislike during the course of the game, freely; for instance, characters might grow hungry and suddenly like all the edible articles.
+<p>
+<blockquote><font color="#000080">Test me with &quot;x lewis / x clark / clark, give the slippers to lewis / clark, give the bread to lewis&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc49.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc51.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.12. Next and break</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Next and break" -->
+<!-- SEARCH SECTION "11.12" -->
+<!-- SEARCH SORT "011-012-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc178.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc180.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.12. Next and break</b></td></tr></table><p>
+<p>
+<p>So &quot;repeat&quot; and &quot;while&quot; phrases cause a block of other phrases to be repeated, over and over. The number of repetitions and the flow of &quot;control&quot; has so far been controlled only by the way the original loop was described.
+<p>
+<p>But in fact it's also possible to change this from inside the block being repeated, using these:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>next</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_next -->
+
+<p>This phrase can only be used inside a &quot;repeat&quot; or &quot;while&quot; block, and causes the current repetition of the block to finish immediately. That either means the next repetition begins, or (if we are already at the last one) the loop ends too. Example:
+<p>
+<blockquote><font color="#000080">repeat with X running from 1 to 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if X is 4, next;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[X] &quot;.
+</font></blockquote><p>
+<p>
+<p>produces the text &quot;1 2 3 5 6 7 8 9 10 &quot;, with no &quot;4&quot; because the &quot;say&quot; phrase was never reached on the fourth repetition.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>In Monopoly terms, &quot;next&quot; is &quot;Advance to Go&quot; rather than &quot;go directly, do not pass Go, do not collect $200&quot; - the next iteration begins with the variable, if there is one, having cleanly moved on to the next value, just as if the loop had been run through in the normal way. (&quot;Next&quot; is called &quot;continue&quot; in a fair number of programming languages, so Inform issues a specific problem message to help people who forget this.)
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>break</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_break -->
+
+<p>This phrase can only be used inside a &quot;repeat&quot; or &quot;while&quot; block, and causes both the current repetition and the entire loop to finish immediately. Example:
+<p>
+<blockquote><font color="#000080">repeat with X running from 1 to 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if X is 7, break;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[X] &quot;.
+</font></blockquote><p>
+<p>
+<p>produces the text &quot;1 2 3 4 5 6 &quot;, with nothing after &quot;6&quot; because the loop was broken at that point. The &quot;say&quot; wasn't reached on the 7th repetition, and the 8th, 9th and 10th never happened.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc178.html STYLE="text-decoration: none">Previous</a> / <a href=doc180.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

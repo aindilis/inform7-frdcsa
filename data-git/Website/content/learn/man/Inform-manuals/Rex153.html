@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.14. Obedient Characters</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "For Demonstration Purposes" -->
+<!-- SEARCH SECTION "Ex 239" -->
+<!-- SEARCH SORT "Ex 007-014-239" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc59.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc61.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.14. Obedient Characters</b></td></tr></table><p>
+<p>
+<p>Other characters can perform all the same activities that the player can; this does not always mean that they're willing to obey the player's instructions. By default, characters will refuse to obey commands of the form JULIA, WEST or ANTONY, TAKE THE PINCUSHION. Their objections can be overridden, however, and <b>The Hypnotist of Blois</b> implements a hypnotist who can make characters obedient at will.
+<p>
+<p>In <b>For Demonstration Purposes</b>, the character is only capable of a few actions at the outset, but can be taught new ones if the player performs them first.
+<p>
+<p>Often we want characters' obedience to be more selective. Just as the viewpoint character may be characterized in terms of what he will and will not do, so may others: <b>Generation X</b> demonstrates a character who will do what she's told, but who will comment unfavorably when the player asks for a nonsensical or repeated action, and who may eventually get fed up and leave.
+<p>
+<p>Characters can be given moral objections to certain commands, as well: <b>Virtue</b> defines a few kinds of actions as bad, so that the character commanded will refuse to perform them.
+<p>
+<p><b>Under Contract</b>, more subtly, has the character object if the player's commands implicitly require any behavior he considers inappropriate: for instance, if the player commands him to put his pants in a container, he will work out that this requires the removal of the pants as a preliminary. If we want to implement a similar character, we may want to simply copy his unsuccessful attempt rule and the table of his retorts, then replace his banter with lines of our choosing.
+<p>
+<p>The little example <b>Latin Lessons</b> allows us to make characters clever about vague commands: we can, for instance, write rules so that CLARK, EAT will have Clark sensibly pick something edible, rather than having the parser ask what we want Clark to eat.
+<p>
+<p>Finally, <b>Northstar</b> demonstrates how we might make Inform understand commands of the form ASK JOSH TO TAKE INVENTORY or ORDER JOAN TO WEAR THE ARMOR.
+<p>
+<a href=Rdoc58.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Characters Following a Script</b></font></a><i> for a programmable robot who can be given whole sequences of actions to perform</i><p><p>
+<p><hr><p>
+<a name="e193"><a href=Rex193.html#e193 STYLE="text-decoration: none">*<b>Example 186:  The Hypnotist of Blois</b></a><br>A hypnotist who can make people obedient and then set them free again.<p>
+<!-- EXAMPLE START -->
+<a name="e153"><a href=Rdoc60.html#e153 STYLE="text-decoration: none">***<b><b>Example</b> 239:  For Demonstration Purposes</b></a><br>A character who learns new actions by watching the player performing them.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to have a character who can dynamically learn new actions by observing the player performing them. We could do this by adding the actions to a list of things the character can do, but using a relation to express the same idea allows for tidier, easier-to-read code.
+<p>
+<p>Thanks to Jesse McGrew for the initial design of this example.
+<p>
+<blockquote><font color="#000080">&quot;For Demonstration Purposes&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Capability relates various people to various stored actions. The verb to be capable of implies the capability relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let CA be the current action with no specific actor;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person asked is capable of CA:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persuasion succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The person asked] look[s] confused. Maybe a demonstration would help.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persuasion fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The action requester is an object that varies. The action requester variable translates into I6 as &quot;act_requester&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which stored action is the current action with no specific actor:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let old actor be the person asked;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let old requester be the action requester;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the person asked is the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the action requester is nothing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let CA be the current action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the person asked is the old actor;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the action requester is the old requester;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on CA.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The learning by observation rule is listed after the report stage rule in the specific action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Plurality by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a person is other if he is not the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the learning by observation rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with the viewer running through other people who can see the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player is the actor and viewer is not capable of the current action:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The viewer] watches your behavior with interest. Seems like [it-they] [is-are] learning.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the viewer is capable of the current action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Daily Planet is a room. Clark is here. He is a man.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Clark is capable of the action of taking inventory.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;Clark, inventory / Clark, x me / x me / Clark, x me&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e201"><a href=Rex201.html#e201 STYLE="text-decoration: none">**<b>Example 188:  Generation X</b></a><br>A person who goes along with the player's instructions, but reluctantly, and will get annoyed after too many repetitions of the same kind of unsuccessful command.<p>
+<a name="e407"><a href=Rex407.html#e407 STYLE="text-decoration: none">*<b>Example 184:  Virtue</b></a><br>Defining certain kinds of behavior as inappropriate, so that other characters will refuse indignantly to do any such thing.<p>
+<a name="e393"><a href=Rex393.html#e393 STYLE="text-decoration: none">****<b>Example 205:  Under Contract</b></a><br>Creating a person who accepts most instructions and reacts correctly when a request leads implicitly to inappropriate behavior.<p>
+<a name="e215"><a href=Rex215.html#e215 STYLE="text-decoration: none">*<b>Example 357:  Latin Lessons</b></a><br>Supplying missing nouns and second nouns for other characters besides the player.<p>
+<a name="e265"><a href=Rex265.html#e265 STYLE="text-decoration: none">**<b>Example 412:  Northstar</b></a><br>Making Inform understand ASK JOSH TO TAKE INVENTORY as JOSH, TAKE INVENTORY. This requires us to use a regular expression on the player's command, replacing some of the content.<p>
+<p><hr><p><a href=Rdoc59.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc61.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

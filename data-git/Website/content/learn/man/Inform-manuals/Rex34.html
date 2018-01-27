@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.1. The Passage Of Time</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Big Sainsbury's" -->
+<!-- SEARCH SECTION "Ex 364" -->
+<!-- SEARCH SORT "Ex 004-001-364" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc16.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc18.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.1. The Passage Of Time</b></td></tr></table><p>
+<p>
+<p>A game that makes heavy use of time may want to give the player a hint that time is important - and an easy way to keep track of how it's going - by adding the current time to the status line, instead of the score. To do this, we would write
+<p>
+<blockquote><font color="#000080">When play begins: change the right hand status line to &quot;[time of day]&quot;.
+</font></blockquote><p>
+<p>
+<p>All else being equal, time passes at a rate of one minute per turn. But this need not be so: we can imagine a game where turns take much less time, or much more; or a game in which the passage of time was sometimes suspended, or one in which different actions required different amounts of time to perform.
+<p>
+<p><b>Situation Room</b> provides a way to print 24-hour time, while <b>Zqlran Era 8</b> implements a completely new measurement of time, for a game set on an alien world.
+<p>
+<p><b>Uptempo</b> and <b>The Hang of Thursdays</b> speed up time's passage: turns take fifteen minutes in the former, or a quarter day in the latter.
+<p>
+<p><b>Timeless</b> makes certain actions instant, so that they don't count against the clock; this is sometimes useful in timed situations where the player needs to review the situation before going on with a tricky puzzle. <b>Endurance</b> systematically extends this idea to allow us to assign different durations to any action in the game. <b>The Big Sainsbury's</b> goes the opposite direction, and meticulously adds a minute to the clock for all implicit take actions, just so that the player isn't allowed to economize on moves.
+<p>
+<p>An alternative approach to time is not to tell the player specifically what hour of the day it is at all, but to move from one general time period to another as it becomes appropriate - when the player has solved enough puzzles, or worked his way through enough of the plot. To this end we might use scenes representing, say, Thursday afternoon and then Thursday evening; then our scene rules, rather than the clock, would determine when Thursday afternoon stopped and Thursday evening began:
+<p>
+<blockquote><font color="#000080">Thursday afternoon is a scene. Thursday evening is a scene.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Thursday afternoon ends when the player carries the portfolio.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Thursday evening begins when Thursday afternoon ends.
+<br>When Thursday evening begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The great clock over St. Margaret's begins to chime 6.&quot;;
+</font></blockquote><p>
+<p>
+<p>Though this gives time a loose relation to the number of turns played, it feels surprisingly realistic: players tend to think of time in a game in terms of the number of <i>significant</i> moves they made, while the random wandering, taking inventory, and looking at room descriptions while stuck don't make as big an impression. So advancing the game clock alongside the player's puzzle solutions or plot progress can work just as well as any stricter calculation.
+<p>
+<a href=Rdoc16.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Passers-By, Weather and Astronomical Events</b></font></a><i> for cycles of day and night scenes</i><p><p>
+<a href=Rdoc39.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Waiting, Sleeping</b></font></a><i> for commands to let the player wait until a specific time or for a specific number of minutes</i><p><p>
+<a href=Rdoc78.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Clocks and Scientific Instruments</b></font></a><i> for clocks that can be set to times and that have analog or digital read-outs</i><p><p>
+<a href=Rdoc100.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Timed Input</b></font></a><i> for discussion of extensions allowing real-time input</i><p><p>
+<p><hr><p>
+<a name="e344"><a href=Rex344.html#e344 STYLE="text-decoration: none">*<b>Example 142:  Situation Room</b></a><br>Printing the time of day in 24-hour time, as in military situations.<p>
+<a name="e445"><a href=Rex445.html#e445 STYLE="text-decoration: none">***<b>Example 249:  Zqlran Era 8</b></a><br>Creating an alternative system of time for our game, using new units.<p>
+<a name="e226"><a href=Rex226.html#e226 STYLE="text-decoration: none">*<b>Example 391:  Uptempo</b></a><br>Adjust time advancement so the game clock moves fifteen minutes each turn.<p>
+<a name="e307"><a href=Rex307.html#e307 STYLE="text-decoration: none">***<b>Example 183:  The Hang of Thursdays</b></a><br>Turns take a quarter day each, and the game rotates through the days of the week.<p>
+<a name="e381"><a href=Rex381.html#e381 STYLE="text-decoration: none">*<b>Example 398:  Timeless</b></a><br>A set of actions which do not take any game time at all.<p>
+<a name="e122"><a href=Rex122.html#e122 STYLE="text-decoration: none">**<b>Example 399:  Endurance</b></a><br>Giving different actions a range of durations using a time allotment rulebook.<p>
+<!-- EXAMPLE START -->
+<a name="e34"><a href=Rdoc17.html#e34 STYLE="text-decoration: none">*<b><b>Example</b> 364:  The Big Sainsbury's</b></a><br>Making implicit takes add a minute to the clock, just as though the player had typed TAKE THING explicitly.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Implicit takes are a convenience to players; in general, we would like to avoid asking players to type any more obvious commands than strictly necessary, while allowing the computer to guess as much as it safely can.
+<p>
+<p>Occasionally, though, we have designed a timed puzzle in which the player has a limited number of moves in which to accomplish his objectives. In that case, the implicit take complicates matters, because it means that a player who types
+<p>
+<blockquote><font color="#000080">>EAT GATEAU
+<br>(first taking the gateau...)
+</font></blockquote><p>
+<p>
+<p>gets away with a spare move compared to the precise but naïf dupe who types
+<p>
+<blockquote><font color="#000080">>TAKE GATEAU
+<br>>EAT GATEAU
+</font></blockquote><p>
+<p>
+<p>...and really, that doesn't seem quite fair. The way to fix this problem is to fill in the extra minute on the clock during the implicit take; and that is indeed what we do in the following example.
+<p>
+<blockquote><font color="#000080">&quot;The Big Sainsbury's&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Sainsbury's is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The crispy duck and the Guinness steak pie are edible things in Sainsbury's.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the advance time rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the activity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[time of day]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;take crispy duck / eat crispy duck / eat steak pie&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc16.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc18.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

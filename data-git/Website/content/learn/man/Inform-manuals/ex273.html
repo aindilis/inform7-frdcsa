@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.13. Listing contents of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Unpeeled" -->
+<!-- SEARCH SECTION "Ex 331" -->
+<!-- SEARCH SORT "Ex 017-013-331" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc293.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc295.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.13. Listing contents of something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> When taking inventory, the list is produced by the activity &quot;listing contents of yourself&quot;; when looking, a list of items which do not deserve their own paragraphs is produced by &quot;listing contents of&quot; the location. (But note that it doesn't happen when, for instance, &quot;[a list of animals]&quot; is printed, because that isn't a list of the contents of any room or location.)
+<p>
+<p><b>2. The default behaviour.</b> The list is printed out.
+<p>
+<p><b>3. Examples.</b> (a) We have already seen that it can be elegant to elaborate on a description in the context of a list. Here we add &quot;discarded&quot; to a sweet wrapper which is found on the ground.
+<p>
+<blockquote><font color="#000080">Rule for printing the name of the wrapper while listing contents of a room: say &quot;discarded sweet wrapper&quot;.
+</font></blockquote><p>
+<p>
+<p>(b) Lists can be considerably shortened and tidied up if similar items are grouped together. We do this by specifying what should be grouped together before listing contents, using the special phrase &quot;group ... together&quot;:
+<p>
+<blockquote><font color="#000080">Utensil is a kind of thing. The knife, the fork and the spoon are utensils. Before listing contents: group utensils together as &quot;utensils&quot;.
+</font></blockquote><p>
+<p>
+<p>The result will be, say, &quot;two utensils (knife and spoon)&quot;, if both are found in the same place.
+<p>
+<p>(c) We can less obtrusively group items together like so:
+<p>
+<blockquote><font color="#000080">Before listing contents while taking inventory: group utensils together.
+</font></blockquote><p>
+<p>
+<p>Three special phrases exist for this kind of list organisation:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>group </b>(description of objects)<b> together</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_group -->
+
+<p>This phrase causes the objects described to be listed together in a single item as part of an inventory or room description. The effect is temporary, and the phrase should only be used when this list is imminent. Example:
+<p>
+<blockquote><font color="#000080">Utensil is a kind of thing. The knife, the fork and the spoon are utensils. Before listing contents: group utensils together.
+</font></blockquote><p>
+<p>
+<p>This might produce the list item &quot;fork and spoon&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>group </b>(description of objects)<b> together giving articles</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_groupart -->
+
+<p>This phrase causes the objects described to be listed together in a single item as part of an inventory or room description, but giving each individual item its indefinite article. The effect is temporary, and the phrase should only be used when this list is imminent. Example:
+<p>
+<blockquote><font color="#000080">Utensil is a kind of thing. The knife, the fork and the spoon are utensils. Before listing contents: group utensils together giving articles.
+</font></blockquote><p>
+<p>
+<p>This might produce the list item &quot;a fork and a spoon&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>group </b>(description of objects)<b> together as </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_grouptext -->
+
+<p>This phrase causes the objects described to be listed together in a single item as part of an inventory or room description, summarised with the given text. The effect is temporary, and the phrase should only be used when this list is imminent. Example:
+<p>
+<blockquote><font color="#000080">Utensil is a kind of thing. The knife, the fork and the spoon are utensils. Before listing contents: group utensils together as &quot;utensils&quot;.
+</font></blockquote><p>
+<p>
+<p>This might produce the list item &quot;two utensils (fork and spoon)&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e273"><a href=doc294.html#e273 STYLE="text-decoration: none">*<b><b>Example</b> 331:  Unpeeled</b></a><br>Calling an onion "a single yellow onion" when (and only when) it is being listed as the sole content of a room or container.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Unpeeled&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Scullery is a room. A sack is carried by the player. The sack contains a yellow onion. The player carries a cork.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of the onion while listing contents:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the holder of the onion contains exactly 1 thing, say &quot;single &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / put cork in sack / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc293.html STYLE="text-decoration: none">Previous</a> / <a href=doc295.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

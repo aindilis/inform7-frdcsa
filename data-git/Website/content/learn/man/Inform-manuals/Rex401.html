@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.13. Traveling Characters</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Van Helsing" -->
+<!-- SEARCH SECTION "Ex 37" -->
+<!-- SEARCH SORT "Ex 007-013-037" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc58.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc60.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.13. Traveling Characters</b></td></tr></table><p>
+<p>
+<p>There are a number of ways we can make characters navigate our map. We might reasonably want them to approach and follow the player (as in <b>Van Helsing</b>); or to allow the player to follow characters who have left the room (as in <b>Actaeon</b>).
+<p>
+<p>Characters who are less interested in the player will more likely follow their own courses around the available geography, however. A character may move randomly from room to room, as demonstrated in <b>Mistress of Animals</b>; he may follow a path that we have specifically written in advance, as <b>Odyssey</b> shows; or, most elegantly, he may use the &quot;best route&quot; calculation to find the best possible way to a given target room, as seen in <b>Latris Theon</b>.
+<p>
+<p>This final method is arguably the neatest solution to character movement, allowing for characters to act in sophisticated ways; if we incorporate the Locksmith extension, other characters will even unlock and open doors that are in their way. The chief catch is that it should not be used too profligately with large numbers of characters, since on slow machines the processing power required to plan all their travel will make a noticeable difference to the running speed of the game.
+<p>
+<p>All the same, the constraints are not so severe as to preclude having a moderate number of route-finding characters all wandering around at once. This does introduce a new problem, however: movement descriptions can become hard to follow if every turn produces long reams of reports such as
+<p>
+<blockquote><font color="#000080">Joe enters the room from the south.
+<br>Lawrence opens the gate.
+<br>Lawrence departs to the west.
+<br>Lucy comes in from above.
+<br>Ted enters the room from the south.
+<br>Bill departs to the west.
+</font></blockquote><p>
+<p>
+<p><b>Patient Zero</b> tackles this problem by calculating all of the character movement without printing any text; it then combines similar or related events into coherent paragraphs, as in
+<p>
+<blockquote><font color="#000080">Rhoda and Antony walk into the Post Office. Rhoda could have been rolling in chocolate and Antony looks as though dipped in french vanilla.
+</font></blockquote><p>
+<p>
+<p>or
+<p>
+<blockquote><font color="#000080">Antony opens the iron gate. He goes through.
+</font></blockquote><p>
+<p>
+<a href=Rdoc12.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Doors, Staircases, and Bridges</b></font></a><i> for some technical details of allowing other characters to interact with doors when they're in rooms that don't contain the player</i><p><p>
+<p><hr><p>
+<a name="e15"><a href=Rex15.html#e15 STYLE="text-decoration: none">*<b>Example 77:  Mistress of Animals</b></a><br>A person who moves randomly between rooms of the map.<p>
+<a name="e415"><a href=Rex415.html#e415 STYLE="text-decoration: none">**<b>Example 263:  Odyssey</b></a><br>A person who follows a path predetermined and stored in a table, and who can be delayed if the player tries to interact with her.<p>
+<a name="e185"><a href=Rex185.html#e185 STYLE="text-decoration: none">***<b>Example 185:  Latris Theon</b></a><br>A person who can accept instructions to go to new destinations and move towards them according to the most reasonable path.<p>
+<a name="e150"><a href=Rex150.html#e150 STYLE="text-decoration: none">**<b>Example 291:  Actaeon</b></a><br>A FOLLOW command allowing the player to pursue a person who has just left the room.<p>
+<!-- EXAMPLE START -->
+<a name="e401"><a href=Rdoc59.html#e401 STYLE="text-decoration: none">**<b><b>Example</b> 37:  Van Helsing</b></a><br>A character who approaches the player, then follows him from room to room.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to write a character who tries to be in the same room as the player. We will do this by testing every turn whether the character's location and the player's location are the same; if the answer is no, the character will look for a path to the player's location, then try to move along that path. (We will learn more about finding paths and giving characters instructions later.)
+<p>
+<p>The result will be that if the player ever moves to another location, the character will automatically pursue him.
+<p>
+<blockquote><font color="#000080">&quot;Van Helsing&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Drawbridge is a room. North of the Drawbridge is the Immensely Enormous Entry Hall. West of the Entry Hall is the Vast Dining Area. North of the Vast Dining Area is the Colossal Kitchen. The Spooky Guano-filled Attic is above the Entry Hall.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Count Dracula is a man in the Attic.
+</font></blockquote><p>
+<p>
+<p>In the following condition, we could also have written &quot;if the location of Count Dracula is not the location&quot;, because &quot;location&quot; by itself is always understood to be the player's location. But it seemed better for clarity to write it this way:
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the location of Count Dracula is not the location of the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the way be the best route from the location of Count Dracula to the location of the player, using doors;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try Count Dracula going the way;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Muhahaha,' says Count Dracula.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / n / w / e / u / z / d&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e165"><a href=Rex165.html#e165 STYLE="text-decoration: none">****<b>Example 396:  Patient Zero</b></a><br>People who wander around the map performing various errands, and in the process spread a disease which only the player can eradicate.<p>
+<p><hr><p><a href=Rdoc58.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc60.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

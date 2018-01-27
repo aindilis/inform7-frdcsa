@@ -1,0 +1,196 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.3. Modifying Existing Commands</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Slogar's Revenge" -->
+<!-- SEARCH SECTION "Ex 214" -->
+<!-- SEARCH SORT "Ex 006-003-214" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc30.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc32.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.3. Modifying Existing Commands</b></td></tr></table><p>
+<p>
+<p>Much of the rest of this chapter discusses the behavior of specific commands in Inform's command library, and how we might change and build on these. This section is instead an overview of the general principles: where and how can one intervene?
+<p>
+<p>Whenever we are dealing with actions, the Actions Index is likely to be useful: it lists all the actions currently implemented, whether in our own source or in extensions or the Standard Rules, and lists the rules pertaining to each.
+<p>
+<p>The lightest and easiest way to change behavior is with an Instead rule:
+<p>
+<blockquote><font color="#000080">Instead of eating the apple:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It turns out to be made of beeswax, so that's a non-starter.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of tasting an edible thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It's delicious!&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<p>The addition of &quot;rule succeeds&quot; tells Inform that the instead action was a success rather than a failure; this is not usually very important with the player's own actions, but can be useful for actions performed by other characters, so that a successfully replaced action is not followed by the disconcerting line
+<p>
+<blockquote><font color="#000080">Clark is unable to do that.
+</font></blockquote><p>
+<p>
+<p>Before and After offer alternative easy forms of modification; the Basic Actions chapter explains all three.
+<p>
+<p>Changing the way an action works in all cases is usually better addressed by changing the main rulebook, rather than with one (or many) instead rules. We may add new check, carry out, and report rules to existing action rulebooks. The Advanced Actions chapter describes these, and ends with some guidelines on when to use before, instead, and after, and when to use check, carry out, and report.
+<p>
+<p>Similarly, we may delete, move, or replace rules that are already present (see the chapter on Rulebooks). This is handy if we decide that an action has restrictions that we dislike and want to abolish. If the restriction we need to change is part of the accessibility rules - those which check whether the player can take, see, and touch items - we may need to look at Changing reachability or changing visibility in the Advanced Actions chapter (to revise what is allowed), at deciding the scope of something in the Activities chapter (to influence what can be seen when), or at Procedural rules (to remove restrictions entirely).
+<p>
+<p>If, for instance, the player character is a burly fellow who can lift any other character he likes:
+<p>
+<blockquote><font color="#000080">The can't take other people rule is not listed in any rulebook.
+</font></blockquote><p>
+<p>
+<p>...and rip knobs off doors:
+<p>
+<blockquote><font color="#000080">The can't take component parts rule is not listed in the check taking rulebook.
+</font></blockquote><p>
+<p>
+<p>...and commit petty theft:
+<p>
+<blockquote><font color="#000080">The new can't take people's possessions rule is listed instead of the can't take people's possessions rule in the check taking rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the new can't take people's possessions rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if someone (called the owner) carries the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first waiting until [the owner] is distracted)&quot;;
+</font></blockquote><p>
+<p>
+<p>The right approach to use also depends a bit on how systematic a change we anticipate. We may find that instead rules become cumbersome when we want to specify behavior for a very large number of objects. It's fine to have
+<p>
+<blockquote><font color="#000080">Instead of tasting the arsenic:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'll live to regret this very very shortly.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story.
+</font></blockquote><p>
+<p>
+<p>but a bit more tedious to have to write
+<p>
+<blockquote><font color="#000080">Instead of tasting the peppermint: ...
+<br>Instead of tasting the plate: ...
+<br>Instead of tasting the banister: ...
+<br>Instead of tasting the donkey: ...
+<br>(etc.)
+</font></blockquote><p>
+<p>
+<p>in a game in which most items have unique flavor descriptions. In that situation, it may be more sensible to overhaul the design of the action: create a new text property for things, and revise &quot;tasting&quot; so that it now consults this property:
+<p>
+<blockquote><font color="#000080">The block tasting rule is not listed in any rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing has some text called the flavor. The flavor of a thing is usually &quot;Nothing special.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report tasting something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the flavor of the noun is &quot;Nothing special.&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You taste nothing unexpected.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[the flavor of the noun][paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report someone tasting something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The actor] licks [the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>One other way we might want to interfere is by lifting the restrictions on whether an item needs to be carried or touchable in order for an action to succeed. We could do this by completely redefining the action to omit the carried restriction; for instance, the following would create a new &quot;donning&quot; action that did not attempt to take objects the player wanted to wear:
+<p>
+<blockquote><font color="#000080">Understand the command &quot;wear&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;wear [something]&quot; as donning. Donning is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<p>This is usually troublesome, and a more satisfying solution usually is to use a procedural rule to turn off the problematic requirement only under specific circumstances. There are three rules that are called between the Before and Instead phases that enforce these restrictions:
+<p>
+<blockquote><font color="#000080">the basic accessibility rule
+<br>the basic visibility rule
+<br>the carrying requirements rule
+</font></blockquote><p>
+<p>
+<p>and we may want to override these selectively using procedural rules. For instance:
+<p>
+<blockquote><font color="#000080">A procedural rule when wearing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the carrying requirements rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the can't wear what's not held rule.
+</font></blockquote><p>
+<p>
+<p>The first of these two rules is the general rule that generates the &quot;(first taking...&quot; action; the second is a restriction particular to wearing that disallows wearing anything if the taking has failed.
+<p>
+<p>We can make such modifications even more specific, as in:
+<p>
+<blockquote><font color="#000080">A procedural rule when giving the berries to someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the carrying requirements rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore can't give what you haven't got rule.
+</font></blockquote><p>
+<p>
+<p>(Something very similar would work for showing, since the giving and showing actions are almost identical in structure.)
+<p>
+<p>Procedural rules can also be handy if we want to override check rules from the existing check rulebooks but only in very specific cases. The Locksmith extension uses the following rule to allow the player to put objects on a keychain, even though normally we aren't allowed to stack objects that the player is carrying:
+<p>
+<blockquote><font color="#000080">Procedural rule when putting something on a keychain (this is the allow putting things on the keychain rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the can't put onto something being carried rule.
+</font></blockquote><p>
+<p>
+<p><b>Slogar's Revenge</b> demonstrates related solutions for locking and unlocking doors when the player should be allowed to lock and unlock with a key he is wearing rather than carrying.
+<p>
+<p>Finally and most sweepingly, we can rip out whole passages of the Standard Rules and replace them - or not. This is a drastic measure and rarely necessary (or so we hope); but see the Extensions chapter for ways to replace sections of existing source, or even revise the Inform 6 template files on which Inform depends. By these means almost anything can be changed. We can throw out a whole range of existing commands and start from scratch, for instance, if we want Inform to know about a completely new and different command set.
+<p>
+<a href=Rdoc89.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Magic (Breaking the Laws of Physics)</b></font></a><i> for a hat that lets the player walk through closed doors, and an NPC able to reach through solid containers</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e345"><a href=Rdoc31.html#e345 STYLE="text-decoration: none">***<b><b>Example</b> 214:  Slogar's Revenge</b></a><br>Creating an amulet of tumblers that can be used to lock and unlock things even when it is worn, overriding the usual requirement that keys be carried.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Under most circumstances, locking and unlocking require the player to be carrying the key he uses to unlock something. This makes sense -- unless the key is on a keychain, or on a chain around his neck, for instance. So here we explore one way to circumstantially override the carrying requirements, while still making sure that the player cannot unlock the door if the unlocking tool is nowhere in sight.
+<p>
+<p>In essence, we are rewriting the carrying requirements rule with a different one of our own devising, and swapping it in only at those moments when it is correct to do so.
+<p>
+<blockquote><font color="#000080">&quot;Slogar's Revenge&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Procedural rule for locking something with the Amulet of Tumblers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;substitute the amulet carrying rule for the carrying requirements rule.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Procedural rule for unlocking something with the Amulet of Tumblers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;substitute the amulet carrying rule for the carrying requirements rule.
+</font></blockquote><p>
+<p>
+<p>We can now replace the usual behavior of the carrying requirements rule (to check whether the player is carrying something and, if not, to generate an implicit take) with a similar rule of our own; note that &quot;if the player has the second noun&quot; is a more compact way to write &quot;if the player carries the second noun or the player wears the second noun&quot;:
+<p>
+<blockquote><font color="#000080">This is the amulet carrying rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player has the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first picking up the amulet)[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try silently taking the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is not carrying the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop the action;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Daunting Dungeon is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">West of the Daunting Dungeon is the Disturbing Door. The Disturbing Door is a door. West of the Disturbing Door is the Fallow Field.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Disturbing Door is closed and locked.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears the Amulet of Tumblers. The Amulet of Tumblers unlocks the Disturbing Door.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;unlock disturbing door with amulet / open door / west / remove amulet / close door / lock disturbing door with amulet / drop amulet / unlock disturbing door with amulet&quot;.
+</font></blockquote><p>
+<p>
+<p>For a more systematic handling of the keychain problem (and a number of other refinements to the behavior of doors), see the Locksmith extension included with Inform.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc30.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc32.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

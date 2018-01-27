@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.6. Getting Started with Conversation</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Getting Started with Conversation" -->
+<!-- SEARCH SECTION "7.6" -->
+<!-- SEARCH SORT "007-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc51.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc53.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.6. Getting Started with Conversation</b></td></tr></table><p>
+<p>
+<p>Traditionally, conversation is one of the most difficult things to program in interactive fiction, because of the number of factors affecting the outcome of everything the player does. While it's acceptable for >EXAMINE POT to produce the same response every time the player types it, it's a bit less acceptable for ASK JOE ABOUT HIS ADULTERY to make Joe react the same way every time.
+<p>
+<p>Conversation implementations often need to keep track of a lot of information: what else is going on in the model world, what the character knows, what plot phase we've reached, what mood the character is in, what else we've recently been talking about, whether we've said the same thing before (and how many times); and so on. Later in this chapter we will look at ways to model character knowledge and mood.
+<p>
+<p>Then, too, we have the problem of how the player communicates his conversational intentions to the game. Technology has not yet advanced to the point where a player can simply type in remarks in full natural English and have the character detect the significance, emotional tone, and subtext, if any: so we can't have RACHEL, THIS DESSERT TASTES LIKE FEET or WILL, LOOK! OUR SINISTER METAL FOES ARE APPROACHING! or BOSS, I WOULD BE DELIGHTED TO FILE ANOTHER TPB REPORT.
+<p>
+<p>The challenge is to create an interface that is both easy for the player to use and expressive enough to be interesting. We will look at some of the common solutions in &quot;Saying Complicated Things&quot;.
+<p>
+<p>The examples in the following sections point out ways to approach common conversation problems. None of them will offer an adequate system if we want to write a very conversationally rich game, however. This is partly because a thorough conversation system requires quite a lot of code in its own right. It's also partly because there is no one right solution to the problem of conversation design. Different games will have quite different requirements. When making decisions about a new game we have planned, it may be useful to glance through the conversation extensions available for Inform: there are quite a few, offering a range of different interfaces. Even if none is exactly suited for our needs, they may suggest ways to solve particular implementation challenges.
+<p>
+<p>At the other end of the scale, though, there are times when Inform's default implementation is too complicated for what we want to do: so we will start with ways to simplify conversation, before moving to all the exotic complexities.
+<p>
+<p>Before we get into these details, though, we have a couple of examples that are literally about getting started with a conversation: <b>Mimicry</b> introduces the feature that we must greet other characters before beginning to speak to them; <b>The Gorge at George</b> corrects the player's attempts to use a TALK TO command where a different mode of interaction is appropriate instead.
+<p>
+<p><hr><p>
+<a name="e184"><a href=Rex184.html#e184 STYLE="text-decoration: none">***<b>Example 110:  Mimicry</b></a><br>People who must be greeted before conversation can begin.<p>
+<a name="e368"><a href=Rex368.html#e368 STYLE="text-decoration: none">*<b>Example 317:  The Gorge at George</b></a><br>If the player tries to TALK TO a character, suggest alternative modes of conversation.<p>
+<p><hr><p><a href=Rdoc51.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc53.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

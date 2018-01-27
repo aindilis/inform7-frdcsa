@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.3. Text which names things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Text which names things" -->
+<!-- SEARCH SECTION "5.3" -->
+<!-- SEARCH SORT "005-003-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc73.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc75.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.3. Text which names things</b></td></tr></table><p>
+<p>
+<p>We can put almost any description of a value in square brackets in text, and Inform will work out what kind of value it is and print something accordingly. (Only almost any, because we aren't allowed to use commas or more quotation marks inside a square-bracketed substitution.)
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>sayable value</b>]&quot;<br><i>or:</i> say &quot;[<b>number</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_value -->
+
+<p>This text substitution takes the value and produces a textual representation of it. Most kinds of value, and really all of the useful ones, are &quot;sayable&quot; - numbers, times, objects, rules, scenes, and so on. Example:
+<p>
+<blockquote><font color="#000080">The description of the wrist watch is &quot;The dial reads [time of day].&quot;
+</font></blockquote><p>
+<p>
+<p>Here &quot;time of day&quot; is a value - it's a time that varies, and time is a sayable kind of value, so we might get &quot;The dial reads 11:03 AM.&quot;
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The values we say most often are objects. If we simply put the name of what we want into square brackets, this will be substituted by the full printed name. We might find:
+<p>
+<blockquote><font color="#000080">&quot;You admire [lantern].&quot;
+<br>= &quot;You admire candle lantern.&quot;
+</font></blockquote><p>
+<p>
+<p>But this reads oddly - clearly &quot;the&quot; or &quot;a&quot; is missing. So the following substitutions are used very often:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>a object</b>]&quot;<br><i>or:</i> say &quot;[<b>an object</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_a -->
+
+<p>This text substitution produces the name of the object along with its indefinite article. Example:
+<p>
+<blockquote><font color="#000080">Instead of examining something (called the whatever):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&quot;You can only just make out [a whatever].&quot;
+</font></blockquote><p>
+<p>
+<p>which might produce &quot;You can only just make out a lamp-post.&quot;, or &quot;You can only just make out Trevor.&quot;, or &quot;You can only just make out some soldiers.&quot; The &quot;a&quot; or &quot;an&quot; in the wording is replaced by whatever indefinite article applies, if any.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>A object</b>]&quot;<br><i>or:</i> say &quot;[<b>An object</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_A -->
+
+<p>This text substitution produces the name of the object along with its indefinite article, capitalised. Example:
+<p>
+<blockquote><font color="#000080">Instead of examining something (called the whatever):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&quot;[A whatever] can be made out in the mist.&quot;
+</font></blockquote><p>
+<p>
+<p>which might produce &quot;A lamp-post can be made out in the mist.&quot;, or &quot;Trevor can be made out in the mist.&quot;, or &quot;Some soldiers can be made out in the mist.&quot; The &quot;A&quot; or &quot;An&quot; in the wording is replaced by whatever indefinite article applies, if any.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>the object</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_the -->
+
+<p>This text substitution produces the name of the object along with its definite article. Example:
+<p>
+<blockquote><font color="#000080">Instead of examining something (called the whatever):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&quot;You can only just make out [the whatever].&quot;
+</font></blockquote><p>
+<p>
+<p>which might produce &quot;You can only just make out the lamp-post.&quot;, or &quot;You can only just make out Trevor.&quot;, or &quot;You can only just make out the soldiers.&quot; The &quot;the&quot; in the wording is replaced by whatever definite article applies, if any.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>The object</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_The -->
+
+<p>This text substitution produces the name of the object along with its definite article, capitalised. Example:
+<p>
+<blockquote><font color="#000080">Instead of examining something (called the whatever):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&quot;[The whatever] may be a trick of the mist.&quot;
+</font></blockquote><p>
+<p>
+<p>which might produce &quot;The lamp-post may be a trick of the mist.&quot;, or &quot;Trevor may be a trick of the mist.&quot;, or &quot;The soldiers may be a trick of the mist.&quot; The &quot;The&quot; in the wording is replaced by whatever definite article applies, if any.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>This may not look very useful, because why not simply put &quot;the&quot;, or whatever, into the ordinary text? The answer is that there are times when we do not know in advance which object will be involved. For instance, as we shall later see, there is a special value called &quot;the noun&quot; which is the thing to which the player's current command is applied (thus, if the player typed TAKE BALL, it will be the ball). So:
+<p>
+<blockquote><font color="#000080">After taking something in the Classroom:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&quot;You find [a noun].&quot;
+</font></blockquote><p>
+<p>
+<p>might produce replies like &quot;You find a solid rubber ball.&quot;, &quot;You find an ink-stained blouse.&quot;, &quot;You find some elastic bands.&quot;, or even &quot;You find Mr Polycarp.&quot; (the school's pet hamster, perhaps).
+<p>
+<p><hr><p><a href=doc73.html STYLE="text-decoration: none">Previous</a> / <a href=doc75.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

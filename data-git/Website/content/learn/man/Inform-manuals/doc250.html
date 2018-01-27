@@ -1,0 +1,131 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.10. Adding and removing rows</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Adding and removing rows" -->
+<!-- SEARCH SECTION "15.10" -->
+<!-- SEARCH SORT "015-010-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc249.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc251.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.10. Adding and removing rows</b></td></tr></table><p>
+<p>
+<p>Writing in new rows is simple, once we can find space for them:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>choose a</b>/the/--<b> blank row in</b>/from<b> </b>(table name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_chooseblankrow -->
+
+<p>This phrase chooses a row in the given table which is currently blank under every column. A run-time problem message is issued if no rows are blank. Example:
+<p>
+<blockquote><font color="#000080">choose a blank row in Table 3;
+<br>now element entry is &quot;Fluorine&quot;;
+<br>now symbol entry is &quot;F&quot;;
+<br>now atomic number entry is 9;
+<br>now atomic weight entry is 19;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>To avoid problem messages, it can be important to worry about free space. To that end we can not only find the number of rows (as we have already seen) but also the number currently blank and not blank:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of blank rows in</b>/from<b> </b>(table name)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numblank -->
+
+<p>This phrase produces the number of rows in the given table which are entirely blank (that is, blank under every column).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of filled rows in</b>/from<b> </b>(table name)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numfilled -->
+
+<p>This phrase produces the number of rows in the given table which are not entirely blank (that is, at least one column has a value in this row).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>&quot;Filled&quot; here really means &quot;non-blank&quot;: a row can be filled in this sense even if only one of its values exists. Since every row is either blank or filled, it must be true that:
+<p>
+<blockquote><font color="#000080">the number of blank rows in Table 3
+<br>the number of filled rows in Table 3
+</font></blockquote><p>
+<p>
+<p>add up to &quot;the number of rows in Table 3&quot;.
+<p>
+<p>We've seen that blank entries can be filled with values using &quot;now&quot;:
+<p>
+<blockquote><font color="#000080">now symbol entry is &quot;F&quot;;
+</font></blockquote><p>
+<p>
+<p>But the same method can't be used to put blanks back, since a blank is not a value. Instead:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>blank out </b>(a table entry)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_blankout -->
+
+<p>This phrase replaces the entry referred to with a blank, erasing any value previously stored there. Example:
+<p>
+<blockquote><font color="#000080">choose row 1 in the Table of Fish Habitats;
+<br>blank out the salinity entry;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>These more destructive phrases need a steady hand:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>blank out the whole row</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_blankoutrow -->
+
+<p>This phrase replaces the currently chosen row with blanks, erasing any value previously stored under any of the columns. Example:
+<p>
+<blockquote><font color="#000080">choose row 1 in the Table of Fish Habitats;
+<br>blank out the whole row;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>blank out the whole </b>(table column)<b> column in </b>(table)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_blankoutcol -->
+
+<p>This phrase replaces the currently chosen column with blanks, erasing any value previously stored in any of the rows. Example:
+<p>
+<blockquote><font color="#000080">blank out the whole salinity column in the Table of Fish Habitats;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>blank out the whole of </b>(table)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_blankouttable -->
+
+<p>This phrase replaces every row of the currently chosen table with blanks, erasing any value previously stored anywhere in it. Example:
+<p>
+<blockquote><font color="#000080">blank out the whole of the Table of Fish Habitats;
+</font></blockquote><p>
+<p>
+<p>This is only really useful when a Table is being used to hold working space for some calculation or other.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>Previous builds allowed the following:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>delete </b>(a table entry)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_deleteentry_dep -->
+
+<p>This phrase is now deprecated, and is exactly equivalent to the preferred form,
+<p>
+<blockquote><font color="#000080">blank out (table entry)
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e415"><a href=ex415.html#e415 STYLE="text-decoration: none">**<b>Example 263:  Odyssey</b></a><br>A person who follows a path predetermined and stored in a table, and who can be delayed if the player tries to interact with her.<p>
+<p><hr><p><a href=doc249.html STYLE="text-decoration: none">Previous</a> / <a href=doc251.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

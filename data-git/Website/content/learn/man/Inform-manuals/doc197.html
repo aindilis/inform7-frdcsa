@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.11. Making actions work for other people</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Making actions work for other people" -->
+<!-- SEARCH SECTION "12.11" -->
+<!-- SEARCH SORT "012-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc196.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc198.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.11. Making actions work for other people</b></td></tr></table><p>
+<p>
+<p>The &quot;photographing&quot; action now works very nicely when the player does it. But not when others try. Suppose that neither the player, nor Clark Gable, is holding the camera:
+<p>
+<blockquote><font color="#000080">>photograph clark
+<br>You can hardly photograph without a camera, now can you?
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">>clark, photograph me
+<br>>
+</font></blockquote><p>
+<p>
+<p>An uncanny silence. What has happened is that the rules written so far are all implicitly restricted to the player only. This is because when we write -
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the camera is not carried:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can hardly photograph without a camera, now can you?&quot; instead.
+</font></blockquote><p>
+<p>
+<p>the action is &quot;photographing&quot;, not &quot;Clark photographing&quot;. In the next few sections we shall see how to make the rules work nicely for everybody. This is a little bit harder, so it should be noted right away that in many projects there is no need. In a game which has no other characters who succumb to persuasion, for instance, only the player will ever try the action.
+<p>
+<p><hr><p>
+<a name="e84"><a href=ex84.html#e84 STYLE="text-decoration: none">**<b>Example 203:  The Man of Steel</b></a><br>An escaping action which means "go to any room you can reach from here", and is only useful to non-player characters.<p>
+<a name="e255"><a href=ex255.html#e255 STYLE="text-decoration: none">***<b>Example 204:  Trying Taking Manhattan</b></a><br>Replacing the inventory reporting rule with another which does something slightly different.<p>
+<a name="e393"><a href=ex393.html#e393 STYLE="text-decoration: none">****<b>Example 205:  Under Contract</b></a><br>Creating a person who accepts most instructions and reacts correctly when a request leads implicitly to inappropriate behavior.<p>
+<p><hr><p><a href=doc196.html STYLE="text-decoration: none">Previous</a> / <a href=doc198.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

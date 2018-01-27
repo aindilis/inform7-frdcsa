@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.23. Listing nondescript items of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Listing nondescript items of something" -->
+<!-- SEARCH SECTION "17.23" -->
+<!-- SEARCH SORT "017-023-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc303.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc305.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.23. Listing nondescript items of something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> This activity prints up the also-ran paragraph at the end of a room description. These are nondescript items because they don't merit paragraphs of their own: if, as sometimes happens, there are none in the room, then no such paragraph is printed and this activity does not happen. (So to add a further paragraph to a room description, a simpler &quot;after looking&quot; rule should be used, not an &quot;after listing nondescript items&quot; rule.)
+<p>
+<p><b>2. The default behaviour.</b> The paragraph ordinarily reads as &quot;You can also see a cask and a clock.&quot; or similar. Before the activity begins, those objects which are nondescript - in this case the cask and the clock - are given the property of being &quot;marked for listing&quot;. If it turns out that nothing is marked for listing, because of before rules like the one in the example below, then nothing is printed.
+<p>
+<p><b>3. Examples.</b> (a) Promoting something out of the nondescript category, by unmarking it.
+<p>
+<blockquote><font color="#000080">Before listing nondescript items:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the watch is marked for listing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The watch catches your eye.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the watch is not marked for listing.
+</font></blockquote><p>
+<p>
+<p>(b) Changing the normal phrasing of the paragraph. Note that we can also change the listing style; the one below is the default.
+<p>
+<blockquote><font color="#000080">Rule for listing nondescript items of the Distressingly Messy Room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Strewn carelessly on the floor&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;list the contents of the Distressingly Messy Room, as a sentence,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tersely, listing marked items only, prefacing with is/are,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;including contents and giving brief inventory information;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e321"><a href=ex321.html#e321 STYLE="text-decoration: none">*<b>Example 341:  Rip Van Winkle</b></a><br>A simple way to allow objects in certain places to be described in the room description body text rather than in paragraphs following the room description.<p>
+<a name="e179"><a href=ex179.html#e179 STYLE="text-decoration: none">**<b>Example 342:  Happy Hour</b></a><br>Listing visible characters as a group, then giving some followup details in the same paragraph about specific ones.<p>
+<a name="e374"><a href=ex374.html#e374 STYLE="text-decoration: none">**<b>Example 343:  The Eye of the Idol</b></a><br>A systematic way to allow objects in certain places to be described in the room description body text rather than in paragraphs following the room description, and to control whether supporters list their contents or not.<p>
+<p><hr><p><a href=doc303.html STYLE="text-decoration: none">Previous</a> / <a href=doc305.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

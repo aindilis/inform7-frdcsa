@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.3. Animals</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Fido" -->
+<!-- SEARCH SECTION "Ex 408" -->
+<!-- SEARCH SORT "Ex 008-003-408" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc64.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc66.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.3. Animals</b></td></tr></table><p>
+<p>
+<p>Animals exhibit a wide range of behaviour: much of the chapter on Other Characters applies just as well to animals as to human beings, with the exception of the material on conversation. But two examples here, both fairly simple, show how a fairly convincing domestic pet can be achieved simply by reacting to certain events going on nearby: <b>Feline Behavior</b> (a cat) and <b>Today Tomorrow</b> (a dog).
+<p>
+<p><b>Fido</b> provides a dog which the player can re-name at will.
+<p>
+<p>For animals that we can sit on and ride - a camel or a horse, say - we may want to use the Rideable Vehicles extension by Graham Nelson, which also provides a rideable animal kind.
+<p>
+<a href=Rdoc48.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liveliness</b></font></a><i> for pets that change what they're doing every time the player looks</i><p><p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for a cat that eats food put in its container</i><p><p>
+<p><hr><p>
+<a name="e138"><a href=Rex138.html#e138 STYLE="text-decoration: none">*<b>Example 386:  Feline Behavior</b></a><br>A cat which reacts to whatever items it has handy, returning the result of a rulebook for further processing.<p>
+<a name="e77"><a href=Rex77.html#e77 STYLE="text-decoration: none">**<b>Example 99:  Today Tomorrow</b></a><br>A few notes on "In the presence of" and how it interacts with concealed objects.<p>
+<!-- EXAMPLE START -->
+<a name="e141"><a href=Rdoc65.html#e141 STYLE="text-decoration: none">*<b><b>Example</b> 408:  Fido</b></a><br>A dog the player can name and un-name at will.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we'd like to have a dog which the player is allowed to name himself. We'd like to deal correctly with both
+<p>
+<blockquote><font color="#000080">>name the dog fido
+</font></blockquote><p>
+<p>
+<p>and
+<p>
+<blockquote><font color="#000080">>name the dog &quot;fido&quot;
+</font></blockquote><p>
+<p>
+<p>so we'll also need to strip quotation marks out of the command. We can do this as follows:
+<p>
+<blockquote><font color="#000080"> &quot;Fido&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Back Yard is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A dog is an animal in Back Yard. The dog has some indexed text called the nickname.  The nickname of the dog is &quot;nothing&quot;. Understand the nickname property as describing the dog.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the name of the dog when the nickname of the dog is not &quot;nothing&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[nickname of the dog]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Naming it with is an action applying to one thing and one topic. Understand &quot;name [something] [text]&quot; as naming it with. Check naming it with: say &quot;You can't name that.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of naming the dog with &quot;nothing&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the nickname of the dog is &quot;nothing&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the dog is improper-named;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You revoke your choice of dog-name.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of naming the dog with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be indexed text; let N be &quot;[the topic understood]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;replace the text &quot;'&quot; in N with &quot;&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the nickname of the dog is &quot;[N]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the dog is proper-named;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The dog is now known as [nickname of the dog].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;name the dog Fido / name the dog Lawrence / look / x lawrence / name Lawrence nothing / look / x lawrence&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc64.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc66.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

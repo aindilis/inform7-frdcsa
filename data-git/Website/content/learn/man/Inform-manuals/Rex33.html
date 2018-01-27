@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.1. Testing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bic" -->
+<!-- SEARCH SECTION "Ex 58" -->
+<!-- SEARCH SORT "Ex 013-001-058" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc101.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc103.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.1. Testing</b></td></tr></table><p>
+<p>
+<p>There are no recipes for testing, alas, although most experienced IF authors have their preferred ways of going about it. Briefly: the best advice is to build and maintain a Skein which holds complete play-throughs of the piece, so that it is easy to check with a single click that all is still well; to have beta-testers who play through (substantial) drafts and send back their transcripts of play, along with suggestions; and to listen to these suggestions, and treat the beta-testers as editors rather than galley slaves.
+<p>
+<p><b>Alpha</b> shows a way to gracefully accept beta-testers' annotations without advancing time in the game.
+<p>
+<p>Most large works of IF have historically provided secret commands for testing and debugging - commands removed (or sometimes accidentally not) in the final released product. Inform does this automatically: the commands SHOWME, ACTIONS and SCENES are always present except in a released story file. It also allows us to write passages of source text which apply only for the testing phase, so that we can define new testing commands, or other checks that all is well: <b>Bic</b> demonstrates this, and is also useful in its own right.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e33"><a href=Rdoc102.html#e33 STYLE="text-decoration: none">*<b><b>Example</b> 58:  Bic</b></a><br>Testing to make sure that all objects have been given descriptions.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>It may occasionally be useful to check whether all objects in our game have a given property. Here we have a &quot;not for release&quot; section that will run at the start of the game and alert us to any objects lacking description:
+<p>
+<blockquote><font color="#000080">&quot;Bic&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Testing descriptions - Not for release
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins (this is the run property checks at the start of play rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through things:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if description of the item is &quot;&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[item] has no description.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Story
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Staff Break Room is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries an orange, a Bic pen, and a napkin. The description of the orange is &quot;It's a small hard pinch-skinned thing from the lunch room, probably with lots of pips and no juice.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the napkin is &quot;Slightly crumpled.&quot;
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e8"><a href=Rex8.html#e8 STYLE="text-decoration: none">*<b>Example 404:  Alpha</b></a><br>Creating a beta-testing command that matches any line starting with punctuation.<p>
+<p><hr><p><a href=Rdoc101.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc103.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

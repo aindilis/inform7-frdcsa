@@ -1,0 +1,227 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.14. Arithmetic with units</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Lemonade" -->
+<!-- SEARCH SECTION "Ex 255" -->
+<!-- SEARCH SORT "Ex 014-014-255" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc237.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc239.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.14. Arithmetic with units</b></td></tr></table><p>
+<p>
+<p>The example equations in the previous section carried out quite a lot of arithmetic, but they may have given the impression that Inform always allows arithmetic - which is not true.
+<p>
+<p>This is actually a good thing, because it keeps us from error. For instance, Inform will not allow:
+<p>
+<blockquote><font color="#000080">Equation - Newton's Totally Bogus Law
+<br>&nbsp;&nbsp;&nbsp;&nbsp;F = m^2
+<br>where F is a force, m is a mass.
+</font></blockquote><p>
+<p>
+<p>because whatever you get when you square a mass, you don't get a force - in the same way that a length times another length makes an area, not another length. Physicists call this &quot;dimensional analysis&quot;, and it often provides clues about which equations are right. Just after the Second World War, someone correctly worked out the explosive power of an atomic bomb without any classified information simply by guessing what values would appear in the formula, and then finding the simplest equation they could appear in.
+<p>
+<p>In general, Inform will not allow numerical kinds of value to be multiplied or divided by each other (or square or cube rooted) unless we give it instructions that this would make sense.
+<p>
+<p>Of course, there's plenty we can still do without any need for such instructions. For instance, going back to weight,
+<p>
+<blockquote><font color="#000080">The Weighbridge is a room. &quot;A sign declares that the maximum load is [100kg multiplied by 3].&quot;
+</font></blockquote><p>
+<p>
+<p>...will produce the text &quot;A sign declares that the maximum load is 300kg.&quot; Here Inform knows that it makes sense to multiply a weight by 3, and that the result will be a weight. Similarly, Inform allows us to add and subtract weights, and several different forms of division are allowed:
+<p>
+<blockquote><font color="#000080">The blackboard is in the Weighbridge. &quot;A blackboard propped against one wall reads: '122 / 10 is [122 divided by 10] remainder [remainder after dividing 122 by 10]; but 122kg / 10kg is [122kg divided by 10kg] remainder [remainder after dividing 122kg by 10kg]; and 122kg / 10 is [122kg divided by 10] remainder [remainder after dividing 122kg by 10].'&quot;
+</font></blockquote><p>
+<p>
+<p>When we visit the Weighbridge, we find:
+<p>
+<blockquote><font color="#000080">A blackboard propped against one wall reads: &quot;122 / 10 is 12 remainder 2; but 122kg / 10kg is 12 remainder 2kg; and 122kg / 10 is 12kg remainder 2kg.&quot;
+</font></blockquote><p>
+<p>
+<p>Whereas we are not allowed to divide 122 by 10kg: that would make no sense, since 122 is a number and not made up of kilograms. Inform will produce a problem message if we try. Similarly, Inform won't normally allow us to multiply two weights together - but see the next section.
+<p>
+<p><hr><p>
+<a name="e67"><a href=ex67.html#e67 STYLE="text-decoration: none">*<b>Example 253:  Frozen Assets</b></a><br>A treatment of money which keeps track of how much the player has on him, and a BUY command which lets him go shopping.<p>
+<a name="e20"><a href=ex20.html#e20 STYLE="text-decoration: none">**<b>Example 254:  Money for Nothing</b></a><br>An OFFER price FOR command, allowing the player to bargain with a flexible seller.<p>
+<!-- EXAMPLE START -->
+<a name="e220"><a href=doc238.html#e220 STYLE="text-decoration: none">***<b><b>Example</b> 255:  Lemonade</b></a><br>Containers for liquid which keep track of how much liquid they are holding and of what kind, and allow quantities to be moved from one container to another.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Liquids, and all substances that can be mixed or broken off in partial amounts, pose a challenge to model in interactive fiction. The following example is a simple one, but adequate for many scenarios.
+<p>
+<p>We start by assuming that all liquids in the game will always appear in containers. The player can pour liquids from one container to another, and the containers keep track of how full they are and describe themselves appropriately. The player can also refer to containers by content.
+<p>
+<p>Mixture, however, is not allowed, nor is it possible to put liquids on other objects, pour them out on the ground, etc. These ideas would require a more complicated set-up.
+<p>
+<blockquote><font color="#000080">&quot;Lemonade&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A volume is a kind of value. 15.9 fl oz specifies a volume with parts ounces and tenths (optional, preamble optional).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A fluid container is a kind of container. A fluid container has a volume called a fluid capacity. A fluid container has a volume called current volume.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The fluid capacity of a fluid container is usually 12.0 fl oz. The current volume of a fluid container is usually 0.0 fl oz.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Liquid is a kind of value. The liquids are water, milk, lemonade, and iced tea. A fluid container has a liquid.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a fluid container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is empty,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You catch just a hint of [the liquid of the noun] at the bottom.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] contains [current volume of the noun in rough terms] of [liquid of the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (amount - a volume) in rough terms:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the amount is less than 0.5 fl oz:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;a swallow or two&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if tenths part of amount is greater than 3 and tenths part of amount is less than 7:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let estimate be ounces part of amount;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[estimate in words] or [estimate plus 1 in words] fluid ounces&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if tenths part of amount is greater than 6, increase amount by 1.0 fl oz;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;about [ounces part of amount in words] fluid ounce[s]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a fluid container (called the target) while not drinking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the target is empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;empty &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a fluid container (called the target) while not examining:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the target is empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; of [liquid of the target]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;omit contents in listing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of inserting something into a fluid container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] has too narrow a mouth to accept anything but liquids.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a fluid container is empty if the current volume of it is 0.0 fl oz. Definition: a fluid container is full if the current volume of it is the fluid capacity of it.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;drink from [fluid container]&quot; as drinking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of drinking a fluid container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no more [liquid of the noun] within.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decrease the current volume of the noun by 0.2 fl oz;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the current volume of the noun is less than 0.0 fl oz, now the current volume of the noun is 0.0 fl oz;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You take a sip of [the liquid of the noun][if the noun is empty], leaving [the noun] empty[end if].&quot;
+</font></blockquote><p>
+<p>
+<p>We have allowed all liquids to be drunk, but it would be possible also to add checking, if we had a game where some liquids were beverages and others were, say, motor oil.
+<p>
+<blockquote><font color="#000080">Understand the command &quot;fill&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;pour [fluid container] in/into/on/onto [fluid container]&quot; as pouring it into. Understand &quot;empty [fluid container] into [fluid container]&quot; as pouring it into. Understand &quot;fill [fluid container] with/from [fluid container]&quot; as pouring it into (with nouns reversed).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;pour [something] in/into/on/onto [something]&quot; as pouring it into. Understand &quot;empty [something] into [something]&quot; as pouring it into. Understand &quot;fill [something] with/from [something]&quot; as pouring it into (with nouns reversed).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Pouring it into is an action applying to two things.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check pouring it into:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a fluid container, say &quot;You can't pour [the noun].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is not a fluid container, say &quot;You can't pour liquids into [the second noun].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is the second noun, say &quot;You can hardly pour [the noun] into itself.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the liquid of the noun is not the liquid of the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is empty, now the liquid of the second noun is the liquid of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Mixing [the liquid of the noun] with [the liquid of the second noun] would give unsavory results.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is empty, say &quot;No more [liquid of the noun] remains in [the noun].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is full, say &quot;[The second noun] cannot contain any more than it already holds.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out pouring it into:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let available capacity be the fluid capacity of the second noun minus the current volume of the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the available capacity is greater than the current volume of the noun, now the available capacity is the current volume of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the current volume of the second noun by available capacity;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decrease the current volume of the noun by available capacity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report pouring it into:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[if the noun is empty][The noun] is now empty;[otherwise][The noun] now contains [current volume of the noun in rough terms] of [liquid of the noun]; [end if]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[the second noun] contains [current volume of the second noun in rough terms] of [liquid of the second noun][if the second noun is full], and is now full[end if].&quot;
+</font></blockquote><p>
+<p>
+<p>This is probably a drier description than we would actually want in our story, but it does allow us to see that the mechanics of the system are working, so we'll stick with this for the example.
+<p>
+<p>Now we need a trick from a later chapter, which allows something to be described in terms of a property it has. This way, the story will understand not only &quot;pitcher&quot; and &quot;glass&quot; but also &quot;pitcher of lemonade&quot; and &quot;glass of milk&quot; -- and, indeed, &quot;glass of lemonade&quot;, if we empty the glass and refill it with another substance:
+<p>
+<blockquote><font color="#000080">Understand the liquid property as describing a fluid container. Understand &quot;of&quot; as a fluid container.
+</font></blockquote><p>
+<p>
+<p>And now the scenario itself:
+<p>
+<blockquote><font color="#000080">The Porch is a room. The porch swing is an enterable supporter in the Porch. &quot;An inviting swing hangs here at the end of the porch, allowing you to enjoy the summer with a cool beverage, and watch your neighbor Ted mowing his lawn with the very last manual powerless lawnmower on the block.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The glass is a fluid container carried by the player. The liquid of the glass is milk. The current volume of the glass is 0.8 fl oz.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pitcher is a fluid container in the Porch. The fluid capacity of the pitcher is 32.0 fl oz. The current volume of the pitcher is 20.0 fl oz. The liquid of the pitcher is lemonade.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Ted's Lawn is outside from the Porch. Ted is a man in Ted's Lawn. &quot;Ted has taken off his shirt, but still seems a bit oppressed by the sun.&quot; The description of Ted is &quot;He looks hot. In all senses.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After deciding the scope of the player: place Ted in scope.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something to Ted when the player is in the Porch: say &quot;You can't really interact with Ted from this distance, except in the sense of eyeing him surreptitiously.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of giving an empty fluid container to Ted: say &quot;Yes, taunt the poor man, why don't you?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of giving a fluid container to Ted when the liquid of the noun is milk: say &quot;Ted looks ruefully at the milk. 'Thanks, but I'm lactose-intolerant,' he says.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in the check giving it to rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if Ted is in the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if Ted carries a fluid container (called refreshment):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try Ted drinking the refreshment;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise if a random chance of 1 in 3 succeeds:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ted pushes the ineffective mower over some dandelions.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of someone drinking a fluid container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try the person asked giving the noun to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decrease the current volume of the noun by 2.0 fl oz;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the current volume of the noun is less than 0.0 fl oz, now the current volume of the noun is 0.0 fl oz;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The person asked] gulps down some [liquid of the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After someone giving something to the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Here,' says [the person asked], handing [the noun] back to you. 'Thanks, I owe you one.'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story finally.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x milk / x lemonade / drink lemonade / drink milk / pour lemonade into glass / drink milk / x milk / drink milk / g / i / fill glass with lemonade / drink lemonade / drop glass / drink lemonade / pitcher&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test Ted with &quot;out / give milk to ted / drink milk / g / g / g / give glass to ted / in / fill glass with lemonade / out / give lemonade to ted / wait / z / z / z &quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e335"><a href=ex335.html#e335 STYLE="text-decoration: none">***<b>Example 256:  Savannah</b></a><br>Using the liquid implementation demonstrated in Lemonade for putting out fires.<p>
+<p><hr><p><a href=doc237.html STYLE="text-decoration: none">Previous</a> / <a href=doc239.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

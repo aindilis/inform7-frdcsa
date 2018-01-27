@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.4. Defining new adjectives</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Defining new adjectives" -->
+<!-- SEARCH SECTION "6.4" -->
+<!-- SEARCH SORT "006-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc88.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc90.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.4. Defining new adjectives</b></td></tr></table><p>
+<p>
+<p>Suppose we want to coin a word for supporters currently supporting something. We can do so with the following sentence:
+<p>
+<blockquote><font color="#000080">Definition: A supporter is occupied if something is on it.
+</font></blockquote><p>
+<p>
+<p>Note the colon, which is essential, and the usage of &quot;it&quot; in the definition part to refer to the object in question. (For this purpose we would write &quot;it&quot; even if we were defining a term about, say, a woman instead of a supporter, so that &quot;she&quot; or &quot;her&quot; might seem more appropriate - but see below.)
+<p>
+<p>This creates the adjective &quot;occupied&quot;, and gives it a definition valid for supporters. That restriction on validity means that non-supporters would always fail the description &quot;something occupied&quot;; which might be unfortunate if we wanted to walk about rooms being occupied. We could give a second definition thus:
+<p>
+<blockquote><font color="#000080">Definition: A room is occupied if a person is in it.
+</font></blockquote><p>
+<p>
+<p>These are entirely different senses of the word &quot;occupied&quot; - a mantelpiece is occupied if an invitation is on it, but for a drawing room to be occupied there must be human presence - and Inform applies whichever sense is relevant when deciding whether or not a given object is &quot;occupied&quot;.
+<p>
+<p>Often, though not always, we also want to give a name to the opposite possibility. We can do that as follows:
+<p>
+<blockquote><font color="#000080">Definition: A room is occupied rather than unoccupied if a person is in it.
+</font></blockquote><p>
+<p>
+<p>The &quot;rather than...&quot; part of the definition is optional, but it saves having to write a boringly similar definition of &quot;unoccupied&quot; out in longhand.
+<p>
+<p>Newly defined adjectives cannot be used when creating things, because they are not explicit enough. Inform could not satisfy:
+<p>
+<blockquote><font color="#000080">The Ballroom is occupied. The bucket is a large container.
+</font></blockquote><p>
+<p>
+<p>because there is not enough information: by whom is the Ballroom occupied? How large, exactly? On the other hand, newly defined adjectives are very helpful in conditions and for rules, as we shall see later on.
+<p>
+<p>It is occasionally clumsy having to refer to the subject of a definition using &quot;it&quot;. We can avoid this and give the definition better legibility by supplying a name instead. For instance:
+<p>
+<blockquote><font color="#000080">Definition: a direction (called thataway) is viable if the room thataway from the location is a room.
+</font></blockquote><p>
+<p>
+<p>which is a good deal easier to read than
+<p>
+<blockquote><font color="#000080">Definition: a direction is viable if the room it from the location is a room.
+</font></blockquote><p>
+<p>
+<a href=doc183.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>New conditions, new adjectives</b></font></a><i> for giving more extensive definitions of new adjectives, using phrases</i><p><p>
+<p><hr><p>
+<a name="e145"><a href=ex145.html#e145 STYLE="text-decoration: none">*<b>Example 73:  Finishing School</b></a><br>The "another" adjective for rules such as "in the presence of another person".<p>
+<p><hr><p><a href=doc88.html STYLE="text-decoration: none">Previous</a> / <a href=doc90.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

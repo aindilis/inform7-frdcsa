@@ -1,0 +1,89 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.7. Making the verb "to weigh"</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Dimensions" -->
+<!-- SEARCH SECTION "Ex 247" -->
+<!-- SEARCH SORT "Ex 014-007-247" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc230.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc232.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.7. Making the verb "to weigh"</b></td></tr></table><p>
+<p>
+<p>So now we can invent notations for weight. We could, for instance, write:
+<p>
+<blockquote><font color="#000080">Weight is a kind of value. 1kg specifies a weight. Every thing has a weight.
+</font></blockquote><p>
+<p>
+<p>And that allows us to write:
+<p>
+<blockquote><font color="#000080">The lead pig is in the Salt Mine. The weight of the lead pig is 45kg.
+</font></blockquote><p>
+<p>
+<p>But nobody would say it that way: they'd say &quot;The lead pig weighs 45kg.&quot; So what we really need to complete our setup is a verb &quot;to weigh&quot;.
+<p>
+<p>We have already created new verbs, but none of those methods are quite convenient for this. We want to relate something tangible (the lead pig) to something intangible (45kg), and there's no convenient relation to express this; if we set it up as a condition, we'd get something we couldn't assert, only test. Instead, we'll do something different this time:
+<p>
+<blockquote><font color="#000080">The verb to weigh (it weighs, they weigh, it is weighing) implies the weight property.
+</font></blockquote><p>
+<p>
+<p>Previous definitions like this ended &quot;implies the ... relation&quot;, rather than &quot;implies the ... property&quot;, but the idea is the same. The meaning of &quot;X weighs Y&quot; is that the weight property of X is equal to Y. So we can now write:
+<p>
+<blockquote><font color="#000080">A thing usually weighs 1kg. The lead pig weighs 45kg.
+<br>something weighing 20kg
+<br>if three things weigh 5kg, ...
+</font></blockquote><p>
+<p>
+<p>And as we saw in the chapter on Descriptions, we can also set up adjectives, comparatives and superlatives:
+<p>
+<blockquote><font color="#000080">Definition: A thing is heavy if its weight is 20kg or more.
+</font></blockquote><p>
+<p>
+<p>which creates &quot;heavy&quot;, &quot;heavier&quot; and &quot;heaviest&quot;.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e423"><a href=doc231.html#e423 STYLE="text-decoration: none">**<b><b>Example</b> 247:  Dimensions</b></a><br>This example draws together the previous snippets into a working implementation of the weighbridge.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The following is not a very sophisticated approach, because it does not allow for weight to accumulate: if we put a gold ingot into a paper bag, then put the bag on the balance platform, only the bag's weight will register. But it will do for a first try.
+<p>
+<blockquote><font color="#000080">&quot;Dimensions&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A length is a kind of value. 10m specifies a length. An area is a kind of value. 10 sq m specifies an area. A length times a length specifies an area.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A weight is a kind of value. 10kg specifies a weight. Everything has a weight.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to weigh (it weighs, they weigh, it is weighing) implies the weight property. A thing usually weighs 1kg.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: A thing is light if its weight is 3kg or less.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: A thing is heavy if its weight is 10kg or more.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Weighbridge is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A blackboard is in the Weighbridge. &quot;A blackboard propped against one wall reads: '122/10 is [122 divided by 10] remainder [remainder after dividing 122 by 10]; 122kg/10kg is [122kg divided by 10kg] remainder [remainder after dividing 122kg by 10kg]; 122kg/10 is [122kg divided by 10] remainder [remainder after dividing 122kg by 10].'&quot; The blackboard weighs 10kg.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A feather and a lead pig are in the Weighbridge. The lead pig weighs 45kg.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The balance platform is a supporter in the Weighbridge. &quot;The balance platform is 10m by 8m, giving it an area of [10m multiplied by 8m], currently weighing [the list of things on the platform]. The scale alongside reads: [total weight of things on the platform]. [if two things are on the platform]Average weight is: [the total weight of things on the platform divided by the number of things on the platform]. Heaviest item is [the heaviest thing on the platform], at [weight of the heaviest thing on the platform]. Lightest item is [the lightest thing on the platform], at [weight of the lightest thing on the platform].[otherwise]It seems to be able to weigh several things at once.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get feather / put it on platform / look / get pig / put it on platform / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e360"><a href=ex360.html#e360 STYLE="text-decoration: none">***<b>Example 248:  Lead Cuts Paper</b></a><br>To give every container a breaking strain, that is, a maximum weight of contents which it can bear - so that to put the lead pig into a paper bag invites disaster.<p>
+<p><hr><p><a href=doc230.html STYLE="text-decoration: none">Previous</a> / <a href=doc232.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

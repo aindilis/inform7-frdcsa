@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.3. Position Within Rooms</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Starry Void" -->
+<!-- SEARCH SECTION "Ex 6" -->
+<!-- SEARCH SORT "Ex 003-003-006" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc9.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc11.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.3. Position Within Rooms</b></td></tr></table><p>
+<p>
+<p>Inform's division of geography into &quot;rooms&quot; is a good compromise for most purposes. The rooms are cut off from each other by (imaginary or actual) walls, while all of the interior of a given room is regarded as the same place.
+<p>
+<p>Suppose we want things to happen differently in different corners of the same room? Inform can already do this a little, in that the player can be inside an enterable container or on an enterable supporter. For instance:
+<p>
+<blockquote><font color="#000080">Instead of opening a door when the player is on the bed, say &quot;You can't reach the handle from the bed.&quot;
+</font></blockquote><p>
+<p>
+<p>If we need to have divided-up areas of the floor itself, the standard approach is to define a small number of named positions. We then need to remember at which of these locations the player (or something else) currently stands.
+<p>
+<p><b>Further Reasons Why All Poets Are Liars</b> allows the player to be in different parts of a room by standing on a box which can be in different places: thus only the box needs an internal position, not the player, simplifying matters neatly.
+<p>
+<p>Another interesting case is when one room is entirely inside another (such as a hut in a field, or a booth in a large convention hall), so that the exterior of the room should be visible from another location. <b>Starry Void</b> gives a simple demonstration of a magician's booth that can be examined from the outside, opened and closed, and entered to reach a new location.
+<p>
+<a href=Rdoc11.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Continuous Spaces and The Outdoors</b></font></a><i> for making the space between rooms continuous</i><p><p>
+<a href=Rdoc51.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Combat and Death</b></font></a><i> for the use of position in a room in determining combat maneuvers</i><p><p>
+<a href=Rdoc38.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Entering and Exiting, Sitting and Standing</b></font></a><i> for automatically getting up from chairs before going places</i><p><p>
+<a href=Rdoc23.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The Human Body</b></font></a><i> for letting the player take different postures on furniture or on the floor</i><p><p>
+<a href=Rdoc66.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Furniture</b></font></a><i> for cages, beds, and other kinds of enterable supporters and containers</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e354"><a href=Rdoc10.html#e354 STYLE="text-decoration: none">***<b><b>Example</b> 6:  Starry Void</b></a><br>Creating a booth that can be seen from the outside, opened and closed, and entered as a separate room.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Sometimes we may want a room to be visible from the outside in one location, but treated as a separate location when we are inside. The simplest way to do this is to make the exterior form of the object into a door object, and to describe it differently from different vantage points. (Doors in general are described more fully in the Doors section of the Things chapter.)
+<p>
+<blockquote><font color="#000080"> &quot;Starry Void&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Center Ring is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The magician's booth is a door. &quot;[if the player is in Center Ring]A magician's booth stands in the corner, painted dark blue with glittering gold stars.[otherwise if the magician's booth is closed]A crack of light indicates the way back out to the center ring.[otherwise]The door stands open to the outside.[end if]&quot;.
+</font></blockquote><p>
+<p>
+<p>Here we've arranged for the booth to be described in the initial room description in different ways depending on where the player is when viewing it. We might like to do the same if the player takes a closer look:
+<p>
+<blockquote><font color="#000080">Instead of examining the magician's booth in the Center Ring:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It is dark blue and glittering with gold stars. [if the booth is open]The door currently stands open[otherwise]It has been firmly shut[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the magician's booth in the Starry Void:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The booth door is [if the magician's booth is open]wide open[otherwise]shut, admitting only a thin crack of light[end if].&quot;
+</font></blockquote><p>
+<p>
+<p>And now we put it in place:
+<p>
+<blockquote><font color="#000080">The magician's booth is inside from Center Ring and outside from Starry Void.
+</font></blockquote><p>
+<p>
+<p>...and make sure that the booth-and-door object responds to all the names we have used for it in different places:
+<p>
+<blockquote><font color="#000080">Understand &quot;door&quot; or &quot;of&quot; or &quot;the&quot; or &quot;light&quot; or &quot;crack&quot; or &quot;thin crack&quot; as the booth.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine booth / open door of the booth / in / examine door / close door / look / examine crack of light&quot;.
+</font></blockquote><p>
+<p>
+<p>A final nice touch, if we're so inclined, is to borrow from the Basic Actions chapter and make the player automatically open the booth door before trying to enter:
+<p>
+<blockquote><font color="#000080"> Before going through the closed magician's booth:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first opening the door of the booth)[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try opening the booth.
+</font></blockquote><p>
+<p>
+<p>For the contrasting case of a space that is nested inside another place and is not its own room -- say a stall at an open-air market, or a rowboat on a lake -- see the example &quot;Tamed&quot;.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e159"><a href=Rex159.html#e159 STYLE="text-decoration: none">*<b>Example 199:  Further Reasons Why All Poets Are Liars</b></a><br>The young William Wordsworth, pushing a box about in his room, must struggle to achieve a Romantic point of view.<p>
+<p><hr><p><a href=Rdoc9.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc11.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

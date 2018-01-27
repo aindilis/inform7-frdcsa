@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.6. Viewpoint</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Crane's Leg 1" -->
+<!-- SEARCH SECTION "Ex 51" -->
+<!-- SEARCH SORT "Ex 005-006-051" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc27.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc29.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.6. Viewpoint</b></td></tr></table><p>
+<p>
+<p>Inform automatically creates a character for the player - a bland, personality-free entity at the outset, as we've seen. But there is no reason why the player need stick to this same identity throughout the game. Conventional fiction often jumps from one viewpoint character to another, and so can IF.
+<p>
+<p>To do this at the most elementary level, we simply at some point
+<p>
+<blockquote><font color="#000080">change player to Janine;
+</font></blockquote><p>
+<p>
+<p>where Janine is a person we've already defined in the code. Now the player is in whatever location Janine inhabits, carries whatever Janine carries, and wears whatever Janine is wearing. <b>Terror of the Sierra Madre</b> shows off this effect, and also demonstrates how to make the command prompt remind the player which character he currently controls. Some games instead give this information in the status line or after the name of the location when looking, producing output like
+<p>
+<blockquote><font color="#000080">The Bottomless Acherousia (as Charon)
+</font></blockquote><p>
+<p>
+<p>We could do the same by adding a line such as
+<p>
+<blockquote><font color="#000080">After printing the name of a room while constructing the status line or looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[roman type] (as [the player])&quot;
+</font></blockquote><p>
+<p>
+<p>Of course, we'll need a good deal of other work to make Janine a distinct person from whichever character the player was before. The distinction may come from changed capabilities of the new character, which we can express through new rules about actions; e.g.,
+<p>
+<blockquote><font color="#000080">Instead of listening when the player is Janine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your childhood accident left you unable to hear any but the loudest noises. Currently there is only silence.&quot;
+</font></blockquote><p>
+<p>
+<p>Janine may also have new, different perspective on her surroundings, expressed through the descriptions of the things she looks at; <b>Uncommon Ground</b> makes a &quot;by viewpoint&quot; token for text alternatives, allowing us to tag our descriptions to indicate which variations should be shown to which viewpoint characters. <b>The Crane's Leg 1</b> and <b>2</b> offer more elaborate and specialized ways of customizing the player character's observations to depend on how he relates (physically and in attitude) to the things around him.
+<p>
+<p>If we want to change the tense and person of narration from the conventional present second person, we may do this as well, though at the present stage of Inform the effect relies on external extensions.
+<p>
+<p><hr><p>
+<a name="e400"><a href=Rex400.html#e400 STYLE="text-decoration: none">***<b>Example 121:  Terror of the Sierra Madre</b></a><br>Multiple player characters who take turns controlling the action.<p>
+<a name="e392"><a href=Rex392.html#e392 STYLE="text-decoration: none">**<b>Example 445:  Uncommon Ground</b></a><br>Making a "by viewpoint" token, allowing us to design our own text variations such as "[show to yourself]quaint[to Lolita]thrilling[to everyone else]squalid[end show]" depending on the identity of the player at the moment.<p>
+<!-- EXAMPLE START -->
+<a name="e96"><a href=Rdoc28.html#e96 STYLE="text-decoration: none">***<b><b>Example</b> 51: The Crane's Leg 1</b></a><br>A description text that automatically highlights the ways in which the object differs from a standard member of its kind.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">When you see a long object, you don't have to think that it is too long if being long is the property given by the nature. It is proved by the fact that a duckling, having short legs, will cry if you try to draw them out by force, and that a crane, having long legs, will protest you with tears if you try to cut them with a knife. -- Zhuangzi
+</font></blockquote><p>
+<p>
+<p>Suppose we have an extremely detailed world model in which every object is characterized by many features -- in this example, material and height, though one could add more. Suppose further that we would like to generate descriptions of these things automatically for the most part, drawing the player's attention only to those aspects of the object that are particularly interesting.
+<p>
+<blockquote><font color="#000080">&quot;The Crane's Leg&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Material is a kind of value. The materials are wood, glass, stone, cloth, paper, clay, and metal. A thing has a material.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A height is a kind of value. 3 feet 11 inches specifies a height. A thing has a height. Definition: a thing is tall if its height is 6 feet 0 inches or more. Definition: a thing is short if its height is 2 feet 0 inches or less.
+</font></blockquote><p>
+<p>
+<p>So far, we have generally dealt with cases where the property of a thing can be a number (such as 3), a value (such as brightness), or a unit (like height, here). It is also possible for a thing to have a property which names another thing, as in &quot;The mother of the baby trout is the large trout&quot; -- where &quot;mother&quot; is a property, and its value, in the case of the baby trout, is large trout. We would define such a property with a line such as &quot;A fish has a thing called the mother.&quot;
+<p>
+<p>In practice, though, this is a bit confusing as syntax; moreover, Inform has a much more powerful construct for talking about the ways in which one object relates to another object. A full discussion of this will have to wait for the chapter on Relations. For now, it is enough to say that we can do this:
+<p>
+<blockquote><font color="#000080">Imitation relates various things to one thing (called the ideal). The verb to imitate (it imitates, they imitate, it is imitating) implies the imitation relation.
+</font></blockquote><p>
+<p>
+<p>This will allow us to declare that some objects imitate other objects, like so:
+<p>
+<blockquote><font color="#000080">A chair is a kind of supporter. A chair is always enterable. A chair is usually wood. The height of a chair is usually 4 feet 0 inches. The ordinary chair is a chair. Every chair imitates the ordinary chair.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A table is a kind of supporter. A table is usually wood. The height of a table is usually 3 feet 8 inches. The ordinary table is a table. Every table imitates the ordinary table.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A rock is a kind of thing. A rock is usually stone. The ordinary rock is a rock. Every rock imitates the ordinary rock. The height of a rock is usually 0 feet 3 inches.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A jug is a kind of container. A jug is usually clay. The ordinary jug is a jug. Every jug imitates the ordinary jug. The height of a jug is usually 0 feet 8 inches.
+</font></blockquote><p>
+<p>
+<p>Now each of these types has one ideal representative which has the fundamental attributes of its kind: the ordinary chair is the most chairlike chair imaginable, the ordinary table is the epitome of tableness, and so on. We are also allowed to refer to &quot;the ideal of the chair&quot;, thanks to the way we defined imitation. (Again, the relations chapter offers a much more detailed explanation of how relations may be defined.)
+<p>
+<blockquote><font color="#000080">The description of a thing is usually &quot;[comparison with ideal][run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say comparison with ideal:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the sample be the ideal of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the sample is not a thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Perfectly conforming to your expectations of its type.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the material of the noun is not the material of the sample:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the height of the noun is not the height of the sample:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the noun is shorter than the sample, say &quot;Unusually short at [height of the noun], and made of [material of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Unusually tall at [height of the noun], and made of [material of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Distinct mostly in being made of [material of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the height of the noun is not the height of the sample:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the noun is shorter than the sample, say &quot;Unusually short at [height of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Unusually tall at [height of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;In every respect [a sample].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pleasure Garden is a room. &quot;At the riverbank, a pleasing garden, having many curving paths and one straight.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The low table is a table in the Pleasure Garden. The height of the low table is 2 feet 3 inches. On the low table is a metal rock called a gold nugget.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x table / x nugget&quot;.
+</font></blockquote><p>
+<p>
+<p>So far the effect is not very deep, but we could take the auto-description a great deal further: providing a larger and more interesting set of variations; or writing a complicated set of rules such that the player only notices height variations when carrying a ruler; or switching between several player-characters, each of whom notices a different subset of characteristics. But these refinements would require more input from later chapters.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e97"><a href=Rex97.html#e97 STYLE="text-decoration: none">*<b>Example 377: The Crane's Leg 2</b></a><br>A description text generated based on the propensities of the player-character, following different rulebooks for different characters.<p>
+<p><hr><p><a href=Rdoc27.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc29.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

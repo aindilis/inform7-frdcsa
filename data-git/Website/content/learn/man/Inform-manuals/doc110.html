@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.8. Rules applying to more than one action</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Rules applying to more than one action" -->
+<!-- SEARCH SECTION "7.8" -->
+<!-- SEARCH SORT "007-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc109.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc111.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.8. Rules applying to more than one action</b></td></tr></table><p>
+<p>
+<p>A description can include more than one choice of action. For instance:
+<p>
+<blockquote><font color="#000080">examining or searching the desk
+</font></blockquote><p>
+<p>
+<p>matches either of &quot;examining the desk&quot; or &quot;searching the desk&quot;. We can have more than two actions, of course:
+<p>
+<blockquote><font color="#000080">examining, looking under or searching the desk
+</font></blockquote><p>
+<p>
+<p>The actions combined like this need to be compatible with each other, at least a little. For instance, this will generate a problem message:
+<p>
+<blockquote><font color="#000080">waiting or searching the desk
+</font></blockquote><p>
+<p>
+<p>because it makes no sense to &quot;wait the desk&quot;. On the other hand, this is fine:
+<p>
+<blockquote><font color="#000080">waiting or searching
+</font></blockquote><p>
+<p>
+<p>The general rule is that if we specify one or more objects (&quot;the desk&quot; in the above example), then each of the actions we quote must take at least that many objects.
+<p>
+<p>For example, the following saves us writing the same basic rule three times over:
+<p>
+<blockquote><font color="#000080">Instead of examining, looking under or searching the desk: say &quot;There's no use poking around in that old desk.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc109.html STYLE="text-decoration: none">Previous</a> / <a href=doc111.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.11. Making actions work for other people</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Trying Taking Manhattan" -->
+<!-- SEARCH SECTION "Ex 204" -->
+<!-- SEARCH SORT "Ex 012-011-204" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc196.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc198.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.11. Making actions work for other people</b></td></tr></table><p>
+<p>
+<p>The &quot;photographing&quot; action now works very nicely when the player does it. But not when others try. Suppose that neither the player, nor Clark Gable, is holding the camera:
+<p>
+<blockquote><font color="#000080">>photograph clark
+<br>You can hardly photograph without a camera, now can you?
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">>clark, photograph me
+<br>>
+</font></blockquote><p>
+<p>
+<p>An uncanny silence. What has happened is that the rules written so far are all implicitly restricted to the player only. This is because when we write -
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the camera is not carried:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can hardly photograph without a camera, now can you?&quot; instead.
+</font></blockquote><p>
+<p>
+<p>the action is &quot;photographing&quot;, not &quot;Clark photographing&quot;. In the next few sections we shall see how to make the rules work nicely for everybody. This is a little bit harder, so it should be noted right away that in many projects there is no need. In a game which has no other characters who succumb to persuasion, for instance, only the player will ever try the action.
+<p>
+<p><hr><p>
+<a name="e84"><a href=ex84.html#e84 STYLE="text-decoration: none">**<b>Example 203:  The Man of Steel</b></a><br>An escaping action which means "go to any room you can reach from here", and is only useful to non-player characters.<p>
+<!-- EXAMPLE START -->
+<a name="e255"><a href=doc197.html#e255 STYLE="text-decoration: none">***<b><b>Example</b> 204:  Trying Taking Manhattan</b></a><br>Replacing the inventory reporting rule with another which does something slightly different.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Inform has built-in commands for other people, and sometimes we may want to adjust the way these work without completely disabling and replacing the command. Suppose, for instance, that instead of
+<p>
+<blockquote><font color="#000080">Kermit the Frog looks through his possessions.
+</font></blockquote><p>
+<p>
+<p>we'd like someone taking inventory to report what he's got, thus:
+<p>
+<blockquote><font color="#000080">Kermit the Frog says, &quot;I seem to be carrying a microphone and wearing a hat and a trenchcoat.&quot;
+</font></blockquote><p>
+<p>
+<p>To do this, we could replace the built-in report rule with a different one.
+<p>
+<blockquote><font color="#000080">&quot;Trying Taking Manhattan&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The loud inventory rule is listed instead of the report other people taking inventory rule in the report taking inventory rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the loud inventory rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the player is the person asked:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The person asked] says, 'I seem to be carrying [a list of things carried by the person asked][if the person asked is wearing something] and wearing [a list of things worn by the person asked][end if].'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking someone to try doing something: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Grand Central Station is a room. &quot;Here you are in New York, New York. Any minute now someone is going to burst into song.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Kermit the Frog is a man in Grand Central Station. &quot;Kermit the Frog stands nearby, enjoying being green.&quot; Kermit is wearing a hat and a trenchcoat. He is carrying a microphone.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;inventory / kermit, inventory&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e393"><a href=ex393.html#e393 STYLE="text-decoration: none">****<b>Example 205:  Under Contract</b></a><br>Creating a person who accepts most instructions and reacts correctly when a request leads implicitly to inappropriate behavior.<p>
+<p><hr><p><a href=doc196.html STYLE="text-decoration: none">Previous</a> / <a href=doc198.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

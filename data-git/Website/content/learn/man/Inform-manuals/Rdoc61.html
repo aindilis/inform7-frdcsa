@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.15. Goal-Seeking Characters</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Goal-Seeking Characters" -->
+<!-- SEARCH SECTION "7.15" -->
+<!-- SEARCH SORT "007-015-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc60.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc62.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.15. Goal-Seeking Characters</b></td></tr></table><p>
+<p>
+<p>Goal-seeking characters are the most advanced IF life-form: they want to achieve specific outcomes, and they are able to work out plans of approach in order to bring these things about. They walk to rooms, open containers to search for things, use keys and tools, and ask leading questions in conversation.
+<p>
+<p>A really advanced implementation of goal-seeking behavior is beyond the scope of our examples (though extensions exist that treat the problem more thoroughly). We can accomplish a surprising amount without heavy customization, though, if we keep in mind three points of technique:
+<p>
+<p>First: it helps to think abstractly and to create broadly-defined actions as a first step to more specific tasks. For instance, a character's goal might be to eat some dinner. He'd be equally satisfied with spaghetti carbonara or with braised lamb shanks, but he needs to figure out which is available. So we might have our every turn rule (or whatever we're using to activate the character) say something like
+<p>
+<blockquote><font color="#000080">Every turn when Clark is hungry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try Clark dining.
+</font></blockquote><p>
+<p>
+<p>Dining would then be an action we've defined specially, which looks around Clark's environment for suitable food; if it finds food, it issues a
+<p>
+<blockquote><font color="#000080">try Clark eating the suitable food;
+</font></blockquote><p>
+<p>
+<p>command; but if not, it sends Clark off to look for something likely. <b>The Man of Steel</b> demonstrates the use of this.
+<p>
+<p>Second: though it doesn't actually contribute to the goal-seeking per se, lively reporting brings characters' generated behavior to life.
+<p>
+<blockquote><font color="#000080">Clark eats a donut.
+</font></blockquote><p>
+<p>
+<p>doesn't characterize Clark very much, even though the eating may be part of a subtle, intelligent plan to seduce Lois Lane. We'll do better if we replace a lot of the character reporting rules: to that end, see the example <b>Reporting rules for other characters' behavior</b>.
+<p>
+<p>Third: goal-seeking characters notice when something is in the way of the action they want to perform. When that happens, they form a plan about how to remove the obstacle. We've already seen this kind of implementation on the player's behalf: the player will pick up items before eating them, say. We can use Before rules to do similar things for other characters, as in
+<p>
+<blockquote><font color="#000080">Before Clark eating the wrapped candy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try Clark unwrapping the candy;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the candy is wrapped, stop the action.
+</font></blockquote><p>
+<p>
+<p>Here we've set things up so that if Clark tries to eat the wrapped candy, he'll be interrupted by this other command; and if his unwrapping-the-candy attempt fails, he won't go on and eat the thing. <b>IQ Test</b> demonstrates a character who shows this kind of planning intelligence.
+<p>
+<p>Because before-rules chain neatly, we can trigger whole plans of behavior if we have a sensible set, as in
+<p>
+<blockquote><font color="#000080">Before someone entering a closed container: try the person asked opening the noun.
+<br>Before someone opening a locked container: try the person asked unlocking the noun.
+<br>Before someone unlocking a locked container: ...
+</font></blockquote><p>
+<p>
+<p>We must exercise a little bit of care if it is possible for the chain of actions to produce an endless loop - e.g., the character trying to take a key that is inside the transparent, locked box that it opens might repeatedly try to open the box, first unlocking the box, first taking the key, first opening the box, ... <b>Boston Cream</b> is a fully-worked scenario that deals with such a set of conundra.
+<p>
+<a href=Rdoc59.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Traveling Characters</b></font></a><i> for characters who plan routes to locations and travel towards them</i><p><p>
+<a href=Rdoc19.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Event Scheduling</b></font></a><i> for characters who follow a pre-written schedule of activities</i><p><p>
+<a href=Rdoc22.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Plot Management</b></font></a><i> for having a central function direct all the characters in order to further the plot</i><p><p>
+<p><hr><p>
+<a name="e84"><a href=Rex84.html#e84 STYLE="text-decoration: none">**<b>Example 203:  The Man of Steel</b></a><br>An escaping action which means "go to any room you can reach from here", and is only useful to non-player characters.<p>
+<a name="e83"><a href=Rex83.html#e83 STYLE="text-decoration: none">*<b>Example 208: Reporting rules for other characters' behavior</b></a><br>Elaborating the report rules to be more interesting than "Clark goes west."<p>
+<a name="e272"><a href=Rex272.html#e272 STYLE="text-decoration: none">*<b>Example 189:  IQ Test</b></a><br>Introducing Ogg, a person who will unlock and open a container when the player tells him to get something inside.<p>
+<a name="e106"><a href=Rex106.html#e106 STYLE="text-decoration: none">****<b>Example 190:  Boston Cream</b></a><br>A fuller implementation of Ogg, giving him a motivation of his own and allowing him to react to the situation created by the player.<p>
+<p><hr><p><a href=Rdoc60.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc62.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

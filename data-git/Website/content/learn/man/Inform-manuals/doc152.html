@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.11. Future events</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Future events" -->
+<!-- SEARCH SECTION "9.11" -->
+<!-- SEARCH SORT "009-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc151.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc153.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.11. Future events</b></td></tr></table><p>
+<p>
+<p>We often want to arrange for something to happen at some point in the future. Here is yet another timepiece:
+<p>
+<blockquote><font color="#000080">An egg-timer is in the Chamber. &quot;A plastic egg timer in the shape of a chicken can be pressed to set it going.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of pushing the egg-timer:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It begins to mark time.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;the egg-timer clucks in four turns from now.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when the egg-timer clucks:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Cluck! Cluck! Cluck! says the egg-timer.&quot;
+</font></blockquote><p>
+<p>
+<p>The event here is called &quot;the egg-timer clucks&quot;. It only happens if we instruct so, using one of the following phrases:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(rule)<b> in </b>(time)<b> from now</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_timefromnow -->
+
+<p>This phrase causes the given rule to be run at a given time offset from the current time of day. Example:
+<p>
+<blockquote><font color="#000080">the egg-timer clucks in 18 minutes from now;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(rule)<b> in </b>(number)<b> turn</b>/turns<b> from now</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_turnsfromnow -->
+
+<p>This phrase causes the given rule to be run at a given number of turns after the current one. Example:
+<p>
+<blockquote><font color="#000080">the egg-timer clucks in four turns from now;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(rule)<b> at </b>(time)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_attime -->
+
+<p>This phrase causes the given rule to be run at a given time of day. Example:
+<p>
+<blockquote><font color="#000080">the egg-timer clucks at 11:35 AM;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>If we know in advance what time we want something to happen, we can more simply write:
+<p>
+<blockquote><font color="#000080">At 4 PM: say &quot;The great bells of the clock tower chime four.&quot;
+</font></blockquote><p>
+<p>
+<p>(Note that in either case such rules begin with the word &quot;at&quot;: they are the only rules allowed to begin with the word &quot;at&quot;.)
+<p>
+<p><hr><p>
+<a name="e252"><a href=ex252.html#e252 STYLE="text-decoration: none">*<b>Example 143:  MRE</b></a><br>Hunger that eventually kills the player, and foodstuffs that can delay the inevitable by different amounts of time.<p>
+<a name="e113"><a href=ex113.html#e113 STYLE="text-decoration: none">**<b>Example 144:  Totality</b></a><br>To schedule an eclipse of the sun, which involves a number of related events.<p>
+<a name="e383"><a href=ex383.html#e383 STYLE="text-decoration: none">**<b>Example 145:  Empire</b></a><br>A train which follows a schedule, stopping at a number of different locations.<p>
+<a name="e188"><a href=ex188.html#e188 STYLE="text-decoration: none">***<b>Example 146:  Hour of the Wren</b></a><br>Allowing the player to make an appointment, which is then kept.<p>
+<p><hr><p><a href=doc151.html STYLE="text-decoration: none">Previous</a> / <a href=doc153.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

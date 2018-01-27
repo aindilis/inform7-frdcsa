@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.6. Text with variations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Whence?" -->
+<!-- SEARCH SECTION "Ex 65" -->
+<!-- SEARCH SORT "Ex 005-006-065" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc76.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc78.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.6. Text with variations</b></td></tr></table><p>
+<p>
+<p>Text sometimes needs to take different forms in different circumstances. Perhaps it needs an extra sentence if something has happened, or perhaps only one altered word.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>if a condition</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_if -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: it says that the text following should be said only if the condition is true. That continues until the end of the text, or until an &quot;[end if]&quot; substitution, whichever comes first. If the &quot;[otherwise]&quot; and &quot;[otherwise if]&quot; substitutions are also present, they allow alternatives to be added in case the condition is false. Example:
+<p>
+<blockquote><font color="#000080">The wine cask is a container. The printed name of the cask is &quot;[if open]broached, empty cask[otherwise]sealed wine cask&quot;.
+</font></blockquote><p>
+<p>
+<p>we find that the cask is described as &quot;a broached, empty cask&quot; when open, and &quot;a sealed wine cask&quot; when closed. A longer example which begins and ends with fixed text, but has two alternatives in the middle:
+<p>
+<blockquote><font color="#000080">The Customs Wharf is a room. &quot;Amid the bustle of the quayside, [if the cask is open]many eyes stray to your broached cask. [otherwise]nobody takes much notice of a man heaving a cask about. [end if]Sleek gondolas jostle at the plank pier.&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>unless a condition</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_unless -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: it says that the text following should be said only if the condition is false. That continues until the end of the text, or until an &quot;[end if]&quot; substitution, whichever comes first. If the &quot;[otherwise]&quot; and &quot;[otherwise if]&quot; substitutions are also present, they allow alternatives to be added in case the condition is true. Example:
+<p>
+<blockquote><font color="#000080">The Customs Hall is a room. &quot;With infinite slowness, with ledgers and quill pens, the clerks ruin their eyesight.[unless the player is a woman] They barely even glance in your direction.&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>otherwise</b>]&quot;<br><i>or:</i> say &quot;[<b>else</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_otherwise -->
+
+<p>This text substitution produces no text, and can be used only following an &quot;[if ...]&quot; or &quot;[unless ...]&quot; text substitution. It switches from text which appears if the condition is true, to text which appears if it is false. Example:
+<p>
+<blockquote><font color="#000080">The wine cask is a container. The printed name of the cask is &quot;[if open]broached, empty cask[otherwise]sealed wine cask&quot;.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>end if</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_endif -->
+
+<p>This text substitution produces no text, and can be used only to close off a stretch of varying text which begins with &quot;[if ...]&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>end unless</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_endunless -->
+
+<p>This text substitution produces no text, and can be used only to close off a stretch of varying text which begins with &quot;[unless ...]&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>otherwise</b>/else<b> if a condition</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_elseif -->
+
+<p>This text substitution produces no text, and can be used only following an &quot;[if ...]&quot; or &quot;[unless ...]&quot; text substitution. It gives an alternative text to use if the first condition didn't apply, but this one does. Example:
+<p>
+<blockquote><font color="#000080">The wine cask is a container. The printed name of the cask is &quot;[if open]broached, empty cask[otherwise if transparent]sealed cask half-full of sloshing wine[otherwise]sealed wine cask&quot;.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>otherwise</b>/else<b> unless a condition</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_elseunless -->
+
+<p>This text substitution produces no text, and can be used only following an &quot;[if ...]&quot; or &quot;[unless ...]&quot; text substitution. It gives an alternative text to use if the first condition didn't apply, and this one is false too.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We sometimes need to be careful about the printing of line breaks:
+<p>
+<blockquote><font color="#000080">The Cell is a room. &quot;Ah, [if unvisited]the unknown cell. [otherwise]the usual cell.&quot;
+</font></blockquote><p>
+<p>
+<p>This room description has two possible forms: &quot;Ah, the unknown cell. &quot;, at first sight, and then &quot;Ah, the usual cell.&quot; subsequently. But the second form is rounded off with a line break because the last thing printed is a &quot;.&quot;, whereas the first form isn't, because it ended with a space. The right thing would have been:
+<p>
+<blockquote><font color="#000080">The Cell is a room. &quot;Ah, [if unvisited]the unknown cell.[otherwise]the usual cell.&quot;
+</font></blockquote><p>
+<p>
+<p>allowing no space after &quot;unknown cell.&quot;
+<p>
+<p><hr><p>
+<a name="e107"><a href=ex107.html#e107 STYLE="text-decoration: none">*<b>Example 63:  When?</b></a><br>A door whose description says "...leads east" in one place and "...leads west" in the other.<p>
+<a name="e110"><a href=ex110.html#e110 STYLE="text-decoration: none">***<b>Example 64:  Persephone</b></a><br>Separate the player's inventory listing into two parts, so that it says "you are carrying..." and then (if the player is wearing anything) "You are also wearing...".<p>
+<!-- EXAMPLE START -->
+<a name="e18"><a href=doc77.html#e18 STYLE="text-decoration: none">***<b><b>Example</b> 65:  Whence?</b></a><br>A kind of door that always automatically describes the direction it opens and what lies on the far side (if that other room has been visited).<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>It would be fairly tedious reading to have a large game full of doors that describe themselves this way. Nonetheless, if we insisted we could use our knowledge of the map as leverage to make every door in the game describe itself automatically.
+<p>
+<p>To do this, we make use of the phrase &quot;direction of (the door) from (a room)&quot; -- in this case, the direction of the door we're looking at when viewed from the player's location. Thus:
+<p>
+<blockquote><font color="#000080">&quot;Whence?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The temporal vortex is an open door. It is west of Yesterday and east of Today.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The initial appearance of a door is usually &quot;Nearby [an item described] leads [if the other side of the item described is visited][direction of the item described from the location] to [the other side][otherwise][direction of the item described from the location][end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;w / e&quot;.
+</font></blockquote><p>
+<p>
+<p>Yet a further variation on this, which can automatically understand &quot;the east door&quot; and &quot;the west door&quot; when appropriate, may be found in the example &quot;Whither?&quot;.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc76.html STYLE="text-decoration: none">Previous</a> / <a href=doc78.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

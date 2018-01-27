@@ -1,0 +1,38 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.4. Regions and the index map</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Regions and the index map" -->
+<!-- SEARCH SECTION "3.4" -->
+<!-- SEARCH SORT "003-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc30.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc32.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.4. Regions and the index map</b></td></tr></table><p>
+<p>
+<p>Rooms represent individual places to which one can go, but we tend to think of the world around us in larger pieces: we think of a house and a garden, rather than each of the single rooms of the house and all corners of its garden. To Inform a collection of rooms is called a &quot;region&quot;, and we can create one like so:
+<p>
+<blockquote><font color="#000080">The Arboretum is east of the Botanical Gardens. Northwest of the Gardens is the Tropical Greenhouse.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Public Area is a region. The Arboretum and Gardens are in the Public Area.
+</font></blockquote><p>
+<p>
+<p>The real usefulness of creating regions like &quot;Public Area&quot; will only appear later, when we begin defining rules of play which apply in some areas but not others, but in the mean time we can see the effect by turning to the World tab of the Index. In the World Index, Inform draws a map - or at least a stylised attempt at a diagram of the rooms and their connections: this will not always correspond to how we imagine things, but with any luck it should mostly be right.
+<p>
+<p>Rooms are represented by coloured squares, and the colour-coding is done by region. In the above example, the two &quot;Public Area&quot; rooms are coloured green (as it happens); the Greenhouse, since it belongs to no region, is a neutral grey.
+<p>
+<p>Regions can be put inside each other:
+<p>
+<blockquote><font color="#000080">The University Parks is a region. The Public Area is in the University Parks.
+</font></blockquote><p>
+<p>
+<p>but they are not allowed to overlap other than by one being entirely inside the other.
+<p>
+<a href=doc400.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Improving the index map</b></font></a><i> for ways to adjust the way the index map is drawn or exported for publication</i><p><p>
+<p><hr><p>
+<a name="e329"><a href=ex329.html#e329 STYLE="text-decoration: none">*<b>Example 9: Port Royal 3</b></a><br>Division of Port Royal into regions.<p>
+<p><hr><p><a href=doc30.html STYLE="text-decoration: none">Previous</a> / <a href=doc32.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

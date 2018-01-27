@@ -1,0 +1,252 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.7. New actions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Frizz" -->
+<!-- SEARCH SECTION "Ex 192" -->
+<!-- SEARCH SORT "Ex 012-007-192" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc192.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc194.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.7. New actions</b></td></tr></table><p>
+<p>
+<p>It is not often that we need to create new actions, but a large work of interactive fiction with no novelty actions is a flavourless dish. Here we shall create an action for photographing things.
+<p>
+<blockquote><font color="#000080">The Ruins is a room. &quot;You find this clearing in the rainforest oddly familiar.&quot; The camera is in the Ruins. &quot;Your elephantine camera hangs from a convenient branch.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Photographing is an action applying to one visible thing and requiring light.
+</font></blockquote><p>
+<p>
+<p>In theory that text is already sufficient to make the new action, but what we have so far is rudimentary to say the least. The two qualifications give Inform the useful information that we cannot photograph in the dark, and that we need to be photographing something - not, as in the case of waiting or taking inventory, acting without reference to any particular thing external to ourselves.
+<p>
+<p>The word &quot;visible&quot; here tells Inform that we do not need to be able to touch the thing in question: a line of sight is good enough. These two stipulations were necessary because the default arrangement is that any object must be in touching range, and that most actions can be performed in darkness. (Also, note that if you invent an action which needs to apply to directions like &quot;north&quot; or &quot;south&quot;, you need to make this apply to visible things, because the object used inside Inform to represent the idea of &quot;north&quot; can be seen but not touched. So for understanding purposes, &quot;visible thing&quot; is understood as meaning any visible thing or direction: it's more general than &quot;thing&quot;, not more specific.)
+<p>
+<p>Occasionally, when writing general rules about actions, it can be useful to find out what the current action's requirements are: the following conditions do what they suggest.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a touchable noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirestouch -->
+
+<p>This condition is true if the action being processed is one whose (first) noun is an object which needs to be touchable by the actor. For example, it's true for &quot;taking&quot;, but false for &quot;examining&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a touchable second noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirestouch2 -->
+
+<p>This condition is true if the action being processed is one whose second noun is an object which needs to be touchable by the actor. For example, it's true for &quot;putting the brick in the sack&quot;, but false for &quot;throwing the brick at the window&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a carried noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirescarried -->
+
+<p>This condition is true if the action being processed is one whose (first) noun is an object which needs to be carried by the actor. For example, it's true for &quot;dropping&quot;, but false for &quot;taking&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a carried second noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirescarried2 -->
+
+<p>This condition is true if the action being processed is one whose second noun is an object which needs to be carried by the actor.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires light</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requireslight -->
+
+<p>This condition is true if the action being processed is one which can only be performed if the actor has light to see by. For example, it's true for &quot;examining&quot;, but false for &quot;dropping&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>As further examples, here we create &quot;blinking&quot; and &quot;scraping X with Y&quot;. Note the use of &quot;it&quot; to indicate that the name of an object should go here.
+<p>
+<blockquote><font color="#000080">Blinking is an action applying to nothing. Scraping it with is an action applying to two things.
+</font></blockquote><p>
+<p>
+<p>The photographing action now exists, but with two provisos: (a) it never happens, because Inform does not know what commands by the player should cause it, and (b) even if it were to happen, nothing would follow, because Inform does not know what to do. (There are no check, carry out or report rules yet.)
+<p>
+<p>The first problem is easily overcome:
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [something]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<p>We will return to the whole subject of parsing, as this process of understanding the player's commands is called, later. But this gives the gist of it.
+<p>
+<a href=doc260.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Understand</b></font></a><i> for the full story</i><p><p>
+<p><hr><p>
+<a name="e104"><a href=ex104.html#e104 STYLE="text-decoration: none">*<b>Example 191:  Red Cross</b></a><br>A DIAGNOSE command which allows the player to check on the health of someone.<p>
+<!-- EXAMPLE START -->
+<a name="e171"><a href=doc193.html#e171 STYLE="text-decoration: none">***<b><b>Example</b> 192:  Frizz</b></a><br>Liquid flows within containers and soaks objects that are not waterproof; any contact with a wet object can dampen our gloves.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have some items that get wet in contact with other damp things; in particular, if we touch anything wet while wearing a pair of gloves, the gloves too get damp. This requires that we be systematic about detecting all cases where contact occurs. So:
+<p>
+<blockquote><font color="#000080">&quot;Frizz&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be waterproof or porous. A container is usually waterproof. An animal is usually waterproof.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be sodden or dry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A container can be waterfilled or empty.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a sodden thing: say &quot;sodden &quot;. Understand the sodden property as describing a thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears a pair of woolly gloves. Instead of wearing a sodden thing: say &quot;You dubiously contemplate [the noun], and decide it's best to wear dry clothing.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the liquid distribution rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The liquid distribution rules is a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A liquid distribution rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through containers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the item is open and the item is empty and the item is in a waterfilled container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is waterfilled;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player can see the item, say &quot;[The item] fills up with water, of course.&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A liquid distribution rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through things in a waterfilled container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the item is porous and the item is dry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player can see the item, say &quot;[The item] soaks through.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is sodden.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A liquid distribution rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through sodden things in the airing cupboard:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the item is not The Last Man, now the item is dry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The last liquid distribution rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries a dry copy of The Last Man, end the story finally.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a waterfilled container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] is full of water[if the noun contains something visible]; it also contains [the list of things in the noun][end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Dry inside[if the noun contains something visible], and containing [a list of things in the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A book is a kind of thing. Instead of examining a sodden book, say &quot;[The noun] is too soaked to read, thanks to someone's carelessness.&quot; Understand &quot;book&quot; as a book.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The copy of The Last Man is a book. The description of The Last Man is &quot;Mary Shelley's very own original copy, loaned to you under the strictest of agreements[if the pond encloses the copy]. How it came to be in its present position is a long story, and not important at the moment: the critical thing is not to blame oneself - who could have anticipated the cricket bat, anyway? - but to fix it immediately, before anything worse occurs[end if].&quot; The The Last Man is in the ziploc bag. The ziploc bag is waterproof and empty. It is openable, transparent, and closed.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Back Garden is a room. The Back Garden contains a pond. The pond is a waterfilled container. In the pond is the ziploc bag. A carp is in the pond. The carp is an animal. Instead of taking the carp, say &quot;You're not fast enough.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about the pond:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the pond encloses the Last Man:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It is a beautiful day just at the end of spring and beginning of summer. The sun shines, the trees blossom, the world conspires in Edenic cheerfulness. You can take in none of it. Your eye is on [the Last Man].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The pond[if something is in the pond] (containing [the list of things in the pond])[end if] remains a figure of menace in an otherwise lushly verdant landscape.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of the Last Man when the Last Man is enclosed by the Pond: if the Last Man is dry, say &quot;delicate, valuable &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of something (called the target) while writing a paragraph about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the Last Man is enclosed by the Pond:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the target is in something (called the parent), say &quot; - which is in [the parent]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Kitchen is west of the Back Garden. &quot;Not in any sense your province: Mrs Peaswell gets agitated if anyone besides herself so much as boils a kettle. In general it is best to sneak through, disturbing as little as possible and preserving the cosy domestic fiction that academics cannot cook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The nearby stairwell leads up to the second floor.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Stairwell is above the Kitchen. &quot;Halfway up and halfway down.&quot; The airing cupboard is a container in the Stairwell. &quot;An airing cupboard here contains the heating system, and is the ideal place for restoring wet items to a dry state.&quot; The airing cupboard is fixed in place.
+</font></blockquote><p>
+<p>
+<p>Now: whenever the player definitely touches something, we want to follow certain rules about the transfer of liquid. These rules need to come after an action's check rules (to make sure the action really occurs) and before the carry out rules (so that nothing has moved or changed yet). So we'll borrow from the chapter on rulebooks to create a whole new stage to the action, occurring between the check and the carry out phases:
+<p>
+<blockquote><font color="#000080">The post-check rules are a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the post-check stage rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;abide by the post-check rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The post-check stage rule is listed before the carry out stage rule in the specific action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A post-check rule (this is the dry glove rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if we get wet:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player wears the gloves and the gloves are dry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the gloves are sodden;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(soaking your gloves in the process)&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A post-check rule (this is the wet glove rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player wears the sodden gloves:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the The Last Man must be touched and the Last Man is not sodden:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(soaking the parched pages of The Last Man with the rude touch of your sodden gloves)&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the The Last Man is sodden;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before doing something when the player does not wear the gloves:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if The Last Man must be touched:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if The Last Man is dry, say &quot;[The The Last Man] is too precious to endanger when you are not wearing gloves.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You hesitate instinctively, then recollect that you can hardly harm [The The Last Man] any more than it has already been harmed...&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether we get wet:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a thing, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun dampens us, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is not a thing, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun dampens us, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether (item - a thing) dampens us:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the item is not liquiferous, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if item must be touched, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether (item - a thing) must be touched:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the item is the noun and the action requires a touchable noun, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the item is the second noun and the action requires a touchable second noun, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is liquiferous:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is sodden, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is in a waterfilled container, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x book / x bag / get bag / take off gloves / w / u / put gloves in cupboard / z / open bag / touch book / push book / turn book / get gloves / wear gloves / get book&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test disaster with &quot;open bag&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test mishandling with &quot;get bag / open bag / get book&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc192.html STYLE="text-decoration: none">Previous</a> / <a href=doc194.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

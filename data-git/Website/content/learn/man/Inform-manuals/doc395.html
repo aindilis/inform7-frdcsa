@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 23.12. Website templates</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Website templates" -->
+<!-- SEARCH SECTION "23.12" -->
+<!-- SEARCH SORT "023-012-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc394.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc396.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>23.12. Website templates</b></td></tr></table><p>
+<p>
+<p>Web pages are very idiosyncratic things and Inform will almost certainly not produce exactly what we want. What it actually does is to take an existing &quot;template&quot; web page, and paste in the relevant information to make the final product. So by starting with a different template, we can end up with an entirely different-looking web page: like this one, for instance -
+<p>
+<p><img border=0 src=images/sampleweb2.jpg>
+<p>
+<p>The template ordinarily used by Inform is called &quot;Standard&quot; and comes built in. (A second built-in template, &quot;Classic&quot;, imitates the look used in 2005-08. The word &quot;classic&quot; here is to be understood in the sense of Classic Mac OS, the classic Doctor Who adventure &quot;Time and the Rani&quot;, classic Mayan civilisation, and so forth - really pretty awful.)
+<p>
+<p>Any other templates we must make ourselves, giving each one a different name, by convention a single word. In this section, we'll make a new one called &quot;Platinum&quot;.
+<p>
+<p>Suppose we write:
+<p>
+<blockquote><font color="#000080">Release along with cover art, a &quot;Platinum&quot; website, a file of &quot;Collegio magazine&quot; called &quot;Collegio.pdf&quot; and a file of &quot;The mating call of the green wyvern&quot; called &quot;Mating Wyverns.mp3&quot;.
+</font></blockquote><p>
+<p>
+<p>This is identical to the previous version except for the &quot;Platinum&quot;: note the quotation marks. When it needs to find a template, Inform searches the following places in sequence:
+<p>
+<blockquote><font color="#000080">(a) the &quot;Templates&quot; subfolder of the project's own Materials folder, if this subfolder should exist;
+<br>(b) the &quot;Templates&quot; folder in the user's own library - on Mac OS X, this is:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;~/Library/Inform/Templates
+<br>and on Windows:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;My Documents\Inform\Templates
+<br>(c) the built-in stock of templates, currently only &quot;Standard&quot; and &quot;Classic&quot;.
+</font></blockquote><p>
+<p>
+<p>What Inform looks for is a folder name matching that of the template - so in our case we need to provide a folder called &quot;Platinum&quot;, and put it in either location (a) or (b).
+<p>
+<p>The template folder is expected to contain some combination of the following files:
+<p>
+<blockquote><font color="#000080">Platinum
+<br>&nbsp;&nbsp;&nbsp;&nbsp;index.html
+<br>&nbsp;&nbsp;&nbsp;&nbsp;source.html
+<br>&nbsp;&nbsp;&nbsp;&nbsp;style.css
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(extras).txt
+</font></blockquote><p>
+<p>
+<p>If any of these is missing, Inform uses the one in &quot;Standard&quot; instead. In practice, this means the easiest way to create a new template is to supply just a new CSS file, which can change the colour, font, type size, and position of more or less everything in the site.
+<p>
+<p>There are two HTML pages here, one for the main front page, the other for pages of displayed source text (if we release along with the source text - see later in the chapter). The CSS file defines styles of text - sizes, fonts, colours, and so on - and positions material on the page. The &quot;(extras).txt&quot; - which is optional, of course - allows additional HTML pages, images, movies and so on to be added.
+<p>
+<p>If any of the four files is not supplied, the &quot;Standard&quot; version will be used instead. The &quot;Standard&quot; HTML files have been put together so that almost anything needed can be achieved with a CSS file alone - so in practice, the easiest thing is to supply just:
+<p>
+<blockquote><font color="#000080">Platinum
+<br>&nbsp;&nbsp;&nbsp;&nbsp;style.css
+</font></blockquote><p>
+<p>
+<p>We probably want to start from the &quot;Standard&quot; version of &quot;style.css&quot; and edit in a few changes; the easiest way to get a clean copy of &quot;Standard&quot;'s CSS file to work on is to release the project with a &quot;Standard&quot; template, which causes this default &quot;style.css&quot; to appear in the &quot;Release&quot; subfolder of the project's Materials folder. (But it's wise to move the file out of &quot;Release&quot; before starting to edit it - files in &quot;Release&quot; are overwritten by Inform whenever a release is made.)
+<p>
+<p>This is not the place to describe how CSS works. CSS is a more or less universal format today for describing how web pages should look - their style rather than their content. A dazzling variety of possibilities can be seen at the excellent:
+<p>
+<blockquote><font color="#000080">www.csszengarden.com
+</font></blockquote><p>
+<p>
+<p>but of course there are many, many other textbooks and websites which describe CSS.
+<p>
+<p><hr><p><a href=doc394.html STYLE="text-decoration: none">Previous</a> / <a href=doc396.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

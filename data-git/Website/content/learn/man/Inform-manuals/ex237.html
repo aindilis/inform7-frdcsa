@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.10. Defining new prepositions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Swerve left? Swerve right? Or think about it and die?" -->
+<!-- SEARCH SECTION "Ex 232" -->
+<!-- SEARCH SORT "Ex 013-010-232" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc216.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc218.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.10. Defining new prepositions</b></td></tr></table><p>
+<p>
+<p>The term preposition is used here, a little loosely, to mean anything which we add to the verb <i>to be</i> in order to talk about some relation or other. We have seen many examples already, such as:
+<p>
+<blockquote><font color="#000080">To be in - The ball is in the box.
+<br>To be part of - The lever is part of the slot machine.
+</font></blockquote><p>
+<p>
+<p>These are easier to create than verbs, because Inform already knows the wayward grammar of <i>to be</i>, so we need not give any of the principal parts. Otherwise, the method is exactly the same. Compare the definitions in the following:
+<p>
+<blockquote><font color="#000080">Suspecting relates various people to one person.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to suspect (he suspects, they suspect, he suspected, it is suspected, he is suspecting) implies the suspecting relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to be suspicious of implies the suspecting relation.
+</font></blockquote><p>
+<p>
+<p>The result of this is that
+<p>
+<blockquote><font color="#000080">Hercule Poirot suspects Colonel Hotchkiss.
+<br>Hercule Poirot is suspicious of Colonel Hotchkiss.
+</font></blockquote><p>
+<p>
+<p>are exactly equivalent, and so are these two descriptions:
+<p>
+<blockquote><font color="#000080">somebody who suspects Colonel Hotchkiss
+<br>somebody suspicious of Colonel Hotchkiss
+</font></blockquote><p>
+<p>
+<p>While most prepositions are short (&quot;in&quot;, &quot;part of&quot;, &quot;suspicious of&quot;), they're free to be longer if need be (&quot;very far away from&quot;): the limit is 30 words, which should be ample.
+<p>
+<p>We can also define verbs as auxiliaries, like so:
+<p>
+<blockquote><font color="#000080">The verb to be able to approach (he is approached) implies the approachability relation.
+</font></blockquote><p>
+<p>
+<p>Now we can ask if Poirot &quot;can approach&quot; Hotchkiss, and so on. (Here again we need not spell out the other parts of the verb.)
+<p>
+<p><hr><p>
+<a name="e0"><a href=ex0.html#e0 STYLE="text-decoration: none">*<b>Example 231:  The Abolition of Love</b></a><br>A thorough exploration of all the kinds of relations established so far, with the syntax to set and unset them.<p>
+<!-- EXAMPLE START -->
+<a name="e237"><a href=doc217.html#e237 STYLE="text-decoration: none">*<b><b>Example</b> 232:  Swerve left? Swerve right? Or think about it and die?</b></a><br>Building a marble chute track in which a dropped marble will automatically roll downhill.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have marbles that roll downhill across our map, in a life-size version of one of those marble-chute toys. We might now want to keep track of both compass relationships and which-room-slopes-into-which, so we make a new relation:
+<p>
+<blockquote><font color="#000080">&quot;Swerve left? Swerve right? Or think about it and die?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Overlooking relates various rooms to various rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to overlook (it overlooks, they overlook, it overlooked, it is overlooked, it is overlooking) implies the overlooking relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be spherical or lumpy. A marble is a kind of thing. A marble is always spherical. The player carries a marble called a red marble. The player carries a marble called an agate marble. The player carries a marble called a blue cloudy marble.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Long Yellow Slide is north of the Funnel. The Long Yellow Slide overlooks the Blue Funnel. The Ski-jump is below the Blue Funnel. The Blue Funnel overlooks the Ski-jump. The Ski-jump overlooks the Landing Bowl. The Landing Bowl overlooks the Snake Run. The Landing Bowl is north of the Snake Run. The Snake Run overlooks the Goal. The Snake Run is north of the Goal.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a room is sloping if it overlooks a room.
+</font></blockquote><p>
+<p>
+<p>And let's say we want the player to be allowed to slide, too, since that would be much more fun than just watching the marbles go:
+<p>
+<blockquote><font color="#000080">Understand &quot;sit&quot; as sitting down. Sitting down is an action applying to nothing. Check sitting down: if the player is spherical, say &quot;You are already seated.&quot; Carry out sitting down: now the player is spherical. Report sitting down: say &quot;You sit, ready to slide wherever fate takes you.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the command &quot;stand&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;stand&quot; or &quot;stand up&quot; as standing up. Standing up is an action applying to nothing. Check standing up: if the player is lumpy, say &quot;You are already standing.&quot; Carry out standing up: now the player is lumpy. Report standing up: say &quot;You get to your feet.&quot;
+</font></blockquote><p>
+<p>
+<p>Now a rule to control what happens to all our sliding and rolling objects:
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through spherical things which are in sloping rooms:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the current space be the holder of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the final space be a random room which is overlooked by the current space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player can see the item and the item is a marble, say &quot;[The item] rolls out of the room toward [the final space].[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player is the item, say &quot;You keep sliding...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the item to the final space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player can see the item and the item is a marble, say &quot;[The item] rolls into the room from [the current space].[line break]&quot;.
+</font></blockquote><p>
+<p>
+<p>Since the Ski-jump overlooks the Landing Bowl, the marble will be able to fly through the air to its destination, even though there is no map connection to allow the player to cross. We might want to let the player make it across this barrier also, so:
+<p>
+<blockquote><font color="#000080">Instead of jumping in a sloping room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You leap...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to a random room overlooked by the location.
+</font></blockquote><p>
+<p>
+<p>Because overlooking is various-to-various, we could include that element popular in marble chute toys, the splitter:
+<p>
+<blockquote><font color="#000080">The Downhill Splitter is north of the Long Yellow Slide. &quot;The green plastic chute runs downhill towards a Y-junction, forcing incoming marbles right or left.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Downhill Splitter overlooks the Long Yellow Slide and the Purple Snaking Passage. The Purple Snaking Passage is southeast of the Downhill Splitter. The Purple Snaking Passage overlooks the Landing Bowl. The Purple Snaking Passage is above the Landing Bowl.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player is in the Downhill Splitter.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;drop red / drop blue / sit / z / stand up / drop agate / sit / z / z / z / z / z&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e394"><a href=ex394.html#e394 STYLE="text-decoration: none">*<b>Example 233:  Beneath the Surface</b></a><br>An "underlying" relation which adds to the world model the idea of objects hidden under other objects.<p>
+<a name="e85"><a href=ex85.html#e85 STYLE="text-decoration: none">***<b>Example 234:  Bogart</b></a><br>Clothing for the player that layers, so that items cannot be taken off in the wrong order, and the player's inventory lists only the clothing that is currently visible.<p>
+<p><hr><p><a href=doc216.html STYLE="text-decoration: none">Previous</a> / <a href=doc218.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

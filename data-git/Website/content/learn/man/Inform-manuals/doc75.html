@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.4. Text with numbers</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Text with numbers" -->
+<!-- SEARCH SECTION "5.4" -->
+<!-- SEARCH SORT "005-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc74.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc76.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.4. Text with numbers</b></td></tr></table><p>
+<p>
+<p>When a numerical value is given in a square-bracketed substitution, it is ordinarily printed out in digits. Thus:
+<p>
+<blockquote><font color="#000080">&quot;You've been wandering around for [turn count] turns now.&quot;
+</font></blockquote><p>
+<p>
+<p>might print as &quot;You've been wandering around for 213 turns now.&quot;, if the game has been played out for exactly that many commands. But if we prefer:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>number in words</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_numwords -->
+
+<p>This text substitution writes out the number in English text. Example:
+<p>
+<blockquote><font color="#000080">&quot;You've been wandering around for [turn count in words] turns now.&quot;
+</font></blockquote><p>
+<p>
+<p>might produce &quot;You've been wandering around for two hundred and thirteen turns now.&quot; The &quot;and&quot; here is natural on one side of the Atlantic but not the other - so with the &quot;Use American dialect.&quot; option in place, it disappears.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Either way, though, there is some risk of the following:
+<p>
+<blockquote><font color="#000080">You've been wandering around for one turns now.
+</font></blockquote><p>
+<p>
+<p>We can avoid this using the special substitution:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>s</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_s -->
+
+<p>This text substitution prints a letter &quot;s&quot; unless the last number printed was 1. Example:
+<p>
+<blockquote><font color="#000080">&quot;You've been wandering around for [turn count in words] turn[s] now.&quot;
+</font></blockquote><p>
+<p>
+<p>produces &quot;... for one turn now.&quot; or &quot;... for two turns now.&quot; as appropriate. Note that it reacts only to numbers, not to other arithmetic values like times (or, for instance, weights from the &quot;Metric Units&quot; extension).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>This only solves one case, but it's memorable, and the case is one which turns up often.
+<p>
+<p><hr><p>
+<a name="e14"><a href=ex14.html#e14 STYLE="text-decoration: none">***<b>Example 60:  Ballpark</b></a><br>A new "to say" definition which allows the author to say "[a number in round numbers]" and get verbal descriptions like "a couple of" or "a few" as a result.<p>
+<p><hr><p><a href=doc74.html STYLE="text-decoration: none">Previous</a> / <a href=doc76.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

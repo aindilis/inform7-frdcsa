@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.6. The time of day</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The time of day" -->
+<!-- SEARCH SECTION "9.6" -->
+<!-- SEARCH SORT "009-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc146.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc148.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.6. The time of day</b></td></tr></table><p>
+<p>
+<p>Inform keeps track of the time of day automatically: play ordinarily begins at 9 AM and each turn takes one minute. In some works of interactive fiction, time of day is crucial: in others, it is irrelevant or even, by a sort of tacit convention, non-existent. So Inform does nothing to act upon the time, or to reveal it to the player, without instruction. Nevertheless it is there.
+<p>
+<p>A sentence like the following allows the initial time to be set up as something other than 9 AM:
+<p>
+<blockquote><font color="#000080">The time of day is 3:13 PM.
+</font></blockquote><p>
+<p>
+<p>Here, &quot;3:13 PM&quot; is a constant value of a kind not seen before: it's a kind of value called &quot;time&quot;, and the value &quot;time of day&quot; is a time that varies. After one turn it will be 3:14 PM, then 3:15 PM and so on.
+<p>
+<p>Note that the sentence above is an assertion (a statement about the initial state of affairs), not an instruction which can be part of a rule. It would be equivalent to write:
+<p>
+<blockquote><font color="#000080">When play begins: now the time of day is 3:13 PM.
+</font></blockquote><p>
+<p>
+<p>We more often change &quot;time of day&quot; to take care of drastic events:
+<p>
+<blockquote><font color="#000080">At the time when the player loses consciousness:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the time of day is 10:12 AM;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A mist comes over your vision, and when you come to, it is morning and you are in bed.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e199"><a href=ex199.html#e199 STYLE="text-decoration: none">**<b>Example 141:  IPA</b></a><br>Shops which each have opening and closing hours, so that it is impossible to go in at the wrong times, and the player is kicked out if he overstays his welcome.<p>
+<p><hr><p><a href=doc146.html STYLE="text-decoration: none">Previous</a> / <a href=doc148.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

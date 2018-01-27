@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.24. Printing the locale description of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Priority Lab" -->
+<!-- SEARCH SECTION "Ex 344" -->
+<!-- SEARCH SORT "Ex 017-024-344" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc304.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc306.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.24. Printing the locale description of something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> A &quot;locale description&quot; is Inform jargon for the part of a room description which catalogues the visible items in the room. When looking, Inform will normally print the description of the room itself, followed by a locale description for the room. But if the player is in a cage in the room, there will be two locale descriptions: one for the room, then another for the cage. This activity is used to write the locale description for a single domain, and the &quot;something&quot; can be either a room, an enterable container, or an enterable supporter.
+<p>
+<p><b>2. The default behaviour.</b> Is quite complicated, and is written up in full in the typeset form of the Standard Rules downloadable from the Inform website. Briefly, though: we first run the &quot;choosing notable locale objects&quot; activity to find out what ought to be mentioned here. That assembles a list of things to mention, sorted into priority order. Items with priority 1 go first, then those with priority 2, and so on. The &quot;printing a locale paragraph&quot; activity is run for each, and in practice that usually hands the job over to &quot;writing a paragraph about&quot;. Sometimes a paragraph will indeed be written, but not always. Sometimes there is nothing interesting to say, and an item is left until a final, single paragraph which gathers up the leftovers (&quot;You can also see a scarlet fish, a harmonium and a kite here.&quot;), the printing of which is done by the &quot;listing nondescript items of&quot; activity. As soon as any item picks up the either/or property &quot;mentioned&quot;, by having its name printed, it is struck out so that it will not appear subsequently, whatever its priority.
+<p>
+<p><b>3. Examples.</b> As general advice: if the effect wanted can be got using &quot;writing a paragraph about&quot; and &quot;listing nondescript items of&quot; alone, use those; if it's necessary to meddle further, use &quot;choosing notable locale objects&quot; and &quot;printing a locale paragraph&quot; to alter the normal processes; use the all-powerful &quot;printing the locale description&quot; activity only when the whole process needs to be altered, not the item-by-item workings.
+<p>
+<p>(a) In the Very Misty Moorlands, nothing on the ground can ordinarily be seen through the swirling mist, so the locale description is suppressed entirely:
+<p>
+<blockquote><font color="#000080">Rule for printing the locale description of the Very Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mist coils around your feet, thick as a blanket. You cannot even see the ground you walk upon.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking something in the Very Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You grope blindly in the mist and pick up [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<p>(b) Here we take the chance to insert an additional paragraph into the locale description. This does relate to an item which might be described later, but where the player doesn't know that:
+<p>
+<blockquote><font color="#000080">The Horological Workshop is a room. The marble table is fixed in place in the Workshop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The parcel is a closed opaque container on the marble table. The alarm clock is a device in the parcel. The alarm clock is switched on.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the locale description of a room (called the setting):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the setting encloses the alarm clock and the alarm clock is switched on, say &quot;A faint ticking noise can be heard.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e299"><a href=doc305.html#e299 STYLE="text-decoration: none">*<b><b>Example</b> 344:  Priority Lab</b></a><br>A debugging rule useful for checking the priorities of objects about to be listed.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>When it comes time to start manipulating the priorities of items, it is useful to be able to check the table for debugging purposes; the problem is that printing the names of the objects can itself affect the way the room description is generated, foiling our debugging efforts.
+<p>
+<p>What follows is a rule to help with debugging safely, and a sample of how priorities work:
+<p>
+<blockquote><font color="#000080">&quot;Priority Lab&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the locale description (this is the dump locale table rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Locale Priority list:&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through Table of Locale Priorities:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the flag be whether or not the notable-object entry is mentioned;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]  [notable-object entry]: [locale description priority entry]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the flag is false, now the notable-object entry is not mentioned;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say line break.
+</font></blockquote><p>
+<p>
+<p>Now, let's look at some items put in a specific order. Things with low priority numbers list towards the beginning; things with high priority numbers list towards the end. (It helps to think of it as though we were making a numbered list of the paragraphs to appear in the description.) Anything numbered 0 doesn't appear at all, and the default priority of an object is 1. Thus:
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Priority Lab is a room. The early bird, the worm, the leaf, the unseen object, the pebble, the twig, and the late edition are things in the Priority Lab.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After choosing notable locale objects:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;set the locale priority of the early bird to 1; [list before everything else -- this would work with any number lower than 5 and higher than 0]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;set the locale priority of the unseen object to 0; [don't list at all]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;set the locale priority of the late edition to 10; [list after everything else -- this would work with any number larger than 5]
+</font></blockquote><p>
+<p>
+<p>An important cautionary note: priorities are only honored if the objects are going to get their own paragraphs (with &quot;writing a paragraph about...&quot; or because they have initial appearances). Priorities do not affect the order in which items appear in the final &quot;You can see...&quot; list, except that items with priority 0 or lower are omitted. (If we want to order the items in that list, we may want to resort to the Complex Listing extension by Emily Short.)
+<p>
+<p>So in order for the priorities we just set to be interesting, let's give out some initial appearances and writing a paragraph rules:
+<p>
+<blockquote><font color="#000080">The initial appearance of the worm is &quot;A worm inches along the ground.&quot;
+<br>The initial appearance of the late edition is &quot;Finally, the late edition lies at your feet.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about the early bird: say &quot;The early bird always appears first, and here it is.&quot;
+<br>Rule for writing a paragraph about the leaf: say &quot;Look, [a leaf]!&quot;
+</font></blockquote><p>
+<p>
+<p>This procedure also means (as you can test by experiment) that after the late edition has been picked up and dropped again, it lists in no special order in the &quot;you can see...&quot; paragraph (since initial appearances only print when the object has not yet been moved).
+<p>
+<p>The other thing to note is that by default that final collection of generic objects (&quot;You can also see...&quot;) appears at the end, regardless of the priority of everything else. If we really wanted to, though, we could force something to appear even after that paragraph, by adding a new listing rule to the locale description rules:
+<p>
+<blockquote><font color="#000080">The late listing rule is listed after the you-can-also-see rule in the for printing the locale description rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be marked for late listing. A thing is usually not marked for late listing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the late listing rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something is marked for late listing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Oh! And also [a list of things which are marked for late listing].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now everything is not marked for late listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the activity.
+</font></blockquote><p>
+<p>
+<p>And now we set up an item to use this:
+<p>
+<blockquote><font color="#000080">The afterthought is a thing in the Priority Lab.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After choosing notable locale objects:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the afterthought is a notable-object listed in the Table of Locale Priorities:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the afterthought is mentioned;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the afterthought is marked for late listing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get leaf / drop leaf / look / x unseen object / get pebble / look / get twig / look / get afterthought / look / drop twig / look / get late edition / look&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc304.html STYLE="text-decoration: none">Previous</a> / <a href=doc306.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

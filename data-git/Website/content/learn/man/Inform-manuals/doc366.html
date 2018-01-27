@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 21.7. Kind variables</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Kind variables" -->
+<!-- SEARCH SECTION "21.7" -->
+<!-- SEARCH SORT "021-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc365.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc367.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>21.7. Kind variables</b></td></tr></table><p>
+<p>
+<p>The examples of generic phrases in the previous section were really only toy examples. Suppose we want a phrase which will take any arithmetic value and triple it. We could do something like this:
+<p>
+<blockquote><font color="#000080">To triple (V - arithmetic value): say &quot;[V times 3].&quot;
+</font></blockquote><p>
+<p>
+<p>But this only prints the answer. Suppose we want to be given the value back, instead: how can we write the phrase? The trouble is that, not knowing the kind of V, we can't say what kind will be produced. We need a way of saying &quot;the same kind comes out as went in&quot;. Inform expresses that using kind variables:
+<p>
+<blockquote><font color="#000080">To decide which K is triple (original - arithmetic value of kind K):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on 3 times the original.
+</font></blockquote><p>
+<p>
+<p>Here, K stands for any kind which matches &quot;arithmetic value&quot;. Inform supports exactly 26 of these symbols, which are written A to Z, but it's customary to use K and L. (They can be written in the plural if we like: e.g., &quot;list of Ks&quot;. But they must always use a capital letter: &quot;list of k&quot; is not allowed.)
+<p>
+<p>Each symbol we use has to be declared in exactly one of the bracketed ingredients for the phrase - here, the declaration is &quot;arithmetic value of kind K&quot;. That creates K and says that it has to be arithmetic; if we'd just said &quot;value of kind K&quot;, it could have been anything. (Alternatively, we could use any of the kinds of kind in the previous section.)
+<p>
+<p>For a more ambitious example, here is one way to define the mapping operation described earlier in the chapter:
+<p>
+<blockquote><font color="#000080">To decide what list of L is (function - phrase K -> value of kind L)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;applied to (original list - list of values of kind K):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the result be a list of Ls;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through the original list:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the mapped item be the function applied to the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add the mapped item to the result;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on the result.
+</font></blockquote><p>
+<p>
+<p>Here we need two symbols to explain the complicated way that the values going in and out have to match up to each other. Note also the way that the temporary variable &quot;result&quot; is created:
+<p>
+<blockquote><font color="#000080">let the result be a list of Ls;
+</font></blockquote><p>
+<p>
+<p>Ordinarily, of course, &quot;L&quot; is not a kind. But within the body of a phrase definition, it means whatever kind L matched against.
+<p>
+<p>When a symbol occurs several times in the same definition, subtle differences can arise according to which appearance is the declaration. These are not quite the same:
+<p>
+<blockquote><font color="#000080">To hunt for (V - value of kind K) in (L - list of Ks): ...
+<br>To hunt for (V - K) in (L - list of values of kind K): ...
+</font></blockquote><p>
+<p>
+<p>Consider:
+<p>
+<blockquote><font color="#000080">let T be &quot;[location]&quot; in title case;
+<br>hunt for T in {&quot;Greater London&quot;, &quot;Greater Basildon&quot;};
+</font></blockquote><p>
+<p>
+<p>Here T is an indexed text, but the list is of texts; and a text can be used in place of an indexed text, but not vice versa. This will match the first definition, because K is set to &quot;indexed text&quot;, but it won't match the second, where K is set to &quot;text&quot;.
+<p>
+<p><hr><p><a href=doc365.html STYLE="text-decoration: none">Previous</a> / <a href=doc367.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

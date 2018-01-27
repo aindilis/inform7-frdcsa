@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.10. Entering and Exiting, Sitting and Standing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Get Axe" -->
+<!-- SEARCH SECTION "Ex 206" -->
+<!-- SEARCH SORT "Ex 006-010-206" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc37.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc39.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.10. Entering and Exiting, Sitting and Standing</b></td></tr></table><p>
+<p>
+<p>Under ordinary circumstances, Inform does not keep track of the player's posture, nor of his exact location in a room. <b>Lies</b> implements a room in which the player can lie in different positions on the floor, getting different views as a result.
+<p>
+<p>Our other examples are all modifications of the way Inform handles player movement to make better default guesses at what he wants to do: <b>Anchorite</b> adds a GET DOWN and DOWN command that work when the player is on a supporter, to accompany GET UP, GET OFF, and GET OUT (already understood). <b>Hagia Sophia</b> makes the player rise before heading in a compass direction, but only if movement in that direction is actually possible. And <b>Get Axe</b> makes the player get out of a portable container before attempting to lift it - a consideration that comes up relatively rarely, but that might pertain to inflatable rafts, beanbag chairs, and other lightweight but capacious pieces of furniture.
+<p>
+<a href=Rdoc10.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Position Within Rooms</b></font></a><i> for a box the player can push around the room and stand on in different locations</i><p><p>
+<a href=Rdoc23.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The Human Body</b></font></a><i> for letting the player sit, stand, or lie down systematically on furniture or on the floor</i><p><p>
+<a href=Rdoc66.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Furniture</b></font></a><i> for various objects on which the player can sit or stand</i><p><p>
+<p><hr><p>
+<a name="e222"><a href=Rex222.html#e222 STYLE="text-decoration: none">*<b>Example 299:  Lies</b></a><br>Commands to allow the player to lie down in three different ways.<p>
+<a name="e168"><a href=Rex168.html#e168 STYLE="text-decoration: none">*<b>Example 278:  Anchorite</b></a><br>By default, Inform understands GET OFF, GET UP, or GET OUT when the player is sitting or standing on an enterable object. We might also want to add GET DOWN and DOWN as exit commands, though:<p>
+<!-- EXAMPLE START -->
+<a name="e367"><a href=Rdoc38.html#e367 STYLE="text-decoration: none">*<b><b>Example</b> 206:  Get Axe</b></a><br>Changing the check rules to try automatically leaving a container before attempting to take it. (And arranging things so that other people will do likewise.)<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We could now re-write the check rules so that any time someone (the player or someone else) tries to pick up a container which he is in, he will first get out:
+<p>
+<blockquote><font color="#000080">&quot;GET AXE&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the clever can't take what you're inside rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person asked is in the noun, try the person asked exiting;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person asked is in the noun, rule fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The clever can't take what you're inside rule is listed instead of the can't take what you're inside rule in the check taking rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Attic is a room. The unused coffin is in the Attic. The coffin is enterable and openable and open. Raskolnikov is a man in the coffin.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking Raskolnikov to try doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;raskolnikov, get coffin&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc37.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc39.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

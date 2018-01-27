@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.9. Check, carry out, report</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Delicious, Delicious Rocks" -->
+<!-- SEARCH SECTION "Ex 196" -->
+<!-- SEARCH SORT "Ex 012-009-196" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc194.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc196.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.9. Check, carry out, report</b></td></tr></table><p>
+<p>
+<p>The normal behaviour of an action is specified by its three associated rulebooks - check, carry out and report. In the case of our &quot;photographing&quot; example, these rulebooks will be:
+<p>
+<blockquote><font color="#000080"><b>Check photographing</b>. Here, for instance, we need to verify that the player has the camera. If any of our checks fail, we should say why and stop the action. If they succeed, we say nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080"><b>Carry out photographing</b>. At this stage no further checking is needed (or allowed): the action now definitively takes place. At this point we might, for instance, deduct one from the number of exposures left on the film in the camera, or award the player points for capturing something interesting for posterity. But we should say nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080"><b>Report photographing</b>. At this stage no further activity is needed (or allowed): whatever effect the action had, it has happened and is now over. All we can do is to say what has taken place.
+</font></blockquote><p>
+<p>
+<p>So far we have not really gone into the business of what rulebooks are, and we don't do so here either - suffice to say that we can now create whatever rules we need:
+<p>
+<blockquote><font color="#000080">A check photographing rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the camera is not carried:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can hardly photograph without a camera, now can you?&quot; instead.
+</font></blockquote><p>
+<p>
+<p>In fact, writing &quot;a check photographing rule&quot; is over-formal. We can more simply label our rules like so:
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if we have photographed the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You've already snapped [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report photographing: say &quot;Click!&quot;
+</font></blockquote><p>
+<p>
+<p>For the sake of brevity, photography has no interesting consequence (no points to be won, no film to use up), so there are no carry out rules here. Note the way we used the word &quot;instead&quot; once again to stop actions in their tracks.
+<p>
+<p>We can continue to add rules at any point, and a classic thing that happens when testing a new work is that the designer realises there is a case which has not been thought of:
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is the camera:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;That would require some sort of contraption with mirrors.&quot; instead.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e115"><a href=ex115.html#e115 STYLE="text-decoration: none">*<b>Example 194:  The Dark Ages Revisited</b></a><br>An electric light kind of device which becomes lit when switched on and dark when switched off.<p>
+<a name="e279"><a href=ex279.html#e279 STYLE="text-decoration: none">**<b>Example 195:  Paddington</b></a><br>A CUT [something] WITH [something] command which acts differently on different types of objects.<p>
+<!-- EXAMPLE START -->
+<a name="e103"><a href=doc195.html#e103 STYLE="text-decoration: none">***<b><b>Example</b> 196:  Delicious, Delicious Rocks</b></a><br>Adding a "sanity-check" stage to decide whether an action makes any sense, which occurs before any before rules, implicit taking, or check rules.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>In some cases, we may want to add new stages to action processing. One possibility is a stage where we check the sanity of what the player is trying to do before executing any of the other commands; so that we avoid, for instance
+<p>
+<blockquote><font color="#000080">>EAT ROCK
+<br>(first taking the rock)
+<br>That's plainly inedible.
+</font></blockquote><p>
+<p>
+<p>Here is how we might insert such a stage in our action processing, using rulebook manipulation.
+<p>
+<blockquote><font color="#000080"> &quot;Delicious, Delicious Rocks&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sanity-check rules are a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the sanity-check stage rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;abide by the sanity-check rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sanity-check stage rule is listed after the before stage rule  in the action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Candyland is a room. The lollipop tree is an edible thing in Candyland. The genuine rock is a thing in Candyland.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Sanity-check eating an inedible thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your digestion is so delicate -- you're sure [the noun] wouldn't agree with you.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;eat lollipop / eat rock&quot;.
+</font></blockquote><p>
+<p>
+<p>Notice that now Inform does not try taking the rock before rejecting the player's attempt to eat it.
+<p>
+<p>It is of course possible to get the same effect with
+<p>
+<blockquote><font color="#000080">Before eating an inedible thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your digestion is so delicate -- you're sure [the noun] wouldn't agree with you.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>...and in a small game with few rules, there's not much reason to add an extra stage. The ability to modify the stages of action processing becomes useful when we have a fairly large game with sophisticated modeling and want to be sure that some kinds of message (such as the sanity-check) are always handled before other things that we might be doing at the before stage (such as generating implicit actions like opening doors before going through them).
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e263"><a href=ex263.html#e263 STYLE="text-decoration: none">***<b>Example 197:  Noisemaking</b></a><br>Creating a stage after the report stage of an action, during which other characters may observe and react.<p>
+<p><hr><p><a href=doc194.html STYLE="text-decoration: none">Previous</a> / <a href=doc196.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

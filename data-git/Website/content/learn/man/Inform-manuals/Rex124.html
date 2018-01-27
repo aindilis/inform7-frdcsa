@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.9. Heat</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Entropy" -->
+<!-- SEARCH SECTION "Ex 182" -->
+<!-- SEARCH SORT "Ex 010-009-182" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc87.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc89.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.9. Heat</b></td></tr></table><p>
+<p>
+<p>Since we prefer not to simulate burnt skin, and it is unsporting to kill a player outright merely for touching a hot object, heat is mostly used as a reason why something cannot be picked up at a given moment. This very basic puzzle is demonstrated in <b>Grilling</b>.
+<p>
+<p>With the naked eye, it is not always easy to detect what is too hot to touch - a point made in both <b>Masochism Deli</b>, where the only solution is to keep picking up potatoes until one doesn't burn, and in <b>Hot Glass Looks Like Cold Glass</b>, where infrared goggles turn the scales.
+<p>
+<p>If a hot object is not to be touched, will it stay hot forever? It might well, if it is a steak on an electric grill, but not if it is a recently-baked apple pie sitting on a window-sill. <b>Entropy</b> simulates the gradual return of temperature to equilibrium.
+<p>
+<a href=Rdoc86.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Electricity and Magnetism</b></font></a><i> for items which shouldn't be touched because they are hot in a different way</i><p><p>
+<p><hr><p>
+<a name="e177"><a href=Rex177.html#e177 STYLE="text-decoration: none">*<b>Example 84:  Grilling</b></a><br>A grill, from which the player is not allowed to take anything lest he burn himself.<p>
+<a name="e295"><a href=Rex295.html#e295 STYLE="text-decoration: none">*<b>Example 315:  Masochism Deli</b></a><br>Multiple potatoes, with rules to make the player drop the hot potato first and pick it up last.<p>
+<a name="e105"><a href=Rex105.html#e105 STYLE="text-decoration: none">***<b>Example 318:  Hot Glass Looks Like Cold Glass</b></a><br>Responding to references to a property that the player isn't yet allowed to mention (or when not to use "understand as a mistake").<p>
+<!-- EXAMPLE START -->
+<a name="e124"><a href=Rdoc88.html#e124 STYLE="text-decoration: none">*<b><b>Example</b> 182:  Entropy</b></a><br>All objects in the game have a heat, but if not kept insulated they will tend toward room temperature (and at a somewhat exaggerated rate).<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Entropy&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Heat is a kind of value. The heats are frosty, cold, cool, room temperature, warm, hot, and scalding. Everything has a heat. The heat of a thing is usually room temperature.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through things which are not in an insulated container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the item is greater than room temperature, now the heat of the item is the heat before the heat of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the item is less than room temperature, now the heat of the item is the heat after the heat of the item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a container is insulated if it is closed and it is opaque.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The vacuum thermos is an opaque closed openable container carried by the player. In the vacuum thermos is a frosty thing called an ice cube.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the ice cube is greater than cold:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the ice cube is visible, say &quot;The ice cube melts! 'HA ha,' says Maxwell, in a very unsporting, some might say demonic, way.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the ice cube from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of something: say &quot;[heat] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Equilibrium is a room. &quot;A perfectly smooth chamber sealed from the outside world. You can't at this moment work out where the exit is, though possibly that is just because the lighting is so very very even and diffuse. And doesn't come from anywhere that you can see, either.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maxwell is a man in Equilibrium.  &quot;Maxwell perches awkwardly on a stool across from you[if Maxwell has something], holding [a list of things carried by Maxwell][end if].&quot; He is carrying a box of Chinese food. The Chinese food is scalding. &quot;A discarded [item described] lies on the floor.&quot; The description of Maxwell is &quot;He has the faintly peevish look of one who has not been properly fed.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when Maxwell has the food:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the Chinese food is greater than warm, say &quot;Maxwell takes a bite, and swears.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the Chinese food is warm, say &quot;Maxwell eats as fast as he can, enjoying the food while it's at just the right temperature.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the Chinese food is less than warm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Maxwell sadly stabs at his leftovers with a chopstick, but does not try to eat any more.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the food to the location.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / open thermos / close thermos / open thermos&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc87.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc89.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

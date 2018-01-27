@@ -1,0 +1,126 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.7. Relations in groups</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Transmutations" -->
+<!-- SEARCH SECTION "Ex 227" -->
+<!-- SEARCH SORT "Ex 013-007-227" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc213.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc215.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.7. Relations in groups</b></td></tr></table><p>
+<p>
+<p>Finally, there is a kind of relation which binds even more strongly.
+<p>
+<blockquote><font color="#000080">Nationality relates people to each other in groups.
+</font></blockquote><p>
+<p>
+<p>This is a kind of relation which divides people up: we might wish to have all the Icelandic people related to each other, all the Peruvians to each other, and so on. If there were a Pacific island called Informia with one inhabitant, then that person would be related only to himself. As time goes by, we could imagine people emigrating, and so on, so that these groupings would switch: perhaps everyone would leave Belgium and, for a while, there would be no Belgian nationals at all.
+<p>
+<p><hr><img border=&quot;0&quot; src=images/testing.png id=&quot;testoval&quot; style=&quot;height:31px; width=40px&quot;>The testing command RELATIONS prints out the current state of all the relations created in the source code. For instance:
+<p>
+<blockquote><font color="#000080">>relations
+<br>Overlooking relates various rooms to various rooms:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The Pub  >=>  the Garden
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The Garden  >=>  the Shrubbery
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The Shrubbery  >=>  the Sundial Plot
+<br>Friendship relates people to each other:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Wickham  &lt;=&gt;  Sophie
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Charlotte  &lt;=&gt;  Sophie
+<br>Marriage relates one person to another:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Wickham  ==  Sophie
+</font></blockquote><p>
+<p>
+<p>That can produce a lot of output. To see only a single relation, or to see it at some intermediate point in a calculation, there's also a testing phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>show relation </b>(relation of values to values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_showrelation -->
+
+<p>This phrase is for testing purposes only. It shows the current state of the named relation, that is, it shows which values relate to which other ones, where it's possible to do this in any sensible way.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>But this is a phrase - not a typed command.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e384"><a href=doc214.html#e384 STYLE="text-decoration: none">*<b><b>Example</b> 227:  Transmutations</b></a><br>A machine that turns objects into other, similar objects.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to have a machine in our game that can transmute one item into another, similar object with different properties: a bag of jelly beans into a bag of jewels, for instance. Thus each item will be associated with some number of equivalents -- the other objects it can turn into. This is a handy use for group relations:
+<p>
+<blockquote><font color="#000080">&quot;Transmutations&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Workshop is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Transmutation relates things to each other in groups. The verb to become (it becomes, they become, it became) implies the transmutation relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is transmutable if it becomes more than one thing. [* It always becomes itself.]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be valuable. Something valuable called a bag of jewels is carried by the player. It becomes the bag of gunpowder and the bag of jelly beans.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be dangerous. The bag of gunpowder is a dangerous thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The bag of jelly beans is an edible thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The machine is fixed in place in the workshop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Procedural rule when inserting something into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the can't insert into what's not a container rule.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check inserting something which is not transmutable into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;instead say &quot;You can't transmute that.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which thing is new form of (obj - edible thing): decide on a random valuable thing which becomes obj.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which thing is new form of (obj - dangerous thing): decide on a random edible thing which becomes obj.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which thing is new form of (obj - valuable thing): decide on a random dangerous thing which becomes obj.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out inserting something into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player carries the new form of the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report inserting something edible into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The machine clicks, whirrs, and spits out [a new form of the noun]. You're rich!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report inserting something dangerous into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The machine clicks, whirrs, and in a shower of flavor crystals, spits out [a new form of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report inserting something valuable into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The machine clicks, whirrs, and with a violent roar, spits out [a new form of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&nbsp;&nbsp;&nbsp;&nbsp;Test me with &quot;i / put jewels in machine / i / put gunpowder in machine / i / put beans in machine&quot;.
+</font></blockquote><p>
+<p>
+<p>In this example we have only defined a single set of transmutable objects, but we could easily expand to include other groups.
+<p>
+<p>(Thanks to Jesse McGrew for proposing this example.)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e326"><a href=ex326.html#e326 STYLE="text-decoration: none">***<b>Example 228:  Otranto</b></a><br>A kind of rope which can be tied to objects and used to anchor the player or drag items from room to room.<p>
+<p><hr><p><a href=doc213.html STYLE="text-decoration: none">Previous</a> / <a href=doc215.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

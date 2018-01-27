@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.11. Two descriptions of things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Disenchantment Bay 4" -->
+<!-- SEARCH SECTION "Ex 17" -->
+<!-- SEARCH SORT "Ex 003-011-017" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc37.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc39.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.11. Two descriptions of things</b></td></tr></table><p>
+<p>
+<p>The player's first sight of something is the text used as its &quot;initial appearance&quot;:
+<p>
+<blockquote><font color="#000080">The plain ring is here. &quot;Cast aside, as if worthless, is a plain brass ring.&quot;
+</font></blockquote><p>
+<p>
+<p>This text appears as a separate paragraph in the text describing the Painted Room. It will continue to be used until the first time player picks the ring up (if this ever happens), so it normally describes things in their original, undisturbed context. (Inform uses an either/or property called &quot;handled&quot; for this: something is &quot;handled&quot; if it has at some point been held by the player.)
+<p>
+<p>Thus when a piece of text stands alone as a sentence in its own right, then this is either the &quot;description&quot; of the most recently discussed room, or the &quot;initial appearance&quot; of the most recently discussed thing. Either way, it is used verbatim as a paragraph in the text shown to the player visiting the room in question.
+<p>
+<p>But a thing also has an ordinary &quot;description&quot;, which is used to give a close-up look at it. This text is ordinarily only revealed to the player when a command like &quot;examine ring&quot; is keyed in:
+<p>
+<blockquote><font color="#000080">The description of the plain ring is &quot;No better than the loops of metal the old women use for fastening curtains.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc159.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;See <b>Creating a scene</b></font></a> for the description of a scene, which is set in the same way<p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e53"><a href=doc38.html#e53 STYLE="text-decoration: none">*<b><b>Example</b> 17: Disenchantment Bay 4</b></a><br>Disenchantment Bay: fleshing out the descriptions of things on the boat.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Currently we have provided objects for most of what is on the boat, but it's not very interesting to look at. We might want to give some more description to these things.
+<p>
+<blockquote><font color="#000080">&quot;Disenchantment Bay&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cabin is a room.  &quot;The front of the small cabin is entirely occupied with navigational instruments, a radar display, and radios for calling back to shore. Along each side runs a bench with faded blue vinyl cushions, which can be lifted to reveal the storage space underneath. A glass case against the wall contains several fishing rods.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Scratched windows offer a view of the surrounding bay, and there is a door south to the deck. A sign taped to one wall announces the menu of tours offered by the Yakutat Charter Boat Company.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cabin contains a glass case. In the glass case is a collection of fishing rods. The case is closed, transparent, and openable. The case is scenery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The bench is in the cabin. On the bench are some blue vinyl cushions. The bench is enterable and scenery. The cushions are scenery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some navigational instruments, some scratched windows, a radar display, and some radios are scenery in the cabin.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the instruments is &quot;Knowing what they do is the Captain's job.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the windows is &quot;They're a bit the worse for wear, but you can still get an impressive view of the glacier through them. There were whales earlier, but they're gone now.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the radar is &quot;Apparently necessary to avoid the larger icebergs.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the radios is &quot;With any luck you will not need to radio for help, but it is reassuring that these things are here.&quot;
+</font></blockquote><p>
+<p>
+<p>The order in which we define these things is fairly open. We could also define an object so:
+<p>
+<blockquote><font color="#000080">A sign is scenery in the Cabin. The description is &quot;You can get half-day and full-day sight-seeing tours, and half-day and full-day fishing trips.&quot;
+</font></blockquote><p>
+<p>
+<p>Where &quot;the description&quot; is assumed to refer to the thing most recently defined, if no object is specified.
+<p>
+<blockquote><font color="#000080">The view of the Malaspina glacier is a backdrop. It is everywhere. The description is &quot;The Malaspina glacier covers much of the nearby slope, and -- beyond it -- an area as large as Rhode Island.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine sign / examine glacier / examine instruments / examine windows / examine radar / examine radios / take the cushions / take the glacier&quot;.
+</font></blockquote><p>
+<p>
+<p>These last two commands show how scenery and backdrops are automatically impossible for the player to take.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e216"><a href=ex216.html#e216 STYLE="text-decoration: none">**<b>Example 18:  Laura</b></a><br>Some general advice about creating objects with unusual or awkward names, and a discussion of the use of printed names.<p>
+<p><hr><p><a href=doc37.html STYLE="text-decoration: none">Previous</a> / <a href=doc39.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

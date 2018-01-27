@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.7. Begin and end</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Begin and end" -->
+<!-- SEARCH SECTION "11.7" -->
+<!-- SEARCH SORT "011-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc173.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc175.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.7. Begin and end</b></td></tr></table><p>
+<p>
+<p>In practice it is not enough to apply &quot;if&quot; to a single phrase alone: we want to give a whole list of phrases to be followed repeatedly, or to be followed only if a condition holds.
+<p>
+<p>We do this by grouping them together, and there are two ways to do this. One is as follows:
+<p>
+<blockquote><font color="#000080">To comment upon (whatever - a thing):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if whatever is transparent, say &quot;I see right through this!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if whatever is an open door:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Oh look, an open door!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if whatever is openable, say &quot;But you could always shut it.&quot;
+</font></blockquote><p>
+<p>
+<p>Here we group two phrases together under the same &quot;if&quot;. Note that the &quot;then&quot; has been replaced by a colon, and that the indentation in the list of phrases shows how they are grouped together. In the example above, the source moves two tabs in from the margin; the maximum allowed is 25.
+<p>
+<p>Indentation is the convention used in this manual and in the examples, but not everybody likes this Pythonesque syntax. So Inform also recognises a more explicit form, in which the beginning and ending are marked with the words &quot;begin&quot; and &quot;end&quot;:
+<p>
+<blockquote><font color="#000080">To comment upon (whatever - a thing):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if whatever is transparent, say &quot;I see right through this!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if whatever is an open door
+<br>&nbsp;&nbsp;&nbsp;&nbsp;begin;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Oh look, an open door!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if whatever is openable, say &quot;But you could always shut it.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end if.
+</font></blockquote><p>
+<p>
+<p>(Pythonesque because it's a style popularised by the programming language Python, named in turn after &quot;Monty Python's Flying Circus&quot;.)
+<p>
+<p><hr><p>
+<a name="e240"><a href=ex240.html#e240 STYLE="text-decoration: none">*<b>Example 172:  Matreshka</b></a><br>A SEARCH [room] action that will open every container the player can see, stopping only when there don't remain any that are closed, unlocked, and openable.<p>
+<a name="e282"><a href=ex282.html#e282 STYLE="text-decoration: none">*<b>Example 173:  Princess and the Pea</b></a><br>The player is unable to sleep on a mattress (or stack of mattresses) because the bottom one has something uncomfortable under it.<p>
+<p><hr><p><a href=doc173.html STYLE="text-decoration: none">Previous</a> / <a href=doc175.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

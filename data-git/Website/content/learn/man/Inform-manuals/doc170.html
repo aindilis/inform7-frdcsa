@@ -1,0 +1,111 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.3. Pattern matching</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Pattern matching" -->
+<!-- SEARCH SECTION "11.3" -->
+<!-- SEARCH SORT "011-003-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc169.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc171.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.3. Pattern matching</b></td></tr></table><p>
+<p>
+<p>In this section, let's take the built-in phrase &quot;remove ... from play&quot; as an example. As the wording suggests, this causes whatever thing is named to disappear from every room, going into a sort of off-stage limbo.
+<p>
+<p>Although the wording can be different each time this is used:
+<p>
+<blockquote><font color="#000080">remove the diamonds from play;
+<br>remove Mr Cogito from play;
+<br>remove the honey sandwich from play;
+</font></blockquote><p>
+<p>
+<p>... a single definition in Inform's Standard Rules nevertheless covers all of these possibilities. It is written like so:
+<p>
+<blockquote><font color="#000080">To remove (item - an object) from play: ...
+</font></blockquote><p>
+<p>
+<p>The bracketed part of the definition tells Inform to expect an object in that position, and Inform enforces this carefully. So this definition might tell Inform what &quot;remove the barricade from play&quot; means, but not what
+<p>
+<blockquote><font color="#000080">remove &quot;blue cheese&quot; from play;
+<br>remove 63 from play;
+</font></blockquote><p>
+<p>
+<p>mean. Unless some other definition sorts the matter out, Inform will reply to uses like this with a Problem message:
+<p>
+<blockquote><font color="#000080"><b>Problem.</b> You wrote 'remove 63 from play' <img border=0 src=images/Reveal.png>, but '63' has the wrong kind of value: a number rather than an object.
+</font></blockquote><p>
+<p>
+<p>The object does not need to be named literally, but can be anything which works out to be an object: for instance,
+<p>
+<blockquote><font color="#000080">After dropping something in the Nebulous Mist:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play.
+</font></blockquote><p>
+<p>
+<p>which Inform allows because &quot;noun&quot;, here, is a name for the object which is being acted on.
+<p>
+<p>Inform decides which definition to apply in a process called &quot;pattern matching&quot;.
+<p>
+<p>The bracketed part of the example definition has the form &quot;(name - kind)&quot;. The definition only applies if the text supplied agrees with the &quot;kind&quot; part - for instance, the diamonds agreed with &quot;object&quot;, but 63 did not. If the definition  does apply, then the Inform works through the rest of the phrase using &quot;name&quot; to mean whatever value matched. For example:
+<p>
+<blockquote><font color="#000080">To slam shut (box - an open container):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;With great panache, you slam shut [the box].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the box is closed.
+</font></blockquote><p>
+<p>
+<p>When this phrase is followed, &quot;box&quot; means whatever open container the pattern-matcher found when it was called for. For example, if Inform reads
+<p>
+<blockquote><font color="#000080">slam shut the Dutch armoire;
+</font></blockquote><p>
+<p>
+<p>then it acts on this by following the definition of &quot;slam shut ...&quot;, using the Dutch armoire object as the value of &quot;box&quot;, so it prints:
+<p>
+<blockquote><font color="#000080">With great panache, you slam shut the Dutch armoire.
+</font></blockquote><p>
+<p>
+<p>and renders it closed.
+<p>
+<p>In fact any description can be given in the definition, and that includes a single, specific value. For instance, we could define:
+<p>
+<blockquote><font color="#000080">To grant (bonus - a number) points:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by the bonus.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To grant (bonus - 7) points:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You shiver uncontrollably.&quot;
+</font></blockquote><p>
+<p>
+<p>which would withhold this unlucky bounty. That would mean that:
+<p>
+<blockquote><font color="#000080">grant 7 points;
+<br>grant seven points;
+</font></blockquote><p>
+<p>
+<p>would each produce uncontrollable shivers, because Inform uses the definition applying to the number 7; but
+<p>
+<blockquote><font color="#000080">grant six points;
+</font></blockquote><p>
+<p>
+<p>would increase the score by 6. In general Inform always follows the principle that more specific definitions take priority over more general ones. So although the definitions:
+<p>
+<blockquote><font color="#000080">To grant (bonus - a number) points: ...
+<br>To grant (bonus - 7) points: ...
+</font></blockquote><p>
+<p>
+<p>both apply to the case of &quot;grant 7 points&quot;, Inform uses the second, because it's the more specific of the two possibilities.
+<p>
+<p>Sometimes it will not be possible to tell if the value supplied meets the requirements until the game is actually playing. If, at run-time, no definition fits some phrase which has to be carried out, a run-time problem message is produced.
+<p>
+<p>Finally, and more straightforwardly, we can specify variations in wording using slashes between alternative words in a &quot;To ...&quot; definition. For instance:
+<p>
+<blockquote><font color="#000080">To grant (bonus - a number) point/points: ...
+</font></blockquote><p>
+<p>
+<p>allows the final word to be either &quot;point&quot; or &quot;points&quot;. Slashes like this can only be used with literal words, not bracketed values, and give alternative forms only of a single word at a time. (If we need more variation than that, we should make more than one definition.)
+<p>
+<p><hr><p>
+<a name="e3"><a href=ex3.html#e3 STYLE="text-decoration: none">*<b>Example 169:  Ahem</b></a><br>Writing a phrase, with several variant forms, whose function is to follow a rule several times.<p>
+<a name="e139"><a href=ex139.html#e139 STYLE="text-decoration: none">**<b>Example 170:  Ferragamo Again</b></a><br>Using the same phrase to produce different results with different characters.<p>
+<p><hr><p><a href=doc169.html STYLE="text-decoration: none">Previous</a> / <a href=doc171.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

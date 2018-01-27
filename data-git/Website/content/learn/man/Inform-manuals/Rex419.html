@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.8. Fire</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Thirst 2" -->
+<!-- SEARCH SECTION "Ex 118" -->
+<!-- SEARCH SORT "Ex 010-008-118" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc86.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc88.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.8. Fire</b></td></tr></table><p>
+<p>
+<p>Fire exhibits some of the properties of a gas: it is only vaguely located and tends to spread out, though it passes by touch rather than on the air. It is hazardous to life, through direct contact, heat, and smoke. Better governed, it provides light and warmth. Worse governed, it consumes almost anything it comes into contact with. Here the problem with &quot;debris&quot; is not so much that we need potentially hundreds of new objects to represent broken items: instead, fire could sweep through a work of IF destroying so much that no play is possible any longer. Setting up a problem in which the player must defeat a fully-capable fire is difficult to balance.
+<p>
+<p>As with liquids, it is best to simulate the least amount of fire that the design will allow. <b>Bruneseau's Journey</b> provides a single candle which can be lit, or blown out, but where fire can never transfer from the candle's end to anything else - or vice versa: the player's source of fire, with which to light the candle, is discreetly neglected.
+<p>
+<p>In the more realistic <b>Thirst 2</b>, a campfire is lit using a tinderbox, so that fire does transfer from one thing (tinder) to another (the campfire): but it is always confined to just these two items, and can be used only for light and warmth.
+<p>
+<p><b>The Cow Exonerated</b> provides a class of matches that can light any flammable object, but assumes that burning objects requires only one turn; lighting one thing does not burn another.
+<p>
+<p><b>In Fire or in Flood</b> provides a complete simulation of what we might call &quot;wild-fire&quot;: combustion which spreads through arbitrary objects and rooms, destroying all in its path.
+<p>
+<a href=Rdoc33.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Examining</b></font></a><i> for a way to describe objects as charred once they have been partly burnt</i><p><p>
+<a href=Rdoc88.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Heat</b></font></a><i> for one consequence of fire having touched something</i><p><p>
+<a href=Rdoc80.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Gases</b></font></a><i> for an implementation of smoke without fire, if this can exist</i><p><p>
+<a href=Rdoc81.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liquids</b></font></a><i> for water being used to extinguish a simple fire</i><p><p>
+<a href=Rdoc14.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Lighting</b></font></a><i> for other uses of candles and torches as light sources</i><p><p>
+<p><hr><p>
+<a name="e61"><a href=Rex61.html#e61 STYLE="text-decoration: none">**<b>Example 151:  Bruneseau's Journey</b></a><br>A candle which reacts to lighting and blowing actions differently depending on whether it has already been lit once.<p>
+<!-- EXAMPLE START -->
+<a name="e419"><a href=Rdoc87.html#e419 STYLE="text-decoration: none">*<b><b>Example</b> 118:  Thirst 2</b></a><br>A campfire added to the camp site, which can be lit using tinder.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Thirst&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a waterskin. The waterskin can be full, partly drained, or empty. The waterskin is full. Understand &quot;water&quot; as the waterskin.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of drinking the waterskin when the waterskin is empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no water left.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of drinking the waterskin: if the waterskin is partly drained, now the waterskin is empty; if the waterskin is full, now the waterskin is partly drained; say &quot;You drink a long draught.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of the waterskin: say &quot; ([waterskin condition])&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Campsite is a room. &quot;It is solid night now, and the stars have come out. Unfamiliar stars. On the other side of the valley -- a valley round-bottomed but shallow, like a soup bowl -- burn other campfires, most likely bandits. Their voices do not carry, but the smoke rises and obscures the starlight over that way.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A sleepsack is an enterable container in the Campsite. &quot;Your sleepsack is laid out in a pocket of sandy soil and coarse grass.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sandy soil, the stars, the distant campfires, and the coarse grass are scenery in the Campsite. Understand &quot;smoke&quot; as the campfires. Instead of listening in the presence of your campfire: say &quot;All you hear are the reassuring snaps and cracks of the sticks in your fire.&quot; Understand &quot;campfires&quot; or &quot;fires&quot; as the distant campfires.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Your campfire is scenery. Instead of pushing, pulling, turning, tasting, or touching your campfire, say &quot;You would burn yourself.&quot; Understand &quot;fire&quot; as your campfire. The description of your campfire is &quot;A reassuring protection against wild animals and cold.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the stars is &quot;You invent constellations for them. The slingshot. The scroll. The heart (upside down).&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going nowhere when the player is in Campsite:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Now is not the time for wandering, alone in the dark. Better to keep here[if your campfire is visible], by the fire[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of singing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You sing, deep and low, a song from home. It is a good night for singing and the song raises your spirits.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a tinderbox. The tinderbox contains a flint, a steel, some tinder, and a patch of carbonized cloth. The description of the flint is &quot;A flat grey stone with flaked edges.&quot; The description of the steel is &quot;Curved so that you can hold it over the knuckles of your right hand and strike it against the flint. There is a knack to it. Those without the knack end up with bloody knuckles and no fire.&quot; The steel is wearable. The description of the tinder is &quot;Dried grass and similar.&quot; The description of the cloth is &quot;The little, precious, spark-preserving scraps without which the fire would never begin.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint when the steel is not worn by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You must wear the steel over your knuckles, in order to hit the flint at the best angle.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint when the steel is worn and the cloth is not in the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Though you strike the flint sharply with the steel and throw sparks, they have nothing to catch on, since the patch of cloth does not lie beneath.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint when the steel is worn and the cloth is in the location and the cloth is not unlit:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The patch of cloth has already caught.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the cloth is glowing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You strike the flint against the steel and throw sparks onto the patch of cloth; they make tiny circles of orange there, which will only prosper if blown into flame.&quot;
+</font></blockquote><p>
+<p>
+<p>Realistically, we ought to attach a randomization to this so that each step of the fire-starting has a good chance of failure. But because our player may not be as patient as someone who actually needs a fire started, we allow him to succeed the first time in every case.
+<p>
+<blockquote><font color="#000080">Ignition is a kind of value. The ignitions are whole, fading, glowing, flaming. A thing has an ignition.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Blowing on is an action applying to one thing. Understand &quot;breathe on [something]&quot; or &quot;blow on [something]&quot; as blowing on.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of blowing on the whole cloth:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no point, since no sparks have caught there.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of blowing on the fading cloth:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the cloth is flaming;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You blow on the faint sparks on the cloth and turn them into the beginnings of flame.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of burning the whole tinder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the cloth is not flaming:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The patch of cloth must catch flame before you can light anything with it.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the tinder is flaming;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the cloth from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You light the tinder with the patch of cloth, and have the elements of a fire.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the cloth is flaming or the cloth is whole:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the ignition of the cloth is the ignition before the ignition of the cloth;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Now the patch of cloth is [ignition of the cloth].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some kindling is in the campsite.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of burning the whole kindling:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the tinder is not flaming:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You need the tinder to be flaming, first.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the tinder from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the kindling from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the campfire to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You succeed in lighting yourself a proper campfire.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the printed name of Campsite is &quot;By The Campfire&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / drink water / i / drink water / i / wear steel / get flint / get cloth / drop cloth / get tinder / hit flint / blow on cloth / burn tinder / burn kindling / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e95"><a href=Rex95.html#e95 STYLE="text-decoration: none">**<b>Example 407:  The Cow Exonerated</b></a><br>Creating a class of matches that burn for a time and then go out, with elegant reporting when several matches go out at once.<p>
+<a name="e47"><a href=Rex47.html#e47 STYLE="text-decoration: none">***<b>Example 384:  In Fire or in Flood</b></a><br>A BURN command; flammable objects which light other items in their vicinity and can burn for different periods of time; the possibility of having parts or contents of a flaming item which survive being burnt.<p>
+<p><hr><p><a href=Rdoc86.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc88.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

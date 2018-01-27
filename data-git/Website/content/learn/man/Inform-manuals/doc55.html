@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.1. New kinds</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "New kinds" -->
+<!-- SEARCH SECTION "4.1" -->
+<!-- SEARCH SORT "004-001-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc54.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc56.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.1. New kinds</b></td></tr></table><p>
+<p>
+<p>Values are to Inform what nouns are to English sentences. They represent numbers, times of day, pieces of text, places, people, doors, and so on. Because they have such an enormous variety, and because we often want to talk about what some of them have in common, we need a way to sort all of these different ideas out. That's the main aim of Inform's concept of &quot;kind&quot;.
+<p>
+<p>Every value has a kind. The kind of 10 is &quot;number&quot;; the kind of 11:30 PM is &quot;time&quot;; the kind of &quot;jinxed wizards pluck ivy from my quilt&quot; is &quot;text&quot;; and so on. The Kinds index panel shows the kinds present in the current Inform project, which will always include a wide range of built-in kinds, and usually also some new ones created in that project.
+<p>
+<p>Some kinds are more general than others. For example, if we write:
+<p>
+<blockquote><font color="#000080">Growler is an animal in the Savannah.
+</font></blockquote><p>
+<p>
+<p>then Growler is an &quot;animal&quot;, which is a kind of &quot;thing&quot;, which is a kind of &quot;object&quot;. When we talk about &quot;the&quot; kind of Growler, we mean &quot;animal&quot;, the most specific one, but actually he belongs to all of those kinds.
+<p>
+<p>As we see from this example, kinds have a whole hierarchy. Some are specialised versions of other kinds; some are not. Browsing the Kinds index shows that Inform builds its model world out of &quot;objects&quot;. (That's really what objects are: &quot;object&quot; is a kind of value used to make the ingredients of the model world.) The objects fall into four fundamental kinds, &quot;room&quot;, &quot;thing&quot;, &quot;direction&quot; and &quot;region&quot;, and &quot;thing&quot; is more subdivided still.
+<p>
+<p>All the same, Inform starts out with a fairly simple arrangement. Because taxonomy - setting up kinds for everything - is so difficult, and depends so much on what you want it for, Inform creates relatively few kinds in advance: it has &quot;animal&quot; built in, but not &quot;mammal&quot; or &quot;Bengal tiger&quot;. When we need more, we must make them ourselves. Let's see how we might invent these new kinds. The easy one is:
+<p>
+<blockquote><font color="#000080">A Bengal tiger is a kind of animal.
+</font></blockquote><p>
+<p>
+<p>Given that, we can then write:
+<p>
+<blockquote><font color="#000080">Growler is a Bengal tiger in the Savannah.
+</font></blockquote><p>
+<p>
+<p>That's easy enough. Adding &quot;mammal&quot; now looks awkward, though, because it seems to belong in between the two. All Bengal tigers are mammals, but not all animals are. But Inform can sort this out:
+<p>
+<blockquote><font color="#000080">A mammal is a kind of animal. A Bengal tiger is a kind of mammal.
+</font></blockquote><p>
+<p>
+<p>If we look at the Kinds index, we should indeed see a hierarchy:
+<p>
+<blockquote><font color="#000080">object > person > animal > mammal > Bengal tiger
+</font></blockquote><p>
+<p>
+<p>though the diagram is laid out as a sort of tree, just as zoologists do.
+<p>
+<p>As another example, it may seem curious that Inform doesn't usually think &quot;man&quot; is a kind of &quot;animal&quot;. This is really because, in English, people don't usually expect something like &quot;if an animal is in the garden&quot; to be true when it's only the Revd Mr Beebe going for a walk. People expect the word &quot;animal&quot; not to mean a human being, despite our common genetic ancestry. But if we want to rearrange Inform's default ideas, we can do that quite easily:
+<p>
+<blockquote><font color="#000080">A man is a kind of animal. A woman is a kind of animal.
+</font></blockquote><p>
+<p>
+<p>Or indeed we could say:
+<p>
+<blockquote><font color="#000080">A human being is a kind of mammal. A man and a woman are kinds of human being.
+</font></blockquote><p>
+<p>
+<p>While this is an ideal way to make new kinds for the model world, we are more restricted in what we can do outside of objects. For instance,
+<p>
+<blockquote><font color="#000080">A glob is a kind of number.
+</font></blockquote><p>
+<p>
+<p>isn't allowed. The numbers are fixed and all exist already; they aren't like Bengal tigers which we can simply imagine, and fill the world with. &quot;Number&quot; is not a concept we can specialise any further. But what we can do is to invent entirely new concepts, like so:
+<p>
+<blockquote><font color="#000080">A distance is a kind of value.
+</font></blockquote><p>
+<p>
+<p>We will see more of these later. (This isn't specialising anything - &quot;value&quot; is a sort of everything-category, and is too big and vague to be a kind.)
+<p>
+<p><hr><p>
+<a name="e408"><a href=ex408.html#e408 STYLE="text-decoration: none">**<b>Example 41:  Vouvray</b></a><br>Adding synonyms to an entire kind of thing.<p>
+<p><hr><p><a href=doc54.html STYLE="text-decoration: none">Previous</a> / <a href=doc56.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

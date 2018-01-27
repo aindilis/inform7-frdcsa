@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.22. Inform 6 Understand tokens</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Inform 6 Understand tokens" -->
+<!-- SEARCH SECTION "25.22" -->
+<!-- SEARCH SORT "025-022-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc438.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc440.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.22. Inform 6 Understand tokens</b></td></tr></table><p>
+<p>
+<p>The parser which deciphers the player's typed commands is written in I6, and many of the basic tokens of Understand grammar are implemented as &quot;general parsing routines&quot; (GPRs), the specification of which is described fully in the Inform 6 Designer's Manual. I7 translates much of the source text's Understand grammar into GPRs, and once again we can bypass this process and supply an Understand token directly as an I6 GPR. For example:
+<p>
+<blockquote><font color="#000080">The Understand token squiggle translates into I6 as &quot;SQUIGGLE_TOKEN&quot;.
+</font></blockquote><p>
+<p>
+<p>We then have to include a routine of that name into I7's output using the &quot;Include&quot; instruction, on which more later.
+<p>
+<p>This creates a token &quot;[squiggle]&quot;; so for instance if the source text contains:
+<p>
+<blockquote><font color="#000080">Understand &quot;copy [squiggle]&quot; as ...
+</font></blockquote><p>
+<p>
+<p>then Inform would parse the command COPY FIGURE EIGHT by calling the SQUIGGLE_TOKEN routine as a GPR with the word marker at 2, that is, at the word FIGURE.
+<p>
+<p>As always, this should be done only where there seems no better way, or where speed is very important. For any fairly simple range of possibilities, it's better to use the techniques in the Understand chapter, or to use unit specifications.
+<p>
+<p><hr><p><a href=doc438.html STYLE="text-decoration: none">Previous</a> / <a href=doc440.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

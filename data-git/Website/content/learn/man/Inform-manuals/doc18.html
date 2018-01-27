@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 2.8. The TEST command</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The TEST command" -->
+<!-- SEARCH SECTION "2.8" -->
+<!-- SEARCH SORT "002-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc17.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc19.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>2.8. The TEST command</b></td></tr></table><p>
+<p>
+<p>The only way to thoroughly test a work of IF is to run a complete solution through it, and carefully check the resulting transcript of dialogue. The Skein and Transcript tools of the Inform application are provided for exactly this purpose.
+<p>
+<p>All the same, most works of interactive fiction contain occasional vignettes, either in terms of short scenes of narrative, or in the behaviour of particular things or rooms, which we would like to test without the fuss of using the full game-level Skein tool. The examples in the documentation are like this: in almost every example, typing TEST ME puts the game through its paces.
+<p>
+<p><hr><img border=&quot;0&quot; src=images/testing.png id=&quot;testoval&quot; style=&quot;height:31px; width=40px&quot;>Solutions or sequences for testing (&quot;scripts&quot;) can be defined with sentences like so:
+<p>
+<blockquote><font color="#000080">Test balloon with &quot;get balloon / blow balloon / drop balloon&quot;.
+</font></blockquote><p>
+<p>
+<p>This has no effect on the design itself, but ensures that when the game is played, typing &quot;test balloon&quot; will run through the given three commands in sequence, as if we had typed &quot;get balloon&quot; and then &quot;blow balloon&quot; and then &quot;drop balloon&quot;.
+<p>
+<p>The name for the test (balloon in this example) has to be a single word. Typing just &quot;test&quot; at the game prompt gives a list of all the test scripts known to the game. Test scripts can make use of each other, for instance:
+<p>
+<blockquote><font color="#000080">Test all with &quot;test balloon / test door&quot;.
+</font></blockquote><p>
+<p>
+<p>One convenient way to keep track of the solution for a work being written is to include a test script at the end of each section, and to place a master test script (like &quot;test all&quot;) at the top of the source. But different designers will prefer different approaches, and this testing system is no more than an optional convenience.
+<p>
+<p>Many tests will only be sensible in given places, which may be hard to reach from the initial position; or with the aid of given things, which may be difficult to obtain. We are therefore allowed to add stipulations to test scripts:
+<p>
+<blockquote><font color="#000080">Test balloon with &quot;get balloon / blow balloon / drop balloon&quot; holding the balloon.
+</font></blockquote><p>
+<p>
+<p>The &quot;... holding the balloon&quot; means that the balloon will be transferred to the player's ownership immediately before the test script is run, unless it is already held. Similarly:
+<p>
+<blockquote><font color="#000080">Test jam with &quot;get jam / taste jam / eat jam&quot; in the Kitchen.
+</font></blockquote><p>
+<p>
+<p>Or we might want to say both:
+<p>
+<blockquote><font color="#000080">Test jam with &quot;get jam / taste jam / eat jam&quot; in the Kitchen holding the jam.
+</font></blockquote><p>
+<p>
+<p>(Single quotation marks in test scripts are interpreted the same way in test scripts as they are in other text: that is, they are sometimes read as double-quotes unless they appear to be present as apostrophes. The notation ['] forces a single quotation mark if necessary. Similarly, [/] forces a literal forward slash, and prevents the / from being read as dividing up two commands.)
+<p>
+<p><hr><p><a href=doc17.html STYLE="text-decoration: none">Previous</a> / <a href=doc19.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

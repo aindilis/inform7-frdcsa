@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 21.6. Generic phrases</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Generic phrases" -->
+<!-- SEARCH SECTION "21.6" -->
+<!-- SEARCH SORT "021-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc364.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc366.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>21.6. Generic phrases</b></td></tr></table><p>
+<p>
+<p>The following looks quite innocent:
+<p>
+<blockquote><font color="#000080">To say (V - value) twice: say &quot;[V]. [V], I say!&quot;
+</font></blockquote><p>
+<p>
+<p>It's clear at a glance what this is intended to do, but at a second glance things aren't so straightforward. &quot;Value&quot; is not itself a kind - it's too big and unspecific. For instance, if we were to allow a variable to be just &quot;a value&quot;, we could freely set it to 12 one minute and to &quot;dahlias&quot; the next, and such a variable would be dangerous since we would never know what could safely be done with its contents. A phrase like this one is called &quot;generic&quot;, because it's not so much a single, actual phrase as a recipe to make phrases. (Inform automatically works out which kinds we need the phrase for, and creates a version of the phrase for those kinds.)
+<p>
+<p>So &quot;value&quot; is not a kind, but a kind of kind. Inform has several of these:
+<p>
+<blockquote><font color="#000080">value, arithmetic value, enumerated value, sayable value
+</font></blockquote><p>
+<p>
+<p>These act as ways to say &quot;a value of any kind matching this can go here&quot;. For example, &quot;value&quot; is a way to say &quot;any kind at all&quot;; &quot;arithmetic value&quot; is any kind which arithmetic can be performed on (any kind with the little calculator icon in the Kinds index); and so on. If we write:
+<p>
+<blockquote><font color="#000080">To double (V - arithmetic value): say &quot;[V times 2].&quot;
+</font></blockquote><p>
+<p>
+<p>the restriction to &quot;arithmetic value&quot; means that although &quot;double 3&quot;, &quot;double 6 kg&quot;, etc., would be matched, &quot;double the Entire Game&quot; would not - you can't perform arithmetic on scenes. Similarly, it would have been tidier to write:
+<p>
+<blockquote><font color="#000080">To say (V - sayable value) twice: say &quot;[V]. [V], I say!&quot;
+</font></blockquote><p>
+<p>
+<p>because then Inform will make it clearer why &quot;say X twice&quot; won't work if X is one of those rare values which it can't say (an activity, for instance).
+<p>
+<p>The Kinds index shows which kinds match against which of these &quot;kinds of kind&quot;. For instance, it shows that &quot;time&quot;
+<p>
+<blockquote><font color="#000080">Matches: value, arithmetic value, sayable value
+</font></blockquote><p>
+<p>
+<p>which means that time is something we can do arithmetic on, and can say.
+<p>
+<p><hr><p><a href=doc364.html STYLE="text-decoration: none">Previous</a> / <a href=doc366.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

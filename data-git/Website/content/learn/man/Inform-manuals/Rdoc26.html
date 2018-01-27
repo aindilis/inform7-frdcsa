@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.4. Background</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Background" -->
+<!-- SEARCH SECTION "5.4" -->
+<!-- SEARCH SORT "005-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc25.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc27.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.4. Background</b></td></tr></table><p>
+<p>
+<p>In IF, as in all interactive storytelling, an essential problem is that the player does not begin the game knowing everything that the player character should, and so may implausibly bumble through situations that the player character should be quite comfortable in. If the player character has friends, an unusual job, a home or environment we're not familiar with, a secret past, these will all be a blank to the player.
+<p>
+<p>Some games get around this by making the player character an amnesiac, or positioning him as a newcomer to a strange world in which his disorientation is explicable; but there are stories that cannot be told this way, and so we need other methods of getting the player to know what the player character already does.
+<p>
+<p>Our first opportunity to inform the player about the player character is in the opening text of a game:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The funeral is exactly a month ago now, but Elise's shoes are still on the shoe tree.&quot;
+</font></blockquote><p>
+<p>
+<p>We may also want to write descriptions of objects to give extra background information the first time the player encounters them:
+<p>
+<blockquote><font color="#000080">A thing can be examined or unexamined. A thing is usually unexamined. After examining something: now the noun is examined; continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the newspaper is &quot;A rolled-up newspaper[if unexamined], and thus a symbol of your newly-single state: Elise always had it open and the Local Metro section next to your plate by the time you got out of the shower[end if].&quot;
+</font></blockquote><p>
+<p>
+<p>To expand on this, we could give the player a THINK ABOUT or REMEMBER command, with which he can call up information about people he meets or references he encounters in descriptions, so that he could (for instance) next type REMEMBER ELISE. <b>Merlin</b> demonstrates one way to implement a character with memory; <b>One of Those Mornings</b> puts a twist on this by letting the player FIND things which he knows his character possessed at some time before the game started.
+<p>
+<p><hr><p>
+<a name="e319"><a href=Rex319.html#e319 STYLE="text-decoration: none">*<b>Example 266:  Merlin</b></a><br>A REMEMBER command which accepts any text and looks up a response in a table of recollections.<p>
+<a name="e250"><a href=Rex250.html#e250 STYLE="text-decoration: none">*<b>Example 290:  One of Those Mornings</b></a><br>A FIND command that allows the player to find a lost object anywhere<p>
+<p><hr><p><a href=Rdoc25.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc27.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.3. Dispensers and Supplies of Small Objects</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Pizza Prince" -->
+<!-- SEARCH SECTION "Ex 363" -->
+<!-- SEARCH SORT "Ex 010-003-363" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc81.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc83.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.3. Dispensers and Supplies of Small Objects</b></td></tr></table><p>
+<p>
+<p>A slightly tricky situation arises in IF when we want to offer the player a simulation of a near-infinite supply of something: a napkin dispenser from which he can keep taking more napkins, or an infinite selection of pebbles on a beach, or something of that nature.
+<p>
+<p>One approach is simply to limit the number of items the player is allowed to pick up at a time, while maintaining the fiction that there are more of these items in existence than the player is allowed to interact with. <b>Extra Supplies</b> demonstrates this.
+<p>
+<p>The task becomes harder if we do want to let the player have as many napkins as he wants. In some languages, it is possible to generate new objects on the fly after the game has begun (called &quot;dynamic object creation&quot;), and something like this is possible if we are compiling for Glulx. (See the Inform extensions site for examples.) Usually, though, it is less complicated and almost as effective simply to have a very large supply of existing objects, which are moved in and out of play as the player needs them. <b>Pizza Prince</b> demonstrates how to do this with slices of pizza.
+<p>
+<a href=Rdoc85.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Ropes</b></font></a><i> for an example involving divisible pieces of string, which relies on similar techniques</i><p><p>
+<p><hr><p>
+<a name="e132"><a href=Rex132.html#e132 STYLE="text-decoration: none">**<b>Example 124:  Extra Supplies</b></a><br>A supply of red pens from which the player can take another pen only if he doesn't already have one somewhere in the game world.<p>
+<!-- EXAMPLE START -->
+<a name="e291"><a href=Rdoc82.html#e291 STYLE="text-decoration: none">*<b><b>Example</b> 363:  Pizza Prince</b></a><br>Providing a pizza buffet from which the player can take as many pieces as he wants.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want the player to have a pizza buffet from which he can take a number of slices. But we don't want to actually put the slices there in front of him, because &quot;you can see 17 slices of pizza here&quot; is not the descriptive effect we want, and because we want to pretend, at least, that the pizza supply is nearly infinite. In fact, we're going to replenish the supply by allowing eaten slices to return to the buffet table (safer in IF than in real life).
+<p>
+<p>To do this, we create one object to stand in for the pizza supply, but whenever the player tries to take it, we give him a different &quot;pizza slice&quot; object instead. Thus:
+<p>
+<blockquote><font color="#000080">&quot;Pizza Prince&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pizza Prince is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The buffet table is a supporter in Pizza Prince.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pizza selection is a fixed in place thing on the buffet table. Understand &quot;slice&quot; as the pizza selection. The description is &quot;They are all cheese-only, and all luke-warm.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about the buffet table:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;On [the buffet table] is [a pizza selection]. [description of the pizza selection][line break]&quot;.
+</font></blockquote><p>
+<p>
+<p>Now we introduce our actual pizza slices, which are retained in a container out of play until they're needed:
+<p>
+<blockquote><font color="#000080">A pizza slice is a kind of thing. 10 pizza slices are in Pizza Limbo. A pizza slice is always edible. [After a fashion, anyway.]
+</font></blockquote><p>
+<p>
+<p>In this example we've set that supply to be artificially small, to make it easier to test what happens when the player reaches the limit; but we could provide many more slices to start with in Pizza Limbo, and the aim in practice would be to pick a number high enough (such as 50 or 100) that the average player will get bored of TAKE PIZZA long before he reaches the limit.
+<p>
+<p>The main thing to be aware of is that objects consume memory in the game file, so creating a large number of pizza slices might bulk the game out. This is more of a concern if we're compiling for the Z-machine than if we're compiling for Glulx.
+<p>
+<p>Whenever the player tries to take the selection, we want him to wind up holding an individual slice instead; but of course we need to check and make sure that he hasn't exhausted the pizza slice supply.
+<p>
+<blockquote><font color="#000080">Instead of taking the pizza selection:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let chosen slice be a random pizza slice in Pizza Limbo;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if chosen slice is nothing: [That is, there were no slices remaining]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[manager refusal]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the chosen slice to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Taken (gingerly).&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say manager refusal:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]'Hey!' barks a hitherto-unseen manager from behind you. 'It's an 'all you can eat' buffet, not an 'all you can stuff down your pants' buffet.'[or]You are conscious of a disapproving huff from the manager, so you refrain.[stopping]&quot;
+</font></blockquote><p>
+<p>
+<p>That's fine for the case where the player is taking a new slice of pizza explicitly, but we need to handle it a little differently if the taking action is generated in response to EAT PIZZA. In that case, we need to take the slice and also change the identity of the noun, because after the implicit take action happens, the game will test whether the player is holding the noun before attempting to eat it. So we need to refocus its attention:
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking the pizza selection:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let chosen slice be a random pizza slice in Pizza Limbo;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if chosen slice is nothing: [That is, there were no slices remaining]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[manager refusal]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the chosen slice to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(helping yourself from the selection)&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the noun is the chosen slice.
+</font></blockquote><p>
+<p>
+<p>And finally, a bit of touch-up:
+<p>
+<blockquote><font color="#000080">Rule for clarifying the parser's choice of the pizza selection while taking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(from the magnificent selection before you)[line break]&quot;
+</font></blockquote><p>
+<p>
+<p>For tidiness, we should probably also return the consumed pizza slices to Pizza Limbo so that they can be re-used later:
+<p>
+<blockquote><font color="#000080">After eating a pizza slice:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the noun to Pizza Limbo;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / get pizza / g / i / get pizza / drop pizza / look / get pizza / g / look / eat pizza / g / g / g / g / get pizza / g / g / g / g / g / g / g / g / g / g / g / g / i / eat pizza / take pizza / g&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc81.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc83.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

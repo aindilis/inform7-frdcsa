@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.3. Changing the status line</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Politics as Usual" -->
+<!-- SEARCH SECTION "Ex 114" -->
+<!-- SEARCH SORT "Ex 008-003-114" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc123.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc125.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.3. Changing the status line</b></td></tr></table><p>
+<p>
+<p>The status line is the black bar along the top of a game being played, which ordinarily displays the current position, score and number of moves taken. Like the command prompt, it is not fixed but results from values which can be changed: the &quot;left hand status line&quot; and &quot;right hand status line&quot;.
+<p>
+<p>The default values are &quot;[the player's surroundings]&quot; for the left hand status line and &quot;[score]/[turn count]&quot; for the right hand status line. Score and turn count are numbers which vary in play (more about scoring later); &quot;[the player's surroundings]&quot; is a text substitution really intended for just this purpose:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>the</b>/--<b> player's surroundings</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_surroundings -->
+
+<p>This text substitution produces a succinct description of where the player is, be this in darkness, in a lighted room or inside an opaque container such as a large packing case. Example:
+<p>
+<blockquote><font color="#000080">now the left hand status line is &quot;You: [the player's surroundings]&quot;;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>These make useful elements to juggle in redesigning the status line, as in the following example:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the left hand status line is
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;[the player's surroundings] / [turn count] / [score]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;Time: [time of day]&quot;.
+</font></blockquote><p>
+<p>
+<p>The text in the right hand status line should be kept no more than 14 letters long, including any spaces. The left hand status line has more leeway, but should still be kept brief.
+<p>
+<a href=doc143.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Awarding points</b></font></a><i> for scoring</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e356"><a href=doc124.html#e356 STYLE="text-decoration: none">*<b><b>Example</b> 114:  Politics as Usual</b></a><br>Have the status line indicate the current region of the map.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose a game with a large map entirely subdivided into regions. We could define:
+<p>
+<blockquote><font color="#000080">&quot;Politics as Usual&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[map region of the location]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Washington is west of Idaho.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Red is a region. Blue is a region. Idaho is in red. Washington is in blue.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;e / w&quot;.
+</font></blockquote><p>
+<p>
+<p>Note that, since regions can be stacked, we technically can be within more than one region at once. In the Port Royal example, for instance, the Tavern region is inside the Inland region. If there is any ambiguity, &quot;the map region of the location&quot; will be construed as &quot;the smallest region that the location belongs to&quot;: so we would see &quot;Tavern&quot; rather than &quot;Inland&quot; in the status bar, when the player was in the Feathers or the Feathers Bedroom.
+<p>
+<p>Some extra finesse would be necessary if the names of map regions were very long or if there were some rooms that were not considered to belong to any region at all.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e388"><a href=ex388.html#e388 STYLE="text-decoration: none">***<b>Example 115:  Centered</b></a><br>Replacing the two-part status line with one that centers only the room name at the top of the screen.<p>
+<p><hr><p><a href=doc123.html STYLE="text-decoration: none">Previous</a> / <a href=doc125.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

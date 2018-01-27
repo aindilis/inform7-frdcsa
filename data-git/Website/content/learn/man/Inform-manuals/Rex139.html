@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.10. Character Emotion</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Ferragamo Again" -->
+<!-- SEARCH SECTION "Ex 170" -->
+<!-- SEARCH SORT "Ex 007-010-170" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc55.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc57.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.10. Character Emotion</b></td></tr></table><p>
+<p>
+<p>In a complex story, characters may evolve strong feelings about the player. Often we want to hint at the character's feelings through gesture and tone of voice - little things woven into dialogue and action sequences that might otherwise be unchanged. <b>Ferragamo Again</b> demonstrates creating phrases to give all our characters different ways to express their irritation at the player.
+<p>
+<p>Then again, sometimes a discussion might produce quite spectacular results if a character is in the wrong mood. <b>Being Peter</b> shows the bare bones of an implementation in which a character's attitude rulebook is consulted to determine what her response will be - allowing for arbitrarily complicated outcomes.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e139"><a href=Rdoc56.html#e139 STYLE="text-decoration: none">**<b><b>Example</b> 170:  Ferragamo Again</b></a><br>Using the same phrase to produce different results with different characters.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Here we use phrases that match individual items where possible, and the general kind otherwise:
+<p>
+<blockquote><font color="#000080">&quot;Ferragamo Again&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Break Room is a room. Vanessa, Tina, and Lisa are women in the Break Room. Mark and Holman are men in the Break Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the commands &quot;ask&quot; and &quot;tell&quot; and &quot;answer&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;talk about [any subject]&quot; as talking about. Talking about is an action applying to one visible thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;talk about [text]&quot; as talking randomly about. Talking randomly about is an action applying to one topic. Carry out talking randomly about: say &quot;Mostly you're interested in [the list of subjects].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out talking about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the previous subject is the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report talking about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You chat for a while about [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A subject is a kind of thing. Assyrian vowel sounds, designer handbags, and instant run-off voting are subjects. Understand &quot;linguistics&quot; and &quot;mute&quot; and &quot;stop&quot; as sounds. Understand &quot;prada&quot; and &quot;tods&quot; and &quot;coach&quot; and &quot;carmen marc valvo&quot; as designer handbags. Understand &quot;reform&quot; and &quot;election&quot; and &quot;election fraud&quot; and &quot;two-party system&quot; and &quot;Diebold&quot; as instant run-off voting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (annoyed-person - a person) gestures in irritation:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The annoyed-person] sighs heavily. [run paragraph on]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (annoyed-person - Vanessa) gestures in irritation:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The annoyed-person] takes off her glasses and polishes them on her sleeve. [run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (annoyed-person - Holman) gestures in irritation:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Holman bobs his head. [run paragraph on]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The previous subject is a subject that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of talking about something for more than one turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is the previous subject, say &quot;[a random visible person who is not the player gestures in irritation]Maybe you should let this one go.[line break][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;talk about chocolate / talk about vowel sounds / g / talk about handbags / talk about prada / talk about tods&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e285"><a href=Rex285.html#e285 STYLE="text-decoration: none">*<b>Example 388:  Being Peter</b></a><br>A set of rules determining the attitude a character will take when asked about certain topics.<p>
+<p><hr><p><a href=Rdoc55.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc57.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

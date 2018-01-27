@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.2. Instead rules</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bad Hair Day" -->
+<!-- SEARCH SECTION "Ex 85" -->
+<!-- SEARCH SORT "Ex 007-002-085" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc103.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc105.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.2. Instead rules</b></td></tr></table><p>
+<p>
+<p>An action is ordinarily handled by running it through Inform's extensive rulebooks of what might be called normal behaviour. An action such as &quot;taking the napkin&quot;, for instance, will be run through numerous checks to see if it is physically reasonable, and then provided all is well, the napkin will be moved into the possession of the player.
+<p>
+<p>Instead, though, we can bypass the rules to do with an action and do something else:
+<p>
+<blockquote><font color="#000080">Instead of eating the napkin: say &quot;Why not wait for the actual dinner to arrive?&quot;
+</font></blockquote><p>
+<p>
+<p>This is an example of a &quot;rule&quot;: a set of circumstances followed by a list of instructions. When those circumstances apply, the instructions are carried out. In the case of an &quot;instead&quot; rule, after this is done the action is immediately ended (and counts as a failure, since the original intention has been thwarted).
+<p>
+<p>A friendly alternative can be used when there is only a single instruction, as here: in such rules the colon can be replaced with a comma. Thus:
+<p>
+<blockquote><font color="#000080">Instead of eating the napkin, say &quot;Why not wait for the actual dinner to arrive?&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e177"><a href=ex177.html#e177 STYLE="text-decoration: none">*<b>Example 84:  Grilling</b></a><br>A grill, from which the player is not allowed to take anything lest he burn himself.<p>
+<!-- EXAMPLE START -->
+<a name="e293"><a href=doc104.html#e293 STYLE="text-decoration: none">*<b><b>Example</b> 85:  Bad Hair Day</b></a><br>Change the player's appearance in response to EXAMINE ME.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Bad Hair Day&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Foyer is a room. &quot;A mirror hangs over the table, tempting you to check your appearance before going in with all the others.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Oh, stop fussing. You look fine.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine me&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc103.html STYLE="text-decoration: none">Previous</a> / <a href=doc105.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.3. Clothing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Some Assembly Required" -->
+<!-- SEARCH SECTION "Ex 319" -->
+<!-- SEARCH SORT "Ex 009-003-319" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc69.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc71.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.3. Clothing</b></td></tr></table><p>
+<p>
+<p>A person can wear any (portable) thing which has the &quot;wearable&quot; property. (This property seldom needs to be quoted because it is deduced automatically from sentences like &quot;Trevor wears a red hat.&quot;)
+<p>
+<p>In most traditional IF, clothing is only used when it is exceptional in some way. That is, we ignore the three to eight different garments most people are wearing at any given time - the everyday clothes which people wear without thinking about them - and only simulate the unexpected extras: a borrowed jaunty red hat, a radiation-proof space suit, and so on.
+<p>
+<p>These unusual garments turn up only occasionally in play and usually one at a time, so Inform does not normally provide rules to restrict how much or little is worn, or in what unlikely combinations. <b>Get Me to the Church on Time</b> categorises clothing by body area (trousers for lower body, shirts for upper); <b>Bogart</b> by layer, distinguishing underwear from outer garments. <b>What Not To Wear</b> combines both into a general-purpose system adequate for most kinds of clothing situations.
+<p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for a simple mirror implementation, which could be adapted to reflect what the player is currently wearing</i><p><p>
+<p><b>Hayes Code</b> is a somewhat stripped down version.
+<p>
+<p>Clothes are normally single things which have no function other than display and concealment, but <b>Being Prepared</b> gives them pockets which act as containers, and <b>Some Assembly Required</b> allows clothes to be stitched together from pieces of cloth.
+<p>
+<p><hr><p>
+<a name="e112"><a href=Rex112.html#e112 STYLE="text-decoration: none">***<b>Example 44:  Get Me to the Church on Time</b></a><br>Using kinds of clothing to prevent the player from wearing several pairs of trousers at the same time.<p>
+<a name="e85"><a href=Rex85.html#e85 STYLE="text-decoration: none">***<b>Example 234:  Bogart</b></a><br>Clothing for the player that layers, so that items cannot be taken off in the wrong order, and the player's inventory lists only the clothing that is currently visible.<p>
+<a name="e426"><a href=Rex426.html#e426 STYLE="text-decoration: none">**<b>Example 242:  What Not To Wear</b></a><br>A general-purpose clothing system that handles a variety of different clothing items layered in different combinations over different areas of the body.<p>
+<a name="e183"><a href=Rex183.html#e183 STYLE="text-decoration: none">*<b>Example 325:  Hays Code</b></a><br>Clark Gable in a pin-striped suit and a pink thong.<p>
+<a name="e298"><a href=Rex298.html#e298 STYLE="text-decoration: none">*<b>Example 54:  Being Prepared</b></a><br>A kind for jackets, which always includes a container called a pocket.<p>
+<!-- EXAMPLE START -->
+<a name="e341"><a href=Rdoc70.html#e341 STYLE="text-decoration: none">*<b><b>Example</b> 319:  Some Assembly Required</b></a><br>Building different styles of shirt from component sleeves and collars.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We now have the mechanisms in place to do some fairly sophisticated renaming of objects. For instance:
+<p>
+<blockquote><font color="#000080">&quot;Some Assembly Required&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Garment type is a kind of value. The garment types are vest, t-shirt, polo shirt, mandarin blouse, button-down, shell, experiment.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;assign identities.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins: assign identities.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To assign identities:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through torsos:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reassess item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To reassess (item - a torso):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things which are part of the item is 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now garment type of the item is vest;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if exactly two short sleeves are part of the item:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if a collar is part of the item,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now garment type of the item is polo shirt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise now garment type of the item is t-shirt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if exactly two long sleeves are part of the item:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if a collar is part of the item,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now garment type of the item is button-down;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise now garment type of the item is mandarin blouse;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a collar is part of the item and the number of sleeves which are part of the item is 0, now garment type of the item is shell;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise now garment type of the item is experiment.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before cutting something which is worn by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try taking off the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of cutting something when something is part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You cut up [the noun], snipping off [a list of things which are part of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every thing which is part of the noun is in the holder of the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of cutting something which is part of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You carefully snip [the noun] free.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player carries the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the name of a torso: say &quot;[garment type]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A torso is a kind of thing. A torso is always wearable. Understand &quot;shirt&quot; or &quot;blouse&quot; as a torso. A torso has a garment type. Understand the garment type property as describing a torso. A sleeve is a kind of thing. A short sleeve is a kind of sleeve. A long sleeve is a kind of sleeve. A collar is a kind of thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;sew [something] to [something]&quot; as affixing it to. Affixing it to is an action applying to two things. Carry out affixing something to something: now the noun is part of the second noun. Report affixing something to something: assign identities; say &quot;You sew [the noun] on, creating [a second noun].&quot; Understand the command &quot;stitch&quot; as &quot;sew&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of affixing something to something when the second noun is worn: say &quot;You're wearing [the second noun]!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of affixing a torso to something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is a torso, say &quot;Couture for Siamese twins is a daring field, but a bit of a niche market.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise try affixing the second noun to the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of affixing a sleeve to something when at least two sleeves are part of the second noun: say &quot;[The second noun] already sports [a list of sleeves that are part of the second noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of affixing a collar to something when a collar is part of the second noun: say &quot;[The second noun] already sports [a list of collars that are part of the second noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining something when something is part of the noun: say &quot;Stitched to [the noun] [is-are a list of things which are part of the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>Here is where the issue of precedence arises. We want to encourage Inform to select a cuttable object that is part of something else, rather than one of the spares:
+<p>
+<blockquote><font color="#000080">Definition: a thing is removable if it is part of something. Understand &quot;cut [removable thing]&quot; as cutting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Boutique is a room. &quot;Still festively strewn with the confetti and streamers of the Grand Opening party, and still almost totally customer-free.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a torso. The player carries three short sleeves. The player carries two long sleeves. The player carries two collars.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;sew collar to shirt / i / sew short sleeve to shirt / g / i / x polo shirt / cut collar / i / cut shirt / sew long sleeve to shirt / i / sew long sleeve to shirt / i / sew collar to shirt / g / i / wear button-down&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc69.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc71.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.11. Indirect relations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Indirect relations" -->
+<!-- SEARCH SECTION "13.11" -->
+<!-- SEARCH SORT "013-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc217.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc219.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.11. Indirect relations</b></td></tr></table><p>
+<p>
+<p>We have already seen, in the chapter on Descriptions which is a forerunner of this one, that Inform provides not only &quot;adjacent&quot; as a way of seeing if one room is directly connected to another, but also &quot;the best route from A to B&quot;, which allows us to see if any sequence of moves connects them.
+<p>
+<p>Something similar - in fact, simpler - is allowed for any relation between objects. Suppose we would like to go sledging: we can go downhill, but not up. Some quite distant places may be reachable, while others close by may not be, even if lower than us, because they would involve climbing again at some point. The following would implement this:
+<p>
+<blockquote><font color="#000080">Overlooking relates various rooms to various rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to overlook (it overlooks, they overlook, it overlooked, it is overlooked, it is overlooking) implies the overlooking relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Garden overlooks the Shrubbery. The Folly overlooks the Garden. The Shrubbery overlooks the Sundial Plot. The Old Ice House overlooks the Garden.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;This wintry vantage point overlooks [the list of rooms overlooked by the location].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the way be the next step via the overlooking relation from the location to the Sundial Plot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the way is a room, say &quot;To sledge downhill to the Sundial, aim for [the way].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;It is not possible to sledge downhill to the Sundial.&quot;
+</font></blockquote><p>
+<p>
+<p>Here we're making use of:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>next step via </b>(relation of values to values)<b> from </b>(object)<b> to </b>(object)<b></b> ... <i>object</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_nextstep -->
+
+<p>This phrase tries to find a shortest route between the two given endpoints, using the given relation of objects to determine single steps. Example:
+<p>
+<blockquote><font color="#000080">next step via the overlooking relation from the Folly to the Chinese Lake
+</font></blockquote><p>
+<p>
+<p>The result is the special object value &quot;nothing&quot; if the two endpoints are the same or if no route exists.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of steps via </b>(relation of values to values)<b> from </b>(object)<b> to </b>(object)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numbersteps -->
+
+<p>This phrase tries to find the length of a shortest route between the two given endpoints, using the given relation of objects to determine single steps. Example:
+<p>
+<blockquote><font color="#000080">number of steps via the overlooking relation from the Folly to the Chinese Lake
+</font></blockquote><p>
+<p>
+<p>The result is 0 if the two endpoints are the same, or -1 if no route exists.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Another example would be the &quot;six degrees of separation&quot; game, where it is claimed that any two people on Earth are connected by a sequence of up to six acquaintances. In an Inform implementation, we might talk about &quot;the next step via the friendship relation from George Bush to Saddam Hussein&quot;, for instance, a phrase likely to evaluate to Donald Rumsfeld, and then
+<p>
+<blockquote><font color="#000080">the number of steps via the friendship relation from George Bush to Saddam Hussein
+</font></blockquote><p>
+<p>
+<p>would be... but that would be telling.
+<p>
+<p>As with route-finding through the map, finding &quot;the next step via&quot; a relation can be slow. For instance, suppose we have dozens of articles of clothing all partially revealing each other, connected by two relations - overlying and underlying. Then &quot;the next step via&quot; these relations allows us to establish what can be worn on top of what else. If we need to calculate this often, and there are enormous wardrobes of clothes to choose from, speed starts to matter.
+<p>
+<p>Once again there is a choice of algorithms: &quot;fast&quot; and &quot;slow&quot;, where &quot;fast&quot; needs much more memory. To make route-finding for a given relation &quot;fast&quot;, we have to declare it that way:
+<p>
+<blockquote><font color="#000080">Overlying relates various garments to various garments with fast route-finding.
+<br>Overlapping relates various garments to each other with fast route-finding.
+</font></blockquote><p>
+<p>
+<p>Otherwise, the &quot;slow&quot; method will be used.
+<p>
+<p>This &quot;with fast route-finding&quot; note can only be added to various-to-various relations. (Although route-finding through various-to-one and one-to-various relations is fully supported, it exploits the relative simplicity of these problems to use a more efficient algorithm than either &quot;fast&quot; or &quot;slow&quot;.)
+<p>
+<p>(- See Adjacent rooms and routes through the map for route-finding through the map rather than a relation.)
+<p>
+<p><hr><p>
+<a name="e45"><a href=ex45.html#e45 STYLE="text-decoration: none">***<b>Example 235:  The Problem of Edith</b></a><br>A conversation in which the main character tries to build logical connections between what the player is saying now and what went immediately before.<p>
+<p><hr><p><a href=doc217.html STYLE="text-decoration: none">Previous</a> / <a href=doc219.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

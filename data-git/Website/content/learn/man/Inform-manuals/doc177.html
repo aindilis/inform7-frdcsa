@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.10. Repeat</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Repeat" -->
+<!-- SEARCH SECTION "11.10" -->
+<!-- SEARCH SORT "011-010-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc176.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc178.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.10. Repeat</b></td></tr></table><p>
+<p>
+<p>The other kind of loop in Inform is &quot;repeat&quot;. The trouble with &quot;while&quot; is that it's not obvious at a glance when or whether the loop will finish, and nor is there any book-keeping to measure progress. A &quot;repeat&quot; loop is much more predictable, and is more or less certain to finish.
+<p>
+<p>There are several forms of &quot;repeat&quot;, of which the simplest is similar to the old FOR/NEXT loop from the home-computer programming language BASIC, for those with long memories:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>repeat with </b>(a name not so far used)<b> running from </b>(arithmetic value)<b> to </b>(arithmetic value)<b></b><br><i>or:</i> <b>repeat with </b>(a name not so far used)<b> running from </b>(enumerated value)<b> to </b>(enumerated value)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_repeat -->
+
+<p>This phrase causes the block of phrases following it to be repeated once for each value in the given range, storing that value in the named variable. (The variable exists only temporarily, within the repetition.) Example:
+<p>
+<blockquote><font color="#000080">repeat with counter running from 1 to 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>This, and runs through the given phrases ten times. Within those phrases, a special value called &quot;counter&quot; has the value 1 the first time through, then the value 2, then 3 and so on up to 10. (It can of course be called whatever we like: this is only an example.) The range can be from any kind where ranges make sense - anything on which arithmetic can be done, so for instance
+<p>
+<blockquote><font color="#000080">repeat with moment running from 4 PM to 4:07 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>and also any enumeration:
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, orange, yellow, green, blue, indigo and violet.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">...
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with hue running from orange to indigo:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We are allowed to &quot;nest&quot; loops, that is, to put one inside another.
+<p>
+<blockquote><font color="#000080">To plot a grid with size (S - a number):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with x running from 1 to S:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Row [x]:&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with y running from 1 to S:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; [y]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.&quot;
+</font></blockquote><p>
+<p>
+<p>If we then write
+<p>
+<blockquote><font color="#000080">plot a grid with size 5;
+</font></blockquote><p>
+<p>
+<p>then the result is
+<p>
+<blockquote><font color="#000080">Row 1: 1 2 3 4 5.
+<br>Row 2: 1 2 3 4 5.
+<br>Row 3: 1 2 3 4 5.
+<br>Row 4: 1 2 3 4 5.
+<br>Row 5: 1 2 3 4 5.
+</font></blockquote><p>
+<p>
+<p>Thus the innermost phrase, the say which mentions &quot;y&quot;, happens 25 times.
+<p>
+<p>Whenever dealing with numbers in Inform we may need to remember that if the Settings for the project are set to use the Z-machine, the range is restricted to -32768 up to 32767. Repeating with a counter up to exactly 32767 is hazardous, because the counter can never break through this barrier: it's infinity, so far as Inform is concerned, and that can cause the repetitions to go on forever. (On Glulx, numbers can be very much larger.)
+<p>
+<p><hr><p>
+<a name="e228"><a href=ex228.html#e228 STYLE="text-decoration: none">*<b>Example 175: Wonka's Revenge</b></a><br>A lottery drum which redistributes the tickets inside whenever the player spins it.<p>
+<p><hr><p><a href=doc176.html STYLE="text-decoration: none">Previous</a> / <a href=doc178.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

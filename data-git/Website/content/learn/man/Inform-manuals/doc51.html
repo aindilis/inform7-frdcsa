@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.24. Concealment</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Concealment" -->
+<!-- SEARCH SECTION "3.24" -->
+<!-- SEARCH SORT "003-024-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc50.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc52.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.24. Concealment</b></td></tr></table><p>
+<p>
+<p>Though realism can become tiresome in interactive fiction, there are times when we cannot go along with Inform's normal assumption that all of a person's possessions are visible to everybody else. People are not like containers, which either show all of their holdings or not, according to whether they are open or transparent. If a man is carrying a fishing rod and a wallet, one will be on open show, the other not. Some clothing is outwardly visible, but not all.
+<p>
+<p>Whether or not something is concealed is not like the either/or properties we have seen so far - such as being &quot;open&quot; or &quot;closed&quot; - because it is not really a property of the thing itself, but depends on the habitual behaviour of its current owner. To talk about behaviour we have to use sentences of a kind not seen so far, and which will not fully be explained for some chapters to come.
+<p>But straightforward cases are easy to write, if only by imitating the following examples.
+<p>
+<p>Here we make the Cloaked Villain invariably conceal anything she is holding or wearing:
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of the Cloaked Villain: yes.
+</font></blockquote><p>
+<p>
+<p>At which point we think about it more carefully, and then rewrite:
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of the Cloaked Villain: if the particular possession is the sable cloak, no; otherwise yes.
+</font></blockquote><p>
+<p>
+<p>Parts are treated exactly as if clothes or items being held, and the following will make the face and inscription on a coin invisible unless the player is holding it - the idea being that they are too small to be seen from farther away.
+<p>
+<blockquote><font color="#000080">The coin is in the Roman Villa. The face and inscription are parts of the coin. Rule for deciding the concealed possessions of the coin: if the coin is carried, no; otherwise yes.
+</font></blockquote><p>
+<p>
+<p>There is also an either/or property called &quot;described&quot;/&quot;undescribed&quot;, intended to be used only as a last resort, but which has the ability to hide something from room descriptions. This not really hiding: the idea is that &quot;undescribed&quot; should be used only for cases where some other text already reveals the item, or where its presence is implicit. Even then, it should only be used when the item is intended to be taken or moved by the player at some point - if the item isn't intended to move, it's much better to make it &quot;scenery&quot;. (There's only one commonly-found example - the player's own body, the &quot;yourself&quot;, is undescribed.)
+<p>
+<p>Note that the &quot;undescribed&quot; property is automatically removed from anything carried by, worn by or part of the player, even indirectly; and that nothing on top of an &quot;undescribed&quot; supporter will be visible in a room description, even if it itself is &quot;described&quot;. (Scenery supporters don't suffer from that restriction, which is one reason scenery is a better option when possible.)
+<p>
+<p><hr><p>
+<a name="e180"><a href=ex180.html#e180 STYLE="text-decoration: none">***<b>Example 36:  Search and Seizure</b></a><br>A smuggler who has items, some of which are hidden.<p>
+<p><hr><p><a href=doc50.html STYLE="text-decoration: none">Previous</a> / <a href=doc52.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

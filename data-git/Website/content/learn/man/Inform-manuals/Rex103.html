@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.1. Food</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Delicious, Delicious Rocks" -->
+<!-- SEARCH SECTION "Ex 196" -->
+<!-- SEARCH SORT "Ex 009-001-196" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc67.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc69.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.1. Food</b></td></tr></table><p>
+<p>
+<p>Inform provides an either/or property called &quot;edible&quot; and action, &quot;eating&quot;, for consuming edible things:
+<p>
+<blockquote><font color="#000080">The lardy cake is edible. After eating the lardy cake, say &quot;Sticky but delicious.&quot;
+</font></blockquote><p>
+<p>
+<p>One of Inform's rules is that a person can only eat what he or she is holding - normally realistic, but it does prevent, say, eating a cherry off the tree. A procedural rule can override this: see <b>Lollipop Guild</b>. <b>Delicious, Delicious Rocks</b>, on the other hand, adds a sanity check which prevents the player from automatically taking inedible things only to be told they can't be eaten.
+<p>
+<p>Inform does not normally simulate taste or digestion, but to provide foods with a range of flavours, see <b>Would you...?</b>; to make eating different foods affect the player differently, see <b>Stone</b>, or for the extreme case of poisoning foods, <b>Candy</b>. In <b>MRE</b>, hunger causes the player problems unless he regularly finds and eats food.
+<p>
+<a href=Rdoc81.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liquids</b></font></a><i> for things to drink</i><p><p>
+<a href=Rdoc82.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Dispensers and Supplies of Small Objects</b></font></a><i> for a pizza buffet table from which the player may take all the slices he wants</i><p><p>
+<p><hr><p>
+<a name="e225"><a href=Rex225.html#e225 STYLE="text-decoration: none">***<b>Example 365:  Lollipop Guild</b></a><br>Overriding the rules to allow the player to eat something without first taking it.<p>
+<!-- EXAMPLE START -->
+<a name="e103"><a href=Rdoc68.html#e103 STYLE="text-decoration: none">***<b><b>Example</b> 196:  Delicious, Delicious Rocks</b></a><br>Adding a "sanity-check" stage to decide whether an action makes any sense, which occurs before any before rules, implicit taking, or check rules.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>In some cases, we may want to add new stages to action processing. One possibility is a stage where we check the sanity of what the player is trying to do before executing any of the other commands; so that we avoid, for instance
+<p>
+<blockquote><font color="#000080">>EAT ROCK
+<br>(first taking the rock)
+<br>That's plainly inedible.
+</font></blockquote><p>
+<p>
+<p>Here is how we might insert such a stage in our action processing, using rulebook manipulation.
+<p>
+<blockquote><font color="#000080"> &quot;Delicious, Delicious Rocks&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sanity-check rules are a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the sanity-check stage rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;abide by the sanity-check rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sanity-check stage rule is listed after the before stage rule  in the action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Candyland is a room. The lollipop tree is an edible thing in Candyland. The genuine rock is a thing in Candyland.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Sanity-check eating an inedible thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your digestion is so delicate -- you're sure [the noun] wouldn't agree with you.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;eat lollipop / eat rock&quot;.
+</font></blockquote><p>
+<p>
+<p>Notice that now Inform does not try taking the rock before rejecting the player's attempt to eat it.
+<p>
+<p>It is of course possible to get the same effect with
+<p>
+<blockquote><font color="#000080">Before eating an inedible thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your digestion is so delicate -- you're sure [the noun] wouldn't agree with you.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>...and in a small game with few rules, there's not much reason to add an extra stage. The ability to modify the stages of action processing becomes useful when we have a fairly large game with sophisticated modeling and want to be sure that some kinds of message (such as the sanity-check) are always handled before other things that we might be doing at the before stage (such as generating implicit actions like opening doors before going through them).
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e176"><a href=Rex176.html#e176 STYLE="text-decoration: none">*<b>Example 46:  Would you...?</b></a><br>Adding new properties to objects, and checking for their presence.<p>
+<a name="e358"><a href=Rex358.html#e358 STYLE="text-decoration: none">*<b>Example 376:  Stone</b></a><br>A soup to which the player can add ingredients, which will have different effects when the player eats.<p>
+<a name="e62"><a href=Rex62.html#e62 STYLE="text-decoration: none">*<b>Example 133:  Candy</b></a><br>One of several identical candies chosen at the start of play to be poisonous.<p>
+<a name="e252"><a href=Rex252.html#e252 STYLE="text-decoration: none">*<b>Example 143:  MRE</b></a><br>Hunger that eventually kills the player, and foodstuffs that can delay the inevitable by different amounts of time.<p>
+<p><hr><p><a href=Rdoc67.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc69.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 20.8. Sorting, reversing and rotating lists</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Sorting, reversing and rotating lists" -->
+<!-- SEARCH SECTION "20.8" -->
+<!-- SEARCH SORT "020-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc355.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc357.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>20.8. Sorting, reversing and rotating lists</b></td></tr></table><p>
+<p>
+<p>Any list L can be reversed:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>reverse </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_reverselist -->
+
+<p>This phrase puts the list in reverse order. The old entry 1 becomes the new last entry, and so on: reversing an empty list or a list containing only one entry leaves it unchanged. Example:
+<p>
+<blockquote><font color="#000080">let L be {11, 12, 14, 15, 16, 17};
+<br>reverse L;
+</font></blockquote><p>
+<p>
+<p>results in L being {17, 16, 15, 14, 12, 11}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>And any list can similarly be sorted:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>sort </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_sortlist -->
+
+<p>This phrase puts the list into ascending order. Example:
+<p>
+<blockquote><font color="#000080">let L be {6 PM, 11:13 AM, 4:21 PM, 9:01 AM};
+<br>sort L;
+</font></blockquote><p>
+<p>
+<p>results in L being {9:01 AM, 11:13 AM, 4:21 PM, 6 PM}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>sort </b>(list of values)<b> in reverse order</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_sortlistreverse -->
+
+<p>This phrase puts the list into descending order. Example:
+<p>
+<blockquote><font color="#000080">let L be {6 PM, 11:13 AM, 4:21 PM, 9:01 AM};
+<br>sort L in reverse order;
+</font></blockquote><p>
+<p>
+<p>results in L being {6 PM, 4:21 PM, 11:13 AM, 9:01 AM}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>sort </b>(list of values)<b> in random order</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_sortlistrandom -->
+
+<p>This phrase puts the list into a uniformly random order, shuffling it as if it were a pack of cards. Example:
+<p>
+<blockquote><font color="#000080">let L be {1, 2, 3, 4, 5, 6};
+<br>sort L in random order;
+</font></blockquote><p>
+<p>
+<p>might result in L being {3, 1, 5, 6, 4, 2}. Or any of 719 other arrangements, including being left as it was.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Lists of objects can also be sorted in property value order. For instance,
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>sort </b>(list of objects)<b> in </b>(property)<b> order</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_sortlistproperty -->
+
+<p>This phrase puts the list into ascending order of the values of the given property for the items in the list; this is only allowed if all of those values do have the property in question. Example:
+<p>
+<blockquote><font color="#000080">let L be the list of people;
+<br>sort L in carrying capacity order;
+</font></blockquote><p>
+<p>
+<p>would arrange people with weaklings first, titans last.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>sort </b>(list of objects)<b> in reverse </b>(property)<b> order</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_sortlistpropertyreverse -->
+
+<p>This phrase puts the list into descending order of the values of the given property for the items in the list; this is only allowed if all of those values do have the property in question. Example:
+<p>
+<blockquote><font color="#000080">let L be the list of people;
+<br>sort L in reverse carrying capacity order;
+</font></blockquote><p>
+<p>
+<p>would arrange people with titans first, weaklings last.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Rotating a list means moving all of its entries along by one place, and then moving the one on the end back to the start. For instance, if L is {1, 2, 3, 4}, then
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>rotate </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rotatelist -->
+
+<p>This phrase shuffles the entries of the list forwards (to the right) by one place, so that the 1st becomes 2nd, the 2nd becomes 3rd, and so on until the last, which becomes the new first entry. Example:
+<p>
+<blockquote><font color="#000080">let L be { &quot;cow&quot;, &quot;heifer&quot;, &quot;bullock&quot; };
+<br>rotate L;
+</font></blockquote><p>
+<p>
+<p>results in L being { &quot;bullock&quot;, &quot;cow&quot;, &quot;heifer&quot; }.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>rotate </b>(list of values)<b> backwards</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rotatelistback -->
+
+<p>This phrase shuffles the entries of the list backwards (to the left) by one place, so that the 3rd becomes 2nd, the 2nd becomes 1st, and so on; the previous 1st entry becomes the new last entry. Example:
+<p>
+<blockquote><font color="#000080">let L be { &quot;cow&quot;, &quot;heifer&quot;, &quot;bullock&quot; };
+<br>rotate L backwards;
+</font></blockquote><p>
+<p>
+<p>results in L being { &quot;heifer&quot;, &quot;bullock&quot;, &quot;cow&quot;}. (This achieves the same effect as &quot;reverse L; rotate L; reverse L;&quot; but is a little faster, and a lot less effort to read.)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc355.html STYLE="text-decoration: none">Previous</a> / <a href=doc357.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

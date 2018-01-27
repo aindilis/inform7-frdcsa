@@ -1,0 +1,281 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.15. Phrases concerning rules</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Solitude" -->
+<!-- SEARCH SECTION "Ex 394" -->
+<!-- SEARCH SORT "Ex 018-015-394" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc334.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc336.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.15. Phrases concerning rules</b></td></tr></table><p>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>This section and the previous one are about a feature which is being withdrawn from Inform in future. Experience shows there are equally good ways to achieve the same ends without needing procedural rules. As elegant as they were, they often confused users, and they were expensive at run-time (that is, they made everything work more slowly). Withdrawing them from Inform will make it possible to make more efficient story files, and will simplify the language.
+<p>
+<p>The &quot;ignore&quot; phrase is only one of a suite, <b>which should only be used in procedural rules</b>. The full list is:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>ignore </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_ignore_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. It causes the named rule to be ignored (skipped over without producing a result) within the scope of the current &quot;follow&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>reinstate </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_reinstate_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Its only effect is to reverse the effect of any &quot;ignore&quot; phrase affecting the rule named.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>reject the result of </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_reject_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. It causes the named rule to used, but to have its result ignored, within the scope of the current &quot;follow&quot;. In other words, if the rule succeeds or fails then this is suppressed and its rulebook continues.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>accept the result of </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_accept_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Its only effect is to reverse the effect of any &quot;reject the result of&quot; phrase affecting the rule named.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>substitute </b>(rule)<b> for </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_substitute_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Whenever the second rule is to be invoked - from any rulebook, or as a result of any &quot;follow&quot; instruction - invoke the first one instead.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>restore the original </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_restore_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. Its only effect is to reverse the effect of any &quot;substitute ... for ...&quot; phrase affecting the rule named.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>move </b>(rule)<b> to before </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_movebefore_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. This causes the first rule to be ignored whenever it turns up in the ordinary way, but to be invoked either immediately before the second rule whenever that second rule is invoked. In effect, it cuts out the first rule from wherever it was, and glues it onto the second. Note that there is no obligation for the first rule to begin in the same rulebook(s) as the second, so this can be used to slot in a wholly new rule, perhaps only if certain circumstances hold.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>move </b>(rule)<b> to after </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_moveafter_dep -->
+
+<p>This phrase can only be used in procedural rules, which are now deprecated. This causes the first rule to be ignored whenever it turns up in the ordinary way, but to be invoked either immediately after the second rule whenever that second rule is invoked. In effect, it cuts out the first rule from wherever it was, and glues it onto the second. Note that there is no obligation for the first rule to begin in the same rulebook(s) as the second, so this can be used to slot in a wholly new rule, perhaps only if certain circumstances hold.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>These rule-changing instructions allow apparently casual sentences to wreak havoc with the model world. This, for instance, is quite the recipe for mayhem and perplexity:
+<p>
+<blockquote><font color="#000080">A procedural rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;reject the result of the before rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the after rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the after rules to before the before rules.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e226"><a href=ex226.html#e226 STYLE="text-decoration: none">*<b>Example 391:  Uptempo</b></a><br>Adjust time advancement so the game clock moves fifteen minutes each turn.<p>
+<a name="e164"><a href=ex164.html#e164 STYLE="text-decoration: none">**<b>Example 392: Lethal Concentration 1</b></a><br>A poisonous gas that spreads from room to room, incapacitating or killing the player when it reaches sufficient levels.<p>
+<a name="e22"><a href=ex22.html#e22 STYLE="text-decoration: none">**<b>Example 393:  Swigmore U.</b></a><br>Adding a new kind of supporter called a perch, where everything dropped lands on the floor.<p>
+<!-- EXAMPLE START -->
+<a name="e259"><a href=doc335.html#e259 STYLE="text-decoration: none">**<b><b>Example</b> 394:  Solitude</b></a><br>Novice mode that prefaces every prompt with a list of possible commands the player could try, and highlights every important word used, to alert players to interactive items in the scenery.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Observation of novice IF players suggests that they often have a hard time figuring out how to get started, especially if they are encountering the game in a context where they don't have time to settle in and read instructions. Here we provide some training wheels to help them learn to communicate.
+<p>
+<p>This is divided into several parts. The first part is the system of rules for general guidance, which could be excerpted and used anywhere. The second part is a scenario using these rules.
+<p>
+<blockquote><font color="#000080">&quot;Solitude&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Part 1 - General Rules
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Have you played interactive fiction before? >&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now novice mode is whether or not the player consents.
+</font></blockquote><p>
+<p>
+<p>The rationale for asking the question this way, and not another, is that novices asked whether they would like instructions very often say no, even if they need them.
+<p>
+<blockquote><font color="#000080">Novice mode is a truth state that varies. Novice mode is true.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Stopping novice mode is an action out of world.
+<br>Starting novice mode is an action out of world.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;novice mode off&quot; or &quot;novice off&quot; as stopping novice mode.
+<br>Understand &quot;novice mode on&quot; or &quot;novice on&quot; as starting novice mode.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out stopping novice mode: now novice mode is false.
+<br>Carry out starting novice mode: now novice mode is true.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report stopping novice mode: say &quot;Novice mode is now off.&quot;
+<br>Report starting novice mode: say &quot;Novice mode is now on.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before reading a command when novice mode is true:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]Some options to try:[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the novice suggestion rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The novice suggestion rules is a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he look rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if not looking and not going, say &quot;  [bold type]look[roman type]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he check inventory rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries something and we are not taking inventory, say &quot;  [bold type]inventory[roman type] (I)&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he put things on rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries something and a free-standing supporter is relevant, say &quot;  [bold type]put[roman type] something [bold type]on[roman type] [the list of relevant supporters]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he take things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a gettable thing is relevant, say &quot;  [bold type]take[roman type] [the list of gettable relevant things]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he examine things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if an unexamined thing is relevant, say &quot;  [bold type]examine[roman type] (X) [the list of unexamined relevant things]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he enter things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a relevant thing is worth entering, say &quot;  [bold type]enter[roman type] [the list of worth entering relevant things], or [bold type]get out[roman type]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he open things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if an unlocked openable thing is relevant, say &quot;  [bold type]open[roman type] or [bold type]close[roman type] [the list of unlocked openable relevant things]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he lock things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a closed lockable thing is relevant, say &quot;  [bold type]lock[roman type] or [bold type]unlock[roman type] [the list of closed lockable relevant things]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he eat things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries an edible relevant thing, say &quot;  [bold type]eat[roman type] [the list of edible relevant things carried by the player]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he wear things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries a wearable relevant thing, say &quot;  [bold type]wear[roman type] [the list of wearable relevant things carried by the player]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he turn things on rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a device is relevant, say &quot;  [bold type]turn on[roman type] or [bold type]turn off[roman type] [the list of relevant devices]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he go places rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a room is adjacent, say &quot;  [bold type]go[roman type][exit list][if in darkness] or try other directions in the dark[otherwise]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he enter doors rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if an open door is relevant, say &quot;  [bold type]go through[roman type] [the list of relevant open doors]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he interact with people rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if another person is relevant, say &quot;  [bold type]kiss[roman type] or [bold type]wake[roman type] [the list of relevant other people][if the player carries something], or [bold type]give[roman type] things [bold type]to[roman type] someone[end if]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he ask for help rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;  [bold type]help[roman type] to see a more complete set of instructions&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A novice suggestion rule (this is the suggestion that he turn off help rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;  [bold type]novice mode off[roman type] to turn off this guidance&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Last novice suggestion rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]&quot;.
+</font></blockquote><p>
+<p>
+<p>The suggestion about asking for help is no good unless we provide some. This might take any of a number of forms, but for the sake of example we'll use an easy way out:
+<p>
+<blockquote><font color="#000080">Include Basic Screen Effects by Emily Short. Include Menus by Emily Short. Include Basic Help Menu by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After taking inventory when novice mode is true: say &quot;To get rid of any of these objects, [bold type]drop[roman type] it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be examined or unexamined. Carry out examining something: now the noun is examined.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be seen or unseen. A thing is usually unseen.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is relevant if it is seen and it is visible. Before printing the name of something (called the target): now the target is seen; if novice mode is true, say &quot;[bold type]&quot;. After printing the name of something: say &quot;[roman type]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a supporter is worth entering:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries it, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is enterable, yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a container is worth entering:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries it, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is enterable and it is open, yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a person is other if it is not the player. Definition: a person is another if it is other.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is free-standing if it is in a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say exit list:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let place be location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let count be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with way running through directions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let place be the room way from the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if place is a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increment count;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[if count is greater than 1] or[end if] [bold type][way][roman type]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is gettable:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is scenery, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is fixed in place, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is a person, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is carrying it, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is wearing it, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Part 2 - On the Ground
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Antarctic Research Station is a room. &quot;Though not always the most stimulating of environments, the station is far from your ex-wife and most of the things in the world that annoy you, namely the other 6+ billion people. There is a second room to the south.&quot; The station contains a radio. The radio is a device. It is fixed in place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">South of the Station is Sitting Room. The description of the Sitting Room is &quot;Just big enough for a very [comfortable chair].&quot; The Sitting Room contains an enterable supporter called a comfortable chair. The chair is scenery. A monograph about penguins is in the Sitting Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Blistering Cold is a room. &quot;It is white out here and very very very cold.&quot; The white door is a door. &quot;[The white door] leads to [the other side of the white door].&quot;  It is west of the Blistering Cold and east of the Antarctic Research Station.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / x radio / x door / s / i / x chair / x monograph / sit in chair / get up / n / open door / enter door&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e163"><a href=ex163.html#e163 STYLE="text-decoration: none">***<b>Example 395: Lethal Concentration 2</b></a><br>Poisonous gas again, only this time it sinks.<p>
+<p><hr><p><a href=doc334.html STYLE="text-decoration: none">Previous</a> / <a href=doc336.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

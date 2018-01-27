@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.12. Values that vary</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Values that vary" -->
+<!-- SEARCH SECTION "4.12" -->
+<!-- SEARCH SORT "004-012-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc65.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc67.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.12. Values that vary</b></td></tr></table><p>
+<p>
+<p>Sometimes a value important to the simulated world will not naturally belong to any thing or room, and should not be kept in a property. For example:
+<p>
+<blockquote><font color="#000080">The prevailing wind is a direction that varies. The prevailing wind is southwest.
+</font></blockquote><p>
+<p>
+<p>Or &quot;which varies&quot; would also be allowed, as would the more traditional computing term &quot;variable&quot;:
+<p>
+<blockquote><font color="#000080">The target score is a number variable. The target score is 23.
+</font></blockquote><p>
+<p>
+<p>In fact, we have seen a value that varies already: &quot;location&quot;, which holds the room in which the game is presently taking place.
+<p>
+<p>It's important to tell Inform what kind of value goes into the variable, as this will ensure that the wrong kind of value is never accidentally put into it. But just as for properties, we do not need to say explicitly what the initial value is: and if we do not, Inform will use the default value for its kind. (See the table in the Kinds index.)
+<p>
+<p>We can have variables of any of the kinds of value, including new ones, but should watch out for a potential error. If we write:
+<p>
+<blockquote><font color="#000080">The receptacle is a container that varies.
+</font></blockquote><p>
+<p>
+<p>in a world which has no containers at all, Inform will object, because it will be unable to put any initial value into the receptacle variable. A similar complaint will be made if we write:
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The fashionable shade is a colour that varies.
+</font></blockquote><p>
+<p>
+<p>without ever having defined any colours. Something else we are not permitted is:
+<p>
+<blockquote><font color="#000080">The receptacle is an open container that varies.
+</font></blockquote><p>
+<p>
+<p>because the openness of a given container may change during play, so that the value in the variable might suddenly become invalid even though the variable itself had not changed.
+<p>
+<p><hr><p>
+<a name="e186"><a href=ex186.html#e186 STYLE="text-decoration: none">***<b>Example 52:  Real Adventurers Need No Help</b></a><br>Allowing the player to turn off all access to hints for the duration of a game, in order to avoid the temptation to rely on them overmuch.<p>
+<p><hr><p><a href=doc65.html STYLE="text-decoration: none">Previous</a> / <a href=doc67.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

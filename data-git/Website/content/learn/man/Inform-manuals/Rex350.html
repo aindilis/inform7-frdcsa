@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.5. Volume, Height, Weight</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Speed of Thought" -->
+<!-- SEARCH SECTION "Ex 259" -->
+<!-- SEARCH SORT "Ex 010-005-259" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc83.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc85.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.5. Volume, Height, Weight</b></td></tr></table><p>
+<p>
+<p>What should fit into what? Inform has basically three sizes: small, person-sized, and room-sized. The difference between &quot;small&quot; and &quot;person-sized&quot; doesn't appear much, but it's the difference between an ordinary container and an enterable container; the fact that a person cannot get inside an ordinary container is one of the few size-related rules built into Inform. It will not object to, say, a fishing rod being put inside a matchbox.
+<p>
+<p>Inform does have one built-in measure of the size of a container: its &quot;capacity&quot;. This is a maximum number of contents:
+<p>
+<blockquote><font color="#000080">The capacity of the rucksack is 3.
+</font></blockquote><p>
+<p>
+<p>This of course allows three anvils, while forbidding four postage stamps. To do better, we need units of measurement, and <b>Dimensions</b> demonstrates setting these up. <b>The Speed of Thought</b>, meanwhile, ventures into the area of unit conversion: having multiple types of unit and being able to express them to the player, or parse these in the player's input.
+<p>
+<p>To be fully realistic in what will fit into what, we need sophisticated three-dimensional models of shapes, both of the items being carried and of the free space remaining inside containers. <b>Depth</b> elegantly simplifies this by approximating items as cuboids, with a given width, length and height: these multiply to give a volume. To fit in a container, a new item's volume must not exceed the volume remaining inside the container, and in addition its three dimensions must also fit in one of the possible arrangements at right angles to the sides. (So this system would indeed prevent a 1x1x100 fishing rod from being put inside a 5x2x1 matchbox, but would also prevent a 12x1x1 pencil from being put into a 10x10x1 box, because it would need to be turned diagonally to fit.)
+<p>
+<p><b>Lead Cuts Paper</b> provides a different constraint: here we do not let light-weight containers hold heavy objects.
+<p>
+<p>Weight comes in a different way into <b>Swerve left? Swerve right? Or think about it and die?</b>, which exploits up/down map connections to work out which way gravity would take a rolling marble.
+<p>
+<a href=Rdoc81.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liquids</b></font></a><i> for containers with liquid capacity</i><p><p>
+<p><hr><p>
+<a name="e423"><a href=Rex423.html#e423 STYLE="text-decoration: none">**<b>Example 247:  Dimensions</b></a><br>This example draws together the previous snippets into a working implementation of the weighbridge.<p>
+<!-- EXAMPLE START -->
+<a name="e350"><a href=Rdoc84.html#e350 STYLE="text-decoration: none">**<b><b>Example</b> 259:  The Speed of Thought</b></a><br>Describing scientifically-measured objects in units more familiar to the casual audience.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose that we have a number of objects in the game that are sized in some conventional unit (such as meters), but which we would like to describe in slightly less formal terms. To do this, we will start with measurements as defined in the built-in extension Metric Units, so we don't have to recreate all these.
+<p>
+<p>We'll add our own set of &quot;conceptual units&quot; -- things we're familiar with in real life. As we'll see below, Inform will automatically choose a unit of the right order to express a given distance if we tell it to print a length &quot;in conceptual units&quot;.
+<p>
+<p>Note: the following will compile only if you have settings set for Glulx. (To change this, go to the Settings panel and click on the Glulx option.) The Glulx virtual machine is capable of handling larger numbers than the Z-machine.
+<p>
+<blockquote><font color="#000080">&quot;The Speed of Thought&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Metric Units by Graham Nelson.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">1 quarter (in conceptual units, in quarters, singular) or 2 quarters (in conceptual units, in quarters, plural) specifies a length equivalent to 24mm.
+<br>1 pencil (in conceptual units, in pencils, singular) or 2 pencils (in conceptual units, in pencils, plural) specifies a length equivalent to 18cm.
+<br>1 bathtub (in conceptual units, in bathtubs, singular) or 2 bathtubs (in conceptual units, in bathtubs, plural) specifies a length equivalent to 152cm.
+<br>1 Olympic swimming pool (in conceptual units, in Olympic swimming pools, singular) or 2 Olympic swimming pools (in conceptual units, in Olympic swimming pools, plural) specifies a length equivalent to 50 meters.
+<br>1 Empire state building (in conceptual units, in Empire State buildings, singular) or 2 Empire State buildings (in conceptual units, in Empire State buildings, plural) specifies a length equivalent to 443m.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">1 credit card (in conceptual units, in credit cards, singular) or 2 credit cards (in conceptual units, in credit cards, plural) specifies an area equivalent to 46 sq cm.
+<br>1 letter sheet (in conceptual units, in letter sheets, singular) or 2 letter sheets (in conceptual units, in letter sheets, plural) specifies an area equivalent to 603 sq cm.
+<br>1 queen-sized mattress (in conceptual units, in queen-sized mattresses, singular) or 2 queen-sized mattresses (in conceptual units, in queen-sized mattresses, plural) specifies an area equivalent to 3 square meters.
+<br>1 football field (in conceptual units, in football fields, singular) or 2 football fields (in conceptual units, in football fields, plural) specifies an area equivalent to 5351 square meters.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;report [something]&quot; as reporting. Reporting is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check reporting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a fact:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The public doesn't want to hear about [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out reporting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report reporting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the extent of the noun is greater than 0mm and the surface of the noun is greater than 0 sq cm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'[The noun] has a length of [about] [extent of the noun in conceptual units] and an area of [about] [surface of the noun in conceptual units].'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the extent of the noun is greater than 0mm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'[The noun] has a length of [about] [extent of the noun in conceptual units].'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the surface of the noun is greater than 0 sq cm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'[The noun] has an area of [about] [surface of the noun in conceptual units].'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'[The noun] is... pretty hard to imagine,' you say weakly. That's not going to go over well.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say about:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]roughly[or]about[or]around[or]approximately[at random]&quot;;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To contextualize (chosen information - text):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]You turn to the camera and speak:[or][or]Turning to another camera angle, you add:[or][stopping] &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[chosen information] &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of][line break][or]Right now the station will be cutting over to a visual of that.[or][line break][or]Pity the kids in audiovisual who have to scare that image together in a hurry.[or]You smile brightly.[stopping]&quot;;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Science Journalism Desk is a room. &quot;From here you, the Science Anchor, have the privilege of reporting the latest and most fascinating stories to an eager public.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try thinking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of thinking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Currently you have to report on the International Space Station. Your story could include [the list of facts carried by the player].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It looks foolish to be fiddling with your possessions on camera.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of dropping a fact:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You decide to omit [the noun] from your lineup.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A fact is a kind of thing. Every fact is carried by the player. A fact has a length called the extent. A fact has an area called the surface.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The experiment module is a fact. The extent is 1116cm.
+<br>The logistics module is a fact. The extent is 421cm.
+<br>The solar array is a fact. The surface is 375 sq m. The extent is 58m.
+<br>An individual solar cell is a fact. The surface is 8 sq cm.
+<br>The orbit height is a fact.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report reporting the orbit height:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'The station orbits at heights between [about] [278km in conceptual units] and [460km in conceptual units] above the earth.'&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries no facts:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;And that's all! The channel cuts to weather.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Time for lunch&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;report experiment module / report logistics / report height / report array / report solar cell&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e315"><a href=Rex315.html#e315 STYLE="text-decoration: none">*<b>Example 257:  Depth</b></a><br>Receptacles that calculate internal volume and the amount of room available, and  cannot be overfilled.<p>
+<a name="e360"><a href=Rex360.html#e360 STYLE="text-decoration: none">***<b>Example 248:  Lead Cuts Paper</b></a><br>To give every container a breaking strain, that is, a maximum weight of contents which it can bear - so that to put the lead pig into a paper bag invites disaster.<p>
+<a name="e237"><a href=Rex237.html#e237 STYLE="text-decoration: none">*<b>Example 232:  Swerve left? Swerve right? Or think about it and die?</b></a><br>Building a marble chute track in which a dropped marble will automatically roll downhill.<p>
+<p><hr><p><a href=Rdoc83.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc85.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

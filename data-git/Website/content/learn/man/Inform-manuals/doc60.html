@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.6. Properties again</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Properties again" -->
+<!-- SEARCH SECTION "4.6" -->
+<!-- SEARCH SORT "004-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc59.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc61.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.6. Properties again</b></td></tr></table><p>
+<p>
+<p>So now we have seen two fundamental ideas: &quot;value&quot; and &quot;kind&quot;. We have seen how to make a source text which refers to many values - for example, Growler the Bengal tiger, 23kg, &quot;Collapsed Dead End&quot;, blazing, 7, all values of different kinds.
+<p>
+<p>But we don't just want to a way to refer to values, we want to lay out facts about them. Inform understands two sorts of fact, which it calls properties and relations. Properties are about single values in isolation: Growler is male. Relations are about how values interact with each other: Growler likes Bambi. (Or would like to eat Bambi, anyway.) Relations are really the central organising idea of Inform, and we've seen them many times already:
+<p>
+<blockquote><font color="#000080">Growler is in the Savannah.
+</font></blockquote><p>
+<p>
+<p>expresses a relation called &quot;containment&quot; between Growler and the Savannah. Much more about this in the chapter on Relations: for now, let's go back to the simpler idea of properties.
+<p>
+<p>In Inform terms, a &quot;property&quot; is any fact about a value (other than its kind) which the author is allowed to choose. For example,
+<p>
+<blockquote><font color="#000080">Growler is an animal. Growler is male. The description of Growler is &quot;What immortal hand or eye could frame thy fearful symmetry?&quot;.
+</font></blockquote><p>
+<p>
+<p>The first of these sentences talks about Growler's kind, but the other two sentences tell Inform about his properties. Properties are divided into either/or properties - &quot;male&quot; versus &quot;female&quot; - and value properties - such as the description of something, which can be any text.
+<p>
+<p>The Kinds index shows which kinds of object are allowed to have properties. Every object is, so there's no problem with Growler. In general, if Inform can find a sensible way to store properties, then it will allow them. But it won't allow (for example) properties of numbers. There are only a finite number of Bengal tigers in the world (fewer than three thousand, alas), so Inform can easily store individual description texts for each one of them. But there are an infinite range of numbers. (Inform does allow adjectives like &quot;even&quot; or &quot;odd&quot; to be used about number - saying &quot;if 7 is odd&quot; is fine, for example - but they are not properties in the Inform sense, because the author doesn't get to choose. The author can choose whether Growler is a male or female tiger, but not whether 7 is an even or an odd number.)
+<p>
+<p><hr><p><a href=doc59.html STYLE="text-decoration: none">Previous</a> / <a href=doc61.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

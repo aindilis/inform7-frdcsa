@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.15. All, each and every</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "All, each and every" -->
+<!-- SEARCH SECTION "6.15" -->
+<!-- SEARCH SORT "006-015-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc99.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc101.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.15. All, each and every</b></td></tr></table><p>
+<p>
+<p>When testing conditions, we normally talk only about specific things, or else ask if a particular circumstance happens:
+<p>
+<blockquote><font color="#000080">if the oaken door is open
+<br>if a woman is carrying an animal
+</font></blockquote><p>
+<p>
+<p>But we can also use &quot;all&quot;, &quot;each&quot; or &quot;every&quot; to check the whole range:
+<p>
+<blockquote><font color="#000080">if each door is open
+<br>if anyone is carrying all of the animals
+<br>if everybody is in the Dining Room
+</font></blockquote><p>
+<p>
+<p>Inform allows other English &quot;determiners&quot; (as they are sometimes called), as well:
+<p>
+<blockquote><font color="#000080">if some of the doors are open
+<br>if most of the doors are open
+<br>if almost all of the doors are open
+</font></blockquote><p>
+<p>
+<p>are true if at least one case is true, if a majority (any number greater than one half) or at least 80 per cent of the possible cases are true, respectively.
+<p>
+<p>And we can also use &quot;none&quot; and &quot;no&quot;. These three are all ways to say the same thing:
+<p>
+<blockquote><font color="#000080">if no door is open
+<br>if all of the doors are not open
+<br>if none of the doors is open
+</font></blockquote><p>
+<p>
+<p>though it may be clearer style to find a positive way of putting things:
+<p>
+<blockquote><font color="#000080">if all of the doors are closed
+</font></blockquote><p>
+<p>
+<p>All, each and every can be applied to values, too - but only in some cases. For example, suppose we write:
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, orange, yellow, green, blue, indigo and violet. A colour can be found or unfound.
+</font></blockquote><p>
+<p>
+<p>And suppose that, during play, we assign the &quot;found&quot; property to any colour which the player notices on a wall. We might then want to write conditions like so:
+<p>
+<blockquote><font color="#000080">if every colour is found
+<br>if most of the colours are found
+<br>if any colour is found
+</font></blockquote><p>
+<p>
+<p>But we always have to bear in mind that Inform might have no reasonable way to decide these questions. It will refuse to allow these, for example:
+<p>
+<blockquote><font color="#000080">if every number is positive
+<br>if any text is palindromic
+</font></blockquote><p>
+<p>
+<p>(even supposing the adjective &quot;palindromic&quot; has been defined) - there are practically infinitely many possible numbers and texts, so the search cannot sensibly be done.
+<p>
+<p><hr><p>
+<a name="e160"><a href=ex160.html#e160 STYLE="text-decoration: none">****<b>Example 82:  Revenge of the Fussy Table</b></a><br>A small game about resentful furniture and inconvenient objects.<p>
+<p><hr><p><a href=doc99.html STYLE="text-decoration: none">Previous</a> / <a href=doc101.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

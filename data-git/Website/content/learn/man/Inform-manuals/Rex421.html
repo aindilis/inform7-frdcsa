@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.16. Alternate Default Messages</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "We" -->
+<!-- SEARCH SECTION "Ex 382" -->
+<!-- SEARCH SORT "Ex 006-016-382" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc43.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc45.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.16. Alternate Default Messages</b></td></tr></table><p>
+<p>
+<p>Often we will want to replace the text produced by Inform by default: this includes quite a wide range of text, much of which either describes the success of a command or explains why the action failed. <b>Replacing standard action report rules</b> demonstrates how we might write some rules overriding the standard output.
+<p>
+<p>Currently, Inform provides no systematic way to look at large numbers of textual responses and change many of them at once. While this is something that may change later in beta development, there are already some third-party extensions available on the Inform website that do provide these facilities.
+<p>
+<p>This is especially useful if we want to change the person or tense in which the game is narrated, or if we would like to give the viewpoint character a distinctive voice and set of mannerisms.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e421"><a href=Rdoc44.html#e421 STYLE="text-decoration: none">*<b><b>Example</b> 382:  We</b></a><br>Replacing the standard action report rules to reflect our own design.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we don't like the library responses for certain actions and would prefer something else.
+<p>
+<p>We could explicitly replace each report rule with &quot;The new report dropping rule is listed instead of the standard report dropping rule...&quot;.
+<p>
+<p>Another way is to slip in our replacements at the beginning of each report rulebook, and then stop the action before it got as far as calling the standard report rule. For instance, if we were designing a game in the first person plural:
+<p>
+<blockquote><font color="#000080">&quot;We&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Our Own Company is a room. It contains courage. The player carries names.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / take courage / drop names&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">First report dropping rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;We casually drop [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">First report taking rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;We gather [the noun] to ourselves.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">First report waiting rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;We talk amongst ourselves.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>...and so on throughout the action set.
+<p>
+<p>The last (and probably much the most practical) approach to overriding library messages systematically is to use an extension designed for the purpose. Several of these are available on the Inform extensions page, including one that allows us to choose a different tense and person for the messages (for example, &quot;She saw nothing special.&quot; rather than &quot;You see nothing special.&quot;).
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc43.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc45.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

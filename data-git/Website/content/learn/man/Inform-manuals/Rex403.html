@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.4. Looking</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Verbosity 2" -->
+<!-- SEARCH SECTION "Ex 380" -->
+<!-- SEARCH SORT "Ex 006-004-380" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc31.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc33.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.4. Looking</b></td></tr></table><p>
+<p>
+<p>Looking is quite a complicated command, since the production of a room description takes many steps. A detailed description of this process may be found in the Room Descriptions section.
+<p>
+<p>By convention, a player sees only short descriptions of rooms he enters more than once, but may type VERBOSE in order to see full descriptions every time. BRIEF restores the normal behavior, and SUPERBRIEF tells the game never to print room descriptions at all. (This is a holdover from the earliest days of interactive fiction, when game output might be via a printer rather than on-screen, so space was at a premium but it was never difficult to review what the game had already told the player.)
+<p>
+<p>These conventions are not always appropriate, however, especially in works where experiencing a changing environment is essential. The use option
+<p>
+<blockquote><font color="#000080">Use full-length room descriptions.
+</font></blockquote><p>
+<p>
+<p>changes the default behavior so that rooms are always described fully to the player. <b>Verbosity</b> demonstrates how this works.
+<p>
+<p>Using full-length room descriptions still leaves the player with the option of turning room descriptions to BRIEF or SUPERBRIEF mode. <b>Verbosity 2</b> demonstrates how we might remove the player's ability to change the default behavior.
+<p>
+<a href=Rdoc8.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Room Descriptions</b></font></a><i> for a detailed description of how Inform creates room descriptions and how to change the results</i><p><p>
+<a href=Rdoc37.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Going, Pushing Things in Directions</b></font></a><i> for ways to change just those room descriptions that are shown as the result of the player's movement</i><p><p>
+<a href=Rdoc27.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Memory and Knowledge</b></font></a><i> for ways to change the room description in response to the player character's knowledge at any given stage of play</i><p><p>
+<p><hr><p>
+<a name="e402"><a href=Rex402.html#e402 STYLE="text-decoration: none">*<b>Example 2: Verbosity 1</b></a><br>Making rooms give full descriptions each time we enter, even if we have visited before.<p>
+<!-- EXAMPLE START -->
+<a name="e403"><a href=Rdoc32.html#e403 STYLE="text-decoration: none">*<b><b>Example</b> 380: Verbosity 2</b></a><br>Making rooms give full descriptions each time we enter, even if we have visited before, and disallowing player use of BRIEF and SUPERBRIEF.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose that we want the player always to see full room descriptions, even if he tries to reset the defaults -- perhaps because there is vital information there which he will miss if he turns off full-length room descriptions.
+<p>
+<p>To do this, we might want to remove the standard behavior of the three actions associated with BRIEF, SUPERBRIEF, and VERBOSE, replacing them with explanatory messages about how the game behaves. We cannot use Instead to override these actions, because Instead rules do not apply to actions out of world. Instead, we will want to remove and replace the carry out rules.
+<p>
+<p>We can do this easily by going to the Actions Index, looking up the detail panel for, say, &quot;preferring abbreviated room descriptions&quot;, and click the &quot;unlist&quot; button to paste in the sentence that will remove this rule from the rulebook.
+<p>
+<p>Let's remove all three of the carry out rules and substitute our own:
+<p>
+<blockquote><font color="#000080">&quot;Verbosity 2&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The prefer unabbreviated room descriptions rule is not listed in the carry out preferring unabbreviated room descriptions rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The prefer sometimes abbreviated room descriptions rule is not listed in the carry out preferring sometimes abbreviated room descriptions rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The prefer abbreviated room descriptions rule is not listed in the carry out preferring abbreviated room descriptions rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out preferring unabbreviated room descriptions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[story title] always provides full-length descriptions for your reading pleasure.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out preferring sometimes abbreviated room descriptions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;For your playing protection, [story title] provides only full-length room descriptions.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out preferring abbreviated room descriptions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try preferring sometimes abbreviated room descriptions instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The standard report preferring abbreviated room descriptions rule is not listed in the report preferring abbreviated room descriptions rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The standard report preferring unabbreviated room descriptions rule is not listed in the report preferring unabbreviated room descriptions rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The standard report preferring sometimes abbreviated room descriptions rule is not listed in the report preferring sometimes abbreviated room descriptions rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Use full-length room descriptions.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Wilkie Memorial Research Wing is a room. &quot;The research wing was built onto the science building in 1967, when the college's finances were good but its aesthetic standards at a local minimum. A dull brown corridor recedes both north and south; drab olive doors open onto the laboratories of individual faculty members. The twitchy fluorescent lighting makes the whole thing flicker, as though it might wink out of existence at any moment.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Men's Restroom is immediately west of this point.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Men's Restroom is west of the Research Wing. &quot;Well, yes, you really shouldn't be in here. But the nearest women's room is on the other side of the building, and at this hour you have the labs mostly to yourself. All the same, you try not to read any of the things scrawled over the urinals which might have been intended in confidence.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;west / east / brief / w / e / superbrief / w / e / verbose&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc31.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc33.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

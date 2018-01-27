@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.8. New value properties</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Straw Boater" -->
+<!-- SEARCH SECTION "Ex 47" -->
+<!-- SEARCH SORT "Ex 004-008-047" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc61.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc63.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.8. New value properties</b></td></tr></table><p>
+<p>
+<p>So much for either/or properties. Now we move on to properties which have values attached. The same principles apply, but the wording is different. For example,
+<p>
+<blockquote><font color="#000080">A dead end has some text called the river sound. The river sound of a dead end is usually &quot;a faint whispering of running water&quot;. The Tortuous Alcove has river sound &quot;a gurgle of running water&quot;.
+</font></blockquote><p>
+<p>
+<p>The property &quot;river sound&quot; is now applicable only to dead ends, so we would not be allowed to talk about &quot;the river sound of the Savannah&quot;, say. Moreover, it's required to hold a piece of text. If we tried the following:
+<p>
+<blockquote><font color="#000080">The river sound of the Tortuous Alcove is 7.
+</font></blockquote><p>
+<p>
+<p>...then Inform would object, because the number 7 is the wrong kind of value to go into the &quot;river sound&quot; property. If we need a numerical property, we can try this instead:
+<p>
+<blockquote><font color="#000080">A dead end has a number called the difficulty rating. The Tortuous Alcove has difficulty rating 7.
+</font></blockquote><p>
+<p>
+<p>Suppose that we were to add:
+<p>
+<blockquote><font color="#000080">The Exquisitely Narrow Defile is a dead end.
+</font></blockquote><p>
+<p>
+<p>The Defile must have a river sound, of course, because we said that every dead end would have one. We haven't said what that river sound will be, but Inform can work it out, because we did say this:
+<p>
+<blockquote><font color="#000080">The river sound of a dead end is usually &quot;a faint whispering of running water&quot;.
+</font></blockquote><p>
+<p>
+<p>If there are no instructions at all about the value of a property, Inform fills in the default value of the appropriate kind - in this case, it would be a blank text. (A table of the kinds which can be used for properties, and their default values, can be found in the Kinds index.)
+<p>
+<p><hr><p>
+<a name="e176"><a href=ex176.html#e176 STYLE="text-decoration: none">*<b>Example 46:  Would you...?</b></a><br>Adding new properties to objects, and checking for their presence.<p>
+<!-- EXAMPLE START -->
+<a name="e361"><a href=doc62.html#e361 STYLE="text-decoration: none">**<b><b>Example</b> 47:  Straw Boater</b></a><br>Using text properties that apply only to some things and are not defined for others.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Sometimes we like to give properties to kinds of thing, but not fill them in in all cases. For instance, we might have vehicles that optionally make noise, and those might have a &quot;movement sound&quot;.
+<p>
+<p>All properties have a default value, which we can find by looking in the Kinds tab of the index. This is what the property will be set to automatically, if we do not change it ourselves. In the case of a text property, that is &quot;&quot;; so for instance we might use our movement sound thus:
+<p>
+<blockquote><font color="#000080">&quot;Straw Boater&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Boathouse is a room. &quot;A boathouse circa 1915, which -- though in poor repair -- still suggests Sunday afternoon jaunts taken by women in white gowns and men in straw hats.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">North of the Boathouse is the Shallow Water. The description of Shallow Water is &quot;Just south is the boathouse, and beyond it are trees and the marble terrace of the house above. The water deepens to the north.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">North of Shallow Water is Deep Water. The description of Deep Water is &quot;From here the boathouse has dwindled invisibly to the south, and you have a broad panorama of the shoreline, all the way down to the Skeleton Point Lighthouse in the southeast.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A vehicle has some text called the movement sound. The sailboat and the motorboat are vehicles in the Boathouse. The movement sound of the motorboat is &quot;VRRRROOOMMMM...&quot; Understand &quot;boat&quot; as the sailboat. Understand &quot;boat&quot; as the motorboat.
+</font></blockquote><p>
+<p>
+<p>Note that we haven't given the sailboat any movement sound at all.
+<p>
+<blockquote><font color="#000080">After going somewhere by a vehicle (called cart):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the movement sound of the cart is not &quot;&quot;, say &quot;[the movement sound of the cart][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of exiting when the player is in a vehicle and the location is not the Boathouse:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You're not dressed for a swim.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going somewhere when the player is not in a vehicle:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'd rather not try to make this journey by swimming alone.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;n / get in sailboat / n / get out / s / get in motorboat / n / n&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc61.html STYLE="text-decoration: none">Previous</a> / <a href=doc63.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

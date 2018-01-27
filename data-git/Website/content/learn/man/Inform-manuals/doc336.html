@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.16. Consider is not the same as follow</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Consider is not the same as follow" -->
+<!-- SEARCH SECTION "18.16" -->
+<!-- SEARCH SORT "018-016-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc335.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc337.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.16. Consider is not the same as follow</b></td></tr></table><p>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>As part of the simplification involved in removing procedural rules from Inform, &quot;consider&quot; will, in fact, mean exactly the same as &quot;follow&quot;. So the following text will be redundant.
+<p>
+<p>&quot;Consider&quot; looks as if it duplicates the effect of &quot;follow&quot;, but in fact it is a simpler business altogether. Unlike &quot;follow&quot;, it doesn't get side-tracked into consulting the procedural rules, with all of the resultant change which might result from that. This is a finicky but important distinction. A great many rules and rulebooks make use of each other when actions are being processed, but we only want the procedural rules to be looked at once, right at the start.
+<p>
+<p>A general guideline here is that if rule A needs to use rule B, and both are engaged in the same basic activity - for instance both are basically processing actions - then A should use &quot;consider B&quot;. Only if B is something entirely unrelated should A use &quot;follow B&quot;. Thus:
+<p>
+<blockquote><font color="#000080">Instead of switching on the machine, follow the appraisal rules.
+</font></blockquote><p>
+<p>
+<p>...is a case where rule A, the one about processing the &quot;switch on the machine&quot; action, is engaged in a completely different activity to rule B, which is all about telling the player what a wonderful amount of progress has been made so far. &quot;Follow&quot; is therefore appropriate.
+<p>
+<p><hr><p>
+<a name="e165"><a href=ex165.html#e165 STYLE="text-decoration: none">****<b>Example 396:  Patient Zero</b></a><br>People who wander around the map performing various errands, and in the process spread a disease which only the player can eradicate.<p>
+<p><hr><p><a href=doc335.html STYLE="text-decoration: none">Previous</a> / <a href=doc337.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

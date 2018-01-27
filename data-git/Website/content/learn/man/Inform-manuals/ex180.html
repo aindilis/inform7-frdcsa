@@ -1,0 +1,127 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.24. Concealment</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Search and Seizure" -->
+<!-- SEARCH SECTION "Ex 36" -->
+<!-- SEARCH SORT "Ex 003-024-036" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc50.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc52.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.24. Concealment</b></td></tr></table><p>
+<p>
+<p>Though realism can become tiresome in interactive fiction, there are times when we cannot go along with Inform's normal assumption that all of a person's possessions are visible to everybody else. People are not like containers, which either show all of their holdings or not, according to whether they are open or transparent. If a man is carrying a fishing rod and a wallet, one will be on open show, the other not. Some clothing is outwardly visible, but not all.
+<p>
+<p>Whether or not something is concealed is not like the either/or properties we have seen so far - such as being &quot;open&quot; or &quot;closed&quot; - because it is not really a property of the thing itself, but depends on the habitual behaviour of its current owner. To talk about behaviour we have to use sentences of a kind not seen so far, and which will not fully be explained for some chapters to come.
+<p>But straightforward cases are easy to write, if only by imitating the following examples.
+<p>
+<p>Here we make the Cloaked Villain invariably conceal anything she is holding or wearing:
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of the Cloaked Villain: yes.
+</font></blockquote><p>
+<p>
+<p>At which point we think about it more carefully, and then rewrite:
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of the Cloaked Villain: if the particular possession is the sable cloak, no; otherwise yes.
+</font></blockquote><p>
+<p>
+<p>Parts are treated exactly as if clothes or items being held, and the following will make the face and inscription on a coin invisible unless the player is holding it - the idea being that they are too small to be seen from farther away.
+<p>
+<blockquote><font color="#000080">The coin is in the Roman Villa. The face and inscription are parts of the coin. Rule for deciding the concealed possessions of the coin: if the coin is carried, no; otherwise yes.
+</font></blockquote><p>
+<p>
+<p>There is also an either/or property called &quot;described&quot;/&quot;undescribed&quot;, intended to be used only as a last resort, but which has the ability to hide something from room descriptions. This not really hiding: the idea is that &quot;undescribed&quot; should be used only for cases where some other text already reveals the item, or where its presence is implicit. Even then, it should only be used when the item is intended to be taken or moved by the player at some point - if the item isn't intended to move, it's much better to make it &quot;scenery&quot;. (There's only one commonly-found example - the player's own body, the &quot;yourself&quot;, is undescribed.)
+<p>
+<p>Note that the &quot;undescribed&quot; property is automatically removed from anything carried by, worn by or part of the player, even indirectly; and that nothing on top of an &quot;undescribed&quot; supporter will be visible in a room description, even if it itself is &quot;described&quot;. (Scenery supporters don't suffer from that restriction, which is one reason scenery is a better option when possible.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e180"><a href=doc51.html#e180 STYLE="text-decoration: none">***<b><b>Example</b> 36:  Search and Seizure</b></a><br>A smuggler who has items, some of which are hidden.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want a character who carries hidden objects, but only while he is wearing his jacket. If we deprive him of this, his other possessions become known. Furthermore, if we ever search him, his possessions also become known, and can thereafter be mentioned by us.
+<p>
+<blockquote><font color="#000080">&quot;Search and Seizure&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Size is a kind of value. The sizes are small, medium, and large. A thing has a size. A thing is usually small.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be licit or contraband. A thing is usually licit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be discovered or secret. A thing is usually secret.
+</font></blockquote><p>
+<p>
+<p>Now, we want the character to be able to hide small things if he has some sort of concealing garment on. We also want to be able to see anything that the player has already found once, perhaps by using the >SEARCH PERSON command. So:
+<p>
+<blockquote><font color="#000080">Rule for deciding the concealed possessions of someone (called the suspect):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the particular possession is discovered, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the suspect wears something and the particular possession is small, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise no.
+</font></blockquote><p>
+<p>
+<p>The following rule, borrowed from a later chapter, assures that any items that are ever mentioned to the player will be treated as known from then on:
+<p>
+<blockquote><font color="#000080">Before printing the name of something (called discovery): now the discovery is discovered.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Customs House is a room. The smuggler is a man in the Customs House. The smuggler wears a leather jacket. He carries a bottle of Altairan rum, some raspberries, and a laser pistol. The pistol is large. The jacket is large. The rum and the raspberries are contraband. The description of the smuggler is &quot;He has a bestubbled chin and a sinister eye.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The tourist is a woman in the customs house. The description is &quot;The type who walks off home with a dozen contraband items in her pocket not because she means to steal things but because she's too stupid to understand that the law applies to herself.&quot; She wears a tight-fitting dress. The dress is large. The tourist carries a grapevine and an archaeological artifact. The grapevine is large and contraband. The artifact is contraband.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report examining someone: say &quot;[The noun] is [if the noun is wearing something]wearing [a list of unconcealed things worn by the noun] and [end if]carrying [a list of unconcealed things carried by the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report examining someone who is concealing something contraband:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] looks nervous. You can just tell.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report examining someone who is carrying an unconcealed contraband thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your eye goes at once to [the list of unconcealed contraband things carried by the noun] which [the noun] is unable to hide&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if an unconcealed licit thing is had by the noun, say &quot;, though [if the noun is female]s[end if]he also has [a list of unconcealed licit things had by the noun]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>Notice that we can talk about what the smuggler wears, what he carries, and what he &quot;has&quot;: things the smuggler has can be either worn or carried, so the phrase is useful if we don't care to make that distinction.
+<p>
+<blockquote><font color="#000080">Instead of searching someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] is revealed to be carrying [a list of things carried by the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of confiscating the dress:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are not allowed to perform strip-searches in the public customs area.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;confiscate [something]&quot; as confiscating.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Confiscating is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check confiscating:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the noun is had by someone who is not the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can only confiscate other people's possessions.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out confiscating:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is carried by the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report confiscating:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Through the authority vested in you by the power of the Sovereign of Centauri Proxima, you make [the noun] your own.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x smuggler / search smuggler / x smuggler / confiscate jacket / x smuggler / confiscate rum / confiscate pistol / x smuggler / confiscate raspberries / x smuggler&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test more with &quot;x tourist / confiscate dress / confiscate grapevine / x tourist / search tourist / confiscate artifact / x tourist&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc50.html STYLE="text-decoration: none">Previous</a> / <a href=doc52.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

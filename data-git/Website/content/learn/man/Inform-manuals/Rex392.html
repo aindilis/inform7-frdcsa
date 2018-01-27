@@ -1,0 +1,114 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.6. Viewpoint</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Uncommon Ground" -->
+<!-- SEARCH SECTION "Ex 445" -->
+<!-- SEARCH SORT "Ex 005-006-445" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc27.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc29.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.6. Viewpoint</b></td></tr></table><p>
+<p>
+<p>Inform automatically creates a character for the player - a bland, personality-free entity at the outset, as we've seen. But there is no reason why the player need stick to this same identity throughout the game. Conventional fiction often jumps from one viewpoint character to another, and so can IF.
+<p>
+<p>To do this at the most elementary level, we simply at some point
+<p>
+<blockquote><font color="#000080">change player to Janine;
+</font></blockquote><p>
+<p>
+<p>where Janine is a person we've already defined in the code. Now the player is in whatever location Janine inhabits, carries whatever Janine carries, and wears whatever Janine is wearing. <b>Terror of the Sierra Madre</b> shows off this effect, and also demonstrates how to make the command prompt remind the player which character he currently controls. Some games instead give this information in the status line or after the name of the location when looking, producing output like
+<p>
+<blockquote><font color="#000080">The Bottomless Acherousia (as Charon)
+</font></blockquote><p>
+<p>
+<p>We could do the same by adding a line such as
+<p>
+<blockquote><font color="#000080">After printing the name of a room while constructing the status line or looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[roman type] (as [the player])&quot;
+</font></blockquote><p>
+<p>
+<p>Of course, we'll need a good deal of other work to make Janine a distinct person from whichever character the player was before. The distinction may come from changed capabilities of the new character, which we can express through new rules about actions; e.g.,
+<p>
+<blockquote><font color="#000080">Instead of listening when the player is Janine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your childhood accident left you unable to hear any but the loudest noises. Currently there is only silence.&quot;
+</font></blockquote><p>
+<p>
+<p>Janine may also have new, different perspective on her surroundings, expressed through the descriptions of the things she looks at; <b>Uncommon Ground</b> makes a &quot;by viewpoint&quot; token for text alternatives, allowing us to tag our descriptions to indicate which variations should be shown to which viewpoint characters. <b>The Crane's Leg 1</b> and <b>2</b> offer more elaborate and specialized ways of customizing the player character's observations to depend on how he relates (physically and in attitude) to the things around him.
+<p>
+<p>If we want to change the tense and person of narration from the conventional present second person, we may do this as well, though at the present stage of Inform the effect relies on external extensions.
+<p>
+<p><hr><p>
+<a name="e400"><a href=Rex400.html#e400 STYLE="text-decoration: none">***<b>Example 121:  Terror of the Sierra Madre</b></a><br>Multiple player characters who take turns controlling the action.<p>
+<!-- EXAMPLE START -->
+<a name="e392"><a href=Rdoc28.html#e392 STYLE="text-decoration: none">**<b><b>Example</b> 445:  Uncommon Ground</b></a><br>Making a "by viewpoint" token, allowing us to design our own text variations such as "[show to yourself]quaint[to Lolita]thrilling[to everyone else]squalid[end show]" depending on the identity of the player at the moment.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>A slightly more challenging case than the &quot;by atmosphere&quot; example is one in which we want to create text variations depending on the identity of our player character.
+<p>
+<p>What we want to do is build a switch statement in I6, one that looks something like
+<p>
+<blockquote><font color="#000080">switch(player)
+<br>{
+<br>&nbsp;&nbsp;&nbsp;&nbsp;yourself: print &quot;quaint&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Lolita: print &quot;thrilling&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;default: print &quot;squalid&quot;;
+<br>}
+</font></blockquote><p>
+<p>
+<p>out of I7 that looks like this:
+<p>
+<blockquote><font color="#000080">say &quot;[show to yourself]quaint[to Lolita]thrilling[to everyone else]squalid[end show]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&quot;Uncommon Ground&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Mud Village is a room. &quot;You stand at the center of a [show to yourself]quaint[to Lolita]thrilling[to everyone else]squalid[end show] mud village.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Leforge is a man in the Mud Village. Lolita is a woman in the Mud Village.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waiting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is Lolita, now the player is Leforge;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is yourself, now the player is Lolita;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You jump bodies. Whoops!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say show to (N - a person) -- beginning say_seen_by:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(-
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(player)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{-open-brace}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{N}:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say to (N - a person) -- continuing say_seen_by:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(-
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{N}:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say to everyone else -- continuing say_seen_by:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(-
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-)
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say end show -- ending say_seen_by:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(-
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{-close-brace}
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-)
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / z / look / z / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e96"><a href=Rex96.html#e96 STYLE="text-decoration: none">***<b>Example 51: The Crane's Leg 1</b></a><br>A description text that automatically highlights the ways in which the object differs from a standard member of its kind.<p>
+<a name="e97"><a href=Rex97.html#e97 STYLE="text-decoration: none">*<b>Example 377: The Crane's Leg 2</b></a><br>A description text generated based on the propensities of the player-character, following different rulebooks for different characters.<p>
+<p><hr><p><a href=Rdoc27.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc29.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

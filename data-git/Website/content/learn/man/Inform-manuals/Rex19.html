@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.16. Social Groups</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Strictly Ballroom" -->
+<!-- SEARCH SECTION "Ex 176" -->
+<!-- SEARCH SORT "Ex 007-016-176" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc61.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc63.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.16. Social Groups</b></td></tr></table><p>
+<p>
+<p>Crowds of characters introduce new challenges, because we often want to show them interacting with one another, or to describe individuals in less detail when a whole group is present.
+<p>
+<p><b>Strictly Ballroom</b> gives us a set of characters who pair off each turn, making sure to mention each one once, and leaving one unfortunate person behind as a wallflower: this exemplifies how we might use a behavioral rule not to dictate the behavior of each individual separately but rather to model a whole group together. <b>Happy Hour</b> does calculate movements for characters individually, but then collates the descriptions, creating a single paragraph to describe whatever group is currently in the room.
+<p>
+<p>Characters can also have complicated attitudes to one another, and it can be helpful to use relations to track these. <b>Unthinkable Alliances</b> demonstrates the grouping of characters into alliance factions, while <b>The Abolition of Love</b> provides a host of relations to track love affairs, marriages, memberships in families, and mere mutual respect.
+<p>
+<p><b>Emma</b> combines these two effects: its characters move between social groups depending on how they feel about the others in their particular talking circle, and descriptions change depending on who is where in the room.
+<p>
+<p><b>Lugubrious Pete's Delicatessen</b> simulates a queue at a deli, in which the customers who most impress Pete get served first.
+<p>
+<a href=Rdoc59.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Traveling Characters</b></font></a><i> for groups of characters who move around and have their movements collated into a joint description</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e19"><a href=Rdoc62.html#e19 STYLE="text-decoration: none">**<b><b>Example</b> 176:  Strictly Ballroom</b></a><br>People who select partners for dance lessons each turn.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Many simple repetitions can effectively be done with a &quot;now...&quot; instruction: it is quicker to say
+<p>
+<blockquote><font color="#000080">now every person is angry
+</font></blockquote><p>
+<p>
+<p>than
+<p>
+<blockquote><font color="#000080">repeat with offended party running through people:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the offended party is angry.
+</font></blockquote><p>
+<p>
+<p>Repeat comes in handy when we have something a bit more complicated to do with each item:
+<p>
+<blockquote><font color="#000080">&quot;Strictly Ballroom&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be alert or occupied. A person is usually alert.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is occupied.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Dance is a kind of value. The dances are waltzes, polkas, cha-chas, charlestons, fox-trots, tangos, lambadas, and two-steps.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The current round is a dance that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Manner is a kind of value. The manners are swiftly, primly, energetically, suavely, seductively, elegantly, and badly.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn: now the current round is a random dance.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with dancer running through people who are not the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if dancer is alert:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now dancer is occupied;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let partner be a random alert person who is not the dancer;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if partner is a person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now partner is occupied;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The dancer] [the current round][if a random chance of 1 in 5 succeeds] [a random manner][end if] with [partner]. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[paragraph break][The dancer] is forced to be a wallflower. Poor [dancer]. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say paragraph break.
+</font></blockquote><p>
+<p>
+<p>Notice we did not say &quot;repeat with dancer running through alert people who are not the player...&quot;. This is because Inform would draw up a list of alert people at the beginning of the repeat, and not take into account which people became occupied partway through the repetition. If we want to make sure that each person dances only with one other person, we have to continue checking alertness each time we run through the repetition.
+<p>
+<p>After all the partners are assigned, we can set up for the next turn by making everyone alert again, and for this we do not need &quot;repeat&quot;:
+<p>
+<blockquote><font color="#000080">Every turn: now every person is alert; now the player is occupied.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before doing something to someone: now the noun is occupied.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before doing something when the second noun is a person: now the second noun is occupied.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something to someone: say &quot;You successfully distract [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pacific Ballroom is a room. &quot;A rather utilitarian space at the moment, since this is a class and not a party.&quot; Timmy, Tommy, Joey, George, Mary, Martha, Yvette, McQueen, Linus, and Patricia are people in the Pacific Ballroom.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / ask linus about blanket / z / z&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e179"><a href=Rex179.html#e179 STYLE="text-decoration: none">**<b>Example 342:  Happy Hour</b></a><br>Listing visible characters as a group, then giving some followup details in the same paragraph about specific ones.<p>
+<a name="e6"><a href=Rex6.html#e6 STYLE="text-decoration: none">*<b>Example 229:  Unthinkable Alliances</b></a><br>People are to be grouped into alliances. To kiss someone is to join his or her faction, which may make a grand alliance; to strike them is to give notice of quitting, and to become a lone wolf.<p>
+<a name="e0"><a href=Rex0.html#e0 STYLE="text-decoration: none">*<b>Example 231:  The Abolition of Love</b></a><br>A thorough exploration of all the kinds of relations established so far, with the syntax to set and unset them.<p>
+<a name="e120"><a href=Rex120.html#e120 STYLE="text-decoration: none">**<b>Example 339:  Emma</b></a><br>Social dynamics in which groups of people form and circulate during a party.<p>
+<a name="e231"><a href=Rex231.html#e231 STYLE="text-decoration: none">*<b>Example 424:  Lugubrious Pete's Delicatessen</b></a><br>In this evocation of supermarket deli counter life, a list is used as a queue to keep track of who is waiting to be served.<p>
+<p><hr><p><a href=Rdoc61.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc63.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

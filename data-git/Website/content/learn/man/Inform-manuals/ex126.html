@@ -1,0 +1,188 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.14. Phrase options</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Equipment List" -->
+<!-- SEARCH SECTION "Ex 177" -->
+<!-- SEARCH SORT "Ex 011-014-177" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc180.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc182.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.14. Phrase options</b></td></tr></table><p>
+<p>
+<p>There are sometimes several slightly different ways to perform a given task but which have substantially the same definition. In the following example:
+<p>
+<blockquote><font color="#000080">To go hiking, into the woods or up the mountain:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if into the woods, say &quot;Watch out for badgers.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if up the mountain, say &quot;Better take your compass.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You go hiking.&quot;
+</font></blockquote><p>
+<p>
+<p>...a phrase has been set up which can be used in three ways:
+<p>
+<blockquote><font color="#000080">go hiking;
+<br>go hiking, into the woods;
+<br>go hiking, up the mountain;
+</font></blockquote><p>
+<p>
+<p>Note that commas must be used to divide these &quot;phrase options&quot; from the rest of the text of the phrase. Within the definition of the phrase, the option's name is a valid condition, and
+<p>
+<blockquote><font color="#000080">if up the mountain, ...
+</font></blockquote><p>
+<p>
+<p>tests whether it is set; we can also test if it is not set using:
+<p>
+<blockquote><font color="#000080">if not up the mountain, ...
+</font></blockquote><p>
+<p>
+<p>A more substantial example from the Standard Rules is given by a phrase used mostly for internal, technical reasons:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>list the contents of </b>(object)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_listcontents -->
+
+<p>This phrase produces a list of all things whose holder is the given object, according to Inform's traditional conventions for room descriptions and inventory listings. Example:
+<p>
+<blockquote><font color="#000080">list the contents of Marley Wood, as a sentence, with newlines
+<br>and including all contents;
+</font></blockquote><p>
+<p>
+<p>Where this is possible, it's generally better to use &quot;[list of things in ...]&quot; instead, which produces the same result in an acceptable way for the middle of a sentence.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Note that this phrase is allowed to have multiple options specified, whereas &quot;go hiking&quot; above was not: this is because it was defined thus:
+<p>
+<blockquote><font color="#000080">To list the contents of (something - an object), with newlines, indented, as a sentence, including contents, including all contents, giving inventory information, giving brief inventory information, using the definite article, listing marked items only, prefacing with is/are, not listing concealed items, suppressing all articles and/or with extra indentation: ...
+</font></blockquote><p>
+<p>
+<p>The significant difference is the word &quot;and/or&quot; instead of &quot;or&quot;, which signals that more than one option can apply at a time.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e126"><a href=doc181.html#e126 STYLE="text-decoration: none">**<b><b>Example</b> 177:  Equipment List</b></a><br>Overview of all the phrase options associated with listing, and examples of how to change the inventory list into some other standard formats.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Most of the phrase options above are relatively self-explanatory; a few are less so. Here is an overview:
+<p>
+<p>&quot;With newlines&quot; tells Inform to put a new line before each listed object. Indented tells it to indent contents of objects, when listing these.
+<p>
+<p>&quot;Giving inventory information&quot; means to append information such as (closed) or (being worn) to objects.
+<p>
+<p>&quot;As a sentence&quot; means to put &quot;and&quot; before the last object and commas between them; this is usually not used in conjunction with newline listing. &quot;As a sentence&quot; obeys whatever conventions about the use of the serial comma we may have established with the &quot;Use serial comma&quot; option.
+<p>
+<p>&quot;Including contents&quot; means to list the contents of open or transparent containers and all supporters, whereas including all contents means to list the contents of all containers, even opaque closed ones.
+<p>
+<p>&quot;Tersely&quot;, perhaps unexpectedly, puts parentheses around objects listed as the contents of other objects.
+<p>
+<p>&quot;Giving brief inventory information&quot; omits most of the inventory tags, such as &quot;(open)&quot; and &quot;(worn)&quot;, but does list &quot;(closed)&quot; for closed containers which might not otherwise be obviously openable.
+<p>
+<p>&quot;Using the definite article&quot; means prefixing objects with &quot;the&quot;, if applicable, rather than &quot;a&quot;.
+<p>
+<p>&quot;Listing marked items only&quot; means including only objects that have already been declared &quot;marked for listing&quot;.
+<p>
+<p>&quot;Prefacing with is-are&quot; means that Inform will write &quot;is&quot; before the list if it contains only one item, and &quot;are&quot; if the list contains more than one.
+<p>
+<p>&quot;Not listing concealed items&quot; means to omit from the list anything which is scenery.
+<p>
+<p>Finally, &quot;with extra indentation&quot; means that the whole list should be indented slightly, in emulation of the default inventory listing.
+<p>
+<p>With this information, we can try rewriting the inventory behavior to emulate the standard or to explore alternate versions:
+<p>
+<blockquote><font color="#000080">&quot;Equipment List&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Watery Room is a room. The player carries a snorkel and a waterproof sack. The waterproof sack contains an undersea map, a diving guide, a cup, and 500 Argentine pesos. The cup contains a worm. The player wears a swimsuit and a pair of flippers. The sack is openable and open.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Inventory listing style is a kind of value. The inventory listing styles are tall, wide, curt, minimal, divided tall, and divided wide. Current inventory listing style is an inventory listing style that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;inventory [inventory listing style]&quot; as requesting styled inventory. Requesting styled inventory is an action applying to an inventory listing style. It is an action out of world.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out requesting styled inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now current inventory listing style is the inventory listing style understood.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report requesting styled inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Inventory listing is now set to [current inventory listing style].&quot;
+</font></blockquote><p>
+<p>
+<p>We begin by emulating the standard inventory listing style:
+<p>
+<blockquote><font color="#000080">Instead of taking inventory when current inventory listing style is tall:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things enclosed by the player is 0, say &quot;You are empty-handed.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are carrying: [line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;list the contents of the player, with newlines, indented, giving inventory information, including contents, with extra indentation.
+</font></blockquote><p>
+<p>
+<p>Here we offer the alternative of listing everything together as a paragraph:
+<p>
+<blockquote><font color="#000080">Instead of taking inventory when current inventory listing style is wide:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things enclosed by the player is 0, say &quot;You are empty-handed.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are carrying &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;list the contents of the player, giving inventory information, as a sentence, including contents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.&quot;
+</font></blockquote><p>
+<p>
+<p>This may be unsatisfactory, however. Items that are inside other items are not set off from those merely carried by the player. One way around this is to use terse listing, giving such descriptions as &quot;a waterproof sack (in which are an undersea map, a diving guide, a cup (in which is a worm) and a 500 Argentine pesos)&quot; as opposed to the more confusing &quot; a waterproof sack (open), inside which are an undersea map, a diving guide, a cup, inside which is a worm and a 500 Argentine pesos&quot;.
+<p>
+<blockquote><font color="#000080">Instead of taking inventory when current inventory listing style is curt:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things enclosed by the player is 0, say &quot;You are empty-handed.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are carrying &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;list the contents of the player, tersely, giving brief inventory information, as a sentence, including contents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.&quot;
+</font></blockquote><p>
+<p>
+<p>If, using the above style, we close the sack, we will still get &quot;(closed)&quot; after the sack's listing. The following minimalist listing style abolishes even that nicety:
+<p>
+<blockquote><font color="#000080">Instead of taking inventory when current inventory listing style is minimal:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things enclosed by the player is 0, say &quot;You are empty-handed.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are carrying &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;list the contents of the player, tersely, as a sentence, including contents;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.&quot;
+</font></blockquote><p>
+<p>
+<p>If we want to list worn things separately from carried things, we have occasion to put &quot;listing marked items only&quot; to work:
+<p>
+<blockquote><font color="#000080">Instead of taking inventory when the current inventory listing style is divided wide:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things enclosed by the player is 0, say &quot;You are empty-handed.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are wearing &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now all things enclosed by the player are unmarked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now all things worn by the player are marked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if no things worn by the player are marked for listing, say &quot;nothing&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise list the contents of the player, as a sentence, listing marked items only;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.[paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are carrying &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now all things carried by the player are marked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now all things worn by the player are unmarked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if no things carried by the player are marked for listing, say &quot;nothing&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise list the contents of the player, as a sentence, tersely, giving brief inventory information, listing marked items only;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;.[paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<p>And similarly for a tall divided inventory:
+<p>
+<blockquote><font color="#000080">Instead of taking inventory when the current inventory listing style is divided tall:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things enclosed by the player is 0, say &quot;You are empty-handed.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now all things enclosed by the player are unmarked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now all things carried by the player are marked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are carrying: [line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list the contents of the player, with newlines, indented, giving inventory information, including contents, with extra indentation, listing marked items only;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player wears something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now all things enclosed by the player are unmarked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now all things worn by the player are marked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are wearing: [line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list the contents of the player, with newlines, indented, including contents, with extra indentation, listing marked items only.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / inventory wide / i / inventory curt / i / close sack / i / open sack / inventory minimal / i / close sack / i / open sack / inventory divided wide / i / inventory divided tall / i / drop all / i / take all / take off swimsuit / take off flippers / i / i divided wide / i / wear swimsuit / drop all / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc180.html STYLE="text-decoration: none">Previous</a> / <a href=doc182.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

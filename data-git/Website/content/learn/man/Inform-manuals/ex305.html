@@ -1,0 +1,113 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.3. Before rules</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Democratic Process" -->
+<!-- SEARCH SECTION "Ex 86" -->
+<!-- SEARCH SORT "Ex 007-003-086" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc104.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc106.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.3. Before rules</b></td></tr></table><p>
+<p>
+<p>Despite what was said in the previous section, instead rules do not quite bypass all of the usual rules. Inform knows that certain actions require light: for instance,
+<p>
+<blockquote><font color="#000080">examining the napkin; looking; looking under the dining table
+</font></blockquote><p>
+<p>
+<p>and if it is dark then none of these actions will be allowed, and any instead rules about them will not even be reached. Similarly, Inform knows that most actions require physical access to their objects: so &quot;taking the napkin&quot; would be blocked if the napkin were, say, inside a closed glass bottle, whereas &quot;examining the napkin&quot; would not. So an instead rule can only take effect if the action has already passed these basic reasonability tests.
+<p>
+<p>&quot;Before&quot; rules genuinely precede checking of any kind. They also differ from instead rules in that they do not automatically stop the action in its tracks. Rather, they are provided as an opportunity to ensure that something else is done first. For example:
+<p>
+<blockquote><font color="#000080">Before taking the napkin, say &quot;(first unfolding its delicate origami swan)&quot;.
+</font></blockquote><p>
+<p>
+<p>whence
+<p>
+<blockquote><font color="#000080">&gt;GET NAPKIN
+<br>(first unfolding its delicate origami swan)
+<br>Taken.
+</font></blockquote><p>
+<p>
+<p>We have seen that instead rules automatically stop actions, whereas before rules automatically allow them to continue. We sometimes want to change this. The magic word &quot;instead&quot; can therefore be tacked on to any instruction in a before rule, and will have the effect of immediately stopping the action at that instruction. Thus the following two rules are (almost) equivalent:
+<p>
+<blockquote><font color="#000080">Before taking the key, instead say &quot;It seems to be soldered to the keyhole.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the key, say &quot;It seems to be soldered to the keyhole.&quot;
+</font></blockquote><p>
+<p>
+<p>It is also possible to be explicit about stopping the action:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>stop the action</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_stopaction -->
+
+<p>This phrase stops the current rule, stops the rulebook being worked through, and finally stops the action being processed. Example:
+<p>
+<blockquote><font color="#000080">Before taking the key:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It seems to be soldered to the keyhole.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Finally, we can prevent Inform from stopping the action when it otherwise might:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>continue the action</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_continueaction -->
+
+<p>This phrase ends the current rule, but in a way which keeps its rulebook going, so that the action being processed will carry on rather than being stopped. Example:
+<p>
+<blockquote><font color="#000080">Instead of taking the napkin:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first unfolding its delicate origami swan)[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<p>An &quot;instead&quot; rule ordinarily stops the action when it finishes, so the &quot;continue the action&quot; is needed to make things carry on. (This rule would have been better written as a &quot;before&quot; rule, in fact, but it shows the idea.)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>As a general principle, it is good style to use instead rules whenever blocking actions, and before rules only when it is genuinely necessary to do something first but then to continue: in fact, it is good style to use &quot;stop the action&quot; or &quot;continue the action&quot; as little as possible.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e305"><a href=doc105.html#e305 STYLE="text-decoration: none">***<b><b>Example</b> 86:  Democratic Process</b></a><br>Make PUT and INSERT commands automatically take objects if the player is not holding them.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>&quot;Stop&quot; and &quot;Continue&quot; are most useful when we need to write rules that will have to stop the action some of the time but at other times let it pass; so for instance:
+<p>
+<blockquote><font color="#000080">&quot;Democratic Process&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before inserting something which is not carried by the player into something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is in the second noun, say &quot;Already done.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first taking [the noun])[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try taking the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is not holding the noun, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before putting something which is not carried by the player on something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is on the second noun, say &quot;Already done.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first taking [the noun])[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try taking the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is not holding the noun, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Assembly Room is a room. &quot;On most days, this room is used for elementary school assemblies; at the moment, it serves as a voting place.&quot; The ballot is on the desk. The desk is in the Assembly Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The machine is a container in the Assembly Room. &quot;On the ballot machine is a sign which reads 'PUT BALLOTS IN ME :)'.&quot; Understand &quot;ballot machine&quot; as the machine.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;put ballot in machine&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e306"><a href=ex306.html#e306 STYLE="text-decoration: none">****<b>Example 87:  Sand</b></a><br>Extend PUT and INSERT handling to cases where multiple objects are intended at once.<p>
+<p><hr><p><a href=doc104.html STYLE="text-decoration: none">Previous</a> / <a href=doc106.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

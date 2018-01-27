@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.6. Windows</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "A Haughty Spirit" -->
+<!-- SEARCH SECTION "Ex 181" -->
+<!-- SEARCH SORT "Ex 003-006-181" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc12.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc14.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.6. Windows</b></td></tr></table><p>
+<p>
+<p>Calvin Coolidge once described windows as &quot;rectangles of glass.&quot; For us, they have two purposes: first, they offer a view of landscape beyond. In the simplest case the view is of an area which will not be interacted with in play, and therefore does not need to adapt to whatever may have changed there:
+<p>
+<blockquote><font color="#000080">The window is scenery in the Turret. &quot;Through the window you see miles and miles of unbroken forest, turning from green to flame in the hard early autumn.&quot;
+</font></blockquote><p>
+<p>
+<p>More interesting is to adapt the view a little to provide a changing picture: a forest may not change much, but a street scene will. <b>Port Royal 4</b> allows us to glimpse random passers-by.
+<p>
+<p>The trickiest kind of window allows the player to see another room which can also be encountered in play, and to interact with what is there. <b>Dinner is Served</b> presents a shop window, allowing people to see inside from the street, and even to reach through.
+<p>
+<p><b>Vitrine</b> handles the complication of a window misting up to become opaque, and thus temporarily hiding its view.
+<p>
+<p>Second, windows provide openings in walls and can act as conduits. <b>Escape</b> shows how a &quot;door&quot; in the Inform sense can become a window. <b>A Haughty Spirit</b> provides a general kind of window for jumping down out of: ideal for escapers from Colditz-like castles.
+<p>
+<a href=Rdoc12.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Doors, Staircases, and Bridges</b></font></a><i> for a door which can be partially seen through</i><p><p>
+<p><hr><p>
+<a name="e24"><a href=Rex24.html#e24 STYLE="text-decoration: none">**<b>Example 20:  Escape</b></a><br>Window that can be climbed through or looked through.<p>
+<a name="e117"><a href=Rex117.html#e117 STYLE="text-decoration: none">*<b>Example 116:  Vitrine</b></a><br>An electrochromic window that becomes transparent or opaque depending on whether it is currently turned on.<p>
+<a name="e258"><a href=Rex258.html#e258 STYLE="text-decoration: none">**<b>Example 261: Port Royal 4</b></a><br>A cell window through which the player can see people who were in Port Royal in the current year of game-time.<p>
+<a name="e430"><a href=Rex430.html#e430 STYLE="text-decoration: none">**<b>Example 217:  Dinner is Served</b></a><br>A window between two locations. When the window is open, the player can reach through into the other location; when it isn't, access is barred.<p>
+<!-- EXAMPLE START -->
+<a name="e382"><a href=Rdoc13.html#e382 STYLE="text-decoration: none">***<b><b>Example</b> 181:  A Haughty Spirit</b></a><br>Windows overlooking lower spaces which will prevent the player from climbing through if the lower space is too far below.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a game in which the player can climb through windows which overlook rooms below. We want him to be allowed to climb out windows to reach a room on the same level or at most one level lower than the one he's on; otherwise, he should get a refusal, saying that he would break his neck.
+<p>
+<p>To figure out the height distance between the start room and the destination room, we might have a repeat loop look at all the directions one has to follow along the &quot;best route&quot; path between the two rooms, and record any ups and downs; then subtract the number of &quot;up&quot; steps from the number of &quot;down&quot; steps, and report what remains.
+<p>
+<blockquote><font color="#000080">&quot;A Haughty Spirit&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide what number is the distance (first place - a room) rises above (second place - a room):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the total distance be the number of moves from the first place to the second place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the total distance is less than 1, decide on 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let count of down moves be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let count of up moves be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let next place be the first place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with counter running from 1 to the total distance:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the way be the best route from the next place to the second place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the way is down, let count of down moves be the count of down moves plus 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the way is up, let the count of up moves be the count of up moves plus 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let next place be the room the way from next place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the decision be the count of down moves minus the count of up moves;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on the decision.
+</font></blockquote><p>
+<p>
+<p>Now we just have to create windows and some action rules for interacting with them...
+<p>
+<blockquote><font color="#000080">A window is a kind of thing. A window is always fixed in place. A window can be open or closed. A window is usually closed. A window can be openable or unopenable. A window is usually openable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;climb through [something]&quot; as entering. Understand &quot;jump through/out [something]&quot; as entering.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before entering a closed window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] would have to be opened first.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of entering a window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun overlooks a room (called the far side):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let fall be the distance the location rises above the far side;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if fall is greater than 1, say &quot;You'd break your neck.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You tumble into [the far side].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the player to the far side;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There's nowhere to go.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] [if the noun is open]opens over[otherwise]gives a view of[end if] [the list of rooms overlooked by the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>Here we must anticipate a little from next chapter, and provide ourselves with a way of keeping track of how windows and rooms relate to one another:
+<p>
+<blockquote><font color="#000080">Overlooking relates various windows to various rooms. The verb to overlook (it overlooks, they overlook, it overlooked, it is overlooked, it is overlooking) implies the overlooking relation. The initial appearance of a window is usually &quot;[The item described] overlooks [the list of rooms overlooked by the item described].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Square Keep is above the Winding Staircase. The Winding Staircase is above the Motte. A crown and a broken sword are in the Motte. The Bailey is west of the Motte.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The long window is in the Keep. The long window overlooks the Bailey and the Motte. The narrow window is in the Winding Staircase. The narrow window overlooks the Bailey.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;jump through window / open window / jump through window / d / x narrow window / open window / climb through window / e / up / down&quot;.
+</font></blockquote><p>
+<p>
+<p>We could then add rules to allow the player to look through windows and see things in the rooms below, but that would require more material from later chapters.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc12.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc14.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

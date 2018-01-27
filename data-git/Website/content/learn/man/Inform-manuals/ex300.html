@@ -1,0 +1,74 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.12. Printing a number of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Prolegomena" -->
+<!-- SEARCH SECTION "Ex 330" -->
+<!-- SEARCH SORT "Ex 017-012-330" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc292.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc294.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.12. Printing a number of something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> Only when a group of identical items is present in the same place, and are being described jointly with text like &quot;You can see five gold rings here.&quot; The activity prints the &quot;five gold rings&quot; part. The variable &quot;listing group size&quot; contains the number, which in this example would be 5, and is always at least 2.
+<p>
+<p><b>2. The default behaviour.</b> The number of items is printed, in words (&quot;five&quot;) and then the &quot;printing the plural name&quot; activity is run (&quot;gold rings&quot;).
+<p>
+<p><b>3. Examples.</b> (a) Using this activity is for perfectionists, because the normal behaviour is almost always fine. Still:
+<p>
+<blockquote><font color="#000080">Rule for printing a number of blocks when the listing group size is 3: say &quot;all three blocks&quot;.
+</font></blockquote><p>
+<p>
+<p>(b) Or perhaps:
+<p>
+<blockquote><font color="#000080">Rule for printing a number of ants: say &quot;altogether [listing group size in words] ants&quot;.
+</font></blockquote><p>
+<p>
+<p>(c) If the only part needing variation is the plural name, it's simpler and tidier to use the &quot;printing the plural name of something&quot; activity instead.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e300"><a href=doc293.html#e300 STYLE="text-decoration: none">*<b><b>Example</b> 330:  Prolegomena</b></a><br>Replacing precise numbers with "some" or other quantifiers when too many objects are clustered together for the player to count at a glance.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Room descriptions often make the player character out to be a bit of a savant, able to count whole stacks of items at a glance: &quot;You see 27 paper clips here.&quot;
+<p>
+<p>We can adjust this behavior to our liking, though, with the printing a number... activity, as follows:
+<p>
+<blockquote><font color="#000080"> &quot;Prolegomena&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Editor's Office is a room. The desk is a supporter in the Editor's Office.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A red pencil is a kind of thing. 12 red pencils are on the desk.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A letter is a kind of thing. 12 letters are on the desk. Understand &quot;correspondence&quot; as a letter.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the plural name of a letter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the listing group size is greater than 7, say &quot;correspondence&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;letters&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing a number of something (called the target) when the listing group size is greater than 7:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]some [or]various [or]an assortment of [at random]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;carry out the printing the plural name activity with the target.
+</font></blockquote><p>
+<p>
+<p>This general rule can of course be overridden by more specific ones; for instance, if we want to take the opportunity to comment on the viewpoint character's appetite for instruments of correction:
+<p>
+<blockquote><font color="#000080">Rule for printing a number of red pencils (called the target) when the listing group size is greater than 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;carry out the printing the plural name activity with the target;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; in nearly-sufficient quantity&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get two letters / look / get a pencil / i / get pencil / g / g / look / i / get all / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc292.html STYLE="text-decoration: none">Previous</a> / <a href=doc294.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

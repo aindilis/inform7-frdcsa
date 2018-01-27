@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.11. Now...</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Now..." -->
+<!-- SEARCH SECTION "8.11" -->
+<!-- SEARCH SORT "008-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc131.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc133.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.11. Now...</b></td></tr></table><p>
+<p>
+<p>&quot;Now&quot; has already appeared several times in this chapter, being used like a Swiss army knife to change values of all kinds:
+<p>
+<blockquote><font color="#000080">now the score is 100;
+</font></blockquote><p>
+<p>
+<p>In fact, &quot;now&quot; is by far the most flexible phrase known to Inform.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>now </b>(a condition)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_now -->
+
+<p>This phrase makes the condition become true. Examples:
+<p>
+<blockquote><font color="#000080">now the score is 100;
+<br>now the player is Kevin;
+<br>now the front door is open;
+<br>now Mr Darcy is wearing the top hat;
+<br>now all the doors are open;
+<br>now all of the things in the sack are in the box;
+</font></blockquote><p>
+<p>
+<p>Inform issues a problem message if the condition asks to do the impossible (&quot;now 3 is an even number&quot;) or is vague (&quot;now the duck is not in the Lily Pond&quot;) or not in the present tense (&quot;now the front door had been open&quot;).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We've now seen all three things which can be done with a condition S which describes the world:
+<p>
+<blockquote><font color="#000080">S. - The relation holds at the start of play.
+<br>if S, ...; - Does the relation hold right now?
+<br>now S; - Make the relation hold from now on.
+</font></blockquote><p>
+<p>
+<p>For instance,
+<p>
+<blockquote><font color="#000080">The apple is in the basket.
+<br>if the apple is in the basket, ...;
+<br>now the apple is in the basket;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e28"><a href=ex28.html#e28 STYLE="text-decoration: none">*<b>Example 125:  Bee Chambers</b></a><br>A maze with directions between rooms randomized at the start of play.<p>
+<a name="e181"><a href=ex181.html#e181 STYLE="text-decoration: none">**<b>Example 126:  Hatless</b></a><br>It's tempting to use "now..." to distribute items randomly at the start of play, but we need to be a little cautious about how we do that.<p>
+<a name="e313"><a href=ex313.html#e313 STYLE="text-decoration: none">***<b>Example 127:  Technological Terror</b></a><br>A ray gun which destroys objects, leaving their component parts behind.<p>
+<p><hr><p><a href=doc131.html STYLE="text-decoration: none">Previous</a> / <a href=doc133.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

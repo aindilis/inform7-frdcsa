@@ -1,0 +1,229 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.7. Text with random alternatives</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Camp Bethel" -->
+<!-- SEARCH SECTION "Ex 67" -->
+<!-- SEARCH SORT "Ex 005-007-067" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc77.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc79.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.7. Text with random alternatives</b></td></tr></table><p>
+<p>
+<p>Sometimes we would like to provide a little quirky variation in text, especially in messages which will be seen often. We can achieve this with the &quot;[one of]... [or] ... [or] ...&quot; construction.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>one of</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_oneof -->
+
+<p>This text substitution produces no text. It's used only for a side-effect: it switches between a number of alternative texts, which follow it and are divided by &quot;[or]&quot; substitutions, according to a strategy given in a closing substitution. Example:
+<p>
+<blockquote><font color="#000080">&quot;You flip the coin. [one of]Heads[or]Tails[purely at random]!&quot;
+</font></blockquote><p>
+<p>
+<p>Here there are just two alternatives, and the strategy is &quot;purely at random&quot;. Exactly half of the time the text will be printed as &quot;You flip the coin. Heads!&quot;; and the other half, &quot;You flip the coin. Tails!&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>or</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_or -->
+
+<p>This text substitution produces no text, and can be used only in a &quot;[one of]...&quot; construction. It divides alternative wordings. Example:
+<p>
+<blockquote><font color="#000080">&quot;You flip the coin. [one of]Heads[or]Tails[purely at random]!&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>There are seven possible endings, each making the choice of which text to follow in a different way:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>purely at random</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_purelyrandom -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that the alternatives are chosen uniformly randomly.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>then purely at random</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_thenpurelyrandom -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that the alternatives are chosen in sequence until all have been seen, but that after that they are chosen uniformly randomly.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>at random</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_random -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that the alternatives are chosen at random except that the same choice cannot come up twice running. This is useful to avoid the deadening effect of repeating the exact same message. Example:
+<p>
+<blockquote><font color="#000080">&quot;The light changes randomly again; now it's [one of]green[or]amber[or]red[at random].&quot;
+</font></blockquote><p>
+<p>
+<p>Here we can safely say the light &quot;changes&quot;, because the new colour cannot be the same as the one printed the last time.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>then at random</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_thenrandom -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that the alternatives are chosen in sequence until all have been seen, and then after that, at random except that the same choice cannot come up twice running. Example:
+<p>
+<blockquote><font color="#000080">&quot;Maybe the murderer is [one of]Colonel Mustard[or]Professor Plum[or]Cardinal Cerise[then at random].&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>sticky random</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_sticky -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that a random choice is made the first time the text is printed, but that it sticks from there on. Example:
+<p>
+<blockquote><font color="#000080">&quot;The newspaper headline is: [one of]War Casualties[or]Terrorists[or]Banks[sticky random] [one of]Continue To Expand[or]Lose Out[sticky random].&quot;
+</font></blockquote><p>
+<p>
+<p>Although the newspaper headline will change with each playing, it will not alter during play.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>as decreasingly likely outcomes</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_decreasing -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that the alternatives are chosen at random, except that the first is most likely to be chosen, the second is next most likely, and so on down to the rarest at the end. Example:
+<p>
+<blockquote><font color="#000080">&quot;Zorro strides by, [one of]looking purposeful[or]grim-faced[or]deep in thought[or]suppressing a yawn[or]scratching his ribs[or]trying to conceal that he has cut himself shaving[as decreasingly likely outcomes].&quot;
+</font></blockquote><p>
+<p>
+<p>There are six outcomes here: the first is six times as likely as the last, and those in between are similarly scaled, so Zorro cuts himself shaving only once in 21 tries, while he looks purposeful almost a third of the time.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>But suppose we want to tuck some useful information in these messages, and we want to be sure that the player will see it. Because all of the above options involve randomness, it's possible that an unlucky player might miss a clue placed into only one variant of the message. One fix for this is to make sure that everything turns up sooner or later:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>in random order</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_order -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. A random order is chosen for the alternative passages of text, and they are used in that order as the text is printed again and again. When one random cycle finishes, a new one begins. The effect is somewhat like the &quot;shuffle album&quot; feature on an iPod. Example:
+<p>
+<blockquote><font color="#000080">&quot;You dip into the chapter on [one of]freshwater fish[or]hairless mammals[or]extinct birds[or]amphibians such as the black salamander[in random order].&quot;
+</font></blockquote><p>
+<p>
+<p>One small restriction: if there are more than 32 variations, purely random choices will be printed, and there will be no guarantee that repeats are prevented.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Another fix is to avoid randomness altogether:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>cycling</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_cycling -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that the alternatives are used one at a time, in turn: after the last one is reached, we start again from the first. Example:
+<p>
+<blockquote><font color="#000080">&quot;The pundits discuss [one of]the weather[or]world events[or]celebrity gossip[cycling].&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>stopping</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_stopping -->
+
+<p>This text substitution produces no text, and can be used only to end a &quot;[one of]...&quot; construction. It indicates that the alternatives are used one at a time, in turn: once the last one is reached, it's used forever after. Example:
+<p>
+<blockquote><font color="#000080">&quot;[one of]The phone rings[or]The phone rings a second time[or]The phone rings again[stopping].&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Finally, here's a convenient shorthand for one of the commonest things needed:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>first time</b>]&quot;<br><i>or:</i> say &quot;[<b>only</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_firsttime -->
+
+<p>This pair of text substitutions causes whatever is between them to be printed only the first time the text is printed. Example:
+<p>
+<blockquote><font color="#000080">&quot;The screen door squeaks loudly as when you open it. [first time]Well, you'll get used to it eventually. [only]&quot;
+</font></blockquote><p>
+<p>
+<p>This is exactly equivalent to
+<p>
+<blockquote><font color="#000080">&quot;The screen door squeaks loudly as when you open it. [one of]Well, you'll get used to it eventually. [or][stopping]&quot;;
+</font></blockquote><p>
+<p>
+<p>but easier to read.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e311"><a href=ex311.html#e311 STYLE="text-decoration: none">*<b>Example 66:  Radio Daze</b></a><br>A radio that produces a cycle of output using varying text.<p>
+<!-- EXAMPLE START -->
+<a name="e60"><a href=doc78.html#e60 STYLE="text-decoration: none">**<b><b>Example</b> 67:  Camp Bethel</b></a><br>Creating characters who change their behavior from turn to turn, and a survey of other common uses for alternative texts.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080"> &quot;Camp Bethel&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Camp Bethel Kitchen is a room.
+</font></blockquote><p>
+<p>
+<p>One use for text alternatives is to change the description of a room after first visiting. We've already seen, in the example &quot;Slightly Wrong&quot;, how to do this with &quot;[if visited] ... [otherwise] ... [end if]&quot;. But since the first description is printed once and the second description on all subsequent occasions, we could equally well write
+<p>
+<blockquote><font color="#000080">The description of Camp Kitchen is &quot;[one of]You've never been into the kitchen before, though you've spent many an hour in the dining lodge. The place is larger than you would have expected, and it has none of the fake rustic touches of the rest of the camp[or]A tidy, efficient industrial kitchen, without any of the kitsch rusticity found elsewhere[stopping].&quot;
+</font></blockquote><p>
+<p>
+<p>We might also want to liven up the behavior of people and animals, who are probably not doing the exact same thing every time we glance in their direction. There are more complex techniques for modeling the behavior of characters, as we will see in the chapters on Advanced Actions and Activities; but if we just want some textual variety, we might write something like:
+<p>
+<blockquote><font color="#000080">Jeremy is a man in the Camp Bethel Kitchen. &quot;Jeremy stands at his station, [one of]peeling white onions[or]briskly dicing onions[or]chopping celery[or]peeling carrots[or]tying fresh herbs together with string[or]putting all the vegetables into a large stock pot[or]watching over his boiling vegetable stock[cycling].&quot;
+</font></blockquote><p>
+<p>
+<p>And since (textual variation or not) we do want the player to be able to see all these objects:
+<p>
+<blockquote><font color="#000080">Jeremy carries white onions, celery, carrots, and herbs. Jeremy's station is scenery in the kitchen. It is a supporter.
+</font></blockquote><p>
+<p>
+<p>Jeremy is following a sequence of actions to do an implied task (still somewhat robotically, but it will do for now). Animals might be a bit more capricious, though:
+<p>
+<blockquote><font color="#000080">Fluffy is an animal in the Camp Bethel Kitchen. &quot;[one of]Fluffy is chasing its tail[or]Fluffy is staring out the window[or]Fluffy is rubbing itself against your leg[purely at random].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A housefly is an animal in the Camp Bethel Kitchen. &quot;A large housefly [one of]lands on a countertop[or]flies around noisily[or]circles Jeremy's chef hat[at random].&quot;
+</font></blockquote><p>
+<p>
+<p>The housefly's description is merely &quot;at random&quot; rather than &quot;purely at random&quot; because we want to show it doing a different thing each turn, whereas Fluffy could plausibly stare out the window for five turns in a row.
+<p>
+<p>There are more complex ways to change and override the initial descriptions of people and things; if text alternatives do not get us far enough, we can turn to the &quot;rule for writing a paragraph about,&quot; documented in the Activities chapter.
+<p>
+<p>Another frequent use of text alternatives is to give characters a bit of variety in things they're likely to say many times in the course of a game:
+<p>
+<blockquote><font color="#000080">Instead of telling Jeremy about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Jeremy looks [one of]surprised[or]intrigued[or]nonplussed[at random]. '[one of]You don't say[or]That's very interesting[or]Do go on[or]I wish I'd known that sooner[at random]!'&quot;.
+</font></blockquote><p>
+<p>
+<p>Or, with somewhat more complexity:
+<p>
+<blockquote><font color="#000080">Instead of asking Jeremy about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'[one of]Sorry,[or]I'm afraid[or]Hm,[at random] [one of]I don't know much about that[or]you've got me there[or]I haven't the faintest[at random],' Jeremy [one of]drawls[or]replies[or]comments[or]exclaims[at random]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of][or] huskily[or] throatily[or] silkily[or] in a deep manly voice[as decreasingly likely outcomes].&quot;
+</font></blockquote><p>
+<p>
+<p>Notice that, in that last line, our first option is entirely blank. If we put nothing as an element of the text alternatives list, this means that printing nothing at all is a viable alternative. In fact, we've made this the most common probability out of the decreasingly likely outcomes, so that five times in fifteen, or a third of the time the text is run, there will be no modifier printed at all.
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / g / g / g / ask Jeremy about his feelings for me / ask jeremy about his amnesia / tell Jeremy about my unborn child&quot;.
+</font></blockquote><p>
+<p>
+<p>As this example (alas) reveals, text alternatives will not go all the way toward making our characters into compelling conversationalists; we will have to wait until we know more about Actions. But at least we have abolished the default responses, and given Jeremy a touch of personality, however witless.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc77.html STYLE="text-decoration: none">Previous</a> / <a href=doc79.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.18. Alternatives To Standard Parsing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Down in Oodville" -->
+<!-- SEARCH SECTION "Ex 293" -->
+<!-- SEARCH SORT "Ex 006-018-293" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc45.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc47.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.18. Alternatives To Standard Parsing</b></td></tr></table><p>
+<p>
+<p>Very occasionally, for out-of-the-ordinary games, we want to make major changes to the way that Inform ordinarily understands commands.
+<p>
+<p><b>Cloves</b> shows how we might read adverbs in the player's command: adverbs are challenging because they can legitimately appear anywhere in a command structure, so must be found and accounted for before the rest of the command is understood.
+<p>
+<p><b>Fragment of a Greek Tragedy</b> goes further, substituting a keyword-recognition parser for the usual structure of commands and objects.
+<p>
+<p>Less drastically, menus of numbered options can temporarily replace or augment standard commands. <b>Down in Oodville</b> demonstrates how to add a list of transporter destinations from which the player may choose by numeral.
+<p>
+<a href=Rdoc24.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Traits Determined By the Player</b></font></a><i> for ways to ask the player a question at the beginning of play</i><p><p>
+<a href=Rdoc53.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Saying Simple Things</b></font></a><i> for a way to ask the player a yes-no question any time during play</i><p><p>
+<p><hr><p>
+<a name="e86"><a href=Rex86.html#e86 STYLE="text-decoration: none">**<b>Example 361:  Cloves</b></a><br>Accepting adverbs anywhere in a command, registering what the player typed but then cutting them out before interpreting the command.<p>
+<a name="e189"><a href=Rex189.html#e189 STYLE="text-decoration: none">**<b>Example 359:  Fragment of a Greek Tragedy</b></a><br>Responding to the player's input based on keywords only, and overriding the original parser entirely.<p>
+<!-- EXAMPLE START -->
+<a name="e111"><a href=Rdoc46.html#e111 STYLE="text-decoration: none">**<b><b>Example</b> 293:  Down in Oodville</b></a><br>Offering the player a choice of numbered options at certain times, without otherwise interfering with his ability to give regular commands.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Now and then in IF there is a situation where we need to ask the player for a numbered choice rather than an ordinary action command. What's more, that numbered choice might change during the game, so we don't want to just hard-wire the meanings of &quot;1&quot;, &quot;2&quot;, and &quot;3&quot; whenever the player types them.
+<p>
+<p>A better trick is to keep a list or table (we'll use a table here because it involves slightly less overhead) recording what the player's numerical choices currently mean. Then every time the player selects a number, the table is consulted, and if the number corresponds to something, the player's choice is acted on.
+<p>
+<p>In our example, we'll have a transporter pad that can take the player to any room in the game that he's already visited. (Just for the sake of example, we'll start him off with a few pre-visited rooms.)
+<p>
+<blockquote><font color="#000080">&quot;Down in Oodville&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Method
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;[number]&quot; as selecting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Selecting is an action applying to one number.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check selecting: [assuming we don't want to be able to transport from just anywhere]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is not on the transporter pad:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can transport only from the transporter pad. From other places than the transporter room, you can HOME to your base ship, but not leap sideways to other locations.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;empty the transport options instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check selecting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number understood is greater than the number of filled rows in the Table of Transport Options or the number understood is less than one:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The number understood] is not a valid option. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list the transport options instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out selecting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be the number understood; [not actually a necessary step, but it makes the next line easier to understand]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row N in the Table of Transport Options;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the transport entry is a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the player to the transport entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;*** BUG: Improperly filled table of transport options ***&quot; [It should not be possible for this to occur, but we add an error message for it so that, if it ever does, we will know what is causing the programming error in our code]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To list the transport options:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;From here you could choose to go to: [line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Transport Options:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;  [N]: [transport entry][line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increment N.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To empty the transport options:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Transport Options:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blank out the whole row; [first we empty the table]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To load the transport options:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with interesting room running through visited rooms which are not the Transporter Room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose a blank row in the Table of Transport Options;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the transport entry is the interesting room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Transport Options
+<br>transport
+<br>an object
+<br>with 3 blank rows. [In the current scenario, the number of blank rows need never be greater than the number of rooms in the game, minus the transport room itself.]
+</font></blockquote><p>
+<p>
+<p>
+<blockquote><font color="#000080">Understand &quot;home&quot; as homing. Homing is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check homing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the Transporter Room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You're already here!&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out homing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to the transporter room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Transporter Room is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Oodville is a visited room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Midnight is a visited room. The Diamond City is west of Midnight.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The transporter pad is an enterable supporter in the Transporter Room. &quot;The transporter pad in the middle of the floor is currently dull blue: powered but unoccupied.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After entering the transporter pad:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The transporter beeps and glows amber as you step onto its surface. A moment later a hologram displays your options. [run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;empty the transport options;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;load the transport options;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;list the transport options.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get on pad / 0 / -1 / 8 / 2 / look / w / home / get on pad / get off pad / 3&quot;.
+</font></blockquote><p>
+<p>
+<p>If we wanted to replace the regular command structure entirely with numbered menus, or use menus to hold conversation options, we could: several Inform extensions provide these functions.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc45.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc47.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

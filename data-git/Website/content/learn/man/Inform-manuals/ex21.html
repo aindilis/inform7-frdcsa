@@ -1,0 +1,115 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.11. Understanding values</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Baritone, Bass" -->
+<!-- SEARCH SECTION "Ex 298" -->
+<!-- SEARCH SORT "Ex 016-011-298" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc269.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc271.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.11. Understanding values</b></td></tr></table><p>
+<p>
+<p>So far every &quot;Understand&quot; sentence has ended with &quot;as&quot; and a description of an action. But we can also use &quot;Understand&quot; to supply new ways to talk about things and even values. For instance, if we create:
+<p>
+<blockquote><font color="#000080">A brass lantern is in the Building.
+</font></blockquote><p>
+<p>
+<p>then it can be called &quot;brass&quot;, or &quot;lantern&quot;, but not &quot;lamp&quot;: Inform does not really know what these words mean, and has no grasp of synonyms. We can arrange for &quot;lamp&quot; to work as well like so:
+<p>
+<blockquote><font color="#000080">Understand &quot;lamp&quot; as the lantern.
+<br>Understand &quot;old lamp&quot; as the lantern.
+</font></blockquote><p>
+<p>
+<p>With care, we can do the same trick for entire kinds of thing at once. It is not ordinarily the case that a thing can be called by the name of its kind: if we put a woman called April into a room, then she can usually be called &quot;April&quot;, but not &quot;woman&quot;. (The exception is when we do not specify any name for her - in that case, Inform will give up and call her just &quot;woman&quot;.) So there is not usually any form of words which can refer to anything of a given kind. If we should want this, we have to say so explicitly:
+<p>
+<blockquote><font color="#000080">Understand &quot;machine&quot; as a device.
+</font></blockquote><p>
+<p>
+<p>Device is a kind, so now the word &quot;machine&quot; can be used to refer to any device: if there are two in the same place, the result might play out like so:
+<p>
+<blockquote><font color="#000080">>switch machine on
+<br>Which do you mean, the bale twiner or the grain thresher?
+<br>>twiner
+<br>You watch absorbed as a perfect cube of hay is trussed up like a parcel.
+</font></blockquote><p>
+<p>
+<p>Similarly, we might conceivably want to allow new ways to recognise values - in this case, a number:
+<p>
+<blockquote><font color="#000080">Understand &quot;eleventy-one&quot; as 111.
+</font></blockquote><p>
+<p>
+<p>When making complicated names, we need to watch out for the possibility of writing a definition which will cause Inform to go around in circles (something which will show up as a &quot;Too many activities at once&quot; run-time problem). For instance,
+<p>
+<blockquote><font color="#000080">Understand &quot;[thing] substitute&quot; as the placebo.
+</font></blockquote><p>
+<p>
+<p>will fail because Inform, working left to right, needs to look for every possible object name before it can progress: one possibility is the placebo itself: to check that, it needs to look for every possible object name: and so on, never finishing. A definition like this one very likely matches too much in any case (would we really want to accept PLACEBO SUBSTITUTE or CIGARETTE SUBSTITUTE SUBSTITUTE SUBSTITUTE here, as the definition implies?).
+<p>
+<p><hr><p>
+<a name="e280"><a href=ex280.html#e280 STYLE="text-decoration: none">*<b>Example 297:  Palette</b></a><br>An artist's workshop in which the canvas can be painted in any colour, and where painterly names for pigments ("cerulean") are accepted alongside everyday ones ("blue").<p>
+<!-- EXAMPLE START -->
+<a name="e21"><a href=doc270.html#e21 STYLE="text-decoration: none">***<b><b>Example</b> 298:  Baritone, Bass</b></a><br>Letting the player pick a gender (or perhaps other characteristics) before starting play.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The &quot;reading a command&quot; activity is rather advanced; for the moment, what we need to understand is that we're intervening in commands at the start of play and insisting that the player's first instruction to the game consist of a choice of gender. After that point, the gender will be set and play will proceed as normal.
+<p>
+<p>In order to do the parsing, we define gender as a kind of value, and give several alternate names to each gender.
+<p>
+<blockquote><font color="#000080">&quot;Baritone, Bass&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Getting Started is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Gender is a kind of value. The genders are masculine, feminine, and unknown. Understand &quot;male&quot; or &quot;man&quot; or &quot;M&quot; as masculine. Understand &quot;female&quot; or &quot;woman&quot; or &quot;F&quot; as feminine.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person has a gender. The gender of the player is unknown.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;Please choose a gender for your character. >&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After reading a command when the gender of the player is unknown:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;[gender]&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the gender of the player is the gender understood;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the gender of the player is masculine, now the player is male;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the gender of the player is feminine, now the player is female;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]Thank you. We now begin...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;>&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the player to Sandy Beach;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Sorry, we're not ready to go on yet -- please pick a gender to begin. >&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Sandy Beach is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the player when the player is female:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Congratulations, you are a girl!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the player when the player is male:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Congratulations, you are a boy!&quot;
+</font></blockquote><p>
+<p>
+<p>If we had a whole series of things to ask the player about, we might define a whole series of kinds of value
+<p>
+<blockquote><font color="#000080">The vocal ranges are soprano, mezzosoprano, contralto...
+</font></blockquote><p>
+<p>
+<p>and use a &quot;construction stage&quot; variable to keep track of the current stage of character-construction, as in
+<p>
+<blockquote><font color="#000080">After reading a command when the current construction stage is choosing a vocal range:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc269.html STYLE="text-decoration: none">Previous</a> / <a href=doc271.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

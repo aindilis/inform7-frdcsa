@@ -1,0 +1,177 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 19.3. Characters, words, punctuated words, unpunctuated words, lines, paragraphs</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Characters, words, punctuated words, unpunctuated words, lines, paragraphs" -->
+<!-- SEARCH SECTION "19.3" -->
+<!-- SEARCH SORT "019-003-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc341.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc343.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>19.3. Characters, words, punctuated words, unpunctuated words, lines, paragraphs</b></td></tr></table><p>
+<p>
+<p>Suppose we have some text called, once again, WHATEVER. Inform can get at its contents in a variety of ways. The lowest-level is by character - a character is a letter, digit, punctuation symbol, space or other letter-form. (We use the term &quot;character&quot; rather than &quot;letter&quot; because otherwise we would have to call &quot;5&quot; a letter, and so on.) Characters number upwards from 1: character number 1, to repeat that, starts the text. We can get the Nth character with:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>character number </b>(number)<b> in </b>(indexed text)<b></b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_charnum -->
+
+<p>This phrase produces the Nth character from the text, counting from 1. Characters include letters, digits, punctuation symbols, spaces or other letter-forms. Example:
+<p>
+<blockquote><font color="#000080">character number 8 in &quot;numberless projects of social reform&quot;
+</font></blockquote><p>
+<p>
+<p>produces &quot;e&quot;. If the index is less than 1 or more than the length of the text, the result is an empty text, &quot;&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The maximum character number varies with the current length of the text, and can be evaluated as:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of characters in </b>(indexed text)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numchars -->
+
+<p>This phrase produces the number of characters from the text. Characters include letters, digits, punctuation symbols, spaces or other letter-forms. Examples:
+<p>
+<blockquote><font color="#000080">number of characters in &quot;War and Peace&quot;
+<br>number of characters in &quot;&quot;
+</font></blockquote><p>
+<p>
+<p>produce 13 and 0 respectively.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>When an indexed text has 0 characters, it is &quot;empty&quot;, just as for ordinary text; and otherwise it is &quot;non-empty&quot;.
+<p>
+<p>We can also extract the contents by word, again numbered from 1. Thus:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>word number </b>(number)<b> in </b>(indexed text)<b></b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_wordnum -->
+
+<p>This phrase produces the Nth word from the text, counting from 1. Words for this purpose are what's left after breaking the text up at punctuation or spacing (spaces, line breaks, paragraph breaks) and then removing that punctuation or spacing. Example:
+<p>
+<blockquote><font color="#000080">word number 3 in &quot;ice-hot, don't you think?&quot;
+</font></blockquote><p>
+<p>
+<p>produces &quot;don't&quot;. If the index is less than 1 or more than the number of words in the text, the result is an empty text, &quot;&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of words in </b>(indexed text)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numwords -->
+
+<p>This phrase produces the number of words from the text. Words for this purpose are what's left after breaking the text up at punctuation or spacing (spaces, line breaks, paragraph breaks) and then removing that punctuation or spacing. Example:
+<p>
+<blockquote><font color="#000080">number of words in &quot;ice-hot, don't you think?&quot;
+</font></blockquote><p>
+<p>
+<p>produces 5.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Note that the contraction apostrophe in &quot;don't&quot; doesn't count as punctuation. Because this is not always quite what we want, Inform offers two variations:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>punctuated word number </b>(number)<b> in </b>(indexed text)<b></b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_pwordnum -->
+
+<p>This phrase produces the Nth word from the text, counting from 1. Words for this purpose are what's left after breaking the text up at punctuation or spacing (spaces, line breaks, paragraph breaks) and then removing the spacing, but leaving the punctuation as independent words. Example:
+<p>
+<blockquote><font color="#000080">punctuated word number 2 in &quot;ice-hot, don't you think?&quot;
+</font></blockquote><p>
+<p>
+<p>produces &quot;-&quot;. The punctuated words here are &quot;ice&quot;, &quot;-&quot;, &quot;hot&quot;, &quot;,&quot;, &quot;don't&quot;, &quot;you&quot;, &quot;think&quot;, &quot;?&quot;. If two or more punctuation marks are adjacent, they are counted as different words, except for runs of dashes or periods: thus &quot;,,&quot; has two punctuated words, but &quot;--&quot; and &quot;...&quot; have only one each. If the index is less than 1 or more than the number of punctuated words in the text, the result is an empty text, &quot;&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of punctuated words in </b>(indexed text)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numpwords -->
+
+<p>This phrase produces the number of words from the text. Words for this purpose are what's left after breaking the text up at punctuation or spacing (spaces, line breaks, paragraph breaks) and then removing the spacing, but leaving the punctuation as independent words. Example:
+<p>
+<blockquote><font color="#000080">number of punctuated words in &quot;ice-hot, don't you think?&quot;
+</font></blockquote><p>
+<p>
+<p>produces 8; see if you can find them all.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>unpunctuated word number </b>(number)<b> in </b>(indexed text)<b></b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_upwordnum -->
+
+<p>This phrase produces the Nth word from the text, counting from 1. Words for this purpose are what's left after breaking the text up at spacing (spaces, line breaks, paragraph breaks) but including all punctuation as if it were part of the spelling of the words it joins to. Example:
+<p>
+<blockquote><font color="#000080">unpunctuated word number 1 in &quot;ice-hot, don't you think?&quot;
+</font></blockquote><p>
+<p>
+<p>produces &quot;ice-hot,&quot;. The unpunctuated words in &quot;ice-hot, don't you think?&quot; are &quot;ice-hot,&quot;, &quot;don't&quot;, &quot;you&quot;, &quot;think?&quot;. If the index is less than 1 or more than the number of punctuated words in the text, the result is an empty text, &quot;&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of unpunctuated words in </b>(indexed text)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numupwords -->
+
+<p>This phrase produces the number of words from the text. Words for this purpose are what's left after breaking the text up at spacing (spaces, line breaks, paragraph breaks) but including all punctuation as if it were part of the spelling of the words it joins to. Example:
+<p>
+<blockquote><font color="#000080">number of unpunctuated words in &quot;ice-hot, don't you think?&quot;
+</font></blockquote><p>
+<p>
+<p>produces just 4.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Finally, on the larger scale still, we also have:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>line number </b>(number)<b> in </b>(indexed text)<b></b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_linenum -->
+
+<p>This phrase produces the Nth line from the text, counting from 1. Unless explicit use is made of line-breaking, lines and paragraphs will be the same - it doesn't refer to lines as visible on screen, because we have no way of knowing what size screen the player might have.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of lines in </b>(indexed text)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numlines -->
+
+<p>This phrase produces the number of lines in the text. Unless explicit use is made of line-breaking, lines and paragraphs will be the same - it doesn't refer to lines as visible on screen, because we have no way of knowing what size screen the player might have. Example: the number of lines in
+<p>
+<blockquote><font color="#000080">&quot;Sensational news just in![paragraph break]The Martians have invaded Miranda.[line break](One of the moons of Uranus, that is.)&quot;
+</font></blockquote><p>
+<p>
+<p>is 3.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>paragraph number </b>(number)<b> in </b>(indexed text)<b></b> ... <i>indexed text</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_paranum -->
+
+<p>This phrase produces the Nth paragraph from the text, counting from 1.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of paragraphs in </b>(indexed text)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numparas -->
+
+<p>This phrase produces the number of paragraphs in the text. Example: the number of paragraphs in
+<p>
+<blockquote><font color="#000080">&quot;Sensational news just in![paragraph break]The Martians have invaded Miranda.[line break](One of the moons of Uranus, that is.)&quot;
+</font></blockquote><p>
+<p>
+<p>is 2.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>(Attempting to make large enough texts to have a serious paragraph count is slightly risky if there is not much memory to play with, as on the Z-machine. But the facilities do exist.)
+<p>
+<p><hr><p><a href=doc341.html STYLE="text-decoration: none">Previous</a> / <a href=doc343.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

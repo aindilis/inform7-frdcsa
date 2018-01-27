@@ -1,0 +1,123 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.12. Cameras and Recording Devices</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Claims Adjustment" -->
+<!-- SEARCH SECTION "Ex 311" -->
+<!-- SEARCH SORT "Ex 009-012-311" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc78.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc80.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.12. Cameras and Recording Devices</b></td></tr></table><p>
+<p>
+<p>Recording what is going on, for later playing back or examination, is difficult because the range of situations is very complex. Exactly how much information should we store when we make a recording, and will this require problematically large tables? Will it be difficult even to do at all?
+<p>
+<p>The usual approach is to record only basic details of events or situations. In <b>If It Hadn't Been For...</b> the tape recorder preserves only a few different sounds - footsteps, creaking, rustling - rather than capturing exactly the sound of every action taking place in earshot. In <b>Claims Adjustment</b>, we can take up to 36 Polaroid-style photographs, but each is described only by saying what it is a photo of. Thus we can have a photograph of a vase, or even a photograph of a photograph of a vase (because that too is a thing), but not a photograph of a still life in which several items have been gathered together by the player. That would ordinarily require too much storage.
+<p>
+<p>A similar trick, though involving impromptu sculpture rather than photography, can be found in <b>Originals</b>. (The artist magically &quot;manifests&quot; these models rather than sculpting the conventional way in order to avoid the nuisance of carrying around raw materials - wax maquettes and so forth - which would clutter up the example.)
+<p>
+<p>If we rely on indexed text, however, we can store arbitrary descriptions. <b>Mirror, Mirror</b> provides a perfect visual recorder: it remembers a room description exactly as the player saw it at the time.
+<p>
+<p><b>Actor's Studio</b> provides a video camera that records and time stamps all actions performed in its presence while it is set to record.
+<p>
+<p><hr><p>
+<a name="e336"><a href=Rex336.html#e336 STYLE="text-decoration: none">*<b>Example 262:  If It Hadn't Been For...</b></a><br>A sound recording device that records the noises made by player and non-player actions, then plays them back on demand.<p>
+<!-- EXAMPLE START -->
+<a name="e82"><a href=Rdoc79.html#e82 STYLE="text-decoration: none">**<b><b>Example</b> 311:  Claims Adjustment</b></a><br>An instant camera that spits out photographs of anything the player chooses to take a picture of.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We start by creating a camera and a photograph object. As usual when we want to have a kind of object that can be dispensed in bulk, we start off with a bunch of identical instances of the object out of play (in this case, kept in an out-of-play container called &quot;film roll&quot;); we can then move them into play and give them characteristics when they're needed.
+<p>
+<p>Each photograph can depict exactly one thing -- we're assuming that the player is not a landscape photographer here -- so we create a relation to indicate what is shown by each photograph. We'll then use that relation to determine how photographs are described, named, and parsed:
+<p>
+<blockquote><font color="#000080">&quot;Claims Adjustment&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A photograph is a kind of thing. 36 photographs are in the film roll.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Appearance relates one thing to various photographs. The verb to be shown by implies the appearance relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of a photograph is usually &quot;It shows [a random thing which is shown by the item described].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;of [something related by reversed appearance]&quot; as a photograph.
+</font></blockquote><p>
+<p>
+<p>This allows the player to refer to any photograph by its subject: useful if we have a large number of them.
+<p>
+<p>Now we create an action to let the player use the camera and generate these photograph objects:
+<p>
+<blockquote><font color="#000080">The player carries a cheap instant camera.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [something] with [camera]&quot; as photographing. Understand &quot;photograph [something] with [something preferably held]&quot; as photographing. Photographing is an action applying to one visible thing and one carried thing, requiring light.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The photographing action has an object called the selected film.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Setting action variables for photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be a random photograph in the film roll;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the selected film is N.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is not the camera, say &quot;You need a camera for that purpose.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is the camera, say &quot;Sadly impossible.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the selected film is nothing, say &quot;You're out of film.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is shown by the selected film;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the selected film to the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your camera instantly spits out [a selected film].&quot;
+</font></blockquote><p>
+<p>
+<p>Now we use two activities from the Activities chapter to describe the photographs to the player more elegantly:
+<p>
+<blockquote><font color="#000080">After printing the name of a photograph (called target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; of [a random thing which is shown by the target]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the plural name of a photograph (called target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be the holder of the target;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot; of [a list of things which are shown by photographs which are held by N]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of things which are shown by photographs which are held by N is greater than one, say &quot; (variously)&quot;.
+</font></blockquote><p>
+<p>
+<p>And finally we provide a brief scenario to give the player something to take pictures of:
+<p>
+<blockquote><font color="#000080">The Treasure Room is a room. &quot;Despite the fancy name, this is no more than a closet -- albeit a closet with its own special circuit on the house alarm.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Treasure Room contains a small Degas, a Ming vase, and a collection of South African krugerrands. The player is carrying insurance forms, a first-class stamp, and a security envelope.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the forms is &quot;Completely filled out in black ink in block letters: now all you need to do is attach photographic evidence of the objects you wish to insure.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;photograph degas / i / photograph degas / i / x photograph of degas / photograph me / x photograph of me / i / photograph vase / photograph camera / photograph collection / g / i / test more&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test more with &quot;x photograph of collection / x photograph of krugerrands / x photograph of collection of south african krugerrands / photograph photograph of degas / x photograph of photograph of degas&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e275"><a href=Rex275.html#e275 STYLE="text-decoration: none">*<b>Example 355:  Originals</b></a><br>Allowing the player to create models of anything in the game world; parsing the name "model [thing]" or even just "[thing]" to refer to these newly-created models; asking "which do you mean, the model [thing] or the actual [thing]" when there is ambiguity.<p>
+<a name="e248"><a href=Rex248.html#e248 STYLE="text-decoration: none">*<b>Example 406:  Mirror, Mirror</b></a><br>The sorcerer's mirror can, when held up high, form an impression of its surroundings which it then preserves.<p>
+<a name="e1"><a href=Rex1.html#e1 STYLE="text-decoration: none">**<b>Example 221:  Actor's Studio</b></a><br>A video camera that records actions performed in its presence, and plays them back with time-stamps.<p>
+<p><hr><p><a href=Rdoc78.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc80.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

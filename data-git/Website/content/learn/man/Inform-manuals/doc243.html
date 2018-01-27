@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.3. Corresponding entries</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Corresponding entries" -->
+<!-- SEARCH SECTION "15.3" -->
+<!-- SEARCH SORT "015-003-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc242.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc244.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.3. Corresponding entries</b></td></tr></table><p>
+<p>
+<p>Continuing our example of the elements:
+<p>
+<blockquote><font color="#000080">Table 2.1 - Selected Elements
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Hydrogen&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;H&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Iron&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Fe&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">26</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">56</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Zinc&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Zn&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">30</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">65</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Uranium&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">92</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">238</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>If we want to know the atomic number of Uranium, say, it seems artificial to have to talk about the particular row number where the information happens to be. So we are also allowed to cross-reference, like so:
+<p>
+<blockquote><font color="#000080">the atomic number corresponding to a symbol of &quot;Fe&quot; in the Table of Selected Elements
+</font></blockquote><p>
+<p>
+<p>This results in 26, and similarly
+<p>
+<blockquote><font color="#000080">the symbol corresponding to an atomic number of 26 in the Table of Selected Elements
+</font></blockquote><p>
+<p>
+<p>results in &quot;Fe&quot;. But we have to be careful:
+<p>
+<blockquote><font color="#000080">the element corresponding to an atomic number of 27 in the Table of Selected Elements
+</font></blockquote><p>
+<p>
+<p>This is not allowed (it produces an error at run-time), because there is no row with atomic number 27 in this rather limited table. We can check this in advance with the condition:
+<p>
+<blockquote><font color="#000080">if there is an element corresponding to an atomic number of 27 in the Table of Standard Elements ...
+</font></blockquote><p>
+<p>
+<p>Or more simply:
+<p>
+<blockquote><font color="#000080">if there is an atomic number of 27 in the Table of Standard Elements ...
+</font></blockquote><p>
+<p>
+<p>The condition &quot;if there is...&quot; can be used with any reference to a table entry: for instance, &quot;if there is a symbol in row 5 of the Table of Standard Elements&quot; would be false, because there are only four rows.
+<p>
+<p><hr><p>
+<a name="e118"><a href=ex118.html#e118 STYLE="text-decoration: none">***<b>Example 260:  Dubai</b></a><br>An elevator which connects any of 27 floors in a luxury hotel.<p>
+<p><hr><p><a href=doc242.html STYLE="text-decoration: none">Previous</a> / <a href=doc244.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

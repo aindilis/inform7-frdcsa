@@ -1,0 +1,86 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.1. The Human Body</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Night Before" -->
+<!-- SEARCH SECTION "Ex 56" -->
+<!-- SEARCH SORT "Ex 005-001-056" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc22.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc24.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.1. The Human Body</b></td></tr></table><p>
+<p>
+<p>By default, Inform gives the player character (and every other person) a simple unitary body, one without hands or feet or any other defined parts. In many games this is adequate; but in others it is not enough, and we may want to endow all people with some more specific physical features, as in
+<p>
+<blockquote><font color="#000080">A face is a kind of thing. A face is part of every person.
+</font></blockquote><p>
+<p>
+<p>Once we've done this, we may invite ambiguities if the player types LOOK AT FACE; it is this challenge that is addressed in <b>The Night Before</b>.
+<p>
+<p><b>rBGH</b> gives the player a random height and then uses this to determine how the room should be described around him.
+<p>
+<p><b>Slouching</b> lets the player (and other characters as well) take different sitting, standing, and lying down positions.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e334"><a href=Rdoc23.html#e334 STYLE="text-decoration: none">***<b><b>Example</b> 56:  The Night Before</b></a><br>Instructing Inform to prefer different interpretations of EXAMINE NOSE, depending on whether the player is alone, in company, or with Rudolph the Red-nosed Reindeer.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose that we're going to give every person in the game a nose, but we want references to a nose always to mean the nose of someone *else*, if the player is with one other person. Moreover, on some occasions we're going to be in sight of Rudolph, so actions directed at an unspecified nose should always prefer his.
+<p>
+<p>This relies on a somewhat advanced technique from the Understanding chapter, but since it may become useful with assemblies and body parts, it is worth mentioning here.
+<p>
+<blockquote><font color="#000080">&quot;The Night Before&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The North Pole is a room. &quot;Here it is: the famous Pole. From here you can go south (or south-south, or south-south-by-south); or, alternatively, take refuge inside a red-and-white-striped cabin.&quot; The cabin is scenery in the North Pole. Instead of entering the cabin, try going inside.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Santa is a man in the North Pole. &quot;Santa is pacing around in the snow and trying to psych himself up for the big night.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Inside from North Pole is the Candy Cane Cabin. The description of the Cabin is &quot;Striped red and white, but nothing can make this place seem warm and inviting since Mrs. Santa ran off with the Tooth Fairy.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Ice Shelf is south of North Pole. &quot;The ice here has been smoothed into a kind of runway for easy take-off, and ends in a cliff and cold arctic sea.&quot; Donner, Vixen, Blixen, and Rudolph are animals in the Ice Shelf.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A nose is a kind of thing. A nose is part of every person. The description of Santa's nose is &quot;It's a bit ruddy. You don't like to mention it, but Santa's been dipping heavily into the Grey Goose since Mrs. Santa left town.&quot; The description of a nose is usually &quot;Not terribly exciting.&quot;  The description of Rudolph's nose is &quot;See how it glows!&quot;
+</font></blockquote><p>
+<p>
+<p>Next, we'll teach Inform some vocabulary to distinguish between the player and everyone else:
+<p>
+<blockquote><font color="#000080">Definition: a person is other if it is not the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is selfish if it is part of the player and the player can see an other person.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a selfish nose:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You cross your eyes, but can't get a good look.&quot;
+</font></blockquote><p>
+<p>
+<p>Here is the part that actually determines the preferences. &quot;Does the player mean...&quot; can result in five outcomes: &quot;it is very unlikely&quot;, &quot;it is unlikely&quot;, &quot;it is possible&quot; (the neutral default), &quot;it is likely&quot;, and &quot;it is very likely&quot;. This is discussed in greater detail in the Understanding chapter. Here, we want to discourage references to the player's own nose and encourage references to the nose of Rudolph, so:
+<p>
+<blockquote><font color="#000080">Does the player mean doing something when the noun is a selfish nose or the second noun is a selfish nose: it is very unlikely.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Does the player mean doing something to Rudolph's nose: it is very likely.
+</font></blockquote><p>
+<p>
+<p>And this part is just for decoration:
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about Rudolph:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The reindeer are already harnessed and waiting impatiently. The brilliance of [Rudolph]'s nose casts an eerie red glow over [the list of unmentioned animals in the location].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x nose / x my nose / x santa's nose / in / x nose / out / s / x my nose / x nose / x rudolph's nose / x donner's nose&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e373"><a href=Rex373.html#e373 STYLE="text-decoration: none">*<b>Example 245:  rBGH</b></a><br>The player character's height is selected randomly at the start of play.<p>
+<a name="e346"><a href=Rex346.html#e346 STYLE="text-decoration: none">**<b>Example 381:  Slouching</b></a><br>A system of postures allowing the player and other characters to sit, stand, or lie down explicitly or implicitly on a variety of enterable supporters or containers, or in location.<p>
+<p><hr><p><a href=Rdoc22.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc24.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

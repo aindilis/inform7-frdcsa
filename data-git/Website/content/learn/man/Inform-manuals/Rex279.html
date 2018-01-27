@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.4. Glass and Other Damage-Prone Substances</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Paddington" -->
+<!-- SEARCH SECTION "Ex 195" -->
+<!-- SEARCH SORT "Ex 010-004-195" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc82.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc84.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.4. Glass and Other Damage-Prone Substances</b></td></tr></table><p>
+<p>
+<p>Just as Inform normally assumes everything is solid, it also assumes that these solid objects will not buckle, crack, break or deform under pressure, and cannot be fragmented. But breakability adds realism, and breakage need not be negative: sometimes we want the player to break her way in to something.
+<p>
+<p>In IF the word DROP is more often used to mean &quot;put down&quot; or &quot;leave behind&quot; than &quot;let go from a height&quot;: so it is perhaps unfair that in <b>Ming Vase</b> something fragile, when dropped, shatters (into nothing). In <b>Spring Cleaning</b>, fragile objects must be explicitly attacked by the player in order to break, and although they leave no tangible debris behind, their loss is at least remembered. <b>Kyoto</b> provides a general-purpose model for things being thrown at other things, with consequences including things moving (even between rooms) as well as breaking each other.
+<p>
+<p>Debris from breakages is to be avoided if possible because it means keeping track of increasing numbers of objects. But we can increase realism by allowing something to have a visibly &quot;broken&quot; state, which it changes to when it breaks, rather than simply vanishing. <b>Terracottissima</b> provides for broken and unbroken flowerpots in this way.
+<p>
+<p>Since &quot;part of&quot; allows us to have two objects joined together into what the player sees as one, it also gives us a natural seam which allows the whole to be broken back down into its component parts, and this is the neatest way of providing a breakage into pieces. <b>Paddington</b> demonstrates a cutting action which allows component parts to be cut away from their holders but will only make small surface gashes in any individual thing: so the player can cut something up, but only into the pieces we specifically choose to allow. Cutting also forces an opening into containers.
+<p>
+<a href=Rdoc51.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Combat and Death</b></font></a><i> for a robot that breaks into its component limbs when shot with a blaster</i><p><p>
+<a href=Rdoc61.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Goal-Seeking Characters</b></font></a><i> for a character who eats donuts, leaving crumbs on the floor</i><p><p>
+<a href=Rdoc84.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Volume, Height, Weight</b></font></a><i> for containers breaking under the weight of their contents</i><p><p>
+<a href=Rdoc85.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Ropes</b></font></a><i> for cutting up string into up to 35 different pieces of different lengths - a limit the player is unlikely to find out about, but a limit all the same, and an expensive solution since we need 35 different things for the &quot;debris&quot; when string is &quot;broken&quot;</i><p><p>
+<p><hr><p>
+<a name="e158"><a href=Rex158.html#e158 STYLE="text-decoration: none">*<b>Example 97:  Ming Vase</b></a><br>ATTACK or DROP break and remove fragile items from play.<p>
+<a name="e351"><a href=Rex351.html#e351 STYLE="text-decoration: none">*<b>Example 123:  Spring Cleaning</b></a><br>A character who sulks over objects that the player has broken (and which are now off-stage).<p>
+<a name="e375"><a href=Rex375.html#e375 STYLE="text-decoration: none">**<b>Example 387:  Kyoto</b></a><br>Expanding the effects of the THROW something AT something command so that objects do make contact with one another.<p>
+<a name="e149"><a href=Rex149.html#e149 STYLE="text-decoration: none">**<b>Example 302:  Terracottissima</b></a><br>The flowerpots once again, but this time arranged so that after the first breakage all undamaged pots are said to be "unbroken", to distinguish them from the others.<p>
+<!-- EXAMPLE START -->
+<a name="e279"><a href=Rdoc83.html#e279 STYLE="text-decoration: none">**<b><b>Example</b> 195:  Paddington</b></a><br>A CUT [something] WITH [something] command which acts differently on different types of objects.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we intend a game in which the player needs to cut things open on a regular basis. We'll want to check whether he has the proper tools handy, and deal graciously with commands such as CUT [something] when no tool is specified. So:
+<p>
+<blockquote><font color="#000080">&quot;Paddington&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A blade is a kind of thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;cut [something] with [something]&quot; as cutting it with.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of cutting something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a blade (called the edge) is held by the player,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try cutting the noun with the edge;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Your fingernails are not sharp enough.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Cutting it with is an action applying to two things.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check cutting it with:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is a person, say &quot;That would hurt.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is not a blade, say &quot;[The second noun] has not got enough of a blade.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out cutting it with:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increment the count of rips of the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report cutting it with:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You slash [the noun] with [the second noun].&quot;
+</font></blockquote><p>
+<p>
+<p>We'll need a way to account for all these cuts and rips.
+<p>
+<blockquote><font color="#000080">Definition: a thing is ripped if the count of rips of it > 0.  A thing has a number called the count of rips. After examining something ripped, say &quot;You see [the count of rips of the noun in words] rip[s] in [the noun][if something is in the noun], revealing [a list of things in the noun][end if].&quot;
+</font></blockquote><p>
+<p>
+<p>Moreover, because open containers normally list their contents when examined but we'd prefer Paddington's to be mentioned in the ripping paragraph:
+<p>
+<blockquote><font color="#000080">A procedural rule while examining the teddy bear:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the examine containers rule.
+</font></blockquote><p>
+<p>
+<p>So far, so good. But suppose that we'd like cutting also to make containers be permanently open and impossible to close again. We could write an &quot;instead&quot; rule, but that would mean that only our instead instructions would take effect, overriding the normal cutting it with rules entirely. Better would be to add a second carry out rule:
+<p>
+<blockquote><font color="#000080">Carry out cutting a container with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is open;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is unopenable.
+</font></blockquote><p>
+<p>
+<p>Now our rule will occur whenever a container is cut, but play will still go on to the reporting stage. And indeed we can add more of these, of varying degrees of specificity:
+<p>
+<blockquote><font color="#000080">Carry out cutting something which is part of something with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out cutting the quilt with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the description of the quilt is &quot;Horribly tattered.&quot;
+</font></blockquote><p>
+<p>
+<p>For that matter, we might want to add a report rule as well, to occur after the &quot;You slash...&quot; rule, so that every time the player cuts something open which has contents, the contents will be listed.
+<p>
+<blockquote><font color="#000080">Report cutting it with:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is open and the noun contains something,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Visible within [is-are a list of things in the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>This time we do not add the condition to the rule (i.e., Report cutting an open noun...) If we did, this report rule would be more specific than the general report rule, and would occur first.
+<p>
+<blockquote><font color="#000080">The Safehouse is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The teddy bear is a closed thing in the Safehouse. The description is &quot;Fluffy[if the head is part of the bear], with an outsized head[otherwise], but headless[end if].&quot; The head is a closed part of the teddy bear. In the bear is a large wad of stuffing. In the head are a small wad of stuffing and a packet of smuggled diamonds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The quilt is in the Safehouse. The description is &quot;An old but comforting quilt.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a blade called a switchblade.
+</font></blockquote><p>
+<p>
+<p>If we may be permitted to borrow one line from chapter 16, here is a final nicety to get rid of the &quot;which is closed&quot; statement on our closed unopenable teddy bear:
+<p>
+<blockquote><font color="#000080">After printing the name of a closed unopenable container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;omit contents in listing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;cut quilt with bear / cut quilt with switchblade / examine quilt / cut bear with switchblade / again / examine bear / cut head with switchblade / get diamonds / mourn loss of innocence&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc82.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc84.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

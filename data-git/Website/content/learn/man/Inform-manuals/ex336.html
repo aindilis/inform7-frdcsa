@@ -1,0 +1,167 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.9. Blank rows</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "If It Hadn't Been For..." -->
+<!-- SEARCH SECTION "Ex 262" -->
+<!-- SEARCH SORT "Ex 015-009-262" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc248.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc250.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.9. Blank rows</b></td></tr></table><p>
+<p>
+<p>There is no difficulty about entirely blank rows: or rather, the only difficulty is once again that they are boring to type out. We can avoid the necessity by appending &quot;with ... blank rows&quot; at the foot of the table:
+<p>
+<blockquote><font color="#000080">Table 2 - Selected Elements
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Hydrogen&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;H&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Iron&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Fe&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">26</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Zinc&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Zn&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">30</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Uranium&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">92</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 3 blank rows</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>(These words cannot be placed in between rows, but only at the bottom.) And indeed the table can start out completely empty:
+<p>
+<blockquote><font color="#000080">Table 3 - Undiscovered Periodic Table
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element (text)</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol (text)</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number (a number)</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight (a number)</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 92 blank rows</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>Blank rows are useful because they enable us to add new data to a table. In effect, they are invisible when not used. A repeat loop like
+<p>
+<blockquote><font color="#000080">repeat through Table 3:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>automatically skips blank rows, so it would initially do nothing at all. Similarly, choosing a &quot;random&quot; row will never choose a blank one.
+<p>
+<p>A convenient way to test if a table contains non-blank rows is to use the built-in adjectives &quot;empty&quot; and &quot;non-empty&quot;. So:
+<p>
+<blockquote><font color="#000080">if the Undiscovered Periodic Table is empty, ...
+</font></blockquote><p>
+<p>
+<p>tests whether all of its rows are blank; if even one cell contains a value then the table is &quot;non-empty&quot;.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e336"><a href=doc249.html#e336 STYLE="text-decoration: none">*<b><b>Example</b> 262:  If It Hadn't Been For...</b></a><br>A sound recording device that records the noises made by player and non-player actions, then plays them back on demand.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>We start out by giving ourselves a capacious recording device:
+<p>
+<blockquote><font color="#000080">&quot;If It Hadn't Been For...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The digital recorder is a device. The description is &quot;A noise-activated recorder, which time-stamps each recording segment. It has space for about 60 short recordings.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the digital recorder is switched on and the number of blank rows in the Table of Recorded Content is 0, now the recorder is switched off.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Recorded Content
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">time stamp</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">sound</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">a time</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">some text</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 60 blank rows.</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>And most of what follows is attaching sounds to various events. (We could have made noises associated with all the actions, but for simplicity we stuck to a few.)
+<p>
+<p>The thing to note here is that the recording happens as part of Carry out, not as part of Report, so sounds will be recorded even when they are the result of non-player action when the player is not even in the room.
+<p>
+<blockquote><font color="#000080">Carry out opening something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking noise, as of something being opened.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone opening something when the switched on recorder can see the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking noise, as of something being opened.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out closing something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking followed by a slam.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone closing something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking followed by a slam.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone going to a room (called destination) in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the destination is the holder of the recorder, record &quot;Footsteps, growing louder.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise record &quot;Footsteps, fading out.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out going to a room (called destination) in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the destination is the holder of the recorder, record &quot;Footsteps, growing louder.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise record &quot;Footsteps, fading out.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone eating something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;Loud uncouth chewing sounds.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out eating something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;Distant muffled chewing sounds.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To record (noise - some text):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of blank rows in the Table of Recorded Content is 0, rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a blank row in the Table of Recorded Content;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now time stamp entry is the time of day;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now sound entry is noise.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;play [something]&quot; as listening.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of listening to the recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of filled rows in the Table of Recorded Content is 0, say &quot;The recorder remains blank.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Recorded Content:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break][time stamp entry]: [sound entry]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say paragraph break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Haunted House is a room. The squeaky cupboard is an openable enterable closed fixed in place container in the House. The ghost is a man in the cupboard. The Lawn is outside from the Haunted House.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening the closed cupboard when the ghost is in the cupboard: say &quot;The cupboard stubbornly refuses to open.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when the player is not in the House:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the ghost is in the cupboard:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try the ghost exiting;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the cupboard is open:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try the ghost closing the cupboard.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone exiting when the person asked is in a closed container (called the trap):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the person asked opening the trap.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone entering a closed container: try the person asked opening the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before going to the House when the House contains the ghost:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the ghost entering the cupboard;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the ghost closing the cupboard.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries the recorder, chips, and a sandwich. The sandwich is edible. The chips are edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone eating the chips in the presence of the switched on recorder: record &quot;An incredible racket of a packet being opened.&quot; Carry out eating the chips in the presence of the switched on recorder: record &quot;An incredible racket of a packet being opened.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;open cupboard / drop recorder / switch it on / eat chips / out / wait / wait / wait / in / switch recorder off / play recorder&quot;.
+</font></blockquote><p>
+<p>
+<p>Now we're at liberty to record evidence of the ghost getting out of the cupboard and getting back in, while we ourselves stand about on the lawn.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc248.html STYLE="text-decoration: none">Previous</a> / <a href=doc250.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.35. Printing the banner text</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bikini Atoll" -->
+<!-- SEARCH SECTION "Ex 368" -->
+<!-- SEARCH SORT "Ex 017-035-368" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc315.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc317.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.35. Printing the banner text</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> The banner is the bibliographic masthead text, which typically looks something like this:
+<p>
+<blockquote><font color="#000080">Relations
+<br>An Interactive Fiction by Emily Short
+<br>Release 1 / Serial number 050630 / Inform 7 build 2U98 (I6/v6.30 lib 6/10N) SD
+</font></blockquote><p>
+<p>
+<p>The banner is printed at the start of play, and when the player types &quot;version&quot; at the command line, and when say &quot;[banner text]&quot; occurs.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>the</b>/--<b> banner text</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_banner -->
+
+<p>This text substitution expands to the banner text giving bibliographic details of the current story file, rather like the opening credits of a movie, or the title page of a book.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><b>2. The default behaviour.</b> Prints the text above, giving the title, the headline, the author, the release number, the date of compilation (that's the serial number: YYMMDD), and version numbers of the Inform components used to put the game together.
+<p>
+<p><b>3. Examples.</b> (a) Adding a line to the banner:
+<p>
+<blockquote><font color="#000080">After printing the banner text, say &quot;DRM authentication code: 13S-451-2034u75y65u%%a1248.&quot;
+</font></blockquote><p>
+<p>
+<p>(b) Simplifying the banner:
+<p>
+<blockquote><font color="#000080">Rule for printing the banner text: say &quot;Welcome.&quot; instead.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e35"><a href=doc316.html#e35 STYLE="text-decoration: none">*<b><b>Example</b> 368:  Bikini Atoll</b></a><br>Delaying the banner for later.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Bikini Atoll&quot; by Edward Teller
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Hut and the Tropical Beach are rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The conch shell is in the Hut. After taking the shell for the first time: say &quot;As you gather the oddly-warm conch shell into your arms, you experience a sudden flash of deja-vu...[banner text]&quot;; move the player to the Tropical Beach.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the banner text when the player is not carrying the shell: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / examine shell / get shell / look&quot;.
+</font></blockquote><p>
+<p>
+<p>(By tradition, and as a courtesy to all the people who have worked on Inform, authors ensure that the banner is printed some time near the beginning of each game played. So please only defer it, rather than suppress it altogether.)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc315.html STYLE="text-decoration: none">Previous</a> / <a href=doc317.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

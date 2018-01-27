@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.13. Duplicates</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Early Childhood" -->
+<!-- SEARCH SECTION "Ex 53" -->
+<!-- SEARCH SORT "Ex 004-013-053" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc66.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc68.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.13. Duplicates</b></td></tr></table><p>
+<p>
+<p>Although it is only useful to a limited extent, we can make any number of copies of something:
+<p>
+<blockquote><font color="#000080">&quot;Polygons&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A shape is a kind of thing. A square is a kind of shape. A triangle is a kind of shape.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Geometry Lab is a room. In the Geometry Lab are three triangles and two squares.
+</font></blockquote><p>
+<p>
+<p>The description &quot;three triangles&quot; makes three identical things, each of the kind &quot;triangle&quot;, and similarly for the squares. When the above is compiled, the player can type TAKE TWO TRIANGLES or TAKE ALL THE TRIANGLES and so forth. (The player has to type numbers as words when counting things here: so TAKE SIX TRIANGLES makes sense to Inform but TAKE 6 TRIANGLES doesn't, largely for traditional reasons.)
+<p>
+<p>Three caveats. Firstly, a counted-out description like &quot;two squares&quot; is only allowed if it combines a number with the name of a kind which is already known (perhaps modified with adjectives, so &quot;two open doors&quot; is fine). If we say:
+<p>
+<blockquote><font color="#000080">Two circles are in the Lab.
+</font></blockquote><p>
+<p>
+<p>without having defined &quot;circle&quot; as a kind in advance, then only a single object will be created - whose name is &quot;two circles&quot;. (This is because many natural names start with numbers: &quot;six of clubs&quot;, for instance, referring to a single playing card, or &quot;12 Hollywood Close&quot; meaning a single house. We wouldn't want such names to be misinterpreted.)
+<p>
+<p>The second caveat is that excessive duplication is expensive in memory and running time. It is perfectly legal to say
+<p>
+<blockquote><font color="#000080">In the Lab are 75 triangles.
+</font></blockquote><p>
+<p>
+<p>but the resulting game may be a little sluggish: and Inform draws the line at 100, refusing to create more duplicates than that in any single place. If we really need more than about fifty duplicated objects - say, a tombola containing raffle tickets numbered 1 to 1000 - it is usually better to find some less literal way to simulate this: for instance, only having a single raffle ticket, but with a randomly chosen number on it.
+<p>
+<p>If there are very many items in the same place, commands like TAKE ALL and DROP ALL may mysteriously not quite deal with all of them - this is because the parser, the run-time program which deciphers typed commands, has only limited memory to hold the possibilities. It can be raised with a use option like so:
+<p>
+<blockquote><font color="#000080">Use maximum things understood at once of 200.
+</font></blockquote><p>
+<p>
+<p>(The default is, as above, 100.)
+<p>
+<p>Finally: numbers up to twelve may be written out in words in the source text, but larger ones must be written as numerals. So &quot;twelve&quot; or &quot;12&quot;, but &quot;13&quot; only.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e41"><a href=doc67.html#e41 STYLE="text-decoration: none">***<b><b>Example</b> 53:  Early Childhood</b></a><br>A child's set of building blocks, which come in three different colours - red, green and blue - but which can be repainted during play.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>This would be a one-star example if it were not for the repainting:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 1&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A building block is a kind of thing. A red block, a blue block and a green block are kinds of building block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / get red block&quot;.
+</font></blockquote><p>
+<p>
+<p>But a kind cannot change during play, so this will not do. Instead, the colour will have to be a property of the block. So we might first try this:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 2&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, blue and green. A block is a kind of thing. A block has a colour. A block is usually blue.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / get red block&quot;.
+</font></blockquote><p>
+<p>
+<p>Which is fine, so far as it goes, but the colour property is not at all visible to the player, who simply sees &quot;eleven blocks&quot;. We thought of colour as being something outwardly apparent, but Inform does not know this. To achieve a better effect, we will need features from distant chapters. The first is an activity called &quot;printing the name of&quot;:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 3&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, blue and green. A block is a kind of thing. A block has a colour. A block is usually blue. Before printing the name of a block: say &quot;[colour] &quot;. Before printing the plural name of a block: say &quot;[colour] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / get red block&quot;.
+</font></blockquote><p>
+<p>
+<p>This too, however, is unsatisfactory. The individual blocks are correctly described, but we are unable to distinguish them during play: we cannot type &quot;take a green block&quot;, for instance. And because the blocks are indistinguishable in play, they are still massed together as &quot;eleven blocks&quot; in room descriptions. We need to go one step further:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 4&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, blue and green. A block is a kind of thing. A block has a colour. A block is usually blue. Before printing the name of a block: say &quot;[colour] &quot;. Before printing the plural name of a block: say &quot;[colour] &quot;. Understand the colour property as describing a block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<p>And now everything works nicely: the blocks are grouped by colour, and can be referred to by colour, and we can even change the colour of an individual block during play, using a bit of extra trickery from later:
+<p>
+<blockquote><font color="#000080">Understand &quot;paint [something] [colour]&quot; as painting it. Painting it is an action applying to one thing and one colour. Check painting it: if the noun is not a block, say &quot;Paints are only for blocks.&quot; instead. Carry out painting it: now the colour of the noun is the colour understood. Report painting it: say &quot;The block is now [the colour of the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get red block / get blue block / g / i / look / paint blue block red / i / look / paint me red&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc66.html STYLE="text-decoration: none">Previous</a> / <a href=doc68.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

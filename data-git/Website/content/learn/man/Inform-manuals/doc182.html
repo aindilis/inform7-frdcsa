@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.15. Let and temporary variables</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Let and temporary variables" -->
+<!-- SEARCH SECTION "11.15" -->
+<!-- SEARCH SORT "011-015-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc181.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc183.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.15. Let and temporary variables</b></td></tr></table><p>
+<p>
+<p>A variable, as we have seen, is a name for a value which changes, though always remaining of the same kind. For instance, if &quot;target&quot; is a number variable (or &quot;number that varies&quot;) then it may change value from 2 to 4, but not from 2 to &quot;fishknife&quot;.
+<p>
+<p>To make complicated decisions, phrases often need to remember values on a temporary basis. We have already seen this for the counter in a &quot;repeat&quot; loop, which exists only inside that loop, and then is no longer needed.
+<p>
+<p>We can also make temporary variables using &quot;let&quot;:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>let </b>(a name not so far used)<b> be </b>(value)<b></b><br><i>or:</i> <b>let </b>(a temporary named value)<b> be </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_let -->
+
+<p>This phrase creates a new temporary variable, starting it with the value supplied. The variable lasts only for the present block of phrases, which certainly means that it lasts only for the current rule. Examples:
+<p>
+<blockquote><font color="#000080">let outer bull be 25;
+<br>let the current appearance be &quot;reddish brown&quot;;
+<br>let the special room be Marley Wood;
+</font></blockquote><p>
+<p>
+<p>The kinds of these are deduced from the values given, so that, for instance,
+<p>
+<blockquote><font color="#000080">say &quot;The outer bull scores [the outer bull in words] when you practice archery in [special room].&quot;
+</font></blockquote><p>
+<p>
+<p>produces
+<p>
+<blockquote><font color="#000080">The outer bull scores twenty-five when you practice archery in Marley Wood.
+</font></blockquote><p>
+<p>
+<p>The variable name should be a new one; if it's the name of an existing one, then the kinds must agree. So:
+<p>
+<blockquote><font color="#000080">let outer bull be 25;
+<br>let outer bull be 50;
+</font></blockquote><p>
+<p>
+<p>is a legal combination, because the second &quot;let&quot; simply changes the value of the existing &quot;outer bull&quot; variable to a different number.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>let </b>(a name not so far used)<b> be </b>(name of kind)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_letdefault -->
+
+<p>This phrase creates a new temporary variable of the given kind. The variable lasts only for the present block of phrases, which certainly means that it lasts only for the current rule. Example:
+<p>
+<blockquote><font color="#000080">let inner bull be a number;
+</font></blockquote><p>
+<p>
+<p>The variable created holding the default value for that kind - in this case, the number 0. A handful of very obscure kinds have no default values, and then a problem message is produced. Inform also disallows:
+<p>
+<blockquote><font color="#000080">let the conveyance be a vehicle;
+</font></blockquote><p>
+<p>
+<p>because temporary variables aren't allowed to have kinds more specific than &quot;object&quot;. (This is a good thing: suppose there are no vehicles in the world?) It's quite safe in such cases to use
+<p>
+<blockquote><font color="#000080">let the conveyance be an object;
+</font></blockquote><p>
+<p>
+<p>instead, which creates it as the special object value &quot;nothing&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Temporary variables made by &quot;let&quot; are only temporarily in existence while a phrase is being carried out. Their values often change: we could say
+<p>
+<blockquote><font color="#000080">let x be 10;
+<br>now x is 11;
+</font></blockquote><p>
+<p>
+<p>for instance, or indeed we could &quot;let x be 10&quot; and then &quot;let x be 11&quot;. But although we are allowed to change the value, we are not allowed to change the kind of value. The name &quot;x&quot; must always have the same kind of value throughout the phrase to which it belongs, so the following will not be allowed:
+<p>
+<blockquote><font color="#000080">let x be 45;
+<br>now x is &quot;Norway&quot;;
+</font></blockquote><p>
+<p>
+<p>(The difference between using &quot;let&quot; and &quot;now&quot; here is that &quot;let&quot; can create a new temporary variable, whereas &quot;now&quot; can only alter things already existing: on the other hand, &quot;now&quot; can change many other things as well, whereas &quot;let&quot; applies only to temporary variables.)
+<p>
+<p><hr><p>
+<a name="e413"><a href=ex413.html#e413 STYLE="text-decoration: none">*<b>Example 178:  M. Melmoth's Duel</b></a><br>Three basic ways to inject random or not-so-random variations into text.<p>
+<p><hr><p><a href=doc181.html STYLE="text-decoration: none">Previous</a> / <a href=doc183.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

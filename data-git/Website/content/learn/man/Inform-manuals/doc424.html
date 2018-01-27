@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.7. Extensions can include other extensions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Extensions can include other extensions" -->
+<!-- SEARCH SECTION "25.7" -->
+<!-- SEARCH SORT "025-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc423.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc425.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.7. Extensions can include other extensions</b></td></tr></table><p>
+<p>
+<p>As was mentioned earlier, the same extension is sometimes requested several times. For instance, suppose the main source text asks to include version 2 of extension X, and also to include extension Y. Suppose further that Y contains a request to include version 4 of X. We now have two different requests for X. Inform works out the minimum version number needed to satisfy these requests (in this case 4) and gives an error if the extension it actually loads turns out to be earlier.
+<p>
+<p>This is true even of the Standard Rules. Suppose that the Standard Rules had recently been republished in version 37, making the previously existing version 36 out of date, and that an extension is written which capitalizes on a new feature in v37. It will therefore not work if people try to use it with v36. All the extension needs to do is to say:
+<p>
+<blockquote><font color="#000080">Include version 37 of the Standard Rules by Graham Nelson.
+</font></blockquote><p>
+<p>
+<p>to guarantee that v37 or later will be used.
+<p>
+<p>If an extension does include other extensions, it should do so in a paragraph immediately following the introductory sentence, so that anyone looking at the file can see these mutual dependencies at a glance.
+<p>
+<p><hr><p><a href=doc423.html STYLE="text-decoration: none">Previous</a> / <a href=doc425.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

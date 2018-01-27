@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.15. Actions on Multiple Objects</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Formicidae" -->
+<!-- SEARCH SECTION "Ex 417" -->
+<!-- SEARCH SORT "Ex 006-015-417" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc42.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc44.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.15. Actions on Multiple Objects</b></td></tr></table><p>
+<p>
+<p>Inform allows a handful of actions - TAKE, DROP, PUT, INSERT - to apply to more than one item at a time, so that the player can move things around easily.
+<p>
+<p>The general principle is that multiple objects are allowed if the actions are likely to be successful but not interesting most of the time, and if they're things that the player could plausibly do all at once. For most actions, the use of ALL would seem weirdly indiscriminate: EAT ALL, say, describes very implausible behavior, and EXAMINE ALL would likely generate a screenful of text at once.
+<p>
+<p>But this is all under our control. To create an action that uses multiples, or to allow the use of multiple objects with an already-existing action, we need to create an understand statement that uses the &quot;[things]&quot; token (note the plural). For instance:
+<p>
+<blockquote><font color="#000080">Understand &quot;give [things] to [someone]&quot; as giving it to.
+</font></blockquote><p>
+<p>
+<p>This would let the existing give action apply to multiple objects, in just the same way that &quot;take&quot; does. <b>Shawn's Bad Day</b> demonstrates how we might allow EXAMINE ALL to print descriptions of every visible item.
+<p>
+<p>Alternatively, we could generate a new action:
+<p>
+<blockquote><font color="#000080">Understand &quot;give [things] to [someone]&quot; as multiply-giving it to. Multiply-giving it to is an action applying to one carried thing and one thing.
+</font></blockquote><p>
+<p>
+<p>(In theory the language here should perhaps be &quot;several carried things&quot; -- but Inform is still going to process multiply-giving item by item, unless we redirect it. More about this in a moment.)
+<p>
+<p>When handling an action that uses the &quot;[things]&quot; token, the parser makes a list of every item to which it is going to apply the action: this is called the multiple objects list. The multiple objects list can be the result of a vague request (GET ALL) or a specific one involving identical multiples (GET PENNIES, GET THREE APPLES) or a very specific one involving unique, named nouns (GET GERBIL, APPLE, AND POMEGRANATE).
+<p>
+<p>We can manipulate what Inform includes in &quot;ALL&quot; in sentences like TAKE ALL with the &quot;deciding whether all includes...&quot; activity; for instance
+<p>
+<blockquote><font color="#000080">Rule for deciding whether all includes scenery: it does not.
+</font></blockquote><p>
+<p>
+<p>prevents TAKE ALL from applying to things that can't be moved anyway, avoiding lots of lines like
+<p>
+<blockquote><font color="#000080">tree: That's hardly portable.
+<br>swing set: That's hardly portable.
+</font></blockquote><p>
+<p>
+<p>A slightly tedious technical note: the multiple objects list is not strictly a list in the standard Inform sense, because it is used so frequently in parsing that it would be cumbersome to handle it with the more flexible but less efficient structure used for lists. However, if we want to manipulate the multiple objects list as though it were an ordinary list -- that is, sort it, rotate it, truncate it, remove entries from it, etc -- we may do so by creating a list like this:
+<p>
+<blockquote><font color="#000080">let L be the multiple object list.
+</font></blockquote><p>
+<p>
+<p>and later after making L conform to our desires:
+<p>
+<blockquote><font color="#000080">alter the multiple object list to L.
+</font></blockquote><p>
+<p>
+<p>Inform next repeatedly runs the action rulebook for the action generated, using each item from the multiple object list as &quot;noun&quot; in turn (or as &quot;second noun&quot;, if that's where the [things] token appeared in the understand line). Since it is possible to alter the multiple object list before the &quot;generate action rule&quot; portion of the turn sequence consults the rulebooks, we can also affect the order in which the player's matched objects are handled; see <b>Formicidae</b>. We should not attempt to change the multiple object list after this point, because this is likely to introduce bugs.
+<p>
+<p>Each time Inform tries the action on a new noun, it prefixes the action-attempt with the name of the item it's currently working on. This is where we get such output as &quot;frog eyeballs:&quot; and &quot;newt toes:&quot; in long lists like
+<p>
+<blockquote><font color="#000080">frog eyeballs: Taken.
+<br>newt toes: Taken.
+</font></blockquote><p>
+<p>
+<p>These names are generated by the &quot;announce items from multiple object lists rule&quot; in the action-handling rules; <b>Escape from the Seraglio</b> shows how to alter them. In the context of this rule, the thing we are currently printing the name of can be called &quot;the current item from the multiple objects list&quot;.
+<p>
+<p>Suppressing names of objects entirely, while occasionally tempting, may have unintended consequences, especially if some of the attempted actions are prevented by check rules that themselves print things. It is safest to suppress the multiple object names in the case where we already know that the action will succeed wherever it is attempted (more often for observational actions like examining than for manipulative actions like taking, or where we mean to completely override default handling).
+<p>
+<p>Given that our hypothetical &quot;multiply-giving&quot; applies to each given object in turn, it might seem to be useless to create &quot;multiply-giving&quot; as an action different from &quot;giving&quot; -- but the convenience is that manipulating the multiple object list makes it possible to group behavior artificially. The trick here is that, on the first pass of the multiply-giving rulebook, we look at the entire multiple object list, perform actions, print output, and set a flag saying that the action has been handled. The flag tells Inform not to do or print anything for any of the subsequent passes through that action rulebook; thus we artificially create a situation where, instead of performing an action on each object in turn, Inform acts once on the entire group. That allows us to assess the cumulative qualities of the group and have the action respond differently than it might when assessing each item individually.
+<p>
+<p><b>The Facts Were These</b> demonstrates how we might write an action for GIVE THREE DOLLARS TO MAN or GIVE PIE AND HAT TO MAN where the man would only accept the collective gift when its total proved satisfactory.
+<p>
+<a href=Rdoc33.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Examining</b></font></a><i> for groups of objects that have a collective description different from their individual descriptions, and for commands that search multiple things at once</i><p><p>
+<a href=Rdoc82.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Dispensers and Supplies of Small Objects</b></font></a><i> for ways to let the player pick up a number of identical items from a dispenser or supply</i><p><p>
+<p><hr><p>
+<a name="e254"><a href=Rex254.html#e254 STYLE="text-decoration: none">*<b>Example 283:  Shawn's Bad Day</b></a><br>Allowing the player to EXAMINE ALL.<p>
+<a name="e127"><a href=Rex127.html#e127 STYLE="text-decoration: none">**<b>Example 400:  Escape from the Seraglio</b></a><br>Replacing the usual response to TAKE ALL so that instead of output such as "grapes: Taken. orange: Taken.", Inform produces variable responses in place of "grapes:".<p>
+<!-- EXAMPLE START -->
+<a name="e156"><a href=Rdoc43.html#e156 STYLE="text-decoration: none">**<b><b>Example</b> 417:  Formicidae</b></a><br>Manipulating the order in which items are handled after TAKE ALL.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have an item that produces an interesting result the first time the player lifts it -- a rock with dangerous ants revealed underneath. The effect of the surprise is a little weakened, though, if the player sees that response as the result of a TAKE ALL, when it might be printed like this:
+<p>
+<blockquote><font color="#000080">>[3] get all
+<br>tent peg: Taken.
+<br>water flask: Taken.
+<br>trading permit: Taken.
+<br>innocent-looking rock: You reach for the rock and turn it over to reveal a thriving colony of flesh-eating ants. Needless to say, you drop the rock and jump back with a decidedly effeminate scream. They can probably hear you all the way back in the base camp.
+<br>rusty nail: Taken.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">[Your score has just gone down by two points.]
+</font></blockquote><p>
+<p>
+<p>The calm response to &quot;rusty nail&quot; looks odd now, and the score change is disconnected from the event that caused it.
+<p>
+<p>To manage this, we might institute a system so that interesting objects are handled last in their list, like so:
+<p>
+<blockquote><font color="#000080">&quot;Formicidae&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The magic rule is listed before the generate action rule in the turn sequence rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing has a number called dramatic potential.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the magic rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let L be the multiple object list;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of entries in L is greater than 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sort L in dramatic potential order;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alter the multiple object list to L.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Foothills is a room. &quot;The land has become hilly; though the soil is still mostly coarse yellow sand, clumps of grass are able to grow in the shadier places. Deep wagon ruts running from the southwest towards the mountains in the northeast show where generations of caravans have already passed.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The water flask, the tent peg, and the trading permit are things in Foothills.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The rock is a thing in Foothills. Before printing the name of the rock when the rock is not handled: say &quot;innocent-looking &quot;. The dramatic potential of the rock is 10.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The rusty nail is a thing in Foothills.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The ant colony is a fixed in place thing. &quot;A busy group of ants are crawling to and fro in the unaccustomed sun.&quot; Rule for deciding whether all includes the ant colony while taking: it does not.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the rock when the rock is handled:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It might still have a stray ant or two on it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After taking the rock:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the rock is handled;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move ant colony to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the rock to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You reach for the rock and turn it over to reveal a thriving colony of flesh-eating ants. Needless to say, you drop the rock and jump back with a decidedly effeminate scream. They can probably hear you all the way back in the base camp.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decrease score by 2.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get peg / drop peg / get all / get rock&quot;.
+</font></blockquote><p>
+<p>
+<p>Note that while one could also manipulate the object list to add or remove items at this stage, there's a simpler way to control what Inform considers &quot;ALL&quot; to mean in commands: see the activity &quot;Deciding whether all includes&quot; in the activities chapter.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e135"><a href=Rex135.html#e135 STYLE="text-decoration: none">**<b>Example 420:  The Facts Were These</b></a><br>Creating a variant GIVE action that lets the player give multiple objects simultaneously with commands like GIVE ALL TO ATTENDANT or GIVE THREE DOLLARS TO ATTENDANT or GIVE PIE AND HAT TO ATTENDANT. The attendant accepts the gifts only if their total combined value matches some minimum amount.<p>
+<p><hr><p><a href=Rdoc42.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc44.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

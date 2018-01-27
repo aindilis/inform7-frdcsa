@@ -1,0 +1,259 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.8. Fire</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Cow Exonerated" -->
+<!-- SEARCH SECTION "Ex 407" -->
+<!-- SEARCH SORT "Ex 010-008-407" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc86.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc88.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.8. Fire</b></td></tr></table><p>
+<p>
+<p>Fire exhibits some of the properties of a gas: it is only vaguely located and tends to spread out, though it passes by touch rather than on the air. It is hazardous to life, through direct contact, heat, and smoke. Better governed, it provides light and warmth. Worse governed, it consumes almost anything it comes into contact with. Here the problem with &quot;debris&quot; is not so much that we need potentially hundreds of new objects to represent broken items: instead, fire could sweep through a work of IF destroying so much that no play is possible any longer. Setting up a problem in which the player must defeat a fully-capable fire is difficult to balance.
+<p>
+<p>As with liquids, it is best to simulate the least amount of fire that the design will allow. <b>Bruneseau's Journey</b> provides a single candle which can be lit, or blown out, but where fire can never transfer from the candle's end to anything else - or vice versa: the player's source of fire, with which to light the candle, is discreetly neglected.
+<p>
+<p>In the more realistic <b>Thirst 2</b>, a campfire is lit using a tinderbox, so that fire does transfer from one thing (tinder) to another (the campfire): but it is always confined to just these two items, and can be used only for light and warmth.
+<p>
+<p><b>The Cow Exonerated</b> provides a class of matches that can light any flammable object, but assumes that burning objects requires only one turn; lighting one thing does not burn another.
+<p>
+<p><b>In Fire or in Flood</b> provides a complete simulation of what we might call &quot;wild-fire&quot;: combustion which spreads through arbitrary objects and rooms, destroying all in its path.
+<p>
+<a href=Rdoc33.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Examining</b></font></a><i> for a way to describe objects as charred once they have been partly burnt</i><p><p>
+<a href=Rdoc88.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Heat</b></font></a><i> for one consequence of fire having touched something</i><p><p>
+<a href=Rdoc80.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Gases</b></font></a><i> for an implementation of smoke without fire, if this can exist</i><p><p>
+<a href=Rdoc81.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liquids</b></font></a><i> for water being used to extinguish a simple fire</i><p><p>
+<a href=Rdoc14.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Lighting</b></font></a><i> for other uses of candles and torches as light sources</i><p><p>
+<p><hr><p>
+<a name="e61"><a href=Rex61.html#e61 STYLE="text-decoration: none">**<b>Example 151:  Bruneseau's Journey</b></a><br>A candle which reacts to lighting and blowing actions differently depending on whether it has already been lit once.<p>
+<a name="e419"><a href=Rex419.html#e419 STYLE="text-decoration: none">*<b>Example 118:  Thirst 2</b></a><br>A campfire added to the camp site, which can be lit using tinder.<p>
+<!-- EXAMPLE START -->
+<a name="e95"><a href=Rdoc87.html#e95 STYLE="text-decoration: none">**<b><b>Example</b> 407:  The Cow Exonerated</b></a><br>Creating a class of matches that burn for a time and then go out, with elegant reporting when several matches go out at once.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Here we create a class of matches that can be used to burn other objects. Our objectives are as follow:
+<p>
+<p>Burned objects other than matches should be removed from play instantly (just as edible objects are instantly eaten). We could give everything its own burning duration, but that complicates matters and allows for fire to spread from one object to another; for an example of how to do that, see the example &quot;In Fire or in Flood&quot;.
+<p>
+<p>Matches should be described to show whether they are burning or extinguished, and when the parser chooses one of several identical matches, it should make very clear which match it has selected.
+<p>
+<p>The game must sensibly select and, if necessary, automatically light new matches to carry out a >BURN THING command.
+<p>
+<p>The matches must burn for a set number of turns before going out, never to be used again.
+<p>
+<p>And finally, the part for which the indexed text will be useful: when several matches go out in the same turn, we want the game to print
+<p>
+<blockquote><font color="#000080">Four matches go out.
+</font></blockquote><p>
+<p>
+<p>rather than
+<p>
+<blockquote><font color="#000080">A match goes out.
+<br>A match goes out.
+<br>A match goes out.
+<br>A match goes out.
+</font></blockquote><p>
+<p>
+<p>This last function appears down in Section 3, if we wish to skip ahead and look at it.
+<p>
+<blockquote><font color="#000080"> &quot;The Cow Exonerated&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Simple Burning
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the commands &quot;light&quot; and &quot;burn&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;burn [something] with [strikable-match]&quot; as burning it with. Understand &quot;burn [something] with [something preferably held]&quot; as burning it with. Burning it with is an action applying to one thing and one carried thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the command &quot;light&quot; as &quot;burn&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be flammable or impervious. A thing is usually impervious.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check burning something with something (this is the burn only with flaming matches rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is not a strikable-match, say &quot;You can only light things with matches.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is not flaming, say &quot;[The second noun] needs to be burning first.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check burning something with something (this is the burn only flammable things rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is impervious, say &quot;[The noun] cannot be burned.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check burning something with something (this is the burn only things not held rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]It occurs to you to set down [the noun] before burning, just for safety's sake. [or]Again, you decide to put down [the noun] prior to burning. [or]You try setting down [the noun] as usual. [stopping][run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try the player dropping the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player encloses the noun, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out burning something with something (this is the simplistic burning rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report burning something with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You burn up [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking the second noun while burning something with something which is not a strikable-match:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can only light things with matches.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Matches
+</font></blockquote><p>
+<p>
+<p>The word &quot;matches&quot; is used by Inform to compare snippets of text (see &quot;Reading a command&quot; in the Activities chapter). This can sometimes cause awkwardness if we also have a kind called &quot;match&quot;, so for the occasion we will give our matches a more specialized name, never visible to the player:
+<p>
+<blockquote><font color="#000080">A strikable-match is a kind of thing. The plural of strikable-match is s-matches.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A strikable-match has a number called duration. The duration of a strikable-match is usually 3.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the name of a strikable-match: say &quot;match&quot;.
+<br>Rule for printing the plural name of a strikable-match: say &quot;matches&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;match&quot; as a strikable-match. Understand &quot;matches&quot; as a strikable-match.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Flame-state is a kind of value. The flame-states are burnt, flaming, and new. Understand &quot;burning&quot; or &quot;lit&quot; as flaming. Understand &quot;unused&quot; as new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A strikable-match has a flame-state. A strikable-match is usually new. Understand the flame-state property as describing a strikable-match.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a strikable-match while asking which do you mean:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[flame-state] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a strikable-match while taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[flame-state] &quot;.
+<br>Before printing the plural name of a strikable-match while taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[flame-state] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a strikable-match while clarifying the parser's choice of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if not taking inventory, say &quot;[flame-state] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a strikable-match (called special-target) while clarifying the parser's choice of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries the special-target:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; you're carrying&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the special-target is in the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; on the ground&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; [if the holder of the special-target is a container]in[otherwise]on[end if] [the holder of the special-target]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;strike [something]&quot; as attacking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;strike [strikable-match]&quot; as striking. Striking is an action applying to one carried thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;burn [strikable-match]&quot; as striking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Does the player mean striking a new strikable-match:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;it is very likely.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Does the player mean striking a burnt strikable-match:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;it is unlikely.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check striking a strikable-match (this is the strike only new matches rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is burnt, say &quot;[The noun] has already burnt down and cannot be relit.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is flaming, say &quot;[The noun] is already burning.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out striking a strikable-match (this is the standard striking rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is flaming;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is lit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report striking a strikable-match (this is the standard report striking rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You light [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before burning something with a new strikable-match (this is the prior lighting rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first [if the player does not carry the second noun]taking and [end if]lighting [the second noun])[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try striking the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is not flaming, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking a strikable-match (called target) while striking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try silently taking the target.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Does the player mean burning something with a flaming strikable-match:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;it is very likely.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Does the player mean burning something with a new strikable-match:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;it is likely.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Does the player mean burning something with a burnt strikable-match:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;it is unlikely.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of burning a burnt strikable-match with something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] is completely consumed and cannot be relit.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 3 - Putting the Matches Out
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be 0; [here we track how many matches are being put out during this turn, so that we don't have to mention each match individually if several go out during the same move]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through flaming s-matches:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decrement the duration of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the duration of the item is 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is burnt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is unlit;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the item is visible, increment N;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if N is 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[if the number of visible flaming s-matches is greater than 0]One of the matches [otherwise if the number of burnt visible s-matches is greater than 1]Your last burning match [otherwise]The match [end if]goes out.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if N is greater than 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let enumeration be indexed text;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let enumeration be &quot;[N in words]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if N is the number of visible s-matches:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if N is two, say &quot;Both&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;All [enumeration]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[enumeration in title case]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; matches go out[if a visible strikable-match is flaming], leaving [number of visible flaming s-matches in words] still lit[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 4 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Old Chicago is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a flammable thing called a log. Understand &quot;wooden&quot; and &quot;wood&quot; as the log.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries two s-matches. The matchbox is an open openable container. It contains five s-matches. The player carries the matchbox.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every strikable-match carried by the player is flaming;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every strikable-match carried by the player is lit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / burn match / i / i / burn log with match / burn matchbox with match / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e47"><a href=Rex47.html#e47 STYLE="text-decoration: none">***<b>Example 384:  In Fire or in Flood</b></a><br>A BURN command; flammable objects which light other items in their vicinity and can burn for different periods of time; the possibility of having parts or contents of a flaming item which survive being burnt.<p>
+<p><hr><p><a href=Rdoc86.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc88.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

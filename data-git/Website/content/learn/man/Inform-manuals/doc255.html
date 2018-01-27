@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.15. Varying which table to look at</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Varying which table to look at" -->
+<!-- SEARCH SECTION "15.15" -->
+<!-- SEARCH SORT "015-015-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc254.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc256.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.15. Varying which table to look at</b></td></tr></table><p>
+<p>
+<p>So far, we have always used fixed table names when referring to tables: for instance in source like &quot;sort the Table of Recent Monarchs in accession order&quot;, we refer to the &quot;Table of Recent Monarchs&quot;, a definite and explicitly named table.
+<p>
+<p>With a little care, however, we are allowed to have variables which themselves hold the names of tables. This opens up the possibility of more elaborate ways of storing and interconnecting information in table form, but is probably best avoided until it becomes necessary.
+<p>
+<p>For example, suppose we have two different tables with the same basic structure:
+<p>
+<blockquote><font color="#000080">Table 1 - Nifty Opening Plays in US Scrabble
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">word</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">score</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;muzjiks&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">128</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table 2 - Nifty Opening Plays in UK Scrabble
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">word</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">score</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;quartzy&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">126</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;squeezy&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">126</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>We could then record which one of these tables to use in a variable:
+<p>
+<blockquote><font color="#000080">The lexicon is a table name that varies. The lexicon is Table 1.
+</font></blockquote><p>
+<p>
+<p>Note that for this purpose, the kind of value is a special kind called &quot;table name&quot;, not &quot;table&quot;. (The word &quot;table&quot; already has too many meanings and we must be careful to avoid ambiguities here.) We could make use of this as follows, for instance:
+<p>
+<blockquote><font color="#000080">To flip tables:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You exchange dictionaries, lexically crossing the Atlantic. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the lexicon is Table 1, now the lexicon is Table 2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise now the lexicon is Table 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a random row in the lexicon;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Did you know that according to [the lexicon], [word entry] scores [score entry]?&quot;
+</font></blockquote><p>
+<p>
+<p>which produces text such as
+<p>
+<blockquote><font color="#000080">You exchange dictionaries, lexically crossing the Atlantic. Did you know that according to Table 1 - Nifty Opening Plays in US Scrabble, muzjiks scores 128?
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e91"><a href=ex91.html#e91 STYLE="text-decoration: none">**<b>Example 270:  Farewell</b></a><br>People who respond to conversational gambits, summarize what they said before if asked again, and provide recap of conversation that is past.<p>
+<p><hr><p><a href=doc254.html STYLE="text-decoration: none">Previous</a> / <a href=doc256.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

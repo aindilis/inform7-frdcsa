@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.4. Multiple notations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Multiple notations" -->
+<!-- SEARCH SECTION "14.4" -->
+<!-- SEARCH SORT "014-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc227.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc229.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.4. Multiple notations</b></td></tr></table><p>
+<p>
+<p>Going back to our weight example:
+<p>
+<blockquote><font color="#000080">A weight is a kind of value. 10kg specifies a weight.
+</font></blockquote><p>
+<p>
+<p>The notation here is a single word, even if it contains digits as well as letters - &quot;10kg&quot;. But it doesn't have to be one word. These would have worked, too:
+<p>
+<blockquote><font color="#000080">10kg net specifies a weight.
+<br>10 kg specifies a weight.
+</font></blockquote><p>
+<p>
+<p>In fact, we are allowed to have all three at once, as alternatives:
+<p>
+<blockquote><font color="#000080">A weight is a kind of value. 10kg specifies a weight. 10kg net specifies a weight. 10 kg specifies a weight.
+</font></blockquote><p>
+<p>
+<p>If we often have to deal with large weights, it becomes a little cumbersome to keep on writing something like &quot;80000kg&quot;. An engineer would write &quot;80 tonnes&quot; for this. Similarly, we wouldn't like road maps to use light years, or speed limit signs to use furlongs per fortnight. So it's sometimes useful to provide a spread of different notations, at different scale factors, for the same kind of value. Here's one way of setting up the tonne, that is, the metric ton:
+<p>
+<blockquote><font color="#000080">1 tonne specifies a weight scaled up by 1000.
+</font></blockquote><p>
+<p>
+<p>This really is an alternative way to write the same thing: for instance, Inform will allow &quot;25kg plus 3 tonne&quot;, the result being &quot;3.025 tonne&quot;.
+<p>
+<p>That's all very well, but a value like &quot;3 tonne&quot; reads a little oddly, even if it's correct in theory. Outside of scientific journals with old-school copy editing, most people would write &quot;3 tonnes&quot;, not &quot;3 tonne&quot;. Here's a better try:
+<p>
+<blockquote><font color="#000080">1 tonne (singular) specifies a weight scaled up by 1000.
+<br>2 tonnes (plural) specifies a weight scaled up by 1000.
+</font></blockquote><p>
+<p>
+<p>Now Inform will not only recognise both forms, but also use the right one when printing back.
+<p>
+<p><hr><p><a href=doc227.html STYLE="text-decoration: none">Previous</a> / <a href=doc229.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

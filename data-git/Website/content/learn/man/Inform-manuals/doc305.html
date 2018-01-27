@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.24. Printing the locale description of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Printing the locale description of something" -->
+<!-- SEARCH SECTION "17.24" -->
+<!-- SEARCH SORT "017-024-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc304.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc306.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.24. Printing the locale description of something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> A &quot;locale description&quot; is Inform jargon for the part of a room description which catalogues the visible items in the room. When looking, Inform will normally print the description of the room itself, followed by a locale description for the room. But if the player is in a cage in the room, there will be two locale descriptions: one for the room, then another for the cage. This activity is used to write the locale description for a single domain, and the &quot;something&quot; can be either a room, an enterable container, or an enterable supporter.
+<p>
+<p><b>2. The default behaviour.</b> Is quite complicated, and is written up in full in the typeset form of the Standard Rules downloadable from the Inform website. Briefly, though: we first run the &quot;choosing notable locale objects&quot; activity to find out what ought to be mentioned here. That assembles a list of things to mention, sorted into priority order. Items with priority 1 go first, then those with priority 2, and so on. The &quot;printing a locale paragraph&quot; activity is run for each, and in practice that usually hands the job over to &quot;writing a paragraph about&quot;. Sometimes a paragraph will indeed be written, but not always. Sometimes there is nothing interesting to say, and an item is left until a final, single paragraph which gathers up the leftovers (&quot;You can also see a scarlet fish, a harmonium and a kite here.&quot;), the printing of which is done by the &quot;listing nondescript items of&quot; activity. As soon as any item picks up the either/or property &quot;mentioned&quot;, by having its name printed, it is struck out so that it will not appear subsequently, whatever its priority.
+<p>
+<p><b>3. Examples.</b> As general advice: if the effect wanted can be got using &quot;writing a paragraph about&quot; and &quot;listing nondescript items of&quot; alone, use those; if it's necessary to meddle further, use &quot;choosing notable locale objects&quot; and &quot;printing a locale paragraph&quot; to alter the normal processes; use the all-powerful &quot;printing the locale description&quot; activity only when the whole process needs to be altered, not the item-by-item workings.
+<p>
+<p>(a) In the Very Misty Moorlands, nothing on the ground can ordinarily be seen through the swirling mist, so the locale description is suppressed entirely:
+<p>
+<blockquote><font color="#000080">Rule for printing the locale description of the Very Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mist coils around your feet, thick as a blanket. You cannot even see the ground you walk upon.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking something in the Very Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You grope blindly in the mist and pick up [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<p>(b) Here we take the chance to insert an additional paragraph into the locale description. This does relate to an item which might be described later, but where the player doesn't know that:
+<p>
+<blockquote><font color="#000080">The Horological Workshop is a room. The marble table is fixed in place in the Workshop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The parcel is a closed opaque container on the marble table. The alarm clock is a device in the parcel. The alarm clock is switched on.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the locale description of a room (called the setting):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the setting encloses the alarm clock and the alarm clock is switched on, say &quot;A faint ticking noise can be heard.&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e299"><a href=ex299.html#e299 STYLE="text-decoration: none">*<b>Example 344:  Priority Lab</b></a><br>A debugging rule useful for checking the priorities of objects about to be listed.<p>
+<p><hr><p><a href=doc304.html STYLE="text-decoration: none">Previous</a> / <a href=doc306.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

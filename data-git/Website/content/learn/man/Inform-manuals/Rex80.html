@@ -1,0 +1,121 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.7. Saying Simple Things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Nameless" -->
+<!-- SEARCH SECTION "Ex 286" -->
+<!-- SEARCH SORT "Ex 007-007-286" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc52.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc54.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.7. Saying Simple Things</b></td></tr></table><p>
+<p>
+<p>There are times when even the commands ASK and TELL are overkill: sometimes the player doesn't have much information to offer, so TELL is never useful, for instance. If we don't want to make any distinction between modes of conversation, we can conflate the actions so that ASK LUCIUS ABOUT OLLIVANDER, TELL LUCIUS ABOUT OLLIVANDER and LUCIUS, OLLIVANDER all do the same thing: see <b>Sybil 1</b>.
+<p>
+<p>If we are frequently permitting the player to say things like LUCIUS, OLLIVANDER as shorthand for &quot;talk to Lucius about Ollivander&quot;, then we may also want to allow LUCIUS, OLLIVANDER? This makes the player character seem a bit slow (or at least Laconic), but it is an effective interface in some cases. The trick is that the question mark at the end of the command may prevent Inform from recognizing the keyword; should that problem arise, we may want to use Punctuation Removal to erase question marks from the player's command before attempting to interpret it.
+<p>
+<p>Along the same lines, there are situations in conversation where similar commands do not correspond to the same actions within Inform; if we're careless about this, we may force the player to guess which vocabulary we want him to use, which is always vexing. Some cases to look out for:
+<p>
+<p>Inform has actions for &quot;saying yes&quot; and &quot;saying no&quot;. Sometimes this is useful, but sometimes we want YES and SAY YES TO FRED to do the same thing. <b>Sybil 2</b> shows how to roll these responses into one; <b>Proposal</b> expands on the idea to show more ways in which a player could reasonably answer a question put by another character.
+<p>
+<p>Again, if we want ASK SYBIL ABOUT CAKE to do the same thing as SHOW CAKE TO SYBIL, we might use the technique in <b>Nameless</b> to make objects into valid topics of conversation, and to make ASK and SHOW behave the same way.
+<p>
+<a href=Rdoc42.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Remembering, Converting and Combining Actions</b></font></a><i> for ways to redirect one conversation command to another conversation topic</i><p><p>
+<a href=Rdoc6.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Varying What Is Read</b></font></a><i> for a way of asking the player trivia questions that he can answer only on the next turn</i><p><p>
+<p><hr><p>
+<a name="e198"><a href=Rex198.html#e198 STYLE="text-decoration: none">*<b>Example 91: Sybil 1</b></a><br>Direct all ASK, TELL, and ANSWER commands to ASK, and accept multiple words for certain cases.<p>
+<a name="e320"><a href=Rex320.html#e320 STYLE="text-decoration: none">**<b>Example 93: Sybil 2</b></a><br>Making the character understand YES, SAY YES TO CHARACTER, TELL CHARACTER YES, ANSWER YES, and CHARACTER, YES.<p>
+<a name="e301"><a href=Rex301.html#e301 STYLE="text-decoration: none">**<b>Example 171:  Proposal</b></a><br>Asking the player a yes/no question which he must answer, and another which he may answer or not as he chooses.<p>
+<!-- EXAMPLE START -->
+<a name="e80"><a href=Rdoc53.html#e80 STYLE="text-decoration: none">**<b><b>Example</b> 286:  Nameless</b></a><br>ASKing someone about an object rather than about a topic.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>By default, ASK SOMEONE ABOUT... applies only to a text token. We might want also to offer the player the option of asking characters about pieces of physical evidence. This example implements an ASK PERSON ABOUT THING command that is mostly synonymous with SHOW, with the added nuance that the player can ask about things that are not currently visible, as long as he has encountered them at some time in the past.
+<p>
+<blockquote><font color="#000080">&quot;Nameless&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Black Chamber is a room. &quot;Despite its menacing name, it is quite an ordinary room, underlying the post office above. Here letters are brought each day, unsealed, transcribed, resealed, and sent again on their way; their contents then analyzed and recorded.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nameless Advisor is a woman in the Black Chamber. &quot;A woman whose name has never been disclosed to you sits at the window, writing numbers on a sheet of paper.&quot; The Advisor carries a sheet of paper. Understand &quot;woman&quot; as the nameless advisor.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a letter from the emperor. The description of the letter is &quot;Though its origin is obvious, its meaning is secret: the letters are an inexplicable jumble.&quot;
+</font></blockquote><p>
+<p>
+<p>Now we create our new action, &quot;interrogating it about&quot;. We write the grammar lines so that we can show any object in sight to someone, but also ask someone about any object that we have ever interacted with in the game, whether it is currently visible or not.
+<p>
+<blockquote><font color="#000080">A thing can be known or unknown. The Nameless Advisor is known.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;ask [someone] about [any known thing]&quot; as interrogating it about. interrogating it about is an action applying to two visible things.
+</font></blockquote><p>
+<p>
+<p>Now we replace and redirect the showing action. This gets rid of the requirement in the default library that the player be holding anything he shows to another character:
+<p>
+<blockquote><font color="#000080">Understand the commands &quot;show&quot; and &quot;display&quot; and &quot;present&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;show [something] to [someone]&quot; or &quot;display [something] to [someone]&quot; or &quot;present [something] to [someone]&quot; as interrogating it about (with nouns reversed). Understand &quot;show [someone] [something]&quot; as interrogating it about.
+</font></blockquote><p>
+<p>
+<p>This bit keeps track of what the player has seen, for the purposes of &quot;any known thing&quot;:
+<p>
+<blockquote><font color="#000080">Before printing the name of something (called the target): now the target is known.
+</font></blockquote><p>
+<p>
+<p>Here we define what happens by default when we interrogate someone about something; we use the same response we get to asking someone about something that isn't otherwise interesting:
+<p>
+<blockquote><font color="#000080">Carry out interrogating someone about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no reply.&quot;
+</font></blockquote><p>
+<p>
+<p>Now redirect all asking to a topic table, and all interrogating to an object table:
+<p>
+<blockquote><font color="#000080">Instead of asking Nameless Advisor about a topic listed in the Table of Nameless Advisor Topics:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[reply entry][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of interrogating Nameless Advisor about an item listed in the Table of Nameless Advisor Items:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[reply entry][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Nameless Advisor Items
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">item</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">reply</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">letter</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'It is enciphered,' she remarks[if the advisor can see the letter], glancing over the contents[otherwise], after you have offered a detailed description[end if]. 'A substitution cipher of some complexity, I believe.'&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">Advisor</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;She listens to your inquiries about her identity and parentage with a placid smile, but does not answer.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Nameless Advisor Topics
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">topic</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">reply</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;cipher&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'I know many dozens of ciphers,' she replies, smiling in a disquieting way.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;substitution cipher&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'One letter is allowed to stand for another,' she explains, folding her hands together patiently. The backs of both hands are tattooed with silvery stars.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>And just so that we can test what happens when asking someone about something out of sight:
+<p>
+<blockquote><font color="#000080">The safe box is a container in the Chamber. It is fixed in place. It is openable and closed.
+</font></blockquote><p>
+<p>
+<p>...and something unknown:
+<p>
+<blockquote><font color="#000080">The poisonous apple is a thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;test sight / test knowledge&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test sight with &quot;i / x letter / ask Nameless Advisor about cipher / show cipher to Nameless Advisor / ask Nameless Advisor about the letter / show the letter to Nameless Advisor / show Nameless Advisor the letter&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test knowledge with &quot;open safe box / put letter in safe box / close safe box / ask Nameless Advisor about the letter / show the letter to Nameless Advisor / ask Nameless Advisor about the apple&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc52.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc54.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

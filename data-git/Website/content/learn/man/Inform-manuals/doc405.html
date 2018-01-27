@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 23.22. Titling and abbreviation</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Titling and abbreviation" -->
+<!-- SEARCH SECTION "23.22" -->
+<!-- SEARCH SORT "023-022-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc404.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc406.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>23.22. Titling and abbreviation</b></td></tr></table><p>
+<p>
+<p>The main title of the map is the value of &quot;title&quot; for the whole map, so for instance we might write:
+<p>
+<blockquote><font color="#000080">Index map with title set to &quot;Oxford and its Environs&quot;.
+</font></blockquote><p>
+<p>
+<p>The subtitle settings apply to the subtitles used for each of the levels, so for instance
+<p>
+<blockquote><font color="#000080">Index map with subtitle of level -1 set to &quot;Tunnels and Sewers&quot;.
+</font></blockquote><p>
+<p>
+<p>Names of individual rooms can be controlled with:
+<p>
+<blockquote><font color="#000080">Index map with name of Radcliffe Camera set to &quot;Library&quot;.
+</font></blockquote><p>
+<p>
+<p>(By default, the name of a room is its name in the main IF project, of course.) The smallest writing on the map is normally that used to label unorthodox or unclear exits (in particular, those going from one layer to another): this is what the &quot;annotation&quot; size, font and colour are used for.
+<p>
+<p>For most ways to set up the map, it's a practical necessity to abbreviate names of rooms, or they will spill out all over each other. Inform does this using the &quot;room-name-length&quot; setting. (The &quot;annotation-name-length&quot; is analogous.) For instance, if this setting is 5, then Inform will reduce the text of a name to at most 5 characters. It does this by successively throwing out spaces, lower case vowels, then other lower case letters, punctuation marks and finally upper case letters, always starting at the back of the name and working inwards: the process stops as soon as the name is short enough. For instance, &quot;Reading&quot; is abbreviated to &quot;Redng&quot;, &quot;Shangri-La&quot; to &quot;Shn-La&quot; and &quot;Cloud-Cuckoo-Land&quot; to &quot;C-C-L&quot;. The result can be a little comical, but is surprisingly unambiguous in practice. Abbreviation can effectively be abolished by raising the &quot;room-name-length&quot; to 128 (the highest permitted level), and note that the setting can be changed for individual rooms, so it is possible to have some room names abbreviated and others not, or in different degrees.
+<p>
+<p><hr><p>
+<a name="e147"><a href=ex147.html#e147 STYLE="text-decoration: none">*<b>Example 435:  Baedeker</b></a><br>Creating a floorplan of the cathedral using the locations from previous examples.<p>
+<a name="e234"><a href=ex234.html#e234 STYLE="text-decoration: none">*<b>Example 436: Port Royal 5</b></a><br>Port Royal scenario given instructions for an EPS map.<p>
+<a name="e235"><a href=ex235.html#e235 STYLE="text-decoration: none">*<b>Example 437:  Bay Leaves and Honey Wine</b></a><br>Creating a map of Greece using the locations from previous examples.<p>
+<p><hr><p><a href=doc404.html STYLE="text-decoration: none">Previous</a> / <a href=doc406.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

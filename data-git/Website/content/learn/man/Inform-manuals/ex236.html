@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.19. Changing visibility</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Flashlight" -->
+<!-- SEARCH SECTION "Ex 218" -->
+<!-- SEARCH SORT "Ex 012-019-218" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc204.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc206.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.19. Changing visibility</b></td></tr></table><p>
+<p>
+<p>Ordinarily, Inform has a simple model for visibility: it is either fully light or it is fully dark, and certain actions are impossible in the dark, such as examining something.
+<p>
+<p>We first need to remember that darkness affects what actions are even tried, as far as the player's typed commands go. If the player is in a dark room, and there is a screwdriver on the floor, the command EXAMINE SCREWDRIVER will not try any action: the screwdriver is not &quot;in scope&quot;, which means that the parser thinks the player does not have any means of knowing it exists. (The rules for scope can be modified - see the chapter on Activities.) But let's suppose that the player types EXAMINE BOOK, and is holding the book in question. The book is now &quot;in scope&quot;, so the action &quot;examining the book&quot; is tried.
+<p>
+<p>Some actions require light to be present, and &quot;examining&quot; is one of those. So Inform consults the visibility rules to see if it can go ahead. By default, there is only one visibility rule, which says &quot;yes&quot; in the light and &quot;no&quot; in darkness. Here, though, we create another one:
+<p>
+<blockquote><font color="#000080">Visibility rule when in darkness:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if examining the book:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You have to squint. Still...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;there is sufficient light;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;there is insufficient light.
+</font></blockquote><p>
+<p>
+<p>A visibility rule must always conclude &quot;there is sufficient light&quot;, or &quot;there is insufficient light&quot;, or else do nothing and leave it to other rules to decide.
+<p>
+<p>It is a possibly unexpected fact that &quot;looking&quot; does not require light, but instead behaves differently in darkness - it prints a pseudo-room-description such as
+<p>
+<blockquote><font color="#000080"><b>Darkness</b>
+<br>It is pitch dark, and you can't see a thing.
+</font></blockquote><p>
+<p>
+<p>instead of printing the description of the player's current room. This means that the &quot;looking&quot; action is unaffected by visibility rules. All the same, what &quot;looking&quot; does in the dark can be changed by using the two activities &quot;printing the name of a dark room&quot; and &quot;printing the description of a dark room&quot; (see the Activities chapter for details).
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e236"><a href=doc205.html#e236 STYLE="text-decoration: none">*<b><b>Example</b> 218:  Flashlight</b></a><br>Visibility set so that looking under objects produces no result unless the player has a light source to shine there (regardless of the light level of the room).<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Flashlight&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Schoolhouse is a room. &quot;Though normally comfortable, the room is dark and menacing during the storm; rain sheets on the windows, and you can barely see the flash of the lighthouse only a few miles away.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cabinet is a fixed in place openable container in the Schoolhouse. The hurricane lantern is a thing in the Schoolhouse. &quot;A hurricane lantern hangs from a peg.&quot; The lantern is lit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Visibility rule when looking under something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is carrying a lit thing (called lamp):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You shine [the lamp] under [the noun]...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;there is sufficient light;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;there is insufficient light.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">There is a marble. The marble can be found or lost. The marble is lost.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of looking under the cabinet when the marble is lost:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the marble to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the marble is found;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Billy's lost marble! So that's where it got to!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look under cabinet / get lantern / look under cabinet&quot;.
+</font></blockquote><p>
+<p>
+<p>Because visibility is checked before instead rules, this discovery will (correctly) occur only when the player does have enough light.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc204.html STYLE="text-decoration: none">Previous</a> / <a href=doc206.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

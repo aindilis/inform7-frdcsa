@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.9. Passers-By, Weather and Astronomical Events</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Night and Day" -->
+<!-- SEARCH SECTION "Ex 164" -->
+<!-- SEARCH SORT "Ex 003-009-164" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc15.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc17.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.9. Passers-By, Weather and Astronomical Events</b></td></tr></table><p>
+<p>
+<p>Out of doors, nature is seldom still. Clouds scull by at random, as in <b>Weathering</b>, and provide some variety in what would otherwise be lifelessly static room descriptions. In much the same way, passers-by and other diversions make a city street a constant bustle: see <b>Uptown Girls</b> for this human breeze. A more nagging sense of atmosphere can be experienced in <b>Full Moon</b>.
+<p>
+<p><b>Orange Cones</b> offers traffic that is present on every road in the game unless a room is marked off with orange cones -- and this is allowed to change during play.
+<p>
+<p><b>Night and Day</b> and <b>Totality</b> each schedule celestial events to provide a changing display in the sky above, and this time running like clockwork rather than at random.
+<p>
+<a href=Rdoc20.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Scene Changes</b></font></a><i> for meteors and a moon-rise</i><p><p>
+<p><hr><p>
+<a name="e422"><a href=Rex422.html#e422 STYLE="text-decoration: none">*<b>Example 131:  Weathering</b></a><br>The automatic weather station atop Mt. Pisgah shows randomly fluctuating temperature, pressure and cloud cover.<p>
+<a name="e169"><a href=Rex169.html#e169 STYLE="text-decoration: none">***<b>Example 132:  Uptown Girls</b></a><br>A stream of random pedestrians who go by the player.<p>
+<a name="e433"><a href=Rex433.html#e433 STYLE="text-decoration: none">*<b>Example 157:  Full Moon</b></a><br>Random atmospheric events which last the duration of a scene.<p>
+<a name="e274"><a href=Rex274.html#e274 STYLE="text-decoration: none">***<b>Example 120:  Orange Cones</b></a><br>Creating a traffic backdrop that appears in all road rooms except the one in which the player has laid down orange cones.<p>
+<!-- EXAMPLE START -->
+<a name="e260"><a href=Rdoc16.html#e260 STYLE="text-decoration: none">*<b><b>Example</b> 164:  Night and Day</b></a><br>Cycling through a sequence of scenes to represent day and night following one another during a game.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to have a sequence of nights and days in our game, with one scene to govern each daylight condition.
+<p>
+<blockquote><font color="#000080">&quot;Night and Day&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sun is a backdrop. It is everywhere. The description is &quot;Currently out of sight.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Night is a recurring scene. Night begins when play begins. Night begins when Dusk ends. Night ends when the time since Night began is 3 minutes.
+</font></blockquote><p>
+<p>
+<p>Notice that our two conditions for the beginning of Night are not in conflict: it will be night-time when the game begins, and then night will also recur every time the Dusk scene ends.
+<p>
+<blockquote><font color="#000080">When Night begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The sun falls below the horizon and the temperature drops abruptly to well below zero.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the description of the sun is &quot;Currently out of sight.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Dawn is a recurring scene. Dawn begins when Night ends. Dawn ends when the time since Dawn began is 1 minute.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When Dawn begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The sun appears on the horizon.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the description of the sun is &quot;It is tiny and weak.&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Day is a recurring scene. Day begins when Dawn ends. Day ends when the time since Day began is 3 minutes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When Day begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The sun is now properly up.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Dusk is a recurring scene. Dusk begins when Day ends. Dusk ends when the time since Dusk began is 1 minute.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When Dusk begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The sun has passed across the sky and is on the verge of setting.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Cratered Landscape is a room. &quot;The ground here is [if Night is happening]dim silver, with the craters visible as darker splotches[otherwise]the color of dried blood; here and there it is also rippled by impact craters[end if]. The horizon curves visibly.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / z / look / x sun / z / z / z / z / z / z / z&quot;.
+</font></blockquote><p>
+<p>
+<p>If we run this example and then have a look at the scenes index, we'll see that the cycle is listed through thus:
+<p>
+<blockquote><font color="#000080">Night (recurring)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Dawn (recurring)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Day (recurring)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dusk (recurring)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Night
+</font></blockquote><p>
+<p>
+<p>with the second &quot;Night&quot; in italics, to indicate that it is a repetition of the same scene that has already been listed above.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e113"><a href=Rex113.html#e113 STYLE="text-decoration: none">**<b>Example 144:  Totality</b></a><br>To schedule an eclipse of the sun, which involves a number of related events.<p>
+<p><hr><p><a href=Rdoc15.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc17.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

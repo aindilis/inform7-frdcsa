@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.9. Using new kinds of value in properties</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Undertomb 1" -->
+<!-- SEARCH SECTION "Ex 48" -->
+<!-- SEARCH SORT "Ex 004-009-048" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc62.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc64.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.9. Using new kinds of value in properties</b></td></tr></table><p>
+<p>
+<p>It turns out to be very useful to create a new kind of value, and then create a property to hold it. So useful, in fact, that Inform provides two shortened forms for doing so. Here is the first, and the second (making &quot;conditions&quot;) is in the section following.
+<p>
+<p>Suppose we go back to our example of the candle lantern whose brightness we have to measure. It's clear that what we want to do is to define:
+<p>
+<blockquote><font color="#000080">Brightness is a kind of value. The brightnesses are guttering, weak, radiant and blazing.
+</font></blockquote><p>
+<p>
+<p>And now we can use the technique of the previous section:
+<p>
+<blockquote><font color="#000080">The lantern has a brightness called the flame strength. The flame strength of the lantern is blazing.
+</font></blockquote><p>
+<p>
+<p>This works very nicely. The &quot;flame strength&quot; property is now only allowed to have one of four values we allowed: guttering light, weak light, radiant light or blazing light. So we have succeeded in recording our measurement.
+<p>
+<p>But it seems artificial to call the brightness of the lantern &quot;flame strength&quot;, when we could instead simply call it &quot;brightness&quot;. Much simpler to write:
+<p>
+<blockquote><font color="#000080">The lantern has a brightness. The lantern is blazing.
+</font></blockquote><p>
+<p>
+<p>Now &quot;brightness&quot; is the name of both the property and the kind of value. What's particularly nice is that we can now use the names of the possible brightnesses - &quot;weak&quot;, &quot;blazing&quot; and so on - as adjectives. Inform knows that &quot;The lantern is blazing&quot; must be talking about the brightness property, because &quot;blazing&quot; is a brightness.
+<p>
+<p>Now we can improve our dead ends:
+<p>
+<blockquote><font color="#000080">A dead end is a kind of room with printed name &quot;Dead End&quot; and description &quot;This is a dead end, where crags in the uneven rock are caught by the [brightness of the lantern] flame you hold aloft. Despite [river sound] there is no sign of the stream.&quot; A dead end is usually dark.
+</font></blockquote><p>
+<p>
+<p>The &quot;[brightness of the lantern]&quot; is printed not as literal text, but as whatever the brightness currently is. (The square brackets mark it as what is called a text substitution, which will be the subject of the next chapter.) So we get something like this:
+<p>
+<blockquote><font color="#000080">This is a dead end, where crags in the uneven rock are caught by the blazing flame you hold aloft. Despite a faint whispering of running water there is no sign of the stream.
+</font></blockquote><p>
+<p>
+<p>So now we have a lantern, which has a brightness as a property. But we can build on this further if we like. A brightness such as &quot;guttering&quot; is a value, so it can have properties in its own right. That can be quite useful, in fact:
+<p>
+<blockquote><font color="#000080">A brightness can be adequate or inadequate. A brightness is usually adequate. Guttering is inadequate.
+</font></blockquote><p>
+<p>
+<p>This is convenient because it divides up the brightnesses:
+<p>
+<blockquote><font color="#000080">The player carries a book. The description of the book is &quot;[if the brightness of the lantern is adequate]Many secrets are now yours.[otherwise]No, the print's too tiny by this awful light.&quot;
+</font></blockquote><p>
+<p>
+<p>And while we're at it, let's give each brightness its own corresponding temperature:
+<p>
+<blockquote><font color="#000080">Temperature is a kind of value. 100C specifies a temperature.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A brightness has a temperature. The temperature of a brightness is usually 700C. The temperature of blazing is 1400C. The temperature of radiant is 1100C.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the lantern is &quot;The lantern shines with a flame at [temperature of the brightness of the lantern].&quot;
+</font></blockquote><p>
+<p>
+<p>(Candle flames are hotter than most people think.)
+<p>
+<a href=doc72.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Text with substitutions</b></font></a><i> for more on varying what is printed</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e395"><a href=doc63.html#e395 STYLE="text-decoration: none">*<b><b>Example</b> 48:  The Undertomb 1</b></a><br>A small map of dead ends, in which the sound of an underground river has different strengths in different caves.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>This example creates a kind of room, &quot;dead end&quot;, and gives each a textual description called its &quot;river sound&quot;. Note the use of a text substitution to fill in the appropriate river sound text in each dead end.
+<p>
+<blockquote><font color="#000080">&quot;The Undertomb&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A dead end is a kind of room with printed name &quot;Dead End&quot; and description &quot;This is a dead end. You'll have to go back the way you came, consoled only by [river sound].&quot; A dead end is usually dark.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Undertomb is a dark room. East is a dead end. South is a dead end with printed name &quot;Collapsed Dead End&quot;. Northwest is a dead end called the Tortuous Alcove. In the Undertomb is the lantern. It is lit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A dead end has some text called river sound. The river sound of a dead end is usually &quot;a faint whispering of running water&quot;. The Tortuous Alcove has river sound &quot;a gurgle of running water&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get lantern / e / w / s / n / nw / se&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e396"><a href=ex396.html#e396 STYLE="text-decoration: none">**<b>Example 49:  The Undertomb 2</b></a><br>Flickering lantern-light effects added to the Undertomb.<p>
+<a name="e424"><a href=ex424.html#e424 STYLE="text-decoration: none">***<b>Example 50:  Signs and Portents</b></a><br>Signpost that points to various destinations, depending on how the player has turned it.<p>
+<a name="e96"><a href=ex96.html#e96 STYLE="text-decoration: none">***<b>Example 51: The Crane's Leg 1</b></a><br>A description text that automatically highlights the ways in which the object differs from a standard member of its kind.<p>
+<p><hr><p><a href=doc62.html STYLE="text-decoration: none">Previous</a> / <a href=doc64.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

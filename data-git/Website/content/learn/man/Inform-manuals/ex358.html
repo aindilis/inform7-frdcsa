@@ -1,0 +1,147 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.3. New rules</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Stone" -->
+<!-- SEARCH SECTION "Ex 376" -->
+<!-- SEARCH SORT "Ex 018-003-376" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc322.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc324.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.3. New rules</b></td></tr></table><p>
+<p>
+<p>Stretching a point seasonally, we might write:
+<p>
+<blockquote><font color="#000080">Every turn, say &quot;The summer breeze shakes the apple-blossom.&quot;
+</font></blockquote><p>
+<p>
+<p>This rule is nameless. It needs no name because it will never need to be referred to: by identifying it as an every turn rule we have already said enough to lodge it in the &quot;every turn&quot; rulebook. In fact, though, it is easy to create a named rule:
+<p>
+<blockquote><font color="#000080">This is the blossom shaking rule: say &quot;The summer breeze shakes the apple-blossom.&quot;
+</font></blockquote><p>
+<p>
+<p>The name of a rule must always end with the word &quot;rule&quot;, for clarity's sake. (The phrasing &quot;This is the ... rule&quot; is used because &quot;The ... rule&quot; would be open to misinterpretation.)
+<p>
+<p>Previously we had a rule which had no name, but belonged to a rulebook: now we have the opposite, because although the &quot;blossom shaking rule&quot; has a name, it has not been placed in any rulebook. That means it will probably never be applied, unless we give specific instructions for that.
+<p>
+<p>Alternatively, it is possible to both name and place a rule in a single sentence:
+<p>
+<blockquote><font color="#000080">Every turn (this is the alternative blossom rule): say &quot;The summer breeze shakes the apple-blossom.&quot;
+</font></blockquote><p>
+<p>
+<p>Now the &quot;alternative blossom rule&quot; is a named rule in the &quot;every turn&quot; rulebook.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e358"><a href=doc323.html#e358 STYLE="text-decoration: none">*<b><b>Example</b> 376:  Stone</b></a><br>A soup to which the player can add ingredients, which will have different effects when the player eats.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>A thing can have a rule as a property, if we like. Here we are going to allow the player to make a soup whose effects will depend on its ingredients. Each ingredient will have its own &quot;food effect&quot; rule, to be followed when the food is eaten.
+<p>
+<p>Note that there are other, slightly less cumbersome ways to do the same thing -- we will see in a few sections in the chapter on object-based rulebooks that we could make a &quot;food effects rulebook&quot; and then write a number of rules such as &quot;food effects rule for carrots&quot; or &quot;food effects rule for the stone&quot;. Nonetheless, we demonstrate rules-as-properties here for the sake of thoroughness.
+<p>
+<p>So:
+<p>
+<blockquote><font color="#000080">&quot;Stone&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A food is a kind of thing that is edible. A food has a rule called the food effect.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out eating a food:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a food is part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through things which are part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if item is a food, follow the food effect of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the food effect of the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report eating a food:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You eat [the noun]. [diagnosis of the player]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say diagnosis of (victim - a person):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the victim is ill:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are ill.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are healthy. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the victim is awake, say &quot;You are wide awake. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You are sleepy. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the victim is bright-eyed, say &quot;Your eyesight is clear. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Your eyesight is dim. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the victim is weak, say &quot;You are weak. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You are strong. &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the victim is hungry, say &quot;You are hungry.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You are well-fed.&quot;
+</font></blockquote><p>
+<p>
+<p>And now to provide some particular foods:
+<p>
+<blockquote><font color="#000080">Some carrots are a food. The food effect of carrots is the bright-eye rule. This is the bright-eye rule: now the player is bright-eyed.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some potatoes are a food. The food effect of the potatoes is the sleepiness rule. This is the sleepiness rule: now the player is sleepy.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The broth is a food. The indefinite article of the broth is &quot;some&quot;. The food effect of broth is the filling rule. This is the filling rule: now the player is full.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The hambone is a food. The food effect of the hambone is the heartiness rule. This is the heartiness rule: now the player is strong. Instead of eating the hambone: say &quot;You cannot just eat a bone!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The poison ivy is a food. &quot;Poison ivy grows nearby.&quot; The food effect of poison is the illness rule. This is the illness rule: now the player is ill.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be bright-eyed or blind. The player is blind.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be well or ill. The player is well.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be hungry or full. The player is full.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be strong or weak. The player is weak.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person can be awake or sleepy. The player is sleepy.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The broth is in the kettle. The kettle is on the fire. The fire is in the Clearing. The Clearing is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries the hambone, the potatoes, and the carrots. The ivy is in the clearing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the broth:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something is part of the broth, say &quot;In the broth, [a list of things that are part of the broth] float[if exactly one thing is part of the broth]s[end if].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;It is just a thin broth with no other ingredients.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of inserting something into the broth: try inserting the noun into the holder of the broth.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the broth: say &quot;You cannot take the broth in your bare hands.&quot;
+</font></blockquote><p>
+<p>
+<p>And the following is a relatively unimportant nicety -- the Plurality extension provides some additional adjectives for handling objects with plural names, so we rely on it here:
+<p>
+<blockquote><font color="#000080">Include Plurality by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After inserting a food which is not the broth into a container which contains the broth:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is part of the broth;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] [if the noun acts plural]sink[otherwise]sinks[end if] into [the second noun], making the broth richer.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x broth / eat hambone / put hambone in kettle / x broth / put potatoes in broth / x broth / eat carrots / eat broth / put ivy in kettle / eat ivy&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e97"><a href=ex97.html#e97 STYLE="text-decoration: none">*<b>Example 377: The Crane's Leg 2</b></a><br>A description text generated based on the propensities of the player-character, following different rulebooks for different characters.<p>
+<a name="e170"><a href=ex170.html#e170 STYLE="text-decoration: none">**<b>Example 378:  Bribery</b></a><br>A GIVE command that gets rid of Inform's default refusal message in favor of something a bit more sophisticated.<p>
+<p><hr><p><a href=doc322.html STYLE="text-decoration: none">Previous</a> / <a href=doc324.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

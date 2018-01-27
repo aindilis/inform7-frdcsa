@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.4. Looking</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Verbosity 1" -->
+<!-- SEARCH SECTION "Ex 2" -->
+<!-- SEARCH SORT "Ex 006-004-002" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc31.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc33.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.4. Looking</b></td></tr></table><p>
+<p>
+<p>Looking is quite a complicated command, since the production of a room description takes many steps. A detailed description of this process may be found in the Room Descriptions section.
+<p>
+<p>By convention, a player sees only short descriptions of rooms he enters more than once, but may type VERBOSE in order to see full descriptions every time. BRIEF restores the normal behavior, and SUPERBRIEF tells the game never to print room descriptions at all. (This is a holdover from the earliest days of interactive fiction, when game output might be via a printer rather than on-screen, so space was at a premium but it was never difficult to review what the game had already told the player.)
+<p>
+<p>These conventions are not always appropriate, however, especially in works where experiencing a changing environment is essential. The use option
+<p>
+<blockquote><font color="#000080">Use full-length room descriptions.
+</font></blockquote><p>
+<p>
+<p>changes the default behavior so that rooms are always described fully to the player. <b>Verbosity</b> demonstrates how this works.
+<p>
+<p>Using full-length room descriptions still leaves the player with the option of turning room descriptions to BRIEF or SUPERBRIEF mode. <b>Verbosity 2</b> demonstrates how we might remove the player's ability to change the default behavior.
+<p>
+<a href=Rdoc8.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Room Descriptions</b></font></a><i> for a detailed description of how Inform creates room descriptions and how to change the results</i><p><p>
+<a href=Rdoc37.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Going, Pushing Things in Directions</b></font></a><i> for ways to change just those room descriptions that are shown as the result of the player's movement</i><p><p>
+<a href=Rdoc27.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Memory and Knowledge</b></font></a><i> for ways to change the room description in response to the player character's knowledge at any given stage of play</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e402"><a href=Rdoc32.html#e402 STYLE="text-decoration: none">*<b><b>Example</b> 2: Verbosity 1</b></a><br>Making rooms give full descriptions each time we enter, even if we have visited before.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>By default, the description of a room is printed only when the player enters that room for the first time. Afterwards, the text is skipped, for brevity, though the player can see it again at any time by typing LOOK.
+<p>
+<p>This is not always desirable behavior, though, especially when the description of a room changes during play or we want to be sure that the player has access to all the important details: so it is also possible to supply a different default.
+<p>
+<p>As we saw in the previous chapter, we can set &quot;use options&quot; to control certain aspects of the player's experience. One of the use options is the option to
+<p>
+<blockquote><font color="#000080">Use full-length room descriptions.
+</font></blockquote><p>
+<p>
+<p>which changes the defaults so that the description of a room is printed every time a player enters a room, whether or not he has been there previously.
+<p>
+<blockquote><font color="#000080">&quot;Verbosity&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Use full-length room descriptions.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Wilkie Memorial Research Wing is a room. &quot;The research wing was built onto the science building in 1967, when the college's finances were good but its aesthetic standards at a local minimum. A dull brown corridor recedes both north and south; drab olive doors open onto the laboratories of individual faculty members. The twitchy fluorescent lighting makes the whole thing flicker, as though it might wink out of existence at any moment.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Men's Restroom is immediately west of this point.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Men's Restroom is west of the Research Wing. &quot;Well, yes, you really shouldn't be in here. But the nearest women's room is on the other side of the building, and at this hour you have the labs mostly to yourself. All the same, you try not to read any of the things scrawled over the urinals which might have been intended in confidence.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;west / east&quot;.
+</font></blockquote><p>
+<p>
+<p>If we type &quot;test me&quot; during play, these commands will be carried out automatically, and we can see that when we return to the Research Wing, the description is given a second time.
+<p>
+<p>Some notes: the player can also turn full-length descriptions on or off with the commands &quot;verbose&quot; and &quot;brief&quot;, or set a minimal-description setting with the command &quot;superbrief&quot;. This power still belongs to the player even if we have set the use option to show full-length room descriptions by default.
+<p>
+<p>See the Writing with Inform chapter on use options for more discussion of these points.
+<p>
+<p>Moreover, we can ourselves check what the state of the descriptions is, with
+<p>
+<blockquote><font color="#000080">if set to sometimes abbreviated room descriptions: ...
+<br>if set to unabbreviated room descriptions: ...
+<br>if set to abbreviated room descriptions: ...
+</font></blockquote><p>
+<p>
+<p>Finally, it is possible to exercise more precise control over what the player sees on his first and subsequent visits to a room; see the next example for details.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e403"><a href=Rex403.html#e403 STYLE="text-decoration: none">*<b>Example 380: Verbosity 2</b></a><br>Making rooms give full descriptions each time we enter, even if we have visited before, and disallowing player use of BRIEF and SUPERBRIEF.<p>
+<p><hr><p><a href=Rdoc31.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc33.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.8. Simple Machines</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Model Shop" -->
+<!-- SEARCH SECTION "Ex 55" -->
+<!-- SEARCH SORT "Ex 009-008-055" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc74.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc76.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.8. Simple Machines</b></td></tr></table><p>
+<p>
+<p>The &quot;device&quot; kind provides for the simplest form of machine: one which is, at any given moment, switched on or switched off. Inform looks after this state, but leaves it to us to make the machine actually do something:
+<p>
+<blockquote><font color="#000080">The air-conditioning unit is a device in the Florist's Shop. The air-conditioning is fixed in place and switched on.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when in the Florist's Shop:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the air-conditioning is switched off, say &quot;You worry about the cut flowers in this jungle-hot air.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;There is an low susurration from the air-conditioning unit.&quot;
+</font></blockquote><p>
+<p>
+<p>One primary dictionary definition for a machine is &quot;an apparatus using or applying mechanical power and having several parts&quot;, and we often use the &quot;part of&quot; relationship to build machinery. <b>Control Center</b> provides a neat way to display the component parts of a machine to the player who examines it.
+<p>
+<p>One component almost always part of an electrical machine is the (literal) switch, lever or button to control whether they are switched on or off. In <b>Model Shop</b> just such an on/off button is automatically made part of every device.
+<p>
+<p>While an electrical device has only two states, a mechanical machine might have many, and for these the best approach is to define a kind of value naming the possibilities: see <b>Signs and Portents</b>, where the states are the possible destinations pointed towards.
+<p>
+<p>Perhaps stretching the definition of &quot;machine&quot;, <b>What Makes You Tick</b> demonstrates a fishing pole which the player can put together from several pieces.
+<p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for a safe that can be dialed to different combinations</i><p><p>
+<p><hr><p>
+<a name="e339"><a href=Rex339.html#e339 STYLE="text-decoration: none">*<b>Example 61:  Control Center</b></a><br>Objects which automatically include a description of their component parts whenever they are examined.<p>
+<!-- EXAMPLE START -->
+<a name="e90"><a href=Rdoc75.html#e90 STYLE="text-decoration: none">**<b><b>Example</b> 55:  Model Shop</b></a><br>An "on/off button" which controls whatever device it is part of.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we're particularly mechanically-minded and would like a game in which all of our mechanical devices have buttons to turn them on and off.
+<p>
+<blockquote><font color="#000080">&quot;Model Shop&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An on/off button is a kind of thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of pushing an on/off button which is part of a switched off device (called the machine):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try switching on the machine.
+</font></blockquote><p>
+<p>
+<p>Here we are making a rule about how our hypothetical buttons will interact with the machines to which they belong. Instead of pushing... is a rule that pertains to actions, and we will learn more about these in the chapter on actions. &quot;...which is part of a switched off device&quot; provides a specific circumstance - this is only to apply to buttons that are stuck to a machines that can be turned on or off. &quot;(called the machine)&quot; tells Inform that if it finds such a device, it should thereafter refer to it as &quot;the machine.&quot; (The called syntax is explained further in the chapter on Change.)
+<p>
+<p>A set of three more rules will complete our instructions about using buttons to control devices:
+<p>
+<blockquote><font color="#000080">Instead of pushing an on/off button which is part of a switched on device (called the machine):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try switching off the machine.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of switching on an on/off button which is part of a device (called the machine):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try switching on the machine.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of switching off an on/off button which is part of a device (called the machine):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try switching off the machine.
+</font></blockquote><p>
+<p>
+<p>Then we hand out buttons with a free hand:
+<p>
+<blockquote><font color="#000080">One on/off button is part of every device.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Model Shop is a room. A model train is a fixed in place device in the Model Shop. A toy elephant is a device in the Model Shop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when the model train is switched on:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The model train circles your feet, blowing small puffs of steam.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when the toy elephant is switched on:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The toy elephant waves its trunk at you.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;push model train's button / push elephant's button / g / switch off model train's button&quot;.
+</font></blockquote><p>
+<p>
+<p>And now the game will have a model train's button and a toy elephant's button.
+<p>
+<p>It may be that we want (as an added nuance) to add other names for these items. While we would want an assembly to create objects such as &quot;Lucy's hand&quot; and not &quot;Lucy hand&quot;, it is entirely reasonable to want to talk about the model train button or the elephant button. We could define these additional names like so:
+<p>
+<blockquote><font color="#000080">Understand &quot;elephant button&quot; or &quot;button on elephant&quot; as the elephant's button.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;model train&quot; or &quot;model&quot; or &quot;train&quot; as &quot;[train]&quot;. Understand &quot;[train] button&quot; or  &quot;button on [train]&quot; as the model train's button.
+</font></blockquote><p>
+<p>
+<p>In the second case, we are defining [train] to mean any of the three phrases &quot;train&quot;, &quot;model&quot;, and &quot;model train&quot;; so &quot;[train] button&quot; will match &quot;model train button&quot; or &quot;train button&quot; or &quot;model button&quot; equally well. See the chapter on Understanding for more on how to create alternative phrasings for the player to use.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e424"><a href=Rex424.html#e424 STYLE="text-decoration: none">***<b>Example 50:  Signs and Portents</b></a><br>Signpost that points to various destinations, depending on how the player has turned it.<p>
+<a name="e425"><a href=Rex425.html#e425 STYLE="text-decoration: none">*<b>Example 416:  What Makes You Tick</b></a><br>Building a fishing pole from several component parts that the player might put together in any order.<p>
+<p><hr><p><a href=Rdoc74.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc76.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

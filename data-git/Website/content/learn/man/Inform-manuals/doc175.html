@@ -1,0 +1,89 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.8. Otherwise</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Otherwise" -->
+<!-- SEARCH SECTION "11.8" -->
+<!-- SEARCH SORT "011-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc174.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc176.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.8. Otherwise</b></td></tr></table><p>
+<p>
+<p>We often need code which does one thing in one circumstance, and another the rest of the time. We could do this like so:
+<p>
+<blockquote><font color="#000080">if N is 2:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+<br>if N is not 2:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>but this is not very elegant, and besides, what if the action we take when N is 2 changes N so that it becomes something else?
+<p>
+<p>Instead we use &quot;otherwise&quot;:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>otherwise if </b>(a condition)<b></b><br><i>or:</i> <b>otherwise unless </b>(a condition)<b></b><br><i>or:</i> <b>otherwise </b>(a phrase)<b></b><br><i>or:</i> <b>else if </b>(a condition)<b></b><br><i>or:</i> <b>else unless </b>(a condition)<b></b><br><i>or:</i> <b>else </b>(a phrase)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_otherwise -->
+
+<p>This phrase can only be used as part of an &quot;if ...:&quot; or &quot;unless: ...&quot;, and provides an alternative block of phrases to follow if the first block isn't followed. Example:
+<p>
+<blockquote><font color="#000080">if N is 2:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+<br>otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>When there is only a single phrase we can use the shortened form:
+<p>
+<blockquote><font color="#000080">if N is 2, say &quot;Hooray, N is 2!&quot;;
+<br>otherwise say &quot;Boo, N is not 2...&quot;;
+</font></blockquote><p>
+<p>
+<p>We can also supply an alternative condition:
+<p>
+<blockquote><font color="#000080">if N is 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+<br>otherwise if N is 2:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+<br>otherwise if N is greater than 4:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>At most one of the &quot;...&quot; clauses is ever reached - the first which works out.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>If the chain of conditions being tried consists of checking the same value over and over, we can use a convenient abbreviated form:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(word value)<b> is</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_switch -->
+
+<p>This phrase switches between a variety of possible blocks of phrases to follow, depending on the value given. Example:
+<p>
+<blockquote><font color="#000080">if the dangerous item is:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-- the electric hairbrush:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mind your head.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-- the silver spoon:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Steer clear of the cutlery drawer.&quot;
+</font></blockquote><p>
+<p>
+<p>One alternative is allowed to be &quot;otherwise&quot;, which is used only if none of the other cases apply, and which therefore guarantees that in any situation exactly one of the blocks will be followed.
+<p>
+<blockquote><font color="#000080">if N is:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-- 1: say &quot;1.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-- 2: say &quot;2.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;-- otherwise: say &quot;Neither 1 nor 2.&quot;;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>This form of &quot;if&quot; layout is not allowed to use &quot;begin&quot; and &quot;end&quot; instead of indentation: it would look too messy, and would scarcely be an abbreviation. It is also not allowed to use &quot;unless&quot; instead of &quot;if&quot;, because the result would be too tangled to follow.
+<p>
+<p><hr><p>
+<a name="e366"><a href=ex366.html#e366 STYLE="text-decoration: none">*<b>Example 174:  Numberless</b></a><br>A simple exercise in printing the names of random numbers, comparing the use of "otherwise if...", a switch statement, or a table-based alternative.<p>
+<p><hr><p><a href=doc174.html STYLE="text-decoration: none">Previous</a> / <a href=doc176.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

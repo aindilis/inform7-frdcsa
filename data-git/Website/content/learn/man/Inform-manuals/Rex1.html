@@ -1,0 +1,120 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.12. Cameras and Recording Devices</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Actor's Studio" -->
+<!-- SEARCH SECTION "Ex 221" -->
+<!-- SEARCH SORT "Ex 009-012-221" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc78.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc80.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.12. Cameras and Recording Devices</b></td></tr></table><p>
+<p>
+<p>Recording what is going on, for later playing back or examination, is difficult because the range of situations is very complex. Exactly how much information should we store when we make a recording, and will this require problematically large tables? Will it be difficult even to do at all?
+<p>
+<p>The usual approach is to record only basic details of events or situations. In <b>If It Hadn't Been For...</b> the tape recorder preserves only a few different sounds - footsteps, creaking, rustling - rather than capturing exactly the sound of every action taking place in earshot. In <b>Claims Adjustment</b>, we can take up to 36 Polaroid-style photographs, but each is described only by saying what it is a photo of. Thus we can have a photograph of a vase, or even a photograph of a photograph of a vase (because that too is a thing), but not a photograph of a still life in which several items have been gathered together by the player. That would ordinarily require too much storage.
+<p>
+<p>A similar trick, though involving impromptu sculpture rather than photography, can be found in <b>Originals</b>. (The artist magically &quot;manifests&quot; these models rather than sculpting the conventional way in order to avoid the nuisance of carrying around raw materials - wax maquettes and so forth - which would clutter up the example.)
+<p>
+<p>If we rely on indexed text, however, we can store arbitrary descriptions. <b>Mirror, Mirror</b> provides a perfect visual recorder: it remembers a room description exactly as the player saw it at the time.
+<p>
+<p><b>Actor's Studio</b> provides a video camera that records and time stamps all actions performed in its presence while it is set to record.
+<p>
+<p><hr><p>
+<a name="e336"><a href=Rex336.html#e336 STYLE="text-decoration: none">*<b>Example 262:  If It Hadn't Been For...</b></a><br>A sound recording device that records the noises made by player and non-player actions, then plays them back on demand.<p>
+<a name="e82"><a href=Rex82.html#e82 STYLE="text-decoration: none">**<b>Example 311:  Claims Adjustment</b></a><br>An instant camera that spits out photographs of anything the player chooses to take a picture of.<p>
+<a name="e275"><a href=Rex275.html#e275 STYLE="text-decoration: none">*<b>Example 355:  Originals</b></a><br>Allowing the player to create models of anything in the game world; parsing the name "model [thing]" or even just "[thing]" to refer to these newly-created models; asking "which do you mean, the model [thing] or the actual [thing]" when there is ambiguity.<p>
+<a name="e248"><a href=Rex248.html#e248 STYLE="text-decoration: none">*<b>Example 406:  Mirror, Mirror</b></a><br>The sorcerer's mirror can, when held up high, form an impression of its surroundings which it then preserves.<p>
+<!-- EXAMPLE START -->
+<a name="e1"><a href=Rdoc79.html#e1 STYLE="text-decoration: none">**<b><b>Example</b> 221:  Actor's Studio</b></a><br>A video camera that records actions performed in its presence, and plays them back with time-stamps.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Here we construct a video camera to track and play back actions:
+<p>
+<blockquote><font color="#000080">&quot;The Actor's Studio&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - The Video Camera
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The video camera is a thing carried by the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Videotape
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">recorded action</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">time stamp</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">waiting</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">9:00 AM</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 25 blank rows.</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Mode is a kind of value. The modes are idle, recording, and playing back. The video camera has a mode. The video camera is idle.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;play back&quot; as playing back. Instead of switching on the camera, try tuning the camera to recording. Instead of switching off the camera, try tuning the camera to idle.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the video camera is &quot;It is currently [mode]; its available settings are idle, recording, and playing back.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;set [camera] to [a mode]&quot; as tuning it to. Tuning it to is an action applying to one thing and one mode.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of setting the camera to something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The available settings are idle, recording, and playing back.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check tuning it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not the camera, say &quot;Only the video camera can be set to [the mode understood].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out tuning it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the mode of the noun is the mode understood.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report tuning it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You set [the noun] to [mode understood].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After an actor doing something when the video camera is recording:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current action is the action of tuning the video camera to recording, make no decision;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of blank rows in the Table of Videotape is greater than zero:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose a blank row in the Table of Videotape;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the recorded action entry is the current action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the time stamp entry is the time of day;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the video camera is idle;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The video camera runs out of recording memory and switches off.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when the video camera is playing back:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;On the camera screen, you see [run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let starting playback be false;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Videotape:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the recorded action entry is not waiting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now starting playback is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break] -- [if the actor part of the recorded action entry is the player]you [end if][the recorded action entry], time stamped at [time stamp entry]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blank out the whole row;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if starting playback is false, say &quot;only static.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say paragraph break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - The Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Actor's Studio is a room. Lucas is a man in the Actor's Studio. Persuasion rule: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Studio contains an edible thing called a croissant.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;set camera to recording / x lucas / lucas, take inventory / lucas, eat croissant / set camera to playing back / z&quot;.
+</font></blockquote><p>
+<p>
+<p>Notice that both Lucas' implied taking action (picking up the croissant) and his eating action are recorded on the same move.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc78.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc80.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

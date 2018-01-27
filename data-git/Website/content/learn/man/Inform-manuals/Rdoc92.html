@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.2. Saving and Undoing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Saving and Undoing" -->
+<!-- SEARCH SECTION "11.2" -->
+<!-- SEARCH SORT "011-002-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc91.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc93.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.2. Saving and Undoing</b></td></tr></table><p>
+<p>
+<p>A very few titles in the IF literature - very few being still too many, some would say - restrict the player's ability to save the game.
+<p>
+<p>Removing the player's ability to UNDO is also a risky choice. Inform does provide the facility with the use option
+<p>
+<blockquote><font color="#000080">Use undo prevention.
+</font></blockquote><p>
+<p>
+<p>which makes it impossible to UNDO at any time (unless, that is, the player is playing on an interpreter that itself has a built-in UNDO feature -- these do exist). When it works, undo prevention safeguards a randomized game or combat session against brute-force solutions, but it also means that the player who makes even a minor mistake of typing will be stuck with the undesired results.
+<p>
+<p>In many cases it may be preferable to use some subtler method to enforce random effects in a game. Several extensions exist for Inform that either allow selective manipulation of the UNDO command or rig randomization to prevent UNDO and replay attempts.
+<p>
+<p><hr><p>
+<a name="e214"><a href=Rex214.html#e214 STYLE="text-decoration: none">***<b>Example 211: A point for never saving the game</b></a><br>In some of the late 1970s "cave crawl" adventure games, an elaborate scoring system might still leave the player perplexed as to why an apparently perfect play-through resulted in a score which was still one point short of the supposed maximum. Why only 349 out of 350? The answer varied, but sometimes the last point was earned by never saving the game - in other words by playing it right through with nothing to guard against mistakes (except perhaps UNDO for the last command), and in one long session.<p>
+<a name="e398"><a href=Rex398.html#e398 STYLE="text-decoration: none">*<b>Example 210:  Spellbreaker</b></a><br>P. David Lebling's classic "Spellbreaker" (1986) includes a room where the game cannot be saved: here is an Inform implementation.<p>
+<p><hr><p><a href=Rdoc91.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc93.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

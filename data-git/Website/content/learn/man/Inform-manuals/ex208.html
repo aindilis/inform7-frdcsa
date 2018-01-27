@@ -1,0 +1,177 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 22.12. Writing and reading tables to external files</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Labyrinth of Ghosts" -->
+<!-- SEARCH SECTION "Ex 430" -->
+<!-- SEARCH SORT "Ex 022-012-430" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc380.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc382.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>22.12. Writing and reading tables to external files</b></td></tr></table><p>
+<p>
+<p>The main use for files is to store and retrieve data, and the most flexible form of data used by Inform is the Table, so facilities are provided which make it as easy as possible to write and read the contents of a table to files.
+<p>
+<p>To save the contents of a table to a file, we use the phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>write </b>(external file)<b> from </b>(table name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_writetable -->
+
+<p>This phrase causes the entire contents of the given table to be written out to the given file. Note that files must have been declared, and must be referred to by their Inform names, not by textual filenames. Example:
+<p>
+<blockquote><font color="#000080">write File of Glaciation Data from the Table of Antarctic Reserves
+</font></blockquote><p>
+<p>
+<p>Any blank rows in the table are automatically moved to the bottom, and only the non-blank rows are written.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>To load a file back into a table,
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>read </b>(external file)<b> into </b>(table name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_readtable -->
+
+<p>This phrase causes the entire contents of the given table to be read in from the given file. Note that files must have been declared, and must be referred to by their Inform names, not by textual filenames. Example:
+<p>
+<blockquote><font color="#000080">read File of Glaciation Data into the Table of Antarctic Reserves
+</font></blockquote><p>
+<p>
+<p>Any rows left spare at the foot of the table are automatically blanked. On the other hand if the file is too large to fit into the table - with too many columns or too many rows - a run-time problem is produced.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We can check if a file already exists using:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(external file)<b> exists</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_fileexists -->
+
+<p>This condition is true if the file-system used by the player appears to contain a file with the right name. For example, if we declared:
+<p>
+<blockquote><font color="#000080">The binary File of Glaciation Data is called &quot;icedata&quot;.
+</font></blockquote><p>
+<p>
+<p>and then tested
+<p>
+<blockquote><font color="#000080">if the File of Glaciation Data exists, ...
+</font></blockquote><p>
+<p>
+<p>then Inform would search for a file called &quot;icedata&quot;. (The arrangements for where this might be stored, and its filename extension, vary from platform to platform.)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>One unfortunate restriction must be kept in mind. Some of what is stored in tables is solid information whose meaning never changes: the number 342, for instance, means the same to everyone. But other information depends entirely on the current location of certain structures in memory - for instance, a rule is internally referred to by its memory location. This potentially changes each time Go or Replay is clicked, and so it is not safe to pass it from one copy to another, or from one project to another. The only tables which Inform allows us to write into files are those containing &quot;safe&quot; data: numbers, units, times of day and kinds of value with named alternatives. Scenes, rules or rulebooks, in particular, are not allowed.
+<p>
+<p>And nor is text - but we can easily get around that, because indexed text (see the previous chapter) is. For instance, the following table can legally be written out to a file, whereas it would have thrown up a run-time problem if we tried it with the surface column defined simply as text:
+<p>
+<blockquote><font color="#000080">Table of Neptune's Moons
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">moon</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">surface (indexed text)</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;utterly unknown&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;cryovolcanic ridges&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;highly irregular and sooty&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e5"><a href=ex5.html#e5 STYLE="text-decoration: none">*<b>Example 429:  Alien Invasion Part 23</b></a><br>Keeping a preference file that could be loaded by any game in a series.<p>
+<!-- EXAMPLE START -->
+<a name="e208"><a href=doc381.html#e208 STYLE="text-decoration: none">**<b><b>Example</b> 430:  Labyrinth of Ghosts</b></a><br>Remembering the fates of all previous explorers of the labyrinth.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>A tradition among Nethack-like computer games of the old school is that a player's death in a given place leaves a ghost behind to haunt subsequent players. Information about past lives is sometimes stored in a &quot;bones file&quot;, and in this example we do exactly that, for a grievously unfair little dungeon.
+<p>
+<p>To begin with, the labyrinth itself. We create a kind of value to remember possible means of death in these tunnels, and we assign a coordinate position in some grid to each location. (We do this because grid positions can safely be stored in tables saved out to external files, whereas room names cannot - they represent data which changes each time we amend the source.)
+<p>
+<blockquote><font color="#000080">&quot;Labyrinth of Ghosts&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A demise is a kind of value. The demises are drowned, buried by a rockfall, pierced by an arrow and slain. The latest demise is a demise that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A grid location is a kind of value. (1,19) specifies a grid location. A room has a grid location called coordinates.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Gateway is a room. &quot;For the foolhardy adventurer, the perilous labyrinth lies north, east or south.&quot; The coordinates are (6,6). The Tomb is east of the Gateway. The coordinates are (7,6). The Rockfall Cave is north of the Gateway. &quot;This partly fallen cave may perhaps extend further north.&quot; The coordinates are (6,5). Instead of going north in the Rockfall Cave, have the player buried by a rockfall. The Archery Canyon is south of the Gateway. &quot;No telling why this canyon is named after archery, but perhaps if you wait around you'll find out.&quot; The coordinates are (6,7). Instead of waiting in the Archery Canyon, have the player pierced by an arrow. The Rock Pool is east of the Tomb. The coordinates are (8,6). The cold mountain pool is in the Rock Pool. The cold pool is fixed in place. Instead of entering the cold mountain pool, have the player drowned.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when a random chance of 1 in 10 succeeds:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A dwarf appears out of nowhere, and throws a nasty little knife.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;have the player slain.
+</font></blockquote><p>
+<p>
+<p>And as compensation for these hazards:
+<p>
+<blockquote><font color="#000080">Some silver bars are in the Tomb. The emerald is in the Rock Pool. The platinum pyramid is in the Canyon.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Point Values
+<br>item 	  	score
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">silver bars</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">platinum pyramid</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">emerald</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking an item listed in the Table of Point Values:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by the score entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;blank out the whole row.
+</font></blockquote><p>
+<p>
+<p>We are now ready for the actual undertaking. The Table of Ghostly Presences holds up to twenty death notices, and is initially blank. Deaths are sequentially numbered, and this number is stored in the sequence column.
+<p>
+<blockquote><font color="#000080">Table of Ghostly Presences
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">haunted position</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">score at death</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">turns at death</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">manner of death</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">sequence</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">a grid location</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a demise</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 19 blank rows.</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>As the story file starts up, we look to see if a ghosts file already exists. If one does, we load up the Table of Ghostly Presences with it: and if not, as will be the case the first time the player explores, we leave the table blank. We sort the table so that it has earlier deaths (lower sequence numbers) first.
+<p>
+<blockquote><font color="#000080">The File of Ghosts is called &quot;ghosts&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the File of Ghosts exists, read File of Ghosts into the Table of Ghostly Presences;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sort the Table of Ghostly Presences in sequence order.
+</font></blockquote><p>
+<p>
+<p>How will ghosts manifest themselves? Because this is only a small example, we will simply tell the player that he senses something. If several ghosts are present in the same place, the most aggrieved (that is, the most recent) is sensed first...
+<p>
+<blockquote><font color="#000080">After looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Ghostly Presences in reverse sequence order:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the haunted position entry is the coordinates of the location, say &quot;You sense the ghostly presence of an adventurer, [manner of death entry] with a score of [score at death entry] in [turns at death entry] turns.&quot;
+</font></blockquote><p>
+<p>
+<p>(For instance, &quot;You sense the ghostly presence of an adventurer, buried by a rockfall with a score of 10 in 5 turns.&quot;) That just leaves the rule for bumping off the player. When the Table is full, and there are already 20 ghosts, the one who died longest ago (with the lowest sequence count) is eliminated, and his row blanked out. (This will always be row 1 since we sorted the table in sequence order on reading it in.)
+<p>
+<blockquote><font color="#000080">To have the player (sticky end - a demise):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the new sequence number be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Ghostly Presences:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let S be the sequence entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if S is greater than the new sequence number, let the new sequence number be S;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increment the new sequence number;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of blank rows in the Table of Ghostly Presences is 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose row 1 in the Table of Ghostly Presences;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blank out the whole row;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a blank row in the Table of Ghostly Presences;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the sequence entry is the new sequence number;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the manner of death entry is the sticky end;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the turns at death entry is the turn count;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the score at death entry is the score;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the haunted position entry is the coordinates of the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;write the File of Ghosts from the Table of Ghostly Presences;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the latest demise is the sticky end;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;You have been [latest demise]&quot;.
+</font></blockquote><p>
+<p>
+<p>Strictly speaking we ought to worry that after 2,147,483,647 deaths, the sequence numbers would grow too large to store in a single value, and then the sequence of ghosts will be erratic. But it seems unlikely that anyone will play this example 2.1 billion times.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e331"><a href=ex331.html#e331 STYLE="text-decoration: none">***<b>Example 431:  Rubies</b></a><br>A scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next, adding the player's name if he has done well enough.<p>
+<p><hr><p><a href=doc380.html STYLE="text-decoration: none">Previous</a> / <a href=doc382.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

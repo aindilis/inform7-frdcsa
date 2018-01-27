@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.11. Now...</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bee Chambers" -->
+<!-- SEARCH SECTION "Ex 125" -->
+<!-- SEARCH SORT "Ex 008-011-125" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc131.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc133.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.11. Now...</b></td></tr></table><p>
+<p>
+<p>&quot;Now&quot; has already appeared several times in this chapter, being used like a Swiss army knife to change values of all kinds:
+<p>
+<blockquote><font color="#000080">now the score is 100;
+</font></blockquote><p>
+<p>
+<p>In fact, &quot;now&quot; is by far the most flexible phrase known to Inform.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>now </b>(a condition)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_now -->
+
+<p>This phrase makes the condition become true. Examples:
+<p>
+<blockquote><font color="#000080">now the score is 100;
+<br>now the player is Kevin;
+<br>now the front door is open;
+<br>now Mr Darcy is wearing the top hat;
+<br>now all the doors are open;
+<br>now all of the things in the sack are in the box;
+</font></blockquote><p>
+<p>
+<p>Inform issues a problem message if the condition asks to do the impossible (&quot;now 3 is an even number&quot;) or is vague (&quot;now the duck is not in the Lily Pond&quot;) or not in the present tense (&quot;now the front door had been open&quot;).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We've now seen all three things which can be done with a condition S which describes the world:
+<p>
+<blockquote><font color="#000080">S. - The relation holds at the start of play.
+<br>if S, ...; - Does the relation hold right now?
+<br>now S; - Make the relation hold from now on.
+</font></blockquote><p>
+<p>
+<p>For instance,
+<p>
+<blockquote><font color="#000080">The apple is in the basket.
+<br>if the apple is in the basket, ...;
+<br>now the apple is in the basket;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e28"><a href=doc132.html#e28 STYLE="text-decoration: none">*<b><b>Example</b> 125:  Bee Chambers</b></a><br>A maze with directions between rooms randomized at the start of play.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Mazes are a traditional element of interactive fiction, often consisting of apparently identical rooms with exits that do not work reciprocally and which cause confusion.
+<p>
+<p>The methods of mapping mazes are now fairly well understood and mazes themselves tend to be regarded as tiresome rather than enjoyable by a large portion of the playing audience. However, if we did want to ignore the common wisdom and create a maze, randomly generated at the start of play, here would be one way to go about it:
+<p>
+<blockquote><font color="#000080">&quot;Maze of Gloom&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A Bee Chamber is a kind of room. The printed name of a Bee Chamber is usually &quot;Hexagonal Room&quot;. The description of a Bee Chamber is usually &quot;Waxy, translucent walls surround you on six sides; the floor and ceiling are made of the same material, gently uneven. There are exits in every direction, cut into the faces or the corners.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Bee1, Bee2, Bee3, Bee4, Bee5, Bee6, Bee7, Bee8, Bee9, and Bee10 are Bee Chambers.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now right hand status line is &quot;[number of visited rooms]/[number of rooms]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with place running through Bee Chambers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped north of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped northwest of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped west of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped southwest of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped south of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped southeast of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped east of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped northeast of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped above place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped below place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped inside place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped outside place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;in / out / up / down / n / ne / nw / e / w / sw / se / s&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e181"><a href=ex181.html#e181 STYLE="text-decoration: none">**<b>Example 126:  Hatless</b></a><br>It's tempting to use "now..." to distribute items randomly at the start of play, but we need to be a little cautious about how we do that.<p>
+<a name="e313"><a href=ex313.html#e313 STYLE="text-decoration: none">***<b>Example 127:  Technological Terror</b></a><br>A ray gun which destroys objects, leaving their component parts behind.<p>
+<p><hr><p><a href=doc131.html STYLE="text-decoration: none">Previous</a> / <a href=doc133.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.9. Blank rows</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Blank rows" -->
+<!-- SEARCH SECTION "15.9" -->
+<!-- SEARCH SORT "015-009-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc248.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc250.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.9. Blank rows</b></td></tr></table><p>
+<p>
+<p>There is no difficulty about entirely blank rows: or rather, the only difficulty is once again that they are boring to type out. We can avoid the necessity by appending &quot;with ... blank rows&quot; at the foot of the table:
+<p>
+<blockquote><font color="#000080">Table 2 - Selected Elements
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Hydrogen&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;H&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Iron&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Fe&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">26</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Zinc&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Zn&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">30</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;Uranium&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;U&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">92</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 3 blank rows</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>(These words cannot be placed in between rows, but only at the bottom.) And indeed the table can start out completely empty:
+<p>
+<blockquote><font color="#000080">Table 3 - Undiscovered Periodic Table
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Element (text)</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Symbol (text)</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic number (a number)</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Atomic weight (a number)</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 92 blank rows</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>Blank rows are useful because they enable us to add new data to a table. In effect, they are invisible when not used. A repeat loop like
+<p>
+<blockquote><font color="#000080">repeat through Table 3:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>automatically skips blank rows, so it would initially do nothing at all. Similarly, choosing a &quot;random&quot; row will never choose a blank one.
+<p>
+<p>A convenient way to test if a table contains non-blank rows is to use the built-in adjectives &quot;empty&quot; and &quot;non-empty&quot;. So:
+<p>
+<blockquote><font color="#000080">if the Undiscovered Periodic Table is empty, ...
+</font></blockquote><p>
+<p>
+<p>tests whether all of its rows are blank; if even one cell contains a value then the table is &quot;non-empty&quot;.
+<p>
+<p><hr><p>
+<a name="e336"><a href=ex336.html#e336 STYLE="text-decoration: none">*<b>Example 262:  If It Hadn't Been For...</b></a><br>A sound recording device that records the noises made by player and non-player actions, then plays them back on demand.<p>
+<p><hr><p><a href=doc248.html STYLE="text-decoration: none">Previous</a> / <a href=doc250.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.12. Doors</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Escape" -->
+<!-- SEARCH SECTION "Ex 20" -->
+<!-- SEARCH SORT "Ex 003-012-020" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc38.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc40.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.12. Doors</b></td></tr></table><p>
+<p>
+<p>The map of an interactive fiction is the layout of rooms and the entrances and exits which connect them. So far, these map connections have always run from one room to another, like so:
+<p>
+<blockquote><font color="#000080">The Painted Room is north of the Undertomb.
+</font></blockquote><p>
+<p>
+<p>However, we can also interpose doors between rooms, like so:
+<p>
+<blockquote><font color="#000080">The heavy iron grating is east of the Orchard and west of the Undertomb. The grating is a door.
+</font></blockquote><p>
+<p>
+<p>The second sentence is needed since otherwise Inform will take &quot;heavy iron grating&quot; to be the name of a third room, whereas what we want is for the grating to be something physically present in both the Orchard and in the Undertomb, and acting as a conduit between them. To this end it needs to be a &quot;door&quot;, a kind we have not so far seen. In the absence of any other instruction, a newly created door will be fixed in place, closed and openable.
+<p>
+<p>The grating really does come in between the two rooms: the grating is what lies immediately east of the Orchard, not the Undertomb room. So if we wrote the following:
+<p>
+<blockquote><font color="#000080">The Undertomb is east of the Orchard. The heavy iron grating is east of the Orchard and west of the Undertomb. The grating is a door.
+</font></blockquote><p>
+<p>
+<p>then Inform would say that this is a contradiction: we said the Undertomb was east of the Orchard, but then we said that the grating was east of the Orchard.
+<p>
+<p>Inform's &quot;door&quot; kind can be used for all manner of conduits, so the word door need not be taken literally. In Ursula K. LeGuin's beguiling novel &quot;The Tombs of Atuan&quot;, from which the above rooms are stolen, it is not a grating which interposes, but:
+<p>
+<blockquote><font color="#000080">The red rock stair is east of the Orchard and above the Undertomb. The stair is an open door. The stair is not openable.
+</font></blockquote><p>
+<p>
+<p>In real life, most doors are two-sided, and can be used from either of the rooms which they join, but this is not always convenient for interactive fiction. Here is a one-sided door:
+<p>
+<blockquote><font color="#000080">The blue door is a door. It is south of Notting Hill. Through it is the Flat Landing.
+</font></blockquote><p>
+<p>
+<p>(Note the use of &quot;it&quot; here as an optional abbreviation.) This will make a door visible only on the Notting Hill side; no map connection will be made in the reverse direction, unless we ask for one.
+<p>
+<p>So much for creating and describing individual doors. Once we need to write about doors in general, we are likely to want a way to find out where a given door sits in the map. The following phrases reveal this:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>front side of </b>(object)<b></b> ... <i>room</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_frontside -->
+
+<p>This phrase produces the first of the one or two rooms containing a door - first in the order given in the source text. Example: if
+<p>
+<blockquote><font color="#000080">The red rock stair is east of the Orchard and above the Undertomb.
+</font></blockquote><p>
+<p>
+<p>then &quot;front side of the red rock stair&quot; produces the Orchard. For a one-sided door, this produces the only room containing the door.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>back side of </b>(object)<b></b> ... <i>room</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_backside -->
+
+<p>This phrase produces the last of the one or two rooms containing a door - last in the order given in the source text. Example: if
+<p>
+<blockquote><font color="#000080">The red rock stair is east of the Orchard and above the Undertomb.
+</font></blockquote><p>
+<p>
+<p>then &quot;back side of the red rock stair&quot; produces the Undertomb. A one-sided door has no &quot;back side.&quot;
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>More often, we are dealing with a door and want to know what it leads to, but that depends where we're standing:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>other side of </b>(door)<b> from </b>(room)<b></b> ... <i>object</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_othersideof -->
+
+<p>This phrase produces the room on the other side of the door, as seen from the given vantage point, which needs to be one of its sides. Example: if
+<p>
+<blockquote><font color="#000080">The red rock stair is east of the Orchard and above the Undertomb.
+</font></blockquote><p>
+<p>
+<p>then &quot;other side of the red rock stair from the Undertomb&quot; produces the Orchard, and vice versa.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>direction of </b>(door)<b> from </b>(room)<b></b> ... <i>object</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_directionofdoor -->
+
+<p>This phrase produces the direction in which the door leads, as seen from the given vantage point, which needs to be one of its sides. Example: if
+<p>
+<blockquote><font color="#000080">The red rock stair is east of the Orchard and above the Undertomb.
+</font></blockquote><p>
+<p>
+<p>then &quot;direction of the red rock stair from the Undertomb&quot; produces up.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc99.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;See <b>Adjacent rooms and routes through the map</b></font></a> for more phrases which can look at the current map layout<p><p>
+<p><hr><p>
+<a name="e54"><a href=ex54.html#e54 STYLE="text-decoration: none">*<b>Example 19: Disenchantment Bay 5</b></a><br>Disenchantment Bay: adding the door and the deck to our charter boat.<p>
+<!-- EXAMPLE START -->
+<a name="e24"><a href=doc39.html#e24 STYLE="text-decoration: none">**<b><b>Example</b> 20:  Escape</b></a><br>Window that can be climbed through or looked through.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to offer the player a window he can climb through, instead of a boring ordinary door. Our window will be like a door in that it connects two rooms, appears in both places, and impedes movement when it is shut. But we also want to add that we can look through it and see what lies on the other side; and we further want to understand &quot;climb through window&quot; or &quot;jump through window&quot; as attempts to pass through it.
+<p>
+<p>We'll start by defining a couple of rooms and making the window a door between them.
+<p>
+<blockquote><font color="#000080">&quot;Escape&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Your Bedroom is a room. The bedroom window is a door. It is west of Your Bedroom and east of the Grassy Slope.
+</font></blockquote><p>
+<p>
+<p>Now we have a &quot;bedroom window&quot; object which can be entered. Now, to catch the case where the player types &quot;LOOK THROUGH WINDOW&quot;:
+<p>
+<blockquote><font color="#000080">Instead of searching the window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Through the window, you make out [the other side of the window].&quot;
+</font></blockquote><p>
+<p>
+<p>The other side of a door is always defined to be the room that we are not currently in when doing the check. When we are in the bedrooom, the other side will be the grassy slope, and vice versa. &quot;Searching&quot; is the action that occurs when the player attempts to LOOK THROUGH something. (To review what grammar gives rise to what actions, we can always consult the Actions portion of the Index.)
+<p>
+<p>Next we want to cover the case where we climb through the window:
+<p>
+<blockquote><font color="#000080">Instead of climbing the window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try entering the window.
+</font></blockquote><p>
+<p>
+<p>And because &quot;climb window&quot; is understood but &quot;climb THROUGH window&quot; is not, we will have to borrow from the chapter on Understanding to add some new vocabulary to the game (and we'll add Jump too, while we're at it):
+<p>
+<blockquote><font color="#000080">Understand &quot;climb through [something]&quot; as climbing. Understand &quot;jump through [something]&quot; as climbing.
+</font></blockquote><p>
+<p>
+<p>Now the final piece: Inform will already keep the player from going through a closed window, but it will say &quot;You can't, since the bedroom window is in the way.&quot; This is probably not ideal, so we can replace the instruction thus:
+<p>
+<blockquote><font color="#000080">Instead of going through the closed window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The window is shut: you'd break the glass.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look through window / climb through window / open window / climb through window / look through window / close window / e / open window / e&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e161"><a href=ex161.html#e161 STYLE="text-decoration: none">***<b>Example 21: Garibaldi 1</b></a><br>Providing a security readout device by which the player can check on the status of all doors in the game.<p>
+<p><hr><p><a href=doc38.html STYLE="text-decoration: none">Previous</a> / <a href=doc40.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

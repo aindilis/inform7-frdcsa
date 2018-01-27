@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 21.2. Descriptions as values</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Curare" -->
+<!-- SEARCH SECTION "Ex 428" -->
+<!-- SEARCH SORT "Ex 021-002-428" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc360.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc362.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>21.2. Descriptions as values</b></td></tr></table><p>
+<p>
+<p>In the chapter on Descriptions, we saw that a description can be any source text which describes one or more objects: it might be as simple as &quot;the Corn Market&quot;, or as complicated as &quot;open containers which are in dark rooms&quot;. More or less the only restriction is that it must be unambiguous as to what counts and what does not: &quot;three containers&quot; is ambiguous as a description because it does not say which three.
+<p>
+<p>We've now seen several interesting tricks with descriptions. In fact, if D is a description, then
+<p>
+<blockquote><font color="#000080">say &quot;You gaze mournfully at [the list of D].&quot;;
+<br>let the tally be the number of D;
+<br>let the surprise prize be a random D;
+<br>repeat with item running through D:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>are all standard things to do. These examples make it look as if it must be possible to define phrases which act on descriptions, and in fact it is, because a description can be a value in itself. For example,
+<p>
+<blockquote><font color="#000080">even numbers
+<br>open containers which are in dark rooms
+</font></blockquote><p>
+<p>
+<p>are values of kind &quot;description of numbers&quot; and &quot;description of objects&quot; respectively. In general, if K is any kind then &quot;description of K&quot; is also a kind. Here is how we might make use of that:
+<p>
+<blockquote><font color="#000080">To enumerate (collection - a description of objects):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with the item running through the collection:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;-- [The item].&quot;
+</font></blockquote><p>
+<p>
+<p>This makes &quot;enumerate lighted rooms&quot; run off a list of lighted rooms in a textual format different from the standard one produced by &quot;say the list of lighted rooms&quot;. Inside the definition, &quot;collection&quot; can be used wherever a description might be used: here, for instance, we use it as the range for the repeat loop. (That's only possible because the range is limited in size: Inform wouldn't have allowed us to range through, say, all texts.)
+<p>
+<p>Purely as a convenience, we can also write &quot;member of&quot; or &quot;members of&quot; in this context. For instance, in the enumerate definition, it would have been just as good to write &quot;...running through the members of the collection...&quot; in the repeat. (Similarly, we could write &quot;number of members of the collection&quot; or &quot;a random member of the collection&quot;, which looks grammatically tidier than writing &quot;number of the collection&quot; or &quot;random of the collection&quot; - though in fact both of these do work.)
+<p>
+<p>Finally, it's sometimes useful in an abstract situation to test
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(value)<b> matches </b>(description of values)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_valuematch -->
+
+<p>This condition is true if the value matches the description; the kinds must be compatible, or Inform will issue a problem message. There is no point using this for cases where the description is given explicitly:
+<p>
+<blockquote><font color="#000080">if 4 matches even numbers, ...
+</font></blockquote><p>
+<p>
+<p>because it is easier to write just:
+<p>
+<blockquote><font color="#000080">if 4 is an even number, ...
+</font></blockquote><p>
+<p>
+<p>So this condition is only useful when the description is stored in some variable, and its identity is not known.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e100"><a href=doc361.html#e100 STYLE="text-decoration: none">*<b><b>Example</b> 428:  Curare</b></a><br>A phrase that chooses and names the least-recently selected item from the collection given, allowing the text to cycle semi-randomly through a group of objects.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Curare&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing has a number called the last use. The last use of a thing is usually 0.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is old if its last use is 12 or less.
+</font></blockquote><p>
+<p>
+<p>The actual number chosen in this definition is pretty much irrelevant: the main thing is that we want to establish relative values. The lower the &quot;last use&quot; number of an item, the older that item should be understood to be, as we see here:
+<p>
+<blockquote><font color="#000080">To decide which thing is cyclically random (collection - a description of objects):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let choice be the oldest member of the collection;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the last use of the choice is the turn count;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on choice.
+</font></blockquote><p>
+<p>
+<p>This phrase will select, from the collection of objects passed to it, the one that has been mentioned least recently. This means that if we consult it repeatedly about the same collection, it will begin to cycle predictably; but if new items are added to the collection, it will mention these first before returning to the previous cycle. Now we can use this:
+<p>
+<blockquote><font color="#000080">After taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You stare morosely at [the cyclically random thing carried by the player], wondering what you're ever going to find to do with it.&quot;
+</font></blockquote><p>
+<p>
+<p>We could have said &quot;You stare morosely at [the oldest thing carried by the player]&quot; here, but doing so would not have set the &quot;last use&quot; property correctly, so we would not get the cycling behavior that we're looking for.
+<p>
+<blockquote><font color="#000080">The Evidence Room is a room. Some shelves are scenery supporters in the Evidence Room. A box is a kind of container which is open and not openable. On the shelves is a box.  It contains a deformed bullet and a driver's license.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a steel fish hook, a Chinese passport, a tube of synthetic curare, and an envelope full of Euros.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / i / i / i / i / i / get all from box / i / i / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc360.html STYLE="text-decoration: none">Previous</a> / <a href=doc362.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

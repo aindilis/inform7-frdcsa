@@ -1,0 +1,83 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.13. Consider and abide</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Consider and abide" -->
+<!-- SEARCH SECTION "18.13" -->
+<!-- SEARCH SORT "018-013-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc332.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc334.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.13. Consider and abide</b></td></tr></table><p>
+<p>
+<p>It often happens that one rule needs to invoke another one. The best way to do this is with the phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>consider </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_consider -->
+
+<p>This phrase applies the given rule, but throws away the result: indeed, it makes no difference whether the rule succeeds, fails or has no outcome.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>consider </b>(values based rule producing values)<b> for </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_considerfor -->
+
+<p>This phrase applies the given rule, applying it to the given value, but throws away the result: indeed, it makes no difference whether the rule succeeds, fails or has no outcome.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>More often, though, we want not only to invoke another rule, but also to be guided by its advice. For this, we use the otherwise identical phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>abide by </b>(rule)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_abide -->
+
+<p>This phrase applies the given rule, and makes its result the result of the present rule. If the rule being abided by succeeds or fails then the original rule also stops, at once and without going on to any further instructions. Example:
+<p>
+<blockquote><font color="#000080">The omnibus rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;abide by the first rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;abide by the second rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;abide by the third rule;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;abide by the fourth rule.
+</font></blockquote><p>
+<p>
+<p>This duplicates the effect of a rulebook of four rules: the &quot;omnibus rule&quot; tries each in turn, and stops as soon as any of them stop.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>abide by </b>(values based rule producing values)<b> for </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_abidefor -->
+
+<p>This phrase applies the given rule to the given value, and makes its result the result of the present rule. If the rule being abided by succeeds or fails then the original rule also stops, at once and without going on to any further instructions.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Abide might be used in examples like this one:
+<p>
+<blockquote><font color="#000080">A thing can be fragile or robust.
+<br>This is the can't handle fragile things roughly rule: if the noun is fragile, say &quot;[The noun] is too fragile for such rough handling.&quot; instead.
+<br>A check dropping rule: abide by the can't handle fragile things roughly rule. A check throwing it at rule: abide by the can't handle fragile things roughly rule.
+</font></blockquote><p>
+<p>
+<p>Had we used &quot;consider&quot; instead of &quot;abide by&quot;, then in the event of the player typing &quot;drop angel&quot; the text &quot;The glass angel is too fragile for such rough handling&quot; would be printed, which is correct - but then the action would continue as though no difficulty had occurred, which is definitely not correct.
+<p>
+<p>Finally, we can &quot;anonymously abide&quot;:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>anonymously abide by </b>(rule)<b></b><br><i>or:</i> <b>anonymously abide by </b>(values based rule producing values)<b> for </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_abideanon -->
+
+<p>This phrase applies the given rule, and makes its result the result of the present rule. If the rule being abided by succeeds or fails then the original rule also stops, at once and without going on to any further instructions. However, the rule deemed to have decided the outcome is the one abided by, not the one doing the abiding.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>This is only useful in complicated situations where one rulebook uses another which... and so on. Its effect is exactly the same as &quot;abide&quot;, except that the rule deemed to have decided the outcome is the one abided by, not the one doing the abiding. It thus allows a rule or rulebook to act purely as a middle-man, never getting the blame or the credit for what happens. The rule which made the decision is often not very relevant anyway, but it's used as the source of the value &quot;reason the action failed&quot; (see the Advanced Actions chapter).
+<p>
+<p>
+<p><hr><p><a href=doc332.html STYLE="text-decoration: none">Previous</a> / <a href=doc334.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

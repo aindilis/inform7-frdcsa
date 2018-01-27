@@ -1,0 +1,102 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.26. Directions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Prisoner's Dilemma" -->
+<!-- SEARCH SECTION "Ex 38" -->
+<!-- SEARCH SORT "Ex 003-026-038" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc52.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc54.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.26. Directions</b></td></tr></table><p>
+<p>
+<p>&quot;Direction&quot; is a kind which is quite unlike most of those seen so far. While it has to do with the physical world, a direction does not exactly belong to it. One cannot find &quot;southeast&quot; sitting on a shelf. &quot;Direction&quot; is not a kind of thing, nor a kind of room: it is a kind in its own right.
+<p>
+<p>Every direction has an &quot;opposite&quot; property, which is always another direction. These occur in matched pairs. The opposite of north is south, just as the opposite of south is north. The opposite of southeast is northwest, the opposite of inside is outside, and so on. When Inform reads a sentence like...
+<p>
+<blockquote><font color="#000080">Bangkok is south of Nakhon Sawan.
+</font></blockquote><p>
+<p>
+<p>...it assumes that the opposite map connection is probably also valid, so that
+<p>
+<blockquote><font color="#000080">Nakhon Sawan is north of Bangkok.
+</font></blockquote><p>
+<p>
+<p>The chapter began with the twelve directions built into Inform:
+<p>
+<blockquote><font color="#000080">north, northeast, east, southeast, south, southwest, west, northwest, up, down, inside, outside
+</font></blockquote><p>
+<p>
+<p>But the built-in set is not always appropriate. Sometimes this is too many; if we wanted to write about a Flatland, for instance, then up and down ought to go. But in practice it is better not to abolish them as directions but instead to forbid travelling in them. (See the Recipe Book for examples.)
+<p>
+<p>But away from our familiar Earth, the usual frame of reference loses its meaning. Terry Pratchett's &quot;Discworld&quot; comedies, set on a rotating disc, use the directions turnwise, widdershins, hubwards and rimwards. On board a Zeppelin airship, which constantly changes its course, the cockpit has no fixed compass bearing from the passenger cabin: it is not very naturally &quot;north&quot;. In zero gravity, there is no up or down. Mars does not have a magnetic core, so a compass doesn't work there.
+<p>
+<p>New directions must always be created in opposing pairs, and each <b>must</b> be declared with a clear simple sentence of the form &quot;X is a direction.&quot; For instance:
+<p>
+<blockquote><font color="#000080">Turnwise is a direction. The opposite of turnwise is widdershins.
+<br>Widdershins is a direction. The opposite of widdershins is turnwise.
+<br>Hubwards is a direction. The opposite of hubwards is rimwards.
+<br>Rimwards is a direction. The opposite of rimwards is hubwards.
+</font></blockquote><p>
+<p>
+<p>It is then possible to write, say, that:
+<p>
+<blockquote><font color="#000080">Ankh-Morpork is hubwards of Lancre and turnwise from Borogravia.
+</font></blockquote><p>
+<p>
+<p>Of course the World page of the Index for the project normally draws a map based on compass bearings, so it will get a little befuddled by this. But the map drawn in the Index can be given hints to improve its legibility. More on this later, but for now note that
+<p>
+<blockquote><font color="#000080">Index map with turnwise mapped as east.
+</font></blockquote><p>
+<p>
+<p>maps turnwise directions as if they were east, that is, pointing rightwards on the page. (This has no effect on the story file produced; it does not mean turnwise is simply a new name for east; it affects only the look of the Index map, which is only a convenience for the author in any case.)
+<p>
+<p>At one time, directions had to have shortish names (up to three words only), but that's no longer true:
+<p>
+<blockquote><font color="#000080">Just the tiniest smidge off magnetic north is a direction. The opposite of
+<br>just the tiniest smidge off magnetic north is just the tiniest smidge
+<br>off magnetic south.
+<br>Just the tiniest smidge off magnetic south is a direction. The opposite of
+<br>just the tiniest smidge off magnetic south is just the tiniest smidge
+<br>off magnetic north.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e36"><a href=doc53.html#e36 STYLE="text-decoration: none">**<b><b>Example</b> 38:  Prisoner's Dilemma</b></a><br>A button that causes a previously non-existent exit to come into being.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>We can change the directions in the map in mid-game, though in practice this is rarely necessary. But suppose we do not want a door or any sign of a door to exist before the player takes some action, in this case pressing a button:
+<p>
+<blockquote><font color="#000080">&quot;Prisoner's Dilemma&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Challenger's Waiting Room is a room. &quot;The challenge is this: to wait as long as you can endure to do so in a room with no features and no clock. If you wait longer than all the other contestants, you win.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The button is fixed in place in the Challenger's Waiting Room. &quot;The only item in view is a black recessed button.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Amid the Cheering Throng is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of pushing the button for the first time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;change the east exit of the Challenger's Waiting Room to Amid the Cheering Throng;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;change the west exit of the Cheering Throng to the Challenger's Waiting Room;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;With a groan of gears, the east wall swings open! If you've lost now, well, you've lost...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;e / push button / e / w&quot;.
+</font></blockquote><p>
+<p>
+<p>Our instructions about pushing the button will be further explained in the chapter on Actions, but the thing to note here is that we can &quot;change (whatever) exit&quot; in order to set or re-set map directions. Notice that we have to set both directions explicitly: changing the east exit of the Waiting Room does not automatically also change the west exit of Amid the Cheering Throng.
+<p>
+<p>This allows greater flexibility in our games but does require an extra line or so of work.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e432"><a href=ex432.html#e432 STYLE="text-decoration: none">**<b>Example 39:  The World of Charles S. Roberts</b></a><br>Replacing the ordinary compass bearings with a set of six directions to impose a hexagonal rather than square grid on the landscape.<p>
+<a name="e154"><a href=ex154.html#e154 STYLE="text-decoration: none">***<b>Example 40:  Fore</b></a><br>Understand "fore", "aft", "port", and "starboard", but only when the player is on a vessel.<p>
+<p><hr><p><a href=doc52.html STYLE="text-decoration: none">Previous</a> / <a href=doc54.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

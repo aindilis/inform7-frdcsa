@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.18. Longer extracts of Inform 6 code</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Status line with centered text, the hard way" -->
+<!-- SEARCH SECTION "Ex 442" -->
+<!-- SEARCH SORT "Ex 025-018-442" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc434.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc436.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.18. Longer extracts of Inform 6 code</b></td></tr></table><p>
+<p>
+<p>Whole routines, object and class definitions (or any other directives) can be pasted in wholesale using sentences like so:
+<p>
+<blockquote><font color="#000080">Include (-
+<br>[ MyInform6Routine a b; return a*b; ];
+<br>-).
+</font></blockquote><p>
+<p>
+<p>Such inclusions are pasted into the final compiled code at the end of the file, after the I6 grammar has been declared.
+<p>
+<p>In such extracts, we sometimes need to refer to objects, variables or values which can't be described using I6: or rather, which can be described, but we don't know how. To this end, any text in an inclusion written in &quot;(+&quot; and &quot;+)&quot; parentheses is treated as an I7 value, and compiled accordingly, with all type-checking waived for the occasion. For instance:
+<p>
+<blockquote><font color="#000080">Include (-
+<br>Global my_global = (+ the tartan rucksack +);
+<br>-).
+</font></blockquote><p>
+<p>
+<p>Here &quot;the tartan rucksack&quot; is translated into &quot;O18_tartan_rucksack&quot;, or something similar: the I6 object created to represent the rucksack. Thus the actual line of code produced is
+<p>
+<blockquote><font color="#000080">Global my_global = O18_tartan_rucksack;
+</font></blockquote><p>
+<p>
+<p>The material between &quot;(+&quot; and &quot;+)&quot; is generally treated as a value, and thus compiles to the I6 form of that value. But it could also be a property name, which compiles to the I6 form in question, or a defined adjective, which compiles to the name of the routine to call which tests whether that adjective is true.
+<p>
+<p><b>Two warnings.</b> The material in &quot;(-&quot; and &quot;-)&quot; is called template code, and it is not quite treated as literal. That means certain characters cause Inform to react:
+<p>
+<p>1. Beware of accidental &quot;(+&quot; usage - for instance,
+<p>
+<blockquote><font color="#000080">Include (-
+<br>[ MyCleverLoop i; for (++i; i<10; i++) print i; ];
+<br>-).
+</font></blockquote><p>
+<p>
+<p>looks reasonable, but contains &quot;(+&quot; and &quot;+)&quot;. Spaces around the first &quot;++&quot; would have been enough to avoid this one; &quot;+)&quot; is only significant where it follows a &quot;(+&quot;.
+<p>
+<p>2. Beware of placing an &quot;@&quot; character in the first column, that is, immediately following a new line. (In template code this marks off paragraph divisions.) So for instance,
+<p>
+<blockquote><font color="#000080">Include (-
+<br>[ Set_Stream ret;
+<br>@glk 67 ret;
+<br>];
+<br>-).
+</font></blockquote><p>
+<p>
+<p>is tripped up by the Glulx assembly language opcode &quot;@glk&quot; because this occurs in column 1. Indenting it with a little space or a tab is enough to avoid the problem.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e389"><a href=doc435.html#e389 STYLE="text-decoration: none">*<b><b>Example</b> 442: Status line with centered text, the hard way</b></a><br>A status line which has only the name of the location, centered.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Making major changes to display features, such as the construction of the status line, sometimes requires that we rely on Inform 6 in bulk; here is how we might produce the Trinity-style status line, with the location centered at the top center of the screen.
+<p>
+<blockquote><font color="#000080">&quot;Corner of No and Where&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">No is a room. Where is west of No.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for constructing the status line:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;print the location in the center of the status line;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To print the location in the center of the status line:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;(- PrintCenteredStatus(); -).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include (-
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Array printed_text --> 64;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">[ PrintCenteredStatus i j;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;@set_cursor 1 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;i = 0->33;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;spaces(i);
+<br>&nbsp;&nbsp;&nbsp;&nbsp;@output_stream 3 printed_text;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;print (name) location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;@output_stream -3;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;j = (i - (printed_text-->0))/2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;@set_cursor 1 j;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;print (name) location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;spaces j-1;
+<br>];
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">-)
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;w / e&quot;.
+</font></blockquote><p>
+<p>
+<p>In fact, as we've already seen, many extra modifications to the display behavior are possible using Basic Screen Effects.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc434.html STYLE="text-decoration: none">Previous</a> / <a href=doc436.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

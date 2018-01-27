@@ -1,0 +1,297 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.4. When play ends</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Big Sky Country" -->
+<!-- SEARCH SECTION "Ex 138" -->
+<!-- SEARCH SORT "Ex 009-004-138" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc144.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc146.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.4. When play ends</b></td></tr></table><p>
+<p>
+<p>Short of something like a power cut, the game can only end when one of the two participants chooses to end it: either the player, by deciding that enough is enough, or us.
+<p>
+<p>In story-telling, there are many kinds of ending: happy, sad, decisive, bittersweet, surprise. Inform doesn't try to interfere in that kind of artistic choice, but it does need to know one thing about the ending: is it final, or not? Many authors like to make additional menu items available if the player has completed the story right through, but not if she has reached an early or wrong ending. (See the activity &quot;amusing a victorious player&quot;, for example.)
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_end -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message &quot;The End.&quot; The end is not considered final.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story finally</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endfinally -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message &quot;The End.&quot; The end is considered final, and any hidden menu options will be revealed.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story saying </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endsaying -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message given in the text. The end is not considered final. Example:
+<p>
+<blockquote><font color="#000080">end the story saying &quot;You have been stymied&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story finally saying </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endfinallysaying -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message given in the text. The end is considered final, and any hidden menu options will be revealed. Example:
+<p>
+<blockquote><font color="#000080">end the story finally saying &quot;You have defeated Sauron&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The closing message is traditionally set out in asterisks:
+<p>
+<blockquote><font color="#000080">*** The End ***
+</font></blockquote><p>
+<p>
+<p>This style is traditional in IF, and go back to 1980 if not earlier.
+<p>
+<p>We can test the current state like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has ended</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_ended -->
+
+<p>This condition is true if an end has been declared using one of the &quot;end the story...&quot; phrases.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has not ended</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_notended -->
+
+<p>This condition is true if no end has been declared using one of the &quot;end the story...&quot; phrases.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has ended finally</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_finallyended -->
+
+<p>This condition is true if an end has been declared using one of the &quot;end the story finally...&quot; phrases, so that an ending has been reached which the author feels is a completion of the player's experience.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has not ended finally</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_notfinallyended -->
+
+<p>This condition is true if an end has been declared using one of the &quot;end the story...&quot; phrases, but not &quot;finally&quot;, so the author feels that the player can get further experience by playing again and trying different approaches.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The rulebook &quot;when play ends&quot; is the matching bookend to &quot;when play begins&quot;. It is followed when the game decides to end (not when the player simply gives up and quits), and before any epitaph like
+<p>
+<blockquote><font color="#000080">*** You have been poisoned ***
+</font></blockquote><p>
+<p>
+<p>appears. For example:
+<p>
+<blockquote><font color="#000080">When play ends, say &quot;Oh dear.&quot;
+</font></blockquote><p>
+<p>
+<p>Surprisingly, the end is not always the end:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>resume the story</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_resume -->
+
+<p>This phrase causes an ended story to resume exactly as if no &quot;end the story...&quot; phrase had been used. Example:
+<p>
+<blockquote><font color="#000080">When play ends:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the story has not ended finally:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Oh dear. Still, here's another chance.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resume the story.
+</font></blockquote><p>
+<p>
+<p>The phrase is likely to be sensible only as part of a &quot;when play ends&quot; rule. Other traditional uses include giving the player three lives, as in an old-school arcade machine.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>In earlier builds of Inform, the wording of these phrases was different. There was only one possible way to end finally, which caused some authors trouble, but otherwise the functionality was about the same. The change was really made to recognise that modern IF is about story-telling, and shouldn't assume that everything is a matter of life and death. The following shows the old, now deprecated, wording, together with equivalents in the new wording:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the game saying </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endgamesaying_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">end the story saying ...;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the game in death</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_enddeath_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">end the story saying &quot;You have died&quot;;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the game in victory</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endvictory_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">end the story finally saying &quot;You have won&quot;;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>resume the game</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_resumegame_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">resume the story;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game ended in death</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endeddeath_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has ended and the story has not ended finally, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game ended in victory</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endedvictory_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has ended finally, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game is over</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_over_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has ended, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game is in progress</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_inprogress_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has not ended, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e202"><a href=doc145.html#e202 STYLE="text-decoration: none">***<b><b>Example</b> 138:  Big Sky Country</b></a><br>Allowing the player to continue play after a fatal accident, but penalizing him by scattering his possessions around the game map.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Some older games allowed the player to be resurrected after a death, but punished him by distributing his possessions far and wide. Here we emulate that effect.
+<p>
+<blockquote><font color="#000080">&quot;Big Sky Country&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins: say &quot;There's a bit of a drive over from Anaconda, Montana, and then through a couple or three ghost towns, but finally you find what you're looking for, and strike out on foot...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Entrance to Devil's Canyon is a room. &quot;You are at the top of a steep road, which proceeds down into the canyon proper.&quot; A sign is in Devil's Canyon. It is fixed in place. &quot;An ominous sign has been put up by the local sheriff's office.&quot; The description is &quot;PROCEED AT OWN RISK - NO RESCUES!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going down when a random chance of 1 in 3 succeeds:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Whoooops, your footing is not as secure as you thought...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Dusty Path is below Entrance. &quot;A dusty path, with grey-brown thorny bushes on either side. Immediately to your right is a sheer drop; far below you can see the rusting remains of a Model T that some fool tried to drive by here.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Hairpin is below Dusty Path. &quot;A sharp bend in the road, doubling back down towards the bottom of the canyon. Just north of here there is also a small cavern of some kind[if the stick pin is in the cavern], which attracts your eye with some glittery thing[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cavern is north of Hairpin. &quot;Really not much more than a little hollow in the side of the canyon.&quot; In the cavern are a snake and a diamond stick pin. The snake is an animal. The description of the snake is &quot;You're no expert, but it looks like a rattler.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the diamond stick pin in the presence of the snake: say &quot;Turns out the snake is partial to that there pin, and takes exception to your intending to make off with it.&quot;; end the story.
+</font></blockquote><p>
+<p>
+<p>In a fuller implementation of this game, we might make it possible to get by the snake, but in this version, it's just going to remain troublesome.
+<p>
+<blockquote><font color="#000080">Crooked Path is below Hairpin. &quot;You're about two thirds of the way down to the bottom of the cavern at this point.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the Spot is below Crooked Path. &quot;This'll be it: a bare patch of ground that might as well have an X painted right on it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for supplying a missing noun while digging:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now noun is the location.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;dig&quot; or &quot;dig hole/here&quot; or &quot;dig in ground/dirt/earth&quot; as digging. Digging is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of digging at the spot:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You dig and dig, and after a half hour or so, sure enough, you do turn up a big box of gold! You're going to be richer than God and Bill Gates put together.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by 5;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story finally.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of digging at the spot when the player does not carry the shovel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;What, without your shovel? That won't work too well.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a walking stick. The player wears a hat, a whistle, and a daypack. The daypack contains a mylar blanket, a granola bar, a cellular phone, a water bottle, a folding shovel, and a photocopied map. The granola bar is edible. Instead of drinking the water, say &quot;You quench your thirst, for the time being.&quot; The description of the map is &quot;The map shows the winding path of Devil's Canyon, with a large X down by the south end. That would be where your uncle Jesse buried the gold from the train robbery.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The maximum score is 5.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play ends when the story has not ended finally:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Oh dear, that ought to be fatal! However, if you like I can get you out of it...
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&nbsp;&nbsp;&nbsp;&nbsp;Shall I? >&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player consents:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through things had by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the item to a random visited room;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A strong wind picks you up and sets you back at [the location], though perhaps minus a few of your things.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resume the story;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try looking.
+</font></blockquote><p>
+<p>
+<p>&quot;If the player consents&quot; is just a convenient way to ask a yes/no question that the player must answer before going on with the game.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc144.html STYLE="text-decoration: none">Previous</a> / <a href=doc146.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

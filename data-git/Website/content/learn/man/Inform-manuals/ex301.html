@@ -1,0 +1,203 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.5. Conditions and questions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Proposal" -->
+<!-- SEARCH SECTION "Ex 171" -->
+<!-- SEARCH SORT "Ex 011-005-171" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc171.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc173.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.5. Conditions and questions</b></td></tr></table><p>
+<p>
+<p>A variety of &quot;conditions&quot; have already appeared in this documentation. A condition is a phrase which describes a situation which might be true, or might be false, and examples might include:
+<p>
+<blockquote><font color="#000080">Mr Kite is in Bishopsgate
+<br>the score is greater than 10
+<br>Sherlock Holmes suspects a woman
+</font></blockquote><p>
+<p>
+<p>These are all examples of sentences, formed by putting nouns either side of a verb, and clearly a wide range of conditions can be written this way. But there are also a few special conditions built into Inform which have a fixed wording, and test questions difficult to address with ordinary sentences. For instance:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>in darkness</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_indarkness -->
+
+<p>This condition is true if the player currently has no light to see by. Note that the test is more complicated than simply testing
+<p>
+<blockquote><font color="#000080">if the player is in a dark room, ...
+</font></blockquote><p>
+<p>
+<p>since the player might have a torch, or be inside a cage which is itself in a dark room, and so on.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Another example of a condition not easily written as a sentence is:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>player consents</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_consents -->
+
+<p>This condition is unusual in doing something and not simply making a silent check: it waits for the player to type YES (or Y) or NO (or N) at the keyboard, and then is true if the answer was yes. Example:
+<p>
+<blockquote><font color="#000080">say &quot;Are you quite sure you want to kiss the Queen? &quot;;
+<br>if the player consents:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Whether it's put to the player like this or not, testing a condition is really asking a question, and there is always a yes/no answer. In Inform this answer is not usually a value (unlike in some other computer programming languages), but it can be made into one.
+<p>
+<p>Firstly, we need a special kind of value to hold answers like this. It's called &quot;truth state&quot;, and it has just two possible values, written as &quot;true&quot; and &quot;false&quot;. We then need:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>whether or not </b>(a condition)<b></b> ... <i>truth state</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_whether -->
+
+<p>This phrase converts a condition into its result as a value, which is always either &quot;true&quot; or &quot;false&quot;. Example:
+<p>
+<blockquote><font color="#000080">whether or not 20 is an odd number
+</font></blockquote><p>
+<p>
+<p>produces the truth state &quot;false&quot;. This is mostly useful for storing up results to look at later:
+<p>
+<blockquote><font color="#000080">let victory be whether or not all the treasures are in the cabinet;
+</font></blockquote><p>
+<p>
+<p>and then subsequently:
+<p>
+<blockquote><font color="#000080">if victory is true, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>As another example, in most stories this:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;showme whether or not in darkness.
+</font></blockquote><p>
+<p>
+<p>...will produce a line:
+<p>
+<blockquote><font color="#000080">&quot;whether or not in darkness&quot; = truth state: false
+</font></blockquote><p>
+<p>
+<p>In short, &quot;truth state&quot; is a kind of value like any other. That means it can be the kind of a variable:
+<p>
+<blockquote><font color="#000080">Salvation earned is a truth state that varies.
+</font></blockquote><p>
+<p>
+<p>and it can similarly be used in table columns, lists, or anywhere else where values are allowed.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e301"><a href=doc172.html#e301 STYLE="text-decoration: none">**<b><b>Example</b> 171:  Proposal</b></a><br>Asking the player a yes/no question which he must answer, and another which he may answer or not as he chooses.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to ask the player a question where he might say yes or no in response. There are two possible forms of this: the modal question where the player must pick one to proceed, and the non-modal question where he might also type other verbs.
+<p>
+<blockquote><font color="#000080">&quot;Proposal&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The story genre is &quot;A Worked Example about Yes/No Questions&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Asking a Modal Yes/No Question
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Do you like Mr Spruce? &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if player consents, now Spruce is handsome;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise now Spruce is ugly;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say paragraph break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Mr Spruce's Non-Modal Question
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Use full-length room descriptions.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Conservatory is a room. &quot;You are in a room full of plants.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Mr Spruce is a man in the Conservatory. Mr Spruce can be apprehensive or calm. Mr Spruce is calm. Mr Spruce can be handsome or ugly.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 9:02 AM: say &quot;Mr Spruce flings himself to his knees and implores you to become his lawfully wedded wife.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is apprehensive;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Spruce gives up in two minutes from now.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when Mr Spruce gives up:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Mr Spruce sighs heavily, seeing that you don't intend to reply. 'Never mind, my dear, I'll ask later. Perhaps I should have spoken to your Papa first... yes, a gently-bred female... no wonder...'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Spruce departs in one minute from now.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when Mr Spruce departs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player can see Mr Spruce, say &quot;Mr Spruce takes his leave of you.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Mr Spruce pokes his head in to say that he is leaving.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Well, that is over...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying yes in the presence of an ugly apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Remembering what your mother said to you about the stock exchange and Dear Papa, you close your eyes and accept Mr Spruce.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Alas for your maiden hopes.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying yes in the presence of a handsome apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are silent with delight for a moment before you say yes, yes!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;How Genevieve Stubbs will cry!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying no in the presence of an ugly apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Gently you inform Mr Spruce that it is impossible. He seems less deflated than you had expected.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Odd, that...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying no in the presence of a handsome apprehensive Mr Spruce:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Mr Spruce is calm;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You lower your eyes and refuse petulantly, hoping to stir him to a more ardent repetition of these same requests. But then -- alack! -- he says 'I see how it is!' in a strangled voice, and strides from the room!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;A fatal error!&quot;
+</font></blockquote><p>
+<p>
+<p>And since the player might SAY YES TO SPRUCE, we had better reroute the relevant options:
+<p>
+<blockquote><font color="#000080">Instead of answering Mr Spruce that &quot;no&quot;, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of answering Mr Spruce that &quot;yes&quot;, try saying yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Mr Spruce to try saying yes, try saying yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Mr Spruce to try saying no, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of saying sorry, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Mr Spruce to try saying sorry, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of answering Mr Spruce that &quot;sorry&quot;, try saying no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / z / yes&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test more with &quot;z / z / z / no&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc171.html STYLE="text-decoration: none">Previous</a> / <a href=doc173.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

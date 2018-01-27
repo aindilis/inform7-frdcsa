@@ -1,0 +1,149 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.7. Beginning and ending activities manually</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Beginning and ending activities manually" -->
+<!-- SEARCH SECTION "17.7" -->
+<!-- SEARCH SORT "017-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc287.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc289.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.7. Beginning and ending activities manually</b></td></tr></table><p>
+<p>
+<p>If we have declared a new activity, like &quot;analysing&quot;, the normal way to make it happen would be to write
+<p>
+<blockquote><font color="#000080">carry out the analysing activity with the pitchblende;
+</font></blockquote><p>
+<p>
+<p>which goes through the whole machinery of rules - before, for, after - and then resumes, the activity having started, taken place and come to an end.
+<p>
+<p>But there are times when it is not convenient to write a suitable &quot;for ...&quot; rule, or where we need more control, and do not wish to hand the whole business over to a single phrase. For such times we are allowed to write:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>begin the </b>(activity)<b> activity</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_beginactivity -->
+
+<p>This phrase causes the named activity to become active, and runs its &quot;before&quot; rulebook. The activity must be one which applies to nothing. Example:
+<p>
+<blockquote><font color="#000080">begin the assaying activity;
+</font></blockquote><p>
+<p>
+<p>In all cases a matching &quot;end the ... activity&quot; or else &quot;abandon the ... activity&quot; phrase must be reached.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>begin the </b>(activity on values)<b> activity with </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_beginactivitywith -->
+
+<p>This phrase causes the named activity to become active, and runs its &quot;before&quot; rulebook. The activity must be one which applies to a value of a matching kind. Example:
+<p>
+<blockquote><font color="#000080">begin the analysing activity with the pitchblende;
+</font></blockquote><p>
+<p>
+<p>In all cases a matching &quot;end the ... activity with ...&quot; or else &quot;abandon the ... activity with...&quot; phrase must be reached.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>And when we are done:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the </b>(activity)<b> activity</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endactivity -->
+
+<p>This phrase runs the &quot;after&quot; rulebook of the activity and then causes it to become inactive. The activity must be one which applies to nothing. Example:
+<p>
+<blockquote><font color="#000080">end the assaying activity;
+</font></blockquote><p>
+<p>
+<p>This must only happen to match an earlier &quot;begin the ... activity&quot; phrase.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the </b>(activity on values)<b> activity with </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endactivitywith -->
+
+<p>This phrase runs the &quot;after&quot; rulebook of the activity and then causes it to become inactive. The activity must be one which applies to a value of a matching kind. Example:
+<p>
+<blockquote><font color="#000080">end the analysing activity with the pitchblende;
+</font></blockquote><p>
+<p>
+<p>This must only happen to match an earlier &quot;begin the ... activity with...&quot; phrase.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>So the usual structure is like so:
+<p>
+<blockquote><font color="#000080">begin the analysing activity with the pitchblende;
+<br>...
+<br>end the analysing activity with the pitchblende;
+</font></blockquote><p>
+<p>
+<p>This time the activity is ongoing throughout as many phrases as we care to write between the &quot;begin&quot; and &quot;end&quot;. The before rules are considered at the time of the &quot;begin ...&quot; phrase; the after rules at the &quot;end ...&quot;.
+<p>
+<p>What, then, of the &quot;for&quot; rules? In the above setup, they would simply be ignored. But we can make them effectual thus
+<p>
+<p>
+<blockquote><font color="#000080">begin the analysing activity with the pitchblende;
+<br>...
+<br>if handling the analysing activity with the pitchblende:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+<br>...
+<br>end the analysing activity with the pitchblende;
+</font></blockquote><p>
+<p>
+<p>We place the activity's normal behaviour inside the &quot;if&quot;; the condition, &quot;if handling...&quot;, is true only if no rule has intervened. This means that we (or other authors using our activity) can create their own for rules to substitute here. If we elsewhere write
+<p>
+<blockquote><font color="#000080">Rule for handling the analysing activity with the pitchblende when the player is not sober:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't seem to focus.&quot;
+</font></blockquote><p>
+<p>
+<p>that rule will intervene and take the place of whatever we have placed inside the condition.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>handling </b>(activity)<b> activity</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_handlingactivity -->
+
+<p>This condition is true if the given activity is going on and no rule intervenes in the handling of that activity. The activity must be one which doesn't apply to any value.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>handling </b>(activity on values)<b> activity with </b>(value)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_handlingactivitywith -->
+
+<p>This condition is true if the given activity is going on and no rule intervenes in the handling of that activity. The given value is the one it is being applied to.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>It is also legal to force an early end to an activity with:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>abandon the </b>(activity)<b> activity</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_abandonactivity -->
+
+<p>This phrase ends an activity at once (without consulting any further rulebooks, including its &quot;after&quot; rulebook). It can only be used with an activity which has had its &quot;begin&quot; but not yet its &quot;end&quot; phrase; it is a drastic remedy best taken only if it is clear that circumstances have changed so that the activity now seems inappropriate. It must not be used during one of the rules for the activity: it can only be used between the begin and for stages, or between the for and end stages.
+<p>
+<blockquote><font color="#000080">abandon the assaying activity;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>abandon the </b>(activity on values)<b> activity with </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_abandonactivitywith -->
+
+<p>This phrase ends an activity at once (without consulting any further rulebooks, including its &quot;after&quot; rulebook). It can only be used with an activity which has had its &quot;begin&quot; but not yet its &quot;end&quot; phrase; it is a drastic remedy best taken only if it is clear that circumstances have changed so that the activity now seems inappropriate. It must not be used during one of the rules for the activity: it can only be used between the begin and for stages, or between the for and end stages.
+<p>
+<blockquote><font color="#000080">abandon the analysing activity with the pitchblende;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We need to follow three golden rules: all activities must end, they must never last longer than a turn, and if activity B starts during activity A then it must also finish during activity A. We must also be careful to make sure that if an activity applies to something, then it begins and ends with the same something (the pitchblende, in the above example).
+<p>
+<p><hr><p><a href=doc287.html STYLE="text-decoration: none">Previous</a> / <a href=doc289.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

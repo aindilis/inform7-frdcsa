@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.10. Magic (Breaking the Laws of Physics)</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Transmutations" -->
+<!-- SEARCH SECTION "Ex 227" -->
+<!-- SEARCH SORT "Ex 010-010-227" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc88.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc90.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.10. Magic (Breaking the Laws of Physics)</b></td></tr></table><p>
+<p>
+<p>Every previous section of this chapter have been about adding further realism constraints to Inform, to give it a more advanced understanding of physics (and chemistry). But Inform has plenty of physical laws built into it already, even if they are more mundane: inanimate objects do not spontaneously move or change, one solid object cannot pass through another, there are opaque barriers through which light cannot pass, and so on. These rules stop many attempted actions. (GO EAST - &quot;The oak door is closed.&quot; GET EMERALD - &quot;You can't, since the glass display case is in the way.&quot;)
+<p>
+<p>In the real world, physics is not negotiable. (&quot;Gravity: it's not just a good idea, it's the law.&quot;) But in stories, magic can sometimes happen, and in these examples procedural rules are used to waive selected rules built into Inform which in effect cancel certain physical laws in certain cases. Very many other magical tricks could be achieved: if you want to make a given command work despite realism constraints, try typing ACTIONS - a testing command which reveals what is happening behind the scenes - and then typing the command you want. This should reveal which named rule is stopping it: you can then try suspending that rule, and seeing if the effect now works.
+<p>
+<a href=Rdoc41.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Magic Words</b></font></a><i> for ways to create new single-word spell commands</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e384"><a href=Rdoc89.html#e384 STYLE="text-decoration: none">*<b><b>Example</b> 227:  Transmutations</b></a><br>A machine that turns objects into other, similar objects.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to have a machine in our game that can transmute one item into another, similar object with different properties: a bag of jelly beans into a bag of jewels, for instance. Thus each item will be associated with some number of equivalents -- the other objects it can turn into. This is a handy use for group relations:
+<p>
+<blockquote><font color="#000080">&quot;Transmutations&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Workshop is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Transmutation relates things to each other in groups. The verb to become (it becomes, they become, it became) implies the transmutation relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is transmutable if it becomes more than one thing. [* It always becomes itself.]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be valuable. Something valuable called a bag of jewels is carried by the player. It becomes the bag of gunpowder and the bag of jelly beans.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be dangerous. The bag of gunpowder is a dangerous thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The bag of jelly beans is an edible thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The machine is fixed in place in the workshop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Procedural rule when inserting something into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;ignore the can't insert into what's not a container rule.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check inserting something which is not transmutable into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;instead say &quot;You can't transmute that.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which thing is new form of (obj - edible thing): decide on a random valuable thing which becomes obj.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which thing is new form of (obj - dangerous thing): decide on a random edible thing which becomes obj.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which thing is new form of (obj - valuable thing): decide on a random dangerous thing which becomes obj.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out inserting something into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player carries the new form of the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report inserting something edible into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The machine clicks, whirrs, and spits out [a new form of the noun]. You're rich!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report inserting something dangerous into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The machine clicks, whirrs, and in a shower of flavor crystals, spits out [a new form of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report inserting something valuable into the machine:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The machine clicks, whirrs, and with a violent roar, spits out [a new form of the noun].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&nbsp;&nbsp;&nbsp;&nbsp;Test me with &quot;i / put jewels in machine / i / put gunpowder in machine / i / put beans in machine&quot;.
+</font></blockquote><p>
+<p>
+<p>In this example we have only defined a single set of transmutable objects, but we could easily expand to include other groups.
+<p>
+<p>(Thanks to Jesse McGrew for proposing this example.)
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e206"><a href=Rex206.html#e206 STYLE="text-decoration: none">*<b>Example 215:  Magneto's Revenge</b></a><br>Kitty Pryde of the X-Men is able to reach through solid objects, so we might implement her with special powers that the player does not have...<p>
+<a name="e224"><a href=Rex224.html#e224 STYLE="text-decoration: none">*<b>Example 390:  Access All Areas</b></a><br>The Pointy Hat of Liminal Transgression allows its wearer to walk clean through closed doors.<p>
+<a name="e197"><a href=Rex197.html#e197 STYLE="text-decoration: none">*<b>Example 224:  Interrogation</b></a><br>A wand which, when waved, reveals the concealed items carried by people the player can see.<p>
+<p><hr><p><a href=Rdoc88.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc90.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.4. Plural assertions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Get Me to the Church on Time" -->
+<!-- SEARCH SECTION "Ex 44" -->
+<!-- SEARCH SORT "Ex 004-004-044" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc57.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc59.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.4. Plural assertions</b></td></tr></table><p>
+<p>
+<p>As the following examples show, sentences can make several assertions at once by using the plural. Suppose we have defined a kind called &quot;high-up fixture&quot;, for instance like so:
+<p>
+<blockquote><font color="#000080">A high-up fixture is a kind of thing. A high-up fixture is usually fixed in place.
+</font></blockquote><p>
+<p>
+<p>Then the following sentence creates two such objects and puts them in their place:
+<p>
+<blockquote><font color="#000080">The high shelf and the skylight window are high-up fixtures in the Lumber Room.
+</font></blockquote><p>
+<p>
+<p>since it is equivalent to saying:
+<p>
+<blockquote><font color="#000080">The high shelf is a high-up fixture. The skylight window is a high-up fixture. The high shelf is in the Lumber Room. The skylight window is in the Lumber Room.
+</font></blockquote><p>
+<p>
+<p>Such plurals are allowed in almost any context, and we could even define two kinds at once:
+<p>
+<blockquote><font color="#000080">Bucket and basket are kinds of container.
+</font></blockquote><p>
+<p>
+<p>Inform constructs plurals by a form of Conway's pluralisation algorithm, which is quite good - for example, it gets oxen, geese (but mongooses), sheep, wildebeest, bream, vertebrae, quartos, wharves, phenomena, jackanapes and smallpox correct. But English is a very irregular language, and multiple-word nouns sometimes pluralise in unexpected ways. So we sometimes need to intervene:
+<p>
+<blockquote><font color="#000080">A brother in law is a kind of man. The plural of brother in law is brothers in law.
+</font></blockquote><p>
+<p>
+<p>We are allowed to define more than one plural for the same singular text, and for the names of things, rooms or kinds, all alternative versions will be used interchangeably. (For instance, Inform defines both &quot;people&quot; and &quot;persons&quot; as plurals of &quot;person&quot;.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e112"><a href=doc58.html#e112 STYLE="text-decoration: none">***<b><b>Example</b> 44:  Get Me to the Church on Time</b></a><br>Using kinds of clothing to prevent the player from wearing several pairs of trousers at the same time.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Inform's default handling of wearable things does not make any rules about what can be worn together. Suppose, however, we have a game in which there are a large number of different garments, and we want to keep the player from wearing (say) more than one pair of pants at once:
+<p>
+<blockquote><font color="#000080">&quot;Get Me to the Church on Time&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A pair of pants and a shirt are kinds of thing. A pair of pants and a shirt are usually wearable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some golf pants are a pair of pants. The description is &quot;Checked in red and green, with tiny frolicking gophers every few inches.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some tuxedo trousers are a pair of pants. The description is &quot;Black, pressed, and slimming.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The frilly shirt is a shirt. The description of the frilly shirt is &quot;She insisted.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The polo shirt is a shirt. The description is &quot;Turquoise and bright yellow, the colors selected by your golfing buddies.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears the golf pants and the polo shirt. The player carries the tuxedo trousers and the frilly shirt.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Wedding Chapel Dressing Room is a room. &quot;The bride's dressing room is a lavish suite with closets, hangers, dressmaker's dummies, boxes of straight pins and sewing notions, combs, lotions, brushes, and hair fixatives, plus room for  fifteen female attendants and a photographer. Before they shoved you out of the room you even got a glimpse of a small reference library including '1001 French Braids' and 'Corset-Lacing For Beginners.'
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the groom's dressing room. You get a framed photograph of Elvis, a dusty mirror, and the floor space of an average toilet stall.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The dusty mirror and the photograph of Elvis are scenery in the Dressing Room. The description of the mirror is &quot;You can't really get more than a silhouette impression of yourself.&quot; The description of Elvis is &quot;He reminds you that you'd better get out there before the organist switches to Hound Dog.&quot;
+</font></blockquote><p>
+<p>
+<p>And now the rule itself, borrowed from a later chapter:
+<p>
+<blockquote><font color="#000080">Instead of wearing a pair of pants when the player is wearing a pair of pants (called the wrong trousers):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'll have to take off [the wrong trousers] first.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of wearing a shirt when the player is wearing a shirt (called the wrong top):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'll have to take off [the wrong top] first.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;From the other side of the door, you hear the organist move on from his instrumental interpretation of 'I Wanna Hold Your Hand' to a somewhat more spirited rendition of 'Help! I Need Somebody!'. Okay, okay, but you've been rushing things along since the 16th fairway, and you can't be more than a half-hour late... Surely that mother of hers can't blame you for that?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / x trousers / wear trousers / x golf pants / take off golf pants / wear trousers / x frilly shirt / x polo shirt / wear frilly shirt / doff polo shirt / wear frilly shirt&quot;.
+</font></blockquote><p>
+<p>
+<p>If we wanted to, we could make similar kinds for hats, shoes, and so on, and have a simple but effective system of clothing. A more complicated treatment might keep track of layering and describe the player's outfit differently depending on which clothes were outermost -- an example for a later chapter.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc57.html STYLE="text-decoration: none">Previous</a> / <a href=doc59.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

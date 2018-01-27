@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.20. Inform 6 objects and classes</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Inform 6 objects and classes" -->
+<!-- SEARCH SECTION "25.20" -->
+<!-- SEARCH SORT "025-020-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc436.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc438.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.20. Inform 6 objects and classes</b></td></tr></table><p>
+<p>
+<p>As might be expected, I7 compiles an I6 class for each kind, and an I6 object for each of its own objects. We can meddle with its compilation process here using a further refinement of Include. For instance, suppose we want the I6 class definition for things to come out containing a property like this:
+<p>
+<blockquote><font color="#000080">Class K2_thing ...
+<br>&nbsp;&nbsp;&nbsp;&nbsp;with marmalade_jar_size 6,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>How to arrange this? One way is to create an ordinary I7 property, like so:
+<p>
+<blockquote><font color="#000080">A thing has a number called marmalade jar size. The marmalade jar size of a thing is usually 6. The marmalade jar size property translates into I6 as &quot;marmalade_jar_size&quot;.
+</font></blockquote><p>
+<p>
+<p>(Without that last sentence, the property won't get any familiar name.) But sometimes we need more, and want to actually write new material to go into the definition. This can be done like so:
+<p>
+<blockquote><font color="#000080">Include (- with before [; Go: return 1; ], -) when defining a vehicle.
+</font></blockquote><p>
+<p>
+<p>This glues in a new property to the class compiled to represent the I7 kind &quot;vehicle&quot;. (See the DM4 for why. However, since the entire actions machinery is different in the I7 world, note that &quot;after&quot;, &quot;react_before&quot; and &quot;react_after&quot; no longer have any effect, and nor does &quot;before&quot; for rooms.)
+<p>
+<p>And similarly:
+<p>
+<blockquote><font color="#000080">Include (- has my_funny_attribute, -) when defining the hot air balloon.
+</font></blockquote><p>
+<p>
+<p>If we need a particular I7 object or kind to end up with a particular I6 name, we can write:
+<p>
+<blockquote><font color="#000080">The whatsit object translates into I6 as &quot;whatsit&quot;.
+<br>The thingummy kind translates into I6 as &quot;thingummy_class&quot;.
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc436.html STYLE="text-decoration: none">Previous</a> / <a href=doc438.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

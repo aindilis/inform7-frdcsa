@@ -1,0 +1,156 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.4. Furniture</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "U-Stor-It" -->
+<!-- SEARCH SECTION "Ex 57" -->
+<!-- SEARCH SORT "Ex 008-004-057" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc65.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc67.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.4. Furniture</b></td></tr></table><p>
+<p>
+<p>Most domestic furniture consists of supporters and containers of one size or another. This means that the simplest furniture needs no elaborate instructions:
+<p>
+<blockquote><font color="#000080">The candlestick is on the dining table. The dining table is fixed in place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The silver salt cellar is on the serving trolley. The serving trolley is pushable between rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pillow is on the bed. The bed is enterable and fixed in place.
+</font></blockquote><p>
+<p>
+<p>The examples below are therefore mostly ways to get around the usual restrictions on containers (that they only have one interior) and supporters (that they cannot simultaneously be containers as well).
+<p>
+<p><b>Yolk of Gold</b> provides a set of drawers, that is, a container with multiple interiors.
+<p>
+<p><b>U-Stor-It</b> provides a way to have containers with a lid which is also a supporter.
+<p>
+<p><b>Swigmore</b> provides a supporter which holds up the player, but has no top surface as such, and cannot hold up anything else. <b>Kiwi</b> demonstrates a kind of high shelf, whose objects cannot be seen or used unless the player stands on a ladder.
+<p>
+<p><b>Princess and the Pea</b> shows how a pile of supporters, each on top of the last, could be managed.
+<p>
+<p><b>Tamed</b> demonstrates furniture large enough to get inside, or on top of.
+<p>
+<p><b>Circle of Misery</b> demonstrates a conveyor belt, which can hold multiple items but only brings one of them within the player's reach at a time.
+<p>
+<a href=Rdoc10.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Position Within Rooms</b></font></a><i> for a box that can be positioned and used as a stepping stool</i><p><p>
+<a href=Rdoc23.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The Human Body</b></font></a><i> for letting the player take different postures on furniture or on the floor</i><p><p>
+<a href=Rdoc8.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Room Descriptions</b></font></a><i> for tables and other furniture whose content listing is suppressed or modified in a room description</i><p><p>
+<a href=Rdoc38.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Entering and Exiting, Sitting and Standing</b></font></a><i> for making the player automatically rise from a seat before leaving the room</i><p><p>
+<a href=Rdoc78.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Clocks and Scientific Instruments</b></font></a><i> for a grandfather clock</i><p><p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for a mirror the player can look into</i><p><p>
+<p><hr><p>
+<a name="e439"><a href=Rex439.html#e439 STYLE="text-decoration: none">**<b>Example 83:  Yolk of Gold</b></a><br>Set of drawers where the item the player seeks is always in the last drawer he opens, regardless of the order of opening.<p>
+<a name="e282"><a href=Rex282.html#e282 STYLE="text-decoration: none">*<b>Example 173:  Princess and the Pea</b></a><br>The player is unable to sleep on a mattress (or stack of mattresses) because the bottom one has something uncomfortable under it.<p>
+<!-- EXAMPLE START -->
+<a name="e76"><a href=Rdoc66.html#e76 STYLE="text-decoration: none">***<b><b>Example</b> 57:  U-Stor-It</b></a><br>A "chest" kind which consists of a container which has a lid as a supporter.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to write a game in which there are a number of chests. Each of these chests will be a container, but have a lid which is a supporter.
+<p>
+<blockquote><font color="#000080">&quot;U-Stor-It&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Assemblies and Supporters
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A chest is a kind of container. A chest is always openable. A chest is usually fixed in place. A chest is usually closed. The specification of a chest is &quot;Represents a container with a separately implemented lid; the lid is itself a supporter.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A lid is a kind of supporter. A lid is part of every chest. The specification of a lid is &quot;A supporter attached to a chest, which can only support things when the chest is closed.&quot;
+</font></blockquote><p>
+<p>
+<p>(The &quot;specification&quot; of a kind is not really a property, and is used instead to describe the kind in the Index. So the text of these specifications is never found in the game.) Of course, this doesn't get us very far. We will also want the game to correctly interpret variations on &quot;open the chest&quot; and &quot;close the lid&quot;, redirecting actions appropriately.
+<p>
+<blockquote><font color="#000080">Section 2 - Opening and closing
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before opening a lid which is part of a chest (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try opening the item instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before closing a lid which is part of a chest (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try closing the item instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before opening a chest when something is on the lid (called the obstruction) which is part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through things on the obstruction:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first removing [the item])&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try taking the item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening a chest when something is on a lid (called the item) which is part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'd have to remove [the list of things on the item] from the lid first.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of looking under a lid which is part of a chest (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try opening the item.
+</font></blockquote><p>
+<p>
+<p>
+<p>We may also want to be able to deal with &quot;put in&quot; and &quot;put on&quot; appropriately, even if the player names the wrong part of the object:
+<p>
+<blockquote><font color="#000080">Section 3 - Insertion and Support
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before inserting something into a lid which is part of a chest (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try inserting the noun into the item instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before putting something on a chest when a lid (called the item) is part of the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try putting the noun on the item instead.
+</font></blockquote><p>
+<p>
+<p>Furthermore, we don't want the player to be able to put things on the lid while the chest is open:
+<p>
+<blockquote><font color="#000080">Before putting something on a lid which is part of an open chest (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first closing [the item])&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try closing the item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of putting something on a lid which is part of an open chest (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] would need to be closed first.&quot;
+</font></blockquote><p>
+<p>
+<p>And then we may also want a couple of rules for describing our assembled object nicely:
+<p>
+<blockquote><font color="#000080">Section 4 - Description in Rooms
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a closed chest when something is on a lid (called the top) which is part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] is closed, and there [is-are a list of things on the top] on top.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a chest (called the item) while listing contents of a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if a lid (called the second item) which supports something is part of the item:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; (on which [is-are a list of things on the second item])&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;omit contents in listing.
+</font></blockquote><p>
+<p>
+<p>Now we are free to create entire treasure rooms at a single blow:
+<p>
+<blockquote><font color="#000080">Section 5 - U-Stor-It Facility
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The U-Stor-It Facility is a room. The sea trunk, the shipping crate, and a metal box are chests in the U-Stor-It Facility. The metal box contains a sapphire, a gold coin, and a signed photograph of Babe Ruth.
+</font></blockquote><p>
+<p>
+<p>Even though we have never explicitly defined it, the metal box has a &quot;metal box's lid&quot;, which we can use at need.
+<p>
+<blockquote><font color="#000080">The metal box's lid supports a small card. The description of the small card is &quot;It reads, 'Back in 5 mins - Pandora.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;open trunk / x card / open metal box / put all in metal box / get card / put card on box&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e22"><a href=Rex22.html#e22 STYLE="text-decoration: none">**<b>Example 393:  Swigmore U.</b></a><br>Adding a new kind of supporter called a perch, where everything dropped lands on the floor.<p>
+<a name="e207"><a href=Rex207.html#e207 STYLE="text-decoration: none">*<b>Example 347:  Kiwi</b></a><br>Creating a raised supporter kind whose contents the player can't see or take from the ground.<p>
+<a name="e369"><a href=Rex369.html#e369 STYLE="text-decoration: none">*<b>Example 12:  Tamed</b></a><br>Examples of a container and a supporter that can be entered, as well as nested rooms.<p>
+<a name="e81"><a href=Rex81.html#e81 STYLE="text-decoration: none">*<b>Example 427:  Circle of Misery</b></a><br>Retrieving items from an airport luggage carousel is such fun, how can we resist simulating it, using a list as a ring buffer?<p>
+<p><hr><p><a href=Rdoc65.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc67.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

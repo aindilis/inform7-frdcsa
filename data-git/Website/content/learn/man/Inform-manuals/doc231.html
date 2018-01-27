@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.7. Making the verb "to weigh"</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Making the verb "to weigh"" -->
+<!-- SEARCH SECTION "14.7" -->
+<!-- SEARCH SORT "014-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc230.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc232.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.7. Making the verb "to weigh"</b></td></tr></table><p>
+<p>
+<p>So now we can invent notations for weight. We could, for instance, write:
+<p>
+<blockquote><font color="#000080">Weight is a kind of value. 1kg specifies a weight. Every thing has a weight.
+</font></blockquote><p>
+<p>
+<p>And that allows us to write:
+<p>
+<blockquote><font color="#000080">The lead pig is in the Salt Mine. The weight of the lead pig is 45kg.
+</font></blockquote><p>
+<p>
+<p>But nobody would say it that way: they'd say &quot;The lead pig weighs 45kg.&quot; So what we really need to complete our setup is a verb &quot;to weigh&quot;.
+<p>
+<p>We have already created new verbs, but none of those methods are quite convenient for this. We want to relate something tangible (the lead pig) to something intangible (45kg), and there's no convenient relation to express this; if we set it up as a condition, we'd get something we couldn't assert, only test. Instead, we'll do something different this time:
+<p>
+<blockquote><font color="#000080">The verb to weigh (it weighs, they weigh, it is weighing) implies the weight property.
+</font></blockquote><p>
+<p>
+<p>Previous definitions like this ended &quot;implies the ... relation&quot;, rather than &quot;implies the ... property&quot;, but the idea is the same. The meaning of &quot;X weighs Y&quot; is that the weight property of X is equal to Y. So we can now write:
+<p>
+<blockquote><font color="#000080">A thing usually weighs 1kg. The lead pig weighs 45kg.
+<br>something weighing 20kg
+<br>if three things weigh 5kg, ...
+</font></blockquote><p>
+<p>
+<p>And as we saw in the chapter on Descriptions, we can also set up adjectives, comparatives and superlatives:
+<p>
+<blockquote><font color="#000080">Definition: A thing is heavy if its weight is 20kg or more.
+</font></blockquote><p>
+<p>
+<p>which creates &quot;heavy&quot;, &quot;heavier&quot; and &quot;heaviest&quot;.
+<p>
+<p><hr><p>
+<a name="e423"><a href=ex423.html#e423 STYLE="text-decoration: none">**<b>Example 247:  Dimensions</b></a><br>This example draws together the previous snippets into a working implementation of the weighbridge.<p>
+<a name="e360"><a href=ex360.html#e360 STYLE="text-decoration: none">***<b>Example 248:  Lead Cuts Paper</b></a><br>To give every container a breaking strain, that is, a maximum weight of contents which it can bear - so that to put the lead pig into a paper bag invites disaster.<p>
+<p><hr><p><a href=doc230.html STYLE="text-decoration: none">Previous</a> / <a href=doc232.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

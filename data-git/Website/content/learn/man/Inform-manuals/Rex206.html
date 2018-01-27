@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.10. Magic (Breaking the Laws of Physics)</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Magneto's Revenge" -->
+<!-- SEARCH SECTION "Ex 215" -->
+<!-- SEARCH SORT "Ex 010-010-215" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc88.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc90.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.10. Magic (Breaking the Laws of Physics)</b></td></tr></table><p>
+<p>
+<p>Every previous section of this chapter have been about adding further realism constraints to Inform, to give it a more advanced understanding of physics (and chemistry). But Inform has plenty of physical laws built into it already, even if they are more mundane: inanimate objects do not spontaneously move or change, one solid object cannot pass through another, there are opaque barriers through which light cannot pass, and so on. These rules stop many attempted actions. (GO EAST - &quot;The oak door is closed.&quot; GET EMERALD - &quot;You can't, since the glass display case is in the way.&quot;)
+<p>
+<p>In the real world, physics is not negotiable. (&quot;Gravity: it's not just a good idea, it's the law.&quot;) But in stories, magic can sometimes happen, and in these examples procedural rules are used to waive selected rules built into Inform which in effect cancel certain physical laws in certain cases. Very many other magical tricks could be achieved: if you want to make a given command work despite realism constraints, try typing ACTIONS - a testing command which reveals what is happening behind the scenes - and then typing the command you want. This should reveal which named rule is stopping it: you can then try suspending that rule, and seeing if the effect now works.
+<p>
+<a href=Rdoc41.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Magic Words</b></font></a><i> for ways to create new single-word spell commands</i><p><p>
+<p><hr><p>
+<a name="e384"><a href=Rex384.html#e384 STYLE="text-decoration: none">*<b>Example 227:  Transmutations</b></a><br>A machine that turns objects into other, similar objects.<p>
+<!-- EXAMPLE START -->
+<a name="e206"><a href=Rdoc89.html#e206 STYLE="text-decoration: none">*<b><b>Example</b> 215:  Magneto's Revenge</b></a><br>Kitty Pryde of the X-Men is able to reach through solid objects, so we might implement her with special powers that the player does not have...<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Magneto's Revenge&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The School for Gifted Youngsters is a room. Kitty Pryde is a woman in the School for Gifted Youngsters. &quot;Kitty Pryde waits for you to say why you summoned her out of class.&quot; The description is &quot;You see nothing special about Kitty Pryde. But that is only because she has learned to conceal her mutant powers: in fact she has the alternative name Shadowcat, and the ability to phase through solid objects.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The glass box is a container in the School for Gifted Youngsters. It is closed, openable, and transparent. In the box is a quantity of poisonous gas. In the box is a thing called the message from Magneto.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the message when the player is not carrying the message:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'd need to be holding it before you could read it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening the glass box: say &quot;You're deterred by the swirling bottle-green mist within.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check someone taking the gas (this is the gaseous object rule): rule fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Unsuccessful attempt by someone taking the gas: say &quot;The gas isn't something one can pick up in one's bare hands.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player can touch the gas:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The gas has reached your lungs!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A rule for reaching inside something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person reaching is Kitty, allow access.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking someone to try doing something: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get message / kitty, get message / open box / kitty, open box&quot;.
+</font></blockquote><p>
+<p>
+<p>Now the player can get Kitty to take the message without releasing the poisonous gas:
+<p>
+<blockquote><font color="#000080">Kitty Pride waits for you to tell her why you summoned her out of class.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">You can also see a glass box (closed) (in which are some poisonous gas and a message from Magneto) here.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">>kitty, get message
+<br>Kitty Pryde picks up a message from Magneto.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e224"><a href=Rex224.html#e224 STYLE="text-decoration: none">*<b>Example 390:  Access All Areas</b></a><br>The Pointy Hat of Liminal Transgression allows its wearer to walk clean through closed doors.<p>
+<a name="e197"><a href=Rex197.html#e197 STYLE="text-decoration: none">*<b>Example 224:  Interrogation</b></a><br>A wand which, when waved, reveals the concealed items carried by people the player can see.<p>
+<p><hr><p><a href=Rdoc88.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc90.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

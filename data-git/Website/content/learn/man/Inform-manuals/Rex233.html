@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.7. Electricity and Magnetism</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Rules of Attraction" -->
+<!-- SEARCH SECTION "Ex 332" -->
+<!-- SEARCH SORT "Ex 010-007-332" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc85.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc87.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.7. Electricity and Magnetism</b></td></tr></table><p>
+<p>
+<p>Electrons are so tiny, and move so fast, that we will never want to simulate them in ordinary IF. So we simply regard electricity and magnetism as behaviours which are either present or not present, and which have instantaneous effects.
+<p>
+<p>In <b>Witnessed 1</b>, batteries provide electricity to enable a &quot;device&quot; to work. Even if switched on, a device with no battery will be ineffective.
+<p>
+<p>Larger voltages are exposed in <b>Electrified</b>, which makes certain items untouchable, and ensures that an experienced electrician will not even try.
+<p>
+<p><b>Rules of Attraction</b> provides for a magnet which attracts metallic items just strongly enough to stick together until pulled apart for any reason.
+<p>
+<p><hr><p>
+<a name="e25"><a href=Rex25.html#e25 STYLE="text-decoration: none">***<b>Example 139: Witnessed 1</b></a><br>A kind of battery which can be put into different devices, and which will lose power after extended use.<p>
+<a name="e116"><a href=Rex116.html#e116 STYLE="text-decoration: none">*<b>Example 397:  Electrified</b></a><br>Adding a rule before the basic accessibility rule that will prevent the player from touching electrified objects under the wrong circumstances.<p>
+<!-- EXAMPLE START -->
+<a name="e233"><a href=Rdoc86.html#e233 STYLE="text-decoration: none">*<b><b>Example</b> 332:  Rules of Attraction</b></a><br>A magnet which picks up nearby metal objects, and describes itself appropriately in room descriptions and inventory listings, but otherwise goes by its ordinary name.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Often we have some salient features of an object that we want to make sure the player notices whenever looking at the item in a room or in inventory. At other times, we may prefer to allow the name of the item to be printed bare. So for instance:
+<p>
+<blockquote><font color="#000080">&quot;Rules of Attraction&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A metal form is a kind of thing. A magnet is a kind of metal form.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through nonmagnetic metal forms which are not part of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if item is in a container which contains a magnet (called attractor):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] sticks to [the attractor].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is part of the attractor.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The horseshoe magnet is a magnet carried by the player. The nail is a metal form carried by the player. The Barn is a room. In the Barn is a bucket. In the bucket is a metal form called the iron hook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is nonmagnetic if it is not a magnet.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing room description details of a magnet (called attractor): if something is part of the attractor, say &quot; (stuck to which [is-are the list of things which are part of the attractor])&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a magnet (called attractor) while taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something is part of the attractor, say &quot; (stuck to which [is-are the list of things which are part of the attractor])&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before taking a touchable thing which is part of a magnet (called attractor):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the holder of the attractor.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / put horseshoe in bucket / look / get horseshoe / i / drop horseshoe / i / look / get all / put all in bucket / i / x magnet / get nail / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc85.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc87.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

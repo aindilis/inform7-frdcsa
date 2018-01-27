@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.1. Understand</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Indirection" -->
+<!-- SEARCH SECTION "Ex 276" -->
+<!-- SEARCH SORT "Ex 016-001-276" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc259.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc261.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.1. Understand</b></td></tr></table><p>
+<p>
+<p>During play, the computer and the player alternate in writing messages to each other: in the player's case, these are short instructions, usually saying what to do next. A wide range of such &quot;commands&quot; are automatically understood, but these only apply to the standard built-in actions. (This wide range is conveniently tabulated at the foot of the Actions index.) If we want the player to be able to command new actions, then we need to specify what is to be understood as what. For this, we supply special sentences starting with the word &quot;Understand&quot;.
+<p>
+<p>Suppose we return to the earlier example of a newly created action:
+<p>
+<blockquote><font color="#000080">Photographing is an action applying to one visible thing and requiring light.
+</font></blockquote><p>
+<p>
+<p>We then supply lines of grammar (as they are called) for Inform to recognise, like so:
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [someone]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [an open door]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<p>As usual, the square brackets indicate something which stands for text, rather than text to be taken verbatim. &quot;[someone]&quot; needs to be the name of anything of the kind &quot;person&quot;, for instance (though as usual that person will need to be in sight of the player for the name to be accepted). The first word - in these examples &quot;photograph&quot; - must be something definite, not a substitution like this.
+<p>
+<p>For obvious reasons, this pattern of words needs to match the expectations of the action. Photographing applies to &quot;one visible thing&quot; - the &quot;visible&quot; just means it does not need to be touched, only seen - so neither of these would be allowable:
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph&quot; as photographing.
+<br>Understand &quot;photograph [someone] standing next to [something]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<p>The first is bad because it supplies no things at all, the second because it supplies two: what we want, of course, is just the one.
+<p>
+<p><hr><p>
+<a name="e438"><a href=ex438.html#e438 STYLE="text-decoration: none">*<b>Example 275:  XYZZY</b></a><br>Basics of adding a new command reviewed, for the case of the simple magic word XYZZY.<p>
+<!-- EXAMPLE START -->
+<a name="e88"><a href=doc260.html#e88 STYLE="text-decoration: none">*<b><b>Example</b> 276:  Indirection</b></a><br>Renaming the directions of the compass so that "white" corresponds to north, "red" to east, "yellow" to south, and "black" to west.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>In Mayan culture, colours seem to have been used as names for the primary directions: for instance, &quot;red&quot; implies east as the colour of sunrise. So the following might be a stylish touch for a game in which the player has to get inside the Mayan world-view:
+<p>
+<blockquote><font color="#000080">&quot;Indirection&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;white&quot; and &quot;sac&quot; as north. Understand &quot;red&quot; and &quot;chac&quot; as east. Understand &quot;yellow&quot; and &quot;kan&quot; as south. Understand &quot;black&quot; and &quot;chikin&quot; as west.
+</font></blockquote><p>
+<p>
+<p>We could also use a colour as a verb:
+<p>
+<blockquote><font color="#000080">Understand &quot;turquoise&quot; and &quot;yax&quot; as looking.
+</font></blockquote><p>
+<p>
+<p>And now a few extra rooms to try it out in:
+<p>
+<blockquote><font color="#000080">The Square Chamber is a room. &quot;A sunken, gloomy stone chamber, ten yards across. A shaft of sunlight cuts in from the steps above, giving the chamber a diffuse light, but in the shadows low lintelled doorways to east and south lead into the deeper darkness of the Temple.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Wormcast is east of the Square Chamber. The Corridor is south of the Square Chamber.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;kan / white / chac / black&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e437"><a href=ex437.html#e437 STYLE="text-decoration: none">**<b>Example 277:  Xylan</b></a><br>Creating a new command that does require an object to be named; and some comments about the choice of vocabulary, in general.<p>
+<p><hr><p><a href=doc259.html STYLE="text-decoration: none">Previous</a> / <a href=doc261.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

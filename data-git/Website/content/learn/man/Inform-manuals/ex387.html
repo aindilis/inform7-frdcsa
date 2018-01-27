@@ -1,0 +1,126 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.19. Table amendments</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Trieste" -->
+<!-- SEARCH SECTION "Ex 274" -->
+<!-- SEARCH SORT "Ex 015-019-274" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc258.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc260.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.19. Table amendments</b></td></tr></table><p>
+<p>
+<p>Tables can have amendments as well as continuations. The arrangement is much the same: a supplementary table supplies new rows for the original table. But instead of adding the new rows at the end of the original, as a continuation would, an amendment replaces matching rows in the original. (So the original stays the same size.)
+<p>
+<p>The amendment table must have exactly the columns of the original and in the same order. Moreover, each row in the amended table must match exactly one row in the original. For instance:
+<p>
+<blockquote><font color="#000080">Table of Plans
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">moment</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">outcome</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">10 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;takeover of Mars&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">11:30 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;canals reflooded&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">11:45 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;chocolate bar production doubled&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Plans (amended)
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">moment</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">outcome</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">11:45 AM</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;volcanic cave production doubled&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>creates a three-row Table of Plans, with reference to the chocolate bars struck out.
+<p>
+<p>Amendment rows may be given in any order. The process of matching a row begins at the left-most column: Inform tries to see if any single row in the original table has a matching entry. If none does, a Problem is issued. If more than one do, Inform then looks at the second column, and so on. For instance:
+<p>
+<blockquote><font color="#000080">Enthusiasm is a kind of value. The enthusiasms are pumped, wired and languid.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Mental States
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">feeling</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">extent</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">consequence</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">pumped</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run for your life&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">pumped</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run for President&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">wired</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">languid</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Mental States (amended)
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">feeling</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">extent</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">consequence</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">pumped</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;you feel able to run for the Nebraska State Legislature&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>Here the amendment is made to the second row of the original table. The value in the leftmost column, &quot;pumped&quot;, matches two rows in the original, so Inform moves on to the next column, reads &quot;2&quot;, and finds that only one row in the original still qualifies - so that is the one replaced.
+<p>
+<p>For the present, at least, the columns used for matching may only contain: numbers, times, objects, action names, activities, figure names, sound names, truth states and any new kinds of value or units which have been declared.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e387"><a href=doc259.html#e387 STYLE="text-decoration: none">**<b><b>Example</b> 274:  Trieste</b></a><br>Table amendment to adjust HELP commands provided for the player.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we are using an extension in which another author has defined some help topics for the player, and we want to amend them for our game.
+<p>
+<p>We'll start with the portion of the text that we have inherited from the extension:
+<p>
+<blockquote><font color="#000080">&quot;Trieste&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A help-topic is a kind of value. Some help-topics are defined by the Table of Standard Instructions.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Standard Instructions
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">help-topic</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">reply</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">verbs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;This game recognizes 150 common verbs for forms of military attack. These include...&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">saving</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;To save the game, type SAVE. You will be prompted to supply a file-name for your saved game. If you'd like to return to play at that point again later, RESTORE the saved game.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;help [help-topic]&quot; as asking for help about. Asking for help about is an action out of world, applying to one help-topic.
+<br>Understand &quot;help&quot; or &quot;help [text]&quot; as a mistake (&quot;Help is available on the following topics: [help-topics list]&quot;).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say help-topics list:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Standard Instructions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]  [help-topic entry]&quot;;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out asking for help about:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Standard Instructions:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the help-topic understood is the help-topic entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[reply entry][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<p>Now, let's imagine our game is a special one in which only a very limited supply of moves are allowed. In that case, we'll want to replace the information on verbs:
+<p>
+<blockquote><font color="#000080">Table of Standard Instructions (amended)
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">help-topic</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">reply</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">verbs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;The only verbs this game recognizes are HOLD, MOVE, CONVOY, SUPPORT MOVE, and SUPPORT HOLD. No others are necessary.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Board Room is a room. Mark is a man in the Board Room. &quot;Russia (played by Mark) is also hovering over the board.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Guest Bathroom is south of Board Room. Lena and Rob are in the Guest Bathroom. Lena is a woman. Rob is a man.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about Lena when Lena is in the Guest Bathroom and Rob is in the Guest Bathroom:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[Lena] (Italy) and [Rob] (Great Britain) are having a hushed conversation while leaning against your good towels. They stop and stare at you when you come in.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;help / help verbs / help saving&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc258.html STYLE="text-decoration: none">Previous</a> / <a href=doc260.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

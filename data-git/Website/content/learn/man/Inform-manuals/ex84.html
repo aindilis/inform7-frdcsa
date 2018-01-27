@@ -1,0 +1,79 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.11. Making actions work for other people</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Man of Steel" -->
+<!-- SEARCH SECTION "Ex 203" -->
+<!-- SEARCH SORT "Ex 012-011-203" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc196.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc198.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.11. Making actions work for other people</b></td></tr></table><p>
+<p>
+<p>The &quot;photographing&quot; action now works very nicely when the player does it. But not when others try. Suppose that neither the player, nor Clark Gable, is holding the camera:
+<p>
+<blockquote><font color="#000080">>photograph clark
+<br>You can hardly photograph without a camera, now can you?
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">>clark, photograph me
+<br>>
+</font></blockquote><p>
+<p>
+<p>An uncanny silence. What has happened is that the rules written so far are all implicitly restricted to the player only. This is because when we write -
+<p>
+<blockquote><font color="#000080">Check photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the camera is not carried:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can hardly photograph without a camera, now can you?&quot; instead.
+</font></blockquote><p>
+<p>
+<p>the action is &quot;photographing&quot;, not &quot;Clark photographing&quot;. In the next few sections we shall see how to make the rules work nicely for everybody. This is a little bit harder, so it should be noted right away that in many projects there is no need. In a game which has no other characters who succumb to persuasion, for instance, only the player will ever try the action.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e84"><a href=doc197.html#e84 STYLE="text-decoration: none">**<b><b>Example</b> 203:  The Man of Steel</b></a><br>An escaping action which means "go to any room you can reach from here", and is only useful to non-player characters.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>It will sometimes be handy to write actions that are only available to the non-player characters and not to the player. To do this, we just define an action which has no &quot;understand&quot;: the player will never be able to specify this command himself, but other characters can try it.
+<p>
+<p>This is particularly useful for creating abstract or general actions for when we want a character to eat something, wear something, or go somewhere, but aren't too particular as to what the object is; as here, where we just want Clark to move away from the kryptonite, regardless of direction:
+<p>
+<blockquote><font color="#000080">&quot;The Man of Steel&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Escaping is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone escaping:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let space be the holder of the person asked;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let place be a random room which is adjacent to the space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let way be the best route from the space to the place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the person asked going way.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if Clark Kent can see kryptonite, try Clark Kent escaping.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Daily Planet Newsroom is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Perry White's Office is west of the Newsroom. In Perry White's Office are a desk and a poster of Elvis. On the desk is a lead-lined box. The box is openable. In the box is the green kryptonite crystal.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Supply Closet is east of the Newsroom. The Elevator Bank is north of the Newsroom.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Clark Kent is a man in the Newsroom. &quot;Clark [if Clark can see the kryptonite]looks a bit ill[otherwise]is here, frowning as he revises his latest article[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;west / get box / east / close box / east / west / north / south / west&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e255"><a href=ex255.html#e255 STYLE="text-decoration: none">***<b>Example 204:  Trying Taking Manhattan</b></a><br>Replacing the inventory reporting rule with another which does something slightly different.<p>
+<a name="e393"><a href=ex393.html#e393 STYLE="text-decoration: none">****<b>Example 205:  Under Contract</b></a><br>Creating a person who accepts most instructions and reacts correctly when a request leads implicitly to inappropriate behavior.<p>
+<p><hr><p><a href=doc196.html STYLE="text-decoration: none">Previous</a> / <a href=doc198.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

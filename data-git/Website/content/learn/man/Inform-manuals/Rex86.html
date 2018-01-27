@@ -1,0 +1,105 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.18. Alternatives To Standard Parsing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Cloves" -->
+<!-- SEARCH SECTION "Ex 361" -->
+<!-- SEARCH SORT "Ex 006-018-361" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc45.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc47.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.18. Alternatives To Standard Parsing</b></td></tr></table><p>
+<p>
+<p>Very occasionally, for out-of-the-ordinary games, we want to make major changes to the way that Inform ordinarily understands commands.
+<p>
+<p><b>Cloves</b> shows how we might read adverbs in the player's command: adverbs are challenging because they can legitimately appear anywhere in a command structure, so must be found and accounted for before the rest of the command is understood.
+<p>
+<p><b>Fragment of a Greek Tragedy</b> goes further, substituting a keyword-recognition parser for the usual structure of commands and objects.
+<p>
+<p>Less drastically, menus of numbered options can temporarily replace or augment standard commands. <b>Down in Oodville</b> demonstrates how to add a list of transporter destinations from which the player may choose by numeral.
+<p>
+<a href=Rdoc24.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Traits Determined By the Player</b></font></a><i> for ways to ask the player a question at the beginning of play</i><p><p>
+<a href=Rdoc53.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Saying Simple Things</b></font></a><i> for a way to ask the player a yes-no question any time during play</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e86"><a href=Rdoc46.html#e86 STYLE="text-decoration: none">**<b><b>Example</b> 361:  Cloves</b></a><br>Accepting adverbs anywhere in a command, registering what the player typed but then cutting them out before interpreting the command.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>It has sometimes been suggested that IF should allow for the player to use adverbs, so that doing something &quot;carefully&quot; will have a different effect from doing it &quot;quickly&quot;. There are several inherent challenges here: it's a good idea to make very sure the player knows all his adverb options, and the list of possibilities should probably not be too long.
+<p>
+<p>Another trick is that adverbs complicate understanding commands, because they can occur anywhere: one might type >GO WEST CAREFULLY or >CAREFULLY GO WEST, and ideally the game should understand both. After reading a command is the best point to do this sort of thing, because we can find adverbs, interpret them, and remove them from the command stream. So:
+<p>
+<blockquote><font color="#000080">&quot;Cloves&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Manner is a kind of value. The manners are insouciantly, sheepishly, and defiantly.
+</font></blockquote><p>
+<p>
+<p>Now we have, automatically, a value called manner understood to be used whenever parsing manners, and we can use this even during the &quot;after reading a command&quot; stage, so:
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;[manner]&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cut the matched text;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;But how, my dear boy, how? You simply can't do something without a pose. Thus far you have mastered doing things [list of manners].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the left hand status line is &quot;Behaving [manner understood]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[location]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the manner understood is insouciantly.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Poseur Club is a room. &quot;Lady Mary is laid out on a sofa, her wrists bandaged importantly[if the manner understood is insouciantly] -- and she looks all the more depressed by your indifference to her state[end if]; Salvatore is at the gaming table, clutching his hair with both hands[if the manner understood is defiantly] -- though he looks up long enough to snarl in response to that expression of yours[end if]; Frackenbush is muttering lines from another of his works in progress, as though poetry has nearly made him mad[if the manner understood is sheepishly]. But he spares you a reassuring smile. He's not a bad fellow, Frackenbush[end if].
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The usual people, in short.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something other than waiting or looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Dear. No. That would smack of effort.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waiting when the manner understood is sheepishly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You scuff your foot against the ground for a moment, and allow a seemly blush to creep over your cheek. It's quite effective, you are sure, though you can't look up and see how it is going.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waiting when the manner understood is insouciantly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Thrusting your hands into your pockets, you whistle a jaunty tune.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">'Do shut up,' says a Melancholy Poseur from over by the window.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waiting when the manner understood is defiantly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You raise your chin and give a pointed glance around the room as though to say that you are waiting for someone; you are unembarrassed about waiting for her; you have by no means been stood up; and the first person to comment will receive a poke in the eye.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before looking when the manner understood is sheepishly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You gaze up from under your brows...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before looking when the manner understood is defiantly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You cast a withering gaze over the room.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before looking when the manner understood is insouciantly:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if turn count > 1,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You turn an eye to your surroundings, looking faintly-- just faintly-- amused.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;wait / wait insouciantly / sheepishly look / defiantly look / look insouciantly&quot;.
+</font></blockquote><p>
+<p>
+<p>The qualification about turn count is to prevent this before message from occurring when the player first looks around the room (automatically) at the start of play.
+<p>
+<p>Note that to test this example, one must type INSOUCIANTLY TEST ME, and not simply TEST ME: a poseur's work is never done.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e189"><a href=Rex189.html#e189 STYLE="text-decoration: none">**<b>Example 359:  Fragment of a Greek Tragedy</b></a><br>Responding to the player's input based on keywords only, and overriding the original parser entirely.<p>
+<a name="e111"><a href=Rex111.html#e111 STYLE="text-decoration: none">**<b>Example 293:  Down in Oodville</b></a><br>Offering the player a choice of numbered options at certain times, without otherwise interfering with his ability to give regular commands.<p>
+<p><hr><p><a href=Rdoc45.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc47.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

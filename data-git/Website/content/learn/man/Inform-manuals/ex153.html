@@ -1,0 +1,214 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.13. Relations involving values</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "For Demonstration Purposes" -->
+<!-- SEARCH SECTION "Ex 239" -->
+<!-- SEARCH SORT "Ex 013-013-239" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc219.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc221.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.13. Relations involving values</b></td></tr></table><p>
+<p>
+<p>Although most of the examples in this chapter have involved objects, relations can connect almost any values together. We can create relations in groups, one to various relations, various to one relations, one to one relations, and various to various relations for any combination of kinds. For example:
+<p>
+<blockquote><font color="#000080">Partnership relates various texts to various texts.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to belong with (he belongs with, they belong with) implies the
+<br>partnership relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&quot;cheese&quot; belongs with &quot;crackers&quot;.
+<br>&quot;clam&quot; belongs with &quot;chowder&quot;.
+</font></blockquote><p>
+<p>
+<p>How might we make use of this? Clearly it would be impractical to keep trying:
+<p>
+<blockquote><font color="#000080">if &quot;caviar&quot; belongs with &quot;aardvarks&quot;, ...
+<br>if &quot;caviar&quot; belongs with &quot;abacuses&quot;, ...
+<br>...
+</font></blockquote><p>
+<p>
+<p>to find out what &quot;caviar&quot; belongs with. It's still harder to find out if it belongs with anything at all -- in theory we would have to try every possibility, which of course is impossible. Instead we have these phrases:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(value)<b> relates to </b>(name of kind)<b> by </b>(relation of values to values)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_ifleft -->
+
+<p>This condition is true if the value V is such that V relates to something by the given relation. Example: suppose partnership relates various texts to various texts. Then we can test
+<p>
+<blockquote><font color="#000080">if &quot;chalk&quot; relates to a text by the partnership relation, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(name of kind)<b> relates to </b>(value)<b> by </b>(relation of values to values)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_ifright -->
+
+<p>This condition is true if the value V is such that something relates to V by the given relation. Example: suppose partnership relates various texts to various texts. Then we can test
+<p>
+<blockquote><font color="#000080">if a text relates to &quot;cheese&quot; by the partnership relation, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>If a partner does exist, then we can find it with:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(name of kind)<b> to which</b>/whom<b> </b>(value)<b> relates by </b>(relation of values to values)<b></b> ... <i>value</i><br><i>or:</i> <b></b>(name of kind)<b> that</b>/which/whom<b> </b>(value)<b> relates to by </b>(relation of values to values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rightlookup -->
+
+<p>This phrase produces an Y such that the given value V relates to Y by the given relation. Example: suppose partnership relates various texts to various texts. Then we can obtain
+<p>
+<blockquote><font color="#000080">the text to which &quot;chalk&quot; relates by the partnership relation
+</font></blockquote><p>
+<p>
+<p>which might be, say, &quot;cheese&quot;. It's a run-time problem to use this if no such Y exists.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(name of kind)<b> that</b>/which/who<b> relates to </b>(value)<b> by </b>(relation of values to values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_leftlookup -->
+
+<p>This phrase produces an X such that X relates to the given value V by the given relation. Example: suppose partnership relates various texts to various texts. Then we can obtain
+<p>
+<blockquote><font color="#000080">the text which relates to &quot;cheese&quot; by the partnership relation
+</font></blockquote><p>
+<p>
+<p>which might be, say, &quot;chalk&quot;. It's a run-time problem to use this if no such X exists.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Of course, there might be many answers to this question, so perhaps these are neater:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>list of </b>(name of kind)<b> that</b>/which/who<b> relate to </b>(value)<b> by </b>(relation of values to values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_leftlookuplist -->
+
+<p>This phrase produces a list of all the X such that X relates to the given value V by the given relation. Example: suppose partnership relates various texts to various texts. Then we can obtain
+<p>
+<blockquote><font color="#000080">list of texts which relate to &quot;cheese&quot; relates by the partnership relation
+</font></blockquote><p>
+<p>
+<p>which might be, say, { &quot;chalk&quot;, &quot;grapes&quot;, &quot;macaroni&quot; }. The answer might be the empty set, but that's not a problem.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>list of </b>(name of kind)<b> to which</b>/whom<b> </b>(value)<b> relates by </b>(relation of values to values)<b></b> ... <i>value</i><br><i>or:</i> <b>list of </b>(name of kind)<b> that</b>/which/whom<b> </b>(value)<b> relates to by </b>(relation of values to values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rightlookuplist -->
+
+<p>This phrase produces a list of all Y such that the given value V relates to Y by the given relation. Example: suppose partnership relates various texts to various texts. Then we can obtain
+<p>
+<blockquote><font color="#000080">list of texts to which &quot;chalk&quot; relates by the partnership relation
+</font></blockquote><p>
+<p>
+<p>which might be, say, { &quot;cheese&quot;, &quot;blackboard&quot;, &quot;cliffs&quot; }. The answer might be the empty set, but that's not a problem.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Finally, it's sometimes useful to get at the list of all values which can appear on the left or right hand side of a relation. We need tongue-twister like wording to do it, but:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>list of </b>(name of kind)<b> that</b>/which/whom<b> </b>(relation of values to values)<b> relates</b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_leftdomain -->
+
+<p>This phrase produces a list of all X which relate to anything under the given relation. Example: suppose partnership relates various texts to various texts. Then we can obtain
+<p>
+<blockquote><font color="#000080">list of texts which the partnership relation relates
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>list of </b>(name of kind)<b> to which</b>/whom<b> </b>(relation of values to values)<b> relates</b> ... <i>value</i><br><i>or:</i> <b>list of </b>(name of kind)<b> that</b>/which/whom<b> </b>(relation of values to values)<b> relates to</b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rightdomain -->
+
+<p>This phrase produces a list of all Y which anything relates to under the given relation. Example: suppose partnership relates various texts to various texts. Then we can obtain
+<p>
+<blockquote><font color="#000080">list of texts which the partnership relation relates to
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>For efficiency reasons, there are no guarantees about what order these lists have - but they can of course always be sorted when found.
+<p>
+<p><hr><p>
+<a name="e243"><a href=ex243.html#e243 STYLE="text-decoration: none">*<b>Example 238:  Meet Market</b></a><br>A case in which relations give characters multiple values of the same kind.<p>
+<!-- EXAMPLE START -->
+<a name="e153"><a href=doc220.html#e153 STYLE="text-decoration: none">***<b><b>Example</b> 239:  For Demonstration Purposes</b></a><br>A character who learns new actions by watching the player performing them.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to have a character who can dynamically learn new actions by observing the player performing them. We could do this by adding the actions to a list of things the character can do, but using a relation to express the same idea allows for tidier, easier-to-read code.
+<p>
+<p>Thanks to Jesse McGrew for the initial design of this example.
+<p>
+<blockquote><font color="#000080">&quot;For Demonstration Purposes&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Capability relates various people to various stored actions. The verb to be capable of implies the capability relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let CA be the current action with no specific actor;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the person asked is capable of CA:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persuasion succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The person asked] look[s] confused. Maybe a demonstration would help.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;persuasion fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The action requester is an object that varies. The action requester variable translates into I6 as &quot;act_requester&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide which stored action is the current action with no specific actor:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let old actor be the person asked;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let old requester be the action requester;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the person asked is the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the action requester is nothing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let CA be the current action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the person asked is the old actor;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the action requester is the old requester;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on CA.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The learning by observation rule is listed after the report stage rule in the specific action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Plurality by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a person is other if he is not the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the learning by observation rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with the viewer running through other people who can see the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player is the actor and viewer is not capable of the current action:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The viewer] watches your behavior with interest. Seems like [it-they] [is-are] learning.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the viewer is capable of the current action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Daily Planet is a room. Clark is here. He is a man.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now Clark is capable of the action of taking inventory.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;Clark, inventory / Clark, x me / x me / Clark, x me&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc219.html STYLE="text-decoration: none">Previous</a> / <a href=doc221.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

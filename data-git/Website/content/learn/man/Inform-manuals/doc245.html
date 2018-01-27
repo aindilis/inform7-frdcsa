@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.5. Choosing rows</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Choosing rows" -->
+<!-- SEARCH SECTION "15.5" -->
+<!-- SEARCH SORT "015-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc244.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc246.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.5. Choosing rows</b></td></tr></table><p>
+<p>
+<p>The following would be one way to print out a list of recent Kings and Queens:
+<p>
+<blockquote><font color="#000080">To list the succession:
+<br>say &quot;The Succession List runs as follows...&quot;;
+<br>repeat with N running from 1 to the number of rows in the Table of Recent Monarchs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[accession in row N of the Table of Recent Monarchs]: [name in row N of the Table of Recent Monarchs] ([family in row N of the Table of Recent Monarchs]).&quot;
+</font></blockquote><p>
+<p>
+<p>This works, but is repetitive. We often want to work on a single row for a while, either to change things or think about the contents, and it is tiresome to keep specifying the row over and over again. The following shorthand provides some relief:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>choose a</b>/the/--<b> row </b>(number)<b> in</b>/from<b> </b>(table name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_chooserow -->
+
+<p>This phrase selects the row with the given number. Row numbers in a table start from 1, so
+<p>
+<blockquote><font color="#000080">choose row 1 from the Table of Recent Monarchs
+</font></blockquote><p>
+<p>
+<p>selects the top row.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>That allows us to improve the loop:
+<p>
+<blockquote><font color="#000080">To list the succession:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The Succession List runs as follows...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with N running from 1 to the number of rows in the Table of Recent Monarchs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose row N in the Table of Recent Monarchs;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[accession entry]: [name entry] ([family entry]).&quot;;
+</font></blockquote><p>
+<p>
+<p>Actually, as we'll see in the next section, this kind of loop is needed so often that there's a shorthand wording for it.
+<p>
+<p>Note that since &quot;accession&quot; is a column name, &quot;accession entry&quot; means the entry in that column of the currently chosen row. This notation can only be used if a &quot;choose&quot; has certainly already happened, and it is a good idea to make that choice somewhere close by in the source code (and certainly in the same rule or phrase definition) for the sake of avoiding errors. We can also choose rows by specifying something about them, like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>choose a</b>/the/--<b> row with </b>(table column)<b> of </b>(value)<b> in</b>/from<b> </b>(table name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_chooserowwith -->
+
+<p>This phrase selects the first row, working down from the top of the given table, in which the given column has the given value. Example:
+<p>
+<blockquote><font color="#000080">choose row with a name of &quot;Victoria&quot; in the Table of Recent Monarchs;
+</font></blockquote><p>
+<p>
+<p>A run-time problem message is produced if the value isn't found anywhere in that column.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Sometimes it will happen that a column's name clashes with the name of something else: for instance, if we call a column &quot;apples&quot; but we also have a kind called &quot;apple&quot;, so that the word &quot;apples&quot; could mean either some fruit or the column. Inform will generally prefer the former meaning as more likely. In case of such trouble, we can simply refer to &quot;the apples column&quot; rather than just &quot;the apples&quot;: for instance, &quot;choose row with an apples column of...&quot; rather than &quot;choose row with an apples of...&quot;
+<p>
+<p>We can also choose a row quite at random:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>choose a</b>/the/--<b> random row in</b>/from<b> </b>(table name)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_chooserandomrow -->
+
+<p>This phrase makes a uniformly random choice of rows in the given table. Note that a table always has at least one row, so this can't fail.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc244.html STYLE="text-decoration: none">Previous</a> / <a href=doc246.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

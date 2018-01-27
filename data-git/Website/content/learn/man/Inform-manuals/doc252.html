@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.12. Listed in...</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Listed in..." -->
+<!-- SEARCH SECTION "15.12" -->
+<!-- SEARCH SORT "015-012-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc251.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc253.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.12. Listed in...</b></td></tr></table><p>
+<p>
+<p>Tables are especially useful for combining a run of basically similar rules in a simple and concise way. The &quot;listed in&quot; condition, as in
+<p>
+<blockquote><font color="#000080">if the newfound object is an item listed in the Table of Treasures...
+</font></blockquote><p>
+<p>
+<p>looks through a given table (here &quot;table of treasures&quot;), in a given column (&quot;item&quot;), to see if a given value is present (&quot;the newfound object&quot;). If this is successful, the row where it was found is automatically chosen.
+<p>
+<p>We can similarly use &quot;... listed in ...&quot; in a description used when specifying an action. Thus:
+<p>
+<blockquote><font color="#000080">After taking an item listed in the Table of Treasures:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if there is no time entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the time entry is the time of day;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increase the score by the value entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Taken!&quot;
+</font></blockquote><p>
+<p>
+<p>This assumes a table in the following shape:
+<p>
+<blockquote><font color="#000080">Table of Treasures
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">Item</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Value</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">Time</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">brooch</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">a time</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">tiara</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">8</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">coronet</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>In effect the table has allowed us to combine three very similar rules into one. The time column records the first time at which the item has been picked up, which starts out blank since at the start of play it has never been picked up. This enables us to award the appropriate number of points on the first occasion only.
+<p>
+<p><hr><p>
+<a name="e434"><a href=ex434.html#e434 STYLE="text-decoration: none">***<b>Example 265:  Noisy Cricket</b></a><br>Implementing liquids that can be mixed, and the components automatically recognized as matching one recipe or another.<p>
+<p><hr><p><a href=doc251.html STYLE="text-decoration: none">Previous</a> / <a href=doc253.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

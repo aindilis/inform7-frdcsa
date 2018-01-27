@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.7. Painting and Labeling Devices</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Brown" -->
+<!-- SEARCH SECTION "Ex 34" -->
+<!-- SEARCH SORT "Ex 009-007-034" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc73.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc75.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.7. Painting and Labeling Devices</b></td></tr></table><p>
+<p>
+<p>Writing on something is only one way a player can change its visual appearance. IF authors have long been wary of paint brushes, because a sufficiently motivated player could go through a whole landscape like a graffiti artist with a railway bridge. We want to give the player the illusion of freedom of action, while avoiding a situation where unlimited numbers of different decorations might be needed - that would need a table of potentially unlimited size.
+<p>
+<p>One approach is to limit the number of items which can be decorated. In <b>Palette</b>, only the canvas can be painted, and each image overlays the last. <b>Early Childhood</b> increases the range to allow a whole kind (&quot;block&quot;) to be painted, and also shows how the changing colours can be used to distinguish between otherwise identical objects.
+<p>
+<p><b>Brown</b> finds a different way to limit the number of simultaneous decorations: almost anything can have a red sticky label attached, but there is only one red sticky label. (So to decorate a new item, the player must first un-decorate an old one.)
+<p>
+<a href=Rdoc86.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Electricity and Magnetism</b></font></a><i> for another form of stickiness</i><p><p>
+<p><hr><p>
+<a name="e280"><a href=Rex280.html#e280 STYLE="text-decoration: none">*<b>Example 297:  Palette</b></a><br>An artist's workshop in which the canvas can be painted in any colour, and where painterly names for pigments ("cerulean") are accepted alongside everyday ones ("blue").<p>
+<a name="e41"><a href=Rex41.html#e41 STYLE="text-decoration: none">***<b>Example 53:  Early Childhood</b></a><br>A child's set of building blocks, which come in three different colours - red, green and blue - but which can be repainted during play.<p>
+<!-- EXAMPLE START -->
+<a name="e316"><a href=Rdoc74.html#e316 STYLE="text-decoration: none">***<b><b>Example</b> 34:  Brown</b></a><br>A red sticky label which can be attached to anything in the game, or removed again.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Brown&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Shipping Room is a room. The red sticky label is a thing carried by the player. The description of the red sticky label is &quot;It reads: AIRMAIL[if the label is part of something (called the parent)]. It is stuck to [the parent][end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A black crate is in Shipping. The description is &quot;A boring black crate.&quot;  The brown crate is a thing in Shipping. The description is &quot;An ordinary brown crate.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After examining something when the label is part of the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A bright red sticky label is attached to [the noun]!&quot;
+</font></blockquote><p>
+<p>
+<p>Here is the essential point: whenever we ATTACH LABEL TO something, it becomes part of that object.
+<p>
+<blockquote><font color="#000080">Instead of tying the red sticky label to something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the red sticky label is part of the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You stick [the label] to [the second noun].&quot;
+</font></blockquote><p>
+<p>
+<p>And of course the label cannot be stuck to itself or to more than one thing at a time.
+<p>
+<blockquote><font color="#000080">Before tying the label to something when the label is part of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the label is part of the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The label] is already stuck to [the second noun].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first freeing the label)[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;silently try taking the label;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the label is part of something, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of tying the red sticky label to the label:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;That would ruin the label entirely.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the label when the label is part of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player carries the label;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You peel the label off again.&quot;
+</font></blockquote><p>
+<p>
+<p>Much of the rest is just tidying to make sure that the player's commands are redirected into the right syntax.
+<p>
+<blockquote><font color="#000080">Instead of tying something to the label:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try tying the label to the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of putting the label on something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try tying the label to the second noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of inserting the label into something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try tying the label to the second noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the commands &quot;stick&quot; or &quot;apply&quot; as &quot;tie&quot;.
+</font></blockquote><p>
+<p>
+<p>We could have created a new &quot;sticking&quot; action, but to keep the example short we will use the built-in &quot;tying&quot; action instead, and respond to the command &quot;stick&quot; just as if it were &quot;tie&quot;.
+<p>
+<blockquote><font color="#000080">Understand &quot;peel [something]&quot; or &quot;peel off [something]&quot; as taking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / put label on the black crate / look / x black / x label / get the label / apply label to brown crate / look / x brown / peel off label / stick label to label&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc73.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc75.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

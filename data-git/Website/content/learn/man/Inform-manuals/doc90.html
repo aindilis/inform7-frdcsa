@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.5. Defining adjectives for values</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Defining adjectives for values" -->
+<!-- SEARCH SECTION "6.5" -->
+<!-- SEARCH SORT "006-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc89.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc91.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.5. Defining adjectives for values</b></td></tr></table><p>
+<p>
+<p>In general, any noun can have adjectives applied to it, and this means that values can have adjectives just as objects can. We have already seen that they can (in some cases, at least) have either/or properties, and this gives them adjectives just as for objects. But we can also write out definitions which apply to values:
+<p>
+<blockquote><font color="#000080">Definition: A number is round if the remainder after dividing it by 10 is 0.
+<br>Definition: A time is late rather than early if it is at least 8 PM.
+</font></blockquote><p>
+<p>
+<p>That makes the numbers 20 and 170 but not 37 meet the description &quot;a round number&quot;, and the times 8 PM and 11:23 PM but not 9 AM meet the description &quot;a late time&quot;. Because they come up fairly often, Inform contains several adjectives for numbers built in:
+<p>
+<blockquote><font color="#000080">positive - one which is greater than zero (but not 0 itself)
+<br>negative - one which is less than zero (but not 0 itself)
+<br>even - a number like ..., -4, -2, 0, 2, 4, ...
+<br>odd - a number like ..., -5, -3, -1, 1, 3, 5, ...
+</font></blockquote><p>
+<p>
+<p>Similarly, two useful adjectives are built in to talk about text:
+<p>
+<blockquote><font color="#000080">empty - the text &quot;&quot;, with no characters in it, not even spaces
+<br>non-empty - any text which does have at least one character in
+</font></blockquote><p>
+<p>
+<p>Adjectives can have multiple definitions and, as long as each applies to a different sort of noun, there will be no problem. We could write:
+<p>
+<blockquote><font color="#000080">A thing can be round, square or funny-shaped.
+<br>A container can be odd or ordinary.
+</font></blockquote><p>
+<p>
+<p>And these definitions of &quot;round&quot; and &quot;odd&quot; will not interfere with the ones applying to numbers, because Inform can always look at the noun to see which definition is meant in any given case. For instance,
+<p>
+<blockquote><font color="#000080">if the score is round, ...
+</font></blockquote><p>
+<p>
+<p>must mean &quot;round&quot; in the sense of numbers, because the score is a number. Inform itself makes good use of this; &quot;empty&quot; also has meanings applying to rulebooks, lists and activities, for instance, as will be seen later.
+<p>
+<p>Although it's more usual to give a definition to apply to a whole kind, we can actually give a specific definition to apply to just a single object or named value. For example:
+<p>
+<blockquote><font color="#000080">A colour is a kind of value. The colours are red, green and blue.
+<br>Definition: red is subtle if the player is female.
+<br>Definition: a colour is subtle if it is blue.
+</font></blockquote><p>
+<p>
+<p>The first definition of &quot;subtle&quot; takes precedence, of course, since it has the more specific domain - it applies only to red. The effect of this is that, if the player's female, the subtle colours are red and blue; if not, just blue.
+<p>
+<p><hr><p>
+<a name="e348"><a href=ex348.html#e348 STYLE="text-decoration: none">***<b>Example 74:  Only You...</b></a><br>Smoke which spreads through the rooms of the map, but only every other turn.<p>
+<p><hr><p><a href=doc89.html STYLE="text-decoration: none">Previous</a> / <a href=doc91.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

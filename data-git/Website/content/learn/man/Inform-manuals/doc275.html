@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.16. Understanding things by their relations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Understanding things by their relations" -->
+<!-- SEARCH SECTION "16.16" -->
+<!-- SEARCH SORT "016-016-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc274.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc276.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.16. Understanding things by their relations</b></td></tr></table><p>
+<p>
+<p>Sometimes it makes sense for the name of something to involve the names of other things to which it is related. For instance, if we say TAKE THE BOTTLE OF WINE, we mean that the bottle currently contains wine - if it were the very same bottle containing water, we would call it something else.
+<p>
+<p>For names which must involve related names, a special form of token is provided. For instance, we could say:
+<p>
+<blockquote><font color="#000080">A box is a kind of container. Understand &quot;box of [something related by containment]&quot; as a box.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Toyshop is a room. The red box is a box in the Toyshop. Some crayons are in the red box.
+</font></blockquote><p>
+<p>
+<p>and now TAKE BOX OF CRAYONS will work, because CRAYONS matches against &quot;[something related by containment]&quot; for the red box - or it does for as long as the crayons are there. We can have similar matches against relations of all kinds, but have to name the relation explicitly, using its one-word name. (See the examples at the end of this section for plenty of cases.)
+<p>
+<p>We can also reverse the sense. If we write:
+<p>
+<blockquote><font color="#000080">A box is a kind of container. Understand &quot;box in [something related by reversed containment]&quot; as a box.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Toyshop is a room. The crate and the hammock are in the Toyshop. In the crate is a box. In the hammock is a box.
+</font></blockquote><p>
+<p>
+<p>then TAKE THE BOX IN THE HAMMOCK will work: here, the relation goes the other way, because the box is being contained by the other-named item, rather than doing the containing.
+<p>
+<p><hr><p>
+<a name="e304"><a href=ex304.html#e304 STYLE="text-decoration: none">*<b>Example 308:  Puncak Jaya</b></a><br>When a character is not visible, responding to such commands as EXAMINE PETER and PETER, HELLO with a short note that the person in question is no longer visible.<p>
+<a name="e427"><a href=ex427.html#e427 STYLE="text-decoration: none">*<b>Example 309:  Whither?</b></a><br>A door whose description says where it leads; and which automatically understands references such as "the west door" and "the east door" depending on which direction it leads from the location.<p>
+<a name="e79"><a href=ex79.html#e79 STYLE="text-decoration: none">*<b>Example 310:  Cinco</b></a><br>A taco shell that can be referred to (when it contains things) in terms of its contents.<p>
+<a name="e82"><a href=ex82.html#e82 STYLE="text-decoration: none">**<b>Example 311:  Claims Adjustment</b></a><br>An instant camera that spits out photographs of anything the player chooses to take a picture of.<p>
+<p><hr><p><a href=doc274.html STYLE="text-decoration: none">Previous</a> / <a href=doc276.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

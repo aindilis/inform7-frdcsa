@@ -1,0 +1,124 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.1. Start-Up Features</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Hatless" -->
+<!-- SEARCH SECTION "Ex 126" -->
+<!-- SEARCH SORT "Ex 011-001-126" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc90.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc92.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.1. Start-Up Features</b></td></tr></table><p>
+<p>
+<p>When the story file starts up, it normally prints a short introductory passage of text (the &quot;overture&quot;) and then a heading describing itself, together with some version numbering (the &quot;banner&quot;). It is traditional that the banner must appear eventually (and one of the few requirements of the Inform licence is that the author acknowledge Inform somewhere, for which the banner is sufficient) but some designs call for a multi-turn prologue before the banner finally appears, and marks the start of play in earnest. <b>Bikini Atoll</b> demonstrates this.
+<p>
+<p>If a story file represents the latest in a sequence of story files representing chapters in some larger narrative, it will need some way to pick up where its predecessor left off. This can be done with the aid of external files (in the Glulx format, at least). <b>Alien Invasion Part 23</b> shows how.
+<p>
+<p>Another task we might want to perform a the beginning of play is to arrange any randomized features that are supposed to change from one playing to the next. We can add such instructions with &quot;When play begins&quot; rule, as in:
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the priceless treasure is in a random room.
+</font></blockquote><p>
+<p>
+<p>Since we may want to do something a bit more complicated than this, <b>Hatless</b> demonstrates effective and ineffective methods of distributing multiple objects (in this case, one randomly-selected hat per person).
+<p>
+<a href=Rdoc9.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Map</b></font></a><i> for a way to generate a randomized maze at the start of play</i><p><p>
+<a href=Rdoc68.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Food</b></font></a><i> for a way to choose a random piece of candy to be poisonous</i><p><p>
+<a href=Rdoc47.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Getting Acquainted</b></font></a><i> for a way to choose a murderer from among the characters at the start of each game</i><p><p>
+<p><hr><p>
+<a name="e35"><a href=Rex35.html#e35 STYLE="text-decoration: none">*<b>Example 368:  Bikini Atoll</b></a><br>Delaying the banner for later.<p>
+<a name="e5"><a href=Rex5.html#e5 STYLE="text-decoration: none">*<b>Example 429:  Alien Invasion Part 23</b></a><br>Keeping a preference file that could be loaded by any game in a series.<p>
+<!-- EXAMPLE START -->
+<a name="e181"><a href=Rdoc91.html#e181 STYLE="text-decoration: none">**<b><b>Example</b> 126:  Hatless</b></a><br>It's tempting to use "now..." to distribute items randomly at the start of play, but we need to be a little cautious about how we do that.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want a game in which each scenario starts with the characters wearing hats -- randomly passed out. We might be tempted to write our scenario like this:
+<p>
+<blockquote><font color="#000080">&quot;Hatless&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Costumery is a room. Larry, Curly, and Moe are men in the Costumery. Janine is a woman in the Costumery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a person (called the target) who wears a hat (called attire):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] is here, looking stylish in [an attire].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a hatless person (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] mopes about, hatless.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A hat is a kind of thing. A hat is always wearable. Definition: a person is hatless if he does not wear a hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The indigo bowler, the polka-dotted fedora, the pink beret, and the scarlet cloche are hats.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every hat is worn by a random hatless person.
+</font></blockquote><p>
+<p>
+<p>And we might hope that this would choose a new hatless person for each hat, but we would be wrong. It will instead choose one hatless person and put all the hats on him -- and everyone else has to go bare-headed. That's clearly no good. Let's try again:
+<p>
+<blockquote><font color="#000080">&quot;Hatless 2&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Costumery is a room. Larry, Curly, and Moe are men in the Costumery. Janine is a woman in the Costumery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a person (called the target) who wears a hat (called attire):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] is here, looking stylish in [an attire].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a hatless person (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] mopes about, hatless.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A hat is a kind of thing. A hat is always wearable. Definition: a person is hatless if he does not wear a hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The indigo bowler, the polka-dotted fedora, the pink beret, and the scarlet cloche are hats.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every hatless person wears a random hat.
+</font></blockquote><p>
+<p>
+<p>But this selects one random hat and assigns it to each hatless person in turn -- so it will only wind up being worn by the last of them (since Inform knows that only one person can wear a hat at a time).
+<p>
+<p>In this case, we do have to expand out our loop so that the game makes an explicit distribution:
+<p>
+<blockquote><font color="#000080">&quot;Hatless 3&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Costumery is a room. Larry, Curly, and Moe are men in the Costumery. Janine is a woman in the Costumery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a person (called the target) who wears a hat (called attire):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] is here, looking stylish in [an attire].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a hatless person (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] mopes about, hatless.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A hat is a kind of thing. A hat is always wearable. Definition: a person is hatless if he does not wear a hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The indigo bowler, the polka-dotted fedora, the pink beret, and the scarlet cloche are hats.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through hats:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is worn by a random hatless person.
+</font></blockquote><p>
+<p>
+<p>Each time Inform considers the instruction &quot;now the item is worn by a random hatless person&quot;, there is one fewer such person to choose from -- so we can guarantee that the hats are distributed one per customer and that all hats are distributed.
+<p>
+<p>Hatless 3 is only guaranteed to work because the number of hats is less than or equal to the number of people; otherwise the final use of random will return &quot;nothing&quot; and then a problem message will appear during play.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc90.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc92.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 22.9. Some technicalities about figures and sounds</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Some technicalities about figures and sounds" -->
+<!-- SEARCH SECTION "22.9" -->
+<!-- SEARCH SORT "022-009-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc377.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc379.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>22.9. Some technicalities about figures and sounds</b></td></tr></table><p>
+<p>
+<p>(i) Names for figures, such as &quot;Figure of Woodlands&quot;, are values for a special kind of value called &quot;figure name&quot;. This can in turn be used to define variables, properties and phrases:
+<p>
+<blockquote><font color="#000080">The turn card image is a figure name that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An Old Master is a kind of thing. An Old Master has a figure name called appearance. Figure 1 is the file &quot;Giaconda.jpg&quot;. The Mona Lisa is an Old Master. The appearance of the Mona Lisa is Figure 1.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To place (F - a figure name) in the gallery: ...
+</font></blockquote><p>
+<p>
+<p>(ii) Similarly, names for sound effects, such as &quot;Sound of rustling leaves&quot;, are values for the kind of value &quot;sound name&quot;.
+<p>
+<p>(iii) In the released, blorbed-up Glulx file, figures and sound effects are internally given resource ID numbers which count upwards from 2 in order of their declaration. (Figure and sound numbers can thus be intermingled, if their declarations are.) Resource ID number 1 is reserved for the image of the cover art, if there is any. (See the chapter on Publishing.) To obtain these numbers, if we need them, we can use:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>Glulx resource ID of </b>(figure name)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_figureid -->
+
+<p>This phrase produces the ID number used in the eventual Glulx file for the given figure.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>Glulx resource ID of </b>(sound name)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_soundid -->
+
+<p>This phrase produces the ID number used in the eventual Glulx file for the given sound effect.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>(iv) Glulx hackers may also like to know that whenever Inform 7 builds a project for Glulx, the Inform 6 code it generates always contains a full copy of John Cater's definitive header file &quot;infglk.h&quot;.
+<p>
+<p><hr><p><a href=doc377.html STYLE="text-decoration: none">Previous</a> / <a href=doc379.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

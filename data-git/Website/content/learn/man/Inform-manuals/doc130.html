@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.9. Moving the player</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Moving the player" -->
+<!-- SEARCH SECTION "8.9" -->
+<!-- SEARCH SORT "008-009-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc129.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc131.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.9. Moving the player</b></td></tr></table><p>
+<p>
+<p>The player is a thing, too, and can also be moved, which has the effect of instantaneous transportation, without the need for a suitable map connection to the new location. For instance, these are equivalent:
+<p>
+<blockquote><font color="#000080">move the player to the Bodleian Library;
+<br>now the player is in the Bodleian Library;
+</font></blockquote><p>
+<p>
+<p>This will ordinarily result in a room description of the Bodleian Library being printed up, but that might not always be desirable. For instance:
+<p>
+<blockquote><font color="#000080">Instead of waiting in the Schola Maleficorum:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;A bored demon catches your eye (they really do have very inquisitive fingers) and throws you back out into the Antechamber.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to the Antechamber, without printing a room description.
+</font></blockquote><p>
+<p>
+<p>Thus tacking on the option &quot;without printing a room description&quot;, remembering to add the comma, omits the description which would otherwise be produced. A compromise is to use the option &quot;printing an abbreviated room description&quot;: this gives a full description if the player has never been here before, but only a brief one if it is a familiar scene.
+<p>
+<p>The player's point of view can also be moved by shifting to another character. Suppose the story features two people, Alice and Bob, and the player at the keyboard is giving commands to Alice, and seeing everything from her point of view. The phrase:
+<p>
+<blockquote><font color="#000080">now the player is Bob
+</font></blockquote><p>
+<p>
+<p>switches the perspective so that now Bob is the one controlled by the human player, and it's Bob's point of view which counts. The human being at the keyboard may feel a sense of having jumped abruptly from place to place, but in fact neither Alice nor Bob has moved.
+<p>
+<p>A change of player can sometimes cause confusing things to happen, if it takes place as part of a successful action. Suppose there's an action called &quot;possessing&quot;, which enables the player to possess somebody else's body; and suppose the player types POSSESS ADELE. The action succeeds, so that the player moves into the mind of Adele. But that means that at the end of the action, the player is no longer the actor - that is, no longer the person who began the action; and consequently, Inform won't use the report rulebook to say what has just happened. It's a strange business, moving into another body.
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>In previous builds, changes of the player's perspective were also done using the following:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change the</b>/--<b> player to </b>(object)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_changeplayer_dep -->
+
+<p>This phrase switches the perspective so that the given person is now the point of view from whom the story is told. This is equivalent to:
+<p>
+<blockquote><font color="#000080">now the player is (object)
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>This wording is being removed as redundant, in common with most other uses of &quot;change&quot;.
+<p>
+<p><hr><p>
+<a name="e400"><a href=ex400.html#e400 STYLE="text-decoration: none">***<b>Example 121:  Terror of the Sierra Madre</b></a><br>Multiple player characters who take turns controlling the action.<p>
+<p><hr><p><a href=doc129.html STYLE="text-decoration: none">Previous</a> / <a href=doc131.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

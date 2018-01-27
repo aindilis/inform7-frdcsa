@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.5. After rules</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "After rules" -->
+<!-- SEARCH SECTION "7.5" -->
+<!-- SEARCH SORT "007-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc106.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc108.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.5. After rules</b></td></tr></table><p>
+<p>
+<p>There is pleasantly little to be said about &quot;after&quot; rules. If an action has survived all the rules in its way, and has actually succeeded, then we need to give the player a response which acknowledges this. Inform's normal rules will be sufficient to say something undramatic: for instance, if &quot;taking the napkin&quot; has succeeded then it will reply &quot;Taken.&quot; to the player.
+<p>
+<p>An after rule is an opportunity to say something more interesting:
+<p>
+<blockquote><font color="#000080">After taking the diamonds, say &quot;Taken!&quot;
+</font></blockquote><p>
+<p>
+<p>(Well, slightly more interesting.) After rules automatically end the action (as a success), which is what we would want in the above case. Allowing it to continue would simply result in &quot;Taken.&quot; being printed as well. However, should we really need to do something and then carry on:
+<p>
+<blockquote><font color="#000080">After taking the diamonds: say &quot;(Mr Beebe looks up sharply.) &quot;; continue the action.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e128"><a href=ex128.html#e128 STYLE="text-decoration: none">*<b>Example 90:  Morning After</b></a><br>When the player picks something up which he hasn't already examined, the object is described.<p>
+<p><hr><p><a href=doc106.html STYLE="text-decoration: none">Previous</a> / <a href=doc108.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

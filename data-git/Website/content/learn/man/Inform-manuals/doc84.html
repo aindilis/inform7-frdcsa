@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.13. Making new substitutions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Making new substitutions" -->
+<!-- SEARCH SECTION "5.13" -->
+<!-- SEARCH SORT "005-013-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc83.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc85.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.13. Making new substitutions</b></td></tr></table><p>
+<p>
+<p>If we have some textual effect which needs to occur in several different messages, we might want to create a new text substitution for it. For instance:
+<p>
+<blockquote><font color="#000080">The Missile Base is a room. &quot;[security notice]Seems to be a futuristic missile base.&quot; M's Office is east of the Missile Base. &quot;[security notice]Admiral Sir M.- M.- glares up from his desk.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say security notice:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;This area is a Prohibited Place within the meaning of the Official Secrets Act 1939. &quot;
+</font></blockquote><p>
+<p>
+<p>This is only the tip of the iceberg in how to define ways to do things using &quot;To...&quot;, as we shall see. The definition makes &quot;say the security notice&quot; a new phrase known to Inform. A text substitution is exactly a phrase whose name begins with &quot;say&quot; (well - except for the &quot;say&quot; phrase itself), so the effect is that &quot;[security notice]&quot; is a new text substitution. Several of the examples in this chapter make use of this trick.
+<p>
+<p>Inform often ignores the casing of the text it reads, but sometimes uses it as a clue to meaning. We have already seen that &quot;[an item]&quot; and &quot;[An item]&quot; produce different results, for instance. Similarly, it's possible to define two text substitutions which are the same except for the initial casing. We might write:
+<p>
+<blockquote><font color="#000080">To say Security Notice:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;THIS AREA IS A PROHIBITED PLACE WITHIN THE MEANING OF THE OFFICIAL SECRETS ACT 1939. &quot;
+</font></blockquote><p>
+<p>
+<p>And now Inform will act on &quot;[Security Notice]&quot; differently from &quot;[security notice]&quot;.
+<p>
+<a href=doc169.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The phrasebook</b></font></a><i> for other forms of phrase besides To say...</i><p><p>
+<p><hr><p>
+<a name="e212"><a href=ex212.html#e212 STYLE="text-decoration: none">*<b>Example 71:  Fifty Ways to Leave Your Larva</b></a><br>Using text substitution to make characters reply differently under the same circumstances.<p>
+<a name="e213"><a href=ex213.html#e213 STYLE="text-decoration: none">***<b>Example 72:  Fifty Times Fifty Ways</b></a><br>Writing your own rules for how to carry out substitutions.<p>
+<p><hr><p><a href=doc83.html STYLE="text-decoration: none">Previous</a> / <a href=doc85.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

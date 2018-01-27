@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.9. Televisions and Radios</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Radio Daze" -->
+<!-- SEARCH SECTION "Ex 66" -->
+<!-- SEARCH SORT "Ex 009-009-066" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc75.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc77.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.9. Televisions and Radios</b></td></tr></table><p>
+<p>
+<p>IF authors often provide clues or background information to the player by means of radio broadcasts, TV shows or video tapes because they can talk to the player without needing to listen back, or to react to what the player does. The simplest radio set, like the one in <b>Aftershock</b>, really only has one thing to say: which is serendipitously being broadcast just at the moment the player tunes in (regardless of when that is). The next simplest approach is to spool a broadcast on an endless loop taking several turns to play through, as in <b>Radio Daze</b>.
+<p>
+<p>Televisions come in all shapes and sizes, and <b>Aspect</b> allows their shape (&quot;aspect ratio&quot;) to be described by the player.
+<p>
+<p>In <b>Channel 1</b>, we can also refer to the television by what it is currently showing: thus WATCH CHANNEL 4 will work if the set is indeed tuned to 4. In <b>Channel 2</b>, numbered channel changing is taken further: we can now TUNE TV TO CHANNEL 3, as well. <b>Channel 2</b> is a reasonable base implementation of a television for many purposes.
+<p>
+<p><hr><p>
+<a name="e2"><a href=Rex2.html#e2 STYLE="text-decoration: none">***<b>Example 323:  Aftershock</b></a><br>Modifying the rules for examining a device so that all devices have some specific behavior when switched on, which is described at various times.<p>
+<!-- EXAMPLE START -->
+<a name="e311"><a href=Rdoc76.html#e311 STYLE="text-decoration: none">*<b><b>Example</b> 66:  Radio Daze</b></a><br>A radio that produces a cycle of output using varying text.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Radio Daze&quot; by Jon Ingold
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Living Room is a room. &quot;A long couch, set up so you can see your wireless set. Not that you need to see it, of course.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The long couch is an enterable scenery supporter in the living room. Instead of entering the long couch when the radio was switched off, say &quot;Better turn the radio on before you get comfortable.&quot; Report entering the couch: say &quot;You settle yourself down to listen.&quot; instead. Instead of listening when the radio is switched on, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The radio is a device in the living room. The radio is switched off. &quot;[if switched on]The radio burbles on[otherwise]The radio is off[end if].&quot; Check switching off the radio when the player is on the long couch: say &quot;You can't reach the radio from here.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when the radio is switched on:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]Two characters in the radio play have begun an argument[or]The argument continues[or]The play continues[stopping]: [one of]'Did not!'[or]'Did too!'[or]'Did I?'[or]'You did!'[or]'I couldn't have, Martha!'[or]'But you did, Tom!'[cycling]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;sit on couch / turn on radio / sit on couch/ listen / g / g / g / g / g&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e16"><a href=Rex16.html#e16 STYLE="text-decoration: none">*<b>Example 300:  Aspect</b></a><br>Understanding aspect ratios (a unit) in the names of televisions.<p>
+<a name="e72"><a href=Rex72.html#e72 STYLE="text-decoration: none">**<b>Example 304: Channel 1</b></a><br>Understanding channels (a number) in the names of televisions.<p>
+<a name="e73"><a href=Rex73.html#e73 STYLE="text-decoration: none">***<b>Example 307: Channel 2</b></a><br>Understanding channels (a number) in the names of televisions, with more sophisticated parsing of the change channel action.<p>
+<p><hr><p><a href=Rdoc75.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc77.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

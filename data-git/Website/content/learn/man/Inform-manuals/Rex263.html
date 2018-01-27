@@ -1,0 +1,89 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.3. Reactive Characters</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Noisemaking" -->
+<!-- SEARCH SECTION "Ex 197" -->
+<!-- SEARCH SORT "Ex 007-003-197" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc48.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc50.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.3. Reactive Characters</b></td></tr></table><p>
+<p>
+<p>As we observe characters, so they observe us. Those who seem to have no awareness of what the player is doing often come across more like waxworks than like people. <b>Zodiac</b> demonstrates a scenario where the watchful presence of a dangerous criminal keeps the player from doing what he otherwise might, while <b>Police State</b> expands on this idea with a policeman who reacts to entire types of behavior in his presence, regardless of whether the culprit is the player or a third party. <b>Noisemaking</b> has a crow who will fly away in response to any loud noises the player makes.
+<p>
+<p>And, of course, we definitely want to have characters react to being looked at or otherwise interfered with. <b>Search and Seizure</b> implements a smuggler who reacts when we try to confiscate his possessions. <b>Pine 1</b> gives us a sleeping princess who can be woken by a variety of methods.
+<p>
+<p>We wrap up this section with two complete puzzle scenarios that demonstrate what can be achieved by giving characters reactions to the player's behavior. <b>A Day For Fresh Sushi</b> has a fish who watches the player's actions and comments on them, while the live furnishings in <b>Revenge of the Fussy Table</b> instead comment every turn on the current state of the world, until the player has successfully sorted out all their complaints.
+<p>
+<p><hr><p>
+<a name="e442"><a href=Rex442.html#e442 STYLE="text-decoration: none">*<b>Example 96:  Zodiac</b></a><br>Several variations on "doing something other than...", demonstrating different degrees of restriction.<p>
+<a name="e294"><a href=Rex294.html#e294 STYLE="text-decoration: none">*<b>Example 187:  Police State</b></a><br>Several friends who obey you; a policeman who doesn't (but who takes a dim view of certain kinds of antics).<p>
+<!-- EXAMPLE START -->
+<a name="e263"><a href=Rdoc49.html#e263 STYLE="text-decoration: none">***<b><b>Example</b> 197:  Noisemaking</b></a><br>Creating a stage after the report stage of an action, during which other characters may observe and react.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose the current sequence of action handling is not quite enough for us: we'd also like to have a stage after reporting, where other characters can react to the player character's behavior after it has already happened and been reported on screen. Having such a stage is unlike using &quot;after&quot;, because after occurs before reports and prevents them from being printed. So, for instance, we could allow the player to do any of a range of different actions that make loud noises, and have a nervous bird that reacts to all of them by flying away afterward.
+<p>
+<p>To do this, we can add a new rule into the specific action-processing rules. (For a list of these, see the Rules index.) Moving rules around and adding new ones requires syntax that we will learn in the chapter on Rulebooks, but the present example is fairly straightforward:
+<p>
+<blockquote><font color="#000080">&quot;Noisemaking&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The other-player response rule is listed after the report stage rule in the specific action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the other-player response rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;follow the observation rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The observation rules is a rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Country Lane is a room. West of Country Lane is Outside the Farmhouse. East of Country Lane is Village Center. North of Country Lane is Open Field.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a drum.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The black crow is an animal in Country Lane.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Singing is a loud action.
+<br>Attacking the drum is a loud action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The block singing rule is not listed in any rulebook.
+<br>The block attacking rule is not listed in any rulebook.
+<br>Report singing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You hum a little ditty.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report attacking something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;THWACK!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An observation rule for loud action in the presence of the black crow:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be a random adjacent room;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if N is a room, move the black crow to N;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The crow, startled, flies off to [N].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;sing / g / n / hit drum&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e180"><a href=Rex180.html#e180 STYLE="text-decoration: none">***<b>Example 36:  Search and Seizure</b></a><br>A smuggler who has items, some of which are hidden.<p>
+<a name="e287"><a href=Rex287.html#e287 STYLE="text-decoration: none">*<b>Example 154: Pine 1</b></a><br>Pine: Using a scene to watch for the solution of a puzzle, however arrived-at by the player.<p>
+<a name="e364"><a href=Rex364.html#e364 STYLE="text-decoration: none">****<b>Example 112:  A Day For Fresh Sushi</b></a><br>A complete story by Emily Short, called "A Day for Fresh Sushi", rewritten using Inform 7. Noteworthy is the snarky commenter who remarks on everything the player does, but only the first time each action is performed.<p>
+<a name="e160"><a href=Rex160.html#e160 STYLE="text-decoration: none">****<b>Example 82:  Revenge of the Fussy Table</b></a><br>A small game about resentful furniture and inconvenient objects.<p>
+<p><hr><p><a href=Rdoc48.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc50.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

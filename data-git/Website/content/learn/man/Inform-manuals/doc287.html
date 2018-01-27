@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.6. Activity variables</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Activity variables" -->
+<!-- SEARCH SECTION "17.6" -->
+<!-- SEARCH SORT "017-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc286.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc288.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.6. Activity variables</b></td></tr></table><p>
+<p>
+<p>Just as actions can have variables, which are created when the action starts and disappear when it finishes, so activities can also have variables. They are visible to the rules for that activity, and nowhere else. (If the activity should happen a second time within its first run, that second occurrence gets its own copy of the variable, leaving the original untouched.)
+<p>
+<p>Typically it will be useful to set a variable to some default value at the &quot;before&quot; stage, calculate some interesting value for it in the &quot;for&quot; stage, and make use of the outcome during the &quot;after&quot; stage. For instance:
+<p>
+<blockquote><font color="#000080">Analysing something is an activity. The analysing activity has a text called first impression. Instead of examining something (called the sample), carry out the analysing activity with the sample.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before analysing: now the first impression is &quot;unremarkable&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for analysing someone: now the first impression is &quot;living tissue&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After analysing something (called the sample):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Your professional opinion of [the sample] is that it is
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[first impression].&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc286.html STYLE="text-decoration: none">Previous</a> / <a href=doc288.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.5. Volume, Height, Weight</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Swerve left? Swerve right? Or think about it and die?" -->
+<!-- SEARCH SECTION "Ex 232" -->
+<!-- SEARCH SORT "Ex 010-005-232" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc83.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc85.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.5. Volume, Height, Weight</b></td></tr></table><p>
+<p>
+<p>What should fit into what? Inform has basically three sizes: small, person-sized, and room-sized. The difference between &quot;small&quot; and &quot;person-sized&quot; doesn't appear much, but it's the difference between an ordinary container and an enterable container; the fact that a person cannot get inside an ordinary container is one of the few size-related rules built into Inform. It will not object to, say, a fishing rod being put inside a matchbox.
+<p>
+<p>Inform does have one built-in measure of the size of a container: its &quot;capacity&quot;. This is a maximum number of contents:
+<p>
+<blockquote><font color="#000080">The capacity of the rucksack is 3.
+</font></blockquote><p>
+<p>
+<p>This of course allows three anvils, while forbidding four postage stamps. To do better, we need units of measurement, and <b>Dimensions</b> demonstrates setting these up. <b>The Speed of Thought</b>, meanwhile, ventures into the area of unit conversion: having multiple types of unit and being able to express them to the player, or parse these in the player's input.
+<p>
+<p>To be fully realistic in what will fit into what, we need sophisticated three-dimensional models of shapes, both of the items being carried and of the free space remaining inside containers. <b>Depth</b> elegantly simplifies this by approximating items as cuboids, with a given width, length and height: these multiply to give a volume. To fit in a container, a new item's volume must not exceed the volume remaining inside the container, and in addition its three dimensions must also fit in one of the possible arrangements at right angles to the sides. (So this system would indeed prevent a 1x1x100 fishing rod from being put inside a 5x2x1 matchbox, but would also prevent a 12x1x1 pencil from being put into a 10x10x1 box, because it would need to be turned diagonally to fit.)
+<p>
+<p><b>Lead Cuts Paper</b> provides a different constraint: here we do not let light-weight containers hold heavy objects.
+<p>
+<p>Weight comes in a different way into <b>Swerve left? Swerve right? Or think about it and die?</b>, which exploits up/down map connections to work out which way gravity would take a rolling marble.
+<p>
+<a href=Rdoc81.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liquids</b></font></a><i> for containers with liquid capacity</i><p><p>
+<p><hr><p>
+<a name="e423"><a href=Rex423.html#e423 STYLE="text-decoration: none">**<b>Example 247:  Dimensions</b></a><br>This example draws together the previous snippets into a working implementation of the weighbridge.<p>
+<a name="e350"><a href=Rex350.html#e350 STYLE="text-decoration: none">**<b>Example 259:  The Speed of Thought</b></a><br>Describing scientifically-measured objects in units more familiar to the casual audience.<p>
+<a name="e315"><a href=Rex315.html#e315 STYLE="text-decoration: none">*<b>Example 257:  Depth</b></a><br>Receptacles that calculate internal volume and the amount of room available, and  cannot be overfilled.<p>
+<a name="e360"><a href=Rex360.html#e360 STYLE="text-decoration: none">***<b>Example 248:  Lead Cuts Paper</b></a><br>To give every container a breaking strain, that is, a maximum weight of contents which it can bear - so that to put the lead pig into a paper bag invites disaster.<p>
+<!-- EXAMPLE START -->
+<a name="e237"><a href=Rdoc84.html#e237 STYLE="text-decoration: none">*<b><b>Example</b> 232:  Swerve left? Swerve right? Or think about it and die?</b></a><br>Building a marble chute track in which a dropped marble will automatically roll downhill.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have marbles that roll downhill across our map, in a life-size version of one of those marble-chute toys. We might now want to keep track of both compass relationships and which-room-slopes-into-which, so we make a new relation:
+<p>
+<blockquote><font color="#000080">&quot;Swerve left? Swerve right? Or think about it and die?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Overlooking relates various rooms to various rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to overlook (it overlooks, they overlook, it overlooked, it is overlooked, it is overlooking) implies the overlooking relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be spherical or lumpy. A marble is a kind of thing. A marble is always spherical. The player carries a marble called a red marble. The player carries a marble called an agate marble. The player carries a marble called a blue cloudy marble.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Long Yellow Slide is north of the Funnel. The Long Yellow Slide overlooks the Blue Funnel. The Ski-jump is below the Blue Funnel. The Blue Funnel overlooks the Ski-jump. The Ski-jump overlooks the Landing Bowl. The Landing Bowl overlooks the Snake Run. The Landing Bowl is north of the Snake Run. The Snake Run overlooks the Goal. The Snake Run is north of the Goal.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a room is sloping if it overlooks a room.
+</font></blockquote><p>
+<p>
+<p>And let's say we want the player to be allowed to slide, too, since that would be much more fun than just watching the marbles go:
+<p>
+<blockquote><font color="#000080">Understand &quot;sit&quot; as sitting down. Sitting down is an action applying to nothing. Check sitting down: if the player is spherical, say &quot;You are already seated.&quot; Carry out sitting down: now the player is spherical. Report sitting down: say &quot;You sit, ready to slide wherever fate takes you.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the command &quot;stand&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;stand&quot; or &quot;stand up&quot; as standing up. Standing up is an action applying to nothing. Check standing up: if the player is lumpy, say &quot;You are already standing.&quot; Carry out standing up: now the player is lumpy. Report standing up: say &quot;You get to your feet.&quot;
+</font></blockquote><p>
+<p>
+<p>Now a rule to control what happens to all our sliding and rolling objects:
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through spherical things which are in sloping rooms:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the current space be the holder of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the final space be a random room which is overlooked by the current space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player can see the item and the item is a marble, say &quot;[The item] rolls out of the room toward [the final space].[line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player is the item, say &quot;You keep sliding...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the item to the final space;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player can see the item and the item is a marble, say &quot;[The item] rolls into the room from [the current space].[line break]&quot;.
+</font></blockquote><p>
+<p>
+<p>Since the Ski-jump overlooks the Landing Bowl, the marble will be able to fly through the air to its destination, even though there is no map connection to allow the player to cross. We might want to let the player make it across this barrier also, so:
+<p>
+<blockquote><font color="#000080">Instead of jumping in a sloping room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You leap...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to a random room overlooked by the location.
+</font></blockquote><p>
+<p>
+<p>Because overlooking is various-to-various, we could include that element popular in marble chute toys, the splitter:
+<p>
+<blockquote><font color="#000080">The Downhill Splitter is north of the Long Yellow Slide. &quot;The green plastic chute runs downhill towards a Y-junction, forcing incoming marbles right or left.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Downhill Splitter overlooks the Long Yellow Slide and the Purple Snaking Passage. The Purple Snaking Passage is southeast of the Downhill Splitter. The Purple Snaking Passage overlooks the Landing Bowl. The Purple Snaking Passage is above the Landing Bowl.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player is in the Downhill Splitter.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;drop red / drop blue / sit / z / stand up / drop agate / sit / z / z / z / z / z&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc83.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc85.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

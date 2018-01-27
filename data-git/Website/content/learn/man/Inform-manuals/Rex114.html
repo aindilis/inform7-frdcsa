@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.11. Waiting, Sleeping</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Change of Basis" -->
+<!-- SEARCH SECTION "Ex 45" -->
+<!-- SEARCH SORT "Ex 006-011-045" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc38.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc40.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.11. Waiting, Sleeping</b></td></tr></table><p>
+<p>
+<p>The standard WAIT command makes time pass at the same rate that it would anyway - one minute per turn. In a game where events happen at specific times of day, though, we might want to give the player more control. <b>Nine AM Appointment</b> shows how to give the player a WAIT 10 MINUTES command, while <b>Delayed Gratification</b> lets him WAIT UNTIL a specific time of day.
+<p>
+<p>Ordinarily, Inform also refuses to allow the player to SLEEP and WAKE UP: the commands exist, but have no effect. <b>Change of Basis</b> lets the player put himself into a sleep state in which he cannot do anything. A somewhat more interesting expansion on this idea would be to let the player sleep and have dreams; there are no examples specifically of dream states, but we might consult the examples on scenes about how to disrupt one environment and move the player to another, entirely new one.
+<p>
+<a href=Rdoc20.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Scene Changes</b></font></a><i> for ways to move the player to a new environment such as a dream state</i><p><p>
+<p><hr><p>
+<a name="e411"><a href=Rex411.html#e411 STYLE="text-decoration: none">*<b>Example 374:  Nine AM Appointment</b></a><br>A WAIT [number] MINUTES command which advances through an arbitrary number of turns.<p>
+<a name="e412"><a href=Rex412.html#e412 STYLE="text-decoration: none">**<b>Example 375:  Delayed Gratification</b></a><br>A WAIT UNTIL [time] command which advances until the game clock reaches the correct hour.<p>
+<!-- EXAMPLE START -->
+<a name="e114"><a href=Rdoc39.html#e114 STYLE="text-decoration: none">**<b><b>Example</b> 45:  Change of Basis</b></a><br>Implementing sleeping and wakeful states.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to allow the player to go to sleep some of the time:
+<p>
+<blockquote><font color="#000080">&quot;Change of Basis&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person is either awake or asleep. A person is usually awake.
+</font></blockquote><p>
+<p>
+<p>The important thing to note here is that it does not work to say &quot;the player is either asleep or awake&quot;. This is because the player is not necessarily one specific person or thing during the game: the identity of the player can be changed, as we will see later.
+<p>
+<p>So if we want to make rules about the properties of the player, we should attach these rules to the &quot;person&quot; kind (or, if they really need to belong only to the player, to the &quot;player-character&quot; kind). A player-character is a kind of person.
+<p>
+<blockquote><font color="#000080">Linear Algebra Class is a room. &quot;The blackboard is covered with square arrangements of numbers. These are supposed to convey something to you, but mostly you're finding them soporific.&quot;
+</font></blockquote><p>
+<p>
+<p>Now a few rules about changing from one state to the other:
+<p>
+<blockquote><font color="#000080">Instead of sleeping: now the player is asleep; say &quot;You drop off.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something other than waking up, waiting or sleeping when the player is asleep:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ssh! You're sleeping!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of sleeping when the player is asleep:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Zzzz.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waking up when the player is asleep:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player is awake;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You come to suddenly, wiping drool from your lips.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of doing something other than looking or sleeping when the player is awake:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'd really rather just sleep through this.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;wake up / sleep / look / z / sleep / wake up / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc38.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc40.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

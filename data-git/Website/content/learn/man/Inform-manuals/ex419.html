@@ -1,0 +1,184 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.5. Change of properties with values</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Thirst 2" -->
+<!-- SEARCH SECTION "Ex 118" -->
+<!-- SEARCH SORT "Ex 008-005-118" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc125.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc127.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.5. Change of properties with values</b></td></tr></table><p>
+<p>
+<p>Changing properties with values is very similar:
+<p>
+<blockquote><font color="#000080">now the printed name of the Closet is &quot;Suddenly Spooky Closet&quot;
+</font></blockquote><p>
+<p>
+<p>Inform checks three different things to ensure that this change is safe to perform. Firstly, the value must be the right kind for the property in question, so this for instance would be rejected:
+<p>
+<blockquote><font color="#000080">now the printed name of the Closet is 7
+</font></blockquote><p>
+<p>
+<p>Secondly, the object in question has to be allowed to have the given property. This, for instance, would be disallowed:
+<p>
+<blockquote><font color="#000080">now the initial appearance of the Closet is &quot;Dusty&quot;
+</font></blockquote><p>
+<p>
+<p>(since &quot;initial appearance&quot; is a property which only things can have, not rooms). Finally, the object has to actually have the property, not just have the right to have that property. Thus:
+<p>
+<blockquote><font color="#000080">now the printed name of the Closet is &quot;Suddenly Spooky Closet&quot;
+</font></blockquote><p>
+<p>
+<p>...is only permitted if the Closet is designed with a &quot;printed name&quot;. In fact this is certain to be true: all rooms and things automatically have a printed name, which is the short boldface description in the case of rooms, and the usual text briefly describing something in the case of things.
+<p>
+<p>&quot;Now&quot; is a simple way to change many things in Inform, but it's cumbersome to change the map of the model world using &quot;now&quot;, because the map is such a complicated arrangement. (It's not a property: it's a sort of mesh of relations.) So a special phrase exists to change map connections:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change </b>(direction)<b> exit of </b>(room)<b> to </b>(room)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_changeexit -->
+
+<p>This phrase alters the map so that the given map connection is made. Note that connections can be made to rooms, but not doors: the positions of doors are fixed. Example:
+<p>
+<blockquote><font color="#000080">change the east exit of the Closet to the Tsar's Imperial Dining Salon
+</font></blockquote><p>
+<p>
+<p>Since &quot;nothing&quot; is not a room, this doesn't allow us to change the exit to nothing, so there is a separate definition of:
+<p>
+<blockquote><font color="#000080">change the west exit of the Closet to nothing
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change </b>(direction)<b> exit of </b>(room)<b> to nothing</b>/nowhere<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_changenoexit -->
+
+<p>This phrase alters the map so that the given map connection is unmade. Example:
+<p>
+<blockquote><font color="#000080">change the west exit of the Closet to nowhere
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Altering the map itself is not a very subtle way to adjust when and where the player can move - writing suitable rules is usually a cleaner solution - so this phrase is best avoided unless really needed.
+<p>
+<p><hr><p>
+<a name="e418"><a href=ex418.html#e418 STYLE="text-decoration: none">*<b>Example 117:  Thirst</b></a><br>A waterskin that is depleted as the player drinks from it.<p>
+<!-- EXAMPLE START -->
+<a name="e419"><a href=doc126.html#e419 STYLE="text-decoration: none">*<b><b>Example</b> 118:  Thirst 2</b></a><br>A campfire added to the camp site, which can be lit using tinder.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Thirst&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a waterskin. The waterskin can be full, partly drained, or empty. The waterskin is full. Understand &quot;water&quot; as the waterskin.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of drinking the waterskin when the waterskin is empty:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no water left.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of drinking the waterskin: if the waterskin is partly drained, now the waterskin is empty; if the waterskin is full, now the waterskin is partly drained; say &quot;You drink a long draught.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of the waterskin: say &quot; ([waterskin condition])&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Campsite is a room. &quot;It is solid night now, and the stars have come out. Unfamiliar stars. On the other side of the valley -- a valley round-bottomed but shallow, like a soup bowl -- burn other campfires, most likely bandits. Their voices do not carry, but the smoke rises and obscures the starlight over that way.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A sleepsack is an enterable container in the Campsite. &quot;Your sleepsack is laid out in a pocket of sandy soil and coarse grass.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sandy soil, the stars, the distant campfires, and the coarse grass are scenery in the Campsite. Understand &quot;smoke&quot; as the campfires. Instead of listening in the presence of your campfire: say &quot;All you hear are the reassuring snaps and cracks of the sticks in your fire.&quot; Understand &quot;campfires&quot; or &quot;fires&quot; as the distant campfires.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Your campfire is scenery. Instead of pushing, pulling, turning, tasting, or touching your campfire, say &quot;You would burn yourself.&quot; Understand &quot;fire&quot; as your campfire. The description of your campfire is &quot;A reassuring protection against wild animals and cold.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the stars is &quot;You invent constellations for them. The slingshot. The scroll. The heart (upside down).&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going nowhere when the player is in Campsite:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Now is not the time for wandering, alone in the dark. Better to keep here[if your campfire is visible], by the fire[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of singing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You sing, deep and low, a song from home. It is a good night for singing and the song raises your spirits.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a tinderbox. The tinderbox contains a flint, a steel, some tinder, and a patch of carbonized cloth. The description of the flint is &quot;A flat grey stone with flaked edges.&quot; The description of the steel is &quot;Curved so that you can hold it over the knuckles of your right hand and strike it against the flint. There is a knack to it. Those without the knack end up with bloody knuckles and no fire.&quot; The steel is wearable. The description of the tinder is &quot;Dried grass and similar.&quot; The description of the cloth is &quot;The little, precious, spark-preserving scraps without which the fire would never begin.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint when the steel is not worn by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You must wear the steel over your knuckles, in order to hit the flint at the best angle.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint when the steel is worn and the cloth is not in the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Though you strike the flint sharply with the steel and throw sparks, they have nothing to catch on, since the patch of cloth does not lie beneath.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint when the steel is worn and the cloth is in the location and the cloth is not unlit:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The patch of cloth has already caught.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking the flint:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the cloth is glowing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You strike the flint against the steel and throw sparks onto the patch of cloth; they make tiny circles of orange there, which will only prosper if blown into flame.&quot;
+</font></blockquote><p>
+<p>
+<p>Realistically, we ought to attach a randomization to this so that each step of the fire-starting has a good chance of failure. But because our player may not be as patient as someone who actually needs a fire started, we allow him to succeed the first time in every case.
+<p>
+<blockquote><font color="#000080">Ignition is a kind of value. The ignitions are whole, fading, glowing, flaming. A thing has an ignition.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Blowing on is an action applying to one thing. Understand &quot;breathe on [something]&quot; or &quot;blow on [something]&quot; as blowing on.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of blowing on the whole cloth:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no point, since no sparks have caught there.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of blowing on the fading cloth:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the cloth is flaming;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You blow on the faint sparks on the cloth and turn them into the beginnings of flame.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of burning the whole tinder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the cloth is not flaming:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The patch of cloth must catch flame before you can light anything with it.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the tinder is flaming;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the cloth from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You light the tinder with the patch of cloth, and have the elements of a fire.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the cloth is flaming or the cloth is whole:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the ignition of the cloth is the ignition before the ignition of the cloth;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Now the patch of cloth is [ignition of the cloth].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some kindling is in the campsite.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of burning the whole kindling:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the tinder is not flaming:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You need the tinder to be flaming, first.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the tinder from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the kindling from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the campfire to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You succeed in lighting yourself a proper campfire.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the printed name of Campsite is &quot;By The Campfire&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / drink water / i / drink water / i / wear steel / get flint / get cloth / drop cloth / get tinder / hit flint / blow on cloth / burn tinder / burn kindling / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc125.html STYLE="text-decoration: none">Previous</a> / <a href=doc127.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

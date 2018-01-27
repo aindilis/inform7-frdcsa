@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.3. Clothing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bogart" -->
+<!-- SEARCH SECTION "Ex 234" -->
+<!-- SEARCH SORT "Ex 009-003-234" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc69.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc71.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.3. Clothing</b></td></tr></table><p>
+<p>
+<p>A person can wear any (portable) thing which has the &quot;wearable&quot; property. (This property seldom needs to be quoted because it is deduced automatically from sentences like &quot;Trevor wears a red hat.&quot;)
+<p>
+<p>In most traditional IF, clothing is only used when it is exceptional in some way. That is, we ignore the three to eight different garments most people are wearing at any given time - the everyday clothes which people wear without thinking about them - and only simulate the unexpected extras: a borrowed jaunty red hat, a radiation-proof space suit, and so on.
+<p>
+<p>These unusual garments turn up only occasionally in play and usually one at a time, so Inform does not normally provide rules to restrict how much or little is worn, or in what unlikely combinations. <b>Get Me to the Church on Time</b> categorises clothing by body area (trousers for lower body, shirts for upper); <b>Bogart</b> by layer, distinguishing underwear from outer garments. <b>What Not To Wear</b> combines both into a general-purpose system adequate for most kinds of clothing situations.
+<p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for a simple mirror implementation, which could be adapted to reflect what the player is currently wearing</i><p><p>
+<p><b>Hayes Code</b> is a somewhat stripped down version.
+<p>
+<p>Clothes are normally single things which have no function other than display and concealment, but <b>Being Prepared</b> gives them pockets which act as containers, and <b>Some Assembly Required</b> allows clothes to be stitched together from pieces of cloth.
+<p>
+<p><hr><p>
+<a name="e112"><a href=Rex112.html#e112 STYLE="text-decoration: none">***<b>Example 44:  Get Me to the Church on Time</b></a><br>Using kinds of clothing to prevent the player from wearing several pairs of trousers at the same time.<p>
+<!-- EXAMPLE START -->
+<a name="e85"><a href=Rdoc70.html#e85 STYLE="text-decoration: none">***<b><b>Example</b> 234:  Bogart</b></a><br>Clothing for the player that layers, so that items cannot be taken off in the wrong order, and the player's inventory lists only the clothing that is currently visible.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We have two things to keep track of with our layering clothing: what currently is covering something else; and what <i>can</i> cover something else. This implementation goes for a fairly simple treatment, assuming that each item of clothing will completely conceal those beneath it, and that we are not implementing entire sets of shirts, jackets, etc. But it will do for a demonstration.
+<p>
+<blockquote><font color="#000080">&quot;Bogart&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Clothing Behavior
+</font></blockquote><p>
+<p>
+<p>First we make our relation to represent what *is* underneath another item:
+<p>
+<blockquote><font color="#000080">Underlying relates one thing to various things. The verb to underlie (it underlies, they underlie, it is underlying, it is underlaid) implies the underlying relation. The verb to be under implies the underlying relation.
+</font></blockquote><p>
+<p>
+<p>And now we prevent taking a lower layer off before the thing that is worn over it:
+<p>
+<blockquote><font color="#000080">Before taking off something which underlies something (called the impediment) which is worn by the player:
+<br>say &quot;(first removing [the impediment])[command clarification break]&quot;;
+<br>silently try taking off the impediment;
+<br>if the noun underlies something which is worn by the player, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check taking off:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun underlies something (called the impediment) which is worn by the player, say &quot;[The impediment] is in the way.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out taking off:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is not underlaid by anything.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking off something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are now wearing [a list of uppermost things worn by the player].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is uppermost if it is not under something.
+</font></blockquote><p>
+<p>
+<p>That covers order of clothing removal, but we also want to restrict what can be worn on top of what else. This time we need Inform to have some idea of what customarily can be layered on top of what other clothing:
+<p>
+<blockquote><font color="#000080">Overlying relates one thing to various things. The verb to overlie (it overlies, they overlie, it is overlying) implies the overlying relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Covering relates a thing (called A) to a thing (called B) when the number of steps via the overlying relation from A to B is greater than 0. The verb to cover (it covers, they cover, it is covering) implies the covering relation.
+</font></blockquote><p>
+<p>
+<p>With these definitions, we can say that a jacket should go over a shirt and a shirt over an undershirt (say), and then Inform will know that a jacket will cover both shirt and undershirt.
+<p>
+<blockquote><font color="#000080">Before wearing something when something (called the impediment) which covers the noun is worn by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;while the player wears something which covers the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first removing [the impediment])[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;silently try taking off the impediment;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player is wearing the impediment, stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out wearing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun covers something (called the hidden item) worn by the player, now the hidden item underlies the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of looking under something which is worn by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something (called the underwear) underlies the noun, say &quot;You peek at [the underwear]. Yup, still there.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Just you in there.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You're carrying [a list of things carried by the player][if the player wears something]. You are wearing [a list of uppermost things worn by the player][end if].&quot;
+</font></blockquote><p>
+<p>
+<p>Notice that our inventory only describes the things that the player can see as the upper layer of clothing.
+<p>
+<blockquote><font color="#000080">Section 2 - The Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Trailer is a room. &quot;A full-length mirror is the main amenity in here, and that suits you just fine.&quot;  The full-length mirror is scenery in the Trailer. Instead of examining or searching the mirror, try taking inventory.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears a fedora, a jacket, a shirt, some undershorts, an undershirt, some slacks, a pair of socks, and a pair of shoes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The shirt underlies the jacket. The pair of socks underlies the pair of shoes. The undershorts underlie the slacks. The undershirt underlies the shirt.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The jacket overlies the shirt. The shoes overlie the socks. The slacks overlie the undershorts. The shirt overlies the undershirt.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x mirror / remove fedora / remove jacket / remove shirt / remove slacks / remove undershirt / remove shoes / remove socks / remove shorts / remove undershorts&quot;.
+</font></blockquote><p>
+<p>
+<p>If we further wanted to prevent the player from taking off clothes in inappropriate places, we might add something like this:
+<p>
+<blockquote><font color="#000080">Instead of taking off something in the presence of someone who is not the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are far too modest to strip in public.&quot;
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e426"><a href=Rex426.html#e426 STYLE="text-decoration: none">**<b>Example 242:  What Not To Wear</b></a><br>A general-purpose clothing system that handles a variety of different clothing items layered in different combinations over different areas of the body.<p>
+<a name="e183"><a href=Rex183.html#e183 STYLE="text-decoration: none">*<b>Example 325:  Hays Code</b></a><br>Clark Gable in a pin-striped suit and a pink thong.<p>
+<a name="e298"><a href=Rex298.html#e298 STYLE="text-decoration: none">*<b>Example 54:  Being Prepared</b></a><br>A kind for jackets, which always includes a container called a pocket.<p>
+<a name="e341"><a href=Rex341.html#e341 STYLE="text-decoration: none">*<b>Example 319:  Some Assembly Required</b></a><br>Building different styles of shirt from component sleeves and collars.<p>
+<p><hr><p><a href=Rdoc69.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc71.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

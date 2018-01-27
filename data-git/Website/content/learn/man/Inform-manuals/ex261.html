@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.12. Actions as conditions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Night Sky" -->
+<!-- SEARCH SECTION "Ex 147" -->
+<!-- SEARCH SORT "Ex 009-012-147" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc152.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc154.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.12. Actions as conditions</b></td></tr></table><p>
+<p>
+<p>There are two ways that descriptions of actions can be used as conditions. First, we can simply describe an action, and then the condition will be true if that is what the player is trying to do, and not otherwise:
+<p>
+<blockquote><font color="#000080">if taking a container, ...
+</font></blockquote><p>
+<p>
+<p>This is actually an abbreviation for the longer, some would say preferable form:
+<p>
+<blockquote><font color="#000080">if we are taking a container, ...
+</font></blockquote><p>
+<p>
+<p>Secondly, we can talk about the past as well as the present, which is very useful since interactive fiction often contains situations which are changed by earlier events.
+<p>
+<blockquote><font color="#000080">Instead of waiting when we have taken the lantern, say &quot;No, your acquisitive nature is roused now, and simply waiting will no longer do.&quot;
+</font></blockquote><p>
+<p>
+<p>More on the past tense later follows in the next section: note that &quot;we are taking&quot; has become &quot;we have taken&quot;. For the rule to apply, it is not enough that the action &quot;taking the lantern&quot; has been tried: it must have succeeded.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e261"><a href=doc153.html#e261 STYLE="text-decoration: none">*<b><b>Example</b> 147:  Night Sky</b></a><br>A room which changes its description depending on whether an object has been examined.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Sometimes a nice effect is to change the way things are described depending on the information the player has gained in the course of play. We could for instance write this:
+<p>
+<blockquote><font color="#000080">&quot;Night Sky&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Planetarium is a room. &quot;[if we have examined the sinister message]A dark room where it seems something is about to jump out at you![otherwise]A tranquil dark room with a ceilingful of stars.[end if]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sinister message is a thing in the Planetarium. &quot;A message is taped to the wall.&quot; The description is &quot;'BEWARE.'&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / x message / look&quot;.
+</font></blockquote><p>
+<p>
+<p>On the other hand, beware that this would not work as desired:
+<p>
+<blockquote><font color="#000080">&quot;Night Sky&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Planetarium is a room. &quot;[if we have listened to the sinister message]A dark room where it seems something is about to jump out at you![otherwise]A tranquil dark room with a ceilingful of stars.[end if]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sinister message is a thing in the Planetarium. &quot;A message plays very softly, so that you would have to listen to hear it.&quot; Instead of doing anything other than listening to the message: say &quot;It's only a sound, after all.&quot;. Instead of listening to the sinister message: say &quot;A voice whispers, 'BEWARE'.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;listen to message / look&quot;.
+</font></blockquote><p>
+<p>
+<p>The reason is that our Instead rule has pre-empted normal listening, so Inform considers that we have never successfully heard the message. The moral here is that &quot;if we have...&quot; is useful for tracking events that otherwise proceeded completely normally (picking up ordinary objects, examining things); if we have used instead to make some change, we will have to use a different approach to record that the event did occur as scheduled.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e253"><a href=ex253.html#e253 STYLE="text-decoration: none">***<b>Example 148:  Zero</b></a><br>A box which called "horribly heavy box" after the player has tried to take it the first time.<p>
+<p><hr><p><a href=doc152.html STYLE="text-decoration: none">Previous</a> / <a href=doc154.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

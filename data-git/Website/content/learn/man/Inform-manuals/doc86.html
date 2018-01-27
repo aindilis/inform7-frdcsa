@@ -1,0 +1,57 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.1. What are descriptions?</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "What are descriptions?" -->
+<!-- SEARCH SECTION "6.1" -->
+<!-- SEARCH SORT "006-001-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc85.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc87.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.1. What are descriptions?</b></td></tr></table><p>
+<p>
+<p>It is in describing circumstances that Inform really capitalises on the concise, expressive power of natural language, and this chapter brings together the facts about &quot;descriptions&quot;.
+<p>
+<p>The simplest descriptions consist of a noun alone. Some refer to single things (&quot;lantern&quot;, or &quot;wine cask&quot;), others to kinds of thing (&quot;dead end&quot; or &quot;container&quot;). But we have also seen adjectives alone:
+<p>
+<blockquote><font color="#000080">The oaken desk is <b>fixed in place</b>.
+</font></blockquote><p>
+<p>
+<p>Here, &quot;fixed in place&quot; is a description which, to Inform's simple-minded grammar, is a single adjective. And of course adjectives and nouns can be combined:
+<p>
+<blockquote><font color="#000080">The cargo trunk is an <b>openable container</b>.
+</font></blockquote><p>
+<p>
+<p>The description &quot;openable container&quot; consists of the noun &quot;container&quot;, meaning a kind of thing, and the adjective &quot;openable&quot;, which means one of the two possible states of an either/or property held by that thing.
+<p>
+<p>As the next chapter will show, rules also make great use of descriptions:
+<p>
+<blockquote><font color="#000080">Instead of throwing <b>something</b> at a <b>closed openable door</b>, say &quot;Or you could just use the handle like anyone else, of course.&quot;
+</font></blockquote><p>
+<p>
+<p>We have already seen that we can list the items fitting a given description:
+<p>
+<blockquote><font color="#000080">&quot;You look down at [the list of <b>things in the basket</b>].&quot;
+</font></blockquote><p>
+<p>
+<p>It's also sometimes convenient to count them up:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>number of </b>(description of values)<b></b> ... <i>number</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_numberof -->
+
+<p>This phrase counts the number of values matching the description, which may of course be 0. Example:
+<p>
+<blockquote><font color="#000080">number of open doors
+</font></blockquote><p>
+<p>
+<p>produces the number of doors, anywhere in the model world, which are currently open. A Problem message is produced if the number is potentially infinite, or impractical to count: for instance, Inform rejects &quot;number of odd numbers&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>It is because descriptions are so widely useful that they deserve a chapter of their own, and this is it.
+<p>
+<p><hr><p><a href=doc85.html STYLE="text-decoration: none">Previous</a> / <a href=doc87.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

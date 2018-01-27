@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.10. Commands consisting only of nouns</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Misadventure" -->
+<!-- SEARCH SECTION "Ex 295" -->
+<!-- SEARCH SORT "Ex 016-010-295" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc268.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc270.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.10. Commands consisting only of nouns</b></td></tr></table><p>
+<p>
+<p>In every example so far, and in almost all practical cases, the first word in a command which results in an action will be something fixed: a verb, in fact. When we write
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [something]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<p>we are saying that the first word of such a command will always be &quot;photograph&quot;. Occasionally, though, we would like to understand a noun as a command, perhaps in a situation where the command is obvious. If we say:
+<p>
+<blockquote><font color="#000080">Understand &quot;[something]&quot; as examining.
+</font></blockquote><p>
+<p>
+<p>then the command &quot;examine&quot; will be implicit when the player types a bare noun:
+<p>
+<blockquote><font color="#000080">A red box and a blue ball are here.
+<br>> BALL
+<br>The blue ball is plaited from many small leather patches.
+</font></blockquote><p>
+<p>
+<p>so that the command &quot;ball&quot; has resulted in the action &quot;examining the blue ball&quot;.
+<p>
+<p>This is a feature which should be used sparingly, since it could easily lead to confusion if not carefully explained to the player. By default, it is not used at all.
+<p>
+<p>It also has what may be a serious limitation: verbless commands like this work only when typed by the player as actions to follow - they do not work as instructions for other people. So for instance SVEN, BALL would not ask Sven to try examining the ball - instead it would generate the action &quot;answering ball to Sven&quot;. (This is because the Inform parser decides whether PERSON, SOME TEXT is a request or just conversation by looking at the first word after the comma to see if it's a command.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e89"><a href=doc269.html#e89 STYLE="text-decoration: none">*<b><b>Example</b> 295:  Misadventure</b></a><br>A going by name command which does respect movement rules, and accepts names of rooms as commands.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The original Adventure allowed the player to type the names of rooms in order to move to them, and it is now not too difficult for us to do the same. Adventure restricted this option to adjacent rooms, but we might want to be a bit more flexible, so we will accept any room:
+<p>
+<blockquote><font color="#000080">&quot;Misadventure&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Plover Room is a room. &quot;You're in a small chamber lit by an eerie green light. An extremely narrow tunnel exits to the west. A dark corridor leads northeast.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Dark Corridor is northeast of Plover Room. Plover Room is south of the Dark Corridor. The printed name of the Dark Corridor is &quot;Dark Room&quot;. The description of the Dark Corridor is &quot;You're in the dark-room. A corridor leading south is the only exit.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Alcove is west of Plover Room. &quot;You are in an alcove. A small northwest path seems to widen after a short distance. An extremely tight tunnel leads east. It looks like a very tight squeeze. An eerie light can be seen at the other end.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Northwest of the Alcove is the Misty Cavern. The description of Misty Cavern is &quot;You are following a wide path around the outer edge of a large cavern. Far below, through a heavy white mist, strange splashing noises can be heard. The mist rises up through a fissure in the ceiling. The path exits to the south and west.&quot; West of Misty Cavern is the Alcove.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;[any room]&quot; as going by name. Understand &quot;go to [any room]&quot; as going by name.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Going by name is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<p>We should reject movement to the player's current location, or to anywhere he hasn't been and can't see:
+<p>
+<blockquote><font color="#000080">Check going by name:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is the location, say &quot;You're already in [the location].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not adjacent and the noun is unvisited, say &quot;That noun did not make sense in this context.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>The assumption here is that the player does know the names of the rooms adjacent to his current location, even if he hasn't been there yet.
+<p>
+<p>Now for the travel itself. The simplest way to ensure that the usual movement rules will still apply is to convert GO BY NAME into a GO action, and here the best route comes to our aid:
+<p>
+<blockquote><font color="#000080">Carry out going by name:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let aim be the best route from the location to the noun, using doors;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if aim is not a direction, say &quot;You can't think how to get there from here.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(heading [aim])[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try going aim;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the location is not the noun, say &quot;You'll have to stop here.&quot;
+</font></blockquote><p>
+<p>
+<p>This will allow the player to travel toward rooms he has already visited even if they are several moves away.
+<p>
+<p>Finally, so that the player can also use the names of doors as commands:
+<p>
+<blockquote><font color="#000080">Understand &quot;[door]&quot; as entering.
+</font></blockquote><p>
+<p>
+<p>And in keeping with the original, we might add to our scenario a rule or two about restrictions on movement, just to test that it's all working right:
+<p>
+<blockquote><font color="#000080">The player carries a plover egg and a platinum pyramid. The description of the egg is &quot;Plover's eggs, by the way, are quite large.&quot; The printed name of the egg is &quot;emerald the size of a plover's egg&quot;. Understand &quot;emerald&quot; as the egg. The description of the pyramid is &quot;The platinum pyramid is 8 inches on a side!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going to the Plover Room from the Alcove when the player carries something which is not the plover egg:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Something you're carrying won't fit through the tunnel with you. You'd best take inventory and drop something.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;go to misty cavern / go to dark corridor / go to plover room / go to alcove / go to dark corridor / drop pyramid / go to dark corridor / g / go to alcove / g / go to misty cavern&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e227"><a href=ex227.html#e227 STYLE="text-decoration: none">**<b>Example 296:  Safari Guide</b></a><br>The same functionality, but making the player continue to move until he reaches his destination or a barrier, handling all openable doors on the way.<p>
+<p><hr><p><a href=doc268.html STYLE="text-decoration: none">Previous</a> / <a href=doc270.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

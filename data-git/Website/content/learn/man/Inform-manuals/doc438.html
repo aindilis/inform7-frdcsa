@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.21. Inform 6 variables, properties, actions, and attributes</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Inform 6 variables, properties, actions, and attributes" -->
+<!-- SEARCH SECTION "25.21" -->
+<!-- SEARCH SORT "025-021-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc437.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc439.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.21. Inform 6 variables, properties, actions, and attributes</b></td></tr></table><p>
+<p>
+<p>I7's variables are usually compiled as entries in an array rather than as I6 variables. However, we can instead tell Inform to use an existing I6 variable (either one that we declare ourselves, or one in the I6 template layer). For example:
+<p>
+<blockquote><font color="#000080">Room description style is a kind of value. The room description styles are Brief, Verbose and Superbrief.
+<br>The current room description style is a room description style that varies.
+<br>The current room description style variable translates into I6 as &quot;lookmode&quot;.
+</font></blockquote><p>
+<p>
+<p>I7's properties are compiled sometimes as I6 properties, sometimes as I6 attributes, sometimes as bits in a bitmap somewhere. However, we can override I7 by telling it that one of its property names is equivalent to an already-existing I6 property or attribute: if so then I7 will use that name and will not compile any directive to create it. For example:
+<p>
+<blockquote><font color="#000080">The switched on property translates into I6 as &quot;on&quot;.
+<br>The initial appearance property translates into I6 as &quot;initial&quot;.
+</font></blockquote><p>
+<p>
+<p>We do not need to translate &quot;switched off&quot;, the opposite to &quot;switched on&quot;: I7 will now compile this to &quot;~on&quot;.
+<p>
+<p>Lastly, actions can also be translated (though it's usually better to translate their rules instead and invent new I7 actions covering them):
+<p>
+<blockquote><font color="#000080">The unlocking it with action translates into I6 as &quot;Unlock&quot;.
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc437.html STYLE="text-decoration: none">Previous</a> / <a href=doc439.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

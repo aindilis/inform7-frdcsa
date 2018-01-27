@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.5. Combat and Death</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Red Cross" -->
+<!-- SEARCH SECTION "Ex 191" -->
+<!-- SEARCH SORT "Ex 007-005-191" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc50.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc52.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.5. Combat and Death</b></td></tr></table><p>
+<p>
+<p>Not all characters are friendly, and there are times when we may want to include a fight sequence. There are a number of ways to approach this, depending on whether we want to offer the player a random outcome, a predetermined one, or a combat sequence that depends partly on strategy or on having the proper equipment.
+<p>
+<p><b>Lanista 1</b> demonstrates randomized combat in the style of a role-playing game. The player has a partially random chance of doing any given amount of damage; both the player and his opponent have hit points, and whichever one runs out first dies. <b>Lanista 2</b> continues this idea, but includes weapons that affect the amount of of damage done. <b>Red Cross</b> by itself implements a command that we might use to find out how strong characters are at the moment.
+<p>
+<p>A word of warning about designing such sequences: a player who gets a roll he doesn't like always has the option of UNDOing a turn and re-rolling. This means that he can always win a random battle sooner or later; bad luck only means that it takes him longer (so he gets more bored and irritated as he plays through). It is possible to turn off UNDO implementation with
+<p>
+<blockquote><font color="#000080">Use UNDO prevention.
+</font></blockquote><p>
+<p>
+<p>...but there is a good chance that this will irritate players in itself. Role-playing-style combat scenarios need careful design, lest they actively make a game less fun.
+<p>
+<p>In a slightly more realistic setting, combat leaves physical remains behind, unless we're wielding some kind of futuristic weapon that evaporates our opponents entirely: <b>Puff of Orange Smoke</b> demonstrates characters who leave corpses behind when they die, while <b>Technological Terror</b> more tamely explodes robots into numerous component parts.
+<p>
+<p>Finally, we can imagine some scenarios in which, instead of allowing characters to strike at each other for random damage, we want to introduce an element of strategy. <b>Don Pedro's Revenge</b> shows the rudiments of a system in which the characters can make different kinds of attack depending on where they are in a room filled with perches, barrels, and other swashbuckler props.
+<p>
+<a href=Rdoc92.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Saving and Undoing</b></font></a><i> for more discussion of handling random behavior in games</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e104"><a href=Rdoc51.html#e104 STYLE="text-decoration: none">*<b><b>Example</b> 191:  Red Cross</b></a><br>A DIAGNOSE command which allows the player to check on the health of someone.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Red Cross&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Diagnosing is an action applying to one visible thing. Understand &quot;diagnose [something]&quot; as diagnosing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check diagnosing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a person, say &quot;Only people can have diagnoses.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out diagnosing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You're not a medical expert.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of diagnosing the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You feel fine!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Clinic is a room. Fred is a man in the Clinic. The player carries a tongue-depressor.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;diagnose me / diagnose fred / diagnose tongue-depressor&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e210"><a href=Rex210.html#e210 STYLE="text-decoration: none">*<b>Example 130: Lanista 1</b></a><br>Very simple randomized combat in which characters hit one another for a randomized amount of damage.<p>
+<a name="e211"><a href=Rex211.html#e211 STYLE="text-decoration: none">**<b>Example 282: Lanista 2</b></a><br>Randomized combat in which the damage done depends on what weapons the characters are wielding, and in which an ATTACK IT WITH action is created to replace regular attacking. Also folds a new DIAGNOSE command into the system.<p>
+<a name="e303"><a href=Rex303.html#e303 STYLE="text-decoration: none">**<b>Example 201:  Puff of Orange Smoke</b></a><br>A system in which every character has a body, which is left behind when the person dies; attempts to do something to the body are redirected to the person while the person is alive.<p>
+<a name="e313"><a href=Rex313.html#e313 STYLE="text-decoration: none">***<b>Example 127:  Technological Terror</b></a><br>A ray gun which destroys objects, leaving their component parts behind.<p>
+<a name="e283"><a href=Rex283.html#e283 STYLE="text-decoration: none">***<b>Example 113:  Don Pedro's Revenge</b></a><br>Combat scenario in which the player's footing and position changes from move to move, and the command prompt also changes to reflect that.<p>
+<p><hr><p><a href=Rdoc50.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc52.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

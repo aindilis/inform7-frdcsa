@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.9. Televisions and Radios</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Channel 1" -->
+<!-- SEARCH SECTION "Ex 304" -->
+<!-- SEARCH SORT "Ex 009-009-304" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc75.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc77.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.9. Televisions and Radios</b></td></tr></table><p>
+<p>
+<p>IF authors often provide clues or background information to the player by means of radio broadcasts, TV shows or video tapes because they can talk to the player without needing to listen back, or to react to what the player does. The simplest radio set, like the one in <b>Aftershock</b>, really only has one thing to say: which is serendipitously being broadcast just at the moment the player tunes in (regardless of when that is). The next simplest approach is to spool a broadcast on an endless loop taking several turns to play through, as in <b>Radio Daze</b>.
+<p>
+<p>Televisions come in all shapes and sizes, and <b>Aspect</b> allows their shape (&quot;aspect ratio&quot;) to be described by the player.
+<p>
+<p>In <b>Channel 1</b>, we can also refer to the television by what it is currently showing: thus WATCH CHANNEL 4 will work if the set is indeed tuned to 4. In <b>Channel 2</b>, numbered channel changing is taken further: we can now TUNE TV TO CHANNEL 3, as well. <b>Channel 2</b> is a reasonable base implementation of a television for many purposes.
+<p>
+<p><hr><p>
+<a name="e2"><a href=Rex2.html#e2 STYLE="text-decoration: none">***<b>Example 323:  Aftershock</b></a><br>Modifying the rules for examining a device so that all devices have some specific behavior when switched on, which is described at various times.<p>
+<a name="e311"><a href=Rex311.html#e311 STYLE="text-decoration: none">*<b>Example 66:  Radio Daze</b></a><br>A radio that produces a cycle of output using varying text.<p>
+<a name="e16"><a href=Rex16.html#e16 STYLE="text-decoration: none">*<b>Example 300:  Aspect</b></a><br>Understanding aspect ratios (a unit) in the names of televisions.<p>
+<!-- EXAMPLE START -->
+<a name="e72"><a href=Rdoc76.html#e72 STYLE="text-decoration: none">**<b><b>Example</b> 304: Channel 1</b></a><br>Understanding channels (a number) in the names of televisions.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We might want to allow every television to be tuned to a channel (a number property) which the player could refer to, so that
+<p>
+<blockquote><font color="#000080">WATCH CHANNEL 13
+<br>TURN OFF CHANNEL 4
+</font></blockquote><p>
+<p>
+<p>would be directed to the appropriate television object, if any television is turned on and tuned to the correct station. We might now write:
+<p>
+<blockquote><font color="#000080">&quot;Channel&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A television is a kind of device. A television has a number called the channel. Understand the channel property as referring to a television. Understand &quot;channel&quot; as a television.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Office is a room. The widescreen TV is a television in the Office. The fifties TV is a television in the Office.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Changing the channel of it to is an action applying to one thing and one number.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;tune [something] to [number]&quot; or &quot;change channel of [something] to [number]&quot; as changing the channel of it to.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check changing the channel of something to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a television, say &quot;[The noun] cannot be tuned to a channel.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out changing the channel of something to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the channel of the noun is the number understood.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report changing the channel of something to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You tune [the noun] to channel [number understood].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a television:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is switched off, say &quot;[The noun] is currently turned off.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the chosen channel be the channel of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the chosen channel is a current channel listed in the Table of Television Channels:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose row with current channel of the chosen channel in the Table of Television Channels;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[output entry][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Snow fills the screen of [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Television Channels
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">current channel</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">output</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;The screen of [the noun] is completely black.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;A gloomy female news anchor describes the latest car bomb in Baghdad: 104 dead today, and no sign of change.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;A couple of contestants in spangled scarlet outfits are performing an energetic paso doble.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">13</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;On-screen, Ichiro is up to bat with one man on second and no outs.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;change channel of fifties tv to 4 / x channel 4 / switch on fifties / x channel 4 / switch on widescreen / tune fifties tv to 5 / x channel 5 / x fifties tv / x channel 4&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e73"><a href=Rex73.html#e73 STYLE="text-decoration: none">***<b>Example 307: Channel 2</b></a><br>Understanding channels (a number) in the names of televisions, with more sophisticated parsing of the change channel action.<p>
+<p><hr><p><a href=Rdoc75.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc77.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

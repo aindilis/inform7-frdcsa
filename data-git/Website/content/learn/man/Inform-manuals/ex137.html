@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.10. Action variables</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Removal" -->
+<!-- SEARCH SECTION "Ex 198" -->
+<!-- SEARCH SORT "Ex 012-010-198" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc195.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc197.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.10. Action variables</b></td></tr></table><p>
+<p>
+<p>For some complex situations, it can be useful to keep track of a few values throughout the processing of the action. This is not an everyday occurrence: in the Standard Rules, for instance, only two or three out of 90 actions need to do this. But suppose we want to write a more deluxe version of our &quot;photographing&quot; action. This time, rather than having a single thing called the &quot;camera&quot;, we will provide a whole range of possible cameras, varying in quality:
+<p>
+<blockquote><font color="#000080">Photographing is an action applying to one visible thing and requiring light. Understand &quot;photograph [something]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Studio is a room. Sally is a woman in the Studio. A foam-lined tote bag is in the Studio.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A camera is a kind of thing. A camera has a number called picture quality. The digital SLR camera is a camera in the tote bag. The player carries a camera called the instant one-shot camera. The picture quality of the SLR camera is 10. The picture quality of the one-shot is 2. Definition: a camera is sharp if its picture quality is 5 or more.
+</font></blockquote><p>
+<p>
+<p>And we will want the photographing action to have the player use the best-quality camera which comes to hand. We will give the action a variable called the 'camera photographed with', thus:
+<p>
+<blockquote><font color="#000080">The photographing action has an object called the camera photographed with.
+</font></blockquote><p>
+<p>
+<p>Every action's variables must be named differently from those of all other actions, because there are some &quot;before&quot; rules (for instance) which take effect for many different actions, and which might need access to any of their variables. So action variables should be named in a way marking out to which action they belong. The best way to do this is to include the past participle of the action name - just as &quot;camera photographed with&quot; contains the past participle &quot;photographed&quot; of the action &quot;photographing&quot;.
+<p>
+<p>This value is created when the action begins, and disappears when the action ends. (If the action should happen a second time before the first time was completed, a second copy of the value is created, leaving the original undisturbed.) When the action begins, the value starts out as something neutral - so if it is a number, it starts out as 0, if a text, it starts out as the blank text &quot;&quot;, and so on. Here it is an object, so it starts out as nothing - the value meaning no object at all. But of course we want to give it a value ourselves. We can do that using the &quot;setting action variables&quot; rulebook. For instance:
+<p>
+<blockquote><font color="#000080">Setting action variables for photographing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the camera photographed with is the sharpest camera which is carried by the actor.
+</font></blockquote><p>
+<p>
+<p>The &quot;setting action variables&quot; rulebook is run through before even the before rules, and it has no power to stop or change the action. Its rules should say nothing and do nothing other than to set rulebook variables like this one. Note that it is intended to work for any actor, not only the player: so rather than referring to the player as the performer of the action, we need to write &quot;the actor&quot;, as in the example above. (See subsequent sections for more on actors.)
+<p>
+<p>We can now write rules such as:
+<p>
+<blockquote><font color="#000080">A check photographing rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the camera photographed with is nothing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can hardly photograph without a camera, now can you?&quot; instead.
+</font></blockquote><p>
+<p>
+<p>Only rules to do with the photographing action - before, instead, after, check, carry out, or report rules, and so on - are allowed to see the 'camera photographed with' value: it's the private property of the action.
+<p>
+<p>A further elaboration allows us to make rules about photographing neater to write. If we create our variable like so:
+<p>
+<blockquote><font color="#000080">The photographing action has an object called the camera photographed with (matched as &quot;using&quot;).
+</font></blockquote><p>
+<p>
+<p>...then we are now allowed to add an optional 'using ...' clause onto a description of the action. The clause has to be introduced with a single word: here, it's 'using'. For instance, we could write rules such as
+<p>
+<blockquote><font color="#000080">Instead of photographing something using the one-shot camera:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;But you promised to give this to Sally's nephew.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check photographing something using the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;That would require some sort of contraption with mirrors.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report photographing something using a sharp camera:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You feel cool and important as the shutter clicks.&quot;
+</font></blockquote><p>
+<p>
+<p>(This is the method used by the Standard Rules to attach optional clauses such as 'to', 'with' and 'through' to the going action.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e137"><a href=doc196.html#e137 STYLE="text-decoration: none">*<b><b>Example</b> 198:  Removal</b></a><br>TAKE expanded to give responses such as "You take the book from the shelf." or "You pick up the toy from the ground."<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose that we want to change the reporting of &quot;take&quot; so that the player is always told something like &quot;You take the book from the shelf.&quot; or &quot;You pick up the toy from the ground.&quot; In order to generate these reports, we will need to know where the object started, even though by the time we are printing the output, the object will have moved.
+<p>
+<blockquote><font color="#000080">&quot;Removal&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pharmacy is a room. A desk and a trash can are in the Pharmacy. The pill-counter, a prescription, and a computer are on the desk. The computer is fixed in place. The pill-counter contains some Vicodin. The trash can contains an empty box.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The taking action has an object called previous locale (matched as &quot;from&quot;).
+</font></blockquote><p>
+<p>
+<p>The previous locale could in theory be either a thing or a room, so we make it &quot;an object&quot; -- that is, the most generic possible kind, to which both things and rooms belong. Now we record what the previous locale is at the beginning of each taking action:
+<p>
+<blockquote><font color="#000080">Setting action variables for taking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now previous locale is the holder of the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking something from the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You pick up [the noun] from the ground.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You take [the noun] from [the previous locale].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get all&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e159"><a href=ex159.html#e159 STYLE="text-decoration: none">*<b>Example 199:  Further Reasons Why All Poets Are Liars</b></a><br>The young William Wordsworth, pushing a box about in his room, must struggle to achieve a Romantic point of view.<p>
+<a name="e338"><a href=ex338.html#e338 STYLE="text-decoration: none">*<b>Example 200:  The Second Oldest Problem</b></a><br>Adapting the going action so that something special can happen when going from a dark room to another dark room.<p>
+<a name="e303"><a href=ex303.html#e303 STYLE="text-decoration: none">**<b>Example 201:  Puff of Orange Smoke</b></a><br>A system in which every character has a body, which is left behind when the person dies; attempts to do something to the body are redirected to the person while the person is alive.<p>
+<a name="e98"><a href=ex98.html#e98 STYLE="text-decoration: none">***<b>Example 202:  Croft</b></a><br>Adding special reporting and handling for objects dropped when the player is on a supporter, and special entering rules for moving from one supporter to another.<p>
+<p><hr><p><a href=doc195.html STYLE="text-decoration: none">Previous</a> / <a href=doc197.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

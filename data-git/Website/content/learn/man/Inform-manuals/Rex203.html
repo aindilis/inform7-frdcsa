@@ -1,0 +1,177 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.5. Dice and Playing Cards</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Jokers Wild" -->
+<!-- SEARCH SECTION "Ex 264" -->
+<!-- SEARCH SORT "Ex 009-005-264" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc71.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc73.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.5. Dice and Playing Cards</b></td></tr></table><p>
+<p>
+<p>Most toys are single things, and no harder to create than any other small items, but games often require a multitude of tokens to be combined, and this can be logistically tricky.
+<p>
+<p>The classic example is a pack of playing cards, where the player must individually control 52 items but without fussy commands or verbose text being printed back. <b>Jokers Wild</b> provides a simple &quot;one card at a time&quot; approach; <b>Tilt 1</b> is more sophisticated, with 52 independently accessible cards; <b>Tilt 2</b> can further judge the value of a selection of cards - the ranking of a poker hand.
+<p>
+<p>Drawing cards from a shuffled pack is only one source of randomness. Games of chance also involve items drawn from a bag: <b>Wonka's Revenge</b> provides just such a lottery. More often, dice are thrown. A single die is easy enough:
+<p>
+<blockquote><font color="#000080">The die is carried by the player. After dropping the die: say &quot;It lands with [a random number from 1 to 6] uppermost.&quot; Understand &quot;roll [something]&quot; as dropping.
+</font></blockquote><p>
+<p>
+<p>Quick, but not very good. Most dice games involve rolling more than one die at a time, to get a more interesting distribution of outcomes: they may also involve special rules applying to doubles, for instance. See <b>Do Pass Go</b>.
+<p>
+<a href=Rdoc97.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Typography</b></font></a><i> for on-screen notations for chess and card games</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e203"><a href=Rdoc72.html#e203 STYLE="text-decoration: none">**<b><b>Example</b> 264:  Jokers Wild</b></a><br>A deck of cards which can be shuffled and dealt from.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want a deck of cards which the player can shuffle and draw from. Our first (rather tedious) task is merely to set up the deck as a table:
+<p>
+<blockquote><font color="#000080">&quot;Jokers Wild&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Suit is a kind of value. The suits are hearts, clubs, diamonds, and spades.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Cards
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">suit</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">value</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">6</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">7</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">8</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">9</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">11</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">12</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">diamonds</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">13</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">6</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">7</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">8</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">9</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">11</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">12</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">spades</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">13</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">6</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">7</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">8</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">9</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">11</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">12</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">hearts</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">13</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">6</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">7</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">8</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">9</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">11</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">12</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">clubs</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">13</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>We're going to describe the higher numbers as face cards, so it helps to write a new &quot;to say&quot; phrase.
+<p>
+<blockquote><font color="#000080">To say (count - a number) as a card value:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row with a value of count in the Table of Value Names;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[term entry]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Value Names
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">value</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">term</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;ace&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;deuce&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">3</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;three&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;four&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;five&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">6</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;six&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">7</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;seven&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">8</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;eight&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">9</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;nine&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;ten&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">11</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;jack&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">12</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;queen&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">13</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;king&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>Now we get the shuffling of the deck from &quot;sort in random order&quot;, so:
+<p>
+<blockquote><font color="#000080">Understand &quot;shuffle&quot; as shuffling. Shuffling is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out shuffling:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sort the Table of Cards in random order;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You expertly rearrange the cards.&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sort the Table of Cards in random order.
+</font></blockquote><p>
+<p>
+<p>This will continue to work properly even as the deck is partially depleted. Speaking of which, suppose we want the player to be able to toss the cards one-by-one into a hat. They are going to need to be removed from the deck, so:
+<p>
+<blockquote><font color="#000080">Understand &quot;toss&quot; or &quot;toss a card&quot; or &quot;toss card&quot; as tossing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Tossing is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check tossing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of filled rows in the Table of Cards is 0, say &quot;The deck is empty.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out tossing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Cards:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let new value be value entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let new suit be suit entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You throw the [value entry as a card value] of [suit entry] at the top hat, and [if a random chance of 1 in 3 succeeds]hit[otherwise]miss[end if].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blank out the whole row;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<p>If we wanted to simulate a slightly more stimulating game, we could instead have a second table to represent the player's hand of cards and record each card drawn. That would get long for the purposes of example, however, so instead we will just admit that the player's life is an empty husk of existence:
+<p>
+<blockquote><font color="#000080">The Empty Room is a room. &quot;It has come to this: sitting on the bare floor of Lulu's apartment with nothing to amuse you but a deck of cards and the top hat from last year's act. You reckon [the number of filled rows in the Table of Cards in words] cardtosses are all that stand between you and the utter pointlessness of existence.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Once again you curse Lulu for running off with that joker.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player is carrying the deck of cards. The top hat is an open container in the Empty Room. It is scenery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;toss / again / again / again / again / again / again / again&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e377"><a href=Rex377.html#e377 STYLE="text-decoration: none">***<b>Example 306: Tilt 1</b></a><br>A deck of cards with fully implemented individual cards, which can be separately drawn and discarded, and referred to by name.<p>
+<a name="e378"><a href=Rex378.html#e378 STYLE="text-decoration: none">***<b>Example 389: Tilt 2</b></a><br>A deck of cards with fully implemented individual cards; when the player has a full poker hand, the inventory listing describes the resulting hand accordingly.<p>
+<a name="e228"><a href=Rex228.html#e228 STYLE="text-decoration: none">*<b>Example 175: Wonka's Revenge</b></a><br>A lottery drum which redistributes the tickets inside whenever the player spins it.<p>
+<a name="e109"><a href=Rex109.html#e109 STYLE="text-decoration: none">*<b>Example 129:  Do Pass Go</b></a><br>A pair of dice which can be rolled, and are described with their current total when not carried, and have individual scores when examined.<p>
+<p><hr><p><a href=Rdoc71.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc73.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

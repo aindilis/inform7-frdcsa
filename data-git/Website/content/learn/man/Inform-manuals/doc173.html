@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.6. If</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "If" -->
+<!-- SEARCH SECTION "11.6" -->
+<!-- SEARCH SORT "011-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc172.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc174.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.6. If</b></td></tr></table><p>
+<p>
+<p>Inform's most powerful phrases are those which control the others, making them repeat, or be skipped.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>if </b>(a condition)<b> , </b>(a phrase)<b></b><br><i>or:</i> <b>if </b>(a condition)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_if -->
+
+<p>This phrase causes the single phrase, or block of phrases, following it to be obeyed only if the condition is true. (If the condition must contain a comma for some reason, the block form should be used.) Example:
+<p>
+<blockquote><font color="#000080">if the red door is open, say &quot;You could try going east?&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The sense of an &quot;if&quot; can be reversed by using the word &quot;unless&quot; instead:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>unless </b>(a condition)<b> , </b>(a phrase)<b></b><br><i>or:</i> <b>unless </b>(a condition)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_unless -->
+
+<p>This phrase causes the single phrase, or block of phrases, following it to be obeyed only if the condition is false. (If the condition must contain a comma for some reason, the block form should be used.) Example:
+<p>
+<blockquote><font color="#000080">unless the red door is closed, say &quot;You could try going east?&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>&quot;Unless&quot; is clearly unnecessary, but it can be a good way to make the source text easier for humans to read.
+<p>
+<p>As we have seen, there are many different forms of condition in Inform. They usually take a form quite like an assertion sentence, except that they're questions and not statements of fact. For example:
+<p>
+<blockquote><font color="#000080">if the score is 10, ...
+<br>if all of the people are in the Atrium, ...
+</font></blockquote><p>
+<p>
+<p>Questions like this are checked by Inform to see if they make sense. The following doesn't, for instance:
+<p>
+<blockquote><font color="#000080">if 10 is a door, say &quot;Huzzah!&quot;;
+</font></blockquote><p>
+<p>
+<p>This produces the baffled reply:
+<p>
+<blockquote><font color="#000080"><b>Problem.</b> In the line 'if 10 is a door, say &quot;Huzzah!&quot;' <img border=0 src=images/Reveal.png>, I can't determine whether or not '10 is a door', because it seems to ask if a number is some sort of door.
+</font></blockquote><p>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>Previous builds allowed the form:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>if </b>(a condition)<b> then </b>(a phrase)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_if_dep -->
+
+<p>This phrase is now deprecated and is exactly equivalent to:
+<p>
+<blockquote><font color="#000080">if (a condition), (a phrase)
+</font></blockquote><p>
+<p>
+<p>Use a comma instead of &quot;then&quot;, or else use a block.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc172.html STYLE="text-decoration: none">Previous</a> / <a href=doc174.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

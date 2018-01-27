@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.14. Phrase options</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Phrase options" -->
+<!-- SEARCH SECTION "11.14" -->
+<!-- SEARCH SORT "011-014-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc180.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc182.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.14. Phrase options</b></td></tr></table><p>
+<p>
+<p>There are sometimes several slightly different ways to perform a given task but which have substantially the same definition. In the following example:
+<p>
+<blockquote><font color="#000080">To go hiking, into the woods or up the mountain:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if into the woods, say &quot;Watch out for badgers.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if up the mountain, say &quot;Better take your compass.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You go hiking.&quot;
+</font></blockquote><p>
+<p>
+<p>...a phrase has been set up which can be used in three ways:
+<p>
+<blockquote><font color="#000080">go hiking;
+<br>go hiking, into the woods;
+<br>go hiking, up the mountain;
+</font></blockquote><p>
+<p>
+<p>Note that commas must be used to divide these &quot;phrase options&quot; from the rest of the text of the phrase. Within the definition of the phrase, the option's name is a valid condition, and
+<p>
+<blockquote><font color="#000080">if up the mountain, ...
+</font></blockquote><p>
+<p>
+<p>tests whether it is set; we can also test if it is not set using:
+<p>
+<blockquote><font color="#000080">if not up the mountain, ...
+</font></blockquote><p>
+<p>
+<p>A more substantial example from the Standard Rules is given by a phrase used mostly for internal, technical reasons:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>list the contents of </b>(object)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_listcontents -->
+
+<p>This phrase produces a list of all things whose holder is the given object, according to Inform's traditional conventions for room descriptions and inventory listings. Example:
+<p>
+<blockquote><font color="#000080">list the contents of Marley Wood, as a sentence, with newlines
+<br>and including all contents;
+</font></blockquote><p>
+<p>
+<p>Where this is possible, it's generally better to use &quot;[list of things in ...]&quot; instead, which produces the same result in an acceptable way for the middle of a sentence.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Note that this phrase is allowed to have multiple options specified, whereas &quot;go hiking&quot; above was not: this is because it was defined thus:
+<p>
+<blockquote><font color="#000080">To list the contents of (something - an object), with newlines, indented, as a sentence, including contents, including all contents, giving inventory information, giving brief inventory information, using the definite article, listing marked items only, prefacing with is/are, not listing concealed items, suppressing all articles and/or with extra indentation: ...
+</font></blockquote><p>
+<p>
+<p>The significant difference is the word &quot;and/or&quot; instead of &quot;or&quot;, which signals that more than one option can apply at a time.
+<p>
+<p><hr><p>
+<a name="e126"><a href=ex126.html#e126 STYLE="text-decoration: none">**<b>Example 177:  Equipment List</b></a><br>Overview of all the phrase options associated with listing, and examples of how to change the inventory list into some other standard formats.<p>
+<p><hr><p><a href=doc180.html STYLE="text-decoration: none">Previous</a> / <a href=doc182.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

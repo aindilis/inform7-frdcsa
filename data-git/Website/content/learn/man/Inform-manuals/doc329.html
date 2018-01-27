@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.9. Rulebook variables</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Rulebook variables" -->
+<!-- SEARCH SECTION "18.9" -->
+<!-- SEARCH SORT "018-009-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc328.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc330.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.9. Rulebook variables</b></td></tr></table><p>
+<p>
+<p>When a rulebook is intended to perform some complicated task or calculation, it is sometimes useful for earlier rules to be able to leave information which will help later ones.
+<p>
+<p>For instance, suppose we want a rulebook which is intended to print out the player's current aptitude. We will suppose that this is a number from 0 upwards: the higher, the apter. The player gets bonus aptitude marks for achievements, but marks deducted for accidents, and so on. Moreover, we want to design this system so that it's easy to add further rules. The natural solution is to have a number which varies (or 'variable') acting as the running aptitude total: it should start at 0 and be altered up or down by subsequent rules. First, we should make the rulebook, and then add a variable:
+<p>
+<blockquote><font color="#000080">Aptitude is a rulebook. The aptitude rulebook has a number called the aptitude mark.
+</font></blockquote><p>
+<p>
+<p>The new value 'aptitude mark' is shared by the rules of the rulebook: nobody else can see it. It is created at the start of the rulebook being followed, and destroyed at the end. (If the rulebook should be followed a second time inside of itself, a new copy is created which does not disturb the old one.) So, in this case, 'aptitude mark' is started as 0 (since it is a number) each time the aptitude rules run. We can then write whatever rules we please to modify it:
+<p>
+<blockquote><font color="#000080">An aptitude rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if in darkness:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;decrease the aptitude mark by 3.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An aptitude rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if we have taken the idol:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increase the aptitude mark by 10.
+</font></blockquote><p>
+<p>
+<p>And we had better do something with the result:
+<p>
+<blockquote><font color="#000080">The last aptitude rule: say &quot;Your aptitude rating is [aptitude mark].&quot;
+</font></blockquote><p>
+<p>
+<p>A rulebook can have any number of variables like this. They behave much like &quot;let&quot; values except that they last for a whole rulebook, not an individual rule or To phrase definition. (Well, strictly speaking they are accessible not just to the rules which belong to the rulebook, but also to any rules which previously belonged to the rulebook but were kicked out by means of an explicit rule-listing sentence. This is good because otherwise they will suddenly cause problem messages when unlisted.)
+<p>
+<p><hr><p><a href=doc328.html STYLE="text-decoration: none">Previous</a> / <a href=doc330.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

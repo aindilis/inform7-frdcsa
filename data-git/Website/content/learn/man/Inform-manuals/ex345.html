@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.17. Visible vs touchable vs carried</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Slogar's Revenge" -->
+<!-- SEARCH SECTION "Ex 214" -->
+<!-- SEARCH SORT "Ex 012-017-214" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc202.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc204.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.17. Visible vs touchable vs carried</b></td></tr></table><p>
+<p>
+<p>To recap, actions are created like so:
+<p>
+<blockquote><font color="#000080">Photographing is an action applying to one visible thing and requiring light.
+<br>Depositing it in is an action applying to two things.
+<br>Taking inventory is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<p>Actions can involve up to two different things. We can place additional requirements on any of these things by describing them as a &quot;visible thing&quot;, &quot;touchable thing&quot; or &quot;carried thing&quot;. (If we simply say &quot;thing&quot; or &quot;things&quot;, as in the second example, Inform assumes the requirement to be &quot;touchable&quot;.) These three conditions are increasingly strong:
+<p>
+<p>- To be &quot;visible&quot;, something needs only to be possible to refer to by the player, which in practice means that it must be visible to the player-character. The noun or second noun produced by any action resulting from a command at the keyboard will always satisfy this minimal condition.
+<p>
+<p>- To be &quot;touchable&quot;, the player-character must be able to physically touch the thing in question: this normally means that it must be in the same room, and there must be no physical barriers in between.
+<p>
+<p>- To be &quot;carried&quot;, the player-character must (directly) carry the thing in question. (But if the player types a command using an action requiring something &quot;carried&quot;, like WEAR HAT, the thing in question - the hat - will sometimes be picked up automatically. This is called &quot;implicit taking&quot;, and results in text like &quot;(first taking the top hat)&quot; being printed.)
+<p>
+<p>If an action involves two things, they need not have the same requirement as each other:
+<p>
+<blockquote><font color="#000080">Waving it at is an action applying to one carried thing and one visible thing.
+</font></blockquote><p>
+<p>
+<p>Thus to &quot;wave magic wand at banyan tree&quot;, the player must be holding the wand, but need only be able to see the tree.
+<p>
+<p>Note one special case. Requirements on touchability are waived in the case of &quot;try&quot; actions applied to people other than the player where the things they would need to touch are doors or backdrops. (This is a compromise to avoid difficulties arising from the ambiguous locations of such items.)
+<p>
+<p><hr><p>
+<a name="e223"><a href=ex223.html#e223 STYLE="text-decoration: none">**<b>Example 213:  Eddystone</b></a><br>Creating new commands involving the standard compass directions.<p>
+<!-- EXAMPLE START -->
+<a name="e345"><a href=doc203.html#e345 STYLE="text-decoration: none">***<b><b>Example</b> 214:  Slogar's Revenge</b></a><br>Creating an amulet of tumblers that can be used to lock and unlock things even when it is worn, overriding the usual requirement that keys be carried.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Under most circumstances, locking and unlocking require the player to be carrying the key he uses to unlock something. This makes sense -- unless the key is on a keychain, or on a chain around his neck, for instance. So here we explore one way to circumstantially override the carrying requirements, while still making sure that the player cannot unlock the door if the unlocking tool is nowhere in sight.
+<p>
+<p>In essence, we are rewriting the carrying requirements rule with a different one of our own devising, and swapping it in only at those moments when it is correct to do so.
+<p>
+<blockquote><font color="#000080">&quot;Slogar's Revenge&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Procedural rule for locking something with the Amulet of Tumblers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;substitute the amulet carrying rule for the carrying requirements rule.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Procedural rule for unlocking something with the Amulet of Tumblers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;substitute the amulet carrying rule for the carrying requirements rule.
+</font></blockquote><p>
+<p>
+<p>We can now replace the usual behavior of the carrying requirements rule (to check whether the player is carrying something and, if not, to generate an implicit take) with a similar rule of our own; note that &quot;if the player has the second noun&quot; is a more compact way to write &quot;if the player carries the second noun or the player wears the second noun&quot;:
+<p>
+<blockquote><font color="#000080">This is the amulet carrying rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player has the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first picking up the amulet)[command clarification break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try silently taking the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is not carrying the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop the action;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Daunting Dungeon is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">West of the Daunting Dungeon is the Disturbing Door. The Disturbing Door is a door. West of the Disturbing Door is the Fallow Field.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Disturbing Door is closed and locked.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears the Amulet of Tumblers. The Amulet of Tumblers unlocks the Disturbing Door.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;unlock disturbing door with amulet / open door / west / remove amulet / close door / lock disturbing door with amulet / drop amulet / unlock disturbing door with amulet&quot;.
+</font></blockquote><p>
+<p>
+<p>For a more systematic handling of the keychain problem (and a number of other refinements to the behavior of doors), see the Locksmith extension included with Inform.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc202.html STYLE="text-decoration: none">Previous</a> / <a href=doc204.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.4. Standard tokens of grammar</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Shawn's Bad Day" -->
+<!-- SEARCH SECTION "Ex 283" -->
+<!-- SEARCH SORT "Ex 016-004-283" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc262.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc264.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.4. Standard tokens of grammar</b></td></tr></table><p>
+<p>
+<p>We have already seen &quot;[something]&quot; and &quot;[someone]&quot;, which are standard examples of &quot;tokens of grammar&quot; - patterns matched by suitable named things. There are several other standard tokens, provided not so much from necessity but to allow the game parser to be more graceful and responsive. &quot;[someone]&quot; matches the same possibilities as &quot;[a person]&quot; would, but the parser handles it a little better in cases of failure. These special tokens are best explained by looking at some of the examples in the standard grammar, which can be browsed in the Index of any game.
+<p>
+<blockquote><font color="#000080">Understand &quot;wear [something preferably held]&quot; as wearing.
+</font></blockquote><p>
+<p>
+<p>Here we expect that the named item will be one that is held by the player, and the parser will use this to resolve ambiguities between names of things carried and not carried. (If the action is one which positively requires that its noun be something carried, such as &quot;eating&quot;, then a command matching this token against something not carried will generate an automatic attempt to take it.)
+<p>
+<blockquote><font color="#000080">Understand &quot;take [things]&quot; as taking.
+<br>Understand &quot;drop [things preferably held]&quot; as dropping.
+</font></blockquote><p>
+<p>
+<p>&quot;[things]&quot; is like &quot;[something]&quot; but allows a list of items, or a vague plural like &quot;all&quot;, to be typed. The result will be a sequence of actions, one for each item thus described. &quot;[things preferably held]&quot; is the analogous token for &quot;[something preferably held]&quot;.
+<p>
+<blockquote><font color="#000080">Understand &quot;take [things inside] from [something]&quot; as removing.
+</font></blockquote><p>
+<p>
+<p>&quot;[things inside]&quot; matches only what is inside the second-named thing, and ensures that (for instance) the command &quot;take all from box&quot; does not also try to take the box.
+<p>
+<blockquote><font color="#000080">Understand &quot;put [other things] in/inside/into [something]&quot; as inserting it into.
+</font></blockquote><p>
+<p>
+<p>Similarly, &quot;[other things]&quot; will allow anything except the second-named thing. (Like &quot;[things inside]&quot; it is really only needed for handling containers.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e254"><a href=doc263.html#e254 STYLE="text-decoration: none">*<b><b>Example</b> 283:  Shawn's Bad Day</b></a><br>Allowing the player to EXAMINE ALL.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>We can add the handling of multiple objects to an existing action simply by adding in a line of grammar using &quot;[things]&quot;. In response, Inform will consider every object accepted by the token, and perform the action once for each of those objects. Thus:
+<p>
+<blockquote><font color="#000080">&quot;Shawn's Bad Day&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Treasury is a room. The vault is a lockable locked closed openable container in the Treasury. It is fixed in place. &quot;A massive vault fills up one wall.&quot; The description is &quot;The vault's system includes [a list of things which are part of the vault].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A little green light, a little blue light, a little red light, a thin black pane of glass, a laser beam, a retinal scanner, a thumbprint ID plate, a dial, and a large lever are part of the vault.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The security guard is a man in the Treasury. The description is &quot;His name is Shawn, and he doesn't look happy.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the green light is &quot;Off.&quot; The description of the blue light is &quot;Tranquilly on.&quot; The description of the red light is &quot;Angrily flashing.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;examine [things]&quot; as examining.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine all&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e219"><a href=ex219.html#e219 STYLE="text-decoration: none">***<b>Example 284:  The Left Hand of Autumn</b></a><br>The possibility of using a [things] token opens up some interesting complications, because we may want actions on multiple items to be reported differently from actions on just one. Here we look at how to make a multiple examination command that describes groups in special ways.<p>
+<p><hr><p><a href=doc262.html STYLE="text-decoration: none">Previous</a> / <a href=doc264.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

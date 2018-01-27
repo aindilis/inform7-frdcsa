@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.7. Relations in groups</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Relations in groups" -->
+<!-- SEARCH SECTION "13.7" -->
+<!-- SEARCH SORT "013-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc213.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc215.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.7. Relations in groups</b></td></tr></table><p>
+<p>
+<p>Finally, there is a kind of relation which binds even more strongly.
+<p>
+<blockquote><font color="#000080">Nationality relates people to each other in groups.
+</font></blockquote><p>
+<p>
+<p>This is a kind of relation which divides people up: we might wish to have all the Icelandic people related to each other, all the Peruvians to each other, and so on. If there were a Pacific island called Informia with one inhabitant, then that person would be related only to himself. As time goes by, we could imagine people emigrating, and so on, so that these groupings would switch: perhaps everyone would leave Belgium and, for a while, there would be no Belgian nationals at all.
+<p>
+<p><hr><img border=&quot;0&quot; src=images/testing.png id=&quot;testoval&quot; style=&quot;height:31px; width=40px&quot;>The testing command RELATIONS prints out the current state of all the relations created in the source code. For instance:
+<p>
+<blockquote><font color="#000080">>relations
+<br>Overlooking relates various rooms to various rooms:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The Pub  >=>  the Garden
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The Garden  >=>  the Shrubbery
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The Shrubbery  >=>  the Sundial Plot
+<br>Friendship relates people to each other:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Wickham  &lt;=&gt;  Sophie
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Charlotte  &lt;=&gt;  Sophie
+<br>Marriage relates one person to another:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Mr Wickham  ==  Sophie
+</font></blockquote><p>
+<p>
+<p>That can produce a lot of output. To see only a single relation, or to see it at some intermediate point in a calculation, there's also a testing phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>show relation </b>(relation of values to values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_showrelation -->
+
+<p>This phrase is for testing purposes only. It shows the current state of the named relation, that is, it shows which values relate to which other ones, where it's possible to do this in any sensible way.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>But this is a phrase - not a typed command.
+<p>
+<p><hr><p>
+<a name="e384"><a href=ex384.html#e384 STYLE="text-decoration: none">*<b>Example 227:  Transmutations</b></a><br>A machine that turns objects into other, similar objects.<p>
+<a name="e326"><a href=ex326.html#e326 STYLE="text-decoration: none">***<b>Example 228:  Otranto</b></a><br>A kind of rope which can be tied to objects and used to anchor the player or drag items from room to room.<p>
+<p><hr><p><a href=doc213.html STYLE="text-decoration: none">Previous</a> / <a href=doc215.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

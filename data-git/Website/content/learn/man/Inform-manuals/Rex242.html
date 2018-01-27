@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.6. Plot Management</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Fate Steps In" -->
+<!-- SEARCH SECTION "Ex 209" -->
+<!-- SEARCH SORT "Ex 004-006-209" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc21.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc23.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.6. Plot Management</b></td></tr></table><p>
+<p>
+<p>A plot manager (sometimes called a drama manager) is a piece of the program whose job it is to plan out events so that, whatever the player does, the story advances and an interesting narrative results. The plot manager might, for instance, decide that the player has wandered around for too many scenes without making any progress, and might compensate by making something happens that gives him a new hint on his current problem. It might trigger characters to act when it thinks the story should be reaching a crisis point. It might introduce new complications when it determines that the player is running out of problems to solve.
+<p>
+<p>This is a theoretically challenging field. Sophisticated plot management requires that the game make difficult guesses, such as whether the player is &quot;stuck&quot; and what the player is working on right now. The advantage of using such a system is that (done very well) it makes the story extremely responsive to the player's behavior, which means that he is a real agent in the unwinding of the plot. It also contributes to the replayability, since trying the game a second or third time will produce quite different outcomes. But it is procedurally difficult to design a good plot management system and it requires a huge amount of content, as well: in order for the plot manager to give the player hints, change the course of events to suit his focus, and so on, the game has to have available many, many more scenes than will ever occur in any single playing.
+<p>
+<p><b>Fate Steps In</b> is only a <i>very</i> brief sketch in this direction, one in which the &quot;fate&quot; entity is trying to accomplish an end goal and, every turn, looks for ways to push the game towards that conclusion, whatever the player does.
+<p>
+<a href=Rdoc61.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Goal-Seeking Characters</b></font></a><i> for alternate ways to make characters act on their own</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e242"><a href=Rdoc22.html#e242 STYLE="text-decoration: none">***<b><b>Example</b> 209:  Fate Steps In</b></a><br>Fate entity which attempts to make things happen, by hook or by crook, including taking preliminary actions to set the player up a bit.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>One of the nice things about before rules for actions is that they allow us to express some planning for characters other than the player: we've already seen how this works, a bit. But we could also use before rules to write plans for an abstract story-driving entity, rather than for other individual characters. This story-driver could be in charge of all the non-player characters, as well as spontaneous or natural changes in the environment, shaping the narrative around the player's behavior.
+<p>
+<p>The following example is a very simple one, but the same concept could be worked out in a great deal more complexity, with all sorts of alternative procedures available to our story-manager:
+<p>
+<blockquote><font color="#000080">&quot;Fate Steps In&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Fate is a woman. After deciding the scope of the player: place Fate in scope. The description of Fate is &quot;Not smiling.&quot; Instead of doing something other than examining to fate: say &quot;As if.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn: try fate tripping.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Tripping is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone tripping:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something dangerous (called the trap) is in the location:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Lise chooses this moment to lick her fingers -- it's not gross, it's natural, you decide -- stand up, and head for the door. Unfortunately, her path crosses directly over [the trap]. There is a vaudevillesque moment where you try to warn or catch her; the next moment she's on the floor, looking shocked and also in quite a lot of pain. 'I'm not sure,' she says to you steadily but with unfocused gaze, 'but I think I might have broken my tailbone.'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Well, she's paying attention to you now&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone tripping when the location does not contain a dangerous thing: try the person asked making a mess instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Making a mess is an action applying to nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone making a mess:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let calamitous object be a random visible supporter which supports at least three things;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if calamitous object is a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The calamitous object] tips over, spilling [the list of things on calamitous object] all over the place.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the calamitous object to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now every thing on the calamitous object is in the location.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is dangerous if it is not the carton and it is not the table and it is not a person.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone making a mess when a safe supporter (called target) is visible:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if Lise carries something, try Lise putting a random thing carried by Lise on the target instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of someone making a mess when the tray is on the table:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Just at that moment, a large blond man-thing in a red jacket walks more or less through you, and you come into violent contact with the table, knocking [the list of the things on the table] onto the floor.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every thing on the table is in the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every thing on the tray is in the location instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a supporter is safe if the number of things on it is less than two.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">McQuerry Dining Hall is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The table is scenery in the dining hall. The table is a supporter.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Lise Fitzwallace is a woman in the Dining Hall. &quot;Lise is at the nearest table, not apparently paying any attention to you.&quot; The description of Lise is &quot;A capella singer, women's rugby champion, general object of attention from all genders. Unlikely to notice you unless fate smiles broadly.&quot; Lise carries a fork, a napkin, an empty glass, and a plate of half-eaten eggplant parmesan.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Lise putting something on something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Lise, still deep in thought, absently puts [the noun] on [the second noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The carrying capacity of the player is 2. The carton of chocolate milk is in the Hall. &quot;There's a carton of milk beside you, which you set down for a moment -- but you do want it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking something when the player carries the tray:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You've got both hands full with this tray.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries the tray. On the tray is some macaroni and some overdone chicken. The macaroni and the chicken are edible. The tray is portable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get milk / put tray on table / get milk&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test again with &quot;drop tray&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc21.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc23.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.4. Barter and Exchange</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bribery" -->
+<!-- SEARCH SECTION "Ex 378" -->
+<!-- SEARCH SORT "Ex 007-004-378" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc49.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc51.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.4. Barter and Exchange</b></td></tr></table><p>
+<p>
+<p>By default, Inform characters are a bit grudging about giving and sharing objects: they react with disinterest when they're shown things and refuse everything they're offered.
+<p>
+<p>If we'd like to change this, we can simply remove the default &quot;block giving&quot; rule, as in
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in the check giving it to rules.
+</font></blockquote><p>
+<p>
+<p>If we do this, giving items to characters will have the result of moving our possessions to the other person's inventory. Of course, without more customization, the player may not ever be able to persuade the other character to return his possessions. <b>Bribery</b> demonstrates a scenario in which a character will accept gifts if they are interesting to him, and respond with a changed attitude to the player.
+<p>
+<p><b>Barter Barter</b> expands further on this by allowing other characters to trade things with one another.
+<p>
+<a href=Rdoc31.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Modifying Existing Commands</b></font></a><i> for ways to allow the player to give or show things that he isn't currently holding</i><p><p>
+<a href=Rdoc43.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Actions on Multiple Objects</b></font></a><i> for an implementation of giving that allows the player to offer multiple objects at once, where their combined value determines whether they are accepted</i><p><p>
+<a href=Rdoc71.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Money</b></font></a><i> for ways to keep track of cash flow, physical money objects, and price negotiations</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e170"><a href=Rdoc50.html#e170 STYLE="text-decoration: none">**<b><b>Example</b> 378:  Bribery</b></a><br>A GIVE command that gets rid of Inform's default refusal message in favor of something a bit more sophisticated.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>If we want to rewrite the functionality of a command that usually ends with a &quot;block...&quot; rule, we will have to begin by turning the blocking off.
+<p>
+<blockquote><font color="#000080">&quot;Bribery&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in the check giving it to rules.
+</font></blockquote><p>
+<p>
+<p>As it happens, correct behavior is built into the GIVE command once &quot;block giving&quot; is turned off, so we do not have to write a replacement report or carry-out rule; the object will be transferred to the possession of the caterpillar. But we do want to adjust the action just a little so that our gift cheers up the recipient:
+<p>
+<blockquote><font color="#000080">Carry out giving (this is the gratitude for gifts rule): improve the mood of the second noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Mood is a kind of value. The moods are hostile, suspicious, indifferent, friendly, and adoring. An animal has a mood. An animal is usually indifferent.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To improve the mood of (character - an animal):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the mood of character is less than friendly, now the mood of the character is the mood after the mood of the character.
+</font></blockquote><p>
+<p>
+<p>Now whenever we give something to an animal, the animal will be pleased about the present. Of course, we might also want to add a check rule to giving, to see whether the offering is something the recipient really wants:
+<p>
+<blockquote><font color="#000080">Check giving (this is the polite refusal of unwanted objects rule):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;unless the noun interests the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] disdainfully refuses [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether (item - a thing) interests (character - a person):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the character has the item, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the item is edible, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of showing something to someone:
+<br>try giving the noun to the second noun.
+</font></blockquote><p>
+<p>
+<p>There is already a perfectly workable report rule that will describe what happens when we give something to someone, but let's say we want to report on the recipient's changed mood, too:
+<p>
+<blockquote><font color="#000080">After giving something to someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You give [the noun] to [the second noun], who appears mollified and is now merely [mood of the second noun].&quot;
+</font></blockquote><p>
+<p>
+<p>And the rest is all scenario:
+<p>
+<blockquote><font color="#000080">The Leafy Branch is a room. &quot;You stand on smooth bark dappled by sunlight. The scent-trail runs forward to home.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The branch continues forward and backward from here, and a stem extends forward-up.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going south in Leafy Branch, say &quot;You must not back down! The scent trail leads onward!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Very Hungry Caterpillar is a hostile animal in the Leafy Branch. &quot;[The Caterpillar] looks [mood].&quot; Instead of examining the Caterpillar, say &quot;[The caterpillar] appears [mood].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries an edible thing called a peanut crumb. The carrying capacity of the player is 1. After taking something, say &quot;You lift [the noun], though it is nearly your own size.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going north in the presence of a hostile caterpillar:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The Caterpillar] moves to block your exit, glaring down at you with all the bristles on its skin extended to full size.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going north in the presence of a suspicious caterpillar:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The Caterpillar] moves to block your exit, though it might allow you past if you offered further tribute.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Leaf Face is above the branch. &quot;The smooth and shiny surface of the leaf extends forward from here, but you have lost the scent-trail. This is not the way home.&quot;  The pear fragment is an edible thing in Leaf Face. The dead aphid is a thing in Leaf Face.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Twig is north of Leafy Branch. &quot;The scent-trail is weak but not entirely gone, and you pursue it faithfully...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After going to the Twig:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The scent-trail is weak but not entirely gone, and you pursue it faithfully...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story finally.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;forward-up&quot; as up. Understand &quot;forward&quot; as north. Understand &quot;backward&quot; as south.  Understand &quot;backward-down&quot; as down.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;forward / give crumb to caterpillar / forward / forward-up / get aphid / get fragment / down / give aphid to caterpillar / drop aphid / forward-up / get fragment / down / give fragment / forward&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e23"><a href=Rex23.html#e23 STYLE="text-decoration: none">***<b>Example 207:  Barter Barter</b></a><br>Allowing characters other than the player to give objects to one another, accounting for the possibility that some items may not be desired by the intended recipients.<p>
+<p><hr><p><a href=Rdoc49.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc51.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

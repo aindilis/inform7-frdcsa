@@ -1,0 +1,119 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.5. Combat and Death</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Puff of Orange Smoke" -->
+<!-- SEARCH SECTION "Ex 201" -->
+<!-- SEARCH SORT "Ex 007-005-201" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc50.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc52.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.5. Combat and Death</b></td></tr></table><p>
+<p>
+<p>Not all characters are friendly, and there are times when we may want to include a fight sequence. There are a number of ways to approach this, depending on whether we want to offer the player a random outcome, a predetermined one, or a combat sequence that depends partly on strategy or on having the proper equipment.
+<p>
+<p><b>Lanista 1</b> demonstrates randomized combat in the style of a role-playing game. The player has a partially random chance of doing any given amount of damage; both the player and his opponent have hit points, and whichever one runs out first dies. <b>Lanista 2</b> continues this idea, but includes weapons that affect the amount of of damage done. <b>Red Cross</b> by itself implements a command that we might use to find out how strong characters are at the moment.
+<p>
+<p>A word of warning about designing such sequences: a player who gets a roll he doesn't like always has the option of UNDOing a turn and re-rolling. This means that he can always win a random battle sooner or later; bad luck only means that it takes him longer (so he gets more bored and irritated as he plays through). It is possible to turn off UNDO implementation with
+<p>
+<blockquote><font color="#000080">Use UNDO prevention.
+</font></blockquote><p>
+<p>
+<p>...but there is a good chance that this will irritate players in itself. Role-playing-style combat scenarios need careful design, lest they actively make a game less fun.
+<p>
+<p>In a slightly more realistic setting, combat leaves physical remains behind, unless we're wielding some kind of futuristic weapon that evaporates our opponents entirely: <b>Puff of Orange Smoke</b> demonstrates characters who leave corpses behind when they die, while <b>Technological Terror</b> more tamely explodes robots into numerous component parts.
+<p>
+<p>Finally, we can imagine some scenarios in which, instead of allowing characters to strike at each other for random damage, we want to introduce an element of strategy. <b>Don Pedro's Revenge</b> shows the rudiments of a system in which the characters can make different kinds of attack depending on where they are in a room filled with perches, barrels, and other swashbuckler props.
+<p>
+<a href=Rdoc92.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Saving and Undoing</b></font></a><i> for more discussion of handling random behavior in games</i><p><p>
+<p><hr><p>
+<a name="e104"><a href=Rex104.html#e104 STYLE="text-decoration: none">*<b>Example 191:  Red Cross</b></a><br>A DIAGNOSE command which allows the player to check on the health of someone.<p>
+<a name="e210"><a href=Rex210.html#e210 STYLE="text-decoration: none">*<b>Example 130: Lanista 1</b></a><br>Very simple randomized combat in which characters hit one another for a randomized amount of damage.<p>
+<a name="e211"><a href=Rex211.html#e211 STYLE="text-decoration: none">**<b>Example 282: Lanista 2</b></a><br>Randomized combat in which the damage done depends on what weapons the characters are wielding, and in which an ATTACK IT WITH action is created to replace regular attacking. Also folds a new DIAGNOSE command into the system.<p>
+<!-- EXAMPLE START -->
+<a name="e303"><a href=Rdoc51.html#e303 STYLE="text-decoration: none">**<b><b>Example</b> 201:  Puff of Orange Smoke</b></a><br>A system in which every character has a body, which is left behind when the person dies; attempts to do something to the body are redirected to the person while the person is alive.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to let the player kill characters, leaving behind corpses.
+<p>
+<blockquote><font color="#000080">&quot;Puff of Orange Smoke&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Paraguay is a room. Bolivia is north of Paraguay. Lydia is a woman in Paraguay. &quot;Lydia is, as usual, here.&quot; The description of Lydia is &quot;Long, long legs and a sarcastic attitude.&quot; Instead of touching Lydia: say &quot;'Watch it, sailor,' she snaps.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A body is a kind of thing. A body is a part of every person. Instead of touching a body: say &quot;[The noun] is grotesquely inert.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of Lydia's body is &quot;Long, long legs and no attitude at all.&quot; The initial appearance of Lydia's body is &quot;Lydia's corpse is sprawled at your feet.&quot;
+</font></blockquote><p>
+<p>
+<p>Using our &quot;part of every person...&quot; line, we've conveniently assigned one body per person. Since we're going to separate people from their bodies when the bodies die, though, we also want a more permanent relation that will help us keep track of which bodies used to belong to which people:
+<p>
+<blockquote><font color="#000080">Spirit-possession relates one person to one body. The verb to be owner of implies the spirit-possession relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with victim running through people:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the corpse be a random body which is part of the victim;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the victim is owner of the corpse.
+</font></blockquote><p>
+<p>
+<p>When Lydia is alive, we want >TOUCH LYDIA'S BODY to mean the same thing as >TOUCH LYDIA, so we use the setting action variables rules as a convenient point at which to reassign the action:
+<p>
+<blockquote><font color="#000080">Setting action variables when the noun is a body which is part of a person (called owner):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is the owner.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Setting action variables when the second noun is a body which is part of a person (called owner):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the second noun is the owner.
+</font></blockquote><p>
+<p>
+<p>This doesn't change Inform's idea about what action is being performed; just about the object it's being performed on. The rest of the action will now proceed as if the player had typed >TOUCH LYDIA.
+<p>
+<p>Along similar lines, once Lydia is dead, we want >MOVE LYDIA to mean >MOVE LYDIA'S BODY if the body is in view:
+<p>
+<blockquote><font color="#000080">Setting action variables when the noun is a dead person and the noun is owner of a visible body (called the mortal remains):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is the mortal remains.
+</font></blockquote><p>
+<p>
+<p>The trick is, though, that >MOVE LYDIA will only be understood if there is something called Lydia that the player can see and refer to, even after she's dead. There are various ways to do this, but the least painful here will be to make the deceased Lydia permanently visible, by putting her in an always-accessible backdrop. The backdrop itself will never be mentioned in the game, and we should make its name something that the player is unlikely to type casually; we don't want the player to interact with it directly. So:
+<p>
+<blockquote><font color="#000080">The worldview is a privately-named backdrop. It is everywhere. The spirit-world is a privately-named transparent closed unopenable container. It is part of the worldview.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a person is dead if he is in the spirit-world.
+</font></blockquote><p>
+<p>
+<p>It's also possible that the player will type something like >X LYDIA when Lydia's corpse is not in view, so we should have an appropriate answer to that as well:
+<p>
+<blockquote><font color="#000080">Before doing something to a dead person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] is dead; or had you blocked that out?&quot; instead.
+</font></blockquote><p>
+<p>
+<p>Because the before rules happen after the setting action variables rules, this will only ever happen if the corpse is not visible.
+<p>
+<p>Now we define the attack itself, which should discard the body, move the spirit to its eternal resting place, and describe the event to the player:
+<p>
+<blockquote><font color="#000080">Instead of attacking someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the corpse be a random body which is part of the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the corpse to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the spirit-world;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;With a single blow, you rid the world of [the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>And finally a trick borrowed from the chapter on understanding, so that we can refer to &quot;Lydia's body&quot; while Lydia is alive, but &quot;Lydia's corpse&quot; only after Lydia has died:
+<p>
+<blockquote><font color="#000080">Understand &quot;corpse&quot; as a body when the item described is not part of a person.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x body / x lydia's body / touch lydia's body / x corpse / kill lydia / look / x lydia's body / x lydia's corpse / x corpse / x lydia / touch lydia / lydia, hello / n / x lydia / touch lydia / lydia, hello&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e313"><a href=Rex313.html#e313 STYLE="text-decoration: none">***<b>Example 127:  Technological Terror</b></a><br>A ray gun which destroys objects, leaving their component parts behind.<p>
+<a name="e283"><a href=Rex283.html#e283 STYLE="text-decoration: none">***<b>Example 113:  Don Pedro's Revenge</b></a><br>Combat scenario in which the player's footing and position changes from move to move, and the command prompt also changes to reflect that.<p>
+<p><hr><p><a href=Rdoc50.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc52.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

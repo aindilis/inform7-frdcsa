@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.3. Position Within Rooms</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Further Reasons Why All Poets Are Liars" -->
+<!-- SEARCH SECTION "Ex 199" -->
+<!-- SEARCH SORT "Ex 003-003-199" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc9.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc11.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.3. Position Within Rooms</b></td></tr></table><p>
+<p>
+<p>Inform's division of geography into &quot;rooms&quot; is a good compromise for most purposes. The rooms are cut off from each other by (imaginary or actual) walls, while all of the interior of a given room is regarded as the same place.
+<p>
+<p>Suppose we want things to happen differently in different corners of the same room? Inform can already do this a little, in that the player can be inside an enterable container or on an enterable supporter. For instance:
+<p>
+<blockquote><font color="#000080">Instead of opening a door when the player is on the bed, say &quot;You can't reach the handle from the bed.&quot;
+</font></blockquote><p>
+<p>
+<p>If we need to have divided-up areas of the floor itself, the standard approach is to define a small number of named positions. We then need to remember at which of these locations the player (or something else) currently stands.
+<p>
+<p><b>Further Reasons Why All Poets Are Liars</b> allows the player to be in different parts of a room by standing on a box which can be in different places: thus only the box needs an internal position, not the player, simplifying matters neatly.
+<p>
+<p>Another interesting case is when one room is entirely inside another (such as a hut in a field, or a booth in a large convention hall), so that the exterior of the room should be visible from another location. <b>Starry Void</b> gives a simple demonstration of a magician's booth that can be examined from the outside, opened and closed, and entered to reach a new location.
+<p>
+<a href=Rdoc11.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Continuous Spaces and The Outdoors</b></font></a><i> for making the space between rooms continuous</i><p><p>
+<a href=Rdoc51.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Combat and Death</b></font></a><i> for the use of position in a room in determining combat maneuvers</i><p><p>
+<a href=Rdoc38.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Entering and Exiting, Sitting and Standing</b></font></a><i> for automatically getting up from chairs before going places</i><p><p>
+<a href=Rdoc23.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The Human Body</b></font></a><i> for letting the player take different postures on furniture or on the floor</i><p><p>
+<a href=Rdoc66.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Furniture</b></font></a><i> for cages, beds, and other kinds of enterable supporters and containers</i><p><p>
+<p><hr><p>
+<a name="e354"><a href=Rex354.html#e354 STYLE="text-decoration: none">***<b>Example 6:  Starry Void</b></a><br>Creating a booth that can be seen from the outside, opened and closed, and entered as a separate room.<p>
+<!-- EXAMPLE START -->
+<a name="e159"><a href=Rdoc10.html#e159 STYLE="text-decoration: none">*<b><b>Example</b> 199:  Further Reasons Why All Poets Are Liars</b></a><br>The young William Wordsworth, pushing a box about in his room, must struggle to achieve a Romantic point of view.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We begin with the location and its fittings, and we create a kind of value which names the different internal positions we will allow.
+<p>
+<blockquote><font color="#000080">&quot;Further Reasons Why All Poets Are Liars&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Nook Obscure is a room. &quot;Above the College kitchens, which make a humming sound, less tuneable than bees, but hardly less industrious, with shrill notes of sharp command and scolding intermixed: and below Trinity's loquacious clock, who never lets the quarters, night or day, slip by him unproclaimed, and tells the hours twice over with a male and female voice. In short, the kind of rubbish room they give to a northern villager. But you get a bed and a high shelf all of your own. And you long to find some Romantic way to look out of the window.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The window, the shelf and the bed are scenery in the Nook Obscure. The shelf and the bed are supporters. The bed is enterable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Internal position is a kind of value. The internal positions are nowhere at all, over by the window, under the shelf and near the bed.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The box is an enterable supporter in Nook Obscure. The current box position is an internal position that varies. The current box position is near the bed. &quot;Your packing case, stamped W. WORDSWORTH (KENDAL), is [current box position].&quot; Instead of taking the box, say &quot;It is filled with your peerless rock collection and too heavy to lift, but could be pushed.&quot; Instead of opening the box, say &quot;It is securely nailed shut.&quot;
+</font></blockquote><p>
+<p>
+<p>We create an action, &quot;pushing it over to&quot;, for pushing a box around on the floor of a single location. (Calling this &quot;pushing it over to&quot; prevents clashes with the existing &quot;pushing it to&quot; action, which is for pushing things from one room to another.) Almost half of the text which defines the action is concerned with the two action variables, but they make the implementation of everything else so much easier that we end up writing less than if we hadn't used them.
+<p>
+<blockquote><font color="#000080">Understand &quot;push [box]&quot; as a mistake (&quot;You can push the box to the window, the bed or the shelf.&quot;).
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;push [something] to [something]&quot; as pushing it over to. Pushing it over to is an action applying to two things.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pushing it over to action has an internal position called the old position.
+<br>The pushing it over to action has an internal position called the new position.
+<br>Setting action variables for pushing something over to something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the old position is the current box position;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the new position is nowhere at all;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is the window, now the new position is over by the window;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is the bed, now the new position is near the bed;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the second noun is the shelf, now the new position is under the shelf.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check pushing it over to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not the box, say &quot;That's not something you can push.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on the bed, say &quot;You can't reach from here.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on the noun, say &quot;Not while you are standing on [the noun].&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the new position is nowhere at all, say &quot;You can only push [the noun] to the window, the bed or the shelf.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the new position is the old position, say &quot;The [noun] is already [new position].&quot; instead.
+<br>Carry out pushing it over to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the current box position is the new position.
+<br>Report pushing it over to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;With some effort, you shove [the noun] from [old position] to [new position].&quot;
+</font></blockquote><p>
+<p>
+<p>Everything which remains simply provides a couple of puzzles to test this arrangement.
+<p>
+<blockquote><font color="#000080">Euclid's Elements is on the shelf. Understand &quot;euclid&quot; or &quot;book&quot; as the Elements.
+<br>Instead of taking something (called the item) which is on the shelf:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on the box and the current box position is under the shelf, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You cannot reach [the item], which is up on the shelf.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;This window opens rather unpromisingly onto the chapel wall opposite, so even granted the moonlight it is dark in here. Still, surely there's a poem here somewhere?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the window when the player is on the bed:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Just a blank patch of chapel wall.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the window when the player is on the box:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the current box position is near the bed:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Tantalisingly, you are not quite able to spy the statue.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the current box position is under the shelf:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;All you can see is the antechapel wall, and the dull silver gleam of the pealing organ.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;At last! You can just, standing on tiptoes on the box right up at the window, make out the top of the statue! Of such epiphanies are Poesy born. Let's see now... oh yes...[paragraph break]And from my pillow, looking forth by light[line break]Of moon or favouring stars, I could behold[line break]The antechapel where the statue stood[line break]Of Newton with his prism and silent face,[line break]The marble index of a mind for ever[line break]Voyaging through strange seas of Thought, alone.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story finally.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get on bed / x window / get off / x window /get elements / get on box / x window / get elements / push box to shelf / get off / push box to shelf / get on box / get elements / x window / get off / push box to window / get on box / x window&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc9.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc11.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

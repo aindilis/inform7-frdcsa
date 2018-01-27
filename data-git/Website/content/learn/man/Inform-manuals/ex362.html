@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.9. Understanding kinds of value</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Straw Into Gold" -->
+<!-- SEARCH SECTION "Ex 294" -->
+<!-- SEARCH SORT "Ex 016-009-294" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc267.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc269.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.9. Understanding kinds of value</b></td></tr></table><p>
+<p>
+<p>In many cases, if K is the name of a kind of value, then Inform automatically makes an Understand token called &quot;[K]&quot; which matches only values of K. An example is &quot;[number]&quot;, which matches text like 203 or SEVEN. There is a chart of the kinds of value in the Kinds index for a project, showing which ones can be understood in this way.
+<p>
+<p>In particular, any newly created kind of value can always be understood. We make good use of that in the example game &quot;Studious&quot;:
+<p>
+<blockquote><font color="#000080">&quot;Studious&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Studio is a room. &quot;The unreal world of the photographic studio, full of fake furniture, cantilevered stands and silver-white shades like miniature parachutes.&quot; The lumpy black camera is in the Studio. &quot;A lumpy black camera hangs from a tripod.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The rake-thin model is a woman in the Studio. &quot;A rake-thin model, exquisitely bored and boringly exquisite, angles herself indolently.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Limb is a kind of value. The limbs are left leg, left arm, right leg and right arm.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Detailing is an action applying to one limb and one visible thing, requiring light. Check detailing: if the camera is not carried then say &quot;You can hardly photograph without a camera, now can you?&quot; instead. Report detailing: say &quot;Click! You take a detail photograph of the [limb understood] of [the second noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [limb] of [a person]&quot; as detailing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get camera / photograph left leg of model&quot;.
+</font></blockquote><p>
+<p>
+<p>Note the way we can refer to the limb mentioned by the player as the &quot;limb understood&quot;. Similarly, we could talk about the &quot;number understood&quot; if the value parsed had been a number, and so on.
+<p>
+<p>One of the built-in kinds of value is worth special note: time. A time can hold either a specific time of day, such as 10:23 PM, or a duration of something, such as 21 minutes. The &quot;[a time]&quot; token matches times of day, such as 10:15 AM or MIDNIGHT. But 10 MINUTES wouldn't be recognised by &quot;[a time]&quot; since it isn't a specific moment in the day. To get around this, an alternative version called &quot;[a time period]&quot; is available. So:
+<p>
+<blockquote><font color="#000080">Understand &quot;wait for [a time period]&quot; as ...
+</font></blockquote><p>
+<p>
+<p>would match WAIT FOR AN HOUR or WAIT FOR TWO HOURS 12 MINUTES.
+<p>
+<p><hr><p>
+<a name="e267"><a href=ex267.html#e267 STYLE="text-decoration: none">*<b>Example 292:  Pages</b></a><br>A book with pages that can be read by number (as in "read page 3 in...") and which accepts relative page references as well (such as "read the last page of...", "read the next page", and so on).<p>
+<a name="e111"><a href=ex111.html#e111 STYLE="text-decoration: none">**<b>Example 293:  Down in Oodville</b></a><br>Offering the player a choice of numbered options at certain times, without otherwise interfering with his ability to give regular commands.<p>
+<!-- EXAMPLE START -->
+<a name="e362"><a href=doc268.html#e362 STYLE="text-decoration: none">***<b><b>Example</b> 294:  Straw Into Gold</b></a><br>Creating a Rumpelstiltskin character who is always referred to as "dwarf", "guy", "dude", or "man" -- depending on which the player last used -- until the first time the player refers to him as "Rumpelstiltskin".<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080"> &quot;Straw Into Gold&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Cell is a room. Rumpelstiltskin is an improper-named man in the Cell.  Rumpelstiltskin can be identified or unidentified. Rumpelstiltskin is unidentified.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">R-name is a kind of value. The R-names are dwarf, guy, dude, and man-thing. Rumpelstiltskin has an R-name. Understand &quot;[R-name]&quot; as Rumpelstiltskin.
+</font></blockquote><p>
+<p>
+<p>Our example is slightly complicated by the fact that &quot;man&quot; is a name already known to Inform, so we can't re-use it as a kind of value. This is possible to work around, though:
+<p>
+<blockquote><font color="#000080">Understand &quot;man&quot; as man-thing.
+</font></blockquote><p>
+<p>
+<p>Now we borrow from the Activities chapter to look at the exact wording of the player's command:
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;[R-name]&quot;,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the R-name of Rumpelstiltskin is the R-name understood;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;Rumpelstiltskin&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now Rumpelstiltskin is identified;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now Rumpelstiltskin is proper-named.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the name of Rumpelstiltskin when Rumpelstiltskin is unidentified:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the R-name of Rumpelstiltskin is man-thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;man&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[R-name]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x dwarf / x guy / x dude / look / x rumpelstiltskin / look / x man&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc267.html STYLE="text-decoration: none">Previous</a> / <a href=doc269.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

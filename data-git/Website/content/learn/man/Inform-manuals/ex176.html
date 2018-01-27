@@ -1,0 +1,84 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.8. New value properties</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Would you...?" -->
+<!-- SEARCH SECTION "Ex 46" -->
+<!-- SEARCH SORT "Ex 004-008-046" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc61.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc63.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.8. New value properties</b></td></tr></table><p>
+<p>
+<p>So much for either/or properties. Now we move on to properties which have values attached. The same principles apply, but the wording is different. For example,
+<p>
+<blockquote><font color="#000080">A dead end has some text called the river sound. The river sound of a dead end is usually &quot;a faint whispering of running water&quot;. The Tortuous Alcove has river sound &quot;a gurgle of running water&quot;.
+</font></blockquote><p>
+<p>
+<p>The property &quot;river sound&quot; is now applicable only to dead ends, so we would not be allowed to talk about &quot;the river sound of the Savannah&quot;, say. Moreover, it's required to hold a piece of text. If we tried the following:
+<p>
+<blockquote><font color="#000080">The river sound of the Tortuous Alcove is 7.
+</font></blockquote><p>
+<p>
+<p>...then Inform would object, because the number 7 is the wrong kind of value to go into the &quot;river sound&quot; property. If we need a numerical property, we can try this instead:
+<p>
+<blockquote><font color="#000080">A dead end has a number called the difficulty rating. The Tortuous Alcove has difficulty rating 7.
+</font></blockquote><p>
+<p>
+<p>Suppose that we were to add:
+<p>
+<blockquote><font color="#000080">The Exquisitely Narrow Defile is a dead end.
+</font></blockquote><p>
+<p>
+<p>The Defile must have a river sound, of course, because we said that every dead end would have one. We haven't said what that river sound will be, but Inform can work it out, because we did say this:
+<p>
+<blockquote><font color="#000080">The river sound of a dead end is usually &quot;a faint whispering of running water&quot;.
+</font></blockquote><p>
+<p>
+<p>If there are no instructions at all about the value of a property, Inform fills in the default value of the appropriate kind - in this case, it would be a blank text. (A table of the kinds which can be used for properties, and their default values, can be found in the Kinds index.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e176"><a href=doc62.html#e176 STYLE="text-decoration: none">*<b><b>Example</b> 46:  Would you...?</b></a><br>Adding new properties to objects, and checking for their presence.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>For instance, if we want to give some objects a flavor:
+<p>
+<blockquote><font color="#000080">&quot;Would you...?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The House is a room. The mouse is an animal in the House.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries some green eggs and a ham.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A food is a kind of thing that is edible. Food has some text called flavor. The flavor of food is usually &quot;Tolerable.&quot;
+</font></blockquote><p>
+<p>
+<p>Things are, in general, not edible by default, so we have to make them edible specifically in order to allow them to be eaten by the player. Here we've defined food to be edible by default, and we have given it a standard piece of flavor text.
+<p>
+<blockquote><font color="#000080">The ham and the green eggs are food. The flavor of the green eggs is &quot;Delicious!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After eating something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun provides the property flavor, say &quot;[the flavor of the noun][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;It's [noun]-flavored.&quot;
+</font></blockquote><p>
+<p>
+<p>Note that we use &quot;if the noun provides a flavor...&quot; to make sure that the property exists before attempting to use it. Otherwise, there is the risk that we will try to print a property that does not exist, resulting in errors in the game.
+<p>
+<p>We will only get the &quot;It's [noun]-flavored.&quot; response if we successfully eat something that is not a food and does not have flavor text. To test this feature, let's suppose something that isn't exactly food but can theoretically be chewed on:
+<p>
+<blockquote><font color="#000080">The player carries some paper. The paper is edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;eat ham / eat green eggs / eat paper&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e361"><a href=ex361.html#e361 STYLE="text-decoration: none">**<b>Example 47:  Straw Boater</b></a><br>Using text properties that apply only to some things and are not defined for others.<p>
+<p><hr><p><a href=doc61.html STYLE="text-decoration: none">Previous</a> / <a href=doc63.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

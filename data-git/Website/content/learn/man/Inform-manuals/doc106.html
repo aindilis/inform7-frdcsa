@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.4. Try and try silently</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Try and try silently" -->
+<!-- SEARCH SECTION "7.4" -->
+<!-- SEARCH SORT "007-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc105.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc107.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.4. Try and try silently</b></td></tr></table><p>
+<p>
+<p>Chapter 2 noted that surveys of Inform source text showed that the three most popular phrases used by authors are &quot;say&quot;, &quot;if&quot; and &quot;now&quot;. The fourth most popular is &quot;try&quot;, which allows us to trigger off actions ourselves, rather than waiting for the player to type something which generates them. Thus:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>try </b>(action)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_try -->
+
+<p>This phrase makes the action, which has to be named literally, take effect now. Example:
+<p>
+<blockquote><font color="#000080">Instead of entering the trapdoor, try going up.
+</font></blockquote><p>
+<p>
+<p>It's as if the player had typed GO UP as a command. Note that the action has to be specific:
+<p>
+<blockquote><font color="#000080">try eating something;
+</font></blockquote><p>
+<p>
+<p>is not allowed, since it doesn't say exactly what is to be eaten.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The word &quot;try&quot; is intended to make clear that there is no guarantee of success. For example:
+<p>
+<blockquote><font color="#000080">Before locking the front door, try closing the front door.
+</font></blockquote><p>
+<p>
+<p>could go wrong in any number of ways - perhaps the door is closed already, perhaps it is not openable, perhaps somebody has wedged it open. It would be safer to write:
+<p>
+<blockquote><font color="#000080">Before locking the front door:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try closing the front door;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the front door is open, stop the action.
+</font></blockquote><p>
+<p>
+<p>There's no need to say anything if closing didn't work, because the closing action will have done that already. A neater approach still is to use:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>silently try </b>(stored action)<b></b><br><i>or:</i> <b>try silently </b>(stored action)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_trysilently -->
+
+<p>This phrase makes the action, which has to be named literally, take effect now, under the &quot;silent&quot; convention which means that routine messages aren't printed. Example:
+<p>
+<blockquote><font color="#000080">try silently taking the napkin;
+</font></blockquote><p>
+<p>
+<p>Silence is maintained only if this new action, the taking of the napkin, is successful (so if the napkin is successfully taken, the text &quot;Taken.&quot; will not appear): if the action should fail, a suitable objection will be voiced as usual.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>So now we have:
+<p>
+<blockquote><font color="#000080">Before locking the front door:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try silently closing the front door;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the front door is open, stop the action.
+</font></blockquote><p>
+<p>
+<p>And this is neater because it won't produce a pointless &quot;You close the front door.&quot; message.
+<p>
+<a href=doc206.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Stored actions</b></font></a><i> for how to store up actions as values and try those, too, so that isn't necessary to name the action as literally as in the examples above</i><p><p>
+<p><hr><p>
+<a name="e144"><a href=ex144.html#e144 STYLE="text-decoration: none">*<b>Example 88:  Fine Laid</b></a><br>Making writing that can be separately examined from the paper on which it appears, but which directs all other actions to the paper.<p>
+<a name="e353"><a href=ex353.html#e353 STYLE="text-decoration: none">*<b>Example 89:  Hayseed</b></a><br>A refinement of our staircase kind which can be climbed.<p>
+<p><hr><p><a href=doc105.html STYLE="text-decoration: none">Previous</a> / <a href=doc107.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

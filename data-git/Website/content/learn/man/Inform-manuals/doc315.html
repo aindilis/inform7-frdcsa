@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.34. Deciding whether all includes</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Deciding whether all includes" -->
+<!-- SEARCH SECTION "17.34" -->
+<!-- SEARCH SORT "017-034-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc314.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc316.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.34. Deciding whether all includes</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> When parsing a command such as &quot;take all&quot;, where the player uses &quot;all&quot; to signify everything within reach.
+<p>
+<p><b>2. The default behaviour.</b> The actual method used is complicated, as &quot;all&quot; is not as simple as it seems - &quot;take all&quot; would not include the player's own body, for instance, or the crescent moon. The point of this activity is to allow the normal method to be changed for given objects, or given kinds of object.
+<p>
+<p><b>3. Examples.</b> (a) Removing scenery from &quot;all&quot; (but see (4) below):
+<p>
+<blockquote><font color="#000080">Rule for deciding whether all includes scenery: it does not.
+</font></blockquote><p>
+<p>
+<p>The phrases &quot;it does&quot; and &quot;it does not&quot; make a decision.
+<p>
+<p>(b) Ensuring that a given thing, which might otherwise be excluded, is included:
+<p>
+<blockquote><font color="#000080">Rule for deciding whether all includes the oval roof: it does.
+</font></blockquote><p>
+<p>
+<p><b>4. The Standard Rules already uses this.</b> Note that the Standard Rules already stocks this activity with several rules:
+<p>
+<blockquote><font color="#000080">exclude scenery from take all rule
+<br>exclude people from take all rule
+<br>exclude fixed in place things from take all rule
+</font></blockquote><p>
+<p>
+<p><b>5. A note about actions.</b> This activity takes place during the process of understanding the player's command, when the action that will take place is not fully known. So if the player types &quot;TAKE SHOEBOX&quot;, this activity would happen when SHOEBOX is being examined for meaning. Inform knows that the action will be taking, but nothing else. That means attaching a proviso like &quot;... while taking a container&quot; to a rule for this activity will cause the rule to have no effect - whereas &quot;... while taking&quot; would be fine.
+<p>
+<p><hr><p><a href=doc314.html STYLE="text-decoration: none">Previous</a> / <a href=doc316.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

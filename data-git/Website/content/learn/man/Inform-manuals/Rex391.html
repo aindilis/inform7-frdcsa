@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.2. Ships, Trains and Elevators</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Unbuttoned Elevator Affair" -->
+<!-- SEARCH SECTION "Ex 8" -->
+<!-- SEARCH SORT "Ex 008-002-008" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc63.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc65.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.2. Ships, Trains and Elevators</b></td></tr></table><p>
+<p>
+<p>This section covers vehicles whose interior consists of at least one entire room. Moving into this room constitutes boarding: there is then some pause while it travels: moving out again disembarks at a different location. The only complication arising is how the player controls the journey (by talking to someone? by pressing buttons? by steering?).
+<p>
+<p><b>The Unbuttoned Elevator Affair</b> provides the simplest possible whole-room vehicle, which ferries between two fixed points. If you are at one of these, it must be the other one you want to get to, so there is no need for controls.
+<p>
+<p><b>Dubai</b> is a much more elaborate elevator, with many possible destinations, chosen using buttons inside the elevator.
+<p>
+<p><b>Empire</b> simulates a train journey. Here there are no controls as such, but the train passes through a sequence of stops spaced apart in time, so the player chooses an exit by getting out at the right moment.
+<p>
+<p>On a very large, slowish craft such as a cruise liner, we are not so much travelling in a vehicle: it's more as if we are visiting a whole building, which becomes our world for the (probably long) duration of the journey. The liner steers around in long, slow curves, changing its orientation in the water, so that (if we think of &quot;north&quot; as a strictly magnetic matter, anyway) north is constantly rotating: something we don't notice on board because our own reference points, provided by the ship itself, stay fixed relative to ourselves. Because of this, some ships in IF are navigated using FORE, AFT, PORT and STARBOARD directions rather than NORTH, EAST, SOUTH and WEST: see <b>Fore</b>.
+<p>
+<a href=Rdoc63.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bicycles, Cars and Boats</b></font></a><i> for smaller conveyances</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e391"><a href=Rdoc64.html#e391 STYLE="text-decoration: none">*<b><b>Example</b> 8:  The Unbuttoned Elevator Affair</b></a><br>A simple elevator connecting two floors which is operated simply by walking in and out, and has no buttons or fancy doors.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>This is very simple. The interior of the elevator is a single room, but which is mapped east of both of its termini. The reverse map connection, west from the elevator, can only go to a single room, and that's what determines which floor the elevator is on.
+<p>
+<blockquote><font color="#000080">&quot;The Unbuttoned Elevator Affair&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">UNCLE Headquarters is a room. &quot;The steel nerve-center of the free world's battle against the Technological Hierarchy for the Removal of Undesirables and the Subjugation of Humanity. Being against technology, we have only a very simple elevator to the east.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Del Floria's Tailor Shop is a room. &quot;Only trained anti-THRUSH agents recognise the booth in the east wall as a secret elevator.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Secret Elevator is east of UNCLE Headquarters. The Secret Elevator is east of Del Floria's Tailor Shop.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After going to the Secret Elevator:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The doors automatically close, there is a rush of motion, and they open again.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if UNCLE Headquarters is mapped west of the Secret Elevator, now Del Floria's Tailor Shop is mapped west of the Secret Elevator;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise now UNCLE Headquarters is mapped west of the Secret Elevator;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;east / west / east / west&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e118"><a href=Rex118.html#e118 STYLE="text-decoration: none">***<b>Example 260:  Dubai</b></a><br>An elevator which connects any of 27 floors in a luxury hotel.<p>
+<a name="e154"><a href=Rex154.html#e154 STYLE="text-decoration: none">***<b>Example 40:  Fore</b></a><br>Understand "fore", "aft", "port", and "starboard", but only when the player is on a vessel.<p>
+<a name="e383"><a href=Rex383.html#e383 STYLE="text-decoration: none">**<b>Example 145:  Empire</b></a><br>A train which follows a schedule, stopping at a number of different locations.<p>
+<p><hr><p><a href=Rdoc63.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc65.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

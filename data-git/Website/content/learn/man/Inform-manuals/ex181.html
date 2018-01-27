@@ -1,0 +1,148 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.11. Now...</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Hatless" -->
+<!-- SEARCH SECTION "Ex 126" -->
+<!-- SEARCH SORT "Ex 008-011-126" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc131.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc133.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.11. Now...</b></td></tr></table><p>
+<p>
+<p>&quot;Now&quot; has already appeared several times in this chapter, being used like a Swiss army knife to change values of all kinds:
+<p>
+<blockquote><font color="#000080">now the score is 100;
+</font></blockquote><p>
+<p>
+<p>In fact, &quot;now&quot; is by far the most flexible phrase known to Inform.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>now </b>(a condition)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_now -->
+
+<p>This phrase makes the condition become true. Examples:
+<p>
+<blockquote><font color="#000080">now the score is 100;
+<br>now the player is Kevin;
+<br>now the front door is open;
+<br>now Mr Darcy is wearing the top hat;
+<br>now all the doors are open;
+<br>now all of the things in the sack are in the box;
+</font></blockquote><p>
+<p>
+<p>Inform issues a problem message if the condition asks to do the impossible (&quot;now 3 is an even number&quot;) or is vague (&quot;now the duck is not in the Lily Pond&quot;) or not in the present tense (&quot;now the front door had been open&quot;).
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We've now seen all three things which can be done with a condition S which describes the world:
+<p>
+<blockquote><font color="#000080">S. - The relation holds at the start of play.
+<br>if S, ...; - Does the relation hold right now?
+<br>now S; - Make the relation hold from now on.
+</font></blockquote><p>
+<p>
+<p>For instance,
+<p>
+<blockquote><font color="#000080">The apple is in the basket.
+<br>if the apple is in the basket, ...;
+<br>now the apple is in the basket;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e28"><a href=ex28.html#e28 STYLE="text-decoration: none">*<b>Example 125:  Bee Chambers</b></a><br>A maze with directions between rooms randomized at the start of play.<p>
+<!-- EXAMPLE START -->
+<a name="e181"><a href=doc132.html#e181 STYLE="text-decoration: none">**<b><b>Example</b> 126:  Hatless</b></a><br>It's tempting to use "now..." to distribute items randomly at the start of play, but we need to be a little cautious about how we do that.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want a game in which each scenario starts with the characters wearing hats -- randomly passed out. We might be tempted to write our scenario like this:
+<p>
+<blockquote><font color="#000080">&quot;Hatless&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Costumery is a room. Larry, Curly, and Moe are men in the Costumery. Janine is a woman in the Costumery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a person (called the target) who wears a hat (called attire):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] is here, looking stylish in [an attire].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a hatless person (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] mopes about, hatless.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A hat is a kind of thing. A hat is always wearable. Definition: a person is hatless if he does not wear a hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The indigo bowler, the polka-dotted fedora, the pink beret, and the scarlet cloche are hats.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every hat is worn by a random hatless person.
+</font></blockquote><p>
+<p>
+<p>And we might hope that this would choose a new hatless person for each hat, but we would be wrong. It will instead choose one hatless person and put all the hats on him -- and everyone else has to go bare-headed. That's clearly no good. Let's try again:
+<p>
+<blockquote><font color="#000080">&quot;Hatless 2&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Costumery is a room. Larry, Curly, and Moe are men in the Costumery. Janine is a woman in the Costumery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a person (called the target) who wears a hat (called attire):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] is here, looking stylish in [an attire].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a hatless person (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] mopes about, hatless.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A hat is a kind of thing. A hat is always wearable. Definition: a person is hatless if he does not wear a hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The indigo bowler, the polka-dotted fedora, the pink beret, and the scarlet cloche are hats.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every hatless person wears a random hat.
+</font></blockquote><p>
+<p>
+<p>But this selects one random hat and assigns it to each hatless person in turn -- so it will only wind up being worn by the last of them (since Inform knows that only one person can wear a hat at a time).
+<p>
+<p>In this case, we do have to expand out our loop so that the game makes an explicit distribution:
+<p>
+<blockquote><font color="#000080">&quot;Hatless 3&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Costumery is a room. Larry, Curly, and Moe are men in the Costumery. Janine is a woman in the Costumery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a person (called the target) who wears a hat (called attire):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] is here, looking stylish in [an attire].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a hatless person (called the target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The target] mopes about, hatless.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A hat is a kind of thing. A hat is always wearable. Definition: a person is hatless if he does not wear a hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The indigo bowler, the polka-dotted fedora, the pink beret, and the scarlet cloche are hats.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through hats:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is worn by a random hatless person.
+</font></blockquote><p>
+<p>
+<p>Each time Inform considers the instruction &quot;now the item is worn by a random hatless person&quot;, there is one fewer such person to choose from -- so we can guarantee that the hats are distributed one per customer and that all hats are distributed.
+<p>
+<p>Hatless 3 is only guaranteed to work because the number of hats is less than or equal to the number of people; otherwise the final use of random will return &quot;nothing&quot; and then a problem message will appear during play.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e313"><a href=ex313.html#e313 STYLE="text-decoration: none">***<b>Example 127:  Technological Terror</b></a><br>A ray gun which destroys objects, leaving their component parts behind.<p>
+<p><hr><p><a href=doc131.html STYLE="text-decoration: none">Previous</a> / <a href=doc133.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

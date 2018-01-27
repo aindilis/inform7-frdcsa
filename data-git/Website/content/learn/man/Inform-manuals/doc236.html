@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.12. Totals</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Totals" -->
+<!-- SEARCH SECTION "14.12" -->
+<!-- SEARCH SORT "014-012-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc235.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc237.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.12. Totals</b></td></tr></table><p>
+<p>
+<p>This chapter began by mentioning arithmetic, and then went on a long diversion to create scientific units, everyday weights and measures, and other notational conveniences. Putting all of that together, it's time now to calculate something with all of these numerical quantities.
+<p>
+<p>Suppose we invent the idea of weight, and give everything a weight of its own. Most items will have a nominal weight of 1kg, but people will be heavier. Going on actuarial tables, we might say:
+<p>
+<blockquote><font color="#000080">A weight is a kind of value. 10kg specifies a weight. Everything has a weight. A thing usually has weight 1kg. A man usually has weight 80kg. A woman usually has weight 67kg.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: A thing is light if its weight is 3kg or less.
+<br>Definition: A thing is heavy if its weight is 10kg or more.
+</font></blockquote><p>
+<p>
+<p>and this provides us with &quot;lighter&quot;, &quot;lightest&quot;, &quot;heavier&quot; and &quot;heaviest&quot; as before. Now we could say &quot;if Peter is heavier than Paul&quot;, or even &quot;if Peter is heavier than 75kg&quot;, and so forth. We need one more tool:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>total </b>(arithmetic values valued property)<b> of </b>(description of values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_total -->
+
+<p>This phrase produces the total of some property held by all of the values matching the description. A problem message is produced if the values in question can't have that property (&quot;the total carrying capacity of scenes&quot;), or if it holds a kind of value which can't meaningfully be added up (&quot;the total description of open doors&quot;). Example:
+<p>
+<blockquote><font color="#000080">total carrying capacity of people in the Deep Pool
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>That gives us everything we need for a working balance platform:
+<p>
+<blockquote><font color="#000080">The balance platform is a supporter in the Weighbridge. &quot;The balance platform is currently weighing [the list of things on the platform]. The scale alongside reads: [total weight of things on the platform].&quot;
+</font></blockquote><p>
+<p>
+<p>Note that this only works because we said that &quot;everything has a weight&quot;: otherwise it would make no sense to add up the weights of things.
+<p>
+<p>This enables us to get the average weight of a group of things, too:
+<p>
+<blockquote><font color="#000080">the total weight of things on the platform divided by the number of things on the platform
+</font></blockquote><p>
+<p>
+<p>But we should be careful that this does not accidentally divide by zero, which it will if the platform has nothing on it! As well as the average, we could find the maximum and minimum weights:
+<p>
+<blockquote><font color="#000080">the weight of the heaviest thing on the platform
+<br>the weight of the lightest thing on the platform
+</font></blockquote><p>
+<p>
+<p>We should remember that &quot;the heaviest thing on the platform&quot; may be ambiguous, because there may be several equally heavy things there. That means
+<p>
+<blockquote><font color="#000080">if the lead pig is the heaviest thing on the platform
+</font></blockquote><p>
+<p>
+<p>will only reliably work if there is no possibility of a tie. A safer bet is:
+<p>
+<blockquote><font color="#000080">if the lead pig is the weight of the heaviest thing on the platform
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e376"><a href=ex376.html#e376 STYLE="text-decoration: none">***<b>Example 251:  Nickel and Dimed</b></a><br>A more intricate system of money, this time keeping track of the individual denominations of coins and bills, specifying what gets spent at each transaction, and calculating appropriate change.<p>
+<p><hr><p><a href=doc235.html STYLE="text-decoration: none">Previous</a> / <a href=doc237.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

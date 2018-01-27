@@ -1,0 +1,87 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.2. Map</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Bee Chambers" -->
+<!-- SEARCH SECTION "Ex 125" -->
+<!-- SEARCH SORT "Ex 003-002-125" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc8.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc10.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.2. Map</b></td></tr></table><p>
+<p>
+<p>A work of IF contains many spectacles and activities, and these must not all present themselves at once, or the player will be overwhelmed. One way to spread them out is in time, by having them available only as a plot develops, but another is to spread them out literally in space. The player has to walk between the Library and the Swimming Pool, and thus bookish and athletic tasks are not both presenting themselves at once. There have been valiant &quot;one-room&quot; IFs, and it forms a respectable sub-genre of the art, but most works of any size need a map.
+<p>
+<p>Inform, following IF conventions, divides the world up into locations called &quot;rooms&quot;, connected together by so-called &quot;map connections&quot; along compass bearings. Thus:
+<p>
+<blockquote><font color="#000080">The Library is east of the Swimming Pool.
+</font></blockquote><p>
+<p>
+<p>The example <b>Port Royal 1</b> develops a medium-sized map from such sentences. This develops in <b>Port Royal 2</b> to include connections which bend around, allowing the rooms not to lie on an imaginary square grid.
+<p>
+<p>Because it is useful to group rooms together under names describing whole areas, Inform also allows rooms to be placed in &quot;regions&quot;. Thus:
+<p>
+<blockquote><font color="#000080">The Campus Area is a region. The Library and the Swimming Pool are in the Campus Area.
+</font></blockquote><p>
+<p>
+<p><b>Port Royal 3</b> demonstrates this further. <b>A&E</b> shows how regions can be used to write simple rules which regulate access to and from whole areas of the map.
+<p>
+<p>Many old-school IF puzzles involve journeys through the map which are confused, randomised or otherwise frustrated: see <b>Bee Chambers</b> for a typical maze, <b>Zork II</b> for a randomised connection, <b>Prisoner's Dilemma</b> for a change in the map occurring during play. A completely random map takes us away from traditional IF and more towards a different sort of old-school game, the computerised role-playing game with its endless quests through dungeons with randomly generated treasures and monsters. This style of map - building itself one step at a time, as the player explores - can sometimes be useful to provide an illusion of infinite expanse: see <b>All Roads Lead To Mars</b>.
+<p>
+<p>While the standard compass directions are conventional in IF, there are times when we may want to replace them without other forms of directional relationship. <b>Indirection</b> renames the compass directions to correspond to primary colors, as in Mayan thinking. <b>The World of Charles S. Roberts</b> substitutes new ones, instead, introducing a hex-grid map in place of the usual one.
+<p>
+<a href=Rdoc37.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Going, Pushing Things in Directions</b></font></a><i> for ways to add more relative directions, such as context-sensitive understanding of OUT and IN</i><p><p>
+<a href=Rdoc8.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Room Descriptions</b></font></a><i> for ways to modify the room description printed</i><p><p>
+<a href=Rdoc64.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Ships, Trains and Elevators</b></font></a><i> for rooms which move around in the map and for directions aboard a ship</i><p><p>
+<p><hr><p>
+<a name="e327"><a href=Rex327.html#e327 STYLE="text-decoration: none">*<b>Example 4: Port Royal 1</b></a><br>A partial implementation of Port Royal, Jamaica, set before the earthquake of 1692 demolished large portions of the city.<p>
+<a name="e328"><a href=Rex328.html#e328 STYLE="text-decoration: none">*<b>Example 7: Port Royal 2</b></a><br>Another part of Port Royal, with less typical map connections.<p>
+<a name="e329"><a href=Rex329.html#e329 STYLE="text-decoration: none">*<b>Example 9: Port Royal 3</b></a><br>Division of Port Royal into regions.<p>
+<a name="e406"><a href=Rex406.html#e406 STYLE="text-decoration: none">**<b>Example 101:  A&E</b></a><br>Using regions to block access to an entire area when the player does not carry a pass, regardless of which entrance he uses.<p>
+<!-- EXAMPLE START -->
+<a name="e28"><a href=Rdoc9.html#e28 STYLE="text-decoration: none">*<b><b>Example</b> 125:  Bee Chambers</b></a><br>A maze with directions between rooms randomized at the start of play.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Mazes are a traditional element of interactive fiction, often consisting of apparently identical rooms with exits that do not work reciprocally and which cause confusion.
+<p>
+<p>The methods of mapping mazes are now fairly well understood and mazes themselves tend to be regarded as tiresome rather than enjoyable by a large portion of the playing audience. However, if we did want to ignore the common wisdom and create a maze, randomly generated at the start of play, here would be one way to go about it:
+<p>
+<blockquote><font color="#000080">&quot;Maze of Gloom&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A Bee Chamber is a kind of room. The printed name of a Bee Chamber is usually &quot;Hexagonal Room&quot;. The description of a Bee Chamber is usually &quot;Waxy, translucent walls surround you on six sides; the floor and ceiling are made of the same material, gently uneven. There are exits in every direction, cut into the faces or the corners.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Bee1, Bee2, Bee3, Bee4, Bee5, Bee6, Bee7, Bee8, Bee9, and Bee10 are Bee Chambers.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now right hand status line is &quot;[number of visited rooms]/[number of rooms]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with place running through Bee Chambers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped north of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped northwest of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped west of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped southwest of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped south of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped southeast of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped east of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped northeast of place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped above place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped below place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped inside place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now a random Bee Chamber is mapped outside place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;in / out / up / down / n / ne / nw / e / w / sw / se / s&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e66"><a href=Rex66.html#e66 STYLE="text-decoration: none">*<b>Example 134:  Zork II</b></a><br>A "Carousel Room", as in Zork II, where moving in any direction from the room leads (at random) to one of the eight rooms nearby.<p>
+<a name="e36"><a href=Rex36.html#e36 STYLE="text-decoration: none">**<b>Example 38:  Prisoner's Dilemma</b></a><br>A button that causes a previously non-existent exit to come into being.<p>
+<a name="e286"><a href=Rex286.html#e286 STYLE="text-decoration: none">*<b>Example 78:  All Roads Lead to Mars</b></a><br>Layout where the player is allowed to wander any direction he likes, and the map will arrange itself in order so that he finds the correct "next" location.<p>
+<a name="e88"><a href=Rex88.html#e88 STYLE="text-decoration: none">*<b>Example 276:  Indirection</b></a><br>Renaming the directions of the compass so that "white" corresponds to north, "red" to east, "yellow" to south, and "black" to west.<p>
+<a name="e432"><a href=Rex432.html#e432 STYLE="text-decoration: none">**<b>Example 39:  The World of Charles S. Roberts</b></a><br>Replacing the ordinary compass bearings with a set of six directions to impose a hexagonal rather than square grid on the landscape.<p>
+<p><hr><p><a href=Rdoc8.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc10.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

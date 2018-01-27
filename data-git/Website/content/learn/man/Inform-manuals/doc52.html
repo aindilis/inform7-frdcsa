@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.25. The location of something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The location of something" -->
+<!-- SEARCH SECTION "3.25" -->
+<!-- SEARCH SORT "003-025-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc51.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc53.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.25. The location of something</b></td></tr></table><p>
+<p>
+<p>The model world created by Inform is partitioned into rooms. This means that everything which exists in the model world, exists in one of the rooms. If we write a sentence such as
+<p>
+<blockquote><font color="#000080">Professor Wilderspin is a man.
+</font></blockquote><p>
+<p>
+<p>and say nothing more about Wilderspin, then he does not physically exist at the start of the game: he is said to be &quot;out of play&quot;, and stays that way until we move him into one of the rooms. A better metaphor might be that he is waiting in the wings, ready to come onto the stage.
+<p>
+<p>Every thing is either out of play, or can be found in one of the rooms, and the property &quot;location of X&quot; gives us the room in question. The following condition tests, in effect, whether Wilderspin is in play:
+<p>
+<blockquote><font color="#000080">if the location of Wilderspin is a room, ...
+</font></blockquote><p>
+<p>
+<p>Which uses a new phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>location of </b>(object)<b></b> ... <i>room</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_locationof -->
+
+<p>This phrase produces the room which, perhaps indirectly, contains the object given. Example: if the player stands in Biblioll College and wears a waistcoat, inside which is a fob watch, then
+<p>
+<blockquote><font color="#000080">location of the fob watch
+</font></blockquote><p>
+<p>
+<p>is Biblioll College. In general, a thing cannot be in two rooms at once, but there are two exceptions: two-sided doors, present on both sides, and backdrops. The &quot;location of&quot; a door is its front side, but a backdrop has no location. (Objects which are not things at all, such as rooms and directions, also have no location.)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We very often want to know the location of the player, and this is more simply called just &quot;the location&quot;. (This is actually a value that varies rather than a phrase, but that's a technicality we can ignore here.)
+<p>
+<p>The idea of indirect containment is useful enough to have a name: Inform calls it &quot;enclosure&quot;. A thing encloses whatever is a part of itself, or inside itself, or on top of itself, and it also encloses anything that they enclose. And when something moves around, anything it encloses will move with it. In the example above, Biblioll College (a room) and the player (a person) both enclose the fob watch and the waistcoat. (The small print: a door is enclosed by the rooms on both sides; a backdrop is never enclosed.)
+<p>
+<p>Enclosure is only useful when being used as a question. So the following is fine:
+<p>
+<blockquote><font color="#000080">if the player encloses the fob watch, ...
+</font></blockquote><p>
+<p>
+<p>But these will produce problem messages:
+<p>
+<blockquote><font color="#000080">The player encloses the fob watch. The location of the trilobite is the Museum.
+</font></blockquote><p>
+<p>
+<p>because they are too vague. Inform needs to know exactly where the fob watch and the trilobite will begin the game, whereas these sentences leave room for doubt about who or what is actually holding them.
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>Previous builds allowed the following abbreviation:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>in </b>(object)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_in_dep -->
+
+<p>This condition is true if the location of the player is the given room. Example:
+<p>
+<blockquote><font color="#000080">if in Biblioll College, ...
+</font></blockquote><p>
+<p>
+<p>This is being withdrawn, as too often unclear. Instead, write &quot;if the location is Biblioll College&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e401"><a href=ex401.html#e401 STYLE="text-decoration: none">**<b>Example 37:  Van Helsing</b></a><br>A character who approaches the player, then follows him from room to room.<p>
+<p><hr><p><a href=doc51.html STYLE="text-decoration: none">Previous</a> / <a href=doc53.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

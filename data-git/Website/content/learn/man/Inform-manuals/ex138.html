@@ -1,0 +1,174 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 18.10. Success and failure</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Feline Behavior" -->
+<!-- SEARCH SECTION "Ex 386" -->
+<!-- SEARCH SORT "Ex 018-010-386" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc329.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc331.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>18.10. Success and failure</b></td></tr></table><p>
+<p>
+<p>Though we have blurred over this point so far, each rule must ordinarily end with one of three outcomes: success, failure and neither (&quot;no outcome&quot;).
+<p>
+<p>When a rulebook is followed, what happens is that each of its rules is followed in turn <b>until one of them ends in success or failure</b> - if ever: it is possible that each rule is tried and each ends with no outcome, so that the rulebook simply runs out of rules to try.
+<p>
+<p>For some rulebooks, these are not useful ideas: &quot;every turn&quot; rules, for instance, never produce an outcome, which is why the &quot;every turn&quot; rulebook always runs through all its rules at the end of each turn. But for other rulebooks, such as &quot;check taking&quot;, it's important that a rule which fails will stop the whole rulebook. For instance, we might find that the &quot;can't take yourself rule&quot; produces no outcome (because we aren't trying to do that), and then likewise the &quot;can't take other people rule&quot; (ditto) but that the &quot;can't take component parts rule&quot; prints up a complaint, and fails the action: the rulebook stops, and never goes on to (for instance) the &quot;can't take scenery rule&quot;. This is good, because an impossible action often fails for several reasons at once, and we only want to print up one objection, not a whole list.
+<p>
+<p>To follow the working of this mechanism, we need to be able to predict the outcome of any given rule. Sometimes this is easy to spot. For instance, in a rule which works on actions:
+<p>
+<blockquote><font color="#000080">continue the action; <i>means</i> &quot;end this rule with no outcome&quot;
+<br>stop the action; <i>means</i> &quot;end this rule in failure&quot;
+<br>... instead; <i>means</i> &quot;end this rule in failure&quot;
+</font></blockquote><p>
+<p>
+<p>(&quot;Success&quot; and &quot;failure&quot; are technical terms here: they do not mean that the player has or hasn't got what he wanted.) This is why the rule:
+<p>
+<blockquote><font color="#000080">Before taking something: say &quot;The sentry won't let you!&quot; instead.
+</font></blockquote><p>
+<p>
+<p>ends in failure, and therefore stops the &quot;before&quot; rulebook. Another easy-to-spot case is when a rule makes use of the explicit phrases:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>rule succeeds</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_succeeds -->
+
+<p>This causes the current rule to end immediately, with its outcome considered to be a success. That means the rulebook being worked through will also end, and also be a success.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>rule fails</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_fails -->
+
+<p>This causes the current rule to end immediately, with its outcome considered to be a failure. That means the rulebook being worked through will also end, and also be a failure.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>make no decision</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_nodecision -->
+
+<p>This causes the current rule to end immediately, but with no outcome. That means the rulebook being worked through will continue to run on, beginning with the next rule.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>But what happens if a rule simply doesn't say whether it succeeds, fails or has no outcome? In that case <b>it depends on the rulebook</b>. For almost all rulebooks, a rule which doesn't make a choice has no outcome, as in the following example:
+<p>
+<blockquote><font color="#000080">Before taking something: say &quot;The sentry looks at you anxiously!&quot;
+</font></blockquote><p>
+<p>
+<p>This rule, if it takes effect, ends with no outcome - so the action continues. But other rulebooks have a different convention: the most important is &quot;instead&quot;, where a rule making no explicit choice is deemed to end in failure. For instance:
+<p>
+<blockquote><font color="#000080">Instead of taking something: say &quot;The sentry prods you with his rifle!&quot;
+</font></blockquote><p>
+<p>
+<p>This rule, if it takes effect, ends in failure and therefore stops the action.
+<p>
+<p>We call this the <b>default outcome</b> of a rulebook. The default outcome of &quot;before&quot; (and of almost all rulebooks, in fact) is no outcome; the default outcome of &quot;instead&quot; is failure; the default outcome of &quot;after&quot; is success. The few exceptional cases with default outcome success or failure are marked as such in the Rules index.
+<p>
+<p>When we create a rulebook, it will default to &quot;no outcome&quot;. But we can specify otherwise with sentences like so:
+<p>
+<blockquote><font color="#000080">The cosmic analysis rules are a rulebook. The cosmic analysis rules have default failure.
+</font></blockquote><p>
+<p>
+<p>Finally, note that the default outcome for a rulebook is really the default outcome for any rule in that rulebook: if no rules in the rulebook ever apply, for instance if there aren't any and the rulebook is empty, then the rulebook ends with no outcome at all.
+<p>
+<p>We can test the latest outcome like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>rule succeeded</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_succeeded -->
+
+<p>This condition is true if the most recently followed rule ended in success. Example:
+<p>
+<blockquote><font color="#000080">follow the hypothetical clever rule;
+<br>if rule succeeded:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>rule failed</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_failed -->
+
+<p>This condition is true if the most recently followed rule ended in failure. Example:
+<p>
+<blockquote><font color="#000080">follow the hypothetical clever rule;
+<br>if rule failed:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+</font></blockquote><p>
+<p>
+<p>Note that this is not the opposite of &quot;rule succeeded&quot;, because there's a third possibility: that it ended with no outcome.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e138"><a href=doc330.html#e138 STYLE="text-decoration: none">*<b><b>Example</b> 386:  Feline Behavior</b></a><br>A cat which reacts to whatever items it has handy, returning the result of a rulebook for further processing.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a cat which is supposed to react to (and destroy) the most interesting thing in its environment. There are several ways we could approach this problem, but for the sake of demonstration, let's have it follow a rulebook to figure out which thing it most wants to interact with. We will then return the chosen object as &quot;the result of the rule&quot;.
+<p>
+<blockquote><font color="#000080">&quot;Feline Behavior&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Kitchen is a room. The cat is an animal in the Kitchen. In the Kitchen is a bowl, a ball of wool, a newspaper. The bowl contains a quantity of cream.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cat is wearing a silver collar. The description of the cat is &quot;It is wearing [a list of things worn by the cat].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a closed openable container called a bag. The bag contains catnip.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cat behavior rules is a rulebook producing an object.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the catnip:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat frolics with the catnip until nothing remains of it.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result catnip.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the cream:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat laps up the cream.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result cream.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the ball of wool:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat makes the ball of wool into a useless tangle which must be discarded.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result ball.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the newspaper:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat bats playfully at the newspaper until all the nasty boring articles are destroyed.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result newspaper.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat looks miffed at the lack of ready entertainment, and glares at you with yellow eyes as though wondering whether your pants leg is good for claw-sharpening.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the destroyed object be the object produced by the cat behavior rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the destroyed object is not nothing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the destroyed object from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]Good thing you have no use for [the destroyed object] yourself.[paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / open bag / z / z&quot;.
+</font></blockquote><p>
+<p>
+<p>We include the if rule succeeded... condition here because nothing will be returned if the cat's search failed (as for instance in the result of the final rule).
+<p>
+<p>Naturally, if we wanted we could equally well ask &quot;if rule failed...&quot;.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e375"><a href=ex375.html#e375 STYLE="text-decoration: none">**<b>Example 387:  Kyoto</b></a><br>Expanding the effects of the THROW something AT something command so that objects do make contact with one another.<p>
+<p><hr><p><a href=doc329.html STYLE="text-decoration: none">Previous</a> / <a href=doc331.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

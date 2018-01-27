@@ -1,0 +1,166 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.3. Pattern matching</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Ferragamo Again" -->
+<!-- SEARCH SECTION "Ex 170" -->
+<!-- SEARCH SORT "Ex 011-003-170" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc169.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc171.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.3. Pattern matching</b></td></tr></table><p>
+<p>
+<p>In this section, let's take the built-in phrase &quot;remove ... from play&quot; as an example. As the wording suggests, this causes whatever thing is named to disappear from every room, going into a sort of off-stage limbo.
+<p>
+<p>Although the wording can be different each time this is used:
+<p>
+<blockquote><font color="#000080">remove the diamonds from play;
+<br>remove Mr Cogito from play;
+<br>remove the honey sandwich from play;
+</font></blockquote><p>
+<p>
+<p>... a single definition in Inform's Standard Rules nevertheless covers all of these possibilities. It is written like so:
+<p>
+<blockquote><font color="#000080">To remove (item - an object) from play: ...
+</font></blockquote><p>
+<p>
+<p>The bracketed part of the definition tells Inform to expect an object in that position, and Inform enforces this carefully. So this definition might tell Inform what &quot;remove the barricade from play&quot; means, but not what
+<p>
+<blockquote><font color="#000080">remove &quot;blue cheese&quot; from play;
+<br>remove 63 from play;
+</font></blockquote><p>
+<p>
+<p>mean. Unless some other definition sorts the matter out, Inform will reply to uses like this with a Problem message:
+<p>
+<blockquote><font color="#000080"><b>Problem.</b> You wrote 'remove 63 from play' <img border=0 src=images/Reveal.png>, but '63' has the wrong kind of value: a number rather than an object.
+</font></blockquote><p>
+<p>
+<p>The object does not need to be named literally, but can be anything which works out to be an object: for instance,
+<p>
+<blockquote><font color="#000080">After dropping something in the Nebulous Mist:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play.
+</font></blockquote><p>
+<p>
+<p>which Inform allows because &quot;noun&quot;, here, is a name for the object which is being acted on.
+<p>
+<p>Inform decides which definition to apply in a process called &quot;pattern matching&quot;.
+<p>
+<p>The bracketed part of the example definition has the form &quot;(name - kind)&quot;. The definition only applies if the text supplied agrees with the &quot;kind&quot; part - for instance, the diamonds agreed with &quot;object&quot;, but 63 did not. If the definition  does apply, then the Inform works through the rest of the phrase using &quot;name&quot; to mean whatever value matched. For example:
+<p>
+<blockquote><font color="#000080">To slam shut (box - an open container):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;With great panache, you slam shut [the box].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the box is closed.
+</font></blockquote><p>
+<p>
+<p>When this phrase is followed, &quot;box&quot; means whatever open container the pattern-matcher found when it was called for. For example, if Inform reads
+<p>
+<blockquote><font color="#000080">slam shut the Dutch armoire;
+</font></blockquote><p>
+<p>
+<p>then it acts on this by following the definition of &quot;slam shut ...&quot;, using the Dutch armoire object as the value of &quot;box&quot;, so it prints:
+<p>
+<blockquote><font color="#000080">With great panache, you slam shut the Dutch armoire.
+</font></blockquote><p>
+<p>
+<p>and renders it closed.
+<p>
+<p>In fact any description can be given in the definition, and that includes a single, specific value. For instance, we could define:
+<p>
+<blockquote><font color="#000080">To grant (bonus - a number) points:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by the bonus.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To grant (bonus - 7) points:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You shiver uncontrollably.&quot;
+</font></blockquote><p>
+<p>
+<p>which would withhold this unlucky bounty. That would mean that:
+<p>
+<blockquote><font color="#000080">grant 7 points;
+<br>grant seven points;
+</font></blockquote><p>
+<p>
+<p>would each produce uncontrollable shivers, because Inform uses the definition applying to the number 7; but
+<p>
+<blockquote><font color="#000080">grant six points;
+</font></blockquote><p>
+<p>
+<p>would increase the score by 6. In general Inform always follows the principle that more specific definitions take priority over more general ones. So although the definitions:
+<p>
+<blockquote><font color="#000080">To grant (bonus - a number) points: ...
+<br>To grant (bonus - 7) points: ...
+</font></blockquote><p>
+<p>
+<p>both apply to the case of &quot;grant 7 points&quot;, Inform uses the second, because it's the more specific of the two possibilities.
+<p>
+<p>Sometimes it will not be possible to tell if the value supplied meets the requirements until the game is actually playing. If, at run-time, no definition fits some phrase which has to be carried out, a run-time problem message is produced.
+<p>
+<p>Finally, and more straightforwardly, we can specify variations in wording using slashes between alternative words in a &quot;To ...&quot; definition. For instance:
+<p>
+<blockquote><font color="#000080">To grant (bonus - a number) point/points: ...
+</font></blockquote><p>
+<p>
+<p>allows the final word to be either &quot;point&quot; or &quot;points&quot;. Slashes like this can only be used with literal words, not bracketed values, and give alternative forms only of a single word at a time. (If we need more variation than that, we should make more than one definition.)
+<p>
+<p><hr><p>
+<a name="e3"><a href=ex3.html#e3 STYLE="text-decoration: none">*<b>Example 169:  Ahem</b></a><br>Writing a phrase, with several variant forms, whose function is to follow a rule several times.<p>
+<!-- EXAMPLE START -->
+<a name="e139"><a href=doc170.html#e139 STYLE="text-decoration: none">**<b><b>Example</b> 170:  Ferragamo Again</b></a><br>Using the same phrase to produce different results with different characters.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Here we use phrases that match individual items where possible, and the general kind otherwise:
+<p>
+<blockquote><font color="#000080">&quot;Ferragamo Again&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Break Room is a room. Vanessa, Tina, and Lisa are women in the Break Room. Mark and Holman are men in the Break Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the commands &quot;ask&quot; and &quot;tell&quot; and &quot;answer&quot; as something new.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;talk about [any subject]&quot; as talking about. Talking about is an action applying to one visible thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;talk about [text]&quot; as talking randomly about. Talking randomly about is an action applying to one topic. Carry out talking randomly about: say &quot;Mostly you're interested in [the list of subjects].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out talking about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the previous subject is the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report talking about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You chat for a while about [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A subject is a kind of thing. Assyrian vowel sounds, designer handbags, and instant run-off voting are subjects. Understand &quot;linguistics&quot; and &quot;mute&quot; and &quot;stop&quot; as sounds. Understand &quot;prada&quot; and &quot;tods&quot; and &quot;coach&quot; and &quot;carmen marc valvo&quot; as designer handbags. Understand &quot;reform&quot; and &quot;election&quot; and &quot;election fraud&quot; and &quot;two-party system&quot; and &quot;Diebold&quot; as instant run-off voting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (annoyed-person - a person) gestures in irritation:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The annoyed-person] sighs heavily. [run paragraph on]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (annoyed-person - Vanessa) gestures in irritation:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The annoyed-person] takes off her glasses and polishes them on her sleeve. [run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (annoyed-person - Holman) gestures in irritation:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Holman bobs his head. [run paragraph on]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The previous subject is a subject that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of talking about something for more than one turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is the previous subject, say &quot;[a random visible person who is not the player gestures in irritation]Maybe you should let this one go.[line break][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;talk about chocolate / talk about vowel sounds / g / talk about handbags / talk about prada / talk about tods&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc169.html STYLE="text-decoration: none">Previous</a> / <a href=doc171.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

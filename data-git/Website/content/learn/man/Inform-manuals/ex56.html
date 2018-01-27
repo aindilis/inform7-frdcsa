@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.14. Devices and descriptions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Disenchantment Bay 7" -->
+<!-- SEARCH SECTION "Ex 24" -->
+<!-- SEARCH SORT "Ex 003-014-024" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc40.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc42.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.14. Devices and descriptions</b></td></tr></table><p>
+<p>
+<p>A &quot;device&quot; is another of the standard kinds of thing, and should be used for anything which can be switched on or off: a light switch, say, or a slide projector. Devices are generally machines, clockwork or electrical. A device is always either &quot;switched on&quot; or &quot;switched off&quot;, but is switched off unless we specify otherwise.
+<p>
+<p>That makes three kinds of thing which will likely change their appearance according to which of their two possible states they are in: doors and containers, which can be open or closed; and devices, which can be switched on or switched off. We would like to produce text accordingly, and we can do this using Inform's ability to make (almost) any piece of text change with circumstances. For instance:
+<p>
+<blockquote><font color="#000080">The coffin is an openable container in the Undertomb. &quot;[if open]The lid of a plank coffin yawns open.[otherwise]A plank coffin lies upon the dirt floor of the Tomb.&quot;
+</font></blockquote><p>
+<p>
+<p>We could use a similar trick to make the appearance of a device change &quot;if switched on&quot;. There will be much more about text substitutions, as instructions in square brackets like these are called, in later chapters.
+<p>
+<a href=doc72.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Text with substitutions</b></font></a><i> for more on varying what is printed</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e56"><a href=doc41.html#e56 STYLE="text-decoration: none">*<b><b>Example</b> 24: Disenchantment Bay 7</b></a><br>Disenchantment Bay: making the radar and instruments switch on and off.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>If we would like the player to be able to turn instrumentation on and off, we could add a line to this effect:
+<p>
+<blockquote><font color="#000080">The radar, the instruments, and the radios are devices.
+</font></blockquote><p>
+<p>
+<p>And since the captain is probably not navigating blind, we might also want to say
+<p>
+<blockquote><font color="#000080">The radar and the instruments are switched on.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e30"><a href=ex30.html#e30 STYLE="text-decoration: none">**<b>Example 25:  Down Below</b></a><br>A light switch which makes the room it is in dark or light.<p>
+<p><hr><p><a href=doc40.html STYLE="text-decoration: none">Previous</a> / <a href=doc42.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

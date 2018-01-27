@@ -1,0 +1,303 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.15. Actions on Multiple Objects</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Facts Were These" -->
+<!-- SEARCH SECTION "Ex 420" -->
+<!-- SEARCH SORT "Ex 006-015-420" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc42.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc44.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.15. Actions on Multiple Objects</b></td></tr></table><p>
+<p>
+<p>Inform allows a handful of actions - TAKE, DROP, PUT, INSERT - to apply to more than one item at a time, so that the player can move things around easily.
+<p>
+<p>The general principle is that multiple objects are allowed if the actions are likely to be successful but not interesting most of the time, and if they're things that the player could plausibly do all at once. For most actions, the use of ALL would seem weirdly indiscriminate: EAT ALL, say, describes very implausible behavior, and EXAMINE ALL would likely generate a screenful of text at once.
+<p>
+<p>But this is all under our control. To create an action that uses multiples, or to allow the use of multiple objects with an already-existing action, we need to create an understand statement that uses the &quot;[things]&quot; token (note the plural). For instance:
+<p>
+<blockquote><font color="#000080">Understand &quot;give [things] to [someone]&quot; as giving it to.
+</font></blockquote><p>
+<p>
+<p>This would let the existing give action apply to multiple objects, in just the same way that &quot;take&quot; does. <b>Shawn's Bad Day</b> demonstrates how we might allow EXAMINE ALL to print descriptions of every visible item.
+<p>
+<p>Alternatively, we could generate a new action:
+<p>
+<blockquote><font color="#000080">Understand &quot;give [things] to [someone]&quot; as multiply-giving it to. Multiply-giving it to is an action applying to one carried thing and one thing.
+</font></blockquote><p>
+<p>
+<p>(In theory the language here should perhaps be &quot;several carried things&quot; -- but Inform is still going to process multiply-giving item by item, unless we redirect it. More about this in a moment.)
+<p>
+<p>When handling an action that uses the &quot;[things]&quot; token, the parser makes a list of every item to which it is going to apply the action: this is called the multiple objects list. The multiple objects list can be the result of a vague request (GET ALL) or a specific one involving identical multiples (GET PENNIES, GET THREE APPLES) or a very specific one involving unique, named nouns (GET GERBIL, APPLE, AND POMEGRANATE).
+<p>
+<p>We can manipulate what Inform includes in &quot;ALL&quot; in sentences like TAKE ALL with the &quot;deciding whether all includes...&quot; activity; for instance
+<p>
+<blockquote><font color="#000080">Rule for deciding whether all includes scenery: it does not.
+</font></blockquote><p>
+<p>
+<p>prevents TAKE ALL from applying to things that can't be moved anyway, avoiding lots of lines like
+<p>
+<blockquote><font color="#000080">tree: That's hardly portable.
+<br>swing set: That's hardly portable.
+</font></blockquote><p>
+<p>
+<p>A slightly tedious technical note: the multiple objects list is not strictly a list in the standard Inform sense, because it is used so frequently in parsing that it would be cumbersome to handle it with the more flexible but less efficient structure used for lists. However, if we want to manipulate the multiple objects list as though it were an ordinary list -- that is, sort it, rotate it, truncate it, remove entries from it, etc -- we may do so by creating a list like this:
+<p>
+<blockquote><font color="#000080">let L be the multiple object list.
+</font></blockquote><p>
+<p>
+<p>and later after making L conform to our desires:
+<p>
+<blockquote><font color="#000080">alter the multiple object list to L.
+</font></blockquote><p>
+<p>
+<p>Inform next repeatedly runs the action rulebook for the action generated, using each item from the multiple object list as &quot;noun&quot; in turn (or as &quot;second noun&quot;, if that's where the [things] token appeared in the understand line). Since it is possible to alter the multiple object list before the &quot;generate action rule&quot; portion of the turn sequence consults the rulebooks, we can also affect the order in which the player's matched objects are handled; see <b>Formicidae</b>. We should not attempt to change the multiple object list after this point, because this is likely to introduce bugs.
+<p>
+<p>Each time Inform tries the action on a new noun, it prefixes the action-attempt with the name of the item it's currently working on. This is where we get such output as &quot;frog eyeballs:&quot; and &quot;newt toes:&quot; in long lists like
+<p>
+<blockquote><font color="#000080">frog eyeballs: Taken.
+<br>newt toes: Taken.
+</font></blockquote><p>
+<p>
+<p>These names are generated by the &quot;announce items from multiple object lists rule&quot; in the action-handling rules; <b>Escape from the Seraglio</b> shows how to alter them. In the context of this rule, the thing we are currently printing the name of can be called &quot;the current item from the multiple objects list&quot;.
+<p>
+<p>Suppressing names of objects entirely, while occasionally tempting, may have unintended consequences, especially if some of the attempted actions are prevented by check rules that themselves print things. It is safest to suppress the multiple object names in the case where we already know that the action will succeed wherever it is attempted (more often for observational actions like examining than for manipulative actions like taking, or where we mean to completely override default handling).
+<p>
+<p>Given that our hypothetical &quot;multiply-giving&quot; applies to each given object in turn, it might seem to be useless to create &quot;multiply-giving&quot; as an action different from &quot;giving&quot; -- but the convenience is that manipulating the multiple object list makes it possible to group behavior artificially. The trick here is that, on the first pass of the multiply-giving rulebook, we look at the entire multiple object list, perform actions, print output, and set a flag saying that the action has been handled. The flag tells Inform not to do or print anything for any of the subsequent passes through that action rulebook; thus we artificially create a situation where, instead of performing an action on each object in turn, Inform acts once on the entire group. That allows us to assess the cumulative qualities of the group and have the action respond differently than it might when assessing each item individually.
+<p>
+<p><b>The Facts Were These</b> demonstrates how we might write an action for GIVE THREE DOLLARS TO MAN or GIVE PIE AND HAT TO MAN where the man would only accept the collective gift when its total proved satisfactory.
+<p>
+<a href=Rdoc33.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Examining</b></font></a><i> for groups of objects that have a collective description different from their individual descriptions, and for commands that search multiple things at once</i><p><p>
+<a href=Rdoc82.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Dispensers and Supplies of Small Objects</b></font></a><i> for ways to let the player pick up a number of identical items from a dispenser or supply</i><p><p>
+<p><hr><p>
+<a name="e254"><a href=Rex254.html#e254 STYLE="text-decoration: none">*<b>Example 283:  Shawn's Bad Day</b></a><br>Allowing the player to EXAMINE ALL.<p>
+<a name="e127"><a href=Rex127.html#e127 STYLE="text-decoration: none">**<b>Example 400:  Escape from the Seraglio</b></a><br>Replacing the usual response to TAKE ALL so that instead of output such as "grapes: Taken. orange: Taken.", Inform produces variable responses in place of "grapes:".<p>
+<a name="e156"><a href=Rex156.html#e156 STYLE="text-decoration: none">**<b>Example 417:  Formicidae</b></a><br>Manipulating the order in which items are handled after TAKE ALL.<p>
+<!-- EXAMPLE START -->
+<a name="e135"><a href=Rdoc43.html#e135 STYLE="text-decoration: none">**<b><b>Example</b> 420:  The Facts Were These</b></a><br>Creating a variant GIVE action that lets the player give multiple objects simultaneously with commands like GIVE ALL TO ATTENDANT or GIVE THREE DOLLARS TO ATTENDANT or GIVE PIE AND HAT TO ATTENDANT. The attendant accepts the gifts only if their total combined value matches some minimum amount.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Occasionally it happens that we want to process an action on multiple items differently than we would if the player had just typed each of the individual actions separately. In this example, the reason is that we can only successfully GIVE items when their combined value passes a certain threshold amount; otherwise the recipient will reject them.
+<p>
+<p>This works as an implementation of money, if we give value only to cash objects (though several other implementations of cash are available, most of which are simpler and more efficient). We could also imagine a mechanic like this being used for a bargaining or auction game as well, given a society that deals in objects rather than credits.
+<p>
+<p>In order to consider all the items in the gift at once, we create an action that applies to multiple objects, but will in fact test the whole object collection during the first pass and print a definitive answer to whether the action succeeded. All subsequent times the game consults the rulebook will be stopped at the very beginning. No further processing will occur or output be printed.
+<p>
+<blockquote><font color="#000080">&quot;The Facts Were These&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<p>We start with an inclusion; this will allow us to write more compact error messages to apply to multiple objects:
+<p>
+<blockquote><font color="#000080">Include Plurality by Emily Short.
+</font></blockquote><p>
+<p>
+<p>And while we're at it, let's also create the idea that everything in the game has a monetary value:
+<p>
+<blockquote><font color="#000080">A price is a kind of value. $10 specifies a price. A thing has a price.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;give [things preferably held] to [someone]&quot; as multiply-giving it to. Understand &quot;give [things] to [someone]&quot; as multiply-giving it to.  Multiply-giving it to is an action applying to two things.
+</font></blockquote><p>
+<p>
+<p>A subtlety here: we say &quot;things preferably held&quot; to prefer items that the player is holding (so if the player has two dollars in hand and a third lies on the ground, he will use just the two he has).
+<p>
+<p>The second grammar line allows Inform to match things that aren't held if it can't make up the list from things that are. If all three dollars are on the ground, the player can pick them up before spending them.
+<p>
+<p>We do not, however, make multiply-giving apply to a &quot;carried&quot; item, because that will generate implicit takes of those items in a way that will mess up our action reporting. Instead, we're going to build the implicit takes into the system in a different way, one that permits us to collate the reports more attractively and print a short, one-sentence list of anything that the player had to pick up.
+<p>
+<blockquote><font color="#000080">A thing can be given or ungiven. A thing is usually ungiven.
+</font></blockquote><p>
+<p>
+<p>This is for record-keeping purposes so that we can print an attractive list of what was given at the end of the turn.
+<p>
+<blockquote><font color="#000080">First check multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if already gave at the office is true:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Already gave at the office is a truth state that varies.
+</font></blockquote><p>
+<p>
+<p>&quot;Already gave at the office&quot; is the perhaps-excessively-named flag that keeps track of whether we've already done this action once.
+<p>
+<blockquote><font color="#000080">Check multiply-giving something to the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can hardly bribe yourself.[paragraph break]&quot; instead;
+</font></blockquote><p>
+<p>
+<p>The following rule is longish because it processes the entire list at once, generating implicit takes if necessary (but processing those implicit takes silently according to its own special rule, so that the output can be managed attractively). We are also, at the same time, calculating the total value of the player's offer.
+<p>
+<blockquote><font color="#000080">Check multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let L be the multiple object list;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let bribe-price be $0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through L:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player does not carry the item:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abide by the ungivability rules for the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carry out the implicitly taking activity with the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player does not carry the item:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't include [the item] in your bribe, since you're not holding [it-them]![paragraph break]&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increase bribe-price by the price of item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of entries in the recently-collected list is greater than 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through the recently-collected list:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now item is marked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You pick up [the list of marked for listing things] and make your offer. [run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now everything is unmarked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the bribe-price is less than the price of the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] angrily rejects your piffling bribe.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<p>The bit about making some items &quot;marked for listing&quot;, above, rather than printing the list directly, is that using the &quot;[the list of....]&quot; syntax guarantees that Inform will respect grouping rules in writing its description. For instance, if the player has automatically taken all three dollars, the output will say &quot;the three dollars&quot; instead of &quot;the dollar, the dollar, and the dollar.&quot;
+<p>
+<blockquote><font color="#000080">Carry out multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let L be the multiple object list;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through L:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the second noun carries the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is given;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] rather shamefacedly tucks [the list of given things] away into a pocket.[paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<p>Now we create our own variation of implicitly taking in order to customize the output for the multiply-giving action. The &quot;ungivability rules&quot; should disallow any object that the player absolutely cannot take, because we want &quot;carry out the implicitly taking activity&quot; to succeed every time -- and therefore not print out any less-attractive results from implicit takes that don't succeed. Otherwise, the player's GIVE TREE AND DOG TO ATTENDANT might produce the reply &quot;That's fixed in place&quot; -- without specifying which object is fixed in place.
+<p>
+<p>Because of the way this works, we will want to be careful: if we have any &quot;instead of taking...&quot; rules for special objects in the game, we should be sure to mirror those with an ungivability rule to print something more suitable in the case that the player tries taking that object as part of the multiple giving action.
+<p>
+<blockquote><font color="#000080">The ungivability rules are an object-based rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for a person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Slavery is illegal.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is enclosed by someone who is not the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are]n't yours to give.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something which encloses the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You don't want to end up as part of the gift.[paragraph break]&quot; instead;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is part of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] attached to [a random thing which incorporates the item][paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is scenery:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] unremovable.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is fixed in place:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] fixed in place.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for a direction (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] not susceptible to giving.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking something (called target) while multiply-giving:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try taking the target;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries the target:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add the target to the recently-collected list.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The recently-collected list is a list of objects that varies.
+</font></blockquote><p>
+<p>
+<p>And since we don't want to list the individual objects separately:
+<p>
+<blockquote><font color="#000080">The selectively announce items from multiple object lists rule is listed instead of the announce items from multiple object lists rule in the action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the selectively announce items from multiple object lists rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if multiply-giving:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do nothing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the current item from the multiple object list is not nothing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[current item from the multiple object list]: [run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<p>And now, since this ought to work symmetrically if the player provides just one high-value item:
+<p>
+<blockquote><font color="#000080">Check giving something to someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the price of the noun is less than the price of the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] angrily rejects your piffling bribe.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>As we've seen elsewhere, the giving action by default returns a refusal, but is also written to start working if we remove the blockage. So we do that here, and revise the report rule to match the report rule we have for multiple giving.
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in any rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The new report giving rule is listed instead of the standard report giving rule in the report giving it to rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the new report giving rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] rather shamefacedly tucks [the noun] away into a pocket.&quot;
+</font></blockquote><p>
+<p>
+<p>After each instance of the multiply-giving action, we need to clear the variables we used to track its state. We could do this in &quot;Before reading a command&quot;, but that's unsafe because the player might type GIVE PIE AND CAP TO ATTENDANT. GIVE DOLLARS TO ATTENDANT. all on a single line, and we would like to be able to clear the variables between one action and the next. The correct place to attach this behavior is immediately before the generate action rule, thus:
+<p>
+<blockquote><font color="#000080">The before-generation rule is listed before the generate action rule in the turn sequence rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the before-generation rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every thing is ungiven;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is false;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate the recently-collected list to 0 entries.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Morgue Office is a room. &quot;This is not the Morgue itself; this is only its outer office. The familiar room full of silver drawers and cold air lies beyond.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Morgue Attendant is a man in the Morgue Office. &quot;The Attendant has seen you come through a number of times, and is becoming suspicious of your abiding interest in dead people.&quot; The description is &quot;The Morgue Attendant is fifty-four years, six months, five days, and three minutes old.&quot; The price of the Morgue Attendant is $3.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A dollar is a kind of thing. The player carries three dollars.  The price of a dollar is always $1.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a miniature rhubarb pie. The price of the miniature rhubarb pie is $5.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a knitted cap. The price of the knitted cap is $2.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;test dollars / purloin three dollars / test multi-line / purloin three dollars / purloin pie / purloin cap / test specificity / purloin three dollars / test largesse / test mixed-gift&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test multi-line with &quot;give dollar and pie to attendant. give dollars and cap to attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test dollars with &quot;drop all / give dollar to Morgue Attendant / give dollars to Morgue Attendant / get dollars / give dollars to morgue attendant / purloin three dollars / drop dollars / give dollars to Morgue Attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test specificity with &quot;give three dollars to Morgue Attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test largesse with &quot;give pie to Morgue Attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test mixed-gift with &quot;give dollar and cap to Morgue Attendant / get cap / give dollar and cap to morgue attendant / give me and dollar to attendant&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc42.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc44.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

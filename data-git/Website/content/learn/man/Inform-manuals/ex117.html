@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.4. Change of either/or properties</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Vitrine" -->
+<!-- SEARCH SECTION "Ex 116" -->
+<!-- SEARCH SORT "Ex 008-004-116" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc124.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc126.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.4. Change of either/or properties</b></td></tr></table><p>
+<p>
+<p>When we have an either/or property, we can set it like so:
+<p>
+<blockquote><font color="#000080">Instead of waiting when the oaken door is closed:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is a slow, creaky click! sort of noise as the door swings open, apparently all by itself.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the oaken door is open.
+</font></blockquote><p>
+<p>
+<p>If it is open already, nothing changes: in any case nothing is said to the player unless we give explicit instructions to that effect, as we've done here.
+<p>
+<p>Inform protects its model world from accidental damage in several ways, one of which is to ensure that things are not given properties which they are not allowed to have. So this, for instance, will not be accepted:
+<p>
+<blockquote><font color="#000080">now the oaken door is unvisited
+</font></blockquote><p>
+<p>
+<p>More subtle problems arise if it is not possible to tell, when the game is being constructed, what the object in question will be: for instance, if we try to change a randomly chosen object to be &quot;unvisited&quot;. Inform therefore makes additional checks during play, printing up a suitable message only if the rules are violated. The net effect is that it is impossible for the oaken door ever to have the &quot;unvisited&quot; property.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e117"><a href=doc125.html#e117 STYLE="text-decoration: none">*<b><b>Example</b> 116:  Vitrine</b></a><br>An electrochromic window that becomes transparent or opaque depending on whether it is currently turned on.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Vitrine&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Plaza View is a room. &quot;Your uncle's apartment, on loan to you for viewing the parade and celebrations today. This would be more of a sacrifice on his part if he weren't currently yachting around Corfu.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The smart window is a device in Plaza View. It is fixed in place. &quot;A vast smart window [if transparent]overlooks the park[otherwise]has turned to a sheet of hazy blue[end if].&quot; The smart window can be transparent. The smart window is transparent. The description is &quot;An electrochromic device which changes shade and transparency in response to the application of current.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Curtains are so last year.&quot;
+</font></blockquote><p>
+<p>
+<p>Note the &quot;can be transparent&quot; line. Devices ordinarily are not allowed to have transparency or opaqueness, but we can make an exception in this case. Without that line, attempts to change the transparency of the window will fail.
+<p>
+<blockquote><font color="#000080">Carry out switching off the window: now the window is transparent.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out switching on the window: now the window is opaque.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of searching a transparent window: say &quot;Isn't it lovely out there?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of searching an opaque window: say &quot;The window is currently darkened.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look through window / switch window / look through window / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc124.html STYLE="text-decoration: none">Previous</a> / <a href=doc126.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

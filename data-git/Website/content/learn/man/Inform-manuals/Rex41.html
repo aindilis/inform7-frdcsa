@@ -1,0 +1,92 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.7. Painting and Labeling Devices</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Early Childhood" -->
+<!-- SEARCH SECTION "Ex 53" -->
+<!-- SEARCH SORT "Ex 009-007-053" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc73.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc75.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.7. Painting and Labeling Devices</b></td></tr></table><p>
+<p>
+<p>Writing on something is only one way a player can change its visual appearance. IF authors have long been wary of paint brushes, because a sufficiently motivated player could go through a whole landscape like a graffiti artist with a railway bridge. We want to give the player the illusion of freedom of action, while avoiding a situation where unlimited numbers of different decorations might be needed - that would need a table of potentially unlimited size.
+<p>
+<p>One approach is to limit the number of items which can be decorated. In <b>Palette</b>, only the canvas can be painted, and each image overlays the last. <b>Early Childhood</b> increases the range to allow a whole kind (&quot;block&quot;) to be painted, and also shows how the changing colours can be used to distinguish between otherwise identical objects.
+<p>
+<p><b>Brown</b> finds a different way to limit the number of simultaneous decorations: almost anything can have a red sticky label attached, but there is only one red sticky label. (So to decorate a new item, the player must first un-decorate an old one.)
+<p>
+<a href=Rdoc86.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Electricity and Magnetism</b></font></a><i> for another form of stickiness</i><p><p>
+<p><hr><p>
+<a name="e280"><a href=Rex280.html#e280 STYLE="text-decoration: none">*<b>Example 297:  Palette</b></a><br>An artist's workshop in which the canvas can be painted in any colour, and where painterly names for pigments ("cerulean") are accepted alongside everyday ones ("blue").<p>
+<!-- EXAMPLE START -->
+<a name="e41"><a href=Rdoc74.html#e41 STYLE="text-decoration: none">***<b><b>Example</b> 53:  Early Childhood</b></a><br>A child's set of building blocks, which come in three different colours - red, green and blue - but which can be repainted during play.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>This would be a one-star example if it were not for the repainting:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 1&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A building block is a kind of thing. A red block, a blue block and a green block are kinds of building block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / get red block&quot;.
+</font></blockquote><p>
+<p>
+<p>But a kind cannot change during play, so this will not do. Instead, the colour will have to be a property of the block. So we might first try this:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 2&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, blue and green. A block is a kind of thing. A block has a colour. A block is usually blue.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / get red block&quot;.
+</font></blockquote><p>
+<p>
+<p>Which is fine, so far as it goes, but the colour property is not at all visible to the player, who simply sees &quot;eleven blocks&quot;. We thought of colour as being something outwardly apparent, but Inform does not know this. To achieve a better effect, we will need features from distant chapters. The first is an activity called &quot;printing the name of&quot;:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 3&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, blue and green. A block is a kind of thing. A block has a colour. A block is usually blue. Before printing the name of a block: say &quot;[colour] &quot;. Before printing the plural name of a block: say &quot;[colour] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / get red block&quot;.
+</font></blockquote><p>
+<p>
+<p>This too, however, is unsatisfactory. The individual blocks are correctly described, but we are unable to distinguish them during play: we cannot type &quot;take a green block&quot;, for instance. And because the blocks are indistinguishable in play, they are still massed together as &quot;eleven blocks&quot; in room descriptions. We need to go one step further:
+<p>
+<blockquote><font color="#000080">&quot;Early Childhood 4&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, blue and green. A block is a kind of thing. A block has a colour. A block is usually blue. Before printing the name of a block: say &quot;[colour] &quot;. Before printing the plural name of a block: say &quot;[colour] &quot;. Understand the colour property as describing a block.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Nursery is a room. In the Nursery are six red blocks, four blue blocks and a green block.
+</font></blockquote><p>
+<p>
+<p>And now everything works nicely: the blocks are grouped by colour, and can be referred to by colour, and we can even change the colour of an individual block during play, using a bit of extra trickery from later:
+<p>
+<blockquote><font color="#000080">Understand &quot;paint [something] [colour]&quot; as painting it. Painting it is an action applying to one thing and one colour. Check painting it: if the noun is not a block, say &quot;Paints are only for blocks.&quot; instead. Carry out painting it: now the colour of the noun is the colour understood. Report painting it: say &quot;The block is now [the colour of the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get red block / get blue block / g / i / look / paint blue block red / i / look / paint me red&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e316"><a href=Rex316.html#e316 STYLE="text-decoration: none">***<b>Example 34:  Brown</b></a><br>A red sticky label which can be attached to anything in the game, or removed again.<p>
+<p><hr><p><a href=Rdoc73.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc75.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

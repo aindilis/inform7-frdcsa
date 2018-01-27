@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.4. Furniture</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Kiwi" -->
+<!-- SEARCH SECTION "Ex 347" -->
+<!-- SEARCH SORT "Ex 008-004-347" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc65.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc67.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.4. Furniture</b></td></tr></table><p>
+<p>
+<p>Most domestic furniture consists of supporters and containers of one size or another. This means that the simplest furniture needs no elaborate instructions:
+<p>
+<blockquote><font color="#000080">The candlestick is on the dining table. The dining table is fixed in place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The silver salt cellar is on the serving trolley. The serving trolley is pushable between rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pillow is on the bed. The bed is enterable and fixed in place.
+</font></blockquote><p>
+<p>
+<p>The examples below are therefore mostly ways to get around the usual restrictions on containers (that they only have one interior) and supporters (that they cannot simultaneously be containers as well).
+<p>
+<p><b>Yolk of Gold</b> provides a set of drawers, that is, a container with multiple interiors.
+<p>
+<p><b>U-Stor-It</b> provides a way to have containers with a lid which is also a supporter.
+<p>
+<p><b>Swigmore</b> provides a supporter which holds up the player, but has no top surface as such, and cannot hold up anything else. <b>Kiwi</b> demonstrates a kind of high shelf, whose objects cannot be seen or used unless the player stands on a ladder.
+<p>
+<p><b>Princess and the Pea</b> shows how a pile of supporters, each on top of the last, could be managed.
+<p>
+<p><b>Tamed</b> demonstrates furniture large enough to get inside, or on top of.
+<p>
+<p><b>Circle of Misery</b> demonstrates a conveyor belt, which can hold multiple items but only brings one of them within the player's reach at a time.
+<p>
+<a href=Rdoc10.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Position Within Rooms</b></font></a><i> for a box that can be positioned and used as a stepping stool</i><p><p>
+<a href=Rdoc23.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The Human Body</b></font></a><i> for letting the player take different postures on furniture or on the floor</i><p><p>
+<a href=Rdoc8.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Room Descriptions</b></font></a><i> for tables and other furniture whose content listing is suppressed or modified in a room description</i><p><p>
+<a href=Rdoc38.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Entering and Exiting, Sitting and Standing</b></font></a><i> for making the player automatically rise from a seat before leaving the room</i><p><p>
+<a href=Rdoc78.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Clocks and Scientific Instruments</b></font></a><i> for a grandfather clock</i><p><p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for a mirror the player can look into</i><p><p>
+<p><hr><p>
+<a name="e439"><a href=Rex439.html#e439 STYLE="text-decoration: none">**<b>Example 83:  Yolk of Gold</b></a><br>Set of drawers where the item the player seeks is always in the last drawer he opens, regardless of the order of opening.<p>
+<a name="e282"><a href=Rex282.html#e282 STYLE="text-decoration: none">*<b>Example 173:  Princess and the Pea</b></a><br>The player is unable to sleep on a mattress (or stack of mattresses) because the bottom one has something uncomfortable under it.<p>
+<a name="e76"><a href=Rex76.html#e76 STYLE="text-decoration: none">***<b>Example 57:  U-Stor-It</b></a><br>A "chest" kind which consists of a container which has a lid as a supporter.<p>
+<a name="e22"><a href=Rex22.html#e22 STYLE="text-decoration: none">**<b>Example 393:  Swigmore U.</b></a><br>Adding a new kind of supporter called a perch, where everything dropped lands on the floor.<p>
+<!-- EXAMPLE START -->
+<a name="e207"><a href=Rdoc66.html#e207 STYLE="text-decoration: none">*<b><b>Example</b> 347:  Kiwi</b></a><br>Creating a raised supporter kind whose contents the player can't see or take from the ground.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want there to be some high shelves in our game, which the player can't get at unless he's standing on a prop of some kind. (This is a pretty hoary and over-used puzzle, but there may still be occasions when it becomes useful again.)
+<p>
+<p>In order to resolve this, we want to set up a raised supporter kind. When something is on a raised supporter, it should be mentioned to the player only if the player is in the right position (i.e., standing on something) and otherwise omitted from the description entirely.
+<p>
+<blockquote><font color="#000080">&quot;Kiwi&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A raised supporter is a kind of supporter.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">For printing a locale paragraph about a raised supporter (called the high place):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on a supporter (called the riser):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Up on [the high place] (and only visible because you're on [the riser]) [is-are a list of things on the high place].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The [high place] is above you.&quot;
+</font></blockquote><p>
+<p>
+<p>Note that here we don't continue the activity because we want to completely replace the normal behavior of describing what is on supporters.
+<p>
+<blockquote><font color="#000080">Definition: a thing (called target item) is out of reach:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on a supporter, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the target item is on a raised supporter, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<p>Now we also need to prevent the player from interacting with things that are out of reach:
+<p>
+<blockquote><font color="#000080">Before doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is out of reach or the second noun is out of reach:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't reach from down here.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>...or restoring things to the shelves while the player is in the wrong position...
+<p>
+<blockquote><font color="#000080">Instead of putting something on a raised supporter when the player is not on a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't reach from down here.&quot;
+</font></blockquote><p>
+<p>
+<p>And raised supporters shouldn't be searchable from the ground either:
+<p>
+<blockquote><font color="#000080">Instead of searching or examining a raised supporter when the player is not on a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't see from down here.&quot;
+</font></blockquote><p>
+<p>
+<p>Finally, we need to tackle the case where the player types GET ALL FROM SHELF, because we don't want to list the objects up there if the player can't even see them. We use a rule for deciding whether all includes in order to tell Inform not to consider items that can't be reached, and then we adjust the parser error so that it's a little more instructive than &quot;There are none at all available!&quot;, which is what the response would otherwise be:
+<p>
+<blockquote><font color="#000080">Disallowed-all is a truth state that varies. Disallowed-all is false.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for deciding whether all includes an out of reach thing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now disallowed-all is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;it does not.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing a parser error when the latest parser error is the nothing to do error and the player is not on a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if disallowed-all is true:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Whatever might be up there, you can't see or reach from down here.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;make no decision.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A first action-processing rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now disallowed-all is false.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Bottom of the Nursery is a room. &quot;Ever since you ate that mysterious cake, you've been even shorter than usual.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The high shelf is a raised supporter in the Nursery. It is scenery. On the high shelf are a kiwi-green ball and a stuffed dodo.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The step-ladder is an enterable supporter in the Nursery. Understand &quot;ladder&quot; as the step-ladder.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x shelf / search shelf / get dodo / get all from shelf / stand on ladder / get all from shelf / search shelf / get off / put all on shelf / get all from shelf / stand on ladder / put all on shelf&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e369"><a href=Rex369.html#e369 STYLE="text-decoration: none">*<b>Example 12:  Tamed</b></a><br>Examples of a container and a supporter that can be entered, as well as nested rooms.<p>
+<a name="e81"><a href=Rex81.html#e81 STYLE="text-decoration: none">*<b>Example 427:  Circle of Misery</b></a><br>Retrieving items from an airport luggage carousel is such fun, how can we resist simulating it, using a list as a ring buffer?<p>
+<p><hr><p><a href=Rdoc65.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc67.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

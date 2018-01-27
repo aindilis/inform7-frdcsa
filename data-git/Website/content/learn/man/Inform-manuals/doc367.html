@@ -1,0 +1,37 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 21.8. Matching the names of kinds</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Matching the names of kinds" -->
+<!-- SEARCH SECTION "21.8" -->
+<!-- SEARCH SORT "021-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc366.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc368.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>21.8. Matching the names of kinds</b></td></tr></table><p>
+<p>
+<p>Sometimes a phrase needs to know what kind it's to work on, but isn't going to be given any particular value of it. For example:
+<p>
+<blockquote><font color="#000080">To assay (name of kind of value K):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through Ks:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There's [item].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;But the default is [default value of K].&quot;;
+</font></blockquote><p>
+<p>
+<p>Note that there's no hyphen, and no name for the bracketed token - it only sets K. We can then have, say:
+<p>
+<blockquote><font color="#000080">assay colours;
+<br>assay vehicles;
+</font></blockquote><p>
+<p>
+<p>But &quot;assay texts&quot; would throw a problem message, because we can't repeat through all possible texts. For a different reason,
+<p>
+<blockquote><font color="#000080">assay open doors;
+</font></blockquote><p>
+<p>
+<p>would not be allowed - &quot;open doors&quot; is a description which applies to some doors and not others; it isn't a kind. It would make no sense to talk about &quot;default value of open door&quot;, for example.
+<p>
+<p><hr><p><a href=doc366.html STYLE="text-decoration: none">Previous</a> / <a href=doc368.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

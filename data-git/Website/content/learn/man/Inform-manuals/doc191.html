@@ -1,0 +1,56 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.5. Unsuccessful attempts</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Unsuccessful attempts" -->
+<!-- SEARCH SECTION "12.5" -->
+<!-- SEARCH SORT "012-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc190.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc192.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.5. Unsuccessful attempts</b></td></tr></table><p>
+<p>
+<p>Suppose, finally, that Will not only consents to try the action, but it also survives its passage through Before and Instead rules. What happens then? In principle, what happens to Will is exactly what would have happened to the player in his place. For instance:
+<p>
+<blockquote><font color="#000080">> will, go east
+<br>Will leaves to the east.
+</font></blockquote><p>
+<p>
+<p>If on the other hand Will's attempt is frustrated because one of the checking rules stops him, then Will's action fails. For instance, if Will tries going northeast but there is no room to northeast, one of the rules checking the &quot;going&quot; action will stop him. We will then see this:
+<p>
+<blockquote><font color="#000080">> will, go northeast
+<br>Will is unable to do that.
+</font></blockquote><p>
+<p>
+<p>This is rather a generic message, and we may want something more interesting. We can provide that using yet another special kind of rule:
+<p>
+<blockquote><font color="#000080">Unsuccessful attempt by Will going: say &quot;Will blunders around going nowhere, as usual.&quot;
+</font></blockquote><p>
+<p>
+<p>Even that is still a little generic, though, because it treats all of the various ways that &quot;going&quot; can fail as the same. If we have ACTIONS switched on, we can see what goes on behind the scenes when we ask Will to walk into a door:
+<p>
+<blockquote><font color="#000080">>will, go west
+<br>[asking Will to try going west]
+<br>[(1) Will going west]
+<br>[(1) Will going west - failed the can't go through closed doors rule]
+<br>Will blunders around going nowhere, as usual.
+<br>[asking Will to try going west - succeeded]
+</font></blockquote><p>
+<p>
+<p>(The &quot;(1)&quot; lets us know that a new action is starting during the old one, and before the old one finishes: sometimes we go up to three or four deep, though seldom more in practical cases.) We can now rewrite the &quot;unsuccessful attempt&quot; rule like so:
+<p>
+<blockquote><font color="#000080">Unsuccessful attempt by Will going:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the reason the action failed is the can't go through closed doors rule, say &quot;Will looks doubtful and mumbles about doors.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Will blunders around going nowhere, as usual.&quot;
+</font></blockquote><p>
+<p>
+<p>The value &quot;reason the action failed&quot; is set to whichever checking rule threw out the action which Will tried. The names of these rules try to be self-explanatory - at any rate, those with gnomic names are not useful for this sort of thing, and can be ignored - and can be found out either using ACTIONS or by consulting the Actions index.
+<p>
+<p>Finally, note that &quot;unsuccessful attempt&quot; rules apply only when the person in question is being asked to perform the action by somebody else - as in the examples above.
+<p>
+<p><hr><p>
+<a name="e201"><a href=ex201.html#e201 STYLE="text-decoration: none">**<b>Example 188:  Generation X</b></a><br>A person who goes along with the player's instructions, but reluctantly, and will get annoyed after too many repetitions of the same kind of unsuccessful command.<p>
+<p><hr><p><a href=doc190.html STYLE="text-decoration: none">Previous</a> / <a href=doc192.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

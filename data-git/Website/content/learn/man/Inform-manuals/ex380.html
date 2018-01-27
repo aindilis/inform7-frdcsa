@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.6. Actions applying to kinds of value</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Tom's Midnight Garden" -->
+<!-- SEARCH SECTION "Ex 288" -->
+<!-- SEARCH SORT "Ex 016-006-288" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc264.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc266.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.6. Actions applying to kinds of value</b></td></tr></table><p>
+<p>
+<p>Almost all actions apply to things: the player picks them up, pushes them, looks at them and so on. We only occasionally need to recognise other kinds of value, but when we do, we can. For instance:
+<p>
+<blockquote><font color="#000080">Adjusting it to is an action applying to one thing and one number.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;adjust [something] to [a number]&quot; as adjusting it to.
+</font></blockquote><p>
+<p>
+<p>The substitution &quot;[a number]&quot; matches any number (actually any whole number that is not too large) typed by the player. Inform checks the various kinds being used to make sure that everything matches, so, for instance, this would be disallowed:
+<p>
+<blockquote><font color="#000080">Understand &quot;adjust [something] to [something]&quot; as adjusting it to.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e332"><a href=ex332.html#e332 STYLE="text-decoration: none">*<b>Example 287:  Safety</b></a><br>A safe whose dial can be turned with SPIN SAFE TO 1131, and which will open only with the correct combination.<p>
+<!-- EXAMPLE START -->
+<a name="e380"><a href=doc265.html#e380 STYLE="text-decoration: none">*<b><b>Example</b> 288:  Tom's Midnight Garden</b></a><br>A clock kind that can be set to any time using "the time understood"; may be turned on and off; and will advance itself only when running. Time on the face is also reported differently depending on whether the clock is analog or digital.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Time can also be understood as a token, and the time parsed will be recorded as &quot;the time understood&quot;. So therefore, if we wish for clocks which may be set:
+<p>
+<blockquote><font color="#000080">&quot;Tom's Midnight Garden&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A clock is a kind of device. A clock has a time called the current time. A clock can be analog or digital. The current time of a clock is usually 9:01 AM. The description of a clock is &quot;It shows the time to be [if analog]about [the current time to the nearest five minutes in words][otherwise][the current time][end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;set [clock] to [time]&quot; as setting it by time. Setting it by time is an action applying to one thing and one time.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of setting a clock to something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] can be set only to a time of day, such as 8:00 AM, or midnight.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out setting a clock by time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the current time of the noun is the time understood.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report setting a clock by time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You set [the noun] to [time understood].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through switched on clocks:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the current time of the item is one minute after the current time of the item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Hall is a room. The grandfather clock is a fixed in place analog clock in the Hall. The travel clock is a switched on digital clock in the Hall.  When play begins: now the right hand status line is &quot;[time of day]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine grandfather clock / set it to midnight / switch it on / wait / wait / wait / examine it / set travel clock to 4:12 / examine it&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e152"><a href=ex152.html#e152 STYLE="text-decoration: none">**<b>Example 289:  Ibid.</b></a><br>A system which allows the author to assign footnotes to descriptions, and permits the player to retrieve them again by number, using "the number understood". Footnotes will automatically number themselves, according to the order in which the player discovers them.<p>
+<p><hr><p><a href=doc264.html STYLE="text-decoration: none">Previous</a> / <a href=doc266.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

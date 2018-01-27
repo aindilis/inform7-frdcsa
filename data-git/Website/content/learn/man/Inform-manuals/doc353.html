@@ -1,0 +1,155 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 20.5. Building lists</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Building lists" -->
+<!-- SEARCH SECTION "20.5" -->
+<!-- SEARCH SORT "020-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc352.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc354.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>20.5. Building lists</b></td></tr></table><p>
+<p>
+<p>We have already seen &quot;add... to...&quot;. This in fact comes in two forms:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>add </b>(value)<b> to </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_addtolist -->
+
+<p>This phrase adds the given value to the end of the list. Example:
+<p>
+<blockquote><font color="#000080">let L be {60, 168};
+<br>add 360 to L;
+</font></blockquote><p>
+<p>
+<p>results in L being {60, 168, 360}. Note that the value is added even if it already occurs somewhere in L; this can be avoided with &quot;if absent&quot;. So:
+<p>
+<blockquote><font color="#000080">add 168 to L, if absent;
+</font></blockquote><p>
+<p>
+<p>would do nothing - it is already there.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>add </b>(list of values)<b> to </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_addlisttolist -->
+
+<p>This phrase adds the first list to the end of the second. Example:
+<p>
+<blockquote><font color="#000080">let L be {2, 3, 5, 7};
+<br>add {11, 13, 17, 19} to L;
+</font></blockquote><p>
+<p>
+<p>results in L being {2, 3, 5, 7, 11, 13, 17, 19}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>If we don't want to add new entries at the end, we can instead say where they should go:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>add </b>(value)<b> at entry </b>(number)<b> in </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_addatentry -->
+
+<p>This phrase adds the given value so that it becomes the entry with that index number in the list. Example:
+<p>
+<blockquote><font color="#000080">let L be {1, 2, 3, 4, 8, 24};
+<br>add 12 at entry 6 in L;
+</font></blockquote><p>
+<p>
+<p>sets L to {1, 2, 3, 4, 8, 12, 24}. If there are N entries in L, then we can add at any of entries 1 up to N+1: adding at entry N+1 means adding at the end. The phrase option &quot;if absent&quot; makes the phrase do nothing if the value already exists anywhere in L.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>add </b>(list of values)<b> at entry </b>(number)<b> in </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_addlistatentry -->
+
+<p>This phrase adds the first list to the second so that it begins at the given position. Example:
+<p>
+<blockquote><font color="#000080">let L be {1, 2, 3, 4};
+<br>add {4, 8, 12} at entry 3 in L;
+</font></blockquote><p>
+<p>
+<p>results in L being {1, 2, 4, 8, 12, 3, 4}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>A list is allowed to contain duplicates, and the order matters. For instance:
+<p>
+<blockquote><font color="#000080">let L be {2, 2, 3};
+</font></blockquote><p>
+<p>
+<p>makes L into &quot;2, 2 and 3&quot;. This is a different list to the one made by:
+<p>
+<blockquote><font color="#000080">let M be {2, 3, 2};
+</font></blockquote><p>
+<p>
+<p>even though L and M have the same values, repeated the same number of times - for two lists to be equal, they must have the same kind of entry, the same number of entries, and the same entries in each position.
+<p>
+<p>We can also strike out values:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>remove </b>(value)<b> from </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_remfromlist -->
+
+<p>This phrase removes every instance of the given value from the list. Example:
+<p>
+<blockquote><font color="#000080">let L be {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+<br>remove 1 from L;
+</font></blockquote><p>
+<p>
+<p>results in L being {3, 4, 5, 9, 2, 6, 5, 3}. Ordinarily &quot;remove 7 from L&quot; would produce a run-time problem, since L does not contain the value 7, but using the &quot;if present&quot; option lets us off this: the phrase then does nothing if L does not contain the value to be removed.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>remove </b>(list of values)<b> from </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_remlistfromlist -->
+
+<p>This phrase removes every instance of any value in the first list from the second. Example:
+<p>
+<blockquote><font color="#000080">let L be {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+<br>remove {0, 2, 4, 6, 8} from L;
+</font></blockquote><p>
+<p>
+<p>results in L being {3, 1, 5, 9, 5, 3}. If both lists are large, this can be a slow process, and we might do better by sorting them and trying a more sophisticated method. But this is convenient for anything reasonable-sized.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Again, we can also remove from specific positions:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>remove entry </b>(number)<b> from </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rementry -->
+
+<p>This phrase removes the entry at the given position, counting from 1 as the first entry. (Once it is removed, the other entries shuffle down.) Example:
+<p>
+<blockquote><font color="#000080">let L be {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+<br>remove entry 3 from L;
+</font></blockquote><p>
+<p>
+<p>results in L being {3, 1, 1, 5, 9, 2, 6, 5, 3}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>remove entries </b>(number)<b> to </b>(number)<b> from </b>(list of values)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rementries -->
+
+<p>This phrase removes the entries at the given range of positions, counting from 1 as the first entry. (Once they are removed, the other entries shuffle down.) Example:
+<p>
+<blockquote><font color="#000080">let L be {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+<br>remove entries 3 to 6 from L;
+</font></blockquote><p>
+<p>
+<p>results in L being {3, 1, 2, 6, 5, 3}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e322"><a href=ex322.html#e322 STYLE="text-decoration: none">*<b>Example 415: Robo 1</b></a><br>A robot which watches and records the player's actions, then tries to repeat them back in the same order when he is switched into play-back mode.<p>
+<p><hr><p><a href=doc352.html STYLE="text-decoration: none">Previous</a> / <a href=doc354.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

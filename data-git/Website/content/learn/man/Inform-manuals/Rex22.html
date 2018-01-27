@@ -1,0 +1,100 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.4. Furniture</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Swigmore U." -->
+<!-- SEARCH SECTION "Ex 393" -->
+<!-- SEARCH SORT "Ex 008-004-393" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc65.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc67.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.4. Furniture</b></td></tr></table><p>
+<p>
+<p>Most domestic furniture consists of supporters and containers of one size or another. This means that the simplest furniture needs no elaborate instructions:
+<p>
+<blockquote><font color="#000080">The candlestick is on the dining table. The dining table is fixed in place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The silver salt cellar is on the serving trolley. The serving trolley is pushable between rooms.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pillow is on the bed. The bed is enterable and fixed in place.
+</font></blockquote><p>
+<p>
+<p>The examples below are therefore mostly ways to get around the usual restrictions on containers (that they only have one interior) and supporters (that they cannot simultaneously be containers as well).
+<p>
+<p><b>Yolk of Gold</b> provides a set of drawers, that is, a container with multiple interiors.
+<p>
+<p><b>U-Stor-It</b> provides a way to have containers with a lid which is also a supporter.
+<p>
+<p><b>Swigmore</b> provides a supporter which holds up the player, but has no top surface as such, and cannot hold up anything else. <b>Kiwi</b> demonstrates a kind of high shelf, whose objects cannot be seen or used unless the player stands on a ladder.
+<p>
+<p><b>Princess and the Pea</b> shows how a pile of supporters, each on top of the last, could be managed.
+<p>
+<p><b>Tamed</b> demonstrates furniture large enough to get inside, or on top of.
+<p>
+<p><b>Circle of Misery</b> demonstrates a conveyor belt, which can hold multiple items but only brings one of them within the player's reach at a time.
+<p>
+<a href=Rdoc10.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Position Within Rooms</b></font></a><i> for a box that can be positioned and used as a stepping stool</i><p><p>
+<a href=Rdoc23.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The Human Body</b></font></a><i> for letting the player take different postures on furniture or on the floor</i><p><p>
+<a href=Rdoc8.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Room Descriptions</b></font></a><i> for tables and other furniture whose content listing is suppressed or modified in a room description</i><p><p>
+<a href=Rdoc38.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Entering and Exiting, Sitting and Standing</b></font></a><i> for making the player automatically rise from a seat before leaving the room</i><p><p>
+<a href=Rdoc78.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Clocks and Scientific Instruments</b></font></a><i> for a grandfather clock</i><p><p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for a mirror the player can look into</i><p><p>
+<p><hr><p>
+<a name="e439"><a href=Rex439.html#e439 STYLE="text-decoration: none">**<b>Example 83:  Yolk of Gold</b></a><br>Set of drawers where the item the player seeks is always in the last drawer he opens, regardless of the order of opening.<p>
+<a name="e282"><a href=Rex282.html#e282 STYLE="text-decoration: none">*<b>Example 173:  Princess and the Pea</b></a><br>The player is unable to sleep on a mattress (or stack of mattresses) because the bottom one has something uncomfortable under it.<p>
+<a name="e76"><a href=Rex76.html#e76 STYLE="text-decoration: none">***<b>Example 57:  U-Stor-It</b></a><br>A "chest" kind which consists of a container which has a lid as a supporter.<p>
+<!-- EXAMPLE START -->
+<a name="e22"><a href=Rdoc66.html#e22 STYLE="text-decoration: none">**<b><b>Example</b> 393:  Swigmore U.</b></a><br>Adding a new kind of supporter called a perch, where everything dropped lands on the floor.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Inform's default assumption is that if a player on an enterable object drops something, the dropped article winds up beside him on the same supporter or in the same container. This makes lots of sense for a dais, say, or a king-sized bed. It's a little less sensible if the enterable supporter in question is a bar stool or the like. So suppose we want to add a new kind of supporter called a perch, where everything dropped lands on the floor.
+<p>
+<p>There are actually several ways of implementing this, but one of them is to reach right into the drop action and replace the &quot;standard dropping rule&quot; with a different one of our own invention -- like this:
+<p>
+<blockquote><font color="#000080">&quot;Swigmore U.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Moe's Tavern is a room. The bar is an enterable supporter in Moe's. A drink is a kind of thing. On the bar is a drink called a flaming Homer.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A perch is a kind of supporter. A perch is always enterable. The stool is a perch in Moe's.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a dead field mouse and a tomacco fruit.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sophisticated dropping rule is listed instead of the standard dropping rule in the carry out dropping rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the sophisticated dropping rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is on a perch (called the awkward position):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let place be the holder of the awkward position;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the holder of the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;sit on stool / drop mouse / look / get up / look&quot;.
+</font></blockquote><p>
+<p>
+<p>Now the carry-out behavior of the dropping action has been changed, but we haven't had to interfere in the checks or reporting at all. The rest of the action works just as it always did.
+<p>
+<p>Of course, maybe we do want to change the way the action is reported, to make it clearer to the player where the dropped article wound up:
+<p>
+<blockquote><font color="#000080">The sophisticated report dropping rule is listed instead of the standard report dropping rule in the report dropping rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the sophisticated report dropping rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You drop [the noun] on [if the holder of the noun is a room]the ground[otherwise][the holder of the noun][end if].&quot;
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e207"><a href=Rex207.html#e207 STYLE="text-decoration: none">*<b>Example 347:  Kiwi</b></a><br>Creating a raised supporter kind whose contents the player can't see or take from the ground.<p>
+<a name="e369"><a href=Rex369.html#e369 STYLE="text-decoration: none">*<b>Example 12:  Tamed</b></a><br>Examples of a container and a supporter that can be entered, as well as nested rooms.<p>
+<a name="e81"><a href=Rex81.html#e81 STYLE="text-decoration: none">*<b>Example 427:  Circle of Misery</b></a><br>Retrieving items from an airport luggage carousel is such fun, how can we resist simulating it, using a list as a ring buffer?<p>
+<p><hr><p><a href=Rdoc65.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc67.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

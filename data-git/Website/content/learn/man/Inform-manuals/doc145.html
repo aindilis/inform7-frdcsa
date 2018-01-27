@@ -1,0 +1,219 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.4. When play ends</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "When play ends" -->
+<!-- SEARCH SECTION "9.4" -->
+<!-- SEARCH SORT "009-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc144.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc146.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.4. When play ends</b></td></tr></table><p>
+<p>
+<p>Short of something like a power cut, the game can only end when one of the two participants chooses to end it: either the player, by deciding that enough is enough, or us.
+<p>
+<p>In story-telling, there are many kinds of ending: happy, sad, decisive, bittersweet, surprise. Inform doesn't try to interfere in that kind of artistic choice, but it does need to know one thing about the ending: is it final, or not? Many authors like to make additional menu items available if the player has completed the story right through, but not if she has reached an early or wrong ending. (See the activity &quot;amusing a victorious player&quot;, for example.)
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_end -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message &quot;The End.&quot; The end is not considered final.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story finally</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endfinally -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message &quot;The End.&quot; The end is considered final, and any hidden menu options will be revealed.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story saying </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endsaying -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message given in the text. The end is not considered final. Example:
+<p>
+<blockquote><font color="#000080">end the story saying &quot;You have been stymied&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the story finally saying </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endfinallysaying -->
+
+<p>This phrase ends the story at the next opportunity (typically as soon as the current rule ends), with the closing message given in the text. The end is considered final, and any hidden menu options will be revealed. Example:
+<p>
+<blockquote><font color="#000080">end the story finally saying &quot;You have defeated Sauron&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The closing message is traditionally set out in asterisks:
+<p>
+<blockquote><font color="#000080">*** The End ***
+</font></blockquote><p>
+<p>
+<p>This style is traditional in IF, and go back to 1980 if not earlier.
+<p>
+<p>We can test the current state like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has ended</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_ended -->
+
+<p>This condition is true if an end has been declared using one of the &quot;end the story...&quot; phrases.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has not ended</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_notended -->
+
+<p>This condition is true if no end has been declared using one of the &quot;end the story...&quot; phrases.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has ended finally</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_finallyended -->
+
+<p>This condition is true if an end has been declared using one of the &quot;end the story finally...&quot; phrases, so that an ending has been reached which the author feels is a completion of the player's experience.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>story has not ended finally</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_notfinallyended -->
+
+<p>This condition is true if an end has been declared using one of the &quot;end the story...&quot; phrases, but not &quot;finally&quot;, so the author feels that the player can get further experience by playing again and trying different approaches.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>The rulebook &quot;when play ends&quot; is the matching bookend to &quot;when play begins&quot;. It is followed when the game decides to end (not when the player simply gives up and quits), and before any epitaph like
+<p>
+<blockquote><font color="#000080">*** You have been poisoned ***
+</font></blockquote><p>
+<p>
+<p>appears. For example:
+<p>
+<blockquote><font color="#000080">When play ends, say &quot;Oh dear.&quot;
+</font></blockquote><p>
+<p>
+<p>Surprisingly, the end is not always the end:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>resume the story</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_resume -->
+
+<p>This phrase causes an ended story to resume exactly as if no &quot;end the story...&quot; phrase had been used. Example:
+<p>
+<blockquote><font color="#000080">When play ends:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the story has not ended finally:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Oh dear. Still, here's another chance.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resume the story.
+</font></blockquote><p>
+<p>
+<p>The phrase is likely to be sensible only as part of a &quot;when play ends&quot; rule. Other traditional uses include giving the player three lives, as in an old-school arcade machine.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>In earlier builds of Inform, the wording of these phrases was different. There was only one possible way to end finally, which caused some authors trouble, but otherwise the functionality was about the same. The change was really made to recognise that modern IF is about story-telling, and shouldn't assume that everything is a matter of life and death. The following shows the old, now deprecated, wording, together with equivalents in the new wording:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the game saying </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endgamesaying_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">end the story saying ...;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the game in death</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_enddeath_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">end the story saying &quot;You have died&quot;;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>end the game in victory</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endvictory_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">end the story finally saying &quot;You have won&quot;;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>resume the game</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_resumegame_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">resume the story;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game ended in death</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endeddeath_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has ended and the story has not ended finally, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game ended in victory</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_endedvictory_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has ended finally, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game is over</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_over_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has ended, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>game is in progress</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_inprogress_dep -->
+
+<p>A phrase now deprecated and equivalent to:
+<p>
+<blockquote><font color="#000080">if the story has not ended, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e202"><a href=ex202.html#e202 STYLE="text-decoration: none">***<b>Example 138:  Big Sky Country</b></a><br>Allowing the player to continue play after a fatal accident, but penalizing him by scattering his possessions around the game map.<p>
+<p><hr><p><a href=doc144.html STYLE="text-decoration: none">Previous</a> / <a href=doc146.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

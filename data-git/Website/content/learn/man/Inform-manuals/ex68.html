@@ -1,0 +1,162 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.25. Choosing notable locale objects for something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Casino Banale" -->
+<!-- SEARCH SECTION "Ex 346" -->
+<!-- SEARCH SORT "Ex 017-025-346" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc305.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc307.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.25. Choosing notable locale objects for something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> See &quot;printing the locale description&quot;. This activity is expected to decide which items ought to be mentioned in a locale description for a given room, enterable container or enterable supporter, and to give each item a priority, which is a number ranging upwards from 1 (which is the top priority). The lower the priority number, the earlier the mention, or at least, the earlier the opportunity to be mentioned: it's up to other activities whether to give it a paragraph of its own or not. This activity only makes something a candidate, and decides what order the candidates will be tried in.
+<p>
+<p><b>2. The default behaviour.</b> By default, this activity contains only the &quot;standard notable locale objects rule&quot;. This chooses exactly those items directly contained by the locale, assigning all of them priority 5. Note that this includes scenery, and other probably unwanted items - those will be excluded later.
+<p>
+<p><b>3. Examples.</b> (a) In the Misty Moorlands, only large items on the ground are visible through the mist:
+<p>
+<blockquote><font color="#000080">A thing can be large or small. A thing is usually small. The stepladder is a large thing in the Misty Moorlands.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for choosing notable locale objects for the Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through large things in the Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the locale priority of the item to 5.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking a small thing in the Misty Moorlands:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You grope blindly in the mist and pick up [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<p>Note the special phrase
+<p>
+<blockquote><font color="#000080">set the locale priority of the item to 5;
+</font></blockquote><p>
+<p>
+<p>which should be used only in rules for locale activities. It makes the given item a candidate and sets its priority. (Setting the priority to 0 forces an item not to be a candidate, and can thus undo the effect of previous rules.)
+<p>
+<p><hr><p>
+<a name="e229"><a href=ex229.html#e229 STYLE="text-decoration: none">*<b>Example 345:  Low Light</b></a><br>An object that is only visible and manipulable when a bright light fixture is on.<p>
+<!-- EXAMPLE START -->
+<a name="e68"><a href=doc306.html#e68 STYLE="text-decoration: none">***<b><b>Example</b> 346:  Casino Banale</b></a><br>Creating room descriptions and object descriptions that change as the player learns new facts and pieces things together.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>In a work of interactive fiction that involves many new discoveries, we might want to change the way we narrate room descriptions and describe objects as the player learns new information.
+<p>
+<p>One approach to this is to create a model of the facts we want the player to find out, and attach some narrative text to each. When a fact becomes relevant to the story, that narrative text is shown to the player. So:
+<p>
+<blockquote><font color="#000080">&quot;Casino Banale&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<p>First we create the concept of facts, and the idea that facts can make some things more important than others.
+<p>
+<blockquote><font color="#000080">A fact is a kind of thing. A fact can be known or unknown. A fact can be ready to learn or hidden. A fact has some text called the narration.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is narratively significant if it conveys an interesting fact.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is narratively dull if it is not narratively significant.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Conveyance relates various things to various facts. The verb to convey (it conveys, they convey, it conveyed, it is conveyed, it is conveying) implies the conveyance relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a fact is interesting if it is unknown and it is ready to learn.
+</font></blockquote><p>
+<p>
+<p>Now, we also need a way to tell Inform to introduce certain new facts when the right previous ones have been introduced. We'll create a &quot;following&quot; relation, according to which a new fact can be told to the player when the player has already learned all the facts it follows. This way, we can simulate the effect of putting together several pieces of evidence to come to a conclusion:
+<p>
+<blockquote><font color="#000080">Following relates various facts to various facts. The verb to follow (it follows, they follow, it followed, it is followed, it is following) implies the following relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (new fact - a fact):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[narration of the new fact]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the new fact is known;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with possible outcome running through facts which follow the new fact:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if every fact which is followed by possible outcome is known:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the possible outcome is ready to learn.
+</font></blockquote><p>
+<p>
+<p>Next we need a way for the game to introduce these new facts. Let's say we want them to come up when the player examines something appropriate, or sees it in the room:
+<p>
+<blockquote><font color="#000080">After examining something which conveys an interesting fact (called discovery):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[discovery][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After choosing notable locale objects:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Locale Priorities:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the notable-object entry is narratively significant:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set the locale priority of the notable-object entry to 1.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">For writing a paragraph about a narratively significant thing (called item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the item is mentioned;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let chosen fact be a random interesting fact which is conveyed by the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[chosen fact][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<p>The &quot;after choosing notable locale objects&quot; line here handles things so that any interesting conclusions we want to draw are always given first, followed by the less interesting description.
+<p>
+<p>And finally, we need to give the player a little evidence to piece together:
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Casino is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Frince is a man in the Casino. The description is &quot;Frince is a friend of yours -- if you reckon friendship on the same terms that one reckons a cat as a pet. He spends time with you when he wants to, but if your wishes or convenience ever run counter to a whim of his, it's the whim that wins. Always. [paragraph break]He's also wearing a somewhat ludicrous shirt.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Frince wears a ludicrous shirt. The description of the ludicrous shirt is &quot;Fine white fabric with satiny white pinstripes: it's that expensive, effeminate look that Frince is so fond of, and which -- combined with his name -- gives people completely the wrong idea about him.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Tim is a man in the Casino. The description is &quot;You don't know Tim well. Kind of wall-flowerish. The only thing that seems to excite him is craps.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Penny is a woman in the Casino. The description is &quot;Loud. Brash. Hot, probably, if you can look past the loud and brash.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about a narratively dull person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let is-are-n be &quot;is&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of unmentioned narratively dull people is not 1:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let is-are-n be &quot;are&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[A list of unmentioned narratively dull people] [is-are-n] [one of]watching the croupier[or]following the spin of the roulette[or]chattering[at random][one of] breathlessly[or] impatiently[or][at random].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Penny-annoying is a fact.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;It is ready to learn.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The narration is &quot;[if looking]Penny grimaces at you-- [end if]Penny is the same woman who stepped on your toe in the buffet line. The third time, she blurted, 'You have big shoes, don't you?'&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Penny conveys penny-annoying.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">lipstick-smudges is a fact.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;It is ready to learn.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The narration is &quot;There are a couple of smudges of coral-colored lipstick on the collar.&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The ludicrous shirt conveys lipstick-smudges.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">penny-wears-coral is a fact.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;It follows penny-annoying.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The narration is &quot;[if looking]Penny catches your eye again. [end if]The bright coral lipstick was really not a wise choice.&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Penny conveys penny-wears-coral.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Affair-with-penny is a fact.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;It follows lipstick-smudges and penny-wears-coral.
+<br>&nbsp;&nbsp;&nbsp;&nbsp;The narration is &quot;You avoid [if examining Frince]his[otherwise]Frince's[end if] eye. You need some time to adjust to the image of him making out with Penny in a storage closet before you can talk to him without appalled giggling.&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Frince conveys affair-with-Penny.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x penny / x frince / x shirt / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc305.html STYLE="text-decoration: none">Previous</a> / <a href=doc307.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

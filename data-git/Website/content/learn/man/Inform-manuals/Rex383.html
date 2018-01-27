@@ -1,0 +1,125 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.2. Ships, Trains and Elevators</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Empire" -->
+<!-- SEARCH SECTION "Ex 145" -->
+<!-- SEARCH SORT "Ex 008-002-145" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc63.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc65.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.2. Ships, Trains and Elevators</b></td></tr></table><p>
+<p>
+<p>This section covers vehicles whose interior consists of at least one entire room. Moving into this room constitutes boarding: there is then some pause while it travels: moving out again disembarks at a different location. The only complication arising is how the player controls the journey (by talking to someone? by pressing buttons? by steering?).
+<p>
+<p><b>The Unbuttoned Elevator Affair</b> provides the simplest possible whole-room vehicle, which ferries between two fixed points. If you are at one of these, it must be the other one you want to get to, so there is no need for controls.
+<p>
+<p><b>Dubai</b> is a much more elaborate elevator, with many possible destinations, chosen using buttons inside the elevator.
+<p>
+<p><b>Empire</b> simulates a train journey. Here there are no controls as such, but the train passes through a sequence of stops spaced apart in time, so the player chooses an exit by getting out at the right moment.
+<p>
+<p>On a very large, slowish craft such as a cruise liner, we are not so much travelling in a vehicle: it's more as if we are visiting a whole building, which becomes our world for the (probably long) duration of the journey. The liner steers around in long, slow curves, changing its orientation in the water, so that (if we think of &quot;north&quot; as a strictly magnetic matter, anyway) north is constantly rotating: something we don't notice on board because our own reference points, provided by the ship itself, stay fixed relative to ourselves. Because of this, some ships in IF are navigated using FORE, AFT, PORT and STARBOARD directions rather than NORTH, EAST, SOUTH and WEST: see <b>Fore</b>.
+<p>
+<a href=Rdoc63.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bicycles, Cars and Boats</b></font></a><i> for smaller conveyances</i><p><p>
+<p><hr><p>
+<a name="e391"><a href=Rex391.html#e391 STYLE="text-decoration: none">*<b>Example 8:  The Unbuttoned Elevator Affair</b></a><br>A simple elevator connecting two floors which is operated simply by walking in and out, and has no buttons or fancy doors.<p>
+<a name="e118"><a href=Rex118.html#e118 STYLE="text-decoration: none">***<b>Example 260:  Dubai</b></a><br>An elevator which connects any of 27 floors in a luxury hotel.<p>
+<a name="e154"><a href=Rex154.html#e154 STYLE="text-decoration: none">***<b>Example 40:  Fore</b></a><br>Understand "fore", "aft", "port", and "starboard", but only when the player is on a vessel.<p>
+<!-- EXAMPLE START -->
+<a name="e383"><a href=Rdoc64.html#e383 STYLE="text-decoration: none">**<b><b>Example</b> 145:  Empire</b></a><br>A train which follows a schedule, stopping at a number of different locations.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to have a train which, at fixed times, arrives at and leaves stations. It should be possible for the player to get on and off the train when it is stopped, but not while the train is in motion.
+<p>
+<blockquote><font color="#000080">&quot;Empire&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Empire Builder Train is a room. The Train has a room called the station. The station of the Train is Seattle.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the Empire Builder is &quot;One of the (relatively) plush long-distance Amtrak trains. You're in a two-story car with toilets and a cafe at one end, not having sprung for a sleeper.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">[if the station of the Train is the train]Outside the window there is rapidly-passing countryside.[otherwise]Through the windows you can see the [station of the Train] train station.[end if]&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of exiting when the player is in the Train:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the station of the Train is the Train:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The train is not stopped at a station.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the player to the station of the train instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before going outside when the player is in the Train:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try exiting instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before going inside when the player is in the station of the Train:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to the Train instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Seattle, Edmonds, Everett, Wenatchee, and Spokane are rooms. The description of a room is usually &quot;The scenic train station of [the location][if the location is the station of the train].
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pompously-titled Empire Builder train is pulled up here, soon to continue its journey towards Chicago[end if].&quot;
+</font></blockquote><p>
+<p>
+<p>And now our schedule for the train -- somewhat truncated, admittedly, since the full three-day journey from Seattle to Chicago is a bit long even for an ambitious example.
+<p>
+<blockquote><font color="#000080">At 4:45 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the train or the player is in the station of the train, say &quot;The train pulls out of [the station of the Train]!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the station of the Train is the Train.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 5:10 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the station of the Train is Edmonds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the train or the player is in the station of the train, say &quot;The train pulls into Edmonds and comes to a stop.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 5:17 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the train or the player is in the station of the train, say &quot;The train pulls out of [the station of the Train], running north along the shore towards Everett.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the station of the Train is the Train.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 5:39 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the station of the Train is Everett;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the train or the player is in the station of the train, say &quot;The train arrives in scenic Everett, WA: the last stop before it turns east and heads over the mountains.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 5:44 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the train or the player is in the station of the train, say &quot;The train pulls out of [the station of the Train] and turns east.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the station of the Train is the Train.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 8:39 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the train or the player is in the station of the train, say &quot;In darkness the train rolls into Wenatchee; which is just fine, considering that there is nothing to see here at all.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the station of the Train is Wenatchee.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 8:44 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the train or the player is in the station of the train, say &quot;The train pulls out of [the station of the Train] and continues east through the darkness towards Spokane.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the station of the Train is the Train.
+</font></blockquote><p>
+<p>
+<p>Playing this out would of course require near inhuman patience. Let's set things up so that the player at least doesn't have to wait too long for his first departure:
+<p>
+<blockquote><font color="#000080">The time of day is 4:43 PM.
+</font></blockquote><p>
+<p>
+<p>...and provide fair warning of how slowly time is elapsing.
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[time of day]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;out / in / z/ z / z / out / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / out / in / out / z / z&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test more with &quot;out / z/ z / z  / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z / z&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc63.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc65.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

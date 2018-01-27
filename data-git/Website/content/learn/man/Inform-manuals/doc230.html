@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.6. Named notations</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Named notations" -->
+<!-- SEARCH SECTION "14.6" -->
+<!-- SEARCH SORT "014-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc229.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc231.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.6. Named notations</b></td></tr></table><p>
+<p>
+<p>When it has a variety of notations to choose from, Inform will normally use the neatest one given the size of the value it is printing. Suppose we've set up &quot;weight&quot;, with three notations:
+<p>
+<blockquote><font color="#000080">A weight is a kind of value. 10kg specifies a weight.
+<br>1 tonne (singular) specifies a weight scaled up by 1000.
+<br>2 tonnes (plural) specifies a weight scaled up by 1000.
+</font></blockquote><p>
+<p>
+<p>Inform will then print back values like so:
+<p>
+<blockquote><font color="#000080">45kg -> &quot;45kg&quot;
+<br>1000kg -> &quot;1 tonne&quot;
+<br>2500kg -> &quot;2.5 tonnes&quot;
+<br>80000kg -> &quot;80 tonnes&quot;
+</font></blockquote><p>
+<p>
+<p>Note the way Inform goes into decimal places in order to talk about 2500kg in terms of tonnes rather than kilograms - it is minimising the integer part of the unit, but trying to keep it non-zero. So Inform prefers &quot;45kg&quot; to &quot;0.045 tonnes&quot;.
+<p>
+<p>Although Inform's habit of choosing the best notation available is usually just what we want, we sometimes want to make the choice ourselves. For instance, if we were printing out a table of different weights, we might want to give all of them in kilograms, whatever their size. In that case we can, if we want, give names to our different notations:
+<p>
+<blockquote><font color="#000080">1 tonne (singular, in tonnes) specifies a weight scaled up by 1000.
+<br>2 tonnes (plural, in tonnes) specifies a weight scaled up by 1000.
+</font></blockquote><p>
+<p>
+<p>Now we could write, for instance:
+<p>
+<blockquote><font color="#000080">&quot;The weighbridge warns you not to exceed [the maximum load in tonnes].&quot;
+</font></blockquote><p>
+<p>
+<p>And the figure will always use tonnes now, even if Inform would normally think it odd: &quot;The weighbridge warns you not to exceed 0.001 tonnes.&quot; But it will still correctly use &quot;tonne&quot; or &quot;tonnes&quot; as appropriate - what has changed is that instead of choosing from all of the weight notations, Inform now chooses from the notations labelled as &quot;in tonnes&quot;.
+<p>
+<p><hr><p><a href=doc229.html STYLE="text-decoration: none">Previous</a> / <a href=doc231.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

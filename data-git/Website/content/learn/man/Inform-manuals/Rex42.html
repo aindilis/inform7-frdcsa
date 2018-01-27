@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 1.4. Information Only</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Backus-Naur form for rules" -->
+<!-- SEARCH SECTION "Ex 383" -->
+<!-- SEARCH SORT "Ex 001-004-383" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc3.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc5.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>1.4. Information Only</b></td></tr></table><p>
+<p>
+<p>One last preliminary: a handful of the examples do not show how to do anything at all, but are really sidebars of information. Those examples are gathered below, since they contribute nothing by way of recipes.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e42"><a href=Rdoc4.html#e42 STYLE="text-decoration: none">***<b><b>Example</b> 383: Backus-Naur form for rules</b></a><br>The full grammar Inform uses to parse rule definitions, in a standard computer-science notation.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Backus-Naur form, or BNF, is a standard notation used by computer scientists to specify more or less precisely what the valid programs are for a given programming language. It tends to provide a good description for a language such as C or Pascal, where contextual rules are limited, but the authors of Inform are doubtful that it is such a good tool for a natural-language system. For those who are interested, though, the following gives a formal specification for Inform's rules.
+<p>
+<blockquote><font color="#000080">&lt;rule&gt; ::=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;Definition : A/an &lt;kind&gt; is &lt;new adjectival name&gt; if/unless &lt;definition&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| &lt;preamble&gt; : &lt;phrases&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| &lt;preamble&gt; , &lt;phrase&gt;    (* only allowed for a few cases: see below)
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;definition&gt; ::=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;condition&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| its/his/her/their &lt;value property name&gt; is/are &lt;value&gt; or less/more
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| : &lt;phrases&gt;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;preamble&gt; ::=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;To &lt;phrase template&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| To decide if/whether &lt;phrase template&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| To decide which/what &lt;kind of value&gt; is &lt;phrase template&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| This is the &lt;rule name&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| [[A] Rule for] &lt;circumstances&gt; [(this is the &lt;rule name&gt;)]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;circumstances&gt; ::=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;At &lt;time&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| When &lt;event name&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| [&lt;placement&gt;] &lt;rulebook reference&gt; [while/when &lt;condition&gt;] [during &lt;scene name&gt;]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;rulebook reference&gt; ::=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;rulebook name&gt; [about/for/of/on/rule] [&lt;action pattern&gt;]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| &lt;object-based-rulebook name&gt; [about/for/of/on/rule] [&lt;description&gt;]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;placement&gt; ::=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;a/an
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| [the] first
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| [the] last
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;phrases&gt; ::=
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrase&gt;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;| &lt;phrases&gt; ; &lt;phrase&gt;
+</font></blockquote><p>
+<p>
+<p>
+<p>The following examples show how Inform breaks down some typical rules using the system above:
+<p>
+<blockquote><font color="#000080">&lt;rule&gt; = At 2:09 PM: increase the score by 2; say &quot;Progress!&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;preamble&gt; = At 2:09 PM
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;circumstances&gt; = At 2:09 PM
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;At
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;time&gt; = 2:09 PM
+<br>&nbsp;&nbsp;&nbsp;&nbsp;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrases&gt; = increase the score by 2; say &quot;Progress!&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrase&gt; = increase the score by 2
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrase&gt; = say &quot;Progress&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;rule&gt; = Instead of eating the ostrich during Formal Dinner (this is the cuisine rule), say &quot;It's greasy!&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;preamble&gt; = Instead of eating the ostrich during Formal Dinner (this is the cuisine rule)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;circumstances&gt; = Instead of eating the ostrich during Formal Dinner
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rulebook reference&gt; = Instead of eating the ostrich
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rulebook name&gt; = Instead
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;action pattern&gt; = eating the ostrich
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;during
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;scene name&gt; = Formal Dinner
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rule name&gt; = cuisine rule
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrases&gt; = say &quot;It's greasy!&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrase&gt; = say &quot;It's greasy!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">&lt;rule&gt; = After printing the name of a container: say &quot;!&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;preamble&gt; = After printing the name of a container
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;circumstances&gt; = After printing the name of a container
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;rulebook reference&gt; = After printing the name of a container
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;object-based-rulebook name&gt; = After printing the name
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;of
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;description&gt; = a container
+<br>&nbsp;&nbsp;&nbsp;&nbsp;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrases&gt; = say &quot;!&quot;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;phrase&gt; = say &quot;!&quot;
+</font></blockquote><p>
+<p>
+<p>
+<p>(*) The colon dividing a rule preamble from its definition can be replaced by a comma only if the preamble begins with the words &quot;Instead of&quot;, &quot;Before&quot;, &quot;After&quot;, &quot;Every turn&quot; or &quot;When&quot;, and if the definition consists only of a single phrase.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e173"><a href=Rex173.html#e173 STYLE="text-decoration: none">***<b>Example 223: Formal syntax of sentences</b></a><br>A more formal description of the sentence grammar used by Inform for both assertions and conditions.<p>
+<a name="e238"><a href=Rex238.html#e238 STYLE="text-decoration: none">***<b>Example 243: Mathematical view of relations</b></a><br>Some notes on relations from a mathematical point of view, provided only to clarify some technicalities for those who are interested.<p>
+<a name="e239"><a href=Rex239.html#e239 STYLE="text-decoration: none">***<b>Example 244: Graph-theory view of relations</b></a><br>Some notes on relations from the point of view of graph theory.<p>
+<a name="e317"><a href=Rex317.html#e317 STYLE="text-decoration: none">*<b>Example 403: About Inform's regular expression support</b></a><br>Some footnotes on Inform's regular expressions, and how they compare to those of other programming languages.<p>
+<p><hr><p><a href=Rdoc3.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc5.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

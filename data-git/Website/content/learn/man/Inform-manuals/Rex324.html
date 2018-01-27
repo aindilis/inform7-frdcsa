@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 2.1. Varying What Is Written</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Rocket Man" -->
+<!-- SEARCH SECTION "Ex 401" -->
+<!-- SEARCH SORT "Ex 002-001-401" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc4.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc6.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>2.1. Varying What Is Written</b></td></tr></table><p>
+<p>
+<p>Before getting to actual recipes, many recipe books begin with intimidating lists of high-end kitchen equipment (carbon-steel pans, a high-temperature range, a Provencal shallot-grater, a set of six pomegranate juicers): fortunately, readers who have downloaded Inform already have the complete kitchen used by the authors. But the other traditional preliminaries, about universal skills such as chopping vegetables, boiling water and measuring quantities, do have an equivalent.
+<p>
+<p>For us, the most basic technique of IF is to craft the text so that it smoothly and elegantly adapts to describe the situation, disguising the machine which is never far beneath the surface. This means using text substitutions so that any response likely to be seen more than once or twice will vary.
+<p>
+<p><b>M. Melmoth's Duel</b> demonstrates three basic techniques: an ever-changing random variation, a random variation changing only after the player has been absent for a while, and a message tweaked to add an extra comment in one special case. (Random choices can be quite specifically constrained, as <b>Ahem</b> shows in passing.) <b>Fifty Ways to Leave Your Larva</b> and <b>Fifty Times Fifty Ways</b> show how a generic message can be given a tweak to make it a better fit for the person it currently talks about. <b>Curare</b> picks out an item carried by the player to work into a message, trying to make an apt rather than random choice. <b>Straw Into Gold</b> demonstrates how to have Inform parrot back the player's choice of name for an object.
+<p>
+<p>Another reason to vary messages is to avoid unnatural phrasing. <b>Odins</b> carefully avoids a giveaway grammatical blunder - the kind only a computer would make. <b>Ballpark</b> turns needlessly precise numbers - another computerish trait - into more idiomatic English. (Likewise <b>Numberless</b>, though it is really an example demonstrating how to split behaviour into many cases.) <b>Prolegomena</b> shows how to use these vaguer quantifiers any time Inform describes a group of objects (as in &quot;You can see 27 paper clips here.&quot;).
+<p>
+<p><b>Blink</b>, a short but demanding example from the extreme end of <i>Writing with Inform</i>, shows how the basic text variation mechanisms of Inform can themselves be extended. <b>Blackout</b> demonstrates text manipulation at a lower level, replacing every letter of a room name with &quot;*&quot; when the player is in darkness.
+<p>
+<p>A few of Inform's included extensions provide extra control over text output, as well: Complex Listing allows us more control over the order and presentation of lists of items, and Plurality provides functions for handling pronouns and objects whose names might be understood as singular or plural.
+<p>
+<p>The extension Case Management used to be used for changing the case of something printed, but it is now included chiefly to support older Inform projects: now the best way to change printed text to upper, lower, sentence, or title casing is to use indexed text, as demonstrated in <b>Rocket Man</b>.
+<p>
+<p><hr><p>
+<a name="e413"><a href=Rex413.html#e413 STYLE="text-decoration: none">*<b>Example 178:  M. Melmoth's Duel</b></a><br>Three basic ways to inject random or not-so-random variations into text.<p>
+<a name="e3"><a href=Rex3.html#e3 STYLE="text-decoration: none">*<b>Example 169:  Ahem</b></a><br>Writing a phrase, with several variant forms, whose function is to follow a rule several times.<p>
+<a name="e212"><a href=Rex212.html#e212 STYLE="text-decoration: none">*<b>Example 71:  Fifty Ways to Leave Your Larva</b></a><br>Using text substitution to make characters reply differently under the same circumstances.<p>
+<a name="e213"><a href=Rex213.html#e213 STYLE="text-decoration: none">***<b>Example 72:  Fifty Times Fifty Ways</b></a><br>Writing your own rules for how to carry out substitutions.<p>
+<a name="e100"><a href=Rex100.html#e100 STYLE="text-decoration: none">*<b>Example 428:  Curare</b></a><br>A phrase that chooses and names the least-recently selected item from the collection given, allowing the text to cycle semi-randomly through a group of objects.<p>
+<a name="e362"><a href=Rex362.html#e362 STYLE="text-decoration: none">***<b>Example 294:  Straw Into Gold</b></a><br>Creating a Rumpelstiltskin character who is always referred to as "dwarf", "guy", "dude", or "man" -- depending on which the player last used -- until the first time the player refers to him as "Rumpelstiltskin".<p>
+<a name="e271"><a href=Rex271.html#e271 STYLE="text-decoration: none">*<b>Example 440:  Odins</b></a><br>Making [is-are] and [it-they] say tokens that will choose appropriately based on the last object mentioned.<p>
+<a name="e14"><a href=Rex14.html#e14 STYLE="text-decoration: none">***<b>Example 60:  Ballpark</b></a><br>A new "to say" definition which allows the author to say "[a number in round numbers]" and get verbal descriptions like "a couple of" or "a few" as a result.<p>
+<a name="e366"><a href=Rex366.html#e366 STYLE="text-decoration: none">*<b>Example 174:  Numberless</b></a><br>A simple exercise in printing the names of random numbers, comparing the use of "otherwise if...", a switch statement, or a table-based alternative.<p>
+<a name="e300"><a href=Rex300.html#e300 STYLE="text-decoration: none">*<b>Example 330:  Prolegomena</b></a><br>Replacing precise numbers with "some" or other quantifiers when too many objects are clustered together for the player to count at a glance.<p>
+<a name="e40"><a href=Rex40.html#e40 STYLE="text-decoration: none">*<b>Example 444:  Blink</b></a><br>Making a "by atmosphere" token, allowing us to design our own text variations such as "[one of]normal[or]gloomy[or]scary[by atmosphere]".<p>
+<a name="e37"><a href=Rex37.html#e37 STYLE="text-decoration: none">*<b>Example 410:  Blackout</b></a><br>Filtering the names of rooms printed while in darkness.<p>
+<!-- EXAMPLE START -->
+<a name="e324"><a href=Rdoc5.html#e324 STYLE="text-decoration: none">*<b><b>Example</b> 401:  Rocket Man</b></a><br>Using case changes on any text produced by a "to say..." phrase.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We can now change the case of any text produced by a &quot;to say...&quot; phrase. This is often useful when we would like to make use of a standard say phrase in some new context. Say, for instance, that we would like to &quot;[is-are the list...]&quot; in a context that needs the first letter to be capitalized.
+<p>
+<p>We could write a new say phrase, such as &quot;to say is-are the list of (N - a description of objects) in sentence capitalization&quot;; but there is an easier way, and that is to set an indexed text variable to the output of the to say phrase, and then print that indexed text in the case of our choice.
+<p>
+<p>For example:
+<p>
+<blockquote><font color="#000080">&quot;Rocket Man&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going somewhere from the spaceport when the player carries something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be &quot;[is-are the list of things carried by the player] really suitable gear to take to the moon?&quot; in sentence case;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[N][paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Spaceport is a room. North of the Spaceport is the Rocket Launch Pad. The player carries a stuffed bear, a chocolate cookie, and a book.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The description of the book is &quot;It is entitled [italic type]Why Not To Take [sentence cased inventory] To The Moon[roman type].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say sentence cased inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be &quot;[a list of things carried by the player]&quot; in title case;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[N]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;n / x book&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc4.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc6.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

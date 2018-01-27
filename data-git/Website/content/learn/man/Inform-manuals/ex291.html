@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.32. Implicitly taking something</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Pizza Prince" -->
+<!-- SEARCH SECTION "Ex 363" -->
+<!-- SEARCH SORT "Ex 017-032-363" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc312.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc314.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.32. Implicitly taking something</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> When an action is tried which requires the actor (normally the player, of course) to be carrying something, but which is not in fact carried by that person. For instance, if the player types WEAR OVERCOAT in reference to a Moroccan overcoat currently draped over a chair.
+<p>
+<p><b>2. The default behaviour.</b> To print text such as &quot;(first taking the Moroccan overcoat)&quot; and then silently try taking the object in question (the overcoat). If the take succeeds, the silence means that nothing else is printed: if it fails, it will say why.
+<p>
+<p>No matter what rules are written for this activity, it is impossible to use it to allow the action to go ahead even without the item. The activity allows us to change how, or if, an implicit take will happen, but not to change the consequences of failure. (To do that, we would need a procedural rule to &quot;ignore the carrying requirements rule&quot;, but this kind of unstitching of the action machinery needs to be done with caution.)
+<p>
+<p><b>3. Examples.</b> (a) Forbidding implicit takes for certain dangerous items. (This seems especially fair if taking such items might cause death: the player will not wish to be killed on the strength only of our guess as to what he might be intending to do.)
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking the curare:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Ordinarily you'd pick up the curare in order to be able to do that, but this seems like a good moment for caution.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>(b) Changing the way the implicit action is reported for the player:
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking something (called target):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try silently taking the target;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries the target, say &quot;You appropriate [the target] first, of course. [run paragraph on]&quot;
+</font></blockquote><p>
+<p>
+<p>(c) Combining implicit takes when the noun and second noun must both be carried:
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking the noun when the second noun is a thing and the second noun is not carried by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try silently taking the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try silently taking the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(first taking both [the noun] and [the second noun])[line break]&quot;
+</font></blockquote><p>
+<p>
+<p>(d) Making another character reply amusingly:
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking something which is carried by the player when the person asked is Clark:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'I don't see how I'm supposed to do that when you're holding [the noun],' remarks Clark sulkily.&quot; instead.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e291"><a href=doc313.html#e291 STYLE="text-decoration: none">*<b><b>Example</b> 363:  Pizza Prince</b></a><br>Providing a pizza buffet from which the player can take as many pieces as he wants.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want the player to have a pizza buffet from which he can take a number of slices. But we don't want to actually put the slices there in front of him, because &quot;you can see 17 slices of pizza here&quot; is not the descriptive effect we want, and because we want to pretend, at least, that the pizza supply is nearly infinite. In fact, we're going to replenish the supply by allowing eaten slices to return to the buffet table (safer in IF than in real life).
+<p>
+<p>To do this, we create one object to stand in for the pizza supply, but whenever the player tries to take it, we give him a different &quot;pizza slice&quot; object instead. Thus:
+<p>
+<blockquote><font color="#000080">&quot;Pizza Prince&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pizza Prince is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The buffet table is a supporter in Pizza Prince.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pizza selection is a fixed in place thing on the buffet table. Understand &quot;slice&quot; as the pizza selection. The description is &quot;They are all cheese-only, and all luke-warm.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about the buffet table:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;On [the buffet table] is [a pizza selection]. [description of the pizza selection][line break]&quot;.
+</font></blockquote><p>
+<p>
+<p>Now we introduce our actual pizza slices, which are retained in a container out of play until they're needed:
+<p>
+<blockquote><font color="#000080">A pizza slice is a kind of thing. 10 pizza slices are in Pizza Limbo. A pizza slice is always edible. [After a fashion, anyway.]
+</font></blockquote><p>
+<p>
+<p>In this example we've set that supply to be artificially small, to make it easier to test what happens when the player reaches the limit; but we could provide many more slices to start with in Pizza Limbo, and the aim in practice would be to pick a number high enough (such as 50 or 100) that the average player will get bored of TAKE PIZZA long before he reaches the limit.
+<p>
+<p>The main thing to be aware of is that objects consume memory in the game file, so creating a large number of pizza slices might bulk the game out. This is more of a concern if we're compiling for the Z-machine than if we're compiling for Glulx.
+<p>
+<p>Whenever the player tries to take the selection, we want him to wind up holding an individual slice instead; but of course we need to check and make sure that he hasn't exhausted the pizza slice supply.
+<p>
+<blockquote><font color="#000080">Instead of taking the pizza selection:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let chosen slice be a random pizza slice in Pizza Limbo;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if chosen slice is nothing: [That is, there were no slices remaining]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[manager refusal]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the chosen slice to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Taken (gingerly).&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say manager refusal:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]'Hey!' barks a hitherto-unseen manager from behind you. 'It's an 'all you can eat' buffet, not an 'all you can stuff down your pants' buffet.'[or]You are conscious of a disapproving huff from the manager, so you refrain.[stopping]&quot;
+</font></blockquote><p>
+<p>
+<p>That's fine for the case where the player is taking a new slice of pizza explicitly, but we need to handle it a little differently if the taking action is generated in response to EAT PIZZA. In that case, we need to take the slice and also change the identity of the noun, because after the implicit take action happens, the game will test whether the player is holding the noun before attempting to eat it. So we need to refocus its attention:
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking the pizza selection:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let chosen slice be a random pizza slice in Pizza Limbo;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if chosen slice is nothing: [That is, there were no slices remaining]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[manager refusal]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the chosen slice to the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(helping yourself from the selection)&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the noun is the chosen slice.
+</font></blockquote><p>
+<p>
+<p>And finally, a bit of touch-up:
+<p>
+<blockquote><font color="#000080">Rule for clarifying the parser's choice of the pizza selection while taking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(from the magnificent selection before you)[line break]&quot;
+</font></blockquote><p>
+<p>
+<p>For tidiness, we should probably also return the consumed pizza slices to Pizza Limbo so that they can be re-used later:
+<p>
+<blockquote><font color="#000080">After eating a pizza slice:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the noun to Pizza Limbo;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / get pizza / g / i / get pizza / drop pizza / look / get pizza / g / look / eat pizza / g / g / g / g / get pizza / g / g / g / g / g / g / g / g / g / g / g / g / i / eat pizza / take pizza / g&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e34"><a href=ex34.html#e34 STYLE="text-decoration: none">*<b>Example 364:  The Big Sainsbury's</b></a><br>Making implicit takes add a minute to the clock, just as though the player had typed TAKE THING explicitly.<p>
+<a name="e225"><a href=ex225.html#e225 STYLE="text-decoration: none">***<b>Example 365:  Lollipop Guild</b></a><br>Overriding the rules to allow the player to eat something without first taking it.<p>
+<p><hr><p><a href=doc312.html STYLE="text-decoration: none">Previous</a> / <a href=doc314.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

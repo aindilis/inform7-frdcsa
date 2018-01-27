@@ -1,0 +1,118 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.2. Liquids</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "3 AM" -->
+<!-- SEARCH SECTION "Ex 193" -->
+<!-- SEARCH SORT "Ex 010-002-193" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc80.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc82.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.2. Liquids</b></td></tr></table><p>
+<p>
+<p>Liquids are notoriously difficult to simulate well. A fully thorough approach consumes endless storage and can be very finicky to write and keep realistic. It is essential to decide what aspect of a liquid's behaviour is actually needed in a given story, and to simulate only that. For instance, if we only need a little chemistry, where a player can add (say) water to salt and make a solution, we do not want to fool around with calculating quantities or concentrations: what's important is that &quot;some water&quot; (amount unspecified) combines with &quot;some salt&quot; to produce &quot;some salty water&quot;. We should no more calculate precisely here than we would work out where all the furniture is to the nearest inch. Good advice for handling liquids is to simulate the least amount of realism possible, but no less.
+<p>
+<p>Sometimes all we want is a down-in-one drink: we needn't simulate the actual liquid, just the bottle it comes in, and all we need is to handle the &quot;drinking&quot; action. See <b>Beverage Service</b>, and also <b>3 AM</b>, where carbonated drinks can be shaken - again simulating the vessel, not the liquid.
+<p>
+<p>Some elementary biochemistry in <b>Xylan</b> is done simply by... well, the point is that two different liquids are represented by single things each, and a chemical reaction simply switches one for the other.
+<p>
+<p>In <b>Frizz</b>, we allow any container to be filled (only) with water (only) and we simulate what happens to any solid objects also inside: some waterproof, some not. <b>Flotation</b> provides a well (always full of water), with rules to determine whether things dropped into it should sink or float.
+<p>
+<p>Next we move up to quantitative approaches, where we remember not just whether a liquid is present, but how much of it. In its simplest form, we could have a drinking vessel from which we draw in sips, so that it can be full, half-empty or empty: see <b>Thirst</b>.
+<p>
+<p>The example with the best compromise between simulation quality and complexity is <b>Lemonade</b>. Here we provide a kind of container called a &quot;fluid container&quot;, not just a single cup, and each such vessel has a given &quot;fluid capacity&quot;. Each holds only a single liquid at a time (so no mixtures) and can be empty or full to any level (rounded off to the nearest 0.1 fl oz). We can fill one vessel from another (unless it would make a mixture). But liquids leaving these vessels must be consumed - drunk or poured away without trace: we cannot make pools on the floor, or carry liquids in our cupped hands. There is no object representing &quot;lemonade&quot;: there are only fluid containers, but which can be called LEMONADE if that is what they now contain.
+<p>
+<p><b>Savannah</b> is a light elaboration of Lemonade, showing how liquids might be poured on other objects, as for instance to extinguish a fire.
+<p>
+<p><b>Noisy Cricket</b> extends <b>Lemonade</b> to allow for mixing, though then the number of different possible mixtures is so large that complexity increases greatly. <b>Lakeside Living</b> extends <b>Lemonade</b> differently to add a &quot;liquid source&quot; kind, a form of fluid container which has infinite fluid capacity and is scenery - ideal for a lake, river or spring.
+<p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for stoppered bottles which could also be used for carrying liquids around in</i><p><p>
+<a href=Rdoc88.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Heat</b></font></a><i> for keeping liquids warm in insulated containers</i><p><p>
+<p><hr><p>
+<a name="e31"><a href=Rex31.html#e31 STYLE="text-decoration: none">*<b>Example 122:  Beverage Service</b></a><br>A potion that the player can drink.<p>
+<!-- EXAMPLE START -->
+<a name="e420"><a href=Rdoc81.html#e420 STYLE="text-decoration: none">***<b><b>Example</b> 193:  3 AM</b></a><br>A shake command which agitates soda and makes items thump around in boxes.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;3 AM&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;shake [something preferably held]&quot; as shaking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Shaking is an action with past participle shaken, applying to one carried thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out shaking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Nothing results of your shaking [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of shaking a closed container when something is in the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Something rattles inside [the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of shaking a closed transparent container when something is in the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Inside [the noun] there are banging noises produced by [the list of things contained by the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of shaking an open container which contains something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The list of things contained by the noun] might fly out.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Wawa is a room. &quot;A convenience store, if you like to call it that, vending the usual assortment of chips, donuts, soda, and beer. There is something of a line at the sandwich counter.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The box of enrobed cakes is in the Wawa. &quot;A box of Tastykake Enrobed Cakes has fallen off its shelf.&quot; The description is &quot;'Enrobed Cakes' is a fancy term for 'strange sponge-like baked good, covered in a thin shell of waxy chocolate'. They are addictive, but not in a way that lets you respect yourself in the morning.&quot; The box is a closed openable container. In the box is a cake.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening the box, say &quot;The Wawa clerks frown on the consumption of unpurchased foodstuffs.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The can of root beer is a closed openable container carried by the player. The can of root beer is either agitated or calm.
+</font></blockquote><p>
+<p>
+<p>Because the can of root beer should have some reactions to having been shaken later in the game, we need to borrow a few ideas from the later chapters on time:
+<p>
+<blockquote><font color="#000080">Instead of shaking the can of root beer:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;the can calms down in five turns from now;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You give the can a good hard shake.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the can is agitated.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of listening to the can: say &quot;It sounds [if agitated]fizzy[otherwise]calm[end if]!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At the time when the can calms down:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the can is calm.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The sticky mess is fixed in place. &quot;There is a sticky mess on the ground.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening the agitated can of root beer:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the can of root beer from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the sticky mess is in the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You open the can and fizzing sweet soda goes absolutely everywhere.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening the calm can of root beer when the can has been agitated:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the can of root beer from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The root beer is disappointingly flat. That's what you get for shaking it up!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get box / shake box / open box / shake box / listen to can / shake can / listen to can / wait / wait / wait / wait / wait / listen to can / open can&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e171"><a href=Rex171.html#e171 STYLE="text-decoration: none">***<b>Example 192:  Frizz</b></a><br>Liquid flows within containers and soaks objects that are not waterproof; any contact with a wet object can dampen our gloves.<p>
+<a name="e148"><a href=Rex148.html#e148 STYLE="text-decoration: none">*<b>Example 385:  Flotation</b></a><br>Objects that can sink or float in a well, depending on their own properties and the state of the surrounding environment.<p>
+<a name="e437"><a href=Rex437.html#e437 STYLE="text-decoration: none">**<b>Example 277:  Xylan</b></a><br>Creating a new command that does require an object to be named; and some comments about the choice of vocabulary, in general.<p>
+<a name="e418"><a href=Rex418.html#e418 STYLE="text-decoration: none">*<b>Example 117:  Thirst</b></a><br>A waterskin that is depleted as the player drinks from it.<p>
+<a name="e220"><a href=Rex220.html#e220 STYLE="text-decoration: none">***<b>Example 255:  Lemonade</b></a><br>Containers for liquid which keep track of how much liquid they are holding and of what kind, and allow quantities to be moved from one container to another.<p>
+<a name="e335"><a href=Rex335.html#e335 STYLE="text-decoration: none">***<b>Example 256:  Savannah</b></a><br>Using the liquid implementation demonstrated in Lemonade for putting out fires.<p>
+<a name="e434"><a href=Rex434.html#e434 STYLE="text-decoration: none">***<b>Example 265:  Noisy Cricket</b></a><br>Implementing liquids that can be mixed, and the components automatically recognized as matching one recipe or another.<p>
+<a name="e209"><a href=Rex209.html#e209 STYLE="text-decoration: none">***<b>Example 320:  Lakeside Living</b></a><br>Similar to "Lemonade", but with bodies of liquid that can never be depleted, and some adjustments to the "fill" command so that it will automatically attempt to fill from a large liquid source if possible.<p>
+<p><hr><p><a href=Rdoc80.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc82.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

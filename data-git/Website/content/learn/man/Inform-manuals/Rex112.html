@@ -1,0 +1,89 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.3. Clothing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Get Me to the Church on Time" -->
+<!-- SEARCH SECTION "Ex 44" -->
+<!-- SEARCH SORT "Ex 009-003-044" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc69.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc71.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.3. Clothing</b></td></tr></table><p>
+<p>
+<p>A person can wear any (portable) thing which has the &quot;wearable&quot; property. (This property seldom needs to be quoted because it is deduced automatically from sentences like &quot;Trevor wears a red hat.&quot;)
+<p>
+<p>In most traditional IF, clothing is only used when it is exceptional in some way. That is, we ignore the three to eight different garments most people are wearing at any given time - the everyday clothes which people wear without thinking about them - and only simulate the unexpected extras: a borrowed jaunty red hat, a radiation-proof space suit, and so on.
+<p>
+<p>These unusual garments turn up only occasionally in play and usually one at a time, so Inform does not normally provide rules to restrict how much or little is worn, or in what unlikely combinations. <b>Get Me to the Church on Time</b> categorises clothing by body area (trousers for lower body, shirts for upper); <b>Bogart</b> by layer, distinguishing underwear from outer garments. <b>What Not To Wear</b> combines both into a general-purpose system adequate for most kinds of clothing situations.
+<p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for a simple mirror implementation, which could be adapted to reflect what the player is currently wearing</i><p><p>
+<p><b>Hayes Code</b> is a somewhat stripped down version.
+<p>
+<p>Clothes are normally single things which have no function other than display and concealment, but <b>Being Prepared</b> gives them pockets which act as containers, and <b>Some Assembly Required</b> allows clothes to be stitched together from pieces of cloth.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e112"><a href=Rdoc70.html#e112 STYLE="text-decoration: none">***<b><b>Example</b> 44:  Get Me to the Church on Time</b></a><br>Using kinds of clothing to prevent the player from wearing several pairs of trousers at the same time.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Inform's default handling of wearable things does not make any rules about what can be worn together. Suppose, however, we have a game in which there are a large number of different garments, and we want to keep the player from wearing (say) more than one pair of pants at once:
+<p>
+<blockquote><font color="#000080">&quot;Get Me to the Church on Time&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A pair of pants and a shirt are kinds of thing. A pair of pants and a shirt are usually wearable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some golf pants are a pair of pants. The description is &quot;Checked in red and green, with tiny frolicking gophers every few inches.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Some tuxedo trousers are a pair of pants. The description is &quot;Black, pressed, and slimming.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The frilly shirt is a shirt. The description of the frilly shirt is &quot;She insisted.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The polo shirt is a shirt. The description is &quot;Turquoise and bright yellow, the colors selected by your golfing buddies.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears the golf pants and the polo shirt. The player carries the tuxedo trousers and the frilly shirt.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Wedding Chapel Dressing Room is a room. &quot;The bride's dressing room is a lavish suite with closets, hangers, dressmaker's dummies, boxes of straight pins and sewing notions, combs, lotions, brushes, and hair fixatives, plus room for  fifteen female attendants and a photographer. Before they shoved you out of the room you even got a glimpse of a small reference library including '1001 French Braids' and 'Corset-Lacing For Beginners.'
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the groom's dressing room. You get a framed photograph of Elvis, a dusty mirror, and the floor space of an average toilet stall.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The dusty mirror and the photograph of Elvis are scenery in the Dressing Room. The description of the mirror is &quot;You can't really get more than a silhouette impression of yourself.&quot; The description of Elvis is &quot;He reminds you that you'd better get out there before the organist switches to Hound Dog.&quot;
+</font></blockquote><p>
+<p>
+<p>And now the rule itself, borrowed from a later chapter:
+<p>
+<blockquote><font color="#000080">Instead of wearing a pair of pants when the player is wearing a pair of pants (called the wrong trousers):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'll have to take off [the wrong trousers] first.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of wearing a shirt when the player is wearing a shirt (called the wrong top):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You'll have to take off [the wrong top] first.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;From the other side of the door, you hear the organist move on from his instrumental interpretation of 'I Wanna Hold Your Hand' to a somewhat more spirited rendition of 'Help! I Need Somebody!'. Okay, okay, but you've been rushing things along since the 16th fairway, and you can't be more than a half-hour late... Surely that mother of hers can't blame you for that?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / x trousers / wear trousers / x golf pants / take off golf pants / wear trousers / x frilly shirt / x polo shirt / wear frilly shirt / doff polo shirt / wear frilly shirt&quot;.
+</font></blockquote><p>
+<p>
+<p>If we wanted to, we could make similar kinds for hats, shoes, and so on, and have a simple but effective system of clothing. A more complicated treatment might keep track of layering and describe the player's outfit differently depending on which clothes were outermost -- an example for a later chapter.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e85"><a href=Rex85.html#e85 STYLE="text-decoration: none">***<b>Example 234:  Bogart</b></a><br>Clothing for the player that layers, so that items cannot be taken off in the wrong order, and the player's inventory lists only the clothing that is currently visible.<p>
+<a name="e426"><a href=Rex426.html#e426 STYLE="text-decoration: none">**<b>Example 242:  What Not To Wear</b></a><br>A general-purpose clothing system that handles a variety of different clothing items layered in different combinations over different areas of the body.<p>
+<a name="e183"><a href=Rex183.html#e183 STYLE="text-decoration: none">*<b>Example 325:  Hays Code</b></a><br>Clark Gable in a pin-striped suit and a pink thong.<p>
+<a name="e298"><a href=Rex298.html#e298 STYLE="text-decoration: none">*<b>Example 54:  Being Prepared</b></a><br>A kind for jackets, which always includes a container called a pocket.<p>
+<a name="e341"><a href=Rex341.html#e341 STYLE="text-decoration: none">*<b>Example 319:  Some Assembly Required</b></a><br>Building different styles of shirt from component sleeves and collars.<p>
+<p><hr><p><a href=Rdoc69.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc71.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

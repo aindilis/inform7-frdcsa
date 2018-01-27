@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.10. Character Emotion</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Being Peter" -->
+<!-- SEARCH SECTION "Ex 388" -->
+<!-- SEARCH SORT "Ex 007-010-388" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc55.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc57.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.10. Character Emotion</b></td></tr></table><p>
+<p>
+<p>In a complex story, characters may evolve strong feelings about the player. Often we want to hint at the character's feelings through gesture and tone of voice - little things woven into dialogue and action sequences that might otherwise be unchanged. <b>Ferragamo Again</b> demonstrates creating phrases to give all our characters different ways to express their irritation at the player.
+<p>
+<p>Then again, sometimes a discussion might produce quite spectacular results if a character is in the wrong mood. <b>Being Peter</b> shows the bare bones of an implementation in which a character's attitude rulebook is consulted to determine what her response will be - allowing for arbitrarily complicated outcomes.
+<p>
+<p><hr><p>
+<a name="e139"><a href=Rex139.html#e139 STYLE="text-decoration: none">**<b>Example 170:  Ferragamo Again</b></a><br>Using the same phrase to produce different results with different characters.<p>
+<!-- EXAMPLE START -->
+<a name="e285"><a href=Rdoc56.html#e285 STYLE="text-decoration: none">*<b><b>Example</b> 388:  Being Peter</b></a><br>A set of rules determining the attitude a character will take when asked about certain topics.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Let's say that we're implementing a particularly irrational and volatile character. Some of the time she remains composed; some of the time she reacts with unexpected vehemence for reasons only partly related to what was said.
+<p>
+<p>Moreover, her responses are divided between successful and failing outcomes, where success indicates that she's not too upset and failure means that she is distraught; we use this to determine how the rest of the room reacts.
+<p>
+<blockquote><font color="#000080">&quot;Being Peter&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Drawing Room is a room. &quot;The company is assembled here for champagne. Most of it, anyway: Mary is on the phone to her babysitter, Roger is keeping her anxious company, and Carol doesn't drink. But everyone else.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maggie is a woman in the Drawing Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears a top hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Quizzing it about is an action applying to one thing and one visible thing. Understand &quot;ask [someone] about [any thing]&quot; as quizzing it about.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of quizzing Maggie about something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;consider the attitude rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Everyone waits to see what the reaction will be: [outcome of the rulebook].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if rule succeeded, say &quot;There is general relief.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Everyone is pointedly silent.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The attitude rules are a rulebook. The attitude rules have outcomes she stays calm (no outcome - default), she gets angry (failure), she has a stroke (failure), she is only mildly annoyed (success), and she is elated (success).
+</font></blockquote><p>
+<p>
+<p>Here we want Inform to consult every appropriate attitude rule until it gets to some answer; if an attitude rule does not provide a result, the default 'no outcome' will mean that we go on to the next rule, and so on.
+<p>
+<blockquote><font color="#000080">A subject is a kind of thing. income, love life, and children are subjects.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An attitude rule for quizzing Maggie about love life:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;she gets angry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An attitude rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player wears the top hat, she gets angry.
+</font></blockquote><p>
+<p>
+<p>Now, as we saw, the 'no outcome' result will never be returned and printed as Maggie's reaction, precisely because it is &quot;no outcome&quot;. Therefore, we provide a final attitude rule which will give her a default response to all statements:
+<p>
+<blockquote><font color="#000080">The last attitude rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;she is only mildly annoyed.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;ask maggie about love / ask maggie about income / take off hat / ask maggie about income&quot;.
+</font></blockquote><p>
+<p>
+<p>There are plenty of contexts where we might want named outcomes for clarity but not want to print the results literally afterward.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc55.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc57.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

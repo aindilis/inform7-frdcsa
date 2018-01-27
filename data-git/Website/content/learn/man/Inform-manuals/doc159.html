@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.2. Creating a scene</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Creating a scene" -->
+<!-- SEARCH SECTION "10.2" -->
+<!-- SEARCH SORT "010-002-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc158.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc160.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.2. Creating a scene</b></td></tr></table><p>
+<p>
+<p>As usual, we only need to say that something is a scene to make it so:
+<p>
+<blockquote><font color="#000080">Train Stop is a scene.
+</font></blockquote><p>
+<p>
+<p>We conventionally write scene names with capital letters, as this demonstrates.
+<p>
+<p>This works, and shows up in the &quot;Scenes&quot; index, but does nothing. We have given no instructions on when it begins - no cue, in stage-play terms - so it never will begin, and even if it did, nobody would notice since it does nothing. First, to give it a beginning:
+<p>
+<blockquote><font color="#000080">Train Stop begins when the player is in the Station for the third turn.
+</font></blockquote><p>
+<p>
+<p>In theory any condition can be used to cue the scene - here, it's &quot;the player is in the Station for the third turn&quot; - but it's wise to look for a state of affairs which will last at least a brief time, because scene changes only happen at the start and end of turns. (Something like &quot;...when examining the timetable&quot; may be true only for a part of the middle of a turn, and so go unnoticed.)
+<p>
+<p>Every scene has two rulebooks attached, one at each end, so to speak. These look very like &quot;when play begins&quot; and &quot;when play ends&quot;, and work in the same way. Thus:
+<p>
+<blockquote><font color="#000080">When Train Stop begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the Flying Scotsman to the Station;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The Flying Scotsman pulls up at the platform, to a billow of steam and hammering.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When Train Stop ends:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the Flying Scotsman from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player is in the Station, say &quot;The Flying Scotsman inches away, with a squeal of released brakes, gathering speed invincibly until it disappears around the hill. All is abruptly still once more.&quot;
+</font></blockquote><p>
+<p>
+<p>Thus when the scene begins, our imaginary stage-hands wheel in a steam train; when it ends, they get rid of it again. Note that we know where the player will be at the start of the scene, but by the end he may have wandered off across the fields, so we must be careful not to report something he might not be in a position to see.
+<p>
+<p>When Train Stop begins, we printed some text, but we did this by hand. We didn't need to, because Inform automatically prints out the description of a scene (if it has one) when the scene begins. Scenes can have properties, just like objects, and in particular they have the &quot;description&quot; property. For example, we could write:
+<p>
+<blockquote><font color="#000080">Arrival is a scene. &quot;There's a flourish of trumpets.&quot;
+</font></blockquote><p>
+<p>
+<p>which saves us the trouble of writing the rule:
+<p>
+<blockquote><font color="#000080">When Arrival begins: say &quot;There's a flourish of trumpets.&quot;
+</font></blockquote><p>
+<p>
+<p>We can also write rules like this which apply to a whole variety of scenes at once. For instance:
+<p>
+<blockquote><font color="#000080">A scene can be bright or dim. A scene is usually dim. Dawn is a bright scene.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When a scene which is bright ends: say &quot;So passes the bright [scene being changed].&quot;
+</font></blockquote><p>
+<p>
+<p>Here, instead of naming a scene (&quot;Train Stop&quot;), we've given a description (&quot;a scene which is bright&quot;).
+<p>
+<p><hr><p>
+<a name="e287"><a href=ex287.html#e287 STYLE="text-decoration: none">*<b>Example 154: Pine 1</b></a><br>Pine: Using a scene to watch for the solution of a puzzle, however arrived-at by the player.<p>
+<a name="e410"><a href=ex410.html#e410 STYLE="text-decoration: none">**<b>Example 155:  Entrapment</b></a><br>A scene in which the player is allowed to explore as much as he likes, but another character strolls in as soon as he has gotten himself into an awkward or embarrassing situation.<p>
+<p><hr><p><a href=doc158.html STYLE="text-decoration: none">Previous</a> / <a href=doc160.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

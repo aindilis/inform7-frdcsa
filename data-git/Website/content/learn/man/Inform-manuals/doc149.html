@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.8. Approximate times, lengths of time</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Approximate times, lengths of time" -->
+<!-- SEARCH SECTION "9.8" -->
+<!-- SEARCH SORT "009-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc148.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc150.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.8. Approximate times, lengths of time</b></td></tr></table><p>
+<p>
+<p>Clocks and watches vary considerably in how much detail they show, and we tend not to report the time over-precisely: half-past ten is an elastic concept. The following room description for the Clock Chamber comes across much more naturally:
+<p>
+<blockquote><font color="#000080">The Clock Chamber is a room. &quot;The dark chamber behind the clock face, a mill-room of gears which grind down the seconds. Through the glass you can see the reversed hands reading [the time of day to the nearest five minutes in words].&quot;
+</font></blockquote><p>
+<p>
+<p>The phrase &quot;... to the nearest ...&quot; rounds off the given time, just as it sounds; as we'll see later, it can actually round off any arithmetic values, not just times. For instance, &quot;9:58 PM to the nearest ten minutes&quot; is 10:00 PM.
+<p>
+<p>In talking about lengths of time, rather than times of day, it's useful to have these:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(number)<b> minutes</b> ... <i>time</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_durationmins -->
+
+<p>This phrase converts numbers into lengths of time. Example:
+<p>
+<blockquote><font color="#000080">15 minutes
+</font></blockquote><p>
+<p>
+<p>Because it's a phrase, not just a notation for writing constants down, the number doesn't have to be given literally:
+<p>
+<blockquote><font color="#000080">let X be 5;
+<br>if the player is in the Slow Room, now X is 10;
+<br>let deadline be the time of day plus X minutes;
+</font></blockquote><p>
+<p>
+<p>Note that lengths of time can't exceed 1440 hours.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(number)<b> hours</b> ... <i>time</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_durationhours -->
+
+<p>This phrase converts numbers into lengths of time. Example:
+<p>
+<blockquote><font color="#000080">10 hours
+</font></blockquote><p>
+<p>
+<p>Note that lengths of time can't exceed 24 hours.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p><a href=doc148.html STYLE="text-decoration: none">Previous</a> / <a href=doc150.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

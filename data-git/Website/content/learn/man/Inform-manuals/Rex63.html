@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.2. The Status Line</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Capital City" -->
+<!-- SEARCH SECTION "Ex 402" -->
+<!-- SEARCH SORT "Ex 012-002-402" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc97.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc99.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.2. The Status Line</b></td></tr></table><p>
+<p>
+<p>The status line is the reverse-coloured bar along the top of the window during play, which conventionally, but not necessarily, shows the current location, the score (or sometimes the time of day) and the number of turns so far. It has been highly traditional since the early 1980s (Infocom's customer newsletter was for many years called &quot;The Status Line&quot;): it has become the visual identifier of IF. It plays the same role for IF that a header with chapter name and page number plays in a printed book.
+<p>
+<p>The status line is ordinarily printed from two named pieces of text, the &quot;left hand status line&quot; and the &quot;right hand status line&quot;. These can be changed during play, so for instance,
+<p>
+<blockquote><font color="#000080">When play begins, change the right hand status line to &quot;Time: [time of day]&quot;.
+</font></blockquote><p>
+<p>
+<p>The examples below offer miscellaneous alternatives, and are fairly self-descriptive.
+<p>
+<a href=Rdoc28.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Viewpoint</b></font></a><i> for a way to make the status line list the player's current identity</i><p><p>
+<p><hr><p>
+<a name="e39"><a href=Rex39.html#e39 STYLE="text-decoration: none">*<b>Example 373:  Blankness</b></a><br>Emptying the status line during the first screen of the game.<p>
+<!-- EXAMPLE START -->
+<a name="e63"><a href=Rdoc98.html#e63 STYLE="text-decoration: none">*<b><b>Example</b> 402:  Capital City</b></a><br>To arrange that the location information normally given on the left-hand side of the status line appears in block capitals.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Not much is needed for this. The only noteworthy point is that it doesn't work by changing the LHSL to &quot;[the player's surroundings in upper case]&quot;: it cannot do this because &quot;the player's surroundings&quot; is not a value. Instead, &quot;[the player's surroundings]&quot; is a text substitution sometimes printing the name of a room, sometimes printing &quot;Darkness&quot;, and so on. We must therefore load it into a text first, and then apply &quot;...in upper case&quot;.
+<p>
+<blockquote><font color="#000080">&quot;Capital City&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Capital City is a room. East is Lower Caissons. South of Lower Caissons
+<br>is San Seriffe. East of San Seriffe is a dark room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say the player's capitalised surroundings:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the masthead be &quot;[the player's surroundings]&quot; in upper case;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say the masthead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the left hand status line is &quot;[the player's capitalised surroundings]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;e / s / e&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e388"><a href=Rex388.html#e388 STYLE="text-decoration: none">***<b>Example 115:  Centered</b></a><br>Replacing the two-part status line with one that centers only the room name at the top of the screen.<p>
+<a name="e389"><a href=Rex389.html#e389 STYLE="text-decoration: none">*<b>Example 442: Status line with centered text, the hard way</b></a><br>A status line which has only the name of the location, centered.<p>
+<a name="e131"><a href=Rex131.html#e131 STYLE="text-decoration: none">*<b>Example 336:  Ways Out</b></a><br>A status line that lists the available exits from the current location.<p>
+<a name="e130"><a href=Rex130.html#e130 STYLE="text-decoration: none">**<b>Example 337:  Guided Tour</b></a><br>A status line that lists the available exits from the current location, changing the names of these exits depending on whether the room has been visited or not.<p>
+<a name="e356"><a href=Rex356.html#e356 STYLE="text-decoration: none">*<b>Example 114:  Politics as Usual</b></a><br>Have the status line indicate the current region of the map.<p>
+<p><hr><p><a href=Rdoc97.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc99.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

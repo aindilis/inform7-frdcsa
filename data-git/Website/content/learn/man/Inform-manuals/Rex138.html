@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.3. Animals</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Feline Behavior" -->
+<!-- SEARCH SECTION "Ex 386" -->
+<!-- SEARCH SORT "Ex 008-003-386" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc64.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc66.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.3. Animals</b></td></tr></table><p>
+<p>
+<p>Animals exhibit a wide range of behaviour: much of the chapter on Other Characters applies just as well to animals as to human beings, with the exception of the material on conversation. But two examples here, both fairly simple, show how a fairly convincing domestic pet can be achieved simply by reacting to certain events going on nearby: <b>Feline Behavior</b> (a cat) and <b>Today Tomorrow</b> (a dog).
+<p>
+<p><b>Fido</b> provides a dog which the player can re-name at will.
+<p>
+<p>For animals that we can sit on and ride - a camel or a horse, say - we may want to use the Rideable Vehicles extension by Graham Nelson, which also provides a rideable animal kind.
+<p>
+<a href=Rdoc48.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Liveliness</b></font></a><i> for pets that change what they're doing every time the player looks</i><p><p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for a cat that eats food put in its container</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e138"><a href=Rdoc65.html#e138 STYLE="text-decoration: none">*<b><b>Example</b> 386:  Feline Behavior</b></a><br>A cat which reacts to whatever items it has handy, returning the result of a rulebook for further processing.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a cat which is supposed to react to (and destroy) the most interesting thing in its environment. There are several ways we could approach this problem, but for the sake of demonstration, let's have it follow a rulebook to figure out which thing it most wants to interact with. We will then return the chosen object as &quot;the result of the rule&quot;.
+<p>
+<blockquote><font color="#000080">&quot;Feline Behavior&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Kitchen is a room. The cat is an animal in the Kitchen. In the Kitchen is a bowl, a ball of wool, a newspaper. The bowl contains a quantity of cream.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cat is wearing a silver collar. The description of the cat is &quot;It is wearing [a list of things worn by the cat].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a closed openable container called a bag. The bag contains catnip.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cat behavior rules is a rulebook producing an object.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the catnip:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat frolics with the catnip until nothing remains of it.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result catnip.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the cream:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat laps up the cream.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result cream.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the ball of wool:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat makes the ball of wool into a useless tangle which must be discarded.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result ball.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule when the cat can touch the newspaper:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat bats playfully at the newspaper until all the nasty boring articles are destroyed.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds with result newspaper.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A cat behavior rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The cat looks miffed at the lack of ready entertainment, and glares at you with yellow eyes as though wondering whether your pants leg is good for claw-sharpening.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the destroyed object be the object produced by the cat behavior rules;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the destroyed object is not nothing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the destroyed object from play;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break]Good thing you have no use for [the destroyed object] yourself.[paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / open bag / z / z&quot;.
+</font></blockquote><p>
+<p>
+<p>We include the if rule succeeded... condition here because nothing will be returned if the cat's search failed (as for instance in the result of the final rule).
+<p>
+<p>Naturally, if we wanted we could equally well ask &quot;if rule failed...&quot;.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e77"><a href=Rex77.html#e77 STYLE="text-decoration: none">**<b>Example 99:  Today Tomorrow</b></a><br>A few notes on "In the presence of" and how it interacts with concealed objects.<p>
+<a name="e141"><a href=Rex141.html#e141 STYLE="text-decoration: none">*<b>Example 408:  Fido</b></a><br>A dog the player can name and un-name at will.<p>
+<p><hr><p><a href=Rdoc64.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc66.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

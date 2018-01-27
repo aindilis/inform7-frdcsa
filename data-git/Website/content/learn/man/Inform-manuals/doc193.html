@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.7. New actions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "New actions" -->
+<!-- SEARCH SECTION "12.7" -->
+<!-- SEARCH SORT "012-007-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc192.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc194.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.7. New actions</b></td></tr></table><p>
+<p>
+<p>It is not often that we need to create new actions, but a large work of interactive fiction with no novelty actions is a flavourless dish. Here we shall create an action for photographing things.
+<p>
+<blockquote><font color="#000080">The Ruins is a room. &quot;You find this clearing in the rainforest oddly familiar.&quot; The camera is in the Ruins. &quot;Your elephantine camera hangs from a convenient branch.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Photographing is an action applying to one visible thing and requiring light.
+</font></blockquote><p>
+<p>
+<p>In theory that text is already sufficient to make the new action, but what we have so far is rudimentary to say the least. The two qualifications give Inform the useful information that we cannot photograph in the dark, and that we need to be photographing something - not, as in the case of waiting or taking inventory, acting without reference to any particular thing external to ourselves.
+<p>
+<p>The word &quot;visible&quot; here tells Inform that we do not need to be able to touch the thing in question: a line of sight is good enough. These two stipulations were necessary because the default arrangement is that any object must be in touching range, and that most actions can be performed in darkness. (Also, note that if you invent an action which needs to apply to directions like &quot;north&quot; or &quot;south&quot;, you need to make this apply to visible things, because the object used inside Inform to represent the idea of &quot;north&quot; can be seen but not touched. So for understanding purposes, &quot;visible thing&quot; is understood as meaning any visible thing or direction: it's more general than &quot;thing&quot;, not more specific.)
+<p>
+<p>Occasionally, when writing general rules about actions, it can be useful to find out what the current action's requirements are: the following conditions do what they suggest.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a touchable noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirestouch -->
+
+<p>This condition is true if the action being processed is one whose (first) noun is an object which needs to be touchable by the actor. For example, it's true for &quot;taking&quot;, but false for &quot;examining&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a touchable second noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirestouch2 -->
+
+<p>This condition is true if the action being processed is one whose second noun is an object which needs to be touchable by the actor. For example, it's true for &quot;putting the brick in the sack&quot;, but false for &quot;throwing the brick at the window&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a carried noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirescarried -->
+
+<p>This condition is true if the action being processed is one whose (first) noun is an object which needs to be carried by the actor. For example, it's true for &quot;dropping&quot;, but false for &quot;taking&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires a carried second noun</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requirescarried2 -->
+
+<p>This condition is true if the action being processed is one whose second noun is an object which needs to be carried by the actor.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>action requires light</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_requireslight -->
+
+<p>This condition is true if the action being processed is one which can only be performed if the actor has light to see by. For example, it's true for &quot;examining&quot;, but false for &quot;dropping&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>As further examples, here we create &quot;blinking&quot; and &quot;scraping X with Y&quot;. Note the use of &quot;it&quot; to indicate that the name of an object should go here.
+<p>
+<blockquote><font color="#000080">Blinking is an action applying to nothing. Scraping it with is an action applying to two things.
+</font></blockquote><p>
+<p>
+<p>The photographing action now exists, but with two provisos: (a) it never happens, because Inform does not know what commands by the player should cause it, and (b) even if it were to happen, nothing would follow, because Inform does not know what to do. (There are no check, carry out or report rules yet.)
+<p>
+<p>The first problem is easily overcome:
+<p>
+<blockquote><font color="#000080">Understand &quot;photograph [something]&quot; as photographing.
+</font></blockquote><p>
+<p>
+<p>We will return to the whole subject of parsing, as this process of understanding the player's commands is called, later. But this gives the gist of it.
+<p>
+<a href=doc260.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Understand</b></font></a><i> for the full story</i><p><p>
+<p><hr><p>
+<a name="e104"><a href=ex104.html#e104 STYLE="text-decoration: none">*<b>Example 191:  Red Cross</b></a><br>A DIAGNOSE command which allows the player to check on the health of someone.<p>
+<a name="e171"><a href=ex171.html#e171 STYLE="text-decoration: none">***<b>Example 192:  Frizz</b></a><br>Liquid flows within containers and soaks objects that are not waterproof; any contact with a wet object can dampen our gloves.<p>
+<p><hr><p><a href=doc192.html STYLE="text-decoration: none">Previous</a> / <a href=doc194.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

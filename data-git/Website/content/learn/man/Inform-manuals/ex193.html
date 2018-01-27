@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 12.4. Persuasion</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Hypnotist of Blois" -->
+<!-- SEARCH SECTION "Ex 186" -->
+<!-- SEARCH SORT "Ex 012-004-186" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc189.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc191.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>12.4. Persuasion</b></td></tr></table><p>
+<p>
+<p>&quot;Asking ... to try ...&quot; actions run through their Before and Instead rules like any other actions, but then (if no rule has intervened) something different happens: Inform has to decide whether the person asked consents to try the action or not. By default, the answer is always no, and text like the following will be printed:
+<p>
+<blockquote><font color="#000080">> will, go west
+<br>Will has better things to do.
+</font></blockquote><p>
+<p>
+<p>However, we can intervene to make the answer &quot;yes&quot;, using a special kind of rule which produces a yes/no answer. The following examples show how we can give broad or narrow permission, as we choose:
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking people to try going: persuasion succeeds.
+<br>Persuasion rule for asking Will to try going west: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<p>Such a rule can either declare that &quot;persuasion succeeds&quot;, or that &quot;persuasion fails&quot;, or make no decision and leave it to another rule to say. If it decides that persuasion fails, it is also allowed to say something, describing why: in that event, the standard message (&quot;Will has better things to do.&quot;) is suppressed. For example,
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking Will to try going:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Will looks put out, and mutters under his breath.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;persuasion fails.
+</font></blockquote><p>
+<p>
+<p>The following rule, which is really only suitable for testing, makes everybody infinitely obliging:
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking people to try doing something: persuasion succeeds.
+</font></blockquote><p>
+<p>
+<p>Supposing that Will does decide to cooperate, a new action is generated:
+<p>
+<blockquote><font color="#000080">Will going west
+</font></blockquote><p>
+<p>
+<p>and this is then subject to all of the usual action machinery. For instance, we could write a rule such as:
+<p>
+<blockquote><font color="#000080">Instead of Will going west, say &quot;He runs out into the waves, but soon returns, rueful.&quot;
+</font></blockquote><p>
+<p>
+<p>So in this case the new action (&quot;Will going west&quot;) failed: but the original action, &quot;asking Will to try going west&quot;, is still deemed to have succeeded - after all, Will <i>did</i> try. To put it more formally, &quot;asking X to try A&quot; succeeds if the persuasion rules succeed, and otherwise fails.
+<p>
+<p>Note also that &quot;Instead of...&quot; rules written for other people will be treated by Inform as failures, even if we write something like
+<p>
+<blockquote><font color="#000080">Instead of Will pulling the cord:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The bell rings.&quot;
+</font></blockquote><p>
+<p>
+<p>and thus may produce unsatisfactory results such as
+<p>
+<blockquote><font color="#000080">>WILL, PULL CORD
+<br>The bell rings.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Will is unable to do that.
+</font></blockquote><p>
+<p>
+<p>If we wish to write new successful actions for another character, we will need to create appropriate carry out and report rules for them: these will be explained in the sections to follow.
+<p>
+<p>(Finally, note that the mechanism Inform uses to see if we have printed a refusal message of our own, in the event of persuasion rules failing, can be fooled if we write a persuasion rule explicitly ending with a &quot;[paragraph break]&quot; text substitution.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e193"><a href=doc190.html#e193 STYLE="text-decoration: none">*<b><b>Example</b> 186:  The Hypnotist of Blois</b></a><br>A hypnotist who can make people obedient and then set them free again.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;The Hypnotist of Blois&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A person is either hypnotized or alert. A person is usually alert.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Persuasion rule for asking a hypnotized person to try doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;persuasion succeeds.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;hypnotize [someone]&quot; as hypnotizing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Hypnotizing is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check hypnotizing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is hypnotized, say &quot;Already done.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out hypnotizing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is hypnotized.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report hypnotizing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] slips under your control.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waking someone hypnotized:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is alert;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] returns abruptly to consciousness.&quot;
+</font></blockquote><p>
+<p>
+<p>We will learn more about check rules for other characters shortly, but the following prevents the hypnosis patient from trying to hypnotize us in turn:
+<p>
+<blockquote><font color="#000080">Check someone hypnotizing someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maison de la Magie is a room. &quot;In a darkened room, a few hundreds of paces from the chateau of Blois, you give to tourists three shows a day: displaying to them power they do not comprehend and spectacles they do not deserve.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A volunteer is a woman in the Maison. &quot;A volunteer from the audience stands facing you, [if alert]skeptically awaiting hypnosis[otherwise]her face worshipful and obedient[end if].&quot; The printed name of the volunteer is &quot;volunteer from the audience&quot;. The description is &quot;A distracted, susceptible woman.&quot; The volunteer wears a t-shirt and a baseball hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears a top hat and a cape.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;volunteer, remove hat / hypnotize volunteer / look / volunteer, remove hat / wake volunteer / volunteer, wear hat&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e294"><a href=ex294.html#e294 STYLE="text-decoration: none">*<b>Example 187:  Police State</b></a><br>Several friends who obey you; a policeman who doesn't (but who takes a dim view of certain kinds of antics).<p>
+<p><hr><p><a href=doc189.html STYLE="text-decoration: none">Previous</a> / <a href=doc191.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

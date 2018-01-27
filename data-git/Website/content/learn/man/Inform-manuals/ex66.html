@@ -1,0 +1,97 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.19. Random choices of things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Zork II" -->
+<!-- SEARCH SECTION "Ex 134" -->
+<!-- SEARCH SORT "Ex 008-019-134" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc139.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc141.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.19. Random choices of things</b></td></tr></table><p>
+<p>
+<p>Writing &quot;a random number&quot; is not allowed, because the possible range is too large, but that was the only reason why not.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>a</b>/--<b> random </b>(description of values)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_randomdesc -->
+
+<p>This phrase makes a uniformly random choice from values satisfying the description given. Example:
+<p>
+<blockquote><font color="#000080">a random visited room
+<br>a random scene
+</font></blockquote><p>
+<p>
+<p>A problem message is issued if the range is too large (for instance, &quot;a random text&quot;). Unexpected results may follow if no value fits the description, unless we are describing objects, in which case the result is the special value &quot;nothing&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>For instance:
+<p>
+<blockquote><font color="#000080">say &quot;You can see [number of adjacent rooms] way[s] from here; how about [random adjacent room]?&quot;
+</font></blockquote><p>
+<p>
+<p>But it's important to worry about the possibility that nothing qualifies - here, that no adjacent rooms exist. The above would then say:
+<p>
+<blockquote><font color="#000080">You can see 0 ways from here; how about nothing?
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e62"><a href=ex62.html#e62 STYLE="text-decoration: none">*<b>Example 133:  Candy</b></a><br>One of several identical candies chosen at the start of play to be poisonous.<p>
+<!-- EXAMPLE START -->
+<a name="e66"><a href=doc140.html#e66 STYLE="text-decoration: none">*<b><b>Example</b> 134:  Zork II</b></a><br>A "Carousel Room", as in Zork II, where moving in any direction from the room leads (at random) to one of the eight rooms nearby.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>All we need to do is select the player's destination for him at random:
+<p>
+<blockquote><font color="#000080">&quot;Zork II&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Carousel Room is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of going from the Carousel Room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to a random adjacent room.
+</font></blockquote><p>
+<p>
+<p>To avoid infringing the original game too much, let's try a somewhat different setting:
+<p>
+<blockquote><font color="#000080">The Games of Chance is north of the Carousel Room. The Haunted Funhouse is northwest of the Carousel Room. The Ferris Wheel is east of the Carousel Room. The Topsy-Turvy is northeast of the Carousel Room. The Reproduction Henge is south of the Carousel Room. The Women's Toilet is southwest of the Carousel Room. The Men's Toilet is southeast of the Carousel Room. The Cotton Candy Shop is west of the Carousel Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;s&quot;.
+</font></blockquote><p>
+<p>
+<p>And the following means that the test runs consistently even though the numbers are theoretically random. To make them truly random, remove this line.
+<p>
+<blockquote><font color="#000080">When play begins, seed the random-number generator with 1234.
+</font></blockquote><p>
+<p>
+<p>Or if we want to add the refinement that the Carousel Room can be switched off:
+<p>
+<blockquote><font color="#000080">&quot;Zork II&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Carousel Room is a room. The spinning machine is a switched on device in the Carousel Room.
+</font></blockquote><p>
+<p>
+<p>And then
+<p>
+<blockquote><font color="#000080">Instead of going from the Carousel Room when the spinning machine is switched on:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to a random adjacent room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Games of Chance is north of the Carousel Room. The Haunted Funhouse is northwest of the Carousel Room. The Ferris Wheel is east of the Carousel Room. The Topsy-Turvy is northeast of the Carousel Room. The Reproduction Henge is south of the Carousel Room. The Women's Toilet is southwest of the Carousel Room. The Men's Toilet is southeast of the Carousel Room. The Cotton Candy Shop is west of the Carousel Room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;turn off machine / s / n / turn on machine / s&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins, seed the random-number generator with 1234.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc139.html STYLE="text-decoration: none">Previous</a> / <a href=doc141.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

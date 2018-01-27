@@ -1,0 +1,116 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.12. Cameras and Recording Devices</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Originals" -->
+<!-- SEARCH SECTION "Ex 355" -->
+<!-- SEARCH SORT "Ex 009-012-355" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc78.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc80.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.12. Cameras and Recording Devices</b></td></tr></table><p>
+<p>
+<p>Recording what is going on, for later playing back or examination, is difficult because the range of situations is very complex. Exactly how much information should we store when we make a recording, and will this require problematically large tables? Will it be difficult even to do at all?
+<p>
+<p>The usual approach is to record only basic details of events or situations. In <b>If It Hadn't Been For...</b> the tape recorder preserves only a few different sounds - footsteps, creaking, rustling - rather than capturing exactly the sound of every action taking place in earshot. In <b>Claims Adjustment</b>, we can take up to 36 Polaroid-style photographs, but each is described only by saying what it is a photo of. Thus we can have a photograph of a vase, or even a photograph of a photograph of a vase (because that too is a thing), but not a photograph of a still life in which several items have been gathered together by the player. That would ordinarily require too much storage.
+<p>
+<p>A similar trick, though involving impromptu sculpture rather than photography, can be found in <b>Originals</b>. (The artist magically &quot;manifests&quot; these models rather than sculpting the conventional way in order to avoid the nuisance of carrying around raw materials - wax maquettes and so forth - which would clutter up the example.)
+<p>
+<p>If we rely on indexed text, however, we can store arbitrary descriptions. <b>Mirror, Mirror</b> provides a perfect visual recorder: it remembers a room description exactly as the player saw it at the time.
+<p>
+<p><b>Actor's Studio</b> provides a video camera that records and time stamps all actions performed in its presence while it is set to record.
+<p>
+<p><hr><p>
+<a name="e336"><a href=Rex336.html#e336 STYLE="text-decoration: none">*<b>Example 262:  If It Hadn't Been For...</b></a><br>A sound recording device that records the noises made by player and non-player actions, then plays them back on demand.<p>
+<a name="e82"><a href=Rex82.html#e82 STYLE="text-decoration: none">**<b>Example 311:  Claims Adjustment</b></a><br>An instant camera that spits out photographs of anything the player chooses to take a picture of.<p>
+<!-- EXAMPLE START -->
+<a name="e275"><a href=Rdoc79.html#e275 STYLE="text-decoration: none">*<b><b>Example</b> 355:  Originals</b></a><br>Allowing the player to create models of anything in the game world; parsing the name "model [thing]" or even just "[thing]" to refer to these newly-created models; asking "which do you mean, the model [thing] or the actual [thing]" when there is ambiguity.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We rely here on the understanding-by-relations rules we've already learned, but there is an additional trick: we want to make sure that if the player types &quot;original&quot; or &quot;actual&quot;, this word will not be taken to refer to the thing modeled:
+<p>
+<blockquote><font color="#000080">&quot;Originals&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A model is a kind of thing. 100 models are in the model-repository.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Appearance relates one thing to various models. The verb to be shown by implies the appearance relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Indication relates a model (called X) to a thing (called Y) when Y is shown by X and Y is suitable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;actual&quot; or &quot;original&quot; as &quot;[actual]&quot;. Understand &quot;[actual]&quot; as something when the item described is not a model.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is suitable:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;[actual]&quot;, no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;yes.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;[something related by indication]&quot; as a model.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a model (called target): say &quot; [random thing shown by the target]&quot;
+</font></blockquote><p>
+<p>
+<p>Now our duplication command -- for the sake of simplicity, we'll suppose that in this scenario the player is duplicating objects by magic rather than creating them out of physical materials or supplies:
+<p>
+<blockquote><font color="#000080">Understand &quot;duplicate [something]&quot; as duplicating. Duplicating is an action applying to one visible thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The duplicating action has an object called the selected model.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Setting action variables for duplicating:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let N be a random model in the model-repository;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the selected model is N.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check duplicating:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the selected model is nothing, say &quot;You're out of power.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out duplicating:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the noun is shown by the selected model;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the selected model to the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report duplicating:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You concentrate and manifest [a selected model].&quot;
+</font></blockquote><p>
+<p>
+<p>Now, the challenge is that we want to print the word &quot;actual&quot; before printing the name of an object, but only during disambiguation questions and only when we are not printing the name of the object as part of a model-name! (If we are not careful about the latter point, we will get responses such as &quot;Which do you mean, the model actual deer or the actual deer?&quot; which of course defeats the whole purpose.
+<p>
+<p>The way around this is to remember that activities stack: we're printing the name of the deer while printing the name of a model that involves the deer. So if we set a flag while printing the name of a model, we can control the way the deer's name prints during the transaction. (We could use our ...while clause to specify while not printing the name of a model, except that we're already using it for &quot;while asking which do you mean&quot;, and these do not stack.) So:
+<p>
+<blockquote><font color="#000080">The virtual-context is a truth state that varies. The virtual-context is false.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a model:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now virtual-context is true.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After printing the name of a model:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now virtual-context is false.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of something (called target) while asking which do you mean:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the target is not a model and virtual-context is false:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;actual &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Forest is a room. It contains a deer and a daisy. The deer is an animal.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;duplicate deer / x model deer / x deer model / drop deer / x deer / actual / x deer / model&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e248"><a href=Rex248.html#e248 STYLE="text-decoration: none">*<b>Example 406:  Mirror, Mirror</b></a><br>The sorcerer's mirror can, when held up high, form an impression of its surroundings which it then preserves.<p>
+<a name="e1"><a href=Rex1.html#e1 STYLE="text-decoration: none">**<b>Example 221:  Actor's Studio</b></a><br>A video camera that records actions performed in its presence, and plays them back with time-stamps.<p>
+<p><hr><p><a href=Rdoc78.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc80.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

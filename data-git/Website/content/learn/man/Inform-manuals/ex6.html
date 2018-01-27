@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.9. Defining new assertion verbs</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Unthinkable Alliances" -->
+<!-- SEARCH SECTION "Ex 229" -->
+<!-- SEARCH SORT "Ex 013-009-229" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc215.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc217.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.9. Defining new assertion verbs</b></td></tr></table><p>
+<p>
+<p>Here is an example definition of a new verb:
+<p>
+<blockquote><font color="#000080">The verb to sport (he sports, they sport, he sported, it is sported, he is sporting) implies the wearing relation.
+</font></blockquote><p>
+<p>
+<p>Once this is done, we can write the assertion
+<p>
+<blockquote><font color="#000080">Mr Wickham sports a Tory rosette.
+</font></blockquote><p>
+<p>
+<p>which will do the the same thing as
+<p>
+<blockquote><font color="#000080">Mr Wickham wears a Tory rosette.
+</font></blockquote><p>
+<p>
+<p>because both verbs have the same relation as their meaning.
+<p>
+<p>Note that we have to spell out many parts of the verb:
+<p>
+<blockquote><font color="#000080">to sport - infinitive
+<br>he sports - present singular
+<br>they sport - present plural
+<br>he sported - past
+<br>it is sported - past participle
+<br>he is sporting - present participle
+</font></blockquote><p>
+<p>
+<p>Although it looks as if Inform could easily generate these given the infinitive &quot;to sport&quot; alone, by adding an &quot;-s&quot; here or an &quot;-ed&quot; there, English can be a very irregular language. Since only a few verbs will be defined in any single project it seems best to be explicit. (If we do miss out any of the parts of the verb, the result will be that the usages missed out will not be understood by Inform. Sometimes that's a good thing, as some verbs have seldom-used present participles, for instance - &quot;he is liking me&quot;, for instance, is grammatical but odd.)
+<p>
+<p>Occasionally it's convenient to have the relation the other way around. For instance:
+<p>
+<blockquote><font color="#000080">The verb to grace (he graces, they grace, he graced, it is graced, it is gracing) implies the reversed wearing relation.
+</font></blockquote><p>
+<p>
+<p>With that defined, these two sentences have identical meanings:
+<p>
+<blockquote><font color="#000080">Mr Wickham sports a Tory rosette.
+<br>A Tory rosette graces Mr Wickham.
+</font></blockquote><p>
+<p>
+<p>Reversed in this sense means that the things related - the subject and object of the verb - are the other way round.
+<p>
+<p>The Phrasebook index contains all the verbs associated with assertions, in the &quot;table of verbs&quot; section. When we add new verbs to our source, those will appear in the Phrasebook as well.
+<p>
+<p>The verbs above (&quot;to grace&quot;, &quot;to sport&quot;) are short ones, but we're free to make them longer than that. For example:
+<p>
+<blockquote><font color="#000080">The verb to cover oneself with (he covers himself with, they cover themselves with, he covered himself with, he is covering himself with) implies the wearing relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Peter is covering himself with a tent-like raincoat.
+</font></blockquote><p>
+<p>
+<p>Here we have &quot;to cover oneself with&quot;, four words long; the limit is 29.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e6"><a href=doc216.html#e6 STYLE="text-decoration: none">*<b><b>Example</b> 229:  Unthinkable Alliances</b></a><br>People are to be grouped into alliances. To kiss someone is to join his or her faction, which may make a grand alliance; to strike them is to give notice of quitting, and to become a lone wolf.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The following is best tested by experimentally kissing and/or attacking, and typing RELATIONS after every change to see the effect.
+<p>
+<blockquote><font color="#000080">&quot;Unthinkable Alliances&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Unthinkable Solutions is a room. Sophie, Daisy, Ryan and Owen are in Unthinkable Solutions.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Alliance relates people to each other in groups. The verb to help (he helps, they help, he helped, he is helped) implies the alliance relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Sophie helps Ryan. Daisy helps Ryan. Owen helps the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of kissing someone (called the blessed one):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Smack!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player helps the blessed one.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of attacking someone (called the vilified one):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Smack!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player does not help the vilified one.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;relations / kiss sophie / relations / hit ryan / relations&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e429"><a href=ex429.html#e429 STYLE="text-decoration: none">***<b>Example 230:  The Unexamined Life</b></a><br>An adaptive hint system that tracks what the player needs to have seen or to possess in order to solve a given puzzle, and doles out suggestions accordingly. Handles changes in the game state with remarkable flexibility, and allows the player to decide how explicit a nudge he wants at any given moment.<p>
+<p><hr><p><a href=doc215.html STYLE="text-decoration: none">Previous</a> / <a href=doc217.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

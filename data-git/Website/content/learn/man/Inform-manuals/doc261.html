@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.2. New commands for old grammar</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "New commands for old grammar" -->
+<!-- SEARCH SECTION "16.2" -->
+<!-- SEARCH SORT "016-002-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc260.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc262.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.2. New commands for old grammar</b></td></tr></table><p>
+<p>
+<p>In the photography example, we are providing entirely new grammar for an action  not ordinarily built in to Inform. But we often want simply to provide alternative grammar for existing actions, or even to put new interpretations on commands that Inform already recognises. For instance:
+<p>
+<blockquote><font color="#000080">Understand &quot;deposit [something] in [an open container]&quot; as inserting it into.
+</font></blockquote><p>
+<p>
+<p>The inserting action is built in to Inform, but the command &quot;deposit&quot; is not, so this is created as new. It is occasionally useful to put a twist on this:
+<p>
+<blockquote><font color="#000080">Understand &quot;fill [an open container] with [something]&quot; as inserting it into (with nouns reversed).
+</font></blockquote><p>
+<p>
+<p>The clause &quot;(with nouns reversed)&quot; tells Inform to exchange the two nouns parsed, which is necessary because the inserting action expects the noun to be the item and the second noun to be the container, not vice versa.
+<p>
+<p>The following example:
+<p>
+<blockquote><font color="#000080">Understand &quot;access [something]&quot; as opening.
+</font></blockquote><p>
+<p>
+<p>might look as if it makes &quot;access&quot; behave just like &quot;open&quot; when the player types it, but that's not so: &quot;open&quot; can also be used in constructions like &quot;open the door with the brass key&quot;, in which case it is understood as the unlocking action. We could add another line to make &quot;access&quot; behave this way too, but if what we really want is to make &quot;access&quot; behave just like &quot;open&quot;, it's easier simply to say so:
+<p>
+<blockquote><font color="#000080">Understand the command &quot;access&quot; as &quot;open&quot;.
+</font></blockquote><p>
+<p>
+<p>This is very useful when adding a new command which needs synonyms:
+<p>
+<blockquote><font color="#000080">Understand the commands &quot;snap&quot; and &quot;picture&quot; as &quot;photograph&quot;.
+</font></blockquote><p>
+<p>
+<p>We can check the current stock of commands by looking at the table in the Actions index: for instance, before making &quot;snap&quot; synonymous with &quot;photograph&quot;, it might be wise to check that it is not already defined as a command for breaking something.
+<p>
+<p><hr><p>
+<a name="e168"><a href=ex168.html#e168 STYLE="text-decoration: none">*<b>Example 278:  Anchorite</b></a><br>By default, Inform understands GET OFF, GET UP, or GET OUT when the player is sitting or standing on an enterable object. We might also want to add GET DOWN and DOWN as exit commands, though:<p>
+<a name="e7"><a href=ex7.html#e7 STYLE="text-decoration: none">*<b>Example 279:  Alpaca Farm</b></a><br>A generic USE action which behaves sensibly with a range of different objects.<p>
+<a name="e87"><a href=ex87.html#e87 STYLE="text-decoration: none">****<b>Example 280:  Cloak of Darkness</b></a><br>Implementation of "Cloak of Darkness", a simple example game that for years has been used to demonstrate the features of IF languages.<p>
+<p><hr><p><a href=doc260.html STYLE="text-decoration: none">Previous</a> / <a href=doc262.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

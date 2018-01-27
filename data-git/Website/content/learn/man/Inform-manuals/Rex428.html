@@ -1,0 +1,116 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.4. Money</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Widget Enterprises" -->
+<!-- SEARCH SECTION "Ex 252" -->
+<!-- SEARCH SORT "Ex 009-004-252" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc70.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc72.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.4. Money</b></td></tr></table><p>
+<p>
+<p>Money could be anything which the two people in a bargain both agree is valuable. Here, the player and an ogre agree on a copper coin as money:
+<p>
+<blockquote><font color="#000080">The player carries a copper coin. The ogre carries a rock cake. The cake is edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of giving the coin to the ogre:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the ogre carries the coin;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player carries the cake;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The ogre grunts and hands you a rock cake.&quot;
+</font></blockquote><p>
+<p>
+<p>Now Inform does provide an action, &quot;buying&quot;, and a command for it, BUY, but they ordinarily respond simply &quot;Nothing is on sale.&quot; This is no longer true, so we should make BUY CAKE work. The difficulty here is that a command like BUY CAKE does not specify what should be handed over in exchange. Here we just check that the player has the coin, but in principle we could check for any of a range of monetary tokens - coins, notes, cheque book, debit card, and so on.
+<p>
+<blockquote><font color="#000080">Instead of buying the cake:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player has the coin, try giving the coin to the ogre;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You have no money.&quot;
+</font></blockquote><p>
+<p>
+<p>In more advanced economies, where shopping replaces barter, the seller will stock a wide range of differently priced goods. For a tabulated catalogue of wares, see <b>Introduction to Juggling</b>: to allow the player to negotiate prices, see <b>Money for Nothing</b>. In both of those examples, the player's current financial worth is simulated only as a current total amount of money carried - say, $2.50. This is typical, because in most situations what matters is how much money is in the pocket, not how it is made up. Money behaves more like a liquid than a set of items: hence terms like &quot;liquidity&quot;, &quot;cash flow&quot; or <b>Frozen Assets</b> - the name of the simplest example demonstrating this. If we really need a comprehensive simulation down to pieces of currency - where it makes a difference carrying four quarters rather than a dollar bill, because the quarters can be fed into a vending machine - see <b>Nickel and Dimed</b>.
+<p>
+<p><b>Fabrication</b> takes the problem in a different direction, making calculations about the cost of a new garment based on the price of the pattern, the quantity of fabric required, and the value of the fabric type chosen -- showing off what we can do with unit multiplication in Inform.
+<p>
+<p><b>Widget Enterprises</b> explores the challenge of pricing widgets for maximum profit, given certain necessary costs and customers with varying willingness to pay.
+<p>
+<a href=Rdoc43.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Actions on Multiple Objects</b></font></a><i> for an implementation of giving that allows the player to offer multiple objects at once, where their combined value determines whether they are accepted</i><p><p>
+<p><hr><p>
+<a name="e67"><a href=Rex67.html#e67 STYLE="text-decoration: none">*<b>Example 253:  Frozen Assets</b></a><br>A treatment of money which keeps track of how much the player has on him, and a BUY command which lets him go shopping.<p>
+<a name="e204"><a href=Rex204.html#e204 STYLE="text-decoration: none">***<b>Example 272:  Introduction to Juggling</b></a><br>Assortment of equipment defined with price and description, in a table.<p>
+<a name="e20"><a href=Rex20.html#e20 STYLE="text-decoration: none">**<b>Example 254:  Money for Nothing</b></a><br>An OFFER price FOR command, allowing the player to bargain with a flexible seller.<p>
+<a name="e376"><a href=Rex376.html#e376 STYLE="text-decoration: none">***<b>Example 251:  Nickel and Dimed</b></a><br>A more intricate system of money, this time keeping track of the individual denominations of coins and bills, specifying what gets spent at each transaction, and calculating appropriate change.<p>
+<a name="e134"><a href=Rex134.html#e134 STYLE="text-decoration: none">**<b>Example 258:  Fabrication</b></a><br>A system of assembling clothing from a pattern and materials; both the pattern and the different fabrics have associated prices.<p>
+<!-- EXAMPLE START -->
+<a name="e428"><a href=Rdoc71.html#e428 STYLE="text-decoration: none">*<b><b>Example</b> 252:  Widget Enterprises</b></a><br>Allowing the player to set a price for a widget on sale, then determining the resulting sales based on consumer demand, and the resulting profit and loss.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose the player is responsible for pricing at Widget Enterprises. Widget production entails a certain fixed cost as well as a cost per unit; and somewhere out in the world there are a number of customers interested in purchasing widgets, but the player starts without knowing what this distribution looks like.
+<p>
+<p>We can express the profits as an equation: the total made by selling widgets, minus the cost thereof.
+<p>
+<p>The Table of Customers holds the data about customer preferences, and whenever the player selects a widget price, we consult it to determine how many customers in total would be willing to buy at that price.
+<p>
+<blockquote><font color="#000080">&quot;Widget Enterprises&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Widget Stand is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A monetary value is a kind of value. $1.99 specifies a monetary value with parts dollars and cents.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Equation - Profit Equation
+<br>&nbsp;&nbsp;&nbsp;&nbsp;P = nV - (F + nC)
+<br>where P is a monetary value, F is the fixed cost, C is the unit cost, V is a monetary value, and n is a number.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The fixed cost is a monetary value that varies. The fixed cost is $5.00.
+<br>The unit cost is a monetary value that varies. The unit cost is $10.66.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Customers
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">base</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">maximum value</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">$26.00</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">5</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">$20.00</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">8 </font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">$15.00</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">2</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">$13.50</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">$9.00</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide what number is the units sold at (V - a monetary value):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let total units be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Customers:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if V is less than the maximum value entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increase total units by the base entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on total units.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;set price to [monetary value]&quot; as setting price to. Setting price to is an action applying to one monetary value.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out setting price to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let V be the monetary value understood;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let n be the units sold at the monetary value understood;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let P be given by the Profit Equation;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You set the price of your widgets to [V], resulting in sales of [n] unit[s] and &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if P is less than $0.00:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let L be $0.00 - P;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;a loss of [L].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if P is $0.00:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;break even.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;a profit of [P].&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;set price to $0.00 / set price to $100.00 / set price to $15.00 / set price to $8.00 / set price to $25.00 / set price to $14.99&quot;.
+</font></blockquote><p>
+<p>
+<p>As written this will be a rather dull guessing game for the player; more interesting would be to enhance it into a fuller economic simulator with more control over fixed costs and customer price points.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc70.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc72.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

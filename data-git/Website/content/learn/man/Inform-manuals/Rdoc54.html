@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.8. Saying Complicated Things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Saying Complicated Things" -->
+<!-- SEARCH SECTION "7.8" -->
+<!-- SEARCH SORT "007-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc53.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc55.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.8. Saying Complicated Things</b></td></tr></table><p>
+<p>
+<p>As we saw in the overview, there are challenges in choosing the commands with which the player will communicate to the game. Two common approaches are ASK/TELL conversation, where the player can ask or tell characters about keywords, as in ASK JILL ABOUT JACK or TELL FARMER ABOUT CHICKEN COOP, and menu-based conversation, where the player is offered a list of things to say and must pick one (often by number), as in
+<p>
+<blockquote><font color="#000080">1) Ask Jill where Jack went.
+<br>2) Tell Jill that the chicken coop was robbed.
+</font></blockquote><p>
+<p>
+<p>or, sometimes,
+<p>
+<blockquote><font color="#000080">1) &quot;Jill, have you seen your no-good layabout brother Jack anywhere?&quot;
+<br>2) &quot;Look, Farmer Jill, I think a fox got into the chickens.&quot;
+</font></blockquote><p>
+<p>
+<p>The problem with ASK/TELL conversation is that it can feel undirected - if the player doesn't know which keywords to ask or tell about next, he gets stuck. It also doesn't always provide much sense of ongoing context or conversational flow, since the player can ask lots of unrelated questions and jump around a lot. What's more, sometimes the thing the player character asks isn't quite the question the player had in mind. If we type ASK JILL ABOUT JACK, Jill could wind up answering any of a number of questions - where Jack is, how old Jack is, whether Jack committed the recent murder, and so on. The player doesn't have much fine control over the conversation. Nonetheless, this is sometimes just what we want: <b>Farewell</b> implements a moderately sophisticated system along these lines, which keeps track of what the player has already said and allows him to review past conversation.
+<p>
+<p>Menu-based conversation solves most of these problems: a branching tree of conversation choices maintains a consistent flow of discussion, it's hard for the player to run out of things to say, and the player always knows what his character is about to say. But there are compensating flaws. For one thing, a menu doesn't allow for many surprises. The player can see all the conversation the game has to offer by working methodically through all the menu branches. (This problem is sometimes referred to as the &quot;lawnmower effect&quot;, since the process of seeing all the conversation is like the process of running a lawnmower over every inch of the lawn. It becomes a chore rather than an entertainment.) Menu systems can be long-winded to set up and therefore none are exemplified here, but several have been released as extensions for Inform.
+<p>
+<p>Since about 2001, more and more IF has used a sort of compromise method: the player is allowed to ask or tell about keywords, but he's sometimes given prompts about things to say that follow naturally on the conversation he was just having, as in
+<p>
+<blockquote><font color="#000080">You could ask where Jack is.
+</font></blockquote><p>
+<p>
+<p>Moreover, when he asks about a topic where many comments are possible, he'll be allowed to clarify, either using a menu or through a disambiguation question such as
+<p>
+<blockquote><font color="#000080">>ask Jill about Jack
+<br>Do you want to ask where Jack is, how old Jack is, or whether Jack committed the recent murder?
+</font></blockquote><p>
+<p>
+<p><b>Sweeney</b> implements one such hybrid type of conversation.
+<p>
+<p>A third option is to take away almost all the player's expressiveness and give him just one command, TALK TO. The player can TALK TO characters whenever he wants, and the game will pick the most appropriate thing for him to talk about. This works best in works with few or simple puzzles and a fast-moving, constrained plot, where the player will keep having new things to talk about. <b>Cheese-makers</b> demonstrates this.
+<p>
+<p>Finally, a few extreme games try to fake natural language understanding by looking for keywords in the player's input, rather than an exact grammar. This is perilous, because it is all too easy for the game to completely misunderstand what the player meant to type. Nonetheless, for the sake of example, see <b>Complimentary Peanuts</b>, in which the incomprehension is partly excused by the fact that the player is talking to someone a bit hard of hearing.
+<p>
+<p><hr><p>
+<a name="e91"><a href=Rex91.html#e91 STYLE="text-decoration: none">**<b>Example 270:  Farewell</b></a><br>People who respond to conversational gambits, summarize what they said before if asked again, and provide recap of conversation that is past.<p>
+<a name="e365"><a href=Rex365.html#e365 STYLE="text-decoration: none">**<b>Example 271:  Sweeney</b></a><br>A conversation where each topic may have multiple questions and answers associated with it, and where a given exchange can lead to new additions to the list.<p>
+<a name="e75"><a href=Rex75.html#e75 STYLE="text-decoration: none">***<b>Example 168:  Cheese-makers</b></a><br>Scenes used to control the way a character reacts to conversation and comments, using a TALK TO command.<p>
+<a name="e205"><a href=Rex205.html#e205 STYLE="text-decoration: none">***<b>Example 362:  Complimentary Peanuts</b></a><br>A character who responds to keywords in the player's instructions and remarks, even if there are other words included.<p>
+<p><hr><p><a href=Rdoc53.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc55.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

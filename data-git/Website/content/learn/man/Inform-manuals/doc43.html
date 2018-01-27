@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.16. Vehicles and pushable things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Vehicles and pushable things" -->
+<!-- SEARCH SECTION "3.16" -->
+<!-- SEARCH SORT "003-016-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc42.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc44.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.16. Vehicles and pushable things</b></td></tr></table><p>
+<p>
+<p>Next in the tour of standard kinds is the &quot;vehicle&quot;. This behaves like (indeed, is) an enterable container, except that it will not be portable unless this is specified.
+<p>
+<blockquote><font color="#000080">In the Garage is a vehicle called the red sports car.
+</font></blockquote><p>
+<p>
+<p>The player can enter the sports car and then move around riding inside it, by typing directions exactly as if on foot: and the game will print names of rooms with &quot;(in the red sports car)&quot; appended, lest this be forgotten.
+<p>
+<p>We have already seen that some things are portable, others fixed in place. In fact we can also make a third sort of thing: those which, although not portable, can be pushed from one room to another with commands like &quot;push the wheelbarrow north&quot;. At a pinch, we might just be willing to allow:
+<p>
+<blockquote><font color="#000080">The red sports car is pushable between rooms.
+</font></blockquote><p>
+<p>
+<p>But of course this is a property which almost any thing can have, not just a vehicle. (Only &quot;almost&quot; because Inform will not allow a door to be pushable between rooms, in the interests of realism rather than surrealism.)
+<p>
+<p>If we need vehicles which the passenger sits on top of, like a horse or a tractor, the standard &quot;vehicle&quot; kind will not be ideal. However, by loading one of the extensions which comes ready-installed:
+<p>
+<blockquote><font color="#000080">Include Rideable Vehicles by Graham Nelson.
+</font></blockquote><p>
+<p>
+<p>...we are provided with two more kinds, &quot;rideable vehicle&quot; and &quot;rideable animal&quot;, just right for the tractor and the horse respectively. (As with all extensions, the documentation can be seen by clicking Go on some source which contains the above line, and then turning to the Contents index.)
+<p>
+<a href=doc116.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Going by, going through, going with</b></font></a><i> for further ways to customize vehicle behaviour</i><p><p>
+<p><hr><p>
+<a name="e441"><a href=ex441.html#e441 STYLE="text-decoration: none">*<b>Example 26:  Peugeot</b></a><br>A journey from one room to another that requires the player to be on a vehicle.<p>
+<a name="e57"><a href=ex57.html#e57 STYLE="text-decoration: none">**<b>Example 27: Disenchantment Bay 8</b></a><br>Disenchantment Bay: a pushable chest of ice for the boat.<p>
+<a name="e190"><a href=ex190.html#e190 STYLE="text-decoration: none">***<b>Example 28:  Hover</b></a><br>Letting the player see a modified room description when he's viewing the place from inside a vehicle.<p>
+<p><hr><p><a href=doc42.html STYLE="text-decoration: none">Previous</a> / <a href=doc44.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

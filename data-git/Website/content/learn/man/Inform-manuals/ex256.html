@@ -1,0 +1,82 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 13.16. What are relations for?</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Murder on the Orient Express" -->
+<!-- SEARCH SECTION "Ex 241" -->
+<!-- SEARCH SORT "Ex 013-016-241" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc222.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc224.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>13.16. What are relations for?</b></td></tr></table><p>
+<p>
+<p>It is easy to say what verbs are for: they are to express relations. But what are relations for?
+<p>
+<p>Inform 7's focus on relations between objects is unusual as an approach to interactive fiction; the concept does not exist in most design systems, or rather, it does but is submerged. Traditional design systems do, after all, have the spatial relations of being inside, on top of, and so on. It could well be said that these are the only relationships that inanimate objects ever have. A stone can be on top of a table, and if so then that expresses their entire association.
+<p>
+<p>This is because the stone, and the table, have no opinions, emotions, knowledge or memory. If the stone is taken away and then put back, nothing has changed. People, on the other hand, tend to remember having met each other before; they like being in some places, but not others; their behaviour depends on who, or what, is nearby. Being conscious, they have internal states, unlike the stone. Relations are a simple but powerful way to express and talk about such connections, and although they have numerous uses in physical contexts too, they are at their most powerful when helping to make the characters of interactive fiction come alive.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e256"><a href=doc223.html#e256 STYLE="text-decoration: none">**<b><b>Example</b> 241:  Murder on the Orient Express</b></a><br>A number of sleuths (the player among them) find themselves aboard the Orient Express, where a murder has taken place, and one of them is apparently the culprit. Naturally they do not agree on whom, but there is physical evidence which may change their minds...<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The following example creates two new relations, and two new verbs, in order to set up a tangled web of intrigue.
+<p>
+<blockquote><font color="#000080">&quot;Murder on the Orient Express&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Dining Car is a room. Lord Peter is a man in the Dining Car. Sherlock Holmes is a man in the Dining Car. Miss Marple is a woman in the Dining Car. Adam Dalgliesh is a man in the Dining Car.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Suspecting relates various people to one person.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to suspect (he suspects, they suspect, he suspected, it is suspected) implies the suspecting relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Dalgliesh suspects Holmes. Holmes suspects Lord Peter. Lord Peter suspects Holmes. Miss Marple suspects the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Exculpating relates one thing to various people.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The verb to exculpate (it exculpates, they exculpate, it exculpated, he is exculpated) implies the exculpating relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The silver bullet exculpates the player. The pipe ash exculpates Holmes. The poison pen letter exculpates Lord Peter. The poison pen letter exculpates Miss Marple. [Poor Dalgliesh. I guess he did it.]
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The pipe ash, the letter and the silver bullet are carried.
+</font></blockquote><p>
+<p>
+<p>Given this, we can then set up elaborate rules:
+<p>
+<blockquote><font color="#000080">Instead of showing something to a person who suspects the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'You would say that,' remarks [the second noun] darkly.&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of showing something which exculpates the player to someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'How striking!' says [the second noun]. 'Almost I begin to distrust myself.'&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;show the letter to miss marple / show the silver bullet to holmes&quot;.
+</font></blockquote><p>
+<p>
+<p>And so on: &quot;if Dalgliesh suspects someone who is exculpated by something carried by the player...&quot;, for instance, makes a fitting final example for this chapter. The description
+<p>
+<blockquote><font color="#000080">someone who is exculpated by something carried by the player
+</font></blockquote><p>
+<p>
+<p>expresses a complicated idea in very few words, and in such a way that a passer-by looking at the source text would immediately see what was meant.
+<p>
+<p>The moral is that relations allow sophisticated patterns of behaviour to be created in a way that reads back naturally as English.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e426"><a href=ex426.html#e426 STYLE="text-decoration: none">**<b>Example 242:  What Not To Wear</b></a><br>A general-purpose clothing system that handles a variety of different clothing items layered in different combinations over different areas of the body.<p>
+<a name="e238"><a href=ex238.html#e238 STYLE="text-decoration: none">***<b>Example 243: Mathematical view of relations</b></a><br>Some notes on relations from a mathematical point of view, provided only to clarify some technicalities for those who are interested.<p>
+<a name="e239"><a href=ex239.html#e239 STYLE="text-decoration: none">***<b>Example 244: Graph-theory view of relations</b></a><br>Some notes on relations from the point of view of graph theory.<p>
+<p><hr><p><a href=doc222.html STYLE="text-decoration: none">Previous</a> / <a href=doc224.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

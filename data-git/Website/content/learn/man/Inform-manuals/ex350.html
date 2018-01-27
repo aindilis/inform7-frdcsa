@@ -1,0 +1,152 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.15. Multiplication of units</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Speed of Thought" -->
+<!-- SEARCH SECTION "Ex 259" -->
+<!-- SEARCH SORT "Ex 014-015-259" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc238.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc240.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.15. Multiplication of units</b></td></tr></table><p>
+<p>
+<p>To recap, then, it is forbidden to multiply 122kg and 10kg, not because it could never make sense (a scientist might occasionally multiply two weights) but because the result is - what? Not a number, and not a weight any more. But we are allowed to tell Inform what the result ought to be, and once we have done so, the multiplication will be allowed:
+<p>
+<blockquote><font color="#000080">A length is a kind of value. 10m specifies a length. An area is a kind of value. 10 sq m specifies an area.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A length times a length specifies an area.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The balance platform is in the Weighbridge. &quot;The balance platform is 10m by 8m, giving it an area of [10m multiplied by 8m].&quot;
+</font></blockquote><p>
+<p>
+<p>which will turn up as:
+<p>
+<blockquote><font color="#000080">The balance platform is 10m by 8m, giving it an area of 80 sq m.
+</font></blockquote><p>
+<p>
+<p>And having told Inform that lengths multiply to area, we could also divide an area by a length to get a length: no further instructions would be needed.
+<p>
+<p>The built-in &quot;Metric Units&quot; extension includes all of the standard ways that physical quantities are multiplied, and a good way to see these is to try out one of the Metric Units examples and look at the Kinds index, which includes a table showing how all of this works.
+<p>
+<p><hr><p>
+<a name="e315"><a href=ex315.html#e315 STYLE="text-decoration: none">*<b>Example 257:  Depth</b></a><br>Receptacles that calculate internal volume and the amount of room available, and  cannot be overfilled.<p>
+<a name="e134"><a href=ex134.html#e134 STYLE="text-decoration: none">**<b>Example 258:  Fabrication</b></a><br>A system of assembling clothing from a pattern and materials; both the pattern and the different fabrics have associated prices.<p>
+<!-- EXAMPLE START -->
+<a name="e350"><a href=doc239.html#e350 STYLE="text-decoration: none">**<b><b>Example</b> 259:  The Speed of Thought</b></a><br>Describing scientifically-measured objects in units more familiar to the casual audience.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose that we have a number of objects in the game that are sized in some conventional unit (such as meters), but which we would like to describe in slightly less formal terms. To do this, we will start with measurements as defined in the built-in extension Metric Units, so we don't have to recreate all these.
+<p>
+<p>We'll add our own set of &quot;conceptual units&quot; -- things we're familiar with in real life. As we'll see below, Inform will automatically choose a unit of the right order to express a given distance if we tell it to print a length &quot;in conceptual units&quot;.
+<p>
+<p>Note: the following will compile only if you have settings set for Glulx. (To change this, go to the Settings panel and click on the Glulx option.) The Glulx virtual machine is capable of handling larger numbers than the Z-machine.
+<p>
+<blockquote><font color="#000080">&quot;The Speed of Thought&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Include Metric Units by Graham Nelson.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">1 quarter (in conceptual units, in quarters, singular) or 2 quarters (in conceptual units, in quarters, plural) specifies a length equivalent to 24mm.
+<br>1 pencil (in conceptual units, in pencils, singular) or 2 pencils (in conceptual units, in pencils, plural) specifies a length equivalent to 18cm.
+<br>1 bathtub (in conceptual units, in bathtubs, singular) or 2 bathtubs (in conceptual units, in bathtubs, plural) specifies a length equivalent to 152cm.
+<br>1 Olympic swimming pool (in conceptual units, in Olympic swimming pools, singular) or 2 Olympic swimming pools (in conceptual units, in Olympic swimming pools, plural) specifies a length equivalent to 50 meters.
+<br>1 Empire state building (in conceptual units, in Empire State buildings, singular) or 2 Empire State buildings (in conceptual units, in Empire State buildings, plural) specifies a length equivalent to 443m.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">1 credit card (in conceptual units, in credit cards, singular) or 2 credit cards (in conceptual units, in credit cards, plural) specifies an area equivalent to 46 sq cm.
+<br>1 letter sheet (in conceptual units, in letter sheets, singular) or 2 letter sheets (in conceptual units, in letter sheets, plural) specifies an area equivalent to 603 sq cm.
+<br>1 queen-sized mattress (in conceptual units, in queen-sized mattresses, singular) or 2 queen-sized mattresses (in conceptual units, in queen-sized mattresses, plural) specifies an area equivalent to 3 square meters.
+<br>1 football field (in conceptual units, in football fields, singular) or 2 football fields (in conceptual units, in football fields, plural) specifies an area equivalent to 5351 square meters.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;report [something]&quot; as reporting. Reporting is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check reporting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun is not a fact:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The public doesn't want to hear about [the noun].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out reporting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report reporting:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the extent of the noun is greater than 0mm and the surface of the noun is greater than 0 sq cm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'[The noun] has a length of [about] [extent of the noun in conceptual units] and an area of [about] [surface of the noun in conceptual units].'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the extent of the noun is greater than 0mm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'[The noun] has a length of [about] [extent of the noun in conceptual units].'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the surface of the noun is greater than 0 sq cm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'[The noun] has an area of [about] [surface of the noun in conceptual units].'&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'[The noun] is... pretty hard to imagine,' you say weakly. That's not going to go over well.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say about:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]roughly[or]about[or]around[or]approximately[at random]&quot;;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To contextualize (chosen information - text):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of]You turn to the camera and speak:[or][or]Turning to another camera angle, you add:[or][stopping] &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[chosen information] &quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of][line break][or]Right now the station will be cutting over to a visual of that.[or][line break][or]Pity the kids in audiovisual who have to scare that image together in a hurry.[or]You smile brightly.[stopping]&quot;;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Science Journalism Desk is a room. &quot;From here you, the Science Anchor, have the privilege of reporting the latest and most fascinating stories to an eager public.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After looking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try thinking.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of thinking:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Currently you have to report on the International Space Station. Your story could include [the list of facts carried by the player].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking inventory:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It looks foolish to be fiddling with your possessions on camera.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of dropping a fact:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You decide to omit [the noun] from your lineup.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;remove the noun from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A fact is a kind of thing. Every fact is carried by the player. A fact has a length called the extent. A fact has an area called the surface.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The experiment module is a fact. The extent is 1116cm.
+<br>The logistics module is a fact. The extent is 421cm.
+<br>The solar array is a fact. The surface is 375 sq m. The extent is 58m.
+<br>An individual solar cell is a fact. The surface is 8 sq cm.
+<br>The orbit height is a fact.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report reporting the orbit height:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;contextualize &quot;'The station orbits at heights between [about] [278km in conceptual units] and [460km in conceptual units] above the earth.'&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries no facts:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;And that's all! The channel cuts to weather.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end the story saying &quot;Time for lunch&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;report experiment module / report logistics / report height / report array / report solar cell&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc238.html STYLE="text-decoration: none">Previous</a> / <a href=doc240.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

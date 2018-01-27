@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.7. Telling the time</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Situation Room" -->
+<!-- SEARCH SECTION "Ex 142" -->
+<!-- SEARCH SORT "Ex 009-007-142" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc147.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc149.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.7. Telling the time</b></td></tr></table><p>
+<p>
+<p>Now that we have the time of day, we can of course use this value in room descriptions and the like:
+<p>
+<blockquote><font color="#000080">The Clock Chamber is a room. &quot;The dark chamber behind the clock face, a mill-room of gears which grind down the seconds. Through the glass you can see the reversed hands reading [the time of day].&quot;
+</font></blockquote><p>
+<p>
+<p>It seems odd, though, to read a precise numerical description of the time here: after all, it isn't a digital clock. A friendlier version would use:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '>say &quot;[<b>time in words</b>]&quot;<table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of phs_timewords -->
+
+<p>This text substitution produces the given time written out in English sentence form. For example:
+<p>
+<blockquote><font color="#000080">&quot;Through the glass you can see the reversed hands reading [the time of day in words].&quot;
+</font></blockquote><p>
+<p>
+<p>might produce
+<p>
+<blockquote><font color="#000080">Through the glass you can see the reversed hands reading twenty to nine.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>To reiterate an example which came up earlier, we could even work the time of day into the command prompt, which would lend the proper sense of urgency to a game played out against the clock:
+<p>
+<blockquote><font color="#000080">When play begins: now the command prompt is &quot;[time of day] >&quot;.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e344"><a href=doc148.html#e344 STYLE="text-decoration: none">*<b><b>Example</b> 142:  Situation Room</b></a><br>Printing the time of day in 24-hour time, as in military situations.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Though Inform normally prints times in AM/PM terms, it stores the hours and minutes as 24-hour time; so, if we like, we can easily extract that information again thus:
+<p>
+<blockquote><font color="#000080">&quot;Situation Room&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Situation Room is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (relevant time - a time) as 24h time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let H be the hours part of relevant time;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let M be the minutes part of relevant time;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[H]:[if M is less than 10]0[end if][M]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the time of day is 6:09 PM;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the right hand status line is &quot;[time of day as 24h time]&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc147.html STYLE="text-decoration: none">Previous</a> / <a href=doc149.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

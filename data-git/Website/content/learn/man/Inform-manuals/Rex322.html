@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.12. Characters Following a Script</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Robo 1" -->
+<!-- SEARCH SECTION "Ex 415" -->
+<!-- SEARCH SORT "Ex 007-012-415" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc57.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc59.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.12. Characters Following a Script</b></td></tr></table><p>
+<p>
+<p>So far we've seen characters who will answer questions whenever the player feels like asking, and characters who will use some reasoning procedure to direct the conversation. There is a third option, often useful in IF with a fast-paced narrative: the character follows a conversational script, making sure to cover a series of points before the scene ends.
+<p>
+<p>There are more and less tedious ways to implement this kind of scene. The worst case is one in which the player is not allowed to interrupt or ask any questions; he must merely wait until the character runs out of things to say. This can be useful and plausible in very small doses - say, two or three turns - but if the character has more information than that to impart, we may want to make the scene more interactive.
+<p>
+<p><b>Pine 2</b> partly addresses this challenge: the character has a line of conversation that she wants to follow to its conclusion; we may ask questions along the way, but if we're silent, she'll take up the slack, and the scene won't end until she's done with what she has to say.
+<p>
+<p>Another kind of script is a series of actions for the character to perform. <b>Robo</b> demonstrates a programmable robot that will observe what the player does, then try to emulate the actions later when switched into play-back mode. <b>Robo 2</b> extends this capacity to allow the robot to contain fifteen different scripts which the player can store, list, run, and erase.
+<p>
+<p><b>Your Mother Doesn't Work Here</b> offers a character with a list of tasks but whose plans can be interrupted by more urgent demands. This verges on not being a simple script any more: if we carry the idea to its natural conclusion, we get characters capable of planning scripts for themselves to accomplish their aims. This is conventionally called &quot;goal-seeking&quot;.
+<p>
+<a href=Rdoc61.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Goal-Seeking Characters</b></font></a><i> for characters that work out plans for themselves in order to accomplish various outcomes</i><p><p>
+<p><hr><p>
+<a name="e288"><a href=Rex288.html#e288 STYLE="text-decoration: none">***<b>Example 161: Pine 2</b></a><br>Pine: Adding a conversation with the princess, in which a basic set of facts must be covered before the scene is allowed to end.<p>
+<!-- EXAMPLE START -->
+<a name="e322"><a href=Rdoc58.html#e322 STYLE="text-decoration: none">*<b><b>Example</b> 415: Robo 1</b></a><br>A robot which watches and records the player's actions, then tries to repeat them back in the same order when he is switched into play-back mode.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Robo&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Experimentation Chamber is a room. Robo is a man in the Experimentation Chamber. &quot;Robo, your prototype tin companion, stands awkwardly beside you. In the middle of his chest is a red enamel button[if the red button is switched on], currently depressed[otherwise], currently un-depressed[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The red button is a device. It is part of Robo. Instead of pushing the red button: if the red button is switched off, try switching on the red button; otherwise try switching off the red button.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After switching on the red button:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;CLICK! Robo is now in play-back mode.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After switching off the red button:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;CLACK! Robo is now in observation mode.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: Robo is watching if the red button is switched off.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The current instruction set is a list of stored actions that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After doing something when Robo is watching and Robo can see the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the actor is Robo;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;add the current action to the current instruction set;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the actor is the player;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Robo watches you [the current action][one of], his yellow eyes lamp-like and observant[or]. In his metal head, gears whirr[or], his brushed-copper handlebar moustaches twitching[or] impassively[at random].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;continue the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when Robo is not watching:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of entries in the current instruction set is 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Robo has run out of behavior and grinds to an (expectant) halt.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the red button is switched off;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the next task be entry 1 of the current instruction set;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try the next task;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove entry 1 from the current instruction set.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The red block and the blue cylinder are things in the Experimentation Chamber. The counter is a supporter in the Experimentation Chamber. The counter is scenery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Robo examining Robo:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Robo examines each of his hands in turn, then each of his legs (bending over mostly double in the middle to do this).&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Robo examining the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Robo stares at you, unblinkingly, for several seconds together[if a random chance of 1 in 7 succeeds]. His left moustache-bar twitches infinitesimally upward[end if].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report Robo taking the cylinder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[one of][Robo] needs several attempts to get his metal fingers around [the cylinder] -- they are not designed for grasping small objects elegantly. But at last he succeeds[or]Once again, Robo struggles a bit before picking up [the cylinder][stopping].&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / take cylinder / take block / put cylinder on counter / put block on counter / x robo / x me / get block / drop block / press red button / z / z / z / z / z / z / z / z / z / z&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e323"><a href=Rex323.html#e323 STYLE="text-decoration: none">***<b>Example 418: Robo 2</b></a><br>A robot which watches and records the player's actions, then tries to repeat them back in the same order when he is switched into play-back mode.<p>
+<a name="e440"><a href=Rex440.html#e440 STYLE="text-decoration: none">*<b>Example 426:  Your Mother Doesn't Work Here</b></a><br>Your hard-working mother uses a list as a stack: urgent tasks are added to the end of the list, interrupting longer-term plans.<p>
+<p><hr><p><a href=Rdoc57.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc59.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

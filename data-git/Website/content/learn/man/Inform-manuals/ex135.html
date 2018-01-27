@@ -1,0 +1,341 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 20.10. Lengthening or shortening a list</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Facts Were These" -->
+<!-- SEARCH SECTION "Ex 420" -->
+<!-- SEARCH SORT "Ex 020-010-420" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc357.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc359.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>20.10. Lengthening or shortening a list</b></td></tr></table><p>
+<p>
+<p>We can explicitly change the length of a list like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change </b>(list of values)<b> to have </b>(number)<b> entries</b>/entry<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_changelength -->
+
+<p>This phrase alters the given list so that it now has exactly the number of entries given. Example:
+<p>
+<blockquote><font color="#000080">change L to have 21 entries;
+</font></blockquote><p>
+<p>
+<p>If L previously had more than 21 entries, they are thrown away (and lost forever); if L previously had fewer, then new entries are created, using the default value for whatever kind of value L holds. So extending a list of numbers will pad it out with 0s, but extending a list of texts will pad it out with the empty text &quot;&quot;, and so on.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>We can also write the slightly different phrases:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>truncate </b>(list of values)<b> to </b>(number)<b> entries</b>/entry<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_truncate -->
+
+<p>This phrase alters the given list so that it now has no more than the number of entries given. Example:
+<p>
+<blockquote><font color="#000080">truncate L to 8 entries;
+</font></blockquote><p>
+<p>
+<p>shortens L to length 8 if it is currently longer than that, trimming entries from the end, but would (for instance) leave a list of length 3 unchanged. Note that
+<p>
+<blockquote><font color="#000080">truncate L to 0 entries;
+</font></blockquote><p>
+<p>
+<p>empties it to { }, the list with nothing in.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>truncate </b>(list of values)<b> to the first </b>(number)<b> entries</b>/entry<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_truncatefirst -->
+
+<p>This phrase alters the given list so that it now consists only of the initial part of the list with the given length. Example:
+<p>
+<blockquote><font color="#000080">truncate L to the first 4 entries;
+</font></blockquote><p>
+<p>
+<p>turns {1, 3, 5, 7, 9, 11} to {1, 3, 5, 7}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>truncate </b>(list of values)<b> to the last </b>(number)<b> entries</b>/entry<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_truncatelast -->
+
+<p>This phrase alters the given list so that it now consists only of the final part of the list with the given length. Example:
+<p>
+<blockquote><font color="#000080">truncate L to the last 4 entries;
+</font></blockquote><p>
+<p>
+<p>turns {1, 3, 5, 7, 9, 11} to {5, 7, 9, 11}.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>But we don't have to truncate: we can also -
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>extend </b>(list of values)<b> to </b>(number)<b> entries</b>/entry<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_extend -->
+
+<p>This phrase pads out the list with default values as needed so that it now has at least the given length. (If the list is already at least that length, nothing is done.) Example:
+<p>
+<blockquote><font color="#000080">extend L to 80 entries;
+</font></blockquote><p>
+<p>
+<p>lengthens L to length 80 if it is currently shorter than that.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>For example,
+<p>
+<blockquote><font color="#000080">To check sorting (N - a number):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let L be a list of numbers;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;extend L to N entries;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with X running from 1 to N:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now entry X of L is X;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;L unrandomised is [L].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sort L in random order;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;L randomised is [L].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sort L;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;L in ascending order is [L].&quot;
+</font></blockquote><p>
+<p>
+<p>builds a list of N numbers (initially all 0), fills it with the numbers 1, 2, 3, ..., N, then randomly reorders them, then sorts them back again, recovering the original order. The text produced by &quot;check sorting 10&quot; depends partly on chance but might for instance be:
+<p>
+<blockquote><font color="#000080">L unrandomised is 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10.
+<br>L randomised is 6, 2, 9, 3, 10, 1, 7, 4, 8 and 5.
+<br>L in ascending order is 1, 2, 3, 4, 5, 6, 7, 8, 9 and 10.
+</font></blockquote><p>
+<p>
+<p>As with indexed text in the previous chapter, a project which needs really long lists should use the Glulx virtual machine - &quot;check sorting 10000&quot;, for instance, would break the default memory environment on the Z-machine, which is very tight, but works fine (if not very rapidly) on Glulx.
+<p>
+<p><hr><p>
+<a name="e221"><a href=ex221.html#e221 STYLE="text-decoration: none">*<b>Example 419:  Leopard-skin</b></a><br>A maze that the player can escape if he performs an exact sequence of actions.<p>
+<!-- EXAMPLE START -->
+<a name="e135"><a href=doc358.html#e135 STYLE="text-decoration: none">**<b><b>Example</b> 420:  The Facts Were These</b></a><br>Creating a variant GIVE action that lets the player give multiple objects simultaneously with commands like GIVE ALL TO ATTENDANT or GIVE THREE DOLLARS TO ATTENDANT or GIVE PIE AND HAT TO ATTENDANT. The attendant accepts the gifts only if their total combined value matches some minimum amount.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Occasionally it happens that we want to process an action on multiple items differently than we would if the player had just typed each of the individual actions separately. In this example, the reason is that we can only successfully GIVE items when their combined value passes a certain threshold amount; otherwise the recipient will reject them.
+<p>
+<p>This works as an implementation of money, if we give value only to cash objects (though several other implementations of cash are available, most of which are simpler and more efficient). We could also imagine a mechanic like this being used for a bargaining or auction game as well, given a society that deals in objects rather than credits.
+<p>
+<p>In order to consider all the items in the gift at once, we create an action that applies to multiple objects, but will in fact test the whole object collection during the first pass and print a definitive answer to whether the action succeeded. All subsequent times the game consults the rulebook will be stopped at the very beginning. No further processing will occur or output be printed.
+<p>
+<blockquote><font color="#000080">&quot;The Facts Were These&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Procedure
+</font></blockquote><p>
+<p>
+<p>We start with an inclusion; this will allow us to write more compact error messages to apply to multiple objects:
+<p>
+<blockquote><font color="#000080">Include Plurality by Emily Short.
+</font></blockquote><p>
+<p>
+<p>And while we're at it, let's also create the idea that everything in the game has a monetary value:
+<p>
+<blockquote><font color="#000080">A price is a kind of value. $10 specifies a price. A thing has a price.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;give [things preferably held] to [someone]&quot; as multiply-giving it to. Understand &quot;give [things] to [someone]&quot; as multiply-giving it to.  Multiply-giving it to is an action applying to two things.
+</font></blockquote><p>
+<p>
+<p>A subtlety here: we say &quot;things preferably held&quot; to prefer items that the player is holding (so if the player has two dollars in hand and a third lies on the ground, he will use just the two he has).
+<p>
+<p>The second grammar line allows Inform to match things that aren't held if it can't make up the list from things that are. If all three dollars are on the ground, the player can pick them up before spending them.
+<p>
+<p>We do not, however, make multiply-giving apply to a &quot;carried&quot; item, because that will generate implicit takes of those items in a way that will mess up our action reporting. Instead, we're going to build the implicit takes into the system in a different way, one that permits us to collate the reports more attractively and print a short, one-sentence list of anything that the player had to pick up.
+<p>
+<blockquote><font color="#000080">A thing can be given or ungiven. A thing is usually ungiven.
+</font></blockquote><p>
+<p>
+<p>This is for record-keeping purposes so that we can print an attractive list of what was given at the end of the turn.
+<p>
+<blockquote><font color="#000080">First check multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if already gave at the office is true:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stop the action.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Already gave at the office is a truth state that varies.
+</font></blockquote><p>
+<p>
+<p>&quot;Already gave at the office&quot; is the perhaps-excessively-named flag that keeps track of whether we've already done this action once.
+<p>
+<blockquote><font color="#000080">Check multiply-giving something to the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can hardly bribe yourself.[paragraph break]&quot; instead;
+</font></blockquote><p>
+<p>
+<p>The following rule is longish because it processes the entire list at once, generating implicit takes if necessary (but processing those implicit takes silently according to its own special rule, so that the output can be managed attractively). We are also, at the same time, calculating the total value of the player's offer.
+<p>
+<blockquote><font color="#000080">Check multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let L be the multiple object list;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let bribe-price be $0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through L:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player does not carry the item:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abide by the ungivability rules for the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;carry out the implicitly taking activity with the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the player does not carry the item:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't include [the item] in your bribe, since you're not holding [it-them]![paragraph break]&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increase bribe-price by the price of item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of entries in the recently-collected list is greater than 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through the recently-collected list:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now item is marked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You pick up [the list of marked for listing things] and make your offer. [run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now everything is unmarked for listing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the bribe-price is less than the price of the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] angrily rejects your piffling bribe.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<p>The bit about making some items &quot;marked for listing&quot;, above, rather than printing the list directly, is that using the &quot;[the list of....]&quot; syntax guarantees that Inform will respect grouping rules in writing its description. For instance, if the player has automatically taken all three dollars, the output will say &quot;the three dollars&quot; instead of &quot;the dollar, the dollar, and the dollar.&quot;
+<p>
+<blockquote><font color="#000080">Carry out multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let L be the multiple object list;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through L:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the second noun carries the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the item is given;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report multiply-giving it to:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] rather shamefacedly tucks [the list of given things] away into a pocket.[paragraph break]&quot;.
+</font></blockquote><p>
+<p>
+<p>Now we create our own variation of implicitly taking in order to customize the output for the multiply-giving action. The &quot;ungivability rules&quot; should disallow any object that the player absolutely cannot take, because we want &quot;carry out the implicitly taking activity&quot; to succeed every time -- and therefore not print out any less-attractive results from implicit takes that don't succeed. Otherwise, the player's GIVE TREE AND DOG TO ATTENDANT might produce the reply &quot;That's fixed in place&quot; -- without specifying which object is fixed in place.
+<p>
+<p>Because of the way this works, we will want to be careful: if we have any &quot;instead of taking...&quot; rules for special objects in the game, we should be sure to mirror those with an ungivability rule to print something more suitable in the case that the player tries taking that object as part of the multiple giving action.
+<p>
+<blockquote><font color="#000080">The ungivability rules are an object-based rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for a person:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Slavery is illegal.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is enclosed by someone who is not the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are]n't yours to give.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something which encloses the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You don't want to end up as part of the gift.[paragraph break]&quot; instead;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is part of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] attached to [a random thing which incorporates the item][paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is scenery:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] unremovable.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for something (called the item) which is fixed in place:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] fixed in place.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">An ungivability rule for a direction (called the item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The item] [is-are] not susceptible to giving.[paragraph break]&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for implicitly taking something (called target) while multiply-giving:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;silently try taking the target;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player carries the target:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add the target to the recently-collected list.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The recently-collected list is a list of objects that varies.
+</font></blockquote><p>
+<p>
+<p>And since we don't want to list the individual objects separately:
+<p>
+<blockquote><font color="#000080">The selectively announce items from multiple object lists rule is listed instead of the announce items from multiple object lists rule in the action-processing rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the selectively announce items from multiple object lists rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if multiply-giving:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;do nothing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the current item from the multiple object list is not nothing:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[current item from the multiple object list]: [run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<p>And now, since this ought to work symmetrically if the player provides just one high-value item:
+<p>
+<blockquote><font color="#000080">Check giving something to someone:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the price of the noun is less than the price of the second noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] angrily rejects your piffling bribe.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>As we've seen elsewhere, the giving action by default returns a refusal, but is also written to start working if we remove the blockage. So we do that here, and revise the report rule to match the report rule we have for multiple giving.
+<p>
+<blockquote><font color="#000080">The block giving rule is not listed in any rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The new report giving rule is listed instead of the standard report giving rule in the report giving it to rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the new report giving rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The second noun] rather shamefacedly tucks [the noun] away into a pocket.&quot;
+</font></blockquote><p>
+<p>
+<p>After each instance of the multiply-giving action, we need to clear the variables we used to track its state. We could do this in &quot;Before reading a command&quot;, but that's unsafe because the player might type GIVE PIE AND CAP TO ATTENDANT. GIVE DOLLARS TO ATTENDANT. all on a single line, and we would like to be able to clear the variables between one action and the next. The correct place to attach this behavior is immediately before the generate action rule, thus:
+<p>
+<blockquote><font color="#000080">The before-generation rule is listed before the generate action rule in the turn sequence rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the before-generation rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every thing is ungiven;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now already gave at the office is false;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;truncate the recently-collected list to 0 entries.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Morgue Office is a room. &quot;This is not the Morgue itself; this is only its outer office. The familiar room full of silver drawers and cold air lies beyond.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Morgue Attendant is a man in the Morgue Office. &quot;The Attendant has seen you come through a number of times, and is becoming suspicious of your abiding interest in dead people.&quot; The description is &quot;The Morgue Attendant is fifty-four years, six months, five days, and three minutes old.&quot; The price of the Morgue Attendant is $3.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A dollar is a kind of thing. The player carries three dollars.  The price of a dollar is always $1.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a miniature rhubarb pie. The price of the miniature rhubarb pie is $5.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a knitted cap. The price of the knitted cap is $2.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;test dollars / purloin three dollars / test multi-line / purloin three dollars / purloin pie / purloin cap / test specificity / purloin three dollars / test largesse / test mixed-gift&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test multi-line with &quot;give dollar and pie to attendant. give dollars and cap to attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test dollars with &quot;drop all / give dollar to Morgue Attendant / give dollars to Morgue Attendant / get dollars / give dollars to morgue attendant / purloin three dollars / drop dollars / give dollars to Morgue Attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test specificity with &quot;give three dollars to Morgue Attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test largesse with &quot;give pie to Morgue Attendant&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test mixed-gift with &quot;give dollar and cap to Morgue Attendant / get cap / give dollar and cap to morgue attendant / give me and dollar to attendant&quot;.
+</font></blockquote><p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc357.html STYLE="text-decoration: none">Previous</a> / <a href=doc359.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

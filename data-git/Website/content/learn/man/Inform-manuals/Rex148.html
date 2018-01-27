@@ -1,0 +1,136 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.2. Liquids</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Flotation" -->
+<!-- SEARCH SECTION "Ex 385" -->
+<!-- SEARCH SORT "Ex 010-002-385" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc80.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc82.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.2. Liquids</b></td></tr></table><p>
+<p>
+<p>Liquids are notoriously difficult to simulate well. A fully thorough approach consumes endless storage and can be very finicky to write and keep realistic. It is essential to decide what aspect of a liquid's behaviour is actually needed in a given story, and to simulate only that. For instance, if we only need a little chemistry, where a player can add (say) water to salt and make a solution, we do not want to fool around with calculating quantities or concentrations: what's important is that &quot;some water&quot; (amount unspecified) combines with &quot;some salt&quot; to produce &quot;some salty water&quot;. We should no more calculate precisely here than we would work out where all the furniture is to the nearest inch. Good advice for handling liquids is to simulate the least amount of realism possible, but no less.
+<p>
+<p>Sometimes all we want is a down-in-one drink: we needn't simulate the actual liquid, just the bottle it comes in, and all we need is to handle the &quot;drinking&quot; action. See <b>Beverage Service</b>, and also <b>3 AM</b>, where carbonated drinks can be shaken - again simulating the vessel, not the liquid.
+<p>
+<p>Some elementary biochemistry in <b>Xylan</b> is done simply by... well, the point is that two different liquids are represented by single things each, and a chemical reaction simply switches one for the other.
+<p>
+<p>In <b>Frizz</b>, we allow any container to be filled (only) with water (only) and we simulate what happens to any solid objects also inside: some waterproof, some not. <b>Flotation</b> provides a well (always full of water), with rules to determine whether things dropped into it should sink or float.
+<p>
+<p>Next we move up to quantitative approaches, where we remember not just whether a liquid is present, but how much of it. In its simplest form, we could have a drinking vessel from which we draw in sips, so that it can be full, half-empty or empty: see <b>Thirst</b>.
+<p>
+<p>The example with the best compromise between simulation quality and complexity is <b>Lemonade</b>. Here we provide a kind of container called a &quot;fluid container&quot;, not just a single cup, and each such vessel has a given &quot;fluid capacity&quot;. Each holds only a single liquid at a time (so no mixtures) and can be empty or full to any level (rounded off to the nearest 0.1 fl oz). We can fill one vessel from another (unless it would make a mixture). But liquids leaving these vessels must be consumed - drunk or poured away without trace: we cannot make pools on the floor, or carry liquids in our cupped hands. There is no object representing &quot;lemonade&quot;: there are only fluid containers, but which can be called LEMONADE if that is what they now contain.
+<p>
+<p><b>Savannah</b> is a light elaboration of Lemonade, showing how liquids might be poured on other objects, as for instance to extinguish a fire.
+<p>
+<p><b>Noisy Cricket</b> extends <b>Lemonade</b> to allow for mixing, though then the number of different possible mixtures is so large that complexity increases greatly. <b>Lakeside Living</b> extends <b>Lemonade</b> differently to add a &quot;liquid source&quot; kind, a form of fluid container which has infinite fluid capacity and is scenery - ideal for a lake, river or spring.
+<p>
+<a href=Rdoc69.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Bags, Bottles, Boxes and Safes</b></font></a><i> for stoppered bottles which could also be used for carrying liquids around in</i><p><p>
+<a href=Rdoc88.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Heat</b></font></a><i> for keeping liquids warm in insulated containers</i><p><p>
+<p><hr><p>
+<a name="e31"><a href=Rex31.html#e31 STYLE="text-decoration: none">*<b>Example 122:  Beverage Service</b></a><br>A potion that the player can drink.<p>
+<a name="e420"><a href=Rex420.html#e420 STYLE="text-decoration: none">***<b>Example 193:  3 AM</b></a><br>A shake command which agitates soda and makes items thump around in boxes.<p>
+<a name="e171"><a href=Rex171.html#e171 STYLE="text-decoration: none">***<b>Example 192:  Frizz</b></a><br>Liquid flows within containers and soaks objects that are not waterproof; any contact with a wet object can dampen our gloves.<p>
+<!-- EXAMPLE START -->
+<a name="e148"><a href=Rdoc81.html#e148 STYLE="text-decoration: none">*<b><b>Example</b> 385:  Flotation</b></a><br>Objects that can sink or float in a well, depending on their own properties and the state of the surrounding environment.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Here we want a rulebook to determine whether objects float or sink, so we create an object-based rulebook for the purpose. The more specific rules here, pertaining to corks and to inflated things, will be consulted first; then, as a default, the general flotation rule.
+<p>
+<p>We also want a switch that can turn flotation off at will. The rule about the big switch will be observed before the others because the when... clause makes it more specific than the other rules in the flotation rulebook.
+<p>
+<p>If we wanted, we could also put these rules into a rulebook in an explicit order, overriding Inform's automatic sorting by specificity.
+<p>
+<blockquote><font color="#000080">&quot;Flotation&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Pumping House is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A well is a fixed in place container in the Pumping House.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the well:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[if something is in the well]On the surface of the water you can see [a list of things in the well][otherwise]There is nothing on the surface of the water, nor can you see into the depths[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The well bottom is a container.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The cork, the rubber ring and a lead ingot are in the Pumping House.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A big switch is a fixed in place device in the Pumping House. &quot;A big switch labelled 'MAKE EVERYTHING SINK' is mounted on one wall[if switched on]. It crackles with electricity[otherwise]. It is currently switched off and silent[end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be inflated or uninflated. A thing is usually uninflated. Before printing the name of an inflated thing: say &quot;inflated &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The rubber ring is inflated.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The flotation rules are an object-based rulebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A flotation rule for the cork: rule succeeds.
+<br>A flotation rule for an inflated thing: rule succeeds.
+<br>A flotation rule when the big switch is switched on: rule fails.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After inserting something into the well:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;consider the flotation rules for the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the rule succeeded:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] bobs on the surface.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the noun to the well bottom;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] sinks out of sight.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be sinking, rising, or static. A thing is usually static.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is wet:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is in the well, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if it is in the well bottom, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every thing is static;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through wet things:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;consider the flotation rules for the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the rule failed and the item is in the well, now the item is sinking;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the rule succeeded and the item is in the well bottom, now the item is rising;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every rising thing is in the well;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now every sinking thing is in the well bottom;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something is rising, say &quot;[The list of rising things] rise[if the number of rising things is 1]s[end if] to the surface of the well.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if something is sinking, say &quot;[The list of sinking things] sink[if the number of sinking things is 1]s[end if] out of sight.&quot;
+</font></blockquote><p>
+<p>
+<p>And finally a few description rules to make things look prettier:
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about the well when the well contains something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The chief feature of the room is a concrete-sided well in which there float[if the number of things in the well is 1]s[end if] [a list of things in the well].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about the well:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The chief feature of the room is a concrete-sided well full of water.&quot;
+</font></blockquote><p>
+<p>
+<p>As we recall from the chapter on activities, &quot;writing a paragraph about...&quot; is an activity; activities are themselves structured as sets of object-based rulebooks. The activity &quot;writing a paragraph about&quot; uses three object-based rulebooks (before writing..., for writing..., after writing...). We could have made a flotation activity as well, but in general it is overkill to make an activity to make success/failure decisions. For that purpose an object-based rulebook is sufficient.
+<p>
+<blockquote><font color="#000080">Test me with &quot;get all / put cork in well / put ring in well / put ingot in well / x well / get cork / get ring / switch switch on / put cork in well / put ring in well / x well / switch switch off / switch switch on&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e437"><a href=Rex437.html#e437 STYLE="text-decoration: none">**<b>Example 277:  Xylan</b></a><br>Creating a new command that does require an object to be named; and some comments about the choice of vocabulary, in general.<p>
+<a name="e418"><a href=Rex418.html#e418 STYLE="text-decoration: none">*<b>Example 117:  Thirst</b></a><br>A waterskin that is depleted as the player drinks from it.<p>
+<a name="e220"><a href=Rex220.html#e220 STYLE="text-decoration: none">***<b>Example 255:  Lemonade</b></a><br>Containers for liquid which keep track of how much liquid they are holding and of what kind, and allow quantities to be moved from one container to another.<p>
+<a name="e335"><a href=Rex335.html#e335 STYLE="text-decoration: none">***<b>Example 256:  Savannah</b></a><br>Using the liquid implementation demonstrated in Lemonade for putting out fires.<p>
+<a name="e434"><a href=Rex434.html#e434 STYLE="text-decoration: none">***<b>Example 265:  Noisy Cricket</b></a><br>Implementing liquids that can be mixed, and the components automatically recognized as matching one recipe or another.<p>
+<a name="e209"><a href=Rex209.html#e209 STYLE="text-decoration: none">***<b>Example 320:  Lakeside Living</b></a><br>Similar to "Lemonade", but with bodies of liquid that can never be depleted, and some adjustments to the "fill" command so that it will automatically attempt to fill from a large liquid source if possible.<p>
+<p><hr><p><a href=Rdoc80.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc82.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

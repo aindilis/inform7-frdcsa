@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.18. The value after and the value before</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Entropy" -->
+<!-- SEARCH SECTION "Ex 182" -->
+<!-- SEARCH SORT "Ex 011-018-182" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc184.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc186.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.18. The value after and the value before</b></td></tr></table><p>
+<p>
+<p>A point which has come up several times in recent chapters is that enumerated kinds of value have a natural ordering. For example, if we write:
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, orange, yellow, green, blue, indigo and violet.
+</font></blockquote><p>
+<p>
+<p>...then we not only have seven possible values, we have put them into a sequence, in order of their naming. We can't perform arithmetic on colours, of course, but we can perform comparisons on them. Thus &quot;red &lt; yellow&quot; is true, while &quot;green &gt;= violet&quot; is not. (More on comparisons in the chapter on units, which also covers arithmetic.)
+<p>
+<p>It's also sometimes useful to get at the sequence directly. First, the two ends:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>first value of </b>(name of kind)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_enumfirst -->
+
+<p>This phrase produces the first-created value of the given kind, which should be an enumeration. Example: if we have
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, orange, yellow, green, blue, indigo and violet.
+</font></blockquote><p>
+<p>
+<p>then &quot;first value of colour&quot; is red.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>last value of </b>(name of kind)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_enumlast -->
+
+<p>This phrase produces the last-created value of the given kind, which should be an enumeration. Example: if we have
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, orange, yellow, green, blue, indigo and violet.
+</font></blockquote><p>
+<p>
+<p>then &quot;last value of colour&quot; is violet.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>And now how to step forward and back:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(name of kind)<b> after </b>(enumerated value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_enumafter -->
+
+<p>This phrase produces the next-created value of the given kind, which should be an enumeration. Example: if we have
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, orange, yellow, green, blue, indigo and violet.
+</font></blockquote><p>
+<p>
+<p>then &quot;colour after orange&quot; is yellow.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b></b>(name of kind)<b> before </b>(enumerated value)<b></b> ... <i>value</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_enumbefore -->
+
+<p>This phrase produces the previous-created value of the given kind, which should be an enumeration. Example: if we have
+<p>
+<blockquote><font color="#000080">Colour is a kind of value. The colours are red, orange, yellow, green, blue, indigo and violet.
+</font></blockquote><p>
+<p>
+<p>then &quot;colour before blue&quot; is green.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e124"><a href=doc185.html#e124 STYLE="text-decoration: none">*<b><b>Example</b> 182:  Entropy</b></a><br>All objects in the game have a heat, but if not kept insulated they will tend toward room temperature (and at a somewhat exaggerated rate).<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Entropy&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Heat is a kind of value. The heats are frosty, cold, cool, room temperature, warm, hot, and scalding. Everything has a heat. The heat of a thing is usually room temperature.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through things which are not in an insulated container:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the item is greater than room temperature, now the heat of the item is the heat before the heat of the item;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the item is less than room temperature, now the heat of the item is the heat after the heat of the item.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a container is insulated if it is closed and it is opaque.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The vacuum thermos is an opaque closed openable container carried by the player. In the vacuum thermos is a frosty thing called an ice cube.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the ice cube is greater than cold:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the ice cube is visible, say &quot;The ice cube melts! 'HA ha,' says Maxwell, in a very unsporting, some might say demonic, way.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;remove the ice cube from play.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of something: say &quot;[heat] &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Equilibrium is a room. &quot;A perfectly smooth chamber sealed from the outside world. You can't at this moment work out where the exit is, though possibly that is just because the lighting is so very very even and diffuse. And doesn't come from anywhere that you can see, either.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Maxwell is a man in Equilibrium.  &quot;Maxwell perches awkwardly on a stool across from you[if Maxwell has something], holding [a list of things carried by Maxwell][end if].&quot; He is carrying a box of Chinese food. The Chinese food is scalding. &quot;A discarded [item described] lies on the floor.&quot; The description of Maxwell is &quot;He has the faintly peevish look of one who has not been properly fed.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when Maxwell has the food:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the Chinese food is greater than warm, say &quot;Maxwell takes a bite, and swears.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the Chinese food is warm, say &quot;Maxwell eats as fast as he can, enjoying the food while it's at just the right temperature.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the heat of the Chinese food is less than warm:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Maxwell sadly stabs at his leftovers with a chopstick, but does not try to eat any more.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the food to the location.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;z / z / open thermos / close thermos / open thermos&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e307"><a href=ex307.html#e307 STYLE="text-decoration: none">***<b>Example 183:  The Hang of Thursdays</b></a><br>Turns take a quarter day each, and the game rotates through the days of the week.<p>
+<p><hr><p><a href=doc184.html STYLE="text-decoration: none">Previous</a> / <a href=doc186.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

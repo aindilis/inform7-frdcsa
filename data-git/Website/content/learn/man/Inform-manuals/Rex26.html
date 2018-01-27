@@ -1,0 +1,66 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.6. Looking Under and Hiding</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Beachfront" -->
+<!-- SEARCH SECTION "Ex 98" -->
+<!-- SEARCH SORT "Ex 006-006-098" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc33.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc35.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.6. Looking Under and Hiding</b></td></tr></table><p>
+<p>
+<p>Finding hidden objects is a classic puzzle in IF. <b>Beachfront</b> provides the most basic example, an object that becomes visible only when we have searched the papers on a cluttered desk. <b>Beneath the Surface</b> takes this further, giving all large furnishings the ability to conceal items, and allowing the player to put things underneath other things, as well as find them. <b>Flashlight</b> adds an extra twist to the puzzle by requiring that the player have a flashlight to shine under a bulky object in order to find what lies underneath.
+<p>
+<p>Looking inside an object is generally handled by the searching action, and we could extend that to allow the player to search multiple or complex objects. <b>Matreshka</b> turns the puzzle on its head by allowing the player to search a whole room systematically with only a single command.
+<p>
+<a href=Rdoc67.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Kitchen and Bathroom</b></font></a><i> for the related case of needing to look in a mirror</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e26"><a href=Rdoc34.html#e26 STYLE="text-decoration: none">*<b><b>Example</b> 98:  Beachfront</b></a><br>An item that the player can't interact with until he has found it by searching the scenery.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have our player, a detective, searching for evidence; we don't want him to be able to use this evidence until he has performed the action that reveals it, but after that it should be visible in the room when he looks.
+<p>
+<p>A simple way to do this is to start the object -- an envelope, in this scenario -- out of play, and only move it into the location when the player looks for it:
+<p>
+<blockquote><font color="#000080">&quot;Beachfront&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Stuffy Office is a room. &quot;The windows are closed, making the sultry air even more unbearable. A narrow slice of Caribbean blue is visible between the scuba gear rental shop and the recreated 17th century pirate tavern.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The office is cheerfully furnished with wicker chairs and white curtains, but the tropical decorating scheme stopped at the desk, which is heavy oak and absolutely covered with papers.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The heavy oak desk is a supporter in the stuffy office. It is scenery. Understand &quot;paperwork&quot; as the desk.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The creamy envelope is an openable container. The description is &quot;There is no return address on the outside of the envelope, just the address of the Doctor's office -- but the legs of the capital A are rubbed down in a characteristic way, and the top of every R is open. There's no question that it comes from the same typewriter as the blackmail note.&quot; In the envelope is a letter. The envelope can be found or lost. The envelope is lost.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of searching the desk when the envelope is lost:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the envelope is found;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You rifle through the piles of bills and notices; invitations to conventions; advertisements for high-end prescription drugs; pink carbon sheets bearing patients['] names and medical identification numbers in spidery, elderly handwriting. Almost at the bottom of the heap, you find what you were looking for: a creamy envelope with the address typed.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the envelope to the desk.
+</font></blockquote><p>
+<p>
+<p>Here we've changed the property of the envelope to keep track of the fact that it has been found, so that if the player tries again, he won't find anything more.
+<p>
+<blockquote><font color="#000080">Instead of searching the desk:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Further investigation of the desk reveals nothing else suspicious.&quot;
+</font></blockquote><p>
+<p>
+<p>Notice that we have two rules that apply to &quot;searching the desk&quot;, but one of them has a more specific set of parameters (&quot;when the envelope is lost&quot;). This means that Inform will consult that rule first and use it if it applies; it will only carry out our plain vanilla &quot;instead of searching the desk&quot; rule when the more restricted rule is not relevant.
+<p>
+<blockquote><font color="#000080">Test me with &quot;x envelope / x desk / search desk / look / get envelope / x envelope&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e394"><a href=Rex394.html#e394 STYLE="text-decoration: none">*<b>Example 233:  Beneath the Surface</b></a><br>An "underlying" relation which adds to the world model the idea of objects hidden under other objects.<p>
+<a name="e236"><a href=Rex236.html#e236 STYLE="text-decoration: none">*<b>Example 218:  Flashlight</b></a><br>Visibility set so that looking under objects produces no result unless the player has a light source to shine there (regardless of the light level of the room).<p>
+<a name="e240"><a href=Rex240.html#e240 STYLE="text-decoration: none">*<b>Example 172:  Matreshka</b></a><br>A SEARCH [room] action that will open every container the player can see, stopping only when there don't remain any that are closed, unlocked, and openable.<p>
+<p><hr><p><a href=Rdoc33.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc35.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

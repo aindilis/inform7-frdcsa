@@ -1,0 +1,47 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 25.27. Segmented substitutions</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Segmented substitutions" -->
+<!-- SEARCH SECTION "25.27" -->
+<!-- SEARCH SORT "025-027-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc443.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc445.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>25.27. Segmented substitutions</b></td></tr></table><p>
+<p>
+<p>A &quot;segmented&quot; substitution is a syntax where text is placed between two or more different text substitutions. Examples include:
+<p>
+<blockquote><font color="#000080">&quot;This hotel is [if the player is female]just awful[otherwise]basic[end if].&quot;
+<br>&quot;Annie [one of]dances[or]sulks[or]hangs out at Remo's[at random].&quot;
+</font></blockquote><p>
+<p>
+<p>To create such syntaxes, it is not enough just to define how each expands into I6 code: for one thing we may need to know about the later terms in order to expand the earlier ones, which is normally impossible, and for another thing, the individual text substitutions mean nothing in isolation. For instance, Inform produces a problem if the following is tried:
+<p>
+<blockquote><font color="#000080">&quot;The hotel [at random] is on fire.&quot;
+</font></blockquote><p>
+<p>
+<p>because &quot;[at random]&quot; is only legal when closing a &quot;[one of] ...&quot; construction. But if &quot;[at random]&quot; had been defined as just another text substitution, Inform would not have been able to detect such problems.
+<p>
+<p>Inform therefore allows us to mark text substitutions as being any of three special kinds: beginning, in the middle of, or ending a segmented substitution. There can be any number of alternative forms for each of these three variants. The syntax policed is that
+<p>
+<blockquote><font color="#000080">(a) Any usage must lie entirely within a single say or piece of text.
+<br>(b) It must begin with exactly one of the substitutions marked as &quot;beginning&quot;.
+<br>(c) It can contain any number, including none, of the substitutions marked as &quot;middle&quot; (if there are any).
+<br>(d) It must end with exactly one of the substitutions marked as &quot;ending&quot;.
+</font></blockquote><p>
+<p>
+<p>A simple example:
+<p>
+<blockquote><font color="#000080">To say emphasis on -- beginning say_emphasis_on: (- style underline; -).
+<br>To say emphasis off -- ending say_emphasis_on: (- style roman; -).
+</font></blockquote><p>
+<p>
+<p>This creates &quot;[emphasis on]&quot; and &quot;[emphasis off]&quot; such that they can only be used as a pair. The keyword &quot;say_emphasis_on&quot;, which must be a valid I6 identifier (and hence a single word), is never seen by the user: it is simply an ID token so that Inform can identify the construction to which these belong. (We recommend that anybody creating such constructions should choose an ID token which consists of the construction's name but with underscores in place of spaces: this means that the namespace for ID tokens will only clash if the primary definitions would have clashed in any case.)
+<p>
+<p><hr><p>
+<a name="e71"><a href=ex71.html#e71 STYLE="text-decoration: none">*<b>Example 443:  Chanel Version 1</b></a><br>Making paired italic and boldface tags like those used by HTML for web pages.<p>
+<p><hr><p><a href=doc443.html STYLE="text-decoration: none">Previous</a> / <a href=doc445.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

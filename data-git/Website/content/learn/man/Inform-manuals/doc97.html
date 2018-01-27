@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.12. A word about nothing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "A word about nothing" -->
+<!-- SEARCH SECTION "6.12" -->
+<!-- SEARCH SORT "006-012-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc96.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc98.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.12. A word about nothing</b></td></tr></table><p>
+<p>
+<p>Like &quot;in&quot;, &quot;nothing&quot; has two slightly different meanings, though here there's much less potential for confusion.
+<p>
+<p><b>Meaning 1.</b> &quot;Nothing&quot; as &quot;no thing&quot;. This is the meaning in sentences like:
+<p>
+<blockquote><font color="#000080">Definition: a container is bare if nothing is in it.
+</font></blockquote><p>
+<p>
+<p>And similar for conditions like &quot;if the box contains nothing&quot;. It's a word which describes the absence of things: it says that, though there might have been many possible items here, it turned out that there were none.
+<p>
+<p><b>Meaning 2.</b> &quot;Nothing&quot; as a value. This is much less commonly seen, but sometimes Inform stores a value such as a property (or a variable, of which more in later chapters) which always has to be an object. In some circumstances, &quot;nothing&quot; is then a special value meaning that this is not set at present. For instance,
+<p>
+<blockquote><font color="#000080">Definition: a container is impossible if its matching key is nothing.
+</font></blockquote><p>
+<p>
+<p>The &quot;matching key&quot; property of a container is always an object, but is allowed to be &quot;nothing&quot; when there isn't a matching key anywhere. (If such a container is locked, nobody will ever be able to unlock it.)
+<p>
+<p><b>How Inform decides.</b> So which meaning does Inform use, and when? The answer is that it depends on the relationship being talked about. When this is &quot;is&quot;, values are being compared and we are using meaning 2. But when it is any other relationship, like &quot;is in&quot; - which talks about containment - then we are using meaning 1.
+<p>
+<p><hr><p><a href=doc96.html STYLE="text-decoration: none">Previous</a> / <a href=doc98.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

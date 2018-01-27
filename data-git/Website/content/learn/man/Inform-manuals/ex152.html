@@ -1,0 +1,107 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.6. Actions applying to kinds of value</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Ibid." -->
+<!-- SEARCH SECTION "Ex 289" -->
+<!-- SEARCH SORT "Ex 016-006-289" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc264.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc266.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.6. Actions applying to kinds of value</b></td></tr></table><p>
+<p>
+<p>Almost all actions apply to things: the player picks them up, pushes them, looks at them and so on. We only occasionally need to recognise other kinds of value, but when we do, we can. For instance:
+<p>
+<blockquote><font color="#000080">Adjusting it to is an action applying to one thing and one number.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;adjust [something] to [a number]&quot; as adjusting it to.
+</font></blockquote><p>
+<p>
+<p>The substitution &quot;[a number]&quot; matches any number (actually any whole number that is not too large) typed by the player. Inform checks the various kinds being used to make sure that everything matches, so, for instance, this would be disallowed:
+<p>
+<blockquote><font color="#000080">Understand &quot;adjust [something] to [something]&quot; as adjusting it to.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e332"><a href=ex332.html#e332 STYLE="text-decoration: none">*<b>Example 287:  Safety</b></a><br>A safe whose dial can be turned with SPIN SAFE TO 1131, and which will open only with the correct combination.<p>
+<a name="e380"><a href=ex380.html#e380 STYLE="text-decoration: none">*<b>Example 288:  Tom's Midnight Garden</b></a><br>A clock kind that can be set to any time using "the time understood"; may be turned on and off; and will advance itself only when running. Time on the face is also reported differently depending on whether the clock is analog or digital.<p>
+<!-- EXAMPLE START -->
+<a name="e152"><a href=doc265.html#e152 STYLE="text-decoration: none">**<b><b>Example</b> 289:  Ibid.</b></a><br>A system which allows the author to assign footnotes to descriptions, and permits the player to retrieve them again by number, using "the number understood". Footnotes will automatically number themselves, according to the order in which the player discovers them.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>&quot;Hitchhiker's Guide to the Galaxy&quot; introduced the idea of footnoted descriptions, and various IF games since have toyed with the idea. The recommended implementation in Inform 6 involved keeping an assortment of footnote objects around, but in Inform 7 the table is a much tidier way of handling the same problem.
+<p>
+<blockquote><font color="#000080">&quot;Ibid.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Ship Inn is a room. &quot;Here you are in a lovely pub which your guidebook assures you is extremely authentic. [1 as a footnote].
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To your left sits a party of Italians, with their guidebook.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To your right is a silent, but not unappealing, young man.&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A party of Italians and a silent young man are people in the Ship Inn. The Italians and the young man are scenery.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The table is a supporter in the Ship Inn. On the table is a mysterious pie. The description of the pie is &quot;Your waitress told you it was the specialty of the day, Steak and Owl Pie. [2 as a footnote].&quot; The pie is edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Footnotes
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">assignment</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">note</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">a number</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Francis Drake ate here, if the sign on the door is to be believed&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;this is unlikely, considering that owls are protected animals in England these days [3 as a footnote]&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">--</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;moreover, you can't imagine that owl would be very tasty&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Footnotes mentioned is a number that varies.
+</font></blockquote><p>
+<p>
+<p>Whenever we mention a footnote for the first time, we need to assign it a number, which we will use consistently thereafter. And it's probably a good idea to protect ourselves against the author accidentally using a number too large for the footnote table, too. So:
+<p>
+<blockquote><font color="#000080">To say (footnote - a number) as a footnote:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if footnote > number of filled rows in the Table of Footnotes:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Programming error: footnote assignment out of range.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose row footnote in the Table of Footnotes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if there is an assignment entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;([assignment entry])&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;increment footnotes mentioned;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose row footnote in the Table of Footnotes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now assignment entry is footnotes mentioned;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;([assignment entry])&quot;.
+</font></blockquote><p>
+<p>
+<p>Now, in order to let the player view these footnotes, we'll need to parse numbers.
+<p>
+<blockquote><font color="#000080">Understand &quot;footnote [number]&quot; as looking up a footnote.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Looking up a footnote is an action applying to one number.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check looking up a footnote:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number understood > footnotes mentioned, say &quot;You haven't seen any such footnote.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number understood < 1, say &quot;Footnotes are numbered from 1.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out looking up a footnote:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row with assignment of number understood in the Table of Footnotes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;([assignment entry]): [note entry].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;footnote 1 / examine pie / footnote 2 / footnote 3&quot;.
+</font></blockquote><p>
+<p>
+<p>This method does require us to keep track of where a footnote appears in the table. If we found this inconvenient, we could add a column to the footnote table so that we could invoke it with tags like &quot;[appearance quip as a footnote]&quot;.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc264.html STYLE="text-decoration: none">Previous</a> / <a href=doc266.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

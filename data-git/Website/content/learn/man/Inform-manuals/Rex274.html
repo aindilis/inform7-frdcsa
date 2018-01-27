@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.9. Passers-By, Weather and Astronomical Events</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Orange Cones" -->
+<!-- SEARCH SECTION "Ex 120" -->
+<!-- SEARCH SORT "Ex 003-009-120" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc15.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc17.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.9. Passers-By, Weather and Astronomical Events</b></td></tr></table><p>
+<p>
+<p>Out of doors, nature is seldom still. Clouds scull by at random, as in <b>Weathering</b>, and provide some variety in what would otherwise be lifelessly static room descriptions. In much the same way, passers-by and other diversions make a city street a constant bustle: see <b>Uptown Girls</b> for this human breeze. A more nagging sense of atmosphere can be experienced in <b>Full Moon</b>.
+<p>
+<p><b>Orange Cones</b> offers traffic that is present on every road in the game unless a room is marked off with orange cones -- and this is allowed to change during play.
+<p>
+<p><b>Night and Day</b> and <b>Totality</b> each schedule celestial events to provide a changing display in the sky above, and this time running like clockwork rather than at random.
+<p>
+<a href=Rdoc20.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Scene Changes</b></font></a><i> for meteors and a moon-rise</i><p><p>
+<p><hr><p>
+<a name="e422"><a href=Rex422.html#e422 STYLE="text-decoration: none">*<b>Example 131:  Weathering</b></a><br>The automatic weather station atop Mt. Pisgah shows randomly fluctuating temperature, pressure and cloud cover.<p>
+<a name="e169"><a href=Rex169.html#e169 STYLE="text-decoration: none">***<b>Example 132:  Uptown Girls</b></a><br>A stream of random pedestrians who go by the player.<p>
+<a name="e433"><a href=Rex433.html#e433 STYLE="text-decoration: none">*<b>Example 157:  Full Moon</b></a><br>Random atmospheric events which last the duration of a scene.<p>
+<!-- EXAMPLE START -->
+<a name="e274"><a href=Rdoc16.html#e274 STYLE="text-decoration: none">***<b><b>Example</b> 120:  Orange Cones</b></a><br>Creating a traffic backdrop that appears in all road rooms except the one in which the player has laid down orange cones.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Because we can invent our own adjectives (see the chapter on Phrases), we can make the conditions for a backdrop as simple or as complicated as we like.
+<p>
+<p>In this scenario, we want the player to be able to take, move, and drop orange traffic cones to seal off one street or another. So we create our own &quot;accessible&quot; adjective as follows:
+<p>
+<blockquote><font color="#000080">Definition: a road is accessible if the orange cones are not in it.
+</font></blockquote><p>
+<p>
+<p>...and now
+<p>
+<blockquote><font color="#000080">move the traffic backdrop to all accessible roads.
+</font></blockquote><p>
+<p>
+<p>will tell the traffic backdrop where to appear.
+<p>
+<blockquote><font color="#000080">&quot;Orange Cones&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A road is a kind of room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The traffic is a backdrop. It is not scenery. The initial appearance is &quot;Dense traffic snarls the streets, making it difficult to cross even with the lights. Men on motorbikes edge between the cars, and sometimes pull up onto the sidewalks to go around.&quot; The description is &quot;It is more or less as usual for this time of day. It's a wonder it ever dissipates, really.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the traffic backdrop to all accessible roads.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A line of orange cones are a thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a road is accessible if the orange cones are not in it.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After dropping the orange cones in a road:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;With steely determination you begin to lay out the orange cones, blocking access to this segment of street. This produces honking and swearing -- but you persevere.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;update backdrop positions.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After taking the orange cones:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You go around taking up the orange cones, and within moments the traffic begins to flow into the street again.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;update backdrop positions.
+</font></blockquote><p>
+<p>
+<p>That accomplishes everything we set out to do, but let's add a very simple puzzle to test it out with:
+<p>
+<blockquote><font color="#000080">The Town Square is a road. North of the Town Square is Candle Street. Candle Street is a road. East of Town Square is Mortar Street. Mortar Street is a road.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The line of orange cones are in Mortar Street.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player wears a reflective vest and a hard hat.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The manhole cover is a door. &quot;[if location is accessible]Under the cars in the middle of the street, you can just make out the cover of the manhole you need to get into.[otherwise]There's a promising manhole in the middle of the street.[end if]&quot;. It is closed and openable. It is below the Town Square and above the Access Tunnel.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening the manhole cover when the location is an accessible road:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You can't get anywhere near the manhole cover with all these cars above it.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of taking the orange cones in Town Square:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the manhole cover is closed or Town Square is accessible, continue the action;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;You'd better not let the traffic back in until you've closed the manhole. There'll be accidents otherwise.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After going to the Access Tunnel:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;With a stealthy glance left and right, you lower yourself into the access tunnel, thus accomplishing your mission for Chapter 2. To continue your adventure, see Chapter 3: The Vault of Peaquod.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story finally.
+</font></blockquote><p>
+<p>
+<p>And finally, a couple of features from the Activities chapter to make the output more elegant:
+<p>
+<blockquote><font color="#000080">Rule for writing a paragraph about the orange cones: say &quot;A line of orange cones holds back the traffic from entering here.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the name of the orange cones when the cones are carried by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;stack of orange cones&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;x traffic / open manhole / n / x traffic / s / e / x traffic / get cones / look / x traffic / w / drop cones / look / open manhole / take cones / d&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e260"><a href=Rex260.html#e260 STYLE="text-decoration: none">*<b>Example 164:  Night and Day</b></a><br>Cycling through a sequence of scenes to represent day and night following one another during a game.<p>
+<a name="e113"><a href=Rex113.html#e113 STYLE="text-decoration: none">**<b>Example 144:  Totality</b></a><br>To schedule an eclipse of the sun, which involves a number of related events.<p>
+<p><hr><p><a href=Rdoc15.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc17.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

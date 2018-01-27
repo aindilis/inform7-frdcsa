@@ -1,0 +1,129 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.17. Phrases to decide other things</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "A Haughty Spirit" -->
+<!-- SEARCH SECTION "Ex 181" -->
+<!-- SEARCH SORT "Ex 011-017-181" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc183.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc185.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.17. Phrases to decide other things</b></td></tr></table><p>
+<p>
+<p>A condition is a yes/no decision, but we can also take decisions where the result is a value. Suppose we want to create a concept of the &quot;grand prize&quot;, which will have different values at different times in play. Each time the &quot;grand prize&quot; is referred to, Inform will have to decide what its value is, and the following tells Inform how to make that decision:
+<p>
+<blockquote><font color="#000080">To decide which treasure is the grand prize:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the Dark Room has been visited, decide on the silver bars;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on the plover's egg.
+</font></blockquote><p>
+<p>
+<p>Note that we have to say what kind the answer will be: here it's a kind of thing called &quot;treasure&quot; (which we're supposing has already been created), and as it turns out only two treasures are ever eligible anyway (we're also supposing that the plover's egg and the silver bars are treasures already created, of course). And note also that the phrase must in all cases end with a &quot;decide on ...&quot; to say what the answer is:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>decide on </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_decideon -->
+
+<p>This phrase can only be used in the body of a definition of a phrase to decide a value. It causes the calculation to end immediately, with the outcome being the given value, which must be of the kind expected. Example:
+<p>
+<blockquote><font color="#000080">To decide which number is double (N - a number):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let D be N times N;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on D.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Now that we have &quot;grand prize&quot; created, we can use it just as we would use any other value, so for instance:
+<p>
+<blockquote><font color="#000080">if taking the grand prize, ...
+</font></blockquote><p>
+<p>
+<p>As this is something of a dialect difference between English speakers, &quot;what&quot; and &quot;which&quot; are synonymous here, i.e., we could equally well write something like:
+<p>
+<blockquote><font color="#000080">To decide what number is the target score: ...
+</font></blockquote><p>
+<p>
+<p>(A phrase to decide if something-or-other is exactly the same thing as a phrase to decide a truth state, and indeed, if we want to then we can use &quot;decide on T&quot;, where T is a truth state, in its definition. For instance:
+<p>
+<blockquote><font color="#000080">To decide if time is short:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the time of day is after 10 PM, decide on true;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;...
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on whether or not Jennifer is hurried.
+</font></blockquote><p>
+<p>
+<p>&quot;Decide on true&quot; is exactly equivalent to the more normally used &quot;decide yes&quot;, and of course it is optional. The last line is more interesting since it effectively delegates the answer to another condition.)
+<p>
+<p><hr><p>
+<a name="e431"><a href=ex431.html#e431 STYLE="text-decoration: none">*<b>Example 180: Witnessed 2</b></a><br>A piece of ghost-hunting equipment that responds depending on whether or not the meter is on and a ghost is visible or touchable from the current location.<p>
+<!-- EXAMPLE START -->
+<a name="e382"><a href=doc184.html#e382 STYLE="text-decoration: none">***<b><b>Example</b> 181:  A Haughty Spirit</b></a><br>Windows overlooking lower spaces which will prevent the player from climbing through if the lower space is too far below.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we have a game in which the player can climb through windows which overlook rooms below. We want him to be allowed to climb out windows to reach a room on the same level or at most one level lower than the one he's on; otherwise, he should get a refusal, saying that he would break his neck.
+<p>
+<p>To figure out the height distance between the start room and the destination room, we might have a repeat loop look at all the directions one has to follow along the &quot;best route&quot; path between the two rooms, and record any ups and downs; then subtract the number of &quot;up&quot; steps from the number of &quot;down&quot; steps, and report what remains.
+<p>
+<blockquote><font color="#000080">&quot;A Haughty Spirit&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide what number is the distance (first place - a room) rises above (second place - a room):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the total distance be the number of moves from the first place to the second place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the total distance is less than 1, decide on 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let count of down moves be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let count of up moves be 0;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let next place be the first place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with counter running from 1 to the total distance:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let the way be the best route from the next place to the second place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the way is down, let count of down moves be the count of down moves plus 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the way is up, let the count of up moves be the count of up moves plus 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let next place be the room the way from next place;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the decision be the count of down moves minus the count of up moves;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decide on the decision.
+</font></blockquote><p>
+<p>
+<p>Now we just have to create windows and some action rules for interacting with them...
+<p>
+<blockquote><font color="#000080">A window is a kind of thing. A window is always fixed in place. A window can be open or closed. A window is usually closed. A window can be openable or unopenable. A window is usually openable.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;climb through [something]&quot; as entering. Understand &quot;jump through/out [something]&quot; as entering.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before entering a closed window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] would have to be opened first.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of entering a window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the noun overlooks a room (called the far side):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let fall be the distance the location rises above the far side;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if fall is greater than 1, say &quot;You'd break your neck.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You tumble into [the far side].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move the player to the far side;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There's nowhere to go.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining a window:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[The noun] [if the noun is open]opens over[otherwise]gives a view of[end if] [the list of rooms overlooked by the noun].&quot;
+</font></blockquote><p>
+<p>
+<p>Here we must anticipate a little from next chapter, and provide ourselves with a way of keeping track of how windows and rooms relate to one another:
+<p>
+<blockquote><font color="#000080">Overlooking relates various windows to various rooms. The verb to overlook (it overlooks, they overlook, it overlooked, it is overlooked, it is overlooking) implies the overlooking relation. The initial appearance of a window is usually &quot;[The item described] overlooks [the list of rooms overlooked by the item described].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Square Keep is above the Winding Staircase. The Winding Staircase is above the Motte. A crown and a broken sword are in the Motte. The Bailey is west of the Motte.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The long window is in the Keep. The long window overlooks the Bailey and the Motte. The narrow window is in the Winding Staircase. The narrow window overlooks the Bailey.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;jump through window / open window / jump through window / d / x narrow window / open window / climb through window / e / up / down&quot;.
+</font></blockquote><p>
+<p>
+<p>We could then add rules to allow the player to look through windows and see things in the rooms below, but that would require more material from later chapters.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc183.html STYLE="text-decoration: none">Previous</a> / <a href=doc185.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 7.7. The other four senses</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Art of Noise" -->
+<!-- SEARCH SECTION "Ex 95" -->
+<!-- SEARCH SORT "Ex 007-007-095" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc108.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc110.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>7.7. The other four senses</b></td></tr></table><p>
+<p>
+<p>The five senses are all simulated with actions. Sight is so informative that it is handled by a whole range of actions: &quot;looking&quot;, which describes the general scene; &quot;examining something&quot;, which takes a closer look at a specific thing; &quot;looking under something&quot;, and so on.
+<p>
+<p>The other senses have one action each: &quot;listening to something&quot;, &quot;touching something&quot;, &quot;tasting something&quot; and &quot;smelling something&quot;. It makes no sense to touch or taste the general scene, but listening and smelling are a different matter: we often just listen, without listening to anything specific. If the player types the command &quot;listen&quot;, Inform understands that as listening to the current location: similarly for the bare command &quot;smell&quot;. Thus:
+<p>
+<blockquote><font color="#000080">Instead of listening to the Seashore, say &quot;The song of gulls.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of smelling the Cave, say &quot;Salt and old seaweed.&quot;
+</font></blockquote><p>
+<p>
+<p>(Note the difference between this and saying:
+<p>
+<blockquote><font color="#000080">Instead of listening <b>in</b> the Seashore, say &quot;The song of gulls.&quot;
+</font></blockquote><p>
+<p>
+<p>With this rule, even typing &quot;listen to shell&quot; when at the Seashore would result in the song of gulls: fine if the gulls drown all else out, but otherwise incongruous.)
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e262"><a href=doc109.html#e262 STYLE="text-decoration: none">***<b><b>Example</b> 95:  The Art of Noise</b></a><br>Things are all assigned their own noise (or silence). Listening to the room in general reports on all the things that are currently audible.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>This example involves redesigning the LISTEN command, removing its built-in function and replacing that with something more ambitious. We will learn more about how to do this later on.
+<p>
+<blockquote><font color="#000080">&quot;The Art of Noise&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing has some text called sound. The sound of a thing is usually &quot;silence&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The block listening rule is not listed in the check listening to rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out listening to something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;From [the noun] you hear [the sound of the noun].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of listening to a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if an audible thing can be touched by the player, say &quot;You hear [the list of audible things which can be touched by the player].&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise say &quot;Nothing of note.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a thing is audible if the sound of it is not &quot;silence&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of something audible while listening to a room:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[sound] from the &quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Sharper Image is a room. The pet rock is a thing in the Sharper Image. The toy car is a thing in the Sharper Image. The sound of the car is &quot;whirring and zooming&quot;. The plastic widget is a thing in the Sharper Image. The sound of the plastic widget is &quot;bleeps and bloops&quot;. The pointless gadget is a thing in Sharper Image. The sound of the pointless gadget is &quot;buzzbuzzbuzz&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The soundproof case is a transparent openable container in the Sharper Image. It is closed and fixed in place.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;listen / listen to rock / listen to car / get all / open case / put all in case / listen / close case / listen / listen to car&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc108.html STYLE="text-decoration: none">Previous</a> / <a href=doc110.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

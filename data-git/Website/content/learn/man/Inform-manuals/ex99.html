@@ -1,0 +1,192 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.5. New activities</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Crusoe" -->
+<!-- SEARCH SECTION "Ex 324" -->
+<!-- SEARCH SORT "Ex 017-005-324" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc285.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc287.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.5. New activities</b></td></tr></table><p>
+<p>
+<p>Activities are all about influencing the standard mechanisms which Inform uses, so it might at first seem that there is no need to create new activities: but on further reflection, quite a lot of the writing of interactive fiction involves creating new and systematic ways to do things, and as soon as we have a general rule, we will want to have exceptions. Inform therefore allows us to create our own activities, giving us ways to influence the operation of our own mechanisms.
+<p>
+<p>There are two kinds of activity: those which relate to a specific value (usually an object but not necessarily), and those which do not. Here are some examples of activities being created:
+<p>
+<blockquote><font color="#000080">Assaying is an activity.
+<br>Analysing something is an activity.
+<br>Announcing something is an activity on numbers.
+</font></blockquote><p>
+<p>
+<p>Inform looks for the clue &quot;something&quot; (or &quot;of something&quot;) after the activity's name to see if it will work on a value: so analysing and announcing will do, but assaying won't. If we don't specify a kind, Inform assumes the value will be an object, as if we had written:
+<p>
+<blockquote><font color="#000080">Analysing something is an activity on objects.
+</font></blockquote><p>
+<p>
+<p>As always in Inform, the names of activities are themselves values.
+<p>
+<blockquote><font color="#000080">&quot;assaying activity&quot; has kind activity on nothing
+<br>&quot;analysing activity&quot; has kind activity on objects
+<br>&quot;announcing activity&quot; has kind activity on numbers
+</font></blockquote><p>
+<p>
+<p>Creating an activity is like creating an action: it automatically makes new rulebooks - &quot;before analysing&quot;, &quot;for analysing&quot; and &quot;after analysing&quot; - but they start out empty, so the activity does nothing yet. Just as it does for rulebooks, Inform defines the adjectives &quot;empty&quot; and &quot;non-empty&quot; for activities to test this state:
+<p>
+<blockquote><font color="#000080">if the analysing activity is empty, ...
+</font></blockquote><p>
+<p>
+<p>will be true only when all three of its rulebooks are empty.
+<p>
+<p>A newly created activity never happens unless we take steps to make it do so. We can make an activity happen at any time by writing phrases like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>carry out the </b>(activity)<b> activity</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_carryout -->
+
+<p>This phrase carries out the given activity, which must be one not applying to any value. Example:
+<p>
+<blockquote><font color="#000080">carry out the assaying activity;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>carry out the </b>(activity on values)<b> activity with </b>(value)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_carryoutwith -->
+
+<p>This phrase carries out the given activity, which must apply to a kind of value matching the one supplied. Example:
+<p>
+<blockquote><font color="#000080">carry out the analysing activity with the pitchblende;
+<br>carry out the announcing activity with the score;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>To make the activity do something useful, we need to put a rule into its &quot;for&quot; rulebook:
+<p>
+<blockquote><font color="#000080">Rule for announcing a number (called N): say &quot;Ladies and gentlemen, [N].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The last for assaying rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Professionally, you cast an eye around mineral deposits nearby, noticing [list of rocks in the location].&quot;
+</font></blockquote><p>
+<p>
+<p>&quot;The last&quot; is a technicality about rulebooks (see the next chapter) which, put briefly, guarantees that this rule comes last among all possible &quot;for assaying&quot; rules. This is good form because the whole point of an activity is to make it easy for further rules to interfere - so we deliberately hang back to last place, giving precedence to anybody else who wants it.
+<p>
+<p>The &quot;for&quot; rulebook is one where rules stop the activity, by default, when they take effect - in the same way that the &quot;instead&quot; rules stop actions by default. If this causes problems, we can use:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>continue the activity</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_continueactivity -->
+
+<p>This phrase should be used only in rules in activity rulebooks. It causes the current rule to end, but without result, so that the activity continues rather than stopping as a result of the rule. This is useful for rulebooks (like the &quot;for&quot; rulebook of an activity) where the default is that a rule does stop the activity.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Activities are more useful than they first appear. Every new one provides a context which other activities can observe. We could, for instance, define
+<p>
+<blockquote><font color="#000080">Rule for printing the name of a rock while assaying: ...
+</font></blockquote><p>
+<p>
+<p>so that during assays more technical names are used.
+<p>
+<p><hr><p>
+<a name="e121"><a href=ex121.html#e121 STYLE="text-decoration: none">**<b>Example 322:  AARP-Gnosis</b></a><br>An Encyclopedia set which treats volumes in the same place as a single object, but can also be split up.<p>
+<a name="e2"><a href=ex2.html#e2 STYLE="text-decoration: none">***<b>Example 323:  Aftershock</b></a><br>Modifying the rules for examining a device so that all devices have some specific behavior when switched on, which is described at various times.<p>
+<!-- EXAMPLE START -->
+<a name="e99"><a href=doc286.html#e99 STYLE="text-decoration: none">***<b><b>Example</b> 324:  Crusoe</b></a><br>Adding a "printing the description of something" activity.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to add rules so that any time we examine a charred object (and most of our objects can be charred), a line about the charring is appended to the end of the object description. We could use &quot;after examining...&quot;, but perhaps we would prefer for the sentence about the charring not to appear in its own paragraph.
+<p>
+<p>This is an ideal occasion for a new activity. We look at the action index for &quot;examining&quot; to identify the rule that causes the old behavior (in this case, the &quot;standard examining rule&quot;); replace this with a new rule that calls our activity; and write our &quot;printing the description&quot; activity in such a way that it uses an object's description without forcing a paragraph return afterward.
+<p>
+<p>Then we will use &quot;after printing the description&quot; to add our line about charring, and make sure that the paragraph return does occur before the prompt.
+<p>
+<p>So:
+<p>
+<blockquote><font color="#000080">&quot;Crusoe&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Creating our New Activity
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The fancy examining rule is listed instead of the standard examining rule in the carry out examining rules.
+</font></blockquote><p>
+<p>
+<p>This instruction replaces a normal piece of the examine action, the standard examining rule, with another one of our own devising. (The replacement of the standard examining rule will be explained in more detail in the chapter on rulebooks.)
+<p>
+<blockquote><font color="#000080">Printing the description of something is an activity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the fancy examining rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;carry out the printing the description activity with the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<p>All we have done here is enclose what is usually just a rule inside an activity. This means that we can now write before and after rules for the activity, and also add special instructions like &quot;Rule for printing the name of something while printing the description of something&quot; -- this may not be likely to arise often, but Inform now has the concept of &quot;printing the description of something&quot; as a separate context of action. Next we add the modification that lets us append to the description without a new line:
+<p>
+<blockquote><font color="#000080">Rule for printing the description of something (called item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the description of the item is not &quot;&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[description of item] [run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You see nothing special about [the item]. [run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<p>&quot;run paragraph on&quot; here will mean that we do not get a paragraph break following the description, even if it ends with a period. We also insert a space, so that our follow-on comments will be properly punctuated.
+<p>
+<blockquote><font color="#000080">After printing the description of something charred:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It is charred.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>The instead at the end of this line stops Inform for going on with any other &quot;after printing the description of...&quot; rules.
+<p>
+<p>The standard library also has rules for printing additional text about containers and supporters with visible contents, and devices that are switched on; with this current system, we could add those as &quot;after printing the description&quot; rules as well, building up a complete paragraph if we wanted. But for simplicity we won't exemplify all of that here. The effects would be much the same as with the &quot;charred&quot; line.
+<p>
+<p>Now, because we want to make sure that we always do get a paragraph break after our description, we add this rule last after all the other rules. &quot;Last&quot; and &quot;first&quot; rules are covered in more detail in the chapter on rulebooks.
+<p>
+<blockquote><font color="#000080">Last after printing the description of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say paragraph break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - The Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Desert Isle is a room. &quot;A pale expanse of sand, here and there developing into hillocks of grass, and a small clump of palms. The water is shallow here, and there are other islands within swimming distance -- or even wading distance, perhaps -- but none of them is any larger than your island, so it doesn't seem worth the trouble of visiting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A few hundred feet out, the water turns darker blue, the sea floor drops away, and there is nothing to be seen all the way down to the horizon, except a couple of fluffy clouds, and an occasional bird.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The remains of your fire smolder in the stone-lined pit.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be charred or whole. A thing is usually whole. Instead of burning something: say &quot;You hold [the noun] to the fire until it flares and chars.&quot;; now the noun is charred.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a stick. The description of the stick is &quot;A strip of palm from the woodiest part of the leaf, about a foot and a half long.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a glass bottle and a piece of paper. The description of the paper is &quot;A single blank sheet.&quot; In the glass bottle is a grain of sand. The glass bottle is openable and open. Instead of burning the glass bottle: say &quot;You hold the bottle to the flame, but it grows uncomfortably warm.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of burning the grain of sand: say &quot;You drop the grain into the fire pit, where it becomes indistinguishable from all the others.&quot;; remove the grain of sand from play. Instead of dropping the grain of sand: remove the grain of sand from play; say &quot;You return the grain of sand to its brethren.&quot;
+</font></blockquote><p>
+<p>
+<p>The player's description is handled in an unusual way, and this will produce a space paragraph break there where it should not. Instead, therefore, we will add an instead for examining the player (probably a good idea anyway):
+<p>
+<blockquote><font color="#000080">Instead of examining the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are sunburned and there is sand in cracks you didn't know existed.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / x stick / x bottle / x sand / x paper / x me / burn stick / x stick / burn paper / x paper&quot;.
+</font></blockquote><p>
+<p>
+<p>The &quot;printing a description&quot; activity may be useful for other games, and can be imported just by lifting section 1.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc285.html STYLE="text-decoration: none">Previous</a> / <a href=doc287.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

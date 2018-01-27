@@ -1,0 +1,223 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.31. Reading a command</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Complimentary Peanuts" -->
+<!-- SEARCH SECTION "Ex 362" -->
+<!-- SEARCH SORT "Ex 017-031-362" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc311.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc313.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.31. Reading a command</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> When reading a command from the keyboard.
+<p>
+<p><b>2. The default behaviour.</b> Print the prompt text; wait for the player to type something and press return. Reject an entirely blank line, and treat a command beginning &quot;oops&quot; as a correction to the previous one. This is a fairly complicated business, so it is probably best not to change the &quot;for&quot; rules for this activity: &quot;before&quot;, and especially &quot;after&quot;, are another matter. (Note, however, that if Inform does reject a blank line and ask for another then this all happens inside the &quot;for&quot; rules: no &quot;after&quot; occurs after the blank line, nor does a &quot;before&quot; happen before the second attempt by the player. It is all a single round of the activity, not two.)
+<p>
+<p><b>3. Examples.</b> (a) To lead absolute beginners in gently:
+<p>
+<blockquote><font color="#000080">Before reading a command while the turn count is 1, say &quot;(This is your chance to say what the protagonist should do next. After the '>', try typing 'take inventory'.)&quot;
+</font></blockquote><p>
+<p>
+<p>(b) The following responds politely but firmly if the player tries to type &quot;please look&quot;, say, instead of just &quot;look&quot;:
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;please&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Please do not say please.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command.
+</font></blockquote><p>
+<p>
+<p>To explain. Fragments of what the player has typed are called snippets: &quot;the player's command&quot; is the entire thing. We can test if a snippet matches a given pattern like so:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(snippet)<b> matches </b>(topic)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_snippetmatches -->
+
+<p>This condition is true if the given snippet exactly matches the specification. Example:
+<p>
+<blockquote><font color="#000080">if the player's command matches &quot;room [number]&quot;, ...
+</font></blockquote><p>
+<p>
+<p>will be true if the command is ROOM 101, but not if it's EXPLORE ROOM 7.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(snippet)<b> does not match </b>(topic)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_snippetdoesnotmatch -->
+
+<p>This condition is true if the given snippet does not exactly match the specification.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(snippet)<b> includes </b>(topic)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_snippetincludes -->
+
+<p>This condition is true if the given snippet includes words matching the specification, either at the beginning, in the middle, or at the end. Example:
+<p>
+<blockquote><font color="#000080">if the player's command includes &quot;room [number]&quot;, ...
+</font></blockquote><p>
+<p>
+<p>will be true if the command is ROOM 101, EXPLORE ROOM 7, or ROOM 22 AHOY, but not if it's VISIT ROOM GAMMA 7.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b></b>(snippet)<b> does not include </b>(topic)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_snippetdoesnotinclude -->
+
+<p>This condition is true if the given snippet does not include any run of words which matches the specification.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Lastly, we took drastic action with another new phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>reject the player's command</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_rejectcommand -->
+
+<p>This phrase should be used only in rules for the &quot;reading a command&quot; activity. It tells Inform not to bother analysing the text further, but to go back to the keyboard. (No time passes; no turn elapses; nothing happens in the simulated world.)
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>(c) An improved version takes commands like &quot;please drop the coin&quot; and strips &quot;please&quot; from them, but then allows them to proceed normally:
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;please&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;(Quelle politesse! But no need to say please.)&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cut the matched text.
+</font></blockquote><p>
+<p>
+<p>&quot;Matched text&quot; is a snippet containing the words which matched against the pattern in the most recent &quot;includes&quot; condition, so in this case it contains just the single word &quot;please&quot;. Two phrases allow snippets to be altered:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>replace </b>(snippet)<b> with </b>(text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_replacesnippet -->
+
+<p>This phrase should be used only in &quot;after&quot; rules for the &quot;reading a command&quot; activity; it replaces the snippet of command, usually the &quot;matched text&quot; found immediately before, with the given text. Example:
+<p>
+<blockquote><font color="#000080">if the player's command includes &quot;room [number]&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;replace the matched text with &quot;office&quot;.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>cut </b>(snippet)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_cutsnippet -->
+
+<p>This phrase should be used only in &quot;after&quot; rules for the &quot;reading a command&quot; activity; it replaces the snippet of command, usually the &quot;matched text&quot; found immediately before, with the given text. Example:
+<p>
+<blockquote><font color="#000080">if the player's command includes &quot;or else&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;cut the matched text.
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Note that &quot;replace&quot; and &quot;cut&quot; can only be used in &quot;after reading a command&quot; rules: not when an action has been chosen and has gone ahead into its rulebooks. Once the &quot;reading a command&quot; activity has finished, the command is final.
+<p>
+<p>(d) To make the word &quot;grab&quot; an abbreviation for &quot;take all&quot;:
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command matches &quot;grab&quot;, replace the player's command with &quot;take all&quot;.
+</font></blockquote><p>
+<p>
+<p>(&quot;Snippet&quot; is actually a kind of value, so we could say &quot;Ah, you typed '[the player's command]'!&quot; or some such if we liked. But in practice only three snippets are likely to be useful: the two mentioned above, &quot;player's command&quot; and &quot;matched text&quot;, and the &quot;topic understood&quot;, used when matching the &quot;[text]&quot; token in command grammar.)
+<p>
+<p>(e) Finally, we can make still more detailed alterations to the text of the command using the techniques for indexed text presented in the Advanced Text chapter. For instance:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>change the text of the player's command to </b>(indexed text)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_changecommand -->
+
+<p>This phrase should be used only in &quot;after&quot; rules for the &quot;reading a command&quot; activity; it replaces the current command text entirely. Example:
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let T be indexed text;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let T be the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;replace the regular expression &quot;\p&quot; in T with &quot;&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;change the text of the player's command to T.
+</font></blockquote><p>
+<p>
+<p>This converts the player's command to indexed text, which is then manipulated by searching for any punctuation mark and replacing it with blank text (that is, deleted), and then put back again as the new command.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e189"><a href=ex189.html#e189 STYLE="text-decoration: none">**<b>Example 359:  Fragment of a Greek Tragedy</b></a><br>Responding to the player's input based on keywords only, and overriding the original parser entirely.<p>
+<a name="e264"><a href=ex264.html#e264 STYLE="text-decoration: none">**<b>Example 360:  North by Northwest</b></a><br>Creating additional compass directions between those that already exist (for instance, NNW) -- and dealing with an awkwardness that arises when the player tries to type "north-northwest". The example demonstrates a way around the nine-character limit on parsed words.<p>
+<a name="e86"><a href=ex86.html#e86 STYLE="text-decoration: none">**<b>Example 361:  Cloves</b></a><br>Accepting adverbs anywhere in a command, registering what the player typed but then cutting them out before interpreting the command.<p>
+<!-- EXAMPLE START -->
+<a name="e205"><a href=doc312.html#e205 STYLE="text-decoration: none">***<b><b>Example</b> 362:  Complimentary Peanuts</b></a><br>A character who responds to keywords in the player's instructions and remarks, even if there are other words included.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>The &quot;reading a command&quot; activity is not the only point at which we can interact with snippets, as it happens; it is merely the most useful. &quot;The player's command&quot; can be consulted at other points, however, as in this example of your somewhat deaf (or distracted, or simply cussed) Aunt:
+<p>
+<blockquote><font color="#000080">&quot;Complimentary Peanuts&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of asking Aunt Martha to try doing something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through Table of Aunt Martha's Commentary:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if player's command includes topic entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[commentary entry][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Hmmf,' says Aunt Martha.&quot;
+</font></blockquote><p>
+<p>
+<p>The topic understood is also a snippet, so that whenever one has been generated, we can treat it in the same way as &quot;the player's command&quot;:
+<p>
+<blockquote><font color="#000080">Asking someone about something is speech.
+<br>Telling someone about something is speech.
+<br>Answering someone that something is speech.
+<br>Asking someone for something is speech.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of speech when the noun is Aunt Martha:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through Table of Aunt Martha's commentary:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the topic understood includes topic entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[commentary entry][paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;'Hmmf,' says Aunt Martha.&quot;
+</font></blockquote><p>
+<p>
+<p>This is superior to checking &quot;the player's command&quot; because we do not want ASK MARTHA ABOUT FRENCH FRIES to trigger the &quot;Martha&quot; keyword, only the &quot;french fries&quot; keywords.
+<p>
+<blockquote><font color="#000080">The Empyrean Shuttle Bay is a room. &quot;From here you have an excellent view of the colony world, which looks... well, it looks discouragingly orange. But terraforming is in progress.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Aunt Martha is a woman in the Empyrean Shuttle Bay. A gleaming shuttle and a stack of rations are in the Shuttle Bay. The shuttle is a vehicle. &quot;Your shuttle awaits.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Aunt Martha's Commentary
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">topic</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">commentary</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;shuttle&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'Shuttles! I hate shuttles,' Aunt Martha grumbles. 'Give me an airplane! AIRPLANE.'&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;airplane/airport&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'Those were the days,' Aunt Martha agrees, plainly reliving the days when she wore a blue-and-white uniform and passed out packets of salted pretzels.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">&quot;rations&quot;</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;'Do you think there are any peanuts in there?' she asks in a wistful tone.&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;martha, get in the shuttle / martha, for pity's sake, do you see an airplane around here? / martha, pass me the rations&quot;.
+</font></blockquote><p>
+<p>
+<p>This means that Martha will respond to keywords regardless of the setting in which they occur. For instance:
+<p>
+<blockquote><font color="#000080">>martha, get in the shuttle
+<br>&quot;Shuttles! I hate shuttles,&quot; Aunt Martha grumbles. &quot;Give me an airplane! AIRPLANE.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">>martha, for pity's sake, do you see an airplane around here?
+<br>&quot;Those were the days,&quot; Aunt Martha agrees, plainly reliving the days when she wore a blue-and-white uniform and passed out packets of salted peanuts.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">>martha, pass me the rations
+<br>&quot;Do you think there are any peanuts in there?&quot; she asks in a wistful tone.
+</font></blockquote><p>
+<p>
+<p>This is not the stuff of which Loebner-winning chatbots are made, admittedly, but it is occasionally a useful alternative to stricter modes of command-parsing.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc311.html STYLE="text-decoration: none">Previous</a> / <a href=doc313.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

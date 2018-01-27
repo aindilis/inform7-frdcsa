@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 14.11. Understanding specified numbers</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Snip" -->
+<!-- SEARCH SECTION "Ex 250" -->
+<!-- SEARCH SORT "Ex 014-011-250" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc234.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc236.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>14.11. Understanding specified numbers</b></td></tr></table><p>
+<p>
+<p>It may be worth noting in passing that number specifications, like all other kinds of value, can be understood in typed commands. (See the chapter on Understanding for more on what can go in such square brackets.) For instance:
+<p>
+<blockquote><font color="#000080">&quot;America Stands Tall&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Oval Office is a room. Josh and Toby are men in the Oval. A height is a kind of value. 5 foot 11 specifies a height. A person has a height. Josh is 5 foot 8. Toby is 5 foot 10.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Height guessing is an action applying to one thing and one height. Understand &quot;guess [someone] is [height]&quot; as height guessing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check height guessing: if the noun is not a person, say &quot;You can only guess the height of people.&quot; instead. Carry out height guessing: if the height of the noun is the height understood, say &quot;Spot on!&quot;; if the height of the noun is greater than the height understood, say &quot;No, [the noun] is taller than that.&quot;; if the height of the noun is less than the height understood, say &quot;No, [the noun] is shorter than that.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;guess josh is 6 foot 3 / guess josh is 5 foot 9 / guess josh is 5 foot 3 / guess josh is 5 foot 8&quot;.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e363"><a href=doc235.html#e363 STYLE="text-decoration: none">***<b><b>Example</b> 250:  Snip</b></a><br>A string which can be cut into arbitrary lengths, and then tied back together.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Snip!&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Length is a kind of value. 30 inch specifies a length. 20 in specifies a length. 50 inches specifies a length.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A string is a kind of thing. A string has a length. The length of a string is usually 36 inches.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a string, say &quot;[length] piece of &quot;. Rule for printing the plural name of a string: say &quot;[length] pieces of string&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the command &quot;cut&quot; as something new. Understand &quot;cut [length] from/off [something]&quot; as trimming it by (with nouns reversed). Understand &quot;cut [something] by [length]&quot; as trimming it by. Understand the command &quot;trim&quot; as &quot;cut&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Trimming it by is an action applying to one thing and one length.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check trimming it by:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the length understood is 0 inches, say &quot;You're approaching Zeno's string at this point.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the length understood is greater than the length of the noun, say &quot;[The noun] is only [length of the noun] long to start with.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the length understood is the length of the noun, say &quot;[The noun] is already exactly [length of the noun] long.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out trimming it by:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the length of the noun is the length of the noun minus the length understood;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the other half be a random string in the string repository;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the length of the other half is the length understood;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the other half to the player.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report trimming it by:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;reset string lengths; [we will define this in a moment; it helps guarantee that our descriptions of the strings are correct when we write the output list]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You now have [a list of strings carried by the player].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;cut [something] in half&quot; as halving. Halving is an action applying to one thing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out halving:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let half measure be the length of the noun divided by 2;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the length understood is half measure;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try trimming the noun by half measure.
+</font></blockquote><p>
+<p>
+<p>This fudges slightly, since an odd-length string will be divided into uneven halves. Keeping track of fractional inches would complicate matters, though, so let's assume for now that this doesn't matter.
+<p>
+<blockquote><font color="#000080">The player carries a string.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Scissors Room is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The string repository contains 35 strings.
+</font></blockquote><p>
+<p>
+<p>Since our initial string is 36 inches long and it is impossible for the player to divide it into pieces smaller than an inch each, we need a total of 36 items to represent all the string-bits: one that the player carries at the outset, and 35 others. We should bear in mind that it is usually a good idea to use the smallest number of spare objects we can get away with: writing a game that required 1000 strings in the string repository would place silly demands on the resources of the system, so it's best to avoid that sort of thing if possible.
+<p>
+<p>Now with a bit of fiddling we can also teach Inform to recognize descriptors such as &quot;the shortest string&quot;:
+<p>
+<blockquote><font color="#000080">Ordinariness is a kind of value. The ordinarinesses are longest, medium, shortest. A string has an ordinariness. Understand the ordinariness property as referring to a string.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a string is small if its length is 2 in or less. Definition: a string is large if its length is 20 in or more.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;reset string lengths.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To reset string lengths:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let upper measure be the length of the largest visible string;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let lower measure be the length of the smallest visible string;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with item running through strings:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the ordinariness of the item is medium;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the length of the item is the upper measure, now the item is longest;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if the length of the item is the lower measure, now the item is shortest.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After reading a command:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;shorter&quot;, replace the matched text with &quot;shortest&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the player's command includes &quot;longer&quot;, replace the matched text with &quot;longest&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of tying a string to a string:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the second noun to the string repository;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the length of the noun is the length of the noun plus the length of the second noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;decrease the length of the noun by 1 inch;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You end up with [a noun], as some is taken up by the knot.&quot;
+</font></blockquote><p>
+<p>
+<p>This is still a little incomplete because we cannot refer to strings by their lengths, as in &quot;the 2 inch string&quot; and so on. To do this, we borrow a line from the chapter on Understanding:
+<p>
+<blockquote><font color="#000080">Understand the length property as referring to a string.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;trim string by 4 in / cut longer string in half / cut longest string in half / cut shortest string in half / g / g / tie longest string to shortest string / tie longest string to medium string / i / x 16 inch string / drop 8 inch string / i&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc234.html STYLE="text-decoration: none">Previous</a> / <a href=doc236.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

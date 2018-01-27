@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 23.11. A playable web page</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "A playable web page" -->
+<!-- SEARCH SECTION "23.11" -->
+<!-- SEARCH SORT "023-011-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc393.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc395.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>23.11. A playable web page</b></td></tr></table><p>
+<p>
+<p>Modern web browsers are now so powerful as computing environments that they almost amount to general-purpose computers in their own right. The websites made in the previous section were passive, and simply displayed information about a story file. But it's also possible to make a more active page - one which can play the story file, right inside the browser, for anybody who visits.
+<p>
+<p>To make such a page, we must:
+<p>
+<blockquote><font color="#000080">Release along with an interpreter.
+</font></blockquote><p>
+<p>
+<p>This automatically releases along with a website as well, since we need the website in order to house the new page, which will be called &quot;play.html&quot;. This page will be bundled up with a customised copy of a story file interpreter coded in Javascript - in effect, a program for a web browser to follow - and a suitably encoded version of the story file. The practical effect should be that anyone visiting the page with any modern browser can just play.
+<p>
+<p>Inform ships with the &quot;Parchment&quot; and &quot;Quixe&quot; interpreters built in, one intended for each of the story file formats it can output - so by default Inform uses Parchment if the format (on the project's Settings panel) is set to Z-code, and Quixe if the format is Glulx. But Inform also supports the use of any other interpreter the author wants to try (including, for instance, later versions of Parchment or Quixe than the built-in ones). If we have access to an exotic Javascript-based interpreter called, let's say, &quot;Urbzig&quot;, then we can install it by putting it into the &quot;Templates&quot; subfolder of the &quot;Materials&quot; folder for the project, and then ask for it to be used instead of &quot;Parchment&quot; like so:
+<p>
+<blockquote><font color="#000080">Release along with the &quot;Urbzig&quot; interpreter.
+</font></blockquote><p>
+<p>
+<p><hr><p><a href=doc393.html STYLE="text-decoration: none">Previous</a> / <a href=doc395.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

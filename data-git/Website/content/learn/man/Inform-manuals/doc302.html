@@ -1,0 +1,33 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.21. Constructing the status line</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Constructing the status line" -->
+<!-- SEARCH SECTION "17.21" -->
+<!-- SEARCH SORT "017-021-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc301.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc303.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.21. Constructing the status line</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> Just before input is accepted from the keyboard, Inform constructs a &quot;status line&quot; at the top of the window which is normally displayed in reverse colours (white on black instead of black on white, say).
+<p>
+<p><b>2. The default behaviour.</b> Makes the status line up out of two pieces, the &quot;left hand status line&quot; and the &quot;right hand status line&quot;. Since these can freely be changed, note that the status line is already very customisable without using rules applied to this activity.
+<p>
+<p><b>3. Examples.</b> (a) The most useful thing about this activity is that it allows us to vary descriptions in the status line. This is especially helpful to abbreviate unduly long room names, which might not otherwise fit:
+<p>
+<blockquote><font color="#000080">The Temple Of A Thousand Mightily Peeved Deities is a room. Rule for printing the name of the Temple while constructing the status line: say &quot;Temple&quot;.
+</font></blockquote><p>
+<p>
+<p>(b) Again, it's usually not necessary to apply activity rules to this, but occasionally amusing effects are possible if we do:
+<p>
+<blockquote><font color="#000080">The blindfold is wearable and carried. Rule for constructing the status line while the blindfold is worn: do nothing.
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e131"><a href=ex131.html#e131 STYLE="text-decoration: none">*<b>Example 336:  Ways Out</b></a><br>A status line that lists the available exits from the current location.<p>
+<a name="e130"><a href=ex130.html#e130 STYLE="text-decoration: none">**<b>Example 337:  Guided Tour</b></a><br>A status line that lists the available exits from the current location, changing the names of these exits depending on whether the room has been visited or not.<p>
+<p><hr><p><a href=doc301.html STYLE="text-decoration: none">Previous</a> / <a href=doc303.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

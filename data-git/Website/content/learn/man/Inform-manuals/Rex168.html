@@ -1,0 +1,51 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.10. Entering and Exiting, Sitting and Standing</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Anchorite" -->
+<!-- SEARCH SECTION "Ex 278" -->
+<!-- SEARCH SORT "Ex 006-010-278" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc37.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc39.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.10. Entering and Exiting, Sitting and Standing</b></td></tr></table><p>
+<p>
+<p>Under ordinary circumstances, Inform does not keep track of the player's posture, nor of his exact location in a room. <b>Lies</b> implements a room in which the player can lie in different positions on the floor, getting different views as a result.
+<p>
+<p>Our other examples are all modifications of the way Inform handles player movement to make better default guesses at what he wants to do: <b>Anchorite</b> adds a GET DOWN and DOWN command that work when the player is on a supporter, to accompany GET UP, GET OFF, and GET OUT (already understood). <b>Hagia Sophia</b> makes the player rise before heading in a compass direction, but only if movement in that direction is actually possible. And <b>Get Axe</b> makes the player get out of a portable container before attempting to lift it - a consideration that comes up relatively rarely, but that might pertain to inflatable rafts, beanbag chairs, and other lightweight but capacious pieces of furniture.
+<p>
+<a href=Rdoc10.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Position Within Rooms</b></font></a><i> for a box the player can push around the room and stand on in different locations</i><p><p>
+<a href=Rdoc23.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>The Human Body</b></font></a><i> for letting the player sit, stand, or lie down systematically on furniture or on the floor</i><p><p>
+<a href=Rdoc66.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Furniture</b></font></a><i> for various objects on which the player can sit or stand</i><p><p>
+<p><hr><p>
+<a name="e222"><a href=Rex222.html#e222 STYLE="text-decoration: none">*<b>Example 299:  Lies</b></a><br>Commands to allow the player to lie down in three different ways.<p>
+<!-- EXAMPLE START -->
+<a name="e168"><a href=Rdoc38.html#e168 STYLE="text-decoration: none">*<b><b>Example</b> 278:  Anchorite</b></a><br>By default, Inform understands GET OFF, GET UP, or GET OUT when the player is sitting or standing on an enterable object. We might also want to add GET DOWN and DOWN as exit commands, though:<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>With GET DOWN, we can replace the whole command, which will not interfere with the normal function of the TAKE verb, or allow the player to attempt to GET any other directions:
+<p>
+<blockquote><font color="#000080">&quot;Anchorite&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Solitary Place is a room. &quot;A glittering, shimmering desert without either locusts or honey.&quot; The pillar is an enterable supporter in the Solitary Place. &quot;The broken pillar is short enough to climb and sit on.&quot; The description of the pillar is &quot;Once it was a monument: a long frieze of battles and lion-hunts spirals up the side, in honor of an earthly king.&quot; The player is on the pillar.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;get down&quot; as exiting.
+</font></blockquote><p>
+<p>
+<p>This doesn't cover the case where the player just types &quot;DOWN&quot;, and we don't want to preempt the normal operation of the GO action here. So instead of writing a new understand instruction, we might catch this one at the action-processing level:
+<p>
+<blockquote><font color="#000080">Instead of going down when the player is on a supporter:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try exiting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;down / enter pillar / get down / down / get down&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e367"><a href=Rex367.html#e367 STYLE="text-decoration: none">*<b>Example 206:  Get Axe</b></a><br>Changing the check rules to try automatically leaving a container before attempting to take it. (And arranging things so that other people will do likewise.)<p>
+<p><hr><p><a href=Rdoc37.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc39.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

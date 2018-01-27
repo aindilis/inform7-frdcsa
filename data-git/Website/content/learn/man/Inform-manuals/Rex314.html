@@ -1,0 +1,73 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.6. Reading Matter</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "The Trouble with Printing" -->
+<!-- SEARCH SECTION "Ex 281" -->
+<!-- SEARCH SORT "Ex 009-006-281" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc72.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc74.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.6. Reading Matter</b></td></tr></table><p>
+<p>
+<p>Many things can be read, from warning notices to encyclopaedias, and a range of techniques is needed to provide them because the quantity of text, and how it presents itself, can vary so much. With a small amount of very large type, the player should not need any command at all to read the text:
+<p>
+<blockquote><font color="#000080">The road sign is in the Junction. The road sign is fixed in place. &quot;A road sign points north: 'Weston on the Green - 6'.&quot;
+</font></blockquote><p>
+<p>
+<p>If the print is smaller, or the object portable, the player will expect to use the EXAMINE command:
+<p>
+<blockquote><font color="#000080">The business card is in the Junction. The description is &quot;'Peter de S√®vres: consultant mnemonicist.'&quot;
+</font></blockquote><p>
+<p>
+<p>But if the object is a leaflet, say, EXAMINE should only describe the cover: READ would be the command a player would expect to use to get at the text itself. Inform normally defines READ to be the same command as EXAMINE, which is good for things like the business card, but counter-productive here. <b>The Trouble with Printing</b> shows how to separate these two commands, allowing any thing to have a property called its &quot;printing&quot; for text produced by READ, which will be different from its &quot;description&quot;, the text produced by EXAMINE.
+<p>
+<p>If the object is a lengthy diary, say, nobody would read it from cover to cover in a single IF turn. We might then want to allow the player to turn the pages one by one, with commands like READ PAGE 4 IN DIARY or READ THE NEXT PAGE: see <b>Pages</b>.
+<p>
+<p>If the object is an encyclopaedic reference work, the player would consult named entries: see <b>Costa Rican Ornithology</b>, which allows commands like LOOK UP QUETZAL IN GUIDE.
+<p>
+<p>Still larger sources of text often occur in IF: libraries or bookshelves, where many books are found together, and it is clumsy to write them as many individual items. One approach is to simulate an entire bookshelf with a single thing: see <b>Bibliophilia</b>. (This is much like looking up topics in a single book, except that each topic is a book in itself.) Another is to provide each book as an individual item, but have them automatically join together into a single portable collection: see <b>AARP-Gnosis</b>.
+<p>
+<p>Signs, leaflets and encyclopaedias, being printed, have a wording which will never change during play. But sometimes the player reads something which acts of its own accord. Text substitutions are usually all that is needed to achieve this:
+<p>
+<blockquote><font color="#000080">The computer display is on the desk. The description is &quot;Giant green digits read: [the time of day].&quot;
+</font></blockquote><p>
+<p>
+<p>This is easy because we know all the variations we want. But what if we want the player to write his own text, for instance, adding to a diary? This is trickier, because it means storing text as the player typed it, and replaying it later. (And suppose the player types reams and reams of text, not just a few words as we might have hoped?) <b>The Fourth Body</b> and <b>The Fifth Body</b> show how to use an external file - a multimedia trick requiring features only available if the project is set to the Glulx story file format - to handle even the most difficult cases.
+<p>
+<p><hr><p>
+<a name="e94"><a href=Rex94.html#e94 STYLE="text-decoration: none">***<b>Example 94:  Costa Rican Ornithology</b></a><br>A fully-implemented book, answering questions from a table of data, and responding to failed consultation with a custom message such as "You flip through the Guide to Central American Birds, but find no reference to penguins."<p>
+<a name="e267"><a href=Rex267.html#e267 STYLE="text-decoration: none">*<b>Example 292:  Pages</b></a><br>A book with pages that can be read by number (as in "read page 3 in...") and which accepts relative page references as well (such as "read the last page of...", "read the next page", and so on).<p>
+<a name="e32"><a href=Rex32.html#e32 STYLE="text-decoration: none">**<b>Example 313:  Bibliophilia</b></a><br>A bookshelf with a number of books, where the player's command to examine something will be interpreted as an attempt to look up titles if the bookshelf is present, but otherwise given the usual response.<p>
+<a name="e121"><a href=Rex121.html#e121 STYLE="text-decoration: none">**<b>Example 322:  AARP-Gnosis</b></a><br>An Encyclopedia set which treats volumes in the same place as a single object, but can also be split up.<p>
+<!-- EXAMPLE START -->
+<a name="e314"><a href=Rdoc73.html#e314 STYLE="text-decoration: none">*<b><b>Example</b> 281:  The Trouble with Printing</b></a><br>Making a READ command, distinct from EXAMINE, for legible objects.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;The Trouble with Printing&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing has some text called printing. The printing of a thing is usually &quot;blank&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand the command &quot;read&quot; as something new. Understand &quot;read [something]&quot; as reading. Reading is an action applying to one thing, requiring light. Check reading: if the printing of the noun is &quot;blank&quot;, say &quot;Nothing is written on [the noun].&quot; instead. Carry out reading: say &quot;You read: [printing of the noun][line break]&quot;. Report reading: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Archive is a room.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Berkeley's report is a thing in the Archive. The description is &quot;A report from Governor Sir William Berkeley of Virginia, in 1671, in answer to the queries sent by the Commissioners of Plantations the year previous. Of this report the better part is burned and only a tail fragment remains.&quot; The printing of Berkeley's report is &quot;I thank God, [italic type]there are no free schools[roman type] nor [italic type]printing[roman type], and I hope we shall not have these hundred years; for [italic type]learning[roman type] has brought disobedience, and heresy, and sects into the world, and [italic type]printing[roman type] has divulged them...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine report / read report&quot;.
+</font></blockquote><p>
+<p>
+<p>Since we defined reading as an action requiring light, we could further distinguish reading and examining (if we wanted) by writing some different visibility rules for it.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e157"><a href=Rex157.html#e157 STYLE="text-decoration: none">*<b>Example 432:  The Fourth Body</b></a><br>Notebooks in which the player can record assorted notes throughout play.<p>
+<a name="e142"><a href=Rex142.html#e142 STYLE="text-decoration: none">**<b>Example 433:  The Fifth Body</b></a><br>An expansion on the notebook, allowing the player somewhat more room in which to type his recorded remark.<p>
+<p><hr><p><a href=Rdoc72.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc74.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

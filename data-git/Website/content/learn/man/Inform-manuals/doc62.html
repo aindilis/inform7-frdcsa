@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.8. New value properties</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "New value properties" -->
+<!-- SEARCH SECTION "4.8" -->
+<!-- SEARCH SORT "004-008-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc61.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc63.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.8. New value properties</b></td></tr></table><p>
+<p>
+<p>So much for either/or properties. Now we move on to properties which have values attached. The same principles apply, but the wording is different. For example,
+<p>
+<blockquote><font color="#000080">A dead end has some text called the river sound. The river sound of a dead end is usually &quot;a faint whispering of running water&quot;. The Tortuous Alcove has river sound &quot;a gurgle of running water&quot;.
+</font></blockquote><p>
+<p>
+<p>The property &quot;river sound&quot; is now applicable only to dead ends, so we would not be allowed to talk about &quot;the river sound of the Savannah&quot;, say. Moreover, it's required to hold a piece of text. If we tried the following:
+<p>
+<blockquote><font color="#000080">The river sound of the Tortuous Alcove is 7.
+</font></blockquote><p>
+<p>
+<p>...then Inform would object, because the number 7 is the wrong kind of value to go into the &quot;river sound&quot; property. If we need a numerical property, we can try this instead:
+<p>
+<blockquote><font color="#000080">A dead end has a number called the difficulty rating. The Tortuous Alcove has difficulty rating 7.
+</font></blockquote><p>
+<p>
+<p>Suppose that we were to add:
+<p>
+<blockquote><font color="#000080">The Exquisitely Narrow Defile is a dead end.
+</font></blockquote><p>
+<p>
+<p>The Defile must have a river sound, of course, because we said that every dead end would have one. We haven't said what that river sound will be, but Inform can work it out, because we did say this:
+<p>
+<blockquote><font color="#000080">The river sound of a dead end is usually &quot;a faint whispering of running water&quot;.
+</font></blockquote><p>
+<p>
+<p>If there are no instructions at all about the value of a property, Inform fills in the default value of the appropriate kind - in this case, it would be a blank text. (A table of the kinds which can be used for properties, and their default values, can be found in the Kinds index.)
+<p>
+<p><hr><p>
+<a name="e176"><a href=ex176.html#e176 STYLE="text-decoration: none">*<b>Example 46:  Would you...?</b></a><br>Adding new properties to objects, and checking for their presence.<p>
+<a name="e361"><a href=ex361.html#e361 STYLE="text-decoration: none">**<b>Example 47:  Straw Boater</b></a><br>Using text properties that apply only to some things and are not defined for others.<p>
+<p><hr><p><a href=doc61.html STYLE="text-decoration: none">Previous</a> / <a href=doc63.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

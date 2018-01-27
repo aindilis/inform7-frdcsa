@@ -1,0 +1,183 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.4. Scoring</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Rubies" -->
+<!-- SEARCH SECTION "Ex 431" -->
+<!-- SEARCH SORT "Ex 011-004-431" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc93.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc95.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.4. Scoring</b></td></tr></table><p>
+<p>
+<p>Not every work of IF allots a numerical score to the player: for some authors, this emphasises the idea of a game rather than a narrative. The simple sentence
+<p>
+<blockquote><font color="#000080">Use no scoring.
+</font></blockquote><p>
+<p>
+<p>abolishes the concept. Otherwise, Inform will provide built-in support for a single number measuring progress (&quot;score&quot;), and will expect to measure this against a maximum possible (&quot;maximum score&quot;, which can either be set by hand or worked out automatically from a table of ranks).
+<p>
+<p>In a game in which scoring exists, the player may choose to turn score notifications (such as &quot;[Your score has just gone up by one point.]&quot;) on or off. The commands to do this are NOTIFY ON and NOTIFY OFF; the actions are called switching score notification on and switching score notification off. In the event that we need to amend the behavior of notification, we could do so by adding, removing, or modifying the elements of the check and carry out rulebooks for these commands; as in
+<p>
+<blockquote><font color="#000080">Check switching score notification off:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the turn count is less than 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are still a novice, grasshopper. Allow your teacher to give you advice until such time as you are ready to go on alone.&quot;
+</font></blockquote><p>
+<p>
+<p>If we wish to change the wording of the default message (&quot;[Your score has...&quot;), we may want to resort to extensions available from the Inform website which allow access to all the default messages in a game.
+<p>
+<p>An especially insidious style of bug allows the player to type the same sequence of commands over and over, earning score endlessly for the same insight, and to avoid this it is usually safest to write source like:
+<p>
+<blockquote><font color="#000080">After taking the Picasso miniature when the Picasso miniature is not handled:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;award 10 points; say &quot;As they say in Montmartre: dude!&quot;
+</font></blockquote><p>
+<p>
+<p>We might also write our condition with &quot;for the first time&quot;, like so:
+<p>
+<blockquote><font color="#000080">After jumping for the first time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;award 5 points;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Boing! That was certainly entertaining.&quot;
+</font></blockquote><p>
+<p>
+<p>But we should be careful not to use &quot;for the first time&quot; in scoring situations where it's possible for the player to try the action but fail. Inform counts even unsuccessful attempts towards the number of times an action is understood to have occurred, so if the player tries to jump and fails, his &quot;for the first time&quot; will be used up and he will never receive the score points.
+<p>
+<p>If there are many &quot;treasure&quot; items like the Picasso miniature, it is best to be systematic, as in <b>No Place Like Home</b>. <b>Bosch</b> takes another approach to the same idea, by creating a table of point-earning actions that the player will be rewarded for doing; the FULL SCORE command will then play these back.
+<p>
+<p><b>Mutt's Adventure</b> demonstrates how we might add a scored room feature, such that the player earns a point when he first arrives at a special room.
+<p>
+<p>A single number does not really sum up a life, or even an afternoon, and <b>Goat-Cheese and Sage Chicken</b> and <b>Panache</b> offer more detailed citations. Works that are more story than game may prefer to offer a plot summary of the player's experience to date in lieu of more conventional scoring.
+<p>
+<p>Finally, <b>Rubies</b> provides a scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next.
+<p>
+<p><hr><p>
+<a name="e278"><a href=Rex278.html#e278 STYLE="text-decoration: none">***<b>Example 137:  No Place Like Home</b></a><br>Recording a whole table of scores for specific treasures.<p>
+<a name="e43"><a href=Rex43.html#e43 STYLE="text-decoration: none">*<b>Example 219:  Bosch</b></a><br>Creating a list of actions that will earn the player points, and using this both to change the score and to give FULL SCORE reports.<p>
+<a name="e257"><a href=Rex257.html#e257 STYLE="text-decoration: none">**<b>Example 136:  Mutt's Adventure</b></a><br>Awarding points for visiting a room for the first time.<p>
+<a name="e92"><a href=Rex92.html#e92 STYLE="text-decoration: none">***<b>Example 269:  Goat-Cheese and Sage Chicken</b></a><br>Implementing a FULL SCORE command which lists more information than the regular SCORE command, adding times and rankings, as an extension of the example given in this chapter.<p>
+<a name="e281"><a href=Rex281.html#e281 STYLE="text-decoration: none">***<b>Example 166:  Panache</b></a><br>Replacing the score with a plot summary that records the events of the plot, scene by scene.<p>
+<!-- EXAMPLE START -->
+<a name="e331"><a href=Rdoc94.html#e331 STYLE="text-decoration: none">***<b><b>Example</b> 431:  Rubies</b></a><br>A scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next, adding the player's name if he has done well enough.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>The trick here is that we need a table with indexed text in order to keep track of the players' names.
+<p>
+<p>Part 1 largely replicates the source from &quot;Identity Theft&quot;; new material starts at Part 2.
+<p>
+<blockquote><font color="#000080"> &quot;Rubies&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Part 1 - Collecting Names
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player's forename is an indexed text that varies. The player's full name is an indexed text that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;What is your name? > &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether collecting names:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the command prompt is &quot;What is your name? > &quot;, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After reading a command when collecting names:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of words in the player's command is greater than 5:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[paragraph break]Who are you, a member of the British royal family? No one has that many names. Let's try this again.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player's full name is the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player's forename is word number 1 in the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;>&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Hi, [player's forename]!&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[banner text]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of looking when collecting names: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the banner text when collecting names: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for constructing the status line when collecting names: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Part 2 - Adding the Leaderboard
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">File of Leaderboard is called &quot;leaderboard&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the File of Leaderboard exists:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;read File of Leaderboard into the Table of Leaders;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sort the Table of Leaders in reverse scored amount order.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play ends:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row 10 in the Table of Leaders; [we've sorted the table, so the lowest score will be the one at the bottom]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the score is greater than scored amount entry:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now name entry is the player's forename;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;now the scored amount entry is the score;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;show leaderboard;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;write the File of Leaderboard from the Table of Leaders.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To show leaderboard:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;sort the Table of Leaders in reverse scored amount order;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Current leading scores: [paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say fixed letter spacing;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through Table of Leaders:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if scored amount entry is greater than 0:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;  [name entry]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let N be 25 minus the number of characters in name entry; [here we want to space out the scores so they make a neat column]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if N is less than 1, now N is 1;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say N spaces;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[scored amount entry][line break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say variable letter spacing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To say (N - a number) spaces:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with index running from 1 to N:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot; &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Leaders
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">scored amount</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">name (indexed text)</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">0</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">&quot;Smithee&quot;</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>And now we introduce a scenario that allows different players to come up with different scores -- admittedly not a very interesting scenario, but it will do for now:
+<p>
+<blockquote><font color="#000080">Part 3 - Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out taking something which is not handled:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increment score.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Big Treasure Chamber is a room. It contains a ruby, an emerald, a gold tooth, an antique katana, and a silver coin.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of waiting, end the story finally.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get ruby / z&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=Rdoc93.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc95.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

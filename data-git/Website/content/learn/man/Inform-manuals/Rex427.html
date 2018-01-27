@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 3.5. Doors, Staircases, and Bridges</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Whither?" -->
+<!-- SEARCH SECTION "Ex 309" -->
+<!-- SEARCH SORT "Ex 003-005-309" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc11.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc13.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>3.5. Doors, Staircases, and Bridges</b></td></tr></table><p>
+<p>
+<p>Inform's &quot;door&quot; kind provides for a tangible thing which comes between one room and another. A door can be open or closed, and openable or not: it can be locked or unlocked, and lockable or not. Here we create a conventional door, a natural gap in the rocks, and a (fixed in place) wooden ladder:
+<p>
+<blockquote><font color="#000080">The fire door is an open door. The fire door is east of the Projection Booth and west of the Fire Escape.
+<br>The narrow crevice is an open unopenable door. The crevice is east of the Col du Prafleuri and west of Rocky Knoll Above Arolla.
+<br>The wooden ladder is an open unopenable door. The ladder is above the Stableyard and below the Hay Loft.
+</font></blockquote><p>
+<p>
+<p>Most doors are visible from both sides: they are single objects but present in two rooms at once, which raises a number of complications. Inform normally uses the same description looking from each way, which is not very interesting: <b>When?</b> and <b>Whence?</b> demonstrate neat ways to describe the two sides differently, and <b>Whither?</b> adds the option for the player to refer to doors as &quot;the west door&quot; and &quot;the east door&quot; automatically.
+<p>
+<p><b>Neighbourhood Watch</b> goes further by making a door behave differently on each side: from the &quot;outside&quot; you need a key, but &quot;inside&quot; it opens on a latch. Finally, <b>Garibaldi 1</b> shows how to access information about the two sides of a door.
+<p>
+<p><b>Higher Calling</b> demonstrates doors which automatically open as needed: though using the Inform extension Locksmith by Emily Short is probably easier and better. <b>Elsie</b>, conversely, demonstrates a door that closes one turn after the player has opened it.
+<p>
+<p>Certain complications apply when characters other than the player have to see and interact with doors that exist in other rooms. <b>Wainwright Acts</b> demonstrates the syntax needed to handle this technically quirky situation.
+<p>
+<p><b>Something Narsty</b> and <b>Hayseed</b> provide a &quot;staircase&quot; kind useful for vertically arranged, always-open doors like staircases and (fixed in place) ladders.
+<p>
+<p><b>One Short Plank</b> implements a precarious plank bridge across a chasm as an open unopenable door.
+<p>
+<a href=Rdoc13.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Windows</b></font></a><i> for climbing through a window from one room to another</i><p><p>
+<a href=Rdoc85.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Ropes</b></font></a><i> for portable connections between rooms, much of the development of which could be adapted to handle portable ladders. &quot;Doors&quot; are never allowed to move</i><p><p>
+<a href=Rdoc89.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Magic (Breaking the Laws of Physics)</b></font></a><i> for a hat that lets the player walk through closed doors</i><p><p>
+<a href=Rdoc31.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Modifying Existing Commands</b></font></a><i> for ways to allow the player to unlock with a key he isn't currently holding</i><p><p>
+<p><hr><p>
+<a name="e107"><a href=Rex107.html#e107 STYLE="text-decoration: none">*<b>Example 63:  When?</b></a><br>A door whose description says "...leads east" in one place and "...leads west" in the other.<p>
+<a name="e18"><a href=Rex18.html#e18 STYLE="text-decoration: none">***<b>Example 65:  Whence?</b></a><br>A kind of door that always automatically describes the direction it opens and what lies on the far side (if that other room has been visited).<p>
+<!-- EXAMPLE START -->
+<a name="e427"><a href=Rdoc12.html#e427 STYLE="text-decoration: none">*<b><b>Example</b> 309:  Whither?</b></a><br>A door whose description says where it leads; and which automatically understands references such as "the west door" and "the east door" depending on which direction it leads from the location.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Here we expand on the simple examples When? and Whence?; this time we want the player to be able to refer to doors by their directions, as in &quot;the west door&quot; when the door in question does in fact lead west.
+<p>
+<blockquote><font color="#000080">&quot;Whither?&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The temporal vortex is an open door. It is west of Yesterday and east of Today.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The initial appearance of a door is usually &quot;Nearby [an item described] leads [if the other side of the item described is visited][direction of the item described from the location] to [the other side][otherwise][direction of the item described from the location][end if].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Direction-relevance relates a door (called X) to a direction (called Y) when the direction of X from the location is Y. The verb to be directionally-relevant to implies the direction-relevance relation.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;[something related by direction-relevance] door&quot; as a door.
+</font></blockquote><p>
+<p>
+<p>As an added touch, we respond also to the case where the player postulates a door in some direction when there is no such thing at the moment:
+<p>
+<blockquote><font color="#000080">Rule for printing a parser error when the player's command includes &quot;[non-door direction] door&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;There is no door in that direction.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Definition: a direction (called direction D) is non-door:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;let the target be the room-or-door direction D from the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the target is a door:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;yes;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;examine west door / x east door / w / x w door / x e door / tie me to the west door / tie the west door to me / push the west door east / push the east door west&quot;.
+</font></blockquote><p>
+<p>
+<p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e108"><a href=Rex108.html#e108 STYLE="text-decoration: none">*<b>Example 128:  Higher Calling</b></a><br>All doors in the game automatically attempt to open if the player approaches them when they are closed.<p>
+<a name="e119"><a href=Rex119.html#e119 STYLE="text-decoration: none">**<b>Example 150:  Elsie</b></a><br>A door that closes automatically one turn after the player opens it.<p>
+<a name="e101"><a href=Rex101.html#e101 STYLE="text-decoration: none">**<b>Example 23:  Neighborhood Watch</b></a><br>A locked door that can be locked or unlocked without a key from one side, but not from the other.<p>
+<a name="e161"><a href=Rex161.html#e161 STYLE="text-decoration: none">***<b>Example 21: Garibaldi 1</b></a><br>Providing a security readout device by which the player can check on the status of all doors in the game.<p>
+<a name="e409"><a href=Rex409.html#e409 STYLE="text-decoration: none">*<b>Example 236:  Wainwright Acts</b></a><br>A technical note about checking the location of door objects when characters other than the player are interacting with them.<p>
+<a name="e352"><a href=Rex352.html#e352 STYLE="text-decoration: none">*<b>Example 43:  Something Narsty</b></a><br>A staircase always open and never openable.<p>
+<a name="e353"><a href=Rex353.html#e353 STYLE="text-decoration: none">*<b>Example 89:  Hayseed</b></a><br>A refinement of our staircase kind which can be climbed.<p>
+<a name="e292"><a href=Rex292.html#e292 STYLE="text-decoration: none">**<b>Example 106:  One Short Plank</b></a><br>A plank bridge which breaks if the player is carrying something when he goes across it. Pushing anything over the bridge is forbidden outright.<p>
+<p><hr><p><a href=Rdoc11.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc13.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

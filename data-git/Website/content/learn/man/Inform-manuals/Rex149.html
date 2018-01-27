@@ -1,0 +1,61 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 10.4. Glass and Other Damage-Prone Substances</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Terracottissima" -->
+<!-- SEARCH SECTION "Ex 302" -->
+<!-- SEARCH SORT "Ex 010-004-302" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc82.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc84.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>10.4. Glass and Other Damage-Prone Substances</b></td></tr></table><p>
+<p>
+<p>Just as Inform normally assumes everything is solid, it also assumes that these solid objects will not buckle, crack, break or deform under pressure, and cannot be fragmented. But breakability adds realism, and breakage need not be negative: sometimes we want the player to break her way in to something.
+<p>
+<p>In IF the word DROP is more often used to mean &quot;put down&quot; or &quot;leave behind&quot; than &quot;let go from a height&quot;: so it is perhaps unfair that in <b>Ming Vase</b> something fragile, when dropped, shatters (into nothing). In <b>Spring Cleaning</b>, fragile objects must be explicitly attacked by the player in order to break, and although they leave no tangible debris behind, their loss is at least remembered. <b>Kyoto</b> provides a general-purpose model for things being thrown at other things, with consequences including things moving (even between rooms) as well as breaking each other.
+<p>
+<p>Debris from breakages is to be avoided if possible because it means keeping track of increasing numbers of objects. But we can increase realism by allowing something to have a visibly &quot;broken&quot; state, which it changes to when it breaks, rather than simply vanishing. <b>Terracottissima</b> provides for broken and unbroken flowerpots in this way.
+<p>
+<p>Since &quot;part of&quot; allows us to have two objects joined together into what the player sees as one, it also gives us a natural seam which allows the whole to be broken back down into its component parts, and this is the neatest way of providing a breakage into pieces. <b>Paddington</b> demonstrates a cutting action which allows component parts to be cut away from their holders but will only make small surface gashes in any individual thing: so the player can cut something up, but only into the pieces we specifically choose to allow. Cutting also forces an opening into containers.
+<p>
+<a href=Rdoc51.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Combat and Death</b></font></a><i> for a robot that breaks into its component limbs when shot with a blaster</i><p><p>
+<a href=Rdoc61.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Goal-Seeking Characters</b></font></a><i> for a character who eats donuts, leaving crumbs on the floor</i><p><p>
+<a href=Rdoc84.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Volume, Height, Weight</b></font></a><i> for containers breaking under the weight of their contents</i><p><p>
+<a href=Rdoc85.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Ropes</b></font></a><i> for cutting up string into up to 35 different pieces of different lengths - a limit the player is unlikely to find out about, but a limit all the same, and an expensive solution since we need 35 different things for the &quot;debris&quot; when string is &quot;broken&quot;</i><p><p>
+<p><hr><p>
+<a name="e158"><a href=Rex158.html#e158 STYLE="text-decoration: none">*<b>Example 97:  Ming Vase</b></a><br>ATTACK or DROP break and remove fragile items from play.<p>
+<a name="e351"><a href=Rex351.html#e351 STYLE="text-decoration: none">*<b>Example 123:  Spring Cleaning</b></a><br>A character who sulks over objects that the player has broken (and which are now off-stage).<p>
+<a name="e375"><a href=Rex375.html#e375 STYLE="text-decoration: none">**<b>Example 387:  Kyoto</b></a><br>Expanding the effects of the THROW something AT something command so that objects do make contact with one another.<p>
+<!-- EXAMPLE START -->
+<a name="e149"><a href=Rdoc83.html#e149 STYLE="text-decoration: none">**<b><b>Example</b> 302:  Terracottissima</b></a><br>The flowerpots once again, but this time arranged so that after the first breakage all undamaged pots are said to be "unbroken", to distinguish them from the others.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>This easiest way to do this uses the &quot;printing the name of&quot; activity, which will come up in the following chapter:
+<p>
+<blockquote><font color="#000080">&quot;Terracottissima&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A flowerpot is a kind of thing. Understand &quot;pot&quot; as a flowerpot.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A flowerpot can be unbroken or broken. After dropping an unbroken flowerpot: say &quot;Crack!&quot;; now the noun is broken. Understand the broken property as describing a flowerpot.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the name of a broken flowerpot, say &quot;broken &quot;. Before printing the name of an unbroken flowerpot: if a flowerpot is broken, say &quot;unbroken &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before printing the plural name of a broken flowerpot, say &quot;broken &quot;. Before printing the plural name of an unbroken flowerpot: if a flowerpot is broken, say &quot;unbroken &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Herb Garden is a room. In the Herb Garden are ten unbroken flowerpots.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;get three flowerpots / drop all / look&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e279"><a href=Rex279.html#e279 STYLE="text-decoration: none">**<b>Example 195:  Paddington</b></a><br>A CUT [something] WITH [something] command which acts differently on different types of objects.<p>
+<p><hr><p><a href=Rdoc82.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc84.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

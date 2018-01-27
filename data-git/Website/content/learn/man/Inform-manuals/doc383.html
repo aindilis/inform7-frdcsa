@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 22.14. Exchanging files with other programs</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Exchanging files with other programs" -->
+<!-- SEARCH SECTION "22.14" -->
+<!-- SEARCH SORT "022-014-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc382.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc384.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>22.14. Exchanging files with other programs</b></td></tr></table><p>
+<p>
+<p>Provided we declare the files in the right way, it is easy for one project to read a file created by another project.
+<p>
+<p>But if we want more rapid communication, between two projects which are each playing at the same time, we need to be more careful. What if project A tries to read the file at the same moment that project B is writing it?
+<p>
+<p>To avoid this, we have a concept of files being &quot;ready&quot;. A file is ready if it exists, and is completely written, and not in use elsewhere. We have already seen:
+<p>
+<blockquote><font color="#000080">if the file of Invariants exists...
+</font></blockquote><p>
+<p>
+<p>But now we want a stronger condition:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><i>if</i> <b>ready to read </b>(external file)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_fileready -->
+
+<p>This condition is true if the file exists and is marked as being ready to read; that is, it is not in a state where another program is currently writing it. Example:
+<p>
+<blockquote><font color="#000080">if ready to read the file of Invariants, ...
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>A file cannot be ready to read if it does not exist, so this is a stronger condition. If A and B are attempting communication in real time, both running at once, then Project A should check that an external file owned by B is ready before it tries to read it. Files can also be marked as ready or not ready, in effect claiming them, thus:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>mark </b>(external file)<b> as ready to read</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_markfileready -->
+
+<p>This phrase marks that we have finished writing to the given file, so that any external program is welcome to read it now. Example:
+<p>
+<blockquote><font color="#000080">mark the file of Invariants as ready to read;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>mark </b>(external file)<b> as not ready to read</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_markfilenotready -->
+
+<p>This phrase marks that we are about to start writing to the given file, so that any external program should wait until we're finished if it wants to read the file. Example:
+<p>
+<blockquote><font color="#000080">mark the file of Invariants as not ready to read;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Possibilities really begin to open up when project A is our story file, but B is not another story file at all: it is some external program such as a Web service, say. (Of course this is harder to set up, since the player needs to have both A and B running at the same time, but for games running on an Internet server this can all be made seamless.)
+<p>
+<p>When Inform begins writing a table, or text, to a file, it initially marks the file as not ready: only when the table or text is completely written and the file about to close is the file marked as ready.
+<p>
+<p>In order to write non-story-file programs as B, communicating with story files as A, we need to know the file format used by Inform. An Inform file is currently a Unix text file (with 10 as the line division character), encoded as ASCII Latin-1. (We would like to use Unicode at some point in the future, but the Glk and Glulx layers are still not fully converted to Unicode.) It opens with a single header line in the form:
+<p>
+<blockquote><font color="#000080">* //IFID// leafname
+</font></blockquote><p>
+<p>
+<p>The opening character is an asterisk if the file is currently ready, a hyphen if the file is currently not ready. The IFID between the slashes is the IFID number of the project which last wrote to the file. (Marking &quot;ready&quot; or &quot;not ready&quot; does not count as a write for this purpose.) If an external program wrote the file, it should call itself something which will not clash with any story file's IFID. The leafname is the filename text used inside the story file where the file was declared. For instance:
+<p>
+<blockquote><font color="#000080">* //4122DDA8-A153-46BC-8F57-42220F9D8795// ice
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e330"><a href=ex330.html#e330 STYLE="text-decoration: none">***<b>Example 434:  Flathead News Network</b></a><br>Using external files, together with a simple Unix script running in the background, to provide live news headlines inside a story file.<p>
+<p><hr><p><a href=doc382.html STYLE="text-decoration: none">Previous</a> / <a href=doc384.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

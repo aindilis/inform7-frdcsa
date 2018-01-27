@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 15.6. Repeating through tables</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Repeating through tables" -->
+<!-- SEARCH SECTION "15.6" -->
+<!-- SEARCH SORT "015-006-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc245.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc247.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>15.6. Repeating through tables</b></td></tr></table><p>
+<p>
+<p>We very often want to run through a table doing something to, or with, each row in turn, so a special loop is provided for this. Rather than having to write all this out:
+<p>
+<blockquote><font color="#000080">To list the succession:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The Succession List runs as follows...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat with N running from 1 to the number of rows in the Table of Recent Monarchs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;choose row N in the Table of Recent Monarchs;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[accession entry]: [name entry] ([family entry]).&quot;
+</font></blockquote><p>
+<p>
+<p>We can simply use this instead:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>repeat through </b>(table name)<b></b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_repeattable -->
+
+<p>This phrase causes the block of phrases following it to be repeated once for each row in the given table, choosing each row in turn, from top to bottom. Blank rows are skipped. Example:
+<p>
+<blockquote><font color="#000080">To list the succession:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;The Succession List runs as follows...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Recent Monarchs:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[accession entry]: [name entry] ([family entry]).&quot;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>Note that there is no loop variable here, unlike in other forms of &quot;repeat&quot;, because it's the choice of row which keeps track of how far we have got.
+<p>
+<p>We can alternatively go backwards:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>repeat through </b>(table name)<b> in reverse order</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_repeattablereverse -->
+
+<p>This phrase causes the block of phrases following it to be repeated once for each row in the given table, choosing each row in turn, from bottom to top. Blank rows are skipped.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>More often we want a sequence which is neither forwards nor backwards, but which depends on the actual values in the table.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>repeat through </b>(table name)<b> in </b>(table column)<b> order</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_repeattablecol -->
+
+<p>This phrase causes the block of phrases following it to be repeated once for each row in the given table, choosing each row in turn, in order of the values in the given column. Blank rows are skipped. Example:
+<p>
+<blockquote><font color="#000080">repeat through the Table of Recent Monarchs in name order: ...
+<br>repeat through the Table of Recent Monarchs in accession order: ...
+</font></blockquote><p>
+<p>
+<p>work through the same table in rather different orders. The sequence is lower to higher (small numbers to high numbers, A to Z, and so on); insert &quot;reverse&quot; after &quot;in&quot; to reverse this.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>repeat through </b>(table name)<b> in reverse </b>(table column)<b> order</b><i>:</i><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_repeattablecolreverse -->
+
+<p>This phrase causes the block of phrases following it to be repeated once for each row in the given table, choosing each row in turn, in order of the values in the given column. Blank rows are skipped. Example:
+<p>
+<blockquote><font color="#000080">repeat through the Table of Recent Monarchs in reverse name order: ...
+<br>repeat through the Table of Recent Monarchs in reverse accession order: ...
+</font></blockquote><p>
+<p>
+<p>work through the same table in rather different orders. The sequence is higher to lower (high numbers to small numbers, Z to A, and so on); delete the &quot;reverse&quot; after &quot;in&quot; to reverse this.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p>In a loop like this, the data is not searched very efficiently, which is fine for modest-sized tables like the examples in this chapter, but might be a problem for much larger tables: see the later section on sorting.
+<p>
+<p>These definitions mentioned blankness several times, and that's the topic to cover in the next section.
+<p>
+<a href=doc251.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Sorting</b></font></a><i> for reordering a table to put it into increasing or decreasing order of the entries in any column</i><p><p>
+<p><hr><p>
+<a name="e258"><a href=ex258.html#e258 STYLE="text-decoration: none">**<b>Example 261: Port Royal 4</b></a><br>A cell window through which the player can see people who were in Port Royal in the current year of game-time.<p>
+<p><hr><p><a href=doc245.html STYLE="text-decoration: none">Previous</a> / <a href=doc247.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

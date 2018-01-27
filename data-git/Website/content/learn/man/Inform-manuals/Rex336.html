@@ -1,0 +1,146 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.12. Cameras and Recording Devices</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "If It Hadn't Been For..." -->
+<!-- SEARCH SECTION "Ex 262" -->
+<!-- SEARCH SORT "Ex 009-012-262" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc78.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc80.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.12. Cameras and Recording Devices</b></td></tr></table><p>
+<p>
+<p>Recording what is going on, for later playing back or examination, is difficult because the range of situations is very complex. Exactly how much information should we store when we make a recording, and will this require problematically large tables? Will it be difficult even to do at all?
+<p>
+<p>The usual approach is to record only basic details of events or situations. In <b>If It Hadn't Been For...</b> the tape recorder preserves only a few different sounds - footsteps, creaking, rustling - rather than capturing exactly the sound of every action taking place in earshot. In <b>Claims Adjustment</b>, we can take up to 36 Polaroid-style photographs, but each is described only by saying what it is a photo of. Thus we can have a photograph of a vase, or even a photograph of a photograph of a vase (because that too is a thing), but not a photograph of a still life in which several items have been gathered together by the player. That would ordinarily require too much storage.
+<p>
+<p>A similar trick, though involving impromptu sculpture rather than photography, can be found in <b>Originals</b>. (The artist magically &quot;manifests&quot; these models rather than sculpting the conventional way in order to avoid the nuisance of carrying around raw materials - wax maquettes and so forth - which would clutter up the example.)
+<p>
+<p>If we rely on indexed text, however, we can store arbitrary descriptions. <b>Mirror, Mirror</b> provides a perfect visual recorder: it remembers a room description exactly as the player saw it at the time.
+<p>
+<p><b>Actor's Studio</b> provides a video camera that records and time stamps all actions performed in its presence while it is set to record.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e336"><a href=Rdoc79.html#e336 STYLE="text-decoration: none">*<b><b>Example</b> 262:  If It Hadn't Been For...</b></a><br>A sound recording device that records the noises made by player and non-player actions, then plays them back on demand.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>We start out by giving ourselves a capacious recording device:
+<p>
+<blockquote><font color="#000080">&quot;If It Hadn't Been For...&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The digital recorder is a device. The description is &quot;A noise-activated recorder, which time-stamps each recording segment. It has space for about 60 short recordings.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the digital recorder is switched on and the number of blank rows in the Table of Recorded Content is 0, now the recorder is switched off.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Recorded Content
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">time stamp</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">sound</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">a time</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">some text</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">with 60 blank rows.</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<p>And most of what follows is attaching sounds to various events. (We could have made noises associated with all the actions, but for simplicity we stuck to a few.)
+<p>
+<p>The thing to note here is that the recording happens as part of Carry out, not as part of Report, so sounds will be recorded even when they are the result of non-player action when the player is not even in the room.
+<p>
+<blockquote><font color="#000080">Carry out opening something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking noise, as of something being opened.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone opening something when the switched on recorder can see the noun:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking noise, as of something being opened.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out closing something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking followed by a slam.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone closing something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;A creaking followed by a slam.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone going to a room (called destination) in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the destination is the holder of the recorder, record &quot;Footsteps, growing louder.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise record &quot;Footsteps, fading out.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out going to a room (called destination) in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the destination is the holder of the recorder, record &quot;Footsteps, growing louder.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise record &quot;Footsteps, fading out.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone eating something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;Loud uncouth chewing sounds.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out eating something in the presence of the switched on recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;record &quot;Distant muffled chewing sounds.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To record (noise - some text):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of blank rows in the Table of Recorded Content is 0, rule succeeds;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose a blank row in the Table of Recorded Content;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now time stamp entry is the time of day;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now sound entry is noise.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;play [something]&quot; as listening.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of listening to the recorder:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of filled rows in the Table of Recorded Content is 0, say &quot;The recorder remains blank.&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;repeat through the Table of Recorded Content:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[line break][time stamp entry]: [sound entry]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say paragraph break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Haunted House is a room. The squeaky cupboard is an openable enterable closed fixed in place container in the House. The ghost is a man in the cupboard. The Lawn is outside from the Haunted House.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of opening the closed cupboard when the ghost is in the cupboard: say &quot;The cupboard stubbornly refuses to open.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Every turn when the player is not in the House:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the ghost is in the cupboard:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try the ghost exiting;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise if the cupboard is open:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try the ghost closing the cupboard.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone exiting when the person asked is in a closed container (called the trap):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the person asked opening the trap.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before someone entering a closed container: try the person asked opening the noun.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Before going to the House when the House contains the ghost:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the ghost entering the cupboard;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;try the ghost closing the cupboard.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries the recorder, chips, and a sandwich. The sandwich is edible. The chips are edible.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out someone eating the chips in the presence of the switched on recorder: record &quot;An incredible racket of a packet being opened.&quot; Carry out eating the chips in the presence of the switched on recorder: record &quot;An incredible racket of a packet being opened.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;open cupboard / drop recorder / switch it on / eat chips / out / wait / wait / wait / in / switch recorder off / play recorder&quot;.
+</font></blockquote><p>
+<p>
+<p>Now we're at liberty to record evidence of the ghost getting out of the cupboard and getting back in, while we ourselves stand about on the lawn.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e82"><a href=Rex82.html#e82 STYLE="text-decoration: none">**<b>Example 311:  Claims Adjustment</b></a><br>An instant camera that spits out photographs of anything the player chooses to take a picture of.<p>
+<a name="e275"><a href=Rex275.html#e275 STYLE="text-decoration: none">*<b>Example 355:  Originals</b></a><br>Allowing the player to create models of anything in the game world; parsing the name "model [thing]" or even just "[thing]" to refer to these newly-created models; asking "which do you mean, the model [thing] or the actual [thing]" when there is ambiguity.<p>
+<a name="e248"><a href=Rex248.html#e248 STYLE="text-decoration: none">*<b>Example 406:  Mirror, Mirror</b></a><br>The sorcerer's mirror can, when held up high, form an impression of its surroundings which it then preserves.<p>
+<a name="e1"><a href=Rex1.html#e1 STYLE="text-decoration: none">**<b>Example 221:  Actor's Studio</b></a><br>A video camera that records actions performed in its presence, and plays them back with time-stamps.<p>
+<p><hr><p><a href=Rdoc78.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc80.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

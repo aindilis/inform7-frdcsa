@@ -1,0 +1,126 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.5. Examining</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Crusoe" -->
+<!-- SEARCH SECTION "Ex 324" -->
+<!-- SEARCH SORT "Ex 006-005-324" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc32.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc34.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.5. Examining</b></td></tr></table><p>
+<p>
+<p>By default, examining an object shows its description, and - for devices - tells us whether the object is switched on or switched off.
+<p>
+<p>This kind of additional information is not always what we want, so if we have a device whose on/off status we want to conceal, we may write
+<p>
+<blockquote><font color="#000080">The examine described devices rule is not listed in any rulebook.
+</font></blockquote><p>
+<p>
+<p>On the other hand, there are times when we may want to add a similar line or two to the descriptions of other kinds of objects. <b>Waxwork</b> shows how to make containers and supporters automatically list everything they're holding when examined, while <b>Crusoe</b> allows us to append an &quot;It is charred.&quot; sentence to the end of descriptions of things we have burned in the fire. Since it works by introducing a &quot;printing the description&quot; activity, Crusoe is also a good example to start from if we want to introduce more complex, flexible descriptions of items throughout our game.
+<p>
+<p><b>Odin</b> rewrites the &quot;You see nothing special...&quot; line with other text of our own, for items that otherwise do not have a description.
+<p>
+<p>Finally, we may want to look at multiple things at once. <b>The Left Hand of Autumn</b> demonstrates how we might provide a different response for EXAMINE PAINTINGS than for examining each individually; <b>Beekeeper's Apprentice</b> provides a SEARCH command that will show the descriptions of all the scenery in the current location.
+<p>
+<a href=Rdoc43.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Actions on Multiple Objects</b></font></a><i> for an alternative EXAMINE ALL command</i><p><p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e99"><a href=Rdoc33.html#e99 STYLE="text-decoration: none">***<b><b>Example</b> 324:  Crusoe</b></a><br>Adding a "printing the description of something" activity.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to add rules so that any time we examine a charred object (and most of our objects can be charred), a line about the charring is appended to the end of the object description. We could use &quot;after examining...&quot;, but perhaps we would prefer for the sentence about the charring not to appear in its own paragraph.
+<p>
+<p>This is an ideal occasion for a new activity. We look at the action index for &quot;examining&quot; to identify the rule that causes the old behavior (in this case, the &quot;standard examining rule&quot;); replace this with a new rule that calls our activity; and write our &quot;printing the description&quot; activity in such a way that it uses an object's description without forcing a paragraph return afterward.
+<p>
+<p>Then we will use &quot;after printing the description&quot; to add our line about charring, and make sure that the paragraph return does occur before the prompt.
+<p>
+<p>So:
+<p>
+<blockquote><font color="#000080">&quot;Crusoe&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 1 - Creating our New Activity
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The fancy examining rule is listed instead of the standard examining rule in the carry out examining rules.
+</font></blockquote><p>
+<p>
+<p>This instruction replaces a normal piece of the examine action, the standard examining rule, with another one of our own devising. (The replacement of the standard examining rule will be explained in more detail in the chapter on rulebooks.)
+<p>
+<blockquote><font color="#000080">Printing the description of something is an activity.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">This is the fancy examining rule:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;carry out the printing the description activity with the noun;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;rule succeeds.
+</font></blockquote><p>
+<p>
+<p>All we have done here is enclose what is usually just a rule inside an activity. This means that we can now write before and after rules for the activity, and also add special instructions like &quot;Rule for printing the name of something while printing the description of something&quot; -- this may not be likely to arise often, but Inform now has the concept of &quot;printing the description of something&quot; as a separate context of action. Next we add the modification that lets us append to the description without a new line:
+<p>
+<blockquote><font color="#000080">Rule for printing the description of something (called item):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the description of the item is not &quot;&quot;:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[description of item] [run paragraph on]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;otherwise:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You see nothing special about [the item]. [run paragraph on]&quot;.
+</font></blockquote><p>
+<p>
+<p>&quot;run paragraph on&quot; here will mean that we do not get a paragraph break following the description, even if it ends with a period. We also insert a space, so that our follow-on comments will be properly punctuated.
+<p>
+<blockquote><font color="#000080">After printing the description of something charred:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;It is charred.&quot; instead.
+</font></blockquote><p>
+<p>
+<p>The instead at the end of this line stops Inform for going on with any other &quot;after printing the description of...&quot; rules.
+<p>
+<p>The standard library also has rules for printing additional text about containers and supporters with visible contents, and devices that are switched on; with this current system, we could add those as &quot;after printing the description&quot; rules as well, building up a complete paragraph if we wanted. But for simplicity we won't exemplify all of that here. The effects would be much the same as with the &quot;charred&quot; line.
+<p>
+<p>Now, because we want to make sure that we always do get a paragraph break after our description, we add this rule last after all the other rules. &quot;Last&quot; and &quot;first&quot; rules are covered in more detail in the chapter on rulebooks.
+<p>
+<blockquote><font color="#000080">Last after printing the description of something:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say paragraph break.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Section 2 - The Scenario
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Desert Isle is a room. &quot;A pale expanse of sand, here and there developing into hillocks of grass, and a small clump of palms. The water is shallow here, and there are other islands within swimming distance -- or even wading distance, perhaps -- but none of them is any larger than your island, so it doesn't seem worth the trouble of visiting.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A few hundred feet out, the water turns darker blue, the sea floor drops away, and there is nothing to be seen all the way down to the horizon, except a couple of fluffy clouds, and an occasional bird.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The remains of your fire smolder in the stone-lined pit.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">A thing can be charred or whole. A thing is usually whole. Instead of burning something: say &quot;You hold [the noun] to the fire until it flares and chars.&quot;; now the noun is charred.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a stick. The description of the stick is &quot;A strip of palm from the woodiest part of the leaf, about a foot and a half long.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a glass bottle and a piece of paper. The description of the paper is &quot;A single blank sheet.&quot; In the glass bottle is a grain of sand. The glass bottle is openable and open. Instead of burning the glass bottle: say &quot;You hold the bottle to the flame, but it grows uncomfortably warm.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of burning the grain of sand: say &quot;You drop the grain into the fire pit, where it becomes indistinguishable from all the others.&quot;; remove the grain of sand from play. Instead of dropping the grain of sand: remove the grain of sand from play; say &quot;You return the grain of sand to its brethren.&quot;
+</font></blockquote><p>
+<p>
+<p>The player's description is handled in an unusual way, and this will produce a space paragraph break there where it should not. Instead, therefore, we will add an instead for examining the player (probably a good idea anyway):
+<p>
+<blockquote><font color="#000080">Instead of examining the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are sunburned and there is sand in cracks you didn't know existed.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;i / x stick / x bottle / x sand / x paper / x me / burn stick / x stick / burn paper / x paper&quot;.
+</font></blockquote><p>
+<p>
+<p>The &quot;printing a description&quot; activity may be useful for other games, and can be imported just by lifting section 1.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e270"><a href=Rex270.html#e270 STYLE="text-decoration: none">*<b>Example 42:  Odin</b></a><br>Replacing "You see nothing special..." with a different default message for looking at something nondescript.<p>
+<a name="e219"><a href=Rex219.html#e219 STYLE="text-decoration: none">***<b>Example 284:  The Left Hand of Autumn</b></a><br>The possibility of using a [things] token opens up some interesting complications, because we may want actions on multiple items to be reported differently from actions on just one. Here we look at how to make a multiple examination command that describes groups in special ways.<p>
+<a name="e337"><a href=Rex337.html#e337 STYLE="text-decoration: none">**<b>Example 68:  Beekeeper's Apprentice</b></a><br>Making the SEARCH command examine all the scenery in the current location.<p>
+<p><hr><p><a href=Rdoc32.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc34.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

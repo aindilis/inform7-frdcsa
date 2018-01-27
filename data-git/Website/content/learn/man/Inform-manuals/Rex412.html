@@ -1,0 +1,63 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 6.11. Waiting, Sleeping</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Delayed Gratification" -->
+<!-- SEARCH SECTION "Ex 375" -->
+<!-- SEARCH SORT "Ex 006-011-375" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc38.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc40.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>6.11. Waiting, Sleeping</b></td></tr></table><p>
+<p>
+<p>The standard WAIT command makes time pass at the same rate that it would anyway - one minute per turn. In a game where events happen at specific times of day, though, we might want to give the player more control. <b>Nine AM Appointment</b> shows how to give the player a WAIT 10 MINUTES command, while <b>Delayed Gratification</b> lets him WAIT UNTIL a specific time of day.
+<p>
+<p>Ordinarily, Inform also refuses to allow the player to SLEEP and WAKE UP: the commands exist, but have no effect. <b>Change of Basis</b> lets the player put himself into a sleep state in which he cannot do anything. A somewhat more interesting expansion on this idea would be to let the player sleep and have dreams; there are no examples specifically of dream states, but we might consult the examples on scenes about how to disrupt one environment and move the player to another, entirely new one.
+<p>
+<a href=Rdoc20.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Scene Changes</b></font></a><i> for ways to move the player to a new environment such as a dream state</i><p><p>
+<p><hr><p>
+<a name="e411"><a href=Rex411.html#e411 STYLE="text-decoration: none">*<b>Example 374:  Nine AM Appointment</b></a><br>A WAIT [number] MINUTES command which advances through an arbitrary number of turns.<p>
+<!-- EXAMPLE START -->
+<a name="e412"><a href=Rdoc39.html#e412 STYLE="text-decoration: none">**<b><b>Example</b> 375:  Delayed Gratification</b></a><br>A WAIT UNTIL [time] command which advances until the game clock reaches the correct hour.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<blockquote><font color="#000080">&quot;Delayed Gratification&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Hanging around until is an action applying to one time.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Check hanging around until:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the time of day is the time understood, say &quot;It is [time understood] now!&quot; instead;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the time of day is after the time understood, say &quot;It is too late for that now.&quot; instead.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Carry out hanging around until:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;while the time of day is before the time understood:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;follow the turn sequence rules.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report hanging around until:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You yawn until [time understood].&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Understand &quot;wait until [time]&quot; as hanging around until.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Empty Field is a room. &quot;It's an ordinary empty field. Nothing to see here at all-- yet. Wait until 11:45 PM, though.&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">At 11:45 PM:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Suddenly the air is filled with light and the sounds of an approaching band. Over the crest of the hill comes a parade of singing, stomping, hooting people: and not just people, but dogs, horses, elephants, giraffes... There are banners, and candles, and a flag that glows eerie-green in the dark; there is a float shaped like an enormous turtle, its shell covered with winking green lights; there is an old man dressed as a skeleton, carried in a litter, his neck garlanded with dried chiles. There are small girls throwing rose petals from a basket, and grown women half-naked carrying the emblems of Bacchic revelry, and two little boys each with a silver basin of clear water. All these go by in procession, and you join on at the end.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story finally.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;look / z / z / wait until 11:45 PM&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e114"><a href=Rex114.html#e114 STYLE="text-decoration: none">**<b>Example 45:  Change of Basis</b></a><br>Implementing sleeping and wakeful states.<p>
+<p><hr><p><a href=Rdoc38.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc40.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

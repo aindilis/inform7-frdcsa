@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 11.4. Scoring</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Scoring" -->
+<!-- SEARCH SECTION "11.4" -->
+<!-- SEARCH SORT "011-004-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc93.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc95.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>11.4. Scoring</b></td></tr></table><p>
+<p>
+<p>Not every work of IF allots a numerical score to the player: for some authors, this emphasises the idea of a game rather than a narrative. The simple sentence
+<p>
+<blockquote><font color="#000080">Use no scoring.
+</font></blockquote><p>
+<p>
+<p>abolishes the concept. Otherwise, Inform will provide built-in support for a single number measuring progress (&quot;score&quot;), and will expect to measure this against a maximum possible (&quot;maximum score&quot;, which can either be set by hand or worked out automatically from a table of ranks).
+<p>
+<p>In a game in which scoring exists, the player may choose to turn score notifications (such as &quot;[Your score has just gone up by one point.]&quot;) on or off. The commands to do this are NOTIFY ON and NOTIFY OFF; the actions are called switching score notification on and switching score notification off. In the event that we need to amend the behavior of notification, we could do so by adding, removing, or modifying the elements of the check and carry out rulebooks for these commands; as in
+<p>
+<blockquote><font color="#000080">Check switching score notification off:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the turn count is less than 10:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;You are still a novice, grasshopper. Allow your teacher to give you advice until such time as you are ready to go on alone.&quot;
+</font></blockquote><p>
+<p>
+<p>If we wish to change the wording of the default message (&quot;[Your score has...&quot;), we may want to resort to extensions available from the Inform website which allow access to all the default messages in a game.
+<p>
+<p>An especially insidious style of bug allows the player to type the same sequence of commands over and over, earning score endlessly for the same insight, and to avoid this it is usually safest to write source like:
+<p>
+<blockquote><font color="#000080">After taking the Picasso miniature when the Picasso miniature is not handled:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;award 10 points; say &quot;As they say in Montmartre: dude!&quot;
+</font></blockquote><p>
+<p>
+<p>We might also write our condition with &quot;for the first time&quot;, like so:
+<p>
+<blockquote><font color="#000080">After jumping for the first time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;award 5 points;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Boing! That was certainly entertaining.&quot;
+</font></blockquote><p>
+<p>
+<p>But we should be careful not to use &quot;for the first time&quot; in scoring situations where it's possible for the player to try the action but fail. Inform counts even unsuccessful attempts towards the number of times an action is understood to have occurred, so if the player tries to jump and fails, his &quot;for the first time&quot; will be used up and he will never receive the score points.
+<p>
+<p>If there are many &quot;treasure&quot; items like the Picasso miniature, it is best to be systematic, as in <b>No Place Like Home</b>. <b>Bosch</b> takes another approach to the same idea, by creating a table of point-earning actions that the player will be rewarded for doing; the FULL SCORE command will then play these back.
+<p>
+<p><b>Mutt's Adventure</b> demonstrates how we might add a scored room feature, such that the player earns a point when he first arrives at a special room.
+<p>
+<p>A single number does not really sum up a life, or even an afternoon, and <b>Goat-Cheese and Sage Chicken</b> and <b>Panache</b> offer more detailed citations. Works that are more story than game may prefer to offer a plot summary of the player's experience to date in lieu of more conventional scoring.
+<p>
+<p>Finally, <b>Rubies</b> provides a scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next.
+<p>
+<p><hr><p>
+<a name="e278"><a href=Rex278.html#e278 STYLE="text-decoration: none">***<b>Example 137:  No Place Like Home</b></a><br>Recording a whole table of scores for specific treasures.<p>
+<a name="e43"><a href=Rex43.html#e43 STYLE="text-decoration: none">*<b>Example 219:  Bosch</b></a><br>Creating a list of actions that will earn the player points, and using this both to change the score and to give FULL SCORE reports.<p>
+<a name="e257"><a href=Rex257.html#e257 STYLE="text-decoration: none">**<b>Example 136:  Mutt's Adventure</b></a><br>Awarding points for visiting a room for the first time.<p>
+<a name="e92"><a href=Rex92.html#e92 STYLE="text-decoration: none">***<b>Example 269:  Goat-Cheese and Sage Chicken</b></a><br>Implementing a FULL SCORE command which lists more information than the regular SCORE command, adding times and rankings, as an extension of the example given in this chapter.<p>
+<a name="e281"><a href=Rex281.html#e281 STYLE="text-decoration: none">***<b>Example 166:  Panache</b></a><br>Replacing the score with a plot summary that records the events of the plot, scene by scene.<p>
+<a name="e331"><a href=Rex331.html#e331 STYLE="text-decoration: none">***<b>Example 431:  Rubies</b></a><br>A scoreboard that keeps track of the ten highest-scoring players from one playthrough to the next, adding the player's name if he has done well enough.<p>
+<p><hr><p><a href=Rdoc93.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc95.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

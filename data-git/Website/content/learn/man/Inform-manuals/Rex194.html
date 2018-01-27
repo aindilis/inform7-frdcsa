@@ -1,0 +1,96 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 5.2. Traits Determined By the Player</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Identity Theft" -->
+<!-- SEARCH SECTION "Ex 405" -->
+<!-- SEARCH SORT "Ex 005-002-405" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc23.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc25.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>5.2. Traits Determined By the Player</b></td></tr></table><p>
+<p>
+<p>Some IF tries to make the viewpoint character more congenial to the player by allowing some customization.
+<p>
+<p><b>Identity Theft</b> demonstrates asking the player to supply the viewpoint character's name.
+<p>
+<p><b>Pink or Blue</b> demonstrates a way to let the player choose a gender at the start of play: this will mostly be interesting if the rest of the game makes some use of the player's choice. Since that example is written expressly to demonstrate included Inform 6 code, however, we may find it more congenial to generalize from the more flexible <b>Baritone, Bass</b>.
+<p>
+<p>This is not the only way to go - as we'll see in the next section, there's also something to be said for making the viewpoint character a strongly distinct creature with well-defined preferences and attitudes.
+<p>
+<p><hr><p>
+<!-- EXAMPLE START -->
+<a name="e194"><a href=Rdoc24.html#e194 STYLE="text-decoration: none">*<b><b>Example</b> 405:  Identity Theft</b></a><br>Allowing the player to enter a name to be used for the player character during the game.<p>
+<table border=0 bgcolor="#ffffc0" width=100%><tr><td><font>
+<p>
+<p>Let's say we want to allow the player to enter any name he likes for his character. Moreover, we want to reject very long names (which are likely to be mistakes anyway), and we want to extract the player's chosen first name from the rest.
+<p>
+<blockquote><font color="#000080"> &quot;Identity Theft&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player's forename is an indexed text that varies. The player's full name is an indexed text that varies.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;What is your name? > &quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">To decide whether collecting names:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the command prompt is &quot;What is your name? > &quot;, yes;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;no.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">After reading a command when collecting names:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of words in the player's command is greater than 5:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[paragraph break]Who are you, a member of the British royal family? No one has that many names. Let's try this again.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player's full name is the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player's forename is word number 1 in the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;>&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Hi, [player's forename]![paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[banner text]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command.
+</font></blockquote><p>
+<p>
+<p>We also want to postpone the proper beginning of the game until we've gotten the name:
+<p>
+<blockquote><font color="#000080">Instead of looking when collecting names: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for printing the banner text when collecting names: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Rule for constructing the status line when collecting names: do nothing.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Your Bedroom is a room. The printed name of Your Bedroom is &quot;[player's forename]'s Bedroom&quot;.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The player carries a letter. The description of the letter is &quot;Dear [player's full name], [paragraph break]You have won the Norwegian Daily Lottery! ...&quot;.
+</font></blockquote><p>
+<p>
+<p>If we are compiling for Glulx, this is enough to capture not only the player's name but also the capitalization he uses.
+<p>
+<p>If we are compiling for the Z-machine, the player's input will unfortunately be reduced to lower case before we can inspect it. If we would like by default to capitalize the first letter of each word of the name, we might substitute the following after reading a command rule:
+<p>
+<blockquote><font color="#000080">After reading a command when collecting names:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;if the number of words in the player's command is greater than 5:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[paragraph break]Who are you, a member of the British royal family? No one has that many names. Let's try this again.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player's full name is &quot;[the player's command in title case]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the player's forename is word number 1 in the player's full name;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the command prompt is &quot;>&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Hi, [player's forename]![paragraph break]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;[banner text]&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;move the player to the location;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;reject the player's command.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e166"><a href=Rex166.html#e166 STYLE="text-decoration: none">***<b>Example 441:  Pink or Blue</b></a><br>Asking the player to select a gender to begin play.<p>
+<a name="e21"><a href=Rex21.html#e21 STYLE="text-decoration: none">***<b>Example 298:  Baritone, Bass</b></a><br>Letting the player pick a gender (or perhaps other characteristics) before starting play.<p>
+<p><hr><p><a href=Rdoc23.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc25.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

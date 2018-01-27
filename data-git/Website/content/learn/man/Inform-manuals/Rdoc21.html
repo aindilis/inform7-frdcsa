@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 4.5. Flashbacks</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Flashbacks" -->
+<!-- SEARCH SECTION "4.5" -->
+<!-- SEARCH SORT "004-005-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc20.html border=0><img border=0 src=images/Back.png border=0></a><a href=Rindex.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc22.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>4.5. Flashbacks</b></td></tr></table><p>
+<p>
+<p>The viewpoint character may often need to remember events long past. The easiest way to do this is with a cut-scene, in which at some relevant point we pause the game and print a long passage of text describing the memory. Because large amounts of text can be hard for the player to take in, we may want to include some pauses in the presentation of this material; this facility is provided by the Basic Screen Effects extension by Emily Short, and might work something like this:
+<p>
+<blockquote><font color="#000080">Include Basic Screen Effects by Emily Short.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of examining the photograph for the first time:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;This reminds you of the summer of '69...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;wait for any key;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;... flashback content...&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;wait for any key.
+</font></blockquote><p>
+<p>
+<p>The &quot;pause the game&quot; phrase in the same extension offers a more dramatic pause that also clears the screen before printing new text.
+<p>
+<p>Cut-scenes are easy to implement but should be used sparingly, since players often get impatient with long uninteractive passages. A slightly more deluxe implementation might insert an interactive scene that simply happens to be set in the past, before going on with another scene set &quot;now&quot;; and, indeed, some IF abandons the idea of &quot;now&quot; entirely, presenting pieces in a non-chronological order and letting the player work out how the sequence works together.
+<p>
+<p>The most challenging case to implement (though still not very hard) is the one where we remove the player from one scenario, let him play through a flashback with past possessions and clothing, and then restore him to the same situation he left, with all of the same possessions and clothing. <b>Pine 3</b> shows how to do this: the code to change the player's status is isolated at the end of the example, and might fruitfully be reused.  <b>Pine 4</b> expands on the same idea by adding another flashback scene, demonstrating one that can be visited repeatedly and one that can be seen only once.
+<p>
+<a href=Rdoc20.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Scene Changes</b></font></a><i> for more uses of stripping and restoring the player</i><p><p>
+<a href=Rdoc26.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Background</b></font></a><i> for other ways of introducing information that the player character already knows</i><p><p>
+<a href=Rdoc44.html STYLE="text-decoration: none"><font color=\"#000000\"><img border="0" style="height: 15px; width: 13px;" alt="*" src='images/diamond.png'>&nbsp;<i>See </i><b>Alternate Default Messages</b></font></a><i> for comments on how to change the tense of an interactive scene</i><p><p>
+<p><hr><p>
+<a name="e289"><a href=Rex289.html#e289 STYLE="text-decoration: none">***<b>Example 165: Pine 3</b></a><br>Pine: Allowing the player to visit aspects of the past in memory and describe these events to the princess, as a break from the marriage-proposal scene.<p>
+<a name="e290"><a href=Rex290.html#e290 STYLE="text-decoration: none">***<b>Example 167: Pine 4</b></a><br>Pine: Adding a flashback scene that, instead of repeating endlessly, repeats only until the Princess has understood the point.<p>
+<p><hr><p><a href=Rdoc20.html STYLE="text-decoration: none">Previous</a> / <a href=Rdoc22.html STYLE="text-decoration: none">Next</a> / <a href=Rindex.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

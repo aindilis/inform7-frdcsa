@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 16.18. Changing the meaning of pronouns</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Changing the meaning of pronouns" -->
+<!-- SEARCH SECTION "16.18" -->
+<!-- SEARCH SORT "016-018-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc276.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc278.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>16.18. Changing the meaning of pronouns</b></td></tr></table><p>
+<p>
+<p>The pronouns IT, HIM, HER and THEM are constantly adjusted during play, to save the player time when typing commands. If the player types EXAMINE NECKLACE on one turn, it's sufficient to type TAKE IT on the next, and IT will be understood as meaning whatever NECKLACE meant last turn.
+<p>
+<p>All of that happens automatically, but once in a while the result can be unfortunate. Suppose that when the player examines the necklace, a security system automatically drugs her unconscious, and she wakes up in a cell, hours later, and is told that the cell is bare except for a key on the floor. If she types TAKE IT, she clearly doesn't mean IT to mean the necklace any more; she means the key. Inform's parser can't make guesses like this, so the following phrase can be used to help it.
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>set pronouns from </b>(object)<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_setpronouns -->
+
+<p>This phrase adjusts the meaning of pronouns like IT, HIM, HER and THEM in the command parser as if the object mentioned has become the subject of conversation. Example: the combination of
+<p>
+<blockquote><font color="#000080">set pronouns from the key;
+<br>set pronouns from Bunny;
+</font></blockquote><p>
+<p>
+<p>might change IT to mean the silver key and HIM to mean Harry &quot;Bunny&quot; Manders, while leaving HER and THEM unaltered.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>Previous builds of Inform also allowed:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>set pronouns from possessions of the player</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_setpronouns_dep -->
+
+<p>This phrase is now deprecated. It has the same effect as:
+<p>
+<blockquote><font color="#000080">repeat with item running through things held by the player:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;set pronouns from the item.
+</font></blockquote><p>
+<p>
+<p>and is being withdrawn as unnecessary and very rarely needed.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e296"><a href=ex296.html#e296 STYLE="text-decoration: none">*<b>Example 314:  Pot of Petunias</b></a><br>Responding sensibly to a pot of petunias falling from the sky.<p>
+<p><hr><p><a href=doc276.html STYLE="text-decoration: none">Previous</a> / <a href=doc278.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 17.36. Printing the player's obituary</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Finality" -->
+<!-- SEARCH SECTION "Ex 370" -->
+<!-- SEARCH SORT "Ex 017-036-370" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc316.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc318.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>17.36. Printing the player's obituary</b></td></tr></table><p>
+<p>
+<p><b>1. When it happens.</b> The obituary is the text &quot;*** You have died ***&quot; or similar, usually followed by the final score.
+<p>
+<p><b>2. The default behaviour.</b> Printing the aforementioned text, then the final score, and reducing the status line to a largely blank state.
+<p>
+<p><b>3. Examples.</b> (a) For a work with no meaningful score, it would be odd to wind up with a final reckoning of 0, so:
+<p>
+<blockquote><font color="#000080">Procedural rule: ignore the print final score rule.
+</font></blockquote><p>
+<p>
+<p>(b) Or we could add to the verdict:
+<p>
+<blockquote><font color="#000080">After printing the player's obituary: say &quot;And you visited [number of visited rooms] place[s].&quot;
+</font></blockquote><p>
+<p>
+<p><hr><p>
+<a name="e125"><a href=ex125.html#e125 STYLE="text-decoration: none">*<b>Example 369:  Battle of Ridgefield</b></a><br>Completely replacing the endgame text and stopping the game without giving the player a chance to restart or restore.<p>
+<!-- EXAMPLE START -->
+<a name="e143"><a href=doc317.html#e143 STYLE="text-decoration: none">*<b><b>Example</b> 370:  Finality</b></a><br>Not mentioning UNDO in the final set of options.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>By default, Inform reminds the player that he has the option of typing UNDO after a story-ending action. This is generally good practice, especially for the sake of novice players who might not be aware of this possibility otherwise, and might be frustrated by a loss they could easily step back from.
+<p>
+<p>Just occasionally, though, we may decide that the player does not deserve any such notification:
+<p>
+<blockquote><font color="#000080">&quot;Finality&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Cliff Edge is a room. &quot;This narrow strip overlooks a gorge many hundreds of feet deep, at whose bottom is a river of molten lava. The walls of the gorge are lined with poison-tipped spikes. Furthermore, the birds that inhabit this valley spit balls of fire. Good thing you're safe up here.&quot;
+</font></blockquote><p>
+<p>
+<p>The Table of Final Question Options determines what options are to be given to the player after the story ends. We can change what is mentioned there by altering the entries. (The example Jamaica 1688 explains this table in more detail, and demonstrates some other things that we might do with it.)
+<p>
+<blockquote><font color="#000080">When play begins:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;choose row with a final response rule of immediately undo rule in the Table of Final Question Options;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;delete the final question wording entry.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Instead of jumping:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;If you insist.&quot;;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;end the story.
+</font></blockquote><p>
+<p>
+<p>And if we decided that we didn't want the player to be able to undo the command at all, we should add the use option
+<p>
+<blockquote><font color="#000080">Use undo prevention.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;jump&quot;.
+</font></blockquote><p>
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<a name="e200"><a href=ex200.html#e200 STYLE="text-decoration: none">*<b>Example 371:  Jamaica 1688</b></a><br>Adding a feature to the final question after victory, so that the player can choose to reveal notes about items in the game.<p>
+<p><hr><p><a href=doc316.html STYLE="text-decoration: none">Previous</a> / <a href=doc318.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

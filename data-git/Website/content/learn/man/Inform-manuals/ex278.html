@@ -1,0 +1,101 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 9.2. Awarding points</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "No Place Like Home" -->
+<!-- SEARCH SECTION "Ex 137" -->
+<!-- SEARCH SORT "Ex 009-002-137" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc142.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc144.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>9.2. Awarding points</b></td></tr></table><p>
+<p>
+<p>Traditionally-written games award points throughout play, as an indication of progress. If we want to be traditional, we can award points as follows:
+<p>
+<blockquote><font color="#000080">increase the score by 5;
+</font></blockquote><p>
+<p>
+<p>substituting whatever number we feel is appropriate. We should be careful not to give out the same points over and over, that is, not to reward the same basic achievement many times over if the player simply repeats the same action. This, for instance, is open to abuse:
+<p>
+<blockquote><font color="#000080">After taking the trophy:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by 5;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Well done!&quot;
+</font></blockquote><p>
+<p>
+<p>The player may simply take the trophy, drop it again, take it again, ... and win five points every time around. We can prevent this by phrasing the rule more carefully:
+<p>
+<blockquote><font color="#000080">After taking the trophy when the trophy is not handled:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by 5;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;say &quot;Well done!&quot;
+</font></blockquote><p>
+<p>
+<p>Rather than being an open-ended scoring system, IF normally has a maximum possible score, which can be specified with a sentence like so:
+<p>
+<blockquote><font color="#000080">The maximum score is 10.
+</font></blockquote><p>
+<p>
+<p>The score and maximum score are just numbers that vary, so we can freely change them:
+<p>
+<blockquote><font color="#000080">After eating the poisoned mushroom:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;now the score is -100.
+</font></blockquote><p>
+<p>
+<p>Recall that if the source declares:
+<p>
+<blockquote><font color="#000080">Use no scoring.
+</font></blockquote><p>
+<p>
+<p>then the SCORE, NOTIFY ON and NOTIFY OFF commands do not work; the final score is not shown at the end of a game; and the status line above the player's text area shows only the turn count, not (as is more usual) both the score and the turn count. Changing the &quot;score&quot; has no visible effect, though it is not actually illegal.
+<p>
+<p><hr><img border=&quot;0&quot; src=images/beta.png id=&quot;betaoval&quot; style=&quot;height:31px; width=40px&quot;>In previous builds, Inform had a special phrase for adding to the score:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #c00000; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>award </b>(number)<b> point</b>/points<b></b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_awardpoints_dep -->
+
+<p>This phrase adds the given value to the score. It is now deprecated, and only ever acted as a shorthand for:
+<p>
+<blockquote><font color="#000080">increase the score by (number)
+</font></blockquote><p>
+<p>
+<p>Giving this a special phrase wording tended to suggest to newcomers that there was something special about the score - when, in fact, it was only ever a number that varies, called &quot;score&quot;.
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p><hr><p>
+<a name="e257"><a href=ex257.html#e257 STYLE="text-decoration: none">**<b>Example 136:  Mutt's Adventure</b></a><br>Awarding points for visiting a room for the first time.<p>
+<!-- EXAMPLE START -->
+<a name="e278"><a href=doc143.html#e278 STYLE="text-decoration: none">***<b><b>Example</b> 137:  No Place Like Home</b></a><br>Recording a whole table of scores for specific treasures.<p>
+<table border=0 bgcolor="#f0f0f0" width=100%><tr><td><font>
+<p>
+<p>Suppose we want to assign scores for a whole range of objects the player might pick up. One systematic way to do this would be with a table of point values for things:
+<p>
+<blockquote><font color="#000080">&quot;No Place Like Home&quot;
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">The Hall of the Gnome King is a room. The emerald cow is a thing in the Hall of the Gnome King. The ivory chessman is a thing in the Hall of the Gnome King. The book of incantations is a thing in the Hall of the Gnome King.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Table of Point Values
+<br><table border="0" valign="top" cellpadding="0" cellspacing="0"><tr><td valign="top"><font color="#000080">item</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">score</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">cow</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">10</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">incantations</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">4</font>&nbsp;&nbsp;&nbsp;</td>
+</tr><tr><td valign="top"><font color="#000080">chessman</font>&nbsp;&nbsp;&nbsp;</td><td valign="top"><font color="#000080">1</font>&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Report taking an item listed in the Table of Point Values:
+<br>&nbsp;&nbsp;&nbsp;&nbsp;increase the score by the score entry;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;blank out the whole row.
+</font></blockquote><p>
+<p>
+<blockquote><font color="#000080">Test me with &quot;take all&quot;.
+</font></blockquote><p>
+<p>
+<p>&quot;Blank out the whole row&quot; removes the line from the table, so that each award will occur only once. The player will not be able to earn more and more points by dropping and taking the same item again.
+</td></tr></table><p>
+<!-- EXAMPLE END -->
+<p><hr><p><a href=doc142.html STYLE="text-decoration: none">Previous</a> / <a href=doc144.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Inform 7 - 8.10. Removing things from play</title>
+</head>
+<body>
+<div style="line-height: 18px;">
+
+<!-- SEARCH TITLE "Removing things from play" -->
+<!-- SEARCH SECTION "8.10" -->
+<!-- SEARCH SORT "008-010-000" -->
+<font><table><tr width="100%"><td width=80 valign="top"><a href=doc130.html border=0><img border=0 src=images/Back.png border=0></a><a href=index.html border=0><img border=0 src=images/Home.png border=0></a><a href=doc132.html border=0><img border=0 src=images/Forward.png border=0></a></td><td valign="top"><b>8.10. Removing things from play</b></td></tr></table><p>
+<p>
+<p>Some things will occasionally be in a limbo state called being &quot;off-stage&quot;: like actors or props not needed in Act II, but perhaps to be brought back on-stage later, they wait on the sidelines. Anything created with no apparent location will start the game off-stage, as in the case of the lamp here:
+<p>
+<blockquote><font color="#000080">Aladdin's Cave is a room. The genie's lamp is a container.
+</font></blockquote><p>
+<p>
+<p>(Such things are easy to see in the World index because they are listed after all of the rooms and their contents, not belonging inside any room.)
+<p>
+<p>To move something back on-stage, we simply &quot;move&quot; it back onto the stage set, so to speak: back to a room, or into, onto, or made part of something else which is currently on-stage. To remove something, we use the phrase:
+<p>
+<p><p style='padding: 0.75em; border: 1px dashed #2f6fab; color: black; background-color: #e9e9e9; line-height: 1.5em; '><b>remove </b>(object)<b> from play</b><table CELLPADDING=0 CELLSPACING=0 width='100%'><tr><td halign='left' valign='center' CELLPADDING=0 CELLSPACING=0><font>
+<!-- definition of ph_remove -->
+
+<p>Removes the given object from play, so that it is not present in any room. We are not permitted to remove rooms, or doors, or the player, from play; but we are permitted to remove backdrops, making them disappear from all rooms in which they are present. Example:
+<p>
+<blockquote><font color="#000080">remove the gold coin from play;
+</font></blockquote><p>
+<p>
+<!-- end definition -->
+</table>
+<p>
+<p> We can test whether something is on-stage or off-stage with:
+<p>
+<blockquote><font color="#000080">if the gold coin is on-stage, ...
+<br>if the gold coin is off-stage, ...
+</font></blockquote><p>
+<p>
+<p>or could, for instance, write
+<p>
+<blockquote><font color="#000080">say &quot;Ah, so many absent friends. Who now remembers [list of off-stage people]?&quot;
+</font></blockquote><p>
+<p>
+<p>We can even write
+<p>
+<blockquote><font color="#000080">now the gold coin is off-stage
+</font></blockquote><p>
+<p>
+<p>which is equivalent the &quot;remove the gold coin from play&quot;, and similarly for on-stage. (If we say &quot;now the gold coin is on-stage&quot; and it already was, nothing happens; if it wasn't, it is moved to the current location.)
+<p>
+<p>&quot;On-stage&quot; and &quot;off-stage&quot; are adjectives, like &quot;visible&quot; or &quot;touchable&quot;, and they apply only to things. Rooms, directions and regions are the stage itself: so it makes no sense to ask the question of whether they are &quot;on-&quot; or &quot;off-&quot;. Doors are always on-stage; backdrops are on-stage unless they have been explicitly removed using the &quot;remove... from play&quot; phrase.
+<p>
+<p><hr><p>
+<a name="e31"><a href=ex31.html#e31 STYLE="text-decoration: none">*<b>Example 122:  Beverage Service</b></a><br>A potion that the player can drink.<p>
+<a name="e351"><a href=ex351.html#e351 STYLE="text-decoration: none">*<b>Example 123:  Spring Cleaning</b></a><br>A character who sulks over objects that the player has broken (and which are now off-stage).<p>
+<a name="e132"><a href=ex132.html#e132 STYLE="text-decoration: none">**<b>Example 124:  Extra Supplies</b></a><br>A supply of red pens from which the player can take another pen only if he doesn't already have one somewhere in the game world.<p>
+<p><hr><p><a href=doc130.html STYLE="text-decoration: none">Previous</a> / <a href=doc132.html STYLE="text-decoration: none">Next</a> / <a href=index.html STYLE="text-decoration: none">Contents</a><p></font></div>
+</body>
+</html>
